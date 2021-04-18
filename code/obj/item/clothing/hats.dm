@@ -1017,7 +1017,7 @@
 	wear_image_icon = 'icons/mob/ultrasyndicatetop.dmi'
 	icon_state = "holyfuckhat"
 	item_state = "holyfuckhat"
-	contraband = 1000000
+	contraband = 1000
 	w_class = 4
 	//admin shenanigins only
 
