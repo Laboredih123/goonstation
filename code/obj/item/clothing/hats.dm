@@ -1011,6 +1011,16 @@
 		else
 			return 0
 
+/obj/item/clothing/head/ultrasyndicate
+	name = "Ultra Syndicate Hat"
+	desc = "An offense to the universe."
+	wear_image_icon = 'icons/mob/ultrasyndicatetop.dmi'
+	icon_state = "holyfuckhat"
+	item_state = "holyfuckhat"
+	contraband = 1000000
+	w_class = 4
+	//admin shenanigins only
+
 /obj/item/clothing/head/witchfinder
 	name = "witchfinder general's hat"
 	desc = "To hide most of your emotionless facial features."
