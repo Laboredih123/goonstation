@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/unary/cold_sink/freezer
 	name = "freezer"
 	icon = 'icons/obj/Cryogenic2.dmi'
-	icon_state = "freezer_0"
+	icon_state = "oldfreezer_0"
 	density = 1
 	anchored = 1.0
 	current_heat_capacity = 1000
@@ -65,11 +65,11 @@
 	update_icon()
 		if(src.node)
 			if(src.on)
-				icon_state = "freezer_1"
+				icon_state = "oldfreezer_1"
 			else
-				icon_state = "freezer"
+				icon_state = "oldfreezer"
 		else
-			icon_state = "freezer_0"
+			icon_state = "oldfreezer_0"
 		return
 
 	attack_ai(mob/user as mob)
@@ -108,9 +108,9 @@
 				else
 					src.current_temperature = max((T0C - 200), src.current_temperature+amount)
 			if (href_list["settemp"])
-				var/change = input(usr,"Target Temperature (-200 C - 20 C):","Enter target temperature",current_temperature - T0C) as num
+				var/change = input(usr,"Target Temperature (-200 C - 200 C):","Enter target temperature",current_temperature - T0C) as num
 				if(!isnum(change)) return
-				current_temperature = min(max(73.15, change + T0C),293.15)
+				current_temperature = min(max(73.15, change + T0C),473.15)
 				src.updateUsrDialog()
 				return
 

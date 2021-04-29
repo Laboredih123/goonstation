@@ -2,7 +2,7 @@
 	name = "Portable Air Scrubber"
 
 	icon = 'icons/obj/atmospherics/atmos.dmi'
-	icon_state = "pscrubber:0"
+	icon_state = "scrubber:0"
 	density = 1
 
 	var/on = FALSE
@@ -20,9 +20,9 @@
 
 /obj/machinery/portable_atmospherics/scrubber/update_icon()
 	if(on)
-		icon_state = "pscrubber:1"
+		icon_state = "scrubber:1"
 	else
-		icon_state = "pscrubber:0"
+		icon_state = "scrubber:0"
 
 /obj/machinery/portable_atmospherics/scrubber/proc/scrub(datum/gas_mixture/removed)
 	//Filter it

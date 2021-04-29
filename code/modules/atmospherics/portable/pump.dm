@@ -2,7 +2,7 @@
 	name = "Portable Air Pump"
 
 	icon = 'icons/obj/atmospherics/atmos.dmi'
-	icon_state = "psiphon-off"
+	icon_state = "siphon:0"
 	dir = NORTH //so it spawns with the fan side showing
 	density = 1
 	mats = 12
@@ -24,17 +24,17 @@
 
 /obj/machinery/portable_atmospherics/pump/update_icon()
 	if(on)
-		icon_state = "psiphon-on"
+		icon_state = "siphon:1"
 
 		animate(src, pixel_x = 2, easing = SINE_EASING, loop=-1, time = 0.5 SECONDS)
 		animate(pixel_x = -2, easing = SINE_EASING, loop=-1, time = 0.5 SECONDS)
 	else
-		icon_state = "psiphon-off"
+		icon_state = "siphon:0"
 		animate(src)
 		pixel_x = 0
 
 	if (holding)
-		tank_hatch.icon_state = "psiphon-T-overlay"
+		tank_hatch.icon_state = "siphon:T"
 	else
 		tank_hatch.icon_state = ""
 	src.UpdateOverlays(tank_hatch, "tankhatch")

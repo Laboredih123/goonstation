@@ -16,7 +16,7 @@
 
 	var/datum/gas_mixture/environment
 	var/safe
-	/*var/panic_mode = 0 */
+	var/panic_mode = 0
 	var/e_gas = 0
 	var/last_safe = 2
 
@@ -37,12 +37,12 @@
 
 /obj/machinery/alarm/process()
 	src.updateDialog()
-	/*
+
 	if (panic_mode > 0)
 		panic_mode--
 		if(panic_mode <= 0)
 			unpanic()
-	*/
+
 	if (src.skipprocess)
 		src.skipprocess--
 		return
@@ -150,9 +150,8 @@
 			boutput(user, "<span class='alert'>The local air monitor has no power!</span>")
 			return
 		if (src.allowed(usr))
-//			locked = !locked
-//			boutput(user, "You [ locked ? "lock" : "unlock"] the local air monitor.")
-			boutput(user, "<span class='alert'>Error: No atmospheric pipe network detected.</span>") // <-- dumb workaround until atmos processing is better
+			locked = !locked
+			boutput(user, "You [ locked ? "lock" : "unlock"] the local air monitor.")
 			return
 		else
 			boutput(user, "<span class='alert'>Access denied.</span>")
@@ -260,14 +259,13 @@
 
 		if(e_gas)
 			output += "<FONT color = 'red'>WARNING: Local override engaged, air supply is limited!</FONT><BR>"
-	/*
+
 	if(panic_mode > 0)
 		var/seconds = panic_mode % 60
 		var/minutes = (panic_mode - seconds)/60
 		output += "<FONT color = 'red'>WARNING: Scrubbers on panic siphon for next [minutes]:[seconds]!</FONT><BR>"
-	*/
-	output += "<BR>"
 
+	output += "<BR>"
 	output += "Environment Status: "
 
 	switch(safe)
@@ -281,10 +279,10 @@
 			output += "<FONT color = 'blue'>OPTIMAL</FONT>"
 
 	output += "<BR><HR>"
+	output += "<TT>"
 
-	/*output += "<TT>"
 	if(locked && (!issilicon(user)))
-		output += "<I><FONT color = 'gray'>No atmospheric pipe network detected.<BR>Control functions unavailable.</FONT></I>"
+		output += "<I><FONT color = 'red'>Interface locked. Swipe authorized card to unlock.</FONT></I>"
 	else
 		if(!issilicon(user))
 			output += "<I>Swipe card to lock interface.</I><BR><BR>"
@@ -293,13 +291,12 @@
 			output += "<A href='?src=\ref[src];unpanic=1'>Cancel Panic Siphon</A><BR>"
 		else
 			output += "<A href='?src=\ref[src];panic=1'>Engage Two-Minute Panic Siphon</A> - <FONT color = 'red'>WARNING: Pressure may temporarily drop below safe levels!</FONT><BR>"
-		output += "</TT>" */
+		output += "</TT>"
 	return output
 
 /obj/machinery/alarm/Topic(href, href_list)
 	if(..())
 		return
-	/*
 	if(href_list["toggle_override"])
 		var/datum/radio_frequency/frequency = radio_controller.return_frequency(control_frequency)
 
@@ -322,7 +319,7 @@
 		panic(120)
 
 	if(href_list["unpanic"])
-		unpanic()  */
+		unpanic()
 
 	src.add_fingerprint(usr)
 
@@ -331,7 +328,7 @@
 		status &= ~NOPOWER
 	else
 		status |= NOPOWER
-/*
+
 /obj/machinery/alarm/proc/panic(var/time)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(control_frequency)
 
@@ -376,4 +373,4 @@
 	signal.data["tag"] = id
 	signal.data["command"] = "end_purge"
 
-	frequency.post_signal(src, signal) */
+	frequency.post_signal(src, signal)
