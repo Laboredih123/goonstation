@@ -48,7 +48,7 @@
 "iD" = (/obj/machinery/compressor{dir = 1},/obj/cable,/obj/cable{icon_state = "0-2"},/turf/simulated/floor/airless/engine,/area/research_outpost/toxins)
 "iG" = (/obj/grille/catwalk{dir = 6},/turf/simulated/floor/airless/plating/catwalk{icon_state = "catwalk_cross"},/area/space)
 "iN" = (/obj/machinery/atmospherics/valve/digital{dir = 8},/obj/map/light,/turf/simulated/floor,/area/station/atmos)
-"iR" = (/obj/machinery/camera/television/mobile{dir = 4},/turf/simulated/floor/airless/engine,/area/station/science/testchamber)
+"iR" = (/obj/machinery/camera/television{c_tag = "test chamber"; dir = 4; name = "camera - test chamber"},/turf/simulated/floor/airless/engine,/area/station/science/testchamber)
 "je" = (/turf/space,/area/space)
 "jg" = (/obj/machinery/atmospherics/pipe/simple/insulated{dir = 4},/obj/machinery/atmospherics/pipe/simple/insulated,/obj/map/light,/turf/simulated/floor,/area/station/atmos)
 "jn" = (/obj/machinery/atmospherics/portables_connector,/obj/cable{icon_state = "1-8"},/obj/map/light,/turf/simulated/floor/plating,/area/research_outpost/toxins)
@@ -129,7 +129,7 @@
 "xV" = (/obj/landmark/start{name = "Chef"},/turf/simulated/floor,/area/station/crew_quarters/captain)
 "ya" = (/obj/cable{icon_state = "4-8"},/turf/simulated/wall/auto/reinforced/supernorn,/area/space)
 "ym" = (/obj/landmark/start{name = "Captain"},/turf/simulated/floor,/area/station/crew_quarters/captain)
-"yp" = (/obj/item/device/camera_viewer{network = "Zeta"},/obj/map/light,/turf/simulated/floor,/area/station/atmos)
+"yp" = (/obj/map/light,/obj/machinery/computer/security/wooden_tv/small,/turf/simulated/floor,/area/station/atmos)
 "ys" = (/obj/wingrille_spawn/auto/crystal,/obj/machinery/atmospherics/pipe/simple/insulated{dir = 10},/turf/simulated/floor/airless/engine/vacuum,/area/station/engine/combustion_chamber)
 "yF" = (/obj/grille/catwalk/cross,/obj/cable{icon_state = "1-2"},/turf/simulated/floor/airless/plating/catwalk{dir = 5; icon_state = "catwalk_cross"},/area/space)
 "zd" = (/obj/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/cable{icon_state = "2-4"},/obj/map/light,/turf/simulated/floor,/area/station/atmos)
@@ -172,7 +172,7 @@
 "Hf" = (/obj/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/obj/cable{icon_state = "1-8"},/turf/simulated/floor/plating,/area/station/maintenance/disposal)
 "Hj" = (/obj/item/device/analyzer/atmospheric/upgraded,/turf/simulated/floor,/area/station/crew_quarters/captain)
 "HJ" = (/obj/lattice,/obj/machinery/atmospherics/pipe/simple/insulated{dir = 10},/turf/space,/area/space)
-"HT" = (/obj/machinery/alarm{pixel_y = 24},/obj/map/light,/turf/simulated/floor/plating,/area/research_outpost/toxins)
+"HT" = (/obj/machinery/alarm{control_frequency = "1438"; pixel_y = 24},/obj/map/light,/turf/simulated/floor/plating,/area/research_outpost/toxins)
 "HV" = (/obj/machinery/conveyor{dir = 4; id = "garbage"; operating = 1},/obj/plasticflaps{layer = 3},/turf/simulated/floor/plating,/area/station/maintenance/disposal)
 "HY" = (/obj/machinery/atmospherics/valve/digital,/obj/map/light,/turf/simulated/floor,/area/station/atmos)
 "HZ" = (/obj/machinery/launcher_loader/north,/obj/railing{dir = 4},/turf/simulated/floor/airless/plating,/area/space)
@@ -225,12 +225,13 @@
 "RZ" = (/obj/landmark/map{name = "NEWMAP"},/turf/space,/area/space)
 "Sd" = (/obj/grille/catwalk{dir = 9},/obj/cable{icon_state = "1-2"},/turf/simulated/floor/airless/plating/catwalk{dir = 8; icon_state = "catwalk_cross"},/area/space)
 "Sk" = (/obj/machinery/atmospherics/pipe/vent,/turf/simulated/floor/airless/plating,/area/space)
+"Sm" = (/obj/map/light,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/obj/item/storage/box/cablesbox,/turf/simulated/floor,/area/station/atmos)
 "SA" = (/obj/machinery/light,/turf/simulated/floor,/area/station/crew_quarters/captain)
 "SU" = (/obj/machinery/portable_atmospherics/canister,/obj/cable{icon_state = "1-2"},/obj/map/light,/turf/simulated/floor,/area/station/atmos/highcap_storage)
 "SV" = (/obj/machinery/atmospherics/pipe/simple/heat_exchanging{dir = 9},/turf/space,/area/space)
 "TG" = (/obj/machinery/chem_dispenser/alcohol/hydro,/turf/simulated/floor,/area/station/crew_quarters/bar)
 "TM" = (/obj/machinery/atmospherics/pipe/simple/insulated{dir = 6},/turf/simulated/wall/auto/reinforced/supernorn,/area/space)
-"TV" = (/obj/cable{icon_state = "1-2"},/obj/machinery/atmospherics/unary/vent_scrubber/breathable{dir = 4},/obj/map/light,/turf/simulated/floor/engine,/area/research_outpost/toxins)
+"TV" = (/obj/cable{icon_state = "1-2"},/obj/machinery/atmospherics/unary/vent_scrubber/breathable{dir = 4; frequency = "1438"},/obj/map/light,/turf/simulated/floor/engine,/area/research_outpost/toxins)
 "Uf" = (/obj/machinery/computer/general_air_control,/obj/map/light,/turf/simulated/floor,/area/station/atmos)
 "Ur" = (/obj/disposalpipe/segment{dir = 4},/turf/simulated/floor,/area/space)
 "Ux" = (/obj/cable{icon_state = "0-2"},/obj/map/light,/turf/simulated/floor/plating,/area/research_outpost/toxins)
@@ -527,7 +528,7 @@ jejejejejejejejejejejeprvXBmdZXnbKjejeoRYNPEjejejejejejejejejebKqKrrBOBOHTbKjeje
 jejejejejejejejejejejecibKnUysnUbKjejeoRYNPENnNnNnNnNnNnNnNnNnbKPXjnBOOqBObKjejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejeje
 jejejejejeSkjejejejeSkNCBpCeHJgrAGjejeoRYNHZZnxixixixixixixixiQVvVlsUxaXbdbKjejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejeje
 jejebKbKbKeobKbKbKbKeoTMWywTaEaEbKbKbKbKdmbKdmbKbKbKbKbKbKbKbKbKlujzVHLMbKbKjejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejeje
-jejebKININcdsjZJZJLWLkjgqArDkxEweEMQIdININypINbKMUMUYCYCYCYCYCbKwpeFTVaMEuXxjejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejeje
+jejebKININcdsjZJZJLWLkjgqArDkxEweEMQIdSmINypINbKMUMUYCYCYCYCYCbKwpeFTVaMEuXxjejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejeje
 jejebKININLgLgLkwnINvKGuMkHYHYHYMkININININININbKMUMUjqYCYCYCtGyaVNLMbhLMbKjejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejeje
 jejebKINININekINbYxjGuINMkLgLgLgMkININININININbKMUMUjqjqMsMsEybKbKlMFQEdbKjejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejeje
 jejebKININZJfSINLgINININjGEaEaEanOININININININbKMUMUjqjqMsMsEybKbKbKiDbKbKjejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejejeje
