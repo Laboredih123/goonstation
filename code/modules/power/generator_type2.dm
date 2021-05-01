@@ -87,7 +87,7 @@
 /obj/machinery/power/generator_type2/attack_ai(mob/user)
 	if(status & (BROKEN|NOPOWER)) return
 
-	interact(user)
+	interacted(user)
 
 /obj/machinery/power/generator_type2/attack_hand(mob/user)
 
@@ -95,11 +95,10 @@
 
 	if(status & (BROKEN|NOPOWER)) return
 
-	interact(user)
+	interacted(user)
 
-/obj/machinery/power/generator_type2/proc/interact(mob/user)
+/obj/machinery/power/generator_type2/proc/interacted(mob/user)
 	if ( (get_dist(src, user) > 1 ) && (!isAI(user)))
-		user.machine = null
 		user << browse(null, "window=teg")
 		return
 
@@ -126,11 +125,6 @@
 
 /obj/machinery/power/generator_type2/Topic(href, href_list)
 	..()
-
-	if( href_list["close"] )
-		usr << browse(null, "window=teg")
-		usr.machine = null
-		return 0
 
 	return 1
 
