@@ -246,7 +246,7 @@
 			for(var/obj/item/A in src) // For each item(A) in the rack(src) ...
 				if(!istype(A, contained_weapon)) // Check if the item(A) is not(!) accepted in this kind of rack(contained_weapon) and then...
 					continue // It's not accepted here! Vamoose! Skidaddle! Git outta here! (Move on without executing any further code in this proc.)
-				A:charge(10) //You passed the if test, charge the item(A) in increments of a number(10) (Rechargers charge by 20, so this makes racks half as fast.)
+				SEND_SIGNAL(A, COMSIG_CELL_CHARGE, 10)
 
 	Topic(href, href_list)
 		if(get_dist(usr,src) > 1 && !issilicon(usr) && !isAI(usr))
@@ -254,7 +254,7 @@
 			return
 
 		if ((href_list["cutwire"]) && (src.panelopen || isAI(usr)))
-			var/twire = text2num(href_list["cutwire"])
+			var/twire = text2num_safe(href_list["cutwire"])
 			if (!usr.find_tool_in_hand(TOOL_SNIPPING))
 				boutput(usr, "You need a snipping tool!")
 				return
@@ -263,7 +263,7 @@
 			src.updateUsrDialog()
 
 		if ((href_list["pulsewire"]) && (src.panelopen || isAI(usr)))
-			var/twire = text2num(href_list["pulsewire"])
+			var/twire = text2num_safe(href_list["pulsewire"])
 			if (!usr.find_tool_in_hand(TOOL_PULSING) && !isAI(usr))
 				boutput(usr, "You need a multitool or similar!")
 				return

@@ -10,7 +10,7 @@
 	desc = "A little fire-fighting robot!  He looks so darn chipper."
 	icon = 'icons/obj/bots/aibots.dmi'
 	icon_state = "firebot0"
-	event_handler_flags = USE_PROXIMITY | USE_FLUID_ENTER | USE_CANPASS
+	event_handler_flags = USE_PROXIMITY | USE_FLUID_ENTER 
 	flags =  FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | DOORPASS
 	layer = 5.0 //TODO LAYER
 	density = 0
@@ -192,7 +192,7 @@
 
 	if(src.frustration > 8)
 		src.KillPathAndGiveUp(1)
-	
+
 	if(src.target) // is our target still on fire?
 		if(src.emagged)
 			if(!IN_RANGE(src, src.target, 5) && prob(25))
@@ -303,10 +303,10 @@
 		playsound(src.loc, "sound/musical_instruments/Bikehorn_1.ogg", 75, 1, -3)
 
 	else
-		playsound(src.loc, "sound/effects/spray.ogg", 75, 1, -3)
+		playsound(src.loc, "sound/effects/spray.ogg", 30, 1, -3)
 
 	for(var/a in 0 to 5)
-		var/obj/effects/water/W = unpool(/obj/effects/water)
+		var/obj/effects/water/W = new /obj/effects/water
 		if(!W) return
 		W.set_loc( get_turf(src) )
 		var/turf/my_target = pick(the_targets)
@@ -371,7 +371,7 @@
 	new /obj/item/extinguisher(Tsec)
 
 	if (prob(50))
-		new /obj/item/parts/robot_parts/arm/left(Tsec)
+		new /obj/item/parts/robot_parts/arm/left/standard(Tsec)
 
 	var/obj/item/storage/toolbox/emergency/emptybox = new /obj/item/storage/toolbox/emergency(Tsec)
 	for(var/obj/item/I in emptybox.contents) //Empty the toolbox so we don't have infinite crowbars or whatever

@@ -13,7 +13,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 'sound/voice/macho/macho_mumbling05.ogg', 'sound/voice/macho/macho_mumbling07.ogg', 'sound/voice/macho/macho_shout08.ogg')
 
 /mob/living/carbon/human/machoman
-	var/list/macho_arena_turfs
+	var/list/macho_arena_turfs // NOTE: remove this and the clean_up_arena_turfs proc on the mob if we get around to getting rid of the macho verbs
 	New(loc, shitty)
 		..()
 		//src.mind = new
@@ -32,16 +32,20 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 		src.equip_new_if_possible(/obj/item/clothing/head/helmet/macho, slot_head)
 		src.equip_new_if_possible(/obj/item/storage/belt/macho_belt, slot_belt)
 		src.equip_new_if_possible(/obj/item/device/radio/headset, slot_ears)
-    
+
 		if(!shitty)
 			for (var/datum/targetable/macho/A as() in concrete_typesof(/datum/targetable/macho))
 				src.abilityHolder.addAbility(A)
 			src.abilityHolder.updateButtons()
 
+	disposing()
+		. = ..()
+		if (macho_arena_turfs)
+			src.clean_up_arena_turfs(src.macho_arena_turfs) // cleans up the macho_arena_turfs reference while animating the arena disappearing
 
 	initializeBioholder()
-		src.bioHolder.mobAppearance.customization_first = "Dreadlocks"
-		src.bioHolder.mobAppearance.customization_second = "Full Beard"
+		src.bioHolder.mobAppearance.customization_first = new /datum/customization_style/hair/long/dreads
+		src.bioHolder.mobAppearance.customization_second = new /datum/customization_style/beard/fullbeard
 		. = ..()
 
 	Life(datum/controller/process/mobs/parent)
@@ -81,9 +85,9 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 		..()
 		return
 
-	Bump(atom/movable/AM, yes)
+	bump(atom/movable/AM)
 		if (src.stance == "offensive")
-			if ((!( yes ) || src.now_pushing))
+			if ( src.now_pushing)
 				return
 			now_pushing = 1
 			if (ismob(AM))
@@ -92,7 +96,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				for (var/mob/C in oviewers(src))
 					shake_camera(C, 8, 24)
 					C.show_message("<span class='alert'><B>[src] clotheslines [M] into oblivion!</B></span>", 1)
-				M.changeStatus("stunned", 80)
+				M.changeStatus("stunned", 8 SECONDS)
 				M.changeStatus("weakened", 5 SECONDS)
 				var/turf/target = get_edge_target_turf(src, src.dir)
 				M.throw_at(target, 10, 2)
@@ -200,7 +204,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.visible_message("<span class='alert'><B>[src] crushes [H]'s skull like a grape!</B></span>")
 					affecting.take_damage(50, 0)
 					H.take_brain_damage(60)
-					H.changeStatus("stunned", 80)
+					H.changeStatus("stunned", 8 SECONDS)
 					H.changeStatus("weakened", 5 SECONDS)
 					H.UpdateDamageIcon()
 					qdel(G)
@@ -226,7 +230,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 75, 1)
 					src.visible_message("<span class='alert'><B>[src] crushes [H]'s ribcage open like a bag of chips!</B></span>")
 					affecting.take_damage(500, 0)
-					H.changeStatus("stunned", 80)
+					H.changeStatus("stunned", 8 SECONDS)
 					H.changeStatus("weakened", 5 SECONDS)
 					H.UpdateDamageIcon()
 					qdel(G)
@@ -347,7 +351,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
 			for (var/mob/M in viewers(src, 5))
 				if (M != src)
-					M.changeStatus("weakened", 80)
+					M.changeStatus("weakened", 8 SECONDS)
 				SPAWN_DBG(0)
 					shake_camera(M, 4, 16)
 			if (istype(src.loc, /turf/simulated/floor))
@@ -536,27 +540,19 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				for (var/obj/decal/boxingrope/F in arenaropes)
 					spawn_animation1(F)
 				src.verbs += /mob/living/carbon/human/machoman/verb/macho_summon_arena
-			else
-				var/list/arenaropes = macho_arena_turfs
-				macho_arena_turfs = null
-				/*   // too many issues with canpass and/or lights breaking, maybe sometime in the future?
-				for (var/turf/unsimulated/floor/specialroom/gym/macho_arena/F in arenaropes)
-					SPAWN_DBG(0)
-						arenaropes -= F
-						animate_buff_out(F)
-						sleep(10)
-						F.change_back()
-				*/
-				for (var/obj/decal/boxingrope/F in arenaropes)
-					SPAWN_DBG(0)
-						arenaropes -= F
-						leaving_animation(F)
-						qdel(F)
-				for (var/obj/stool/chair/boxingrope_corner/F in arenaropes)
-					SPAWN_DBG(0)
-						arenaropes -= F
-						leaving_animation(F)
-						qdel(F)
+			else // unsummon arena
+				clean_up_arena_turfs(src.macho_arena_turfs)
+
+	proc/clean_up_arena_turfs(var/list/arena_turfs_to_cleanup) // if we get to removing the verbs, remove this and the arena_turfs var on the mob too
+		src.macho_arena_turfs = null
+		for (var/obj/decal/boxingrope/F in arena_turfs_to_cleanup)
+			SPAWN_DBG(0)
+				leaving_animation(F)
+				qdel(F)
+		for (var/obj/stool/chair/boxingrope_corner/F in arena_turfs_to_cleanup)
+			SPAWN_DBG(0)
+				leaving_animation(F)
+				qdel(F)
 
 	verb/macho_slimjim_snap()
 		set name = "Macho Slim-Jim Snap"
@@ -689,7 +685,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.verbs += /mob/living/carbon/human/machoman/verb/macho_touch
 					SPAWN_DBG(0)
 						if (H)
-							H.become_statue(getMaterial("gold"), "A really dumb looking statue. Very shiny, though.")
+							H.become_statue(getMaterial("gold"), "A really dumb looking statue. Very shiny, though.", TRUE)
 							H.transforming = 0
 
 /*	verb/macho_minions()
@@ -1054,7 +1050,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.transforming = 0
 					src.bioHolder.AddEffect("fire_resist")
 					src.transforming = 1
-					playsound(src.loc, "sound/weapons/phaseroverload.ogg", 100)
+					playsound(src.loc, "sound/effects/mindkill.ogg", 50)
 					src.visible_message("<span class='alert'><b>[src] begins intensely staring [H] in the eyes!</b></span>")
 					boutput(H, "<span class='alert'>You feel a horrible pain in your head!</span>")
 					sleep(0.5 SECONDS)
@@ -1441,7 +1437,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				for (var/atom/A in range(user.loc, 4))
 					if (ismob(A) && A != user)
 						var/mob/N = A
-						N.changeStatus("weakened", 80)
+						N.changeStatus("weakened", 8 SECONDS)
 						step_away(N, user)
 						step_away(N, user)
 					else if (isobj(A) || isturf(A))
@@ -1585,7 +1581,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 			playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
 			for (var/mob/M in viewers(holder.owner, 5))
 				if (M != holder.owner)
-					M.changeStatus("weakened", 80)
+					M.changeStatus("weakened", 8 SECONDS)
 				SPAWN_DBG(0)
 					shake_camera(M, 4, 16)
 			if (istype(holder.owner.loc, /turf/simulated/floor))
@@ -1682,7 +1678,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] crushes [H]'s skull like a grape!</B></span>")
 					affecting.take_damage(50, 0)
 					H.take_brain_damage(60)
-					H.changeStatus("stunned", 80)
+					H.changeStatus("stunned", 8 SECONDS)
 					H.changeStatus("weakened", 5 SECONDS)
 					H.UpdateDamageIcon()
 					qdel(G)
@@ -1710,7 +1706,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					playsound(holder.owner.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 75, 1)
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] crushes [H]'s ribcage open like a bag of chips!</B></span>")
 					affecting.take_damage(500, 0)
-					H.changeStatus("stunned", 80)
+					H.changeStatus("stunned", 8 SECONDS)
 					H.changeStatus("weakened", 5 SECONDS)
 					H.UpdateDamageIcon()
 					qdel(G)
@@ -1815,8 +1811,13 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Summon a wrestling ring."
 	icon_state = "lightning_cd"
 	var/list/macho_arena_turfs
-	cast(atom/target)
 
+	disposing()
+		. = ..()
+		if (macho_arena_turfs)
+			clean_up_arena_turfs(src.macho_arena_turfs)
+
+	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			if(!macho_arena_turfs) // no arena exists
 				//var/arena_time = 45 SECONDS
@@ -1887,27 +1888,27 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 				for (var/obj/decal/boxingrope/F in arenaropes)
 					spawn_animation1(F)
 				holder.owner.verbs += /mob/living/carbon/human/machoman/verb/macho_summon_arena
-			else
-				var/list/arenaropes = macho_arena_turfs
-				macho_arena_turfs = null
-				/*   // too many issues with canpass and/or lights breaking, maybe sometime in the future?
-				for (var/turf/unsimulated/floor/specialroom/gym/macho_arena/F in arenaropes)
-					SPAWN_DBG(0)
-						arenaropes -= F
-						animate_buff_out(F)
-						sleep(10)
-						F.change_back()
-				*/
-				for (var/obj/decal/boxingrope/F in arenaropes)
-					SPAWN_DBG(0)
-						arenaropes -= F
-						leaving_animation(F)
-						qdel(F)
-				for (var/obj/stool/chair/boxingrope_corner/F in arenaropes)
-					SPAWN_DBG(0)
-						arenaropes -= F
-						leaving_animation(F)
-						qdel(F)
+			else // desummon arena
+				clean_up_arena_turfs(src.macho_arena_turfs)
+
+	proc/clean_up_arena_turfs(var/list/arena_turfs_to_cleanup)
+		src.macho_arena_turfs = null
+		/*   // too many issues with canpass and/or lights breaking, maybe sometime in the future?
+			for (var/turf/unsimulated/floor/specialroom/gym/macho_arena/F in arenaropes)
+				SPAWN_DBG(0)
+					arenaropes -= F
+					animate_buff_out(F)
+					sleep(10)
+					F.change_back()
+			*/
+		for (var/obj/decal/boxingrope/F in arena_turfs_to_cleanup)
+			SPAWN_DBG(0)
+				leaving_animation(F)
+				qdel(F)
+		for (var/obj/stool/chair/boxingrope_corner/F in arena_turfs_to_cleanup)
+			SPAWN_DBG(0)
+				leaving_animation(F)
+				qdel(F)
 
 /datum/targetable/macho/macho_slimjim_snap
 	name = "Macho Slim-Jim Snap"
@@ -2043,7 +2044,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					SPAWN_DBG(0)
 						if (H)
 							H.desc = "A really dumb looking statue. Very shiny, though."
-							H.become_statue(getMaterial("gold"))
+							H.become_statue(getMaterial("gold"), survive=TRUE)
 							H.transforming = 0
 
 /*	verb/macho_minions()
@@ -2415,7 +2416,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.transforming = 0
 					holder.owner.bioHolder.AddEffect("fire_resist")
 					holder.owner.transforming = 1
-					playsound(holder.owner.loc, "sound/weapons/phaseroverload.ogg", 100)
+					playsound(holder.owner.loc, "sound/effects/mindkill.ogg", 50)
 					holder.owner.visible_message("<span class='alert'><b>[holder.owner] begins intensely staring [H] in the eyes!</b></span>")
 					boutput(H, "<span class='alert'>You feel a horrible pain in your head!</span>")
 					sleep(0.5 SECONDS)

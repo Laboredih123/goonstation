@@ -229,13 +229,19 @@
 	Entered(atom/movable/A as mob|obj) //MBC : I was too hurried and lazy to make this actually apply reagents on touch. this is a note to myself. FUCK YOUUU
 		..()
 		if(A.getStatusDuration("burning"))
-			A.changeStatus("burning", -500)
+			A.changeStatus("burning", -50 SECONDS)
+
+		A.EnteredFluid(ocean_fluid_obj, A.loc)
 
 		//nah disable for now i dont wanna do istype checks on enter
 		//else if(isitem(A))
 		//	var/obj/item/O = A
 		//	if(O.burning && prob(40))
 		//		O.burning = 0
+
+	Exited(atom/movable/Obj, atom/newloc)
+		. = ..()
+		Obj.ExitedFluid(Obj, newloc)
 
 	proc/force_mob_to_ingest(var/mob/M, var/mult = 1)//called when mob is drowning
 		if (!M) return
@@ -350,7 +356,7 @@
 				if(needlink)
 					if(!picked_turf.linked_hole)
 						picked_turf.linked_hole = src
-						picked_turf.UpdateOverlays(image(icon = 'icons/effects/64x64.dmi', icon_state = "lightshaft", loc = picked_turf), "lightshaft")
+						src.add_simple_light("trenchhole", list(120, 120, 120, 120))
 
 		..()
 
@@ -367,7 +373,7 @@
 
 	blow_hole()
 		if(src.z == 5)
-			for(var/turf/space/fluid/T in range(8, locate(src.x, src.y, 1)))
+			for(var/turf/space/fluid/T in range(1, locate(src.x, src.y, 1)))
 				if(T.allow_hole)
 					var/x = T.x
 					var/y = T.y
@@ -376,7 +382,7 @@
 					if(istype(hole))
 						hole.L = list(src)
 						src.linked_hole = hole
-						src.UpdateOverlays(image(icon = 'icons/effects/64x64.dmi', icon_state = "lightshaft", loc = src), "lightshaft")
+						src.add_simple_light("trenchhole", list(120, 120, 120, 120))
 						break
 
 /turf/space/fluid/nospawn
@@ -528,6 +534,7 @@
 				for(var/obj/machinery/computer/sea_elevator/C in machine_registry[MACHINES_ELEVATORCOMPS])
 					active = 1
 					C.visible_message("<span class='alert'>The elevator begins to move!</span>")
+					playsound(C.loc, "sound/machines/elevator_move.ogg", 100, 0)
 				SPAWN_DBG(5 SECONDS)
 					call_shuttle()
 
@@ -567,6 +574,16 @@
 	return
 
 
+
+
+proc/fluid_turf_setup(first_time=FALSE)
+	if(QDELETED(ocean_fluid_obj))
+		ocean_fluid_obj = new
+	var/datum/fluid_group/FG = new
+	FG.add(ocean_fluid_obj)
+	ocean_fluid_obj.group = FG
+	ocean_fluid_obj.my_depth_level = 4 // maybe a good idea to change to 5 so it's possible to distinguish ocean at some point
+	FG.reagents.add_reagent(ocean_reagent_id, INFINITY)
 
 
 #undef SPAWN_DECOR

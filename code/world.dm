@@ -19,6 +19,7 @@
 	#endif
 
 	area = /area/space
+	movement_mode = TILE_MOVEMENT_MODE
 
 	view = "15x15"
 
@@ -111,7 +112,7 @@ var/global/mob/twitch_mob = 0
 
 			var/pos = findtext(line, " - ", 1, null)
 			if (pos)
-				var/m_key = copytext(line, 1, pos)
+				var/m_key = ckey(copytext(line, 1, pos))
 				var/a_lev = copytext(line, pos + 3, length(line) + 1)
 				admins[m_key] = a_lev
 				logDiary("ADMIN: [m_key] = [a_lev]")
@@ -203,6 +204,9 @@ var/f_color_selector_handler/F_Color_Selector
 //Called BEFORE the map loads. Useful for objects that require certain things be set during init
 /datum/preMapLoad
 	New()
+#ifdef LIVE_SERVER
+		world.log = file("data/errors.log")
+#endif
 		enable_auxtools_debugger()
 #ifdef REFERENCE_TRACKING
 		enable_reference_tracking()
@@ -210,7 +214,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 #if defined(SERVER_SIDE_PROFILING) && (defined(SERVER_SIDE_PROFILING_FULL_ROUND) || defined(SERVER_SIDE_PROFILING_PREGAME))
 #warn Profiler enabled at start of init
-		world.Profile(PROFILE_START, "sendmaps", "json")
+		world.Profile(PROFILE_START | PROFILE_AVERAGE, "sendmaps", "json")
 #endif
 		server_start_time = world.timeofday
 
@@ -226,6 +230,8 @@ var/f_color_selector_handler/F_Color_Selector
 		world.log << "========================================"
 		world.log << ""
 #endif
+
+		radio_controller = new /datum/controller/radio()
 
 		Z_LOG_DEBUG("Preload", "Loading config...")
 		config = new /datum/configuration()
@@ -243,6 +249,7 @@ var/f_color_selector_handler/F_Color_Selector
 			roundLog << "\[[time2text(world.timeofday,"hh:mm:ss")]] <b>Starting new round</b><br>"
 			roundLog << "========================================<br>"
 			roundLog << "<br>"
+			logLength += 4
 
 		Z_LOG_DEBUG("Preload", "Applying config...")
 		// apply some settings from config..
@@ -261,6 +268,9 @@ var/f_color_selector_handler/F_Color_Selector
 			screenOverlayLibrary.Add(over)
 			screenOverlayLibrary[over] = E
 
+		url_regex = new("(https?|byond|www)(\\.|:\\/\\/)", "i")
+		full_url_regex = new(@"(https?:\/\/)?((www\.)?([-\w]+\.)+[\l]+(\/\S+)*\/?)","ig")
+
 		Z_LOG_DEBUG("Preload", "initLimiter() (whatever the fuck that does)")
 		initLimiter()
 		Z_LOG_DEBUG("Preload", "Creating named color list...")
@@ -273,8 +283,6 @@ var/f_color_selector_handler/F_Color_Selector
 
 		Z_LOG_DEBUG("Preload", "Starting controllers")
 		Z_LOG_DEBUG("Preload", "  radio")
-
-		radio_controller = new /datum/controller/radio()
 
 		Z_LOG_DEBUG("Preload", "  data_core")
 		data_core = new /datum/datacore()
@@ -296,7 +304,7 @@ var/f_color_selector_handler/F_Color_Selector
 		Z_LOG_DEBUG("Preload", "  disease_controls")
 		disease_controls = new /datum/disease_controller()
 		Z_LOG_DEBUG("Preload", "  mechanic_controls")
-		mechanic_controls = new /datum/mechanic_controller()
+		mechanic_controls = null //A ruck kit will fill this in
 		Z_LOG_DEBUG("Preload", "  artifact_controls")
 		artifact_controls = new /datum/artifact_controller()
 		Z_LOG_DEBUG("Preload", "  mining_controls")
@@ -388,6 +396,9 @@ var/f_color_selector_handler/F_Color_Selector
 		Z_LOG_DEBUG("Preload", "  zoldorf")
 		zoldorfsetup()
 
+		Z_LOG_DEBUG("Preload", "  fluid turf misc setup")
+		fluid_turf_setup(first_time=TRUE)
+
 		Z_LOG_DEBUG("Preload", "Preload stage complete")
 		..()
 
@@ -396,11 +407,6 @@ var/f_color_selector_handler/F_Color_Selector
 	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)
 	tick_lag = MIN_TICKLAG//0.4//0.25
 //	loop_checks = 0
-
-	// Load in the current commit SHA from TGS if avail, by MCterra10
-	if(TgsAvailable())
-		var/datum/tgs_revision_information/rev = TgsRevision()
-		vcs_revision = rev.commit
 
 	if(world.load_intra_round_value("heisenbee_tier") >= 15 && prob(50) || prob(3))
 		lobby_titlecard = new /datum/titlecard/heisenbee()
@@ -439,6 +445,10 @@ var/f_color_selector_handler/F_Color_Selector
 
 	SPAWN_DBG(0)
 		init()
+
+#ifdef UNIT_TESTS
+	unit_tests.run_tests()
+#endif
 
 #define UPDATE_TITLE_STATUS(x) if (game_start_countdown) game_start_countdown.update_status(x)
 
@@ -529,8 +539,6 @@ var/f_color_selector_handler/F_Color_Selector
 		for (var/area/Ar in world)
 			Ar.build_sims_score()
 
-	url_regex = new("(https?|byond|www)(\\.|:\\/\\/)", "i")
-
 	UPDATE_TITLE_STATUS("Updating status")
 	Z_LOG_DEBUG("World/Init", "Updating status...")
 	src.update_status()
@@ -574,7 +582,7 @@ var/f_color_selector_handler/F_Color_Selector
 	build_supply_pack_cache()
 	build_syndi_buylist_cache()
 	build_camera_network()
-	//build_manufacturer_icons()
+	build_manufacturer_icons()
 	clothingbooth_setup()
 
 	Z_LOG_DEBUG("World/Init", "Loading fishing spots...")
@@ -604,8 +612,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 	UPDATE_TITLE_STATUS("Calculating cameras")
 	Z_LOG_DEBUG("World/Init", "Updating camera visibility...")
-	aiDirty = 2
-	world.updateCameraVisibility()
+	world.updateCameraVisibility(TRUE)
 
 	UPDATE_TITLE_STATUS("Preloading client data...")
 	Z_LOG_DEBUG("World/Init", "Transferring manuf. icons to clients...")
@@ -649,6 +656,9 @@ var/f_color_selector_handler/F_Color_Selector
 	bioele_load_stats()
 	bioele_shifts_since_accident++
 	bioele_save_stats()
+
+	AuxSort(by_type[/area], /proc/compareName)
+
 #ifdef PREFAB_CHECKING
 	placeAllPrefabs()
 #endif
@@ -657,25 +667,16 @@ var/f_color_selector_handler/F_Color_Selector
 	SPAWN_DBG(10 SECONDS)
 		Reboot_server()
 #endif
+#if defined(UNIT_TESTS) && !defined(UNIT_TESTS_RUN_TILL_COMPLETION)
+	SPAWN_DBG(10 SECONDS)
+		Reboot_server()
+#endif
+
 #undef UPDATE_TITLE_STATUS
 	return
 
 //Crispy fullban
 /proc/Reboot_server(var/retry)
-	//ohno the map switcher is in the midst of compiling a new map, we gotta wait for that to finish
-	if (mapSwitcher.locked)
-		//we're already holding and in the reboot retry loop, do nothing
-		if (mapSwitcher.holdingReboot && !retry) return
-
-		out(world, "<span class='bold notice'>Attempted to reboot but the server is currently switching maps. Please wait. (Attempt [mapSwitcher.currentRebootAttempt + 1]/[mapSwitcher.rebootLimit])</span>")
-		message_admins("Reboot interrupted by a map-switch compile to [mapSwitcher.next]. Retrying in [mapSwitcher.rebootRetryDelay / 10] seconds.")
-
-		mapSwitcher.holdingReboot = 1
-		SPAWN_DBG(mapSwitcher.rebootRetryDelay)
-			mapSwitcher.attemptReboot()
-
-		return
-
 #if defined(SERVER_SIDE_PROFILING) && (defined(SERVER_SIDE_PROFILING_FULL_ROUND) || defined(SERVER_SIDE_PROFILING_INGAME_ONLY))
 #if defined(SERVER_SIDE_PROFILING_INGAME_ONLY) || !defined(SERVER_SIDE_PROFILING_PREGAME)
 	// This is a profiler dump of only the in-game part of the round
@@ -687,10 +688,10 @@ var/f_color_selector_handler/F_Color_Selector
 #warn Profiler enabled at end of game (full)
 	var/profile_out = file("data/profile/[time2text(world.realtime, "YYYY-MM-DD hh-mm-ss")]-full.log")
 #endif
-	profile_out << world.Profile(PROFILE_START, "sendmaps", "json")
+	profile_out << world.Profile(PROFILE_START | PROFILE_AVERAGE, "sendmaps", "json")
 	world.log << "Dumped profiler data."
 	// not gonna need this again
-	world.Profile(PROFILE_STOP, "sendmaps", "json")
+	world.Profile(PROFILE_STOP | PROFILE_AVERAGE, "sendmaps", "json")
 #endif
 
 	lagcheck_enabled = 0
@@ -701,27 +702,30 @@ var/f_color_selector_handler/F_Color_Selector
 	save_tetris_highscores()
 	if (current_state < GAME_STATE_FINISHED)
 		current_state = GAME_STATE_FINISHED
-#ifdef RUNTIME_CHECKING
+#if defined(RUNTIME_CHECKING) || defined(UNIT_TESTS)
 	for (var/client/C in clients)
 		ehjax.send(C, "browseroutput", "hardrestart")
 
 	logTheThing("diary", null, "Shutting down after testing for runtimes.", "admin")
 	if (isnull(runtimeDetails))
-		world.log << "Runtime checking failed due to missing runtimeDetails global list"
+		text2file("Runtime checking failed due to missing runtimeDetails global list", "errors.log")
 	else if (length(runtimeDetails) > 0)
-		world.log << "[length(runtimeDetails)] runtimes generated:"
+		text2file("[length(runtimeDetails)] runtimes generated:", "errors.log")
 		for (var/idx in runtimeDetails)
 			var/list/details = runtimeDetails[idx]
 			var/timestamp = details["seen"]
 			var/file = details["file"]
 			var/line = details["line"]
 			var/name = details["name"]
-			world.log << "\[[timestamp]\] [file],[line]: [name]"
+			text2file("\[[timestamp]\] [file],[line]: [name]", "errors.log")
 #ifndef PREFAB_CHECKING
-	text2file(debug_map_apc_count("\n", zlim=Z_LEVEL_STATION), "no_runtimes.txt")
+	var/apc_error_str = debug_map_apc_count("\n", zlim=Z_LEVEL_STATION)
+	if (!is_blank_string(apc_error_str))
+		text2file(apc_error_str, "errors.log")
 #endif
 	shutdown()
 #endif
+
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)
 			if (C.mob)
@@ -839,40 +843,25 @@ var/f_color_selector_handler/F_Color_Selector
 /// world Topic. This is where external shit comes into byond and does shit.
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC	// logging for these is done in TGS
-	logDiary("TOPIC: \"[T]\", from:[addr], master:[master], key:[key]")
-	Z_LOG_DEBUG("World", "TOPIC: \"[T]\", from:[addr], master:[master], key:[key]")
+
+	var/cleanT = replacetext(T, regex(@"auth=[a-zA-Z0-9]*(;|&|$)"), "auth=***$1")
+	logDiary("TOPIC: \"[cleanT]\", from:[addr], master:[master], key:[key]")
+	Z_LOG_DEBUG("World", "TOPIC: \"[cleanT]\", from:[addr], master:[master], key:[key]")
 
 	if (T == "ping")
 		var/x = 1
 		for (var/client/C)
+			if (C.stealth && !C.fakekey) // stealthed admins don't count
+				continue
 			x++
 		return x
-
 	else if(T == "players")
 		var/n = 0
 		for(var/client/C)
+			if (C.stealth && !C.fakekey) // stealthed admins don't count
+				continue
 			n++
 		return n
-
-	else if (T == "admins")
-		var/list/s = list()
-		var/n = 0
-		for(var/client/C)
-			if(C.holder)
-				s["admin[n]"] = (C.stealth ? "~" : "") + C.key
-				n++
-		s["admins"] = n
-		return list2params(s)
-
-	else if (T == "mentors")
-		var/list/s = list()
-		var/n = 0
-		for(var/client/C)
-			if(!C.holder && C.is_mentor())
-				s["mentor[n]"] = C.key
-				n++
-		s["mentors"] = n
-		return list2params(s)
 
 	else if (T == "status")
 		var/list/s = list()
@@ -899,6 +888,8 @@ var/f_color_selector_handler/F_Color_Selector
 		s["elapsed"] = elapsed
 		var/n = 0
 		for(var/client/C in clients)
+			if (C.stealth && !C.fakekey) // stealthed admins don't count
+				continue
 			s["player[n]"] = "[(C.stealth || C.alt_key) ? C.fakekey : C.key]"
 			n++
 		s["players"] = n
@@ -906,6 +897,10 @@ var/f_color_selector_handler/F_Color_Selector
 		return list2params(s)
 
 	else // Discord bot communication (or callbacks)
+
+		var/game_servers_response = game_servers?.topic(T, addr)
+		if(!isnull(game_servers_response))
+			return game_servers_response
 
 #ifdef TWITCH_BOT_ALLOWED
 		//boutput(world,"addres : [addr]     twitchbotaddr : [TWITCH_BOT_ADDR]")
@@ -1190,8 +1185,29 @@ var/f_color_selector_handler/F_Color_Selector
 							return 1
 #endif
 
+		if (findtext(addr, ":")) // remove port if present
+			addr = splittext(addr, ":")[1]
 		if (addr != config.ircbot_ip && addr != config.goonhub_api_ip && addr != config.goonhub2_hostname)
 			return 0 //ip filtering
+
+		if (T == "admins")
+			var/list/s = list()
+			var/n = 0
+			for(var/client/C)
+				if(C.holder)
+					s["admin[n]"] = (C.stealth ? "~" : "") + C.key
+					n++
+			s["admins"] = n
+			return list2params(s)
+		else if (T == "mentors")
+			var/list/s = list()
+			var/n = 0
+			for(var/client/C)
+				if(!C.holder && C.is_mentor())
+					s["mentor[n]"] = C.key
+					n++
+			s["mentors"] = n
+			return list2params(s)
 
 		var/list/plist = params2list(T)
 		switch(plist["type"])
@@ -1258,6 +1274,7 @@ var/f_color_selector_handler/F_Color_Selector
 					return ircbot.response(ircmsg)
 
 				msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
+				msg = linkify(msg)
 				msg = discord_emojify(msg)
 
 				logTheThing("admin", null, null, "Discord ASAY: [nick]: [msg]")
@@ -1304,9 +1321,10 @@ var/f_color_selector_handler/F_Color_Selector
 				var/nick = plist["nick"]
 				var/msg = plist["msg"]
 				var/who = lowertext(plist["target"])
-				var/game_msg = discord_emojify(msg)
+				var/game_msg = linkify(msg)
+				game_msg = discord_emojify(game_msg)
 
-				var/mob/M = whois_ckey_to_mob_reference(who, exact=0)
+				var/mob/M = ckey_to_mob(who, exact=0)
 				if (M?.client)
 					boutput(M, {"
 						<div style='border: 2px solid red; font-size: 110%;'>
@@ -1347,8 +1365,9 @@ var/f_color_selector_handler/F_Color_Selector
 				var/nick = plist["nick"]
 				var/msg = html_encode(plist["msg"])
 				var/who = lowertext(plist["target"])
-				var/mob/M = whois_ckey_to_mob_reference(who, exact=0)
-				var/game_msg = discord_emojify(msg)
+				var/mob/M = ckey_to_mob(who, exact=0)
+				var/game_msg = linkify(msg)
+				game_msg = discord_emojify(game_msg)
 
 				if (M?.client)
 					boutput(M, "<span class='mhelp'><b>MENTOR PM: FROM <a href=\"byond://?action=mentor_msg_irc&nick=[ckey(nick)]\">[nick]</a> (Discord)</b>: <span class='message'>[game_msg]</span></span>")
@@ -1384,7 +1403,7 @@ var/f_color_selector_handler/F_Color_Selector
 					var/count = 0
 					var/list/whois_result
 					for (var/who in whom)
-						whois_result = whois(who, 5)
+						whois_result = whois(who)
 						if (whois_result)
 							for (var/mob/M in whois_result)
 								count++
@@ -1545,8 +1564,8 @@ var/f_color_selector_handler/F_Color_Selector
 
 			if ("version")
 				var/ircmsg[] = new()
-				ircmsg["major"] = ci_dm_version_major
-				ircmsg["minor"] = ci_dm_version_minor
+				ircmsg["major"] = world.byond_version
+				ircmsg["minor"] = world.byond_build
 				ircmsg["goonhub_api"] = config.goonhub_api_version ? config.goonhub_api_version : 0
 				return ircbot.response(ircmsg)
 
@@ -1601,28 +1620,6 @@ var/f_color_selector_handler/F_Color_Selector
 
 					return ircbot.response(ircmsg)
 
-			if ("mapSwitchDone")
-				if (!plist["data"] || !mapSwitcher.locked) return 0
-
-				var/map = plist["data"]
-				var/ircmsg[] = new()
-				var/msg
-
-				var/attemptedMap = mapSwitcher.next ? mapSwitcher.next : mapSwitcher.current
-				if (map == "FAILED")
-					msg = "Compilation of [attemptedMap] failed! Falling back to previous setting of [mapSwitcher.nextPrior ? mapSwitcher.nextPrior : mapSwitcher.current]"
-				else
-					msg = "Compilation of [attemptedMap] succeeded!"
-
-				logTheThing("admin", null, null, msg)
-				logTheThing("diary", null, null, msg, "admin")
-				message_admins(msg)
-				ircmsg["msg"] = msg
-
-				mapSwitcher.unlock(map)
-
-				return ircbot.response(ircmsg)
-
 			if ("triggerMapSwitch")
 				if (!plist["nick"] || !plist["map"])
 					return 0
@@ -1667,6 +1664,62 @@ var/f_color_selector_handler/F_Color_Selector
 
 				return 1
 
+			if ("getNotes")
+				if (!plist["ckey"])
+					return 0
+
+				var/list/data = list(
+					"auth" = config.player_notes_auth,
+					"action" = "get",
+					"ckey" = plist["ckey"],
+					"format" = "json"
+				)
+
+				// Fetch notes via HTTP
+				var/datum/http_request/request = new()
+				request.prepare(RUSTG_HTTP_METHOD_GET, "[config.player_notes_baseurl]/?[list2params(data)]", "", "")
+				request.begin_async()
+				UNTIL(request.is_complete())
+				var/datum/http_response/response = request.into_response()
+
+				if (response.errored || !response.body)
+					return 0
+
+				return response.body
+
+			if ("getPlayerStats")
+				if (!plist["ckey"])
+					return 0
+
+				// playtime stats
+				var/list/data = list(
+					"auth" = config.player_notes_auth,
+					"action" = "user_stats",
+					"ckey" = plist["ckey"],
+					"format" = "json"
+				)
+				var/datum/http_request/playtime_request = new()
+				playtime_request.prepare(RUSTG_HTTP_METHOD_GET, "[config.player_notes_baseurl]/?[list2params(data)]", "", "")
+				playtime_request.begin_async()
+
+				// round stats
+				// cleverly making this request inbetween the start and the wait of the playtime request
+				var/list/response = null
+				try
+					response = apiHandler.queryAPI("playerInfo/get", list("ckey" = plist["ckey"]), forceResponse = 1)
+				catch
+					return 0
+				if (!response)
+					return 0
+
+				// finish playtime stats
+				UNTIL(playtime_request.is_complete())
+				var/datum/http_response/playtime_response = playtime_request.into_response()
+				if (!playtime_response.errored && playtime_response.body)
+					response["playtime"] = playtime_response.body
+
+				return json_encode(response)
+
 /world/proc/setMaxZ(new_maxz)
 	if (!isnum(new_maxz) || new_maxz <= src.maxz)
 		return src.maxz
@@ -1701,7 +1754,5 @@ var/opt_inactive = null
 /// EXPERIMENTAL STUFF
 
 /world/Del()
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if (debug_server)
-		call(debug_server, "auxtools_shutdown")()
+	disable_auxtools_debugger()
 	. = ..()

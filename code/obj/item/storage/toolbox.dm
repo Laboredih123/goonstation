@@ -90,6 +90,9 @@
 		/obj/item/wirecutters/yellow,\
 		/obj/item/device/analyzer/atmospheric)
 
+	empty
+		spawn_contents = list()
+
 /obj/item/storage/toolbox/electrical
 	name = "electrical toolbox"
 	icon_state = "yellow"
@@ -253,7 +256,7 @@
 		servantlinks = null
 
 		src.visible_message("<span class='alert'><b>[src]</b> screams!</span>")
-		playsound(src.loc,"sound/effects/screech.ogg", 100, 1)
+		playsound(src.loc,"sound/effects/screech.ogg", 50, 1)
 
 		..()
 		return
@@ -301,7 +304,7 @@
 		else
 			asize++
 		acount++
-	src.playsound_local(src.loc,"sound/effects/screech.ogg", 100, 1)
+	src.playsound_local(src.loc,"sound/effects/screech.ogg", 50, 1)
 	shake_camera(src, 20, 16)
 	boutput(src, "<font color=red>[screamstring]</font>")
 	boutput(src, "<i><b><font face = Tempus Sans ITC>His Grace accepts thee, spread His will! All who look close to the Enlightened may share His gifts.</font></b></i>")
@@ -355,7 +358,7 @@
 			affected_mob.delStatus("weakened")
 			affected_mob.delStatus("paralysis")
 			affected_mob.dizziness = max(0,affected_mob.dizziness-10)
-			affected_mob:drowsyness = max(0,affected_mob:drowsyness-10)
+			affected_mob.changeStatus("drowsy", -20 SECONDS)
 			affected_mob:sleeping = 0
 			D.stage = 1
 			switch (progenitor.hunger)

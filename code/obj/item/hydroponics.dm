@@ -45,6 +45,10 @@
 	cyborg
 		takes_damage = 0
 
+	active
+		active = 1
+		force = 12
+
 	New()
 		..()
 		SPAWN_DBG(0.5 SECONDS)
@@ -172,6 +176,9 @@
 		if (!src.user_can_suicide(user))
 			return 0
 		user.visible_message("<span class='alert'><b>[user] shoves the chainsaw into [his_or_her(user)] chest!</b></span>")
+		blood_slash(user, 25)
+		playsound(user.loc, 'sound/machines/chainsaw_red.ogg', 50, 1)
+		playsound(user.loc, 'sound/impact_sounds/Flesh_Tear_2.ogg', 50, 1)
 		user.u_equip(src)
 		src.set_loc(user.loc)
 		user.gib()
@@ -205,12 +212,17 @@
 	stamina_damage = 100
 	stamina_cost = 30
 	stamina_crit_chance = 40
+	c_flags = EQUIPPED_WHILE_HELD | NOT_EQUIPPED_WHEN_WORN
+
+	setupProperties()
+		. = ..()
+		setProperty("deflection", 75)
 
 /obj/item/saw/syndie/attack(mob/living/carbon/human/target as mob, mob/user as mob)
 	var/mob/living/carbon/human/H = target
 
 	if(!active)
-		src.visible_message("<span class='notify'>[user] gently taps [target] with the turned off [src].</span>")
+		src.visible_message("<span class='notice'>[user] gently taps [target] with the turned off [src].</span>")
 
 	if(active && prob(35))
 		gibs(target.loc, blood_DNA=H.bioHolder.Uid, blood_type=H.bioHolder.bloodType, headbits=FALSE, source=H)
@@ -346,7 +358,6 @@
 	w_class = W_CLASS_TINY
 	flags = ONBELT
 	mats = 4
-	module_research = list("analysis" = 4, "devices" = 4, "hydroponics" = 2)
 
 	afterattack(atom/A as mob|obj|turf|area, mob/user as mob)
 		if (get_dist(A, user) > 1)
@@ -359,7 +370,7 @@
 /////////////////////////////////////////// Seed fabricator ///////////////////////////////
 
 /obj/item/seedplanter
-	name = "Portable Seed Fabricator"
+	name = "portable seed fabricator"
 	desc = "A tool for cyborgs used to create plant seeds."
 	icon = 'icons/obj/hydroponics/items_hydroponics.dmi'
 	icon_state = "portable_seed_fab"
@@ -389,10 +400,10 @@
 			// 	S = new /obj/item/seed(src.loc,0)
 			// S.generic_seed_setup(selected)
 			if (selected.unique_seed)
-				S = unpool(selected.unique_seed)
+				S = new selected.unique_seed
 				S.set_loc(src.loc)
 			else
-				S = unpool(/obj/item/seed)
+				S = new /obj/item/seed
 				S.set_loc(src.loc)
 				S.removecolor()
 			S.generic_seed_setup(selected)
@@ -425,7 +436,6 @@
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 
-	module_research = list("tools" = 4, "metals" = 1)
 	rand_pos = 1
 	var/image/plantyboi
 
@@ -438,14 +448,14 @@
 			var/obj/machinery/plantpot/pot = target
 			if(pot.current)
 				var/datum/plant/p = pot.current
+				if(p.growthmode == "weed")
+					user.visible_message("<b>[user]</b> tries to uproot the [p.name], but it's roots hold firmly to the [pot]!","<span class='alert'>The [p.name] is too strong for you traveller...</span>")
+					return
 				if(pot.GetOverlayImage("plant"))
 					plantyboi = pot.GetOverlayImage("plant")
 					plantyboi.pixel_x = 2
 					src.icon_state = "trowel_full"
 				else
-					return
-				if(p.growthmode == "weed")
-					user.visible_message("<b>[user]</b> tries to uproot the [p.name], but it's roots hold firmly to the [pot]!","<span class='alert'>The [p.name] is too strong for you traveller...</span>")
 					return
 				pot.HYPdestroyplant()
 
@@ -462,7 +472,6 @@
 	amount_per_transfer_from_this = 60
 	w_class = W_CLASS_NORMAL
 	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
-	module_research = list("tools" = 2, "hydroponics" = 4)
 	initial_volume = 120
 	can_recycle = FALSE
 
@@ -504,7 +513,6 @@
 	amount_per_transfer_from_this = 10
 	w_class = W_CLASS_NORMAL
 	rc_flags = 0
-	module_research = list("tools" = 1, "hydroponics" = 1)
 	initial_volume = 60
 
 	New()
@@ -519,8 +527,6 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle1"
 	amount_per_transfer_from_this = 10
-	module_research = list("tools" = 1, "hydroponics" = 1, "science" = 1)
-	module_research_type = /obj/item/reagent_containers/glass/bottle/weedkiller
 	initial_volume = 40
 
 	New()

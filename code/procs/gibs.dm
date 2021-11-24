@@ -4,12 +4,12 @@
 	var/list/gibs = new()
 	if(!location)
 		location = usr
+	if(!location?.z) // we care not for null gibs
+		return
 	playsound(location, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 	// NORTH
 	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
-	if (prob(30))
-		gib.icon_state = "gibup1"
 	gib.streak_cleanable(NORTH)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
@@ -19,8 +19,6 @@
 
 	// SOUTH
 	gib = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
-	if (prob(30))
-		gib.icon_state = "gibdown1"
 	gib.streak_cleanable(SOUTH)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA

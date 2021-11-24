@@ -89,18 +89,18 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 #ifdef SERVER_SIDE_PROFILING_PREGAME
 #warn Profiler will output at pregame stage
 	var/profile_out = file("data/profile/[time2text(world.realtime, "YYYY-MM-DD hh-mm-ss")]-pregame.log")
-	profile_out << world.Profile(PROFILE_START, "sendmaps", "json")
+	profile_out << world.Profile(PROFILE_START | PROFILE_AVERAGE, "sendmaps", "json")
 	world.log << "Dumped profiler data."
 #endif
 
 #if defined(SERVER_SIDE_PROFILING_INGAME_ONLY)
 #warn Profiler reset for ingame stage
 	// We're in game now, so reset profiler data
-	world.Profile(PROFILE_RESTART, "sendmaps", "json")
+	world.Profile(PROFILE_RESTART | PROFILE_AVERAGE, "sendmaps", "json")
 #elif !defined(SERVER_SIDE_PROFILING_FULL_ROUND)
 #warn Profiler disabled after init
 	// If we aren't doing ingame or full round then we're done with the profiler
-	world.Profile(PROFILE_STOP, "sendmaps", "json")
+	world.Profile(PROFILE_STOP | PROFILE_AVERAGE, "sendmaps", "json")
 #endif
 #endif
 
@@ -116,8 +116,13 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	switch(master_mode)
 		if("random","secret") src.mode = config.pick_random_mode()
 		if("action") src.mode = config.pick_mode(pick("nuclear","wizard","blob"))
-		if("intrigue") src.mode = config.pick_mode(pick("mixed_rp", "traitor","changeling","vampire","conspiracy","spy_theft", prob(50); "extended"))
+		if("intrigue") src.mode = config.pick_mode(pick("mixed_rp", "traitor","changeling","vampire","conspiracy","spy_theft","arcfiend", prob(50); "extended"))
+		if("pod_wars") src.mode = config.pick_mode("pod_wars")
 		else src.mode = config.pick_mode(master_mode)
+
+#if defined(MAP_OVERRIDE_POD_WARS)
+	src.mode = config.pick_mode("pod_wars")
+#endif
 
 	if(hide_mode)
 		#ifdef RP_MODE
@@ -246,16 +251,23 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		participationRecorder.releaseHold()
 
 	SPAWN_DBG (6000) // 10 minutes in
-		for(var/obj/machinery/power/monitor/smes/E in machine_registry[MACHINES_POWER])
+		for(var/obj/machinery/computer/power_monitor/smes/E in machine_registry[MACHINES_POWER])
 			LAGCHECK(LAG_LOW)
-			if(E.powernet?.avail <= 0)
+			var/datum/powernet/PN = E.get_direct_powernet()
+			if(PN?.avail <= 0)
 				command_alert("Reports indicate that the engine on-board [station_name()] has not yet been started. Setting up the engine is strongly recommended, or else stationwide power failures may occur.", "Power Grid Warning")
 			break
+
+	for(var/turf/T in job_start_locations["AI"])
+		if(isnull(locate(/mob/living/silicon/ai) in T))
+			new /obj/item/clothing/suit/cardboard_box/ai(T)
 
 	processScheduler.start()
 
 	if (total_clients() >= OVERLOAD_PLAYERCOUNT)
 		world.tick_lag = OVERLOADED_WORLD_TICKLAG
+	else if (total_clients() >= SEMIOVERLOAD_PLAYERCOUNT)
+		world.tick_lag = SEMIOVERLOADED_WORLD_TICKLAG
 
 //Okay this is kinda stupid, but mapSwitcher.autoVoteDelay which is now set to 30 seconds, (used to be 5 min).
 //The voting will happen 30 seconds into the pre-game lobby. This is probably fine to leave. But if someone changes that var then it might start before the lobby timer ends.
@@ -293,29 +305,29 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					var/mob/living/silicon/ai/A = player.AIize()
 					A.Equip_Bank_Purchase(A.mind.purchased_bank_item)
 
-				else if (player.mind && player.mind.special_role == "wraith")
+				else if (player.mind && player.mind.special_role == ROLE_WRAITH)
 					player.close_spawn_windows()
 					var/mob/wraith/W = player.make_wraith()
 					if (W)
 						W.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", W, null, "<b>Late join</b>: assigned antagonist role: wraith.")
-						antagWeighter.record(role = "wraith", ckey = W.ckey)
+						antagWeighter.record(role = ROLE_WRAITH, ckey = W.ckey)
 
-				else if (player.mind && player.mind.special_role == "blob")
+				else if (player.mind && player.mind.special_role == ROLE_BLOB)
 					player.close_spawn_windows()
 					var/mob/living/intangible/blob_overmind/B = player.make_blob()
 					if (B)
 						B.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", B, null, "<b>Late join</b>: assigned antagonist role: blob.")
-						antagWeighter.record(role = "blob", ckey = B.ckey)
+						antagWeighter.record(role = ROLE_BLOB, ckey = B.ckey)
 
-				else if (player.mind && player.mind.special_role == "flockmind")
+				else if (player.mind && player.mind.special_role == ROLE_FLOCKMIND)
 					player.close_spawn_windows()
 					var/mob/living/intangible/flock/flockmind/F = player.make_flockmind()
 					if (F)
 						F.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", F, null, "<b>Late join</b>: assigned antagonist role: flockmind.")
-						antagWeighter.record(role = "flockmind", ckey = F.ckey)
+						antagWeighter.record(role = ROLE_FLOCKMIND, ckey = F.ckey)
 
 				else if (player.mind)
 					if (player.client.using_antag_token)
@@ -424,6 +436,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 			// Official go-ahead to be an end-of-round asshole
 			boutput(world, "<h3>The round has ended!</h3><strong style='color: #393;'>Further actions will have no impact on round results. Go hog wild!</strong>")
+
+			SPAWN_DBG(0)
+				change_ghost_invisibility(INVIS_NONE)
 
 			// i feel like this should probably be a proc call somewhere instead but w/e
 			if (!ooc_allowed)
@@ -545,9 +560,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 				logTheThing("diary",crewMind,null,"failed objective: [CO.explanation_text]. Bummer!")
 				allComplete = 0
 				crewMind.all_objs = 0
-
 		if (allComplete && count)
-			successfulCrew += "[crewMind.current.real_name] ([crewMind.key])"
+			successfulCrew += "[crewMind.current.real_name] ([crewMind.displayed_key])"
+		boutput(crewMind.current, "<br>")
 #endif
 
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] mode.declare_completion()")
@@ -570,7 +585,6 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 	boutput(world, score_tracker.escapee_facts())
 	boutput(world, score_tracker.heisenhat_stats())
-
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] ai law display")
 	boutput(world, "<b>AIs and Cyborgs had the following laws at the end of the game:</b><br>[ticker.centralized_ai_laws.format_for_logs()]")
 
@@ -593,8 +607,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		if(!miscreantMind.objectives.len)
 			continue
 
-		var/miscreant_info = "[miscreantMind.key]"
-		if(miscreantMind.current) miscreant_info = "[miscreantMind.current.real_name] ([miscreantMind.key])"
+		var/miscreant_info = "[miscreantMind.displayed_key]"
+		if(miscreantMind.current) miscreant_info = "[miscreantMind.current.real_name] ([miscreantMind.displayed_key])"
 
 		boutput(world, "<B>[miscreant_info] was a miscreant!</B>")
 		for (var/datum/objective/miscreant/O in miscreantMind.objectives)
@@ -603,10 +617,6 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 	// DO THE PERSISTENT_BANK STUFF
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] processing spacebux updates")
-
-	var/escape_possible = 1
-	if (istype(mode, /datum/game_mode/blob) || istype(mode, /datum/game_mode/nuclear) || istype(mode, /datum/game_mode/revolution))
-		escape_possible = 0
 
 	var/time = world.time
 
@@ -668,7 +678,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					var/mob/dead/aieye/E = player
 					player_loses_held_item = isdead(E.mainframe)
 
-			if (!escape_possible)
+			if (!mode.escape_possible)
 				player_body_escaped = 1
 				if (istype(mode, /datum/game_mode/nuclear)) //bleh the nuke thing kills everyone
 					player_loses_held_item = 0
@@ -688,7 +698,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			else if (istype(player.loc, /obj/cryotron) || player.mind && (player.mind in all_the_baddies)) // Cryo'd or was a baddie at any point? Keep your shit, but you don't get the extra bux
 				player_loses_held_item = 0
 			//some might not actually have a wage
-			if (!isvirtual(player) && (isnukeop(player) ||  (isblob(player) && (player.mind && player.mind.special_role == "blob")) || iswraith(player) || (iswizard(player) && (player.mind && player.mind.special_role == "wizard")) ))
+			if (!isvirtual(player) && (isnukeop(player) ||  (isblob(player) && (player.mind && player.mind.special_role == ROLE_BLOB)) || iswraith(player) || (iswizard(player) && (player.mind && player.mind.special_role == ROLE_WIZARD)) ))
 				bank_earnings.wage_base = 0 //only effects the end of round display
 				earnings = 800
 

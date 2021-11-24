@@ -43,26 +43,14 @@
 		if (mapSwitcher)
 			stats["Map Vote Spacer"] = -1
 			if (mapSwitcher.current)
-				var/currentMap = mapSwitcher.current
-
-				if (mapSwitcher.locked && !mapSwitcher.next && isadmin(src))
-					currentMap += " (Compiling)"
-
-				saveStat("Map:", currentMap)
+				saveStat("Map:", mapSwitcher.current)
 
 			stats["Next Map:"] = 0
 			if (mapSwitcher.next)
 				var/nextMap = mapSwitcher.next
 
-				//if the players voted for the next map, show them compile status, otherwise limit that info to admins
-				if (mapSwitcher.locked && (mapSwitcher.nextMapIsVotedFor || isadmin(src)))
-					nextMap += " (Compiling)"
-
 				if (mapSwitcher.nextMapIsVotedFor && isadmin(src))
 					nextMap += " (Player Voted)"
-
-				if (mapSwitcher.queuedVoteCompile && mapSwitcher.voteChosenMap)
-					nextMap += " (Queued: [mapSwitcher.voteChosenMap])"
 
 				saveStat("Next Map:", nextMap)
 
@@ -75,7 +63,7 @@
 				stats["Map Vote Link:"] = 0
 				stats["Map Vote Time:"] = 0
 
-		if (!isnull(vote_manager) && vote_manager.active_vote)
+		if (vote_manager?.active_vote)
 			saveStat("Vote Link:",newVoteLinkStat)
 			saveStat("Vote Time:", "([round(((vote_manager.active_vote.vote_started + vote_manager.active_vote.vote_length) - world.time) / 10)] seconds remaining, [vote_manager.active_vote.voted_ckey.len] vote[vote_manager.active_vote.voted_ckey.len != 1 ? "s" : ""])")
 			stats["Vote Spacer"] = -1

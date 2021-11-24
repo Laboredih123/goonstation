@@ -611,7 +611,7 @@ proc/is_teleportation_allowed(var/turf/T)
 				return
 			if("flash")
 				for(var/mob/O in AIviewers(src, null)) O.show_message("<span class='alert'>A bright flash emnates from the [src]!</span>", 1)
-				playsound(src.loc, "sound/weapons/flashbang.ogg", 50, 1)
+				playsound(src.loc, "sound/weapons/flashbang.ogg", 35, 1)
 				for (var/mob/N in viewers(src, null))
 					if (get_dist(N, src) <= 6)
 						N.apply_flash(30, 5)
@@ -661,7 +661,7 @@ proc/is_teleportation_allowed(var/turf/T)
 				var/myturf = src.loc
 				for(var/atom/movable/M in view(4, myturf))
 					if(M.anchored) continue
-					if(ismob(M)) if(hasvar(M,"weakened")) M:changeStatus("weakened", 80)
+					if(ismob(M)) if(hasvar(M,"weakened")) M:changeStatus("weakened", 8 SECONDS)
 					if(ismob(M)) random_brute_damage(M, 20)
 					var/dir_away = get_dir(myturf,M)
 					var/turf/target = get_step(myturf,dir_away)
@@ -1000,9 +1000,9 @@ proc/is_teleportation_allowed(var/turf/T)
 				if (updateReadout)
 					M << output(url_encode(src.readout), "t_computer.browser:updateReadout")
 				else
-					src.attack_hand(M)
+					src.Attackhand(M)
 
-		if (issilicon(usr))
+		if (issilicon(usr) || isAIeye(usr))
 			if (!(usr in nearby))
 				if (usr.using_dialog_of(src))
 					if (updateReadout)
@@ -1096,14 +1096,14 @@ proc/is_teleportation_allowed(var/turf/T)
 			return
 
 		if (href_list["decreaseX"])
-			var/change = text2num(href_list["decreaseX"])
+			var/change = text2num_safe(href_list["decreaseX"])
 			xtarget = min(max(0, xtarget-change),500)
 			coord_update_flag = 1
 			src.updateUsrDialog()
 			return
 
 		else if (href_list["increaseX"])
-			var/change = text2num(href_list["increaseX"])
+			var/change = text2num_safe(href_list["increaseX"])
 			xtarget = min(max(0, xtarget+change),500)
 			coord_update_flag = 1
 			src.updateUsrDialog()
@@ -1111,7 +1111,7 @@ proc/is_teleportation_allowed(var/turf/T)
 
 		else if (href_list["setX"])
 			var/change = input(usr,"Target X:","Enter target X coordinate",xtarget) as num
-			if(!isnum(change))
+			if(!isnum_safe(change))
 				return
 			xtarget = min(max(0, change),500)
 			coord_update_flag = 1
@@ -1119,14 +1119,14 @@ proc/is_teleportation_allowed(var/turf/T)
 			return
 
 		else if (href_list["decreaseY"])
-			var/change = text2num(href_list["decreaseY"])
+			var/change = text2num_safe(href_list["decreaseY"])
 			ytarget = min(max(0, ytarget-change),500)
 			coord_update_flag = 1
 			src.updateUsrDialog()
 			return
 
 		else if (href_list["increaseY"])
-			var/change = text2num(href_list["increaseY"])
+			var/change = text2num_safe(href_list["increaseY"])
 			ytarget = min(max(0, ytarget+change),500)
 			coord_update_flag = 1
 			src.updateUsrDialog()
@@ -1134,7 +1134,7 @@ proc/is_teleportation_allowed(var/turf/T)
 
 		else if (href_list["setY"])
 			var/change = input(usr,"Target Y:","Enter target Y coordinate",ytarget) as num
-			if(!isnum(change))
+			if(!isnum_safe(change))
 				return
 			ytarget = min(max(0, change),500)
 			coord_update_flag = 1
@@ -1142,14 +1142,14 @@ proc/is_teleportation_allowed(var/turf/T)
 			return
 
 		else if (href_list["decreaseZ"])
-			var/change = text2num(href_list["decreaseZ"])
+			var/change = text2num_safe(href_list["decreaseZ"])
 			ztarget = min(max(0, ztarget-change),14)
 			coord_update_flag = 1
 			src.updateUsrDialog()
 			return
 
 		else if (href_list["increaseZ"])
-			var/change = text2num(href_list["increaseZ"])
+			var/change = text2num_safe(href_list["increaseZ"])
 			ztarget = min(max(0, ztarget+change),14)
 			coord_update_flag = 1
 			src.updateUsrDialog()
@@ -1157,7 +1157,7 @@ proc/is_teleportation_allowed(var/turf/T)
 
 		else if (href_list["setZ"])
 			var/change = input(usr,"Target Z:","Enter target Z coordinate",ztarget) as num
-			if(!isnum(change))
+			if(!isnum_safe(change))
 				return
 			ztarget = min(max(0, change),14)
 			coord_update_flag = 1

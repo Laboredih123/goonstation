@@ -45,7 +45,7 @@
 		if (!use_two_handed || setTwoHanded(!src.status))
 			src.status = !src.status
 
-			playsound(get_turf(src), "sparks", 75, 1, -1)
+			playsound(src, "sparks", 75, 1, -1)
 			if (src.status)
 				w_class = W_CLASS_BULKY
 				flags &= ~ONBELT //haha NO
@@ -55,6 +55,7 @@
 				setProperty("disorient_resist", 65)
 				setProperty("disorient_resist_eye", 65)
 				setProperty("disorient_resist_ear", 50) //idk how lol ok
+				setProperty("deflection", 20)
 				flick("barrier_a",src)
 				c_flags |= BLOCK_TOOLTIP
 
@@ -68,6 +69,7 @@
 				delProperty("disorient_resist", 0)
 				delProperty("disorient_resist_eye", 0)
 				delProperty("disorient_resist_ear", 0)
+				setProperty("deflection", 0)
 				c_flags &= ~BLOCK_TOOLTIP
 
 				src.setItemSpecial(/datum/item_special/simple)
@@ -87,7 +89,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		..()
-		playsound(get_turf(src), 'sound/impact_sounds/Energy_Hit_1.ogg', 30, 0.1, 0, 2)
+		playsound(src, 'sound/impact_sounds/Energy_Hit_1.ogg', 30, 0.1, 0, 2)
 
 	dropped(mob/M)
 		..()

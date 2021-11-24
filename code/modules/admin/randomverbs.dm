@@ -68,7 +68,7 @@
 
 			var/PLoc = pick_landmark(LANDMARK_PRISONWARP)
 			if (PLoc)
-				M.changeStatus("paralysis", 80)
+				M.changeStatus("paralysis", 8 SECONDS)
 				M.set_loc(PLoc)
 			else
 				message_admins("[key_name(usr)] couldn't send [key_name(M)] to the prison zone (no landmark found).")
@@ -99,6 +99,7 @@
 	if (!msg)
 		return
 	if (src?.holder)
+		M.playsound_local(M, "sound/misc/prayerchime.ogg", 100, flags = SOUND_IGNORE_SPACE, channel = VOLUME_CHANNEL_MENTORPM)
 		boutput(Mclient.mob, __blue("You hear a voice in your head... <i>[msg]</i>"))
 
 	logTheThing("admin", src.mob, Mclient.mob, "Subtle Messaged [constructTarget(Mclient.mob,"admin")]: [msg]")
@@ -378,8 +379,8 @@
 		// More info would be nice (Convair880).
 		var/dat = ""
 		for (var/mob/living/silicon/S in mobs)
-			if (S.mind && S.mind.special_role == "vampthrall" && ismob(whois_ckey_to_mob_reference(S.mind.master)))
-				dat += "<br>[S] is a vampire's thrall, only obeying [whois_ckey_to_mob_reference(S.mind.master)]."
+			if (S.mind && S.mind.special_role == ROLE_VAMPTHRALL && ismob(ckey_to_mob(S.mind.master)))
+				dat += "<br>[S] is a vampire's thrall, only obeying [ckey_to_mob(S.mind.master)]."
 			else
 				if (isAI(S)) continue // Rogue AIs modify the global lawset.
 				if (S.mind && !S.dependent)
@@ -685,6 +686,14 @@
 
 	src.holder.viewPlayerNotes(ckey(target))
 
+/client/proc/cmd_admin_set_loginnotice(target as text)
+	set name = "Set Player LoginNotice"
+	set desc = "Change a player's login notice."
+	SET_ADMIN_CAT(ADMIN_CAT_PLAYERS)
+	admin_only
+
+	src.holder.setLoginNotice(ckey(target))
+
 /client/proc/cmd_admin_polymorph(mob/M as mob in world)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "Polymorph Player"
@@ -771,21 +780,24 @@
 			src.tf_holder.mobAppearance.flavor_text = new_text
 
 		else if (href_list["customization_first"])
-			var/new_style = input(usr, "Please select style", "Polymorph Menu")  as null|anything in (customization_styles + customization_styles_gimmick)
+			var/list/customization_types = concrete_typesof(/datum/customization_style)
+			var/new_style = select_custom_style(customization_types, usr)
 
 			if (new_style)
 				src.tf_holder.mobAppearance.customization_first = new_style
 				src.tf_holder.mobAppearance.customization_first_original = new_style
 
 		else if (href_list["customization_second"])
-			var/new_style = input(usr, "Please select style", "Polymorph Menu")  as null|anything in (customization_styles + customization_styles_gimmick)
+			var/list/customization_types = concrete_typesof(/datum/customization_style)
+			var/new_style = select_custom_style(customization_types, usr)
 
 			if (new_style)
 				src.tf_holder.mobAppearance.customization_second = new_style
 				src.tf_holder.mobAppearance.customization_second_original = new_style
 
 		else if (href_list["customization_third"])
-			var/new_style = input(usr, "Please select style", "Polymorph Menu")  as null|anything in (customization_styles + customization_styles_gimmick)
+			var/list/customization_types = concrete_typesof(/datum/customization_style)
+			var/new_style = select_custom_style(customization_types, usr)
 
 			if (new_style)
 				src.tf_holder.mobAppearance.customization_third = new_style
@@ -926,13 +938,13 @@
 
 		dat += "<hr><b>Bottom Detail</b><br>"
 		dat += "<a href='byond://?src=\ref[src];hair=input'>Change Color</a> <font face=\"fixedsys\" size=\"3\" color=\"[src.tf_holder.mobAppearance.customization_first_color]\"><table bgcolor=\"[src.tf_holder.mobAppearance.customization_first_color]\"><tr><td>C1</td></tr></table></font>"
-		dat += "Style: <a href='byond://?src=\ref[src];customization_first=input'>[src.tf_holder.mobAppearance.customization_first]</a>"
+		dat += "Style: <a href='byond://?src=\ref[src];customization_first=input'>[src.tf_holder.mobAppearance.customization_first.name]</a>"
 		dat += "<hr><b>Mid Detail</b><br>"
 		dat += "<a href='byond://?src=\ref[src];facial=input'>Change Color</a> <font face=\"fixedsys\" size=\"3\" color=\"[src.tf_holder.mobAppearance.customization_second_color]\"><table bgcolor=\"[src.tf_holder.mobAppearance.customization_second_color]\"><tr><td>C2</td></tr></table></font>"
-		dat += "Style: <a href='byond://?src=\ref[src];customization_second=input'>[src.tf_holder.mobAppearance.customization_second]</a>"
+		dat += "Style: <a href='byond://?src=\ref[src];customization_second=input'>[src.tf_holder.mobAppearance.customization_second.name]</a>"
 		dat += "<hr><b>Top Detail</b><br>"
 		dat += "<a href='byond://?src=\ref[src];detail=input'>Change Color</a> <font face=\"fixedsys\" size=\"3\" color=\"[src.tf_holder.mobAppearance.customization_third_color]\"><table bgcolor=\"[src.tf_holder.mobAppearance.customization_third_color]\"><tr><td>C3</td></tr></table></font>"
-		dat += "Style: <a href='byond://?src=\ref[src];customization_third=input'>[src.tf_holder.mobAppearance.customization_third]</a>"
+		dat += "Style: <a href='byond://?src=\ref[src];customization_third=input'>[src.tf_holder.mobAppearance.customization_third.name]</a>"
 
 		dat += "<hr><b>Eyes</b><br>"
 		dat += "<a href='byond://?src=\ref[src];eyes=input'>Change Color</a> <font face=\"fixedsys\" size=\"3\" color=\"[src.tf_holder.mobAppearance.e_color]\"><table bgcolor=\"[src.tf_holder.mobAppearance.e_color]\"><tr><td>EC</td></tr></table></font>"
@@ -1014,15 +1026,15 @@
 		if (AH.customization_first_color == null)
 			AH.customization_first_color = "#101010"
 		if (AH.customization_first == null)
-			AH.customization_first = "None"
+			AH.customization_first = new /datum/customization_style/none
 		if (AH.customization_second_color == null)
 			AH.customization_second_color = "#101010"
 		if (AH.customization_second == null)
-			AH.customization_second = "None"
+			AH.customization_second = new /datum/customization_style/none
 		if (AH.customization_third_color == null)
 			AH.customization_third_color = "#101010"
 		if (AH.customization_third == null)
-			AH.customization_third = "None"
+			AH.customization_third = new /datum/customization_style/none
 		if (AH.e_color == null)
 			AH.e_color = "#101010"
 		if (AH.u_color == null)
@@ -1068,31 +1080,25 @@
 			src.preview_icon.Blend(eyes_s, ICON_OVERLAY)
 
 		if(!src.mutantrace?.override_hair)
-			customization_first_r = customization_styles[src.tf_holder.mobAppearance.customization_first]
+			customization_first_r = src.tf_holder.mobAppearance.customization_first.id
 			if(!customization_first_r)
-				customization_first_r = customization_styles_gimmick[src.tf_holder.mobAppearance.customization_first]
-				if(!customization_first_r)
-					customization_first_r = "None"
+				customization_first_r = "none"
 			var/icon/hair_s = new/icon("icon" = 'icons/mob/human_hair.dmi', "icon_state" = customization_first_r)
 			hair_s.Blend(src.tf_holder.mobAppearance.customization_first_color, ICON_MULTIPLY)
 			eyes_s.Blend(hair_s, ICON_OVERLAY)
 
 		if(!src.mutantrace?.override_beard)
-			customization_second_r = customization_styles[src.tf_holder.mobAppearance.customization_second]
+			customization_second_r = src.tf_holder.mobAppearance.customization_second.id
 			if(!customization_second_r)
-				customization_second_r = customization_styles_gimmick[src.tf_holder.mobAppearance.customization_second]
-				if(!customization_second_r)
-					customization_second_r = "None"
+				customization_second_r = "none"
 			var/icon/facial_s = new/icon("icon" = 'icons/mob/human_hair.dmi', "icon_state" = customization_second_r)
 			facial_s.Blend(src.tf_holder.mobAppearance.customization_second_color, ICON_MULTIPLY)
 			eyes_s.Blend(facial_s, ICON_OVERLAY)
 
 		if(!src.mutantrace?.override_detail)
-			customization_third_r = customization_styles[src.tf_holder.mobAppearance.customization_third]
+			customization_third_r = src.tf_holder.mobAppearance.customization_third.id
 			if(!customization_third_r)
-				customization_third_r = customization_styles_gimmick[src.tf_holder.mobAppearance.customization_third]
-				if(!customization_third_r)
-					customization_third_r = "none"
+				customization_third_r = "none"
 			var/icon/detail_s = new/icon("icon" = 'icons/mob/human_hair.dmi', "icon_state" = customization_third_r)
 			detail_s.Blend(src.tf_holder.mobAppearance.customization_third_color, ICON_MULTIPLY)
 			eyes_s.Blend(detail_s, ICON_OVERLAY)
@@ -1106,9 +1112,14 @@
 	set name = "Remove All Labels"
 	set popup_menu = 0
 
-	for (var/mob/M in mobs)
-		M.name_suffixes = null
-		M.UpdateName()
+	for (var/atom/movable/A in world)
+		A.name_suffixes = null
+		A.UpdateName()
+
+	for (var/turf/T in world)
+		T.name_suffixes = null
+		T.UpdateName()
+
 	return
 
 /client/proc/cmd_admin_aview()
@@ -1146,18 +1157,18 @@
 		boutput(src, "Only administrators may use this command.")
 		return
 
-	if (!adventure_view || mob.see_invisible < 21)
+	if (!adventure_view || mob.see_invisible < INVIS_ADVENTURE)
 		adventure_view = 1
-		mob.see_invisible = 21
+		mob.see_invisible = INVIS_ADVENTURE
 		boutput(src, "Adventure View activated.")
 
 	else
 		adventure_view = 0
 		boutput(src, "Adventure View deactivated.")
 		if (!isliving(mob))
-			mob.see_invisible = 16 // this seems to be quasi-standard for dead and wraith mobs? might fuck up target observers but WHO CARES
+			mob.see_invisible = INVIS_GHOST // this seems to be quasi-standard for dead and wraith mobs? might fuck up target observers but WHO CARES
 		else
-			mob.see_invisible = 0 // it'll sort itself out on the next Life() tick anyway
+			mob.see_invisible = INVIS_NONE // it'll sort itself out on the next Life() tick anyway
 
 /proc/possess(obj/O as obj in world)
 	set name = "Possess"
@@ -1479,7 +1490,7 @@
 
 	A.reagents.add_reagent("pathogen", amount)
 	var/datum/reagent/blood/pathogen/R = A.reagents.get_reagent("pathogen")
-	var/datum/pathogen/P = unpool(/datum/pathogen)
+	var/datum/pathogen/P = new /datum/pathogen
 	P.setup(1)
 	R.pathogens += P.pathogen_uid
 	R.pathogens[P.pathogen_uid] = P
@@ -1751,11 +1762,11 @@
 			E << sound('sound/misc/lawnotify.ogg', volume=100, wait=0)
 
 	switch (former_role)
-		if ("mindslave") return
-		if ("vampthrall") return
+		if (ROLE_MINDSLAVE) return
+		if (ROLE_VAMPTHRALL) return
 		if ("spyslave") return
-		if ("blob") M.humanize(1)
-		if ("wraith") M.humanize(1)
+		if (ROLE_BLOB) M.humanize(1)
+		if (ROLE_WRAITH) M.humanize(1)
 		else
 			if (ishuman(M))
 				// They could be in a pod or whatever, which would have unfortunate results when respawned.
@@ -1975,6 +1986,44 @@
 	usr:set_loc(target)
 	logTheThing("admin", usr, target, "began following [target].")
 	logTheThing("diary", usr, target, "began following [target].", "admin")
+
+/client/proc/admin_observe_random_player()
+	SET_ADMIN_CAT(ADMIN_CAT_PLAYERS)
+	set name = "Observe Random Player"
+	set desc = "Observe a random living logged-in player."
+	admin_only
+
+	if (!isobserver(src.mob))
+		boutput(src, "<span class='alert'>Error: you must be an observer to use this command.</span>")
+		return
+
+	if (istype(src.mob, /mob/dead/target_observer))
+		var/mob/dead/target_observer/TO = src.mob
+		TO.stop_observing()
+
+	var/mob/dead/observer/O = src.mob
+	var/client/C
+	var/mob/M
+	var/i = 0 // prevent infinite loops in worst case scenario
+
+	while (!isliving(M))
+		i++
+		if (i > 10) // sorry, magic
+			boutput(src, "<span class='alert'>Error: no valid players found.</span>")
+			return
+		C = pick(clients)
+		if (C?.mob)
+			M = C.mob
+
+	O.insert_observer(M)
+
+/client/proc/orp()
+	SET_ADMIN_CAT(ADMIN_CAT_NONE)
+	set name = "ORP"
+	set popup_menu = 0
+	admin_only
+
+	src.admin_observe_random_player()
 
 /client/proc/admin_pick_random_player()
 	SET_ADMIN_CAT(ADMIN_CAT_PLAYERS)
@@ -2298,7 +2347,7 @@ var/global/night_mode_enabled = 0
 	if (!M || !src.mob || !M.client || !M.client.player || M.client.player.shamecubed)
 		return 0
 	if(isdead(M))
-		M.invisibility = 0
+		M.invisibility = INVIS_NONE
 	var/announce = alert("Announce this cubing to the server?", "Announce", "Yes", "No")
 
 	var/turf/targetLoc = src.mob.loc
@@ -2453,16 +2502,19 @@ var/global/night_mode_enabled = 0
 		if (!medal)
 			return
 
+	var/revoke = (alert(src, "Mass grant or revoke medals?", "Mass grant/revoke", "Grant", "Revoke") == "Revoke")
 	var/key = input("Enter player key", "Player key", null) as null|text
-	var/mob/M = new /mob
 	while(key)
-		M.key = key
-		var/result = world.SetMedal(medal, M, config.medal_hub, config.medal_password)
+		var/player = ckey(key)
+		var/result
+		if (revoke)
+			result = world.ClearMedal(medal, player, config.medal_hub, config.medal_password)
+		else
+			result = world.SetMedal(medal, player, config.medal_hub, config.medal_password)
 		if (isnull(result))
 			boutput(src, "Failed to set medal; error communicating with BYOND hub!")
 			break
 		key = input("Enter player key", "Player key", null) as null|text
-	qdel(M)
 
 /client/proc/copy_medals(var/old_key as null|text, var/new_key as null|text)
 	set name = "Copy Medals"
@@ -2723,110 +2775,6 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 	else
 		boutput(src, "You must be at least an Administrator to use this command.")
 
-
-/client/proc/cmd_swampify_station()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Swampify"
-	set desc = "Turns space into a swamp"
-	admin_only
-	var/const/ambient_light = "#222222"
-#ifdef UNDERWATER_MAP
-	//to prevent tremendous lag from the entire map flooding from a single ocean tile.
-	boutput(src, "You cannot use this command on underwater maps. Sorry!")
-	return
-#else
-	if(src.holder.level >= LEVEL_ADMIN)
-		switch(alert("Turn space into a swamp? This is probably going to lag a bunch when it happens and there's no easy undo!",,"Yes","No"))
-			if("Yes")
-				var/image/I = new /image/ambient
-				var/datum/map_generator/jungle_generator/map_generator = new
-				var/list/space = list()
-				for(var/turf/space/S in block(locate(1, 1, Z_LEVEL_STATION), locate(world.maxx, world.maxy, Z_LEVEL_STATION)))
-					space += S
-				map_generator.generate_terrain(space)
-				for (var/turf/S in space)
-					I.color = ambient_light
-					S.UpdateOverlays(I, "ambient")
-				logTheThing("admin", src, null, "turned space into a swamp.")
-				logTheThing("diary", src, null, "turned space into a swamp.", "admin")
-				message_admins("[key_name(src)] turned space into a swamp.")
-	else
-		boutput(src, "You must be at least an Administrator to use this command.")
-#endif
-
-/client/proc/cmd_trenchify_station()
-	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	set name = "Trenchify"
-	set desc = "Generates trench caves on the station Z"
-	admin_only
-	if(src.holder.level >= LEVEL_ADMIN)
-		switch(alert("Generate a trench on the station Z level? This is probably going to lag a bunch when it happens and there's no easy undo!",,"Yes","No"))
-			if("Yes")
-				var/hostile_mob_toggle = FALSE
-				if(alert("Include hostile mobs?",,"Yes","No")=="Yes") hostile_mob_toggle = TRUE
-
-				boutput(src, "Now generating trench, pleast wait.")
-
-				var/turf/T1 = locate(1 + AST_MAPBORDER, 1 + AST_MAPBORDER, Z_LEVEL_STATION)
-				var/turf/T2 = locate(world.maxx - AST_MAPBORDER, world.maxy - AST_MAPBORDER, Z_LEVEL_STATION)
-
-				var/datum/mapGenerator/seaCaverns/seaCaverns = new()
-				seaCaverns.generate(block(T1, T2), Z_LEVEL_STATION, FALSE)
-
-				for(var/turf/space/space_turf in block(T1, T2))
-					if (istype(space_turf.loc, /area/shuttle)) continue
-					space_turf.ReplaceWith(/turf/space/fluid/trench)
-
-					if (prob(1))
-						new /obj/item/seashell(space_turf)
-
-					if (prob(8))
-						var/obj/plant = pick(childrentypesof(/obj/sea_plant))
-						var/obj/sea_plant/P = new plant(space_turf)
-						P.initialize()
-
-					if(hostile_mob_toggle)
-						if (prob(1) && prob(2))
-							new /obj/critter/gunbot/drone/buzzdrone/fish(space_turf)
-						else if (prob(1) && prob(4))
-							new /obj/critter/gunbot/drone/gunshark(space_turf)
-						else if (prob(1) && prob(20))
-							var/mob/fish = pick(childrentypesof(/mob/living/critter/aquatic/fish))
-							new fish(space_turf)
-						else if (prob(1) && prob(9) && prob(90))
-							var/obj/naval_mine/O = 0
-							if (prob(20))
-								if (prob(70))
-									O = new /obj/naval_mine/standard(space_turf)
-								else
-									O = new /obj/naval_mine/vandalized(space_turf)
-							else
-								O = new /obj/naval_mine/rusted(space_turf)
-							if (O)
-								O.initialize()
-
-						if (prob(2) && prob(25))
-							new /obj/overlay/tile_effect/cracks/spawner/trilobite(space_turf)
-						if (prob(2) && prob(25))
-							new /obj/overlay/tile_effect/cracks/spawner/pikaia(space_turf)
-
-						if (prob(1) && prob(16))
-							new /mob/living/critter/small_animal/hallucigenia/ai_controlled(space_turf)
-						else if (prob(1) && prob(18))
-							new /obj/overlay/tile_effect/cracks/spawner/pikaia(space_turf)
-
-					if (prob(1) && prob(9))
-						var/obj/storage/crate/trench_loot/C = pick(childrentypesof(/obj/storage/crate/trench_loot))
-						var/obj/storage/crate/trench_loot/created_loot = new C(space_turf)
-						created_loot.initialize()
-
-					LAGCHECK(LAG_MED)
-				logTheThing("admin", src, null, "generated a trench on station Z[hostile_mob_toggle ? " with hostile mobs" : ""].")
-				logTheThing("diary", src, null, "generated a trench on station Z[hostile_mob_toggle ? " with hostile mobs" : ""].", "admin")
-				message_admins("[key_name(src)] generated a trench on station Z[hostile_mob_toggle ? " with hostile mobs" : ""].")
-	else
-		boutput(src, "You must be at least an Administrator to use this command.")
-
 /client/proc/cmd_special_shuttle()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Special Shuttle"
@@ -2845,3 +2793,19 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 			message_admins("[key_name(src)] replaced the shuttle with [shuttle].")
 	else
 		boutput(src, "You must be at least an Administrator to use this command.")
+
+/client/proc/cmd_admin_ship_movable_to_cargo(atom/movable/AM)
+	SET_ADMIN_CAT(ADMIN_CAT_UNUSED)
+	set name = "Ship to Cargo"
+	set popup_menu = 0
+	admin_only
+
+	if (AM.anchored)
+		boutput(src, "Target is anchored and you probably shouldn't be shipping it!")
+		return
+
+	if (tgui_alert(src.mob, "Are you sure you want to ship [AM]?", "Confirmation", list("Yes", "No")) == "Yes")
+		shippingmarket.receive_crate(AM)
+		logTheThing("admin", usr, AM, "has shipped [AM] to cargo.")
+		logTheThing("diary", usr, AM, "has shipped [AM] to cargo.", "admin")
+		message_admins("[key_name(usr)] has shipped [AM] to cargo.")

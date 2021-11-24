@@ -34,55 +34,57 @@
 
 /mob/living/carbon/human/npc/assistant
 	ai_aggressive = 1
-	var/just_got_griefed = 0
+
 	New()
 		..()
 		SPAWN_DBG(0)
 			JobEquipSpawned("Staff Assistant")
+
 	ai_findtarget_new()
 		if((world.timeofday - ai_threatened) < 600)
 			..()
-	proc
-		cry_grief(mob/M)
-			if(!M)
-				return
-			src.target = M
-			src.ai_state = AI_ATTACKING
-			src.ai_threatened = world.timeofday
-			var/target_name = M.name
-			//var/area/current_loc = get_area(src)
-			//var/tmp/loc_name = lowertext(current_loc.name) // removing this because nobody believes it
-			var/complaint = pick("[target_name] [pick("is killing","is griefing","is trying to kill","just fucking tried to kill")] me",\
-			"getting griefed, help",\
-			"security!!!",\
-			"[target_name] just fucking attacked me",\
-			"SOMEONE [prob(40) ? "FUCKING " : ""]ARREST [uppertext(target_name)]",\
-			"need help",\
-			"[pick("HLEP","HELP")] ME [uppertext(target_name)] IS [prob(40) ? "FUCKING " : ""]KILLING ME")
-			if(prob(60))
-				complaint = uppertext(complaint)
-			var/max_excl = rand(-2,4)
-			for(var/i = 0, i < max_excl, i++)
-				complaint += "!"
-			src.say(";[complaint]")
+
+	proc/cry_grief(mob/M)
+		if(!M)
+			return
+		if(isdead(src))
+			return
+		src.target = M
+		src.ai_state = AI_ATTACKING
+		src.ai_threatened = world.timeofday
+		var/target_name = M.name
+		//var/area/current_loc = get_area(src)
+		//var/tmp/loc_name = lowertext(current_loc.name) // removing this because nobody believes it
+		var/complaint = pick("[target_name] [pick("is killing","is griefing","is trying to kill","just fucking tried to kill")] me",\
+		"getting griefed, help",\
+		"security!!!",\
+		"[target_name] just fucking attacked me",\
+		"SOMEONE [prob(40) ? "FUCKING " : ""]ARREST [uppertext(target_name)]",\
+		"need help",\
+		"[pick("HLEP","HELP")] ME [uppertext(target_name)] IS [prob(40) ? "FUCKING " : ""]KILLING ME")
+		if(prob(60))
+			complaint = uppertext(complaint)
+		var/max_excl = rand(-2,4)
+		for(var/i = 0, i < max_excl, i++)
+			complaint += "!"
+		src.say(";[complaint]")
+
 	attack_hand(mob/M)
 		..()
-		if(!just_got_griefed && (M.a_intent in list(INTENT_HARM,INTENT_DISARM,INTENT_GRAB)))
-			just_got_griefed = 1
-			SPAWN_DBG(rand(10,30))
-				src.cry_grief(M)
-				just_got_griefed = 0
+		if(M.a_intent in list(INTENT_HARM,INTENT_DISARM,INTENT_GRAB))
+			if(!ON_COOLDOWN(src, "cry_grief", 5 SECONDS))
+				SPAWN_DBG(rand(10,30))
+					src.cry_grief(M)
+
 	attackby(obj/item/W, mob/M)
 		var/oldbloss = get_brute_damage()
 		var/oldfloss = get_burn_damage()
 		..()
 		var/damage = ((get_brute_damage() - oldbloss) + (get_burn_damage() - oldfloss))
 		if((damage > 0) || W.force)
-			if(!just_got_griefed)
-				just_got_griefed = 1
+			if(!ON_COOLDOWN(src, "cry_grief", 5 SECONDS))
 				SPAWN_DBG(rand(10,30))
 					src.cry_grief(M)
-					just_got_griefed = 0
 
 
 
@@ -133,8 +135,12 @@
 		ai_active = active
 
 		if (ai_active)
-			ai_mobs.Add(src)
+			if(src.skipped_mobs_list & SKIPPED_MOBS_LIST)
+				src.skipped_mobs_list |= SKIPPED_AI_MOBS_LIST
+			else
+				ai_mobs.Add(src)
 		else
+			src.skipped_mobs_list &= ~SKIPPED_AI_MOBS_LIST
 			ai_mobs.Remove(src)
 
 /mob/living/carbon/human/proc/ai_init()
@@ -172,7 +178,7 @@
 
 	//Moving this up because apparently beds were tripping the AI up.
 	if(src.buckled && !src.hasStatus("handcuffed"))
-		src.buckled.attack_hand(src)
+		src.buckled.Attackhand(src)
 		if(src.buckled) //WE'RE STUCKED :C
 			return
 
@@ -421,7 +427,7 @@
 
 				if(isgrab(src.r_hand) || isgrab(src.l_hand))
 					var/obj/item/grab/grab = locate(/obj/item/grab) in src
-					grab.attack_hand(src)
+					grab.Attackhand(src)
 
 				if(!src.equipped() || prefer_hand)
 					// need to restore this at some point i guess, the "monkeys bite" code is commented out right now
@@ -536,7 +542,7 @@
 
 	// wear clothes
 	if(src.hand && IS_NPC_CLOTHING(src.equipped()) && prob(80) && (!(src.equipped().flags & ONBELT) || prob(0.1)))
-		src.hud.clicked("invtoggle", src, list())
+		src.hud.relay_click("invtoggle", src, list())
 		if(src.equipped())
 			throw_equipped |= prob(80)
 
@@ -640,9 +646,10 @@
 	. = ..()
 	if(!src.ai_active)
 		return
-	if(src.ai_state == AI_FLEEING && ai_incapacitated())
-		src.ai_state = AI_PASSIVE
-		walk_away(src, null)
+	if(ai_incapacitated())
+		walk(src, null)
+		if(src.ai_state == AI_FLEEING)
+			src.ai_state = AI_PASSIVE
 
 
 /mob/living/carbon/human/proc/ai_pickupstuff()
@@ -751,7 +758,7 @@
 		else if(src.back && istype(src.back,/obj/item/storage/backpack))
 			var/obj/item/storage/backpack/B = src.back
 			if(B.contents.len < 7)
-				B.attackby(GN,src)
+				B.Attackby(GN,src)
 
 	var/obj/item/pickup
 
@@ -888,7 +895,7 @@
 		if(!W.CheckExit(src,targetturf)) return 0
 
 	for (var/obj/machinery/door/window/W in targetturf)
-		if(!W.CanPass(src,targetturf)) return 0
+		if(!W.Cross(src)) return 0
 
 	return 1
 
@@ -927,17 +934,17 @@
 
 		if((locate(/obj/window) in get_step(src,dir))  && !acted)
 			var/obj/window/W = (locate(/obj/window) in get_step(src,dir))
-			W.attackby(src.r_hand, src)
+			W.Attackby(src.r_hand, src)
 			acted = 1
 		else if((locate(/obj/window) in get_turf(src.loc))  && !acted)
 			var/obj/window/W = (locate(/obj/window) in get_turf(src.loc))
-			W.attackby(src.r_hand, src)
+			W.Attackby(src.r_hand, src)
 			acted = 1
 
 		if((locate(/obj/grille) in get_step(src,dir))  && !acted)
 			var/obj/grille/G = (locate(/obj/grille) in get_step(src,dir))
 			if(!G.ruined)
-				G.attackby(src.r_hand, src)
+				G.Attackby(src.r_hand, src)
 				acted = 1
 
 	if((locate(/obj/machinery/door) in get_step(src,dir)))

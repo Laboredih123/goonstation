@@ -224,7 +224,7 @@
 					switch (alert("What would you like to do with [src]?",,"Brew coffee","Remove carafe","Nothing"))
 						if ("Brew coffee")
 							for(var/obj/item/reagent_containers/food/drinks/carafe/C in src.contents)
-								C.reagents.add_reagent("coffee_fresh",40)
+								C.reagents.add_reagent("coffee_fresh",100)
 								playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 						if ("Remove carafe")
 							if (!src.my_carafe)
@@ -302,7 +302,7 @@
 	icon_state = "mugrack4" //changes based on cup_ammount in updateicon
 	anchored = 1
 	var/cup_amount = 4
-	var/contained_cup = /obj/item/reagent_containers/food/drinks/mug
+	var/contained_cup = /obj/item/reagent_containers/food/drinks/mug/random_color
 	var/contained_cup_name = "mug"
 
 	get_desc(dist, mob/user)

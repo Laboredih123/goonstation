@@ -45,9 +45,13 @@ Contains:
 
 		// Did you know this thing still works? And wasn't logged (Convair880)?
 		logTheThing("bombing", src.fingerprintslast, null, "A [src.name] was activated, spawning a singularity at [log_loc(src)]. Last touched by: [src.fingerprintslast ? "[src.fingerprintslast]" : "*null*"]")
-		message_admins("A [src.name] was activated, spawning a singularity at [log_loc(src)]. Last touched by: [src.fingerprintslast ? "[src.fingerprintslast]" : "*null*"]")
+		message_admins("A [src.name] was activated, spawning a singularity at [log_loc(src)]. Last touched by: [key_name(src.fingerprintslast)]")
 
-		var/turf/T = src.loc
+		var/turf/T = get_turf(src)
+		if(isrestrictedz(T?.z))
+			src.visible_message("<span class='notice'>[src] refuses to activate in this place. Odd.</span>")
+			qdel(src)
+
 		playsound(T, 'sound/machines/satcrash.ogg', 100, 0, 3, 0.8)
 		if (src.bhole)
 			new /obj/bhole(T, 3000)
@@ -134,6 +138,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	. = ..()
 
 /obj/machinery/the_singularity/process()
+	var/turf/T = get_turf(src)
+	if(isrestrictedz(T?.z))
+		src.visible_message("<span class='notice'>Something about this place makes [src] wither and implode.</span>")
+		qdel(src)
 	eat()
 
 	if (src.Dtime)//If its a temp singularity IE: an event
@@ -165,6 +173,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if (checkpointC < max(MIN_TO_CONTAIN,(radius*8)))//as radius of a 5x5 should be 2, 16 tiles are needed to hold it in, this allows for 4 failures before the singularity is loose
 			src.active = 1
 			maxradius = INFINITY
+			logTheThing("station", null, null, "[src] has become loose at [log_loc(src)]")
+			message_admins("[src] has become loose at [log_loc(src)]")
 
 
 /obj/machinery/the_singularity/emp_act()
@@ -265,14 +275,15 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					else
 						gain = 50
 
-		L.gib()
+		L.ghostize()
+		qdel(L)
 
 	else if (isobj(A))
 		//if (istype(A, /obj/item/graviton_grenade))
 			//src.warp = 100
 
 		if (istype(A, /obj/decal/cleanable)) //MBC : this check sucks, but its far better than cleanables doing hard-delete at the whims of the singularity. replace ASAP when i figure out cleanablessssss
-			pool(A)
+			qdel(A)
 			gain = 2
 		else
 			var/obj/O = A
@@ -321,20 +332,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /////////////////////////////////////////////Controls which "event" is called
 /obj/machinery/the_singularity/proc/event()
-	var/numb = rand(1,4)
+	var/numb = rand(1,3)
 	if(prob(25))
 		grow()
 	switch (numb)
-		if (1)//EMP
-			Zzzzap()
-			return
-		if (2)//Eats the turfs around it
+		if (1)//Eats the turfs around it
 			BHolerip()
 			return
-		if (3)//tox damage all carbon mobs in area
+		if (2)//tox damage all carbon mobs in area
 			Toxmob()
 			return
-		if (4)//Stun mobs who lack optic scanners
+		if (3)//Stun mobs who lack optic scanners
 			Mezzer()
 			return
 
@@ -346,8 +354,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			var/mob/living/carbon/human/H = M
 			if (H.wear_suit)
 				return
-		M.take_toxin_damage(3)
-		M.changeStatus("radiation", 20*(radius+1))
+		M.take_toxin_damage(12)
+		M.changeStatus("radiation", 4*(radius+1) SECONDS)
 		M.show_text("You feel odd.", "red")
 
 /obj/machinery/the_singularity/proc/Mezzer()
@@ -358,7 +366,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if (istype(H.glasses,/obj/item/clothing/glasses/meson))
 				M.show_text("You look directly into [src.name], good thing you had your protective eyewear on!", "green")
 				return
-		M.changeStatus("stunned", 3 SECONDS)
+		M.changeStatus("stunned", 7 SECONDS)
 		M.visible_message("<span class='alert'><B>[M] stares blankly at [src]!</B></span>",\
 		"<B>You look directly into [src]!<br><span class='alert'>You feel weak!</span></B>")
 
@@ -394,33 +402,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			else
 				T.ReplaceWithFloor()
 	return
-
-/obj/machinery/the_singularity/proc/Zzzzap()///Pulled from wizard spells might edit later
-	var/turf/T = src.get_center()
-
-	var/obj/overlay/pulse = new/obj/overlay(T)
-	pulse.icon = 'icons/effects/effects.dmi'
-	pulse.icon_state = "emppulse"
-	pulse.name = "emp pulse"
-	pulse.anchored = 1
-	SPAWN_DBG(2 SECONDS)
-		if (pulse)
-			qdel(pulse)
-
-	for (var/mob/M in all_viewers(world.view-1, T))
-
-		if (!isliving(M))
-			continue
-
-		//if (M == usr) // what
-			//continue // what?????
-
-		M.emp_act()
-
-	for (var/obj/machinery/M in range(world.view-1, T))
-		M.emp_act()
 #endif
-
 //////////////////////////////////////// Field generator /////////////////////////////////////////
 
 /obj/machinery/field_generator
@@ -631,6 +613,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			state = WRENCHED
 			playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
 			boutput(user, "You secure the external reinforcing bolts to the floor.")
+			desc = "Projects an energy field when active. It has been bolted to the floor."
 			src.anchored = 1
 			return
 
@@ -638,6 +621,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			state = UNWRENCHED
 			playsound(src.loc, "sound/items/Ratchet.ogg", 75, 1)
 			boutput(user, "You undo the external reinforcing bolts.")
+			desc = "Projects an energy field when active."
 			src.anchored = 0
 			return
 
@@ -646,7 +630,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if(!W:try_weld(user, 1, noisy = 2))
 				return
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/field_generator/proc/weld_action,\
-			list(user), W.icon, W.icon_state, "[user] finishes using their [W.name] on the field generator.")
+			list(user), W.icon, W.icon_state, "[user] finishes using their [W.name] on the field generator.", null)
 		if(state == WRENCHED)
 			boutput(user, "You start to weld the field generator to the floor.")
 			return
@@ -675,12 +659,14 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		state = WELDED
 		src.get_link() //Set up a link, now that we're secure!
 		boutput(user, "You weld the field generator to the floor.")
+		desc = "Projects an energy field when active. It has been bolted and welded to the floor."
 	else if(state == WELDED)
 		state = WRENCHED
 		if(src.link) //Clear active link.
 			src.link.master = null
 			src.link = null
 		boutput(user, "You cut the field generator free from the floor.")
+		desc = "Projects an energy field when active. It has been bolted to the floor."
 
 /obj/machinery/field_generator/proc/cleanup(var/NSEW)
 	var/obj/machinery/containment_field/F
@@ -784,7 +770,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	icon_state = "Contain_F"
 	anchored = 1
 	density = 0
-	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS
+	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY
 	var/active = 1
 	var/power = 10
 	var/delay = 5
@@ -846,7 +832,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	logTheThing("combat", user, null, "was shocked by a containment field at [log_loc(src)].")
 
 	if (user?.bioHolder)
-		if (user.bioHolder.HasEffect("resist_electric") == 2)
+		if (user.bioHolder.HasEffect("resist_electric_heal"))
 			var/healing = 0
 			if (shock_damage)
 				healing = shock_damage / 3
@@ -854,7 +840,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			user.take_toxin_damage(0 - healing)
 			boutput(user, "<span class='notice'>You absorb the electrical shock, healing your body!</span>")
 			return
-		else if (user.bioHolder.HasEffect("resist_electric") == 1)
+		else if (user.bioHolder.HasEffect("resist_electric"))
 			boutput(user, "<span class='notice'>You feel electricity course through you harmlessly!</span>")
 			return
 
@@ -865,8 +851,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		var/mob/living/L = user
 		L.Virus_ShockCure(100)
 		L.shock_cyberheart(100)
-	if(user.getStatusDuration("stunned") < shock_damage * 10)	user.changeStatus("stunned", shock_damage * 10)
-	if(user.getStatusDuration("weakened") < shock_damage * 10)	user.changeStatus("weakened", shock_damage * 10)
+	if(user.getStatusDuration("stunned") < shock_damage * 10)	user.changeStatus("stunned", shock_damage SECONDS)
+	if(user.getStatusDuration("weakened") < shock_damage * 10)	user.changeStatus("weakened", shock_damage SECONDS)
 
 	if(user.get_burn_damage() >= 500) //This person has way too much BURN, they've probably been shocked a lot! Let's destroy them!
 		user.visible_message("<span style=\"color:red;font-weight:bold;\">[user.name] was disintegrated by the [src.name]!</span>")
@@ -890,7 +876,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.gen_secondary.power -= 3
 	return
 
-/obj/machinery/containment_field/CanPass(atom/movable/O as mob|obj, target as turf, height=0, air_group=0)
+/obj/machinery/containment_field/Cross(atom/movable/O as mob|obj)
 	if(iscarbon(O) && prob(80))
 		shock(O)
 	..()
@@ -1051,7 +1037,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if(!W:try_weld(user, 1, noisy = 2))
 				return
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/emitter/proc/weld_action,\
-			list(user), W.icon, W.icon_state, "[user] finishes using their [W.name] on the emitter.")
+			list(user), W.icon, W.icon_state, "[user] finishes using their [W.name] on the emitter.", null)
 		if(state == WRENCHED)
 			boutput(user, "You start to weld the emitter to the floor.")
 			return
@@ -1605,21 +1591,21 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 							boutput(usr, "<span class='alert'>\The [src] is already deactivated!</span>")
 			if("timer")
 				if(!timing)
-					var/tp = text2num(href_list["tp"])
+					var/tp = text2num_safe(href_list["tp"])
 					src.time += tp
 					src.time = min(max(round(src.time), 30), 600)
 				else
 					boutput(usr, "<span class='alert'>You can't change the time while the timer is engaged!</span>")
 		/*
 		if (href_list["time"])
-			src.timing = text2num(href_list["time"])
+			src.timing = text2num_safe(href_list["time"])
 			if(timing) processing_items |= src
 				src.icon_state = "portgen2"
 			else
 				src.icon_state = "portgen1"
 
 		if (href_list["tp"])
-			var/tp = text2num(href_list["tp"])
+			var/tp = text2num_safe(href_list["tp"])
 			src.time += tp
 			src.time = min(max(round(src.time), 60), 600)
 
@@ -1715,7 +1701,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		else
 			for(var/mob/M in viewers(1, src))
 				if (M.using_dialog_of(src))
-					src.attack_hand(M)
+					src.Attackhand(M)
 
 	return
 

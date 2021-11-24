@@ -90,7 +90,7 @@
 
 		//Commence owie
 		take_bleeding_damage(target, null, rand(8, 16), DAMAGE_BLUNT)	//My
-		playsound(get_turf(target), "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1) //head,
+		playsound(target, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1) //head,
 		target.emote("scream") 									//FUCKING
 		target.TakeDamage("head", rand(12, 18), 0) 				//OW!
 		target.changeStatus("weakened", 4 SECONDS)
@@ -101,11 +101,11 @@
 	name = "gas mask"
 	desc = "A close-fitting mask that can filter some environmental toxins or be connected to an air supply."
 	icon_state = "gas_mask"
-	c_flags = SPACEWEAR | COVERSMOUTH | COVERSEYES | MASKINTERNALS | BLOCKSMOKE
+	c_flags =  COVERSMOUTH | COVERSEYES | MASKINTERNALS | BLOCKSMOKE
 	w_class = W_CLASS_NORMAL
 	see_face = 0.0
 	item_state = "gas_mask"
-	permeability_coefficient = 0.01
+	permeability_coefficient = 0.05
 	color_r = 0.8 // green tint
 	color_g = 1
 	color_b = 0.8
@@ -151,11 +151,45 @@
 	icon_state = "moustache"
 	item_state = "moustache"
 	see_face = 1
+	
+/obj/item/clothing/mask/moustache/Italian 
+	name = "fake Italian moustache"
+	desc = "For those who can't cut the lasagna."
+	icon_state = "moustache-i"
+	item_state = "moustache-i"
+	see_face = 1
+
 
 /obj/item/clothing/mask/gas/emergency
 	name = "emergency gas mask"
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
+
+	unremovable
+		name = "slasher's gas mask"
+		desc = "A close-fitting sealed gas mask, this one seems to be protruding some kind of dark aura."
+		cant_self_remove = 1
+		cant_other_remove = 1
+		icon_state = "slasher_mask"
+		item_state = "slasher_mask"
+		item_function_flags = IMMUNE_TO_ACID
+		see_face = 1.0
+		setupProperties()
+			..()
+			setProperty("meleeprot_head", 6)
+			setProperty("disorient_resist_eye", 100)
+			setProperty("movespeed", 0.2)
+			setProperty("exploprot", 40)
+
+	postpossession
+		name = "worn gas mask"
+		desc = "A close-fitting sealed gas mask, from the looks of it, it's well over a hundred years old."
+		icon_state = "slasher_mask"
+		item_state = "slasher_mask"
+		see_face = 1.0
+		setupProperties()
+			..()
+			setProperty("movespeed", 0.2)
 
 /obj/item/clothing/mask/gas/swat
 	name = "SWAT mask"
@@ -192,7 +226,7 @@
 
 /obj/item/clothing/mask/monkey_translator
 	name = "vocal translator"
-	desc = "Nanotechnology and questionable science combine to make a face-hugging translator, capable of making monkeys speak human lanauge. Or whoever wears this."
+	desc = "Nanotechnology and questionable science combine to make a face-hugging translator, capable of making monkeys speak human language. Or whoever wears this."
 	icon = 'icons/obj/items/items.dmi'
 	wear_image_icon = 'icons/mob/mask.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_headgear.dmi'
@@ -231,12 +265,12 @@
 				if (user.equipped())
 					user.swap_hand(!user.hand)
 					if (!user.equipped())
-						src.attack_hand(user)
+						src.Attackhand(user)
 						user.hotkey("equip")
 
 
 			if (!user.find_in_hand(T))		//pickup tank
-				T.attack_hand(user)
+				T.Attackhand(user)
 
 			if (!T.using_internal())//set tank ON
 				T.toggle_valve()
@@ -274,7 +308,7 @@
 			spam_flag = 1
 			src.add_fingerprint(user)
 			user?.visible_message("<B>[user]</B> honks the nose on [his_or_her(user)] [src.name]!")
-			playsound(get_turf(src), islist(src.sounds_instrument) ? pick(src.sounds_instrument) : src.sounds_instrument, src.volume, src.randomized_pitch)
+			playsound(src, islist(src.sounds_instrument) ? pick(src.sounds_instrument) : src.sounds_instrument, src.volume, src.randomized_pitch)
 			SPAWN_DBG(src.spam_timer)
 				spam_flag = 0
 			return 1
@@ -344,6 +378,10 @@
 				U.visible_message(__red("[src] latches onto [T]'s face!"),__red("You slap [src] onto [T]'s face!'"))
 				logTheThing("combat",user,target,"forces [T] to wear [src] (cursed clown mask) at [log_loc(T)].")
 				U.u_equip(src)
+
+				// If we don't empty out that slot first, it could blip the mask out of existence
+				T.drop_from_slot(T.wear_mask)
+
 				T.equip_if_possible(src,T.slot_wear_mask)
 
 
@@ -372,7 +410,7 @@
 	item_state = "s_mask"
 	w_class = W_CLASS_TINY
 	c_flags = COVERSMOUTH
-	permeability_coefficient = 0.05
+	permeability_coefficient = 0.1
 	path_prot = 0
 
 	setupProperties()

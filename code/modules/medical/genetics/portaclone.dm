@@ -30,8 +30,8 @@
 			if (!isnull(pod1))
 				pod1.connected = computer
 
-			if (!isnull(computer.scanner) || !isnull(pod1))
-				computer.show_message((isnull(pod1) & "POD1-ERROR") || (isnull(pod1) & "SCNR-ERROR"), "success")
+			if (isnull(computer.scanner) || isnull(pod1))
+				computer.show_message((isnull(pod1) && "POD1-ERROR") || (isnull(computer.scanner) && "SCNR-ERROR"), "success")
 				return
 			else
 				computer.show_message("System ready.", "success")
@@ -40,19 +40,16 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (W)
 			if (istype(W, /obj/item/disk/data/floppy) || isscrewingtool(W) || istype(W, /obj/item/cloner_upgrade))
-				computer.attackby(W,user)
+				computer.Attackby(W,user)
 				src.add_fingerprint(user)
 
 			else if (istype(W, /obj/item/grab))
-				scanner.attackby(W,user)
+				scanner.Attackby(W,user)
 				src.add_fingerprint(user)
 
 			else if (istype(W, /obj/item/card/id) || (istype(W, /obj/item/device/pda2) && W:ID_card) || istype(W, /obj/item/card/emag) || istype(W, /obj/item/reagent_containers/glass))
-				pod1.attackby(W,user)
+				pod1.Attackby(W,user)
 				src.add_fingerprint(user)
 
-	attack_ai(mob/user as mob)
-		return attack_hand(user)
-
 	attack_hand(mob/user as mob)
-		return computer.attack_hand(user)
+		return computer.Attackhand(user)

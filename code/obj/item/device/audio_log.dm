@@ -7,7 +7,7 @@
 	mats = 3
 
 	var/log_line = 1 //Which line of the log it's on.
-	var/max_lines = 60
+	var/max_lines = 100
 	var/list/messages = list()
 	var/list/speakers = list()
 
@@ -70,7 +70,7 @@
 
 
 /obj/item/device/audio_log
-	name = "Audio log"
+	name = "audio log"
 	desc = "A fairly spartan recording device."
 	icon_state = "recorder"
 	uses_multiple_icon_states = 1
@@ -214,7 +214,7 @@
 
 	MouseDrop_T(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/audio_tape) && in_interact_range(src, user) && in_interact_range(W, user))
-			return src.attackby(W, user)
+			return src.Attackby(W, user)
 		return ..()
 
 	New()

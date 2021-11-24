@@ -10,7 +10,7 @@
 
 /obj/machinery/bot/duckbot
 	name = "Amusing Duck"
-	desc = "Bump'n go action! Ages 3 and up."
+	desc = "bump'n go action! Ages 3 and up."
 	icon = 'icons/obj/bots/aibots.dmi'
 	icon_state = "duckbot"
 	layer = 5.0 //TODO LAYER
@@ -44,8 +44,7 @@
 
 /obj/machinery/bot/duckbot/New()
 	. = ..()
-	if(radio_controller)
-		radio_controller.add_object(src, FREQ_PDA)
+	MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 /// Makes the duckbot mill around aimlessly, or chase people if emagged
 /obj/machinery/bot/duckbot/proc/wakka_wakka()
@@ -65,12 +64,13 @@
 						src.navigate_to(get_turf(M), src.bot_move_delay, 0, 100)
 						break
 	else
-		SPAWN_DBG(0)
-			step_rand(src,1)
+		src.navigate_to(get_step_rand(src))
 
 /// Sends the duckbot to a random spot on the station
 /obj/machinery/bot/duckbot/proc/mystical_journey()
 	var/list/stationAreas = get_accessible_station_areas()
+	if (!length(stationAreas))
+		return FALSE
 	var/area/AR = pick(stationAreas)
 	var/list/T = get_area_turfs(stationAreas[AR], 1)
 	if(length(T) >= 1)
@@ -122,6 +122,21 @@
 			src.egg_process = 0
 		if(frustration >= 8)
 			src.KillPathAndGiveUp(1)
+
+/obj/machinery/bot/duckbot/attack_ai(var/mob/user as mob)
+	if(!ON_COOLDOWN(src,"ai_quack", 1 SECOND))
+		var/quack_now = TRUE
+		var/quack_time_remaining = GET_COOLDOWN(src, DUCKBOT_QUACK_COOLDOWN)
+		if(quack_time_remaining)
+			if(prob(66))
+				src.cooldowns[DUCKBOT_QUACK_COOLDOWN] = 0
+				quack_now = FALSE
+
+		if(quack_now)
+			var/message = pick("wacka", "quack", "quacky", "gaggle")
+			src.speak(message, 1, 0)
+			src.cooldowns[DUCKBOT_QUACK_COOLDOWN] = TIME + src.quack_cooldown
+	..()
 
 /obj/machinery/bot/duckbot/Topic(href, href_list)
 	if (!(usr in range(1)))
@@ -188,17 +203,13 @@
 		var/A = pick(stationAreas)
 		src.duck_migration_target = stationAreas[A]
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
-	if(!frequency) return FALSE
-
 	var/datum/signal/signal = get_free_signal()
 	signal.source = src
 	signal.data["sender"] = src.botnet_id
 	signal.data["sender_name"] = src
 	signal.data["message"] = "BUMP N GO TO [src.duck_migration_target]."
 	signal.data["target"] = src.duck_migration_target
-	signal.transmission_method = TRANSMISSION_RADIO
-	frequency.post_signal(src, signal)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, "pda")
 	return TRUE
 
 /obj/machinery/bot/duckbot/receive_signal(datum/signal/signal)
@@ -235,8 +246,6 @@
 
 /obj/machinery/bot/duckbot/proc/send_confirm_signal(var/msg, var/target)
 	if(!ON_COOLDOWN(global, "duckbot_antispam_[target]", 1 SECOND))
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(FREQ_PDA)
-		if(!frequency) return FALSE
 		var/datum/signal/sigsend = get_free_signal()
 		sigsend.source = src
 		sigsend.data["sender"] = src.botnet_id
@@ -244,8 +253,7 @@
 		sigsend.data["sender_name"] = src
 		sigsend.data["message"] = "[msg]"
 		sigsend.data["address_1"] = target
-		sigsend.transmission_method = TRANSMISSION_RADIO
-		frequency.post_signal(src, sigsend)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, sigsend, null, "pda")
 
 /obj/machinery/bot/duckbot/KillPathAndGiveUp(give_up)
 	. = ..()

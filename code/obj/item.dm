@@ -9,6 +9,7 @@
 	var/icon_old = null
 	var/uses_multiple_icon_states = 0
 	var/item_state = null
+	var/wear_state = null // icon state used for worn sprites, icon_state used otherwise
 	var/image/wear_image = null
 	var/wear_image_icon = 'icons/mob/belt.dmi'
 	var/wear_layer = MOB_CLOTHING_LAYER
@@ -111,10 +112,6 @@
 	var/override_attack_hand = 1 //when used as an arm, attack with item rather than using attack_hand
 	var/limb_hit_bonus = 0 // attack bonus for when you have this item as a limb and hit someone with it
 	var/can_hold_items = 0 //when used as an arm, can it hold things?
-
-	var/list/module_research = null
-	var/module_research_type = null
-	var/module_research_no_diminish = 0
 
 	var/rand_pos = 0
 	var/obj/item/holding = null
@@ -256,6 +253,7 @@
 
 	onMaterialChanged()
 		..()
+		tooltip_rebuild = 1
 		if (istype(src.material))
 			force = material.hasProperty("hard") ? initial(force) + round(material.getProperty("hard") / 20) : initial(force)
 			burn_possible = src.material.getProperty("flammable") > 50 ? 1 : 0
@@ -297,47 +295,6 @@
 			src.inventory_counter.update_number(src.amount)
 	..()
 
-/obj/item/unpooled()
-	..()
-	src.amount = initial(src.amount)
-
-	// Reset scaling/transforms/etc.
-	src.transform = initial(transform)
-
-	// @TODO should we just like. clear all overlays? this seems particularly hacky
-	// or maybe this should be done in pooled / disposing???
-	if (src.burning)
-		if (src.burn_output >= 1000)
-			src.overlays -= image('icons/effects/fire.dmi', "2old")
-		else
-			src.overlays -= image('icons/effects/fire.dmi', "1old")
-	src.burning = 0
-
-	if (inventory_counter_enabled)
-		src.create_inventory_counter()
-
-/obj/item/pooled()
-	src.amount = 0
-	src.health = initial(src.health)
-
-	if (src.burning)
-		if (src.burn_output >= 1000)
-			src.overlays -= image('icons/effects/fire.dmi', "2old")
-		else
-			src.overlays -= image('icons/effects/fire.dmi', "1old")
-	src.burning = 0
-
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.u_equip(src)
-
-	if (src.inventory_counter)
-		src.vis_contents -= src.inventory_counter
-		pool(src.inventory_counter)
-		src.inventory_counter = null
-
-	..()
-
 /obj/item/set_loc(var/newloc as turf|mob|obj in world)
 	if (src.temp_flags & IS_LIMB_ITEM)
 		if (istype(newloc,/obj/item/parts/human_parts/arm/left/item) || istype(newloc,/obj/item/parts/human_parts/arm/right/item))
@@ -346,6 +303,10 @@
 			return
 	else
 		..()
+
+/obj/item/setMaterial(var/datum/material/mat1, var/appearance = 1, var/setname = 1, var/copy = 1, var/use_descriptors = 0)
+	..()
+	src.tooltip_rebuild = 1
 
 //set up object properties on the block when blocking with the item. if overriding this proc, add the BLOCK_SETUP macro to new() to register for the signal and to get tooltips working right
 /obj/item/proc/block_prop_setup(var/source, var/obj/item/grab/block/B)
@@ -474,14 +435,26 @@
 /obj/item/proc/equipment_click(atom/source, atom/target, params, location, control, origParams, slot) //Called through hand_range_attack on items the mob is wearing that have HAS_EQUIP_CLICK in flags.
 	return 0
 
-/obj/item/proc/combust() // cogwerks- flammable items project
+/obj/item/proc/combust(obj/item/W) // cogwerks- flammable items project
 	if(processing_items.Find(src)) //processing items cant be lit on fire to avoid weird bugs
 		return
 	if (!src.burning)
 		START_TRACKING_CAT(TR_CAT_BURNING_ITEMS)
 		src.visible_message("<span class='alert'>[src] catches on fire!</span>")
 		src.burning = 1
-		src.firesource = TRUE
+		src.firesource = FIRESOURCE_OPEN_FLAME
+		if (istype(src, /obj/item/plant))
+			if (!GET_COOLDOWN(global, "hotbox_adminlog"))
+				var/list/hotbox_plants = list()
+				for (var/obj/item/plant/P in get_turf(src))
+					hotbox_plants += P
+				if (length(hotbox_plants) >= 5) //number is up for debate, 5 seemed like a good starting place
+					ON_COOLDOWN(global, "hotbox_adminlog", 30 SECONDS)
+					var/msg = "([src]) was set on fire on the same turf as at least ([length(hotbox_plants)]) other plants at [log_loc(src)]"
+					if (W?.firesource)
+						msg += " by item ([W]). Last touched by: [key_name(W.fingerprintslast)]"
+					message_admins(msg)
+					logTheThing("bombing", W?.fingerprintslast, null, msg)
 		if (src.burn_output >= 1000)
 			UpdateOverlays(image('icons/effects/fire.dmi', "2old"),"burn_overlay")
 		else
@@ -489,6 +462,7 @@
 		processing_items.Add(src)
 
 /obj/item/proc/combust_ended()
+	STOP_TRACKING_CAT(TR_CAT_BURNING_ITEMS)
 	processing_items.Remove(src)
 	burning = null
 	firesource = FALSE
@@ -536,7 +510,12 @@
 /obj/item/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	if (src.burn_possible && !src.burning)
 		if ((temperature > T0C + src.burn_point) && prob(5))
-			src.combust()
+			var/obj/item/firesource = null
+			for (var/obj/item/I in get_turf(src))
+				if (I.firesource)
+					firesource = I
+					break
+			src.combust(firesource)
 	if (src.material)
 		src.material.triggerTemp(src, temperature)
 	..() // call your fucking parents
@@ -557,7 +536,7 @@
 		if(ismob(src.loc))
 			var/mob/holding_mob = src.loc
 			holding_mob.u_equip(src)
-		pool(src)
+		qdel(src)
 	return 1
 
 /obj/item/proc/stack_item(obj/item/other)
@@ -609,7 +588,7 @@
 	return 1
 
 /obj/item/proc/split_stack(var/toRemove)
-	if(toRemove >= amount) return 0
+	if(toRemove >= amount || toRemove < 1) return 0
 	var/obj/item/P = new src.type(src.loc)
 
 	if(src.material)
@@ -651,6 +630,9 @@
 
 /obj/item/MouseDrop(atom/over_object, src_location, over_location, over_control, params)
 	..()
+
+	if (!src.anchored)
+		click_drag_tk(over_object, src_location, over_location, over_control, params)
 
 	if (usr.stat || usr.restrained() || !can_reach(usr, src) || usr.getStatusDuration("paralysis") || usr.sleeping || usr.lying || isAIeye(usr) || isAI(usr) || isrobot(usr) || isghostcritter(usr) || (over_object && over_object.event_handler_flags & NO_MOUSEDROP_QOL))
 		return
@@ -701,6 +683,38 @@
 			else
 				actions.start(new /datum/action/bar/private/icon/pickup/then_obj_click(src, over_object, params), usr)
 
+	//Click-drag tk stuff.
+/obj/item/proc/click_drag_tk(atom/over_object, src_location, over_location, over_control, params)
+	if(!src.anchored)
+		if (iswraith(usr))
+			var/mob/wraith/W = usr
+			//Basically so poltergeists need to be close to an object to send it flying far...
+			if (W.weak_tk && !IN_RANGE(src, W, 2))
+				src.throw_at(over_object, 1, 1)
+				boutput(W, "<span class='alert'>You're too far away to properly manipulate this physical item!</span>")
+				logTheThing("combat", usr, null, "moves [src] with wtk.")
+				return
+			src.throw_at(over_object, 7, 1)
+			logTheThing("combat", usr, null, "throws [src] with wtk.")
+		else if (ismegakrampus(usr))
+			src.throw_at(over_object, 7, 1)
+			logTheThing("combat", usr, null, "throws [src] with k_tk.")
+		else if(usr.bioHolder && usr.bioHolder.HasEffect("telekinesis_drag") && isturf(src.loc) && isalive(usr) && usr.canmove && get_dist(src,usr) <= 7 && !src.anchored && src.w_class < W_CLASS_GIGANTIC)
+			src.throw_at(over_object, 7, 1)
+			logTheThing("combat", usr, null, "throws [src] with tk.")
+
+#ifdef HALLOWEEN
+		else if (istype(usr, /mob/dead/observer))	//ghost
+			var/obj/item/I = src
+			if (I.w_class > W_CLASS_NORMAL)
+				return
+			if (istype(usr:abilityHolder, /datum/abilityHolder/ghost_observer))
+				var/datum/abilityHolder/ghost_observer/GH = usr:abilityHolder
+				if (GH.spooking)
+					src.throw_at(over_object, 7-I.w_class, 1)
+					logTheThing("combat", usr, null, "throws [src] with g_tk.")
+#endif
+
 //equip an item, given an inventory hud object or storage item UI thing
 /obj/item/proc/try_equip_to_inventory_object(var/mob/user, var/atom/over_object, var/params)
 	var/atom/movable/screen/hud/S = over_object
@@ -720,7 +734,7 @@
 		if (succ)
 			SPAWN_DBG(1 DECI SECOND)
 				if (user.is_in_hands(src))
-					storage.attackby(src, user)
+					storage.Attackby(src, user)
 			return
 
 	if (istype(S))
@@ -787,11 +801,11 @@
 			S.hud.objects -= src // prevents invisible object from failed transfer (item doesn't fit in pockets from backpack for example)
 
 /obj/item/attackby(obj/item/W as obj, mob/user as mob, params)
-	if (src.material)
+	if(src.material)
 		src.material.triggerTemp(src ,1500)
-	if (src.burn_possible && src.burn_point <= 1500)
-		if (W.firesource)
-			src.combust()
+	if (W.firesource)
+		if (src.burn_possible && src.burn_point <= 1500)
+			src.combust(W)
 		else
 			..(W, user)
 	else
@@ -805,13 +819,13 @@
 		src.last_tick_duration = (ticker.round_elapsed_ticks - src.last_processing_tick) / (2.9 SECONDS)
 	src.last_processing_tick = ticker.round_elapsed_ticks
 	if (src.burning)
-		if (src.material)
+		if (src.material && !(src.item_function_flags & COLD_BURN))
 			src.material.triggerTemp(src, src.burn_output + rand(1,200))
 		var/turf/T = get_turf(src.loc)
-		if (T) // runtime error fix
+		if (T && !(src.item_function_flags & COLD_BURN)) // runtime error fix
 			T.hotspot_expose((src.burn_output + rand(1,200)),5)
 
-		if (prob(7))
+		if (prob(7) && !(src.item_function_flags & COLD_BURN))
 			elecflash(src)
 		if (prob(7))
 			if(!(src.item_function_flags & SMOKELESS))// maybe a better way to make this if no?
@@ -819,7 +833,7 @@
 				smoke.set_up(1, 0, src.loc)
 				smoke.attach(src)
 				smoke.start()
-		if (prob(7))
+		if (prob(7) && !(src.item_function_flags & COLD_BURN))
 			fireflash(src, 0)
 
 		if (prob(40))
@@ -841,7 +855,7 @@
 			src.combust_ended()
 
 			if (src.burn_possible == 2)
-				pool(src)
+				qdel(src)
 			else
 				src.overlays.len = 0
 				qdel(src)
@@ -985,12 +999,6 @@
 	src.set_loc(T)
 */
 
-/obj/item/interact(mob/user)
-	if (user.equipped() == src)
-		src.attack_self(user)
-	else
-		src.pick_up_by(user)
-
 /obj/item/proc/pick_up_by(var/mob/M)
 
 	if (world.time < M.next_click)
@@ -1006,10 +1014,7 @@
 		return
 
 	.= 1
-	for (var/obj/item/cloaking_device/I in M)
-		if (I.active)
-			I.deactivate(M)
-			M.visible_message("<span class='notice'><b>[M]'s cloak is disrupted!</b></span>")
+	SEND_SIGNAL(M, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 	if (issmallanimal(M))
 		var/mob/living/critter/small_animal = M
 
@@ -1023,14 +1028,27 @@
 					HH.limb.attack_hand(src,M,1)
 				M.next_click = world.time + src.click_delay
 				return
+	else if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/parts/arm = null
+		if (H.limbs) //Wire: fix for null.r_arm and null.l_arm
+			arm = H.hand ? H.limbs.l_arm : H.limbs.r_arm // I'm so sorry I couldent kill all this shitcode at once
+		if (H.equipped())
+			H.drop_item()
+			SPAWN_DBG(1 DECI SECOND)
+				if (arm)
+					arm.limb_data.attack_hand(src, H, can_reach(H, src))
+		else if (arm)
+			arm.limb_data.attack_hand(src, H, can_reach(H, src))
 
-	//the verb is PICK-UP, not 'smack this object with that object'
-	if (M.equipped())
-		M.drop_item()
-		SPAWN_DBG(1 DECI SECOND)
-			src.attack_hand(M)
 	else
-		src.attack_hand(M)
+		//the verb is PICK-UP, not 'smack this object with that object'
+		if (M.equipped())
+			M.drop_item()
+			SPAWN_DBG(1 DECI SECOND)
+				src.Attackhand(M)
+		else
+			src.Attackhand(M)
 	M.next_click = world.time + src.click_delay
 
 /obj/item/get_desc()
@@ -1077,7 +1095,7 @@
 	else
 		//src.pickup(user) //This is called by the later put_in_hand() call
 		if (user.pulling == src)
-			user.pulling = null
+			user.remove_pulling()
 		if (isturf(src.loc))
 			pickup_particle(user,src)
 	if (!user)
@@ -1131,7 +1149,7 @@
 		logTheThing("combat", user, M, "uses [src] ([type], object name: [initial(name)]) on [constructTarget(M,"combat")]")
 		return
 
-	if (user.mind && user.mind.special_role == "vampthrall" && isvampire(M) && user.is_mentally_dominated_by(M))
+	if (user.mind && user.mind.special_role == ROLE_VAMPTHRALL && isvampire(M) && user.is_mentally_dominated_by(M))
 		boutput(user, "<span class='alert'>You cannot harm your master!</span>") //This message was previously sent to the attacking item. YEP.
 		return
 
@@ -1255,13 +1273,13 @@
 		block_spark(M,armor=1)
 		switch(hit_type)
 			if (DAMAGE_BLUNT)
-				playsound(get_turf(M), 'sound/impact_sounds/block_blunt.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_blunt.ogg', 50, 1, -1, pitch=1.5)
 			if (DAMAGE_CUT)
-				playsound(get_turf(M), 'sound/impact_sounds/block_cut.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_cut.ogg', 50, 1, -1, pitch=1.5)
 			if (DAMAGE_STAB)
-				playsound(get_turf(M), 'sound/impact_sounds/block_stab.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_stab.ogg', 50, 1, -1, pitch=1.5)
 			if (DAMAGE_BURN)
-				playsound(get_turf(M), 'sound/impact_sounds/block_burn.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_burn.ogg', 50, 1, -1, pitch=1.5)
 		if(power <= 0)
 			fuckup_attack_particle(user)
 			armor_blocked = 1
@@ -1347,7 +1365,7 @@
 /obj/item/proc/attach(var/mob/living/carbon/human/attachee,var/mob/attacher)
 	//if (!src.arm_icon) return //ANYTHING GOES!~!
 
-	if (src.object_flags & NO_ARM_ATTACH || src.cant_drop)
+	if (src.object_flags & NO_ARM_ATTACH || src.cant_drop || src.two_handed)
 		boutput(attacher, "<span class='alert'>You try to attach [src] to [attachee]'s stump, but it politely declines!</span>")
 		return
 
@@ -1382,6 +1400,7 @@
 		boutput(attacher, "<span class='alert'>You attach [src] to your own stump. It doesn't look very secure!</span>")
 
 	attachee.set_body_icon_dirty()
+	attachee.hud.update_hands()
 
 	//qdel(src)
 
@@ -1401,7 +1420,7 @@
 	disposing_abilities()
 	setItemSpecial(null)
 	if (src.inventory_counter)
-		pool(src.inventory_counter)
+		qdel(src.inventory_counter)
 		src.inventory_counter = null
 
 	if(istype(src.loc, /obj/item/storage))
@@ -1480,10 +1499,41 @@
 
 /obj/item/proc/create_inventory_counter()
 	if (!src.inventory_counter)
-		src.inventory_counter = unpool(/obj/overlay/inventory_counter)
+		src.inventory_counter = new /obj/overlay/inventory_counter
 		src.vis_contents += src.inventory_counter
+		if(ismob(src.loc))
+			var/mob/M = src.loc
+			if(src in M.equipped_list())
+				src.inventory_counter.show_count()
+
+/obj/item/proc/log_firesource(obj/item/O, datum/thrown_thing/thr, mob/user)
+	UnregisterSignal(O, COMSIG_MOVABLE_THROW_END)
+	if (!O?.firesource == FIRESOURCE_OPEN_FLAME) return
+	var/turf/T = get_turf(O)
+	if (!T) return
+	var/mob/M = usr
+	if (user) // throwing doesn't pass user, only usr
+		M = user
+	if (!istype(M)) return
+	var/turf/simulated/simulated = T
+
+	var/msg = "[thr ? "threw" : "dropped"] firesource ([O]) at [log_loc(T)]."
+
+	if (istype(simulated) && simulated.air.toxins)
+		msg += " Turf contains <b>plasma gas</b>."
+	if (T.active_liquid?.group)
+		msg += " Turf contains <b>fluid</b> [log_reagents(T.active_liquid.group)]."
+	if (T.active_airborne_liquid?.group)
+		msg += " Turf contains <b>smoke</b> [log_reagents(T.active_airborne_liquid.group)]."
+	logTheThing("bombing", M, null, "[msg]")
 
 /obj/item/proc/dropped(mob/user)
+	SPAWN_DBG(0) //need to spawn to know if we've been dropped or thrown instead
+		if ((firesource == FIRESOURCE_OPEN_FLAME) && throwing)
+			RegisterSignal(src, COMSIG_MOVABLE_THROW_END, .proc/log_firesource)
+		else if (firesource == FIRESOURCE_OPEN_FLAME)
+			log_firesource(src, null, user)
+
 	if (user)
 		src.set_dir(user.dir)
 		#ifdef COMSIG_MOB_DROPPED

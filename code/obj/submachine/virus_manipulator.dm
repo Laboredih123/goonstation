@@ -24,7 +24,7 @@
 		src.overlays += image('icons/obj/objects.dmi', "DAn-Oe")
 
 	attack_ai(mob/user as mob)
-		return src.attack_hand(user)
+		return src.Attackhand(user)
 
 	attack_hand(var/mob/user as mob)
 		src.add_dialog(user)
@@ -56,7 +56,7 @@
 
 	Topic(href, href_list)
 		if(href_list["ops"])
-			var/operation = text2num(href_list["ops"])
+			var/operation = text2num_safe(href_list["ops"])
 			if(operation == 1) // Attempt to Create Vaccine
 				if (src.datareagent == "N/A" || src.datareagent == "No virii detected")
 					for(var/mob/O in hearers(src, null))

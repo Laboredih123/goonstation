@@ -52,6 +52,7 @@
 #endif
 	boutput(client.mob, "<span class='ahelp'><font size='3'><b><span class='alert'>HELP: </span> You</b>: [msg]</font></span>")
 	logTheThing("admin_help", client.mob, null, "HELP: [msg]")
+	var/logLine = global.logLength
 	logTheThing("diary", client.mob, null, "HELP: [msg]", "ahelp")
 
 	if (!first_adminhelp_happened)
@@ -63,10 +64,12 @@
 		ircmsg["msg"] = "Logs for this round can be found here: https://mini.xkeeper.net/ss13/admin/log-viewer.php?server=[config.server_id]&redownload=1&view=[roundLog_date].html"
 		ircbot.export("help", ircmsg)
 
+	var/dead = isdead(client.mob) ? "Dead " : ""
 	var/ircmsg[] = new()
 	ircmsg["key"] = client.key
-	ircmsg["name"] = stripTextMacros(client.mob.real_name)
+	ircmsg["name"] = client.mob.job ? "[stripTextMacros(client.mob.real_name)] \[[dead][client.mob.mind?.special_role] [client.mob.job]]" : (istype(client.mob, /mob/new_player) ? "<not ingame>" : "[stripTextMacros(client.mob.real_name)] \[[dead][client.mob.mind?.special_role]]")
 	ircmsg["msg"] = html_decode(msg)
+	ircmsg["log_link"] = "https://mini.xkeeper.net/ss13/admin/log-viewer.php?server=[config.server_id]&redownload=1&view=[roundLog_date].html#l[logLine]"
 	ircbot.export("help", ircmsg)
 
 /mob/verb/mentorhelp()
@@ -110,6 +113,8 @@
 	var/msg = input("Please enter your help request to mentors:") as null|text
 
 	msg = copytext(strip_html(msg), 1, MAX_MESSAGE_LEN)
+	if (client.can_see_mentor_pms())
+		msg = linkify(msg)
 
 	if (!msg)
 		return
@@ -213,7 +218,7 @@
 			if (!M.client.holder.hear_prayers || (M.client.player_mode == 1 && M.client.player_mode_ahelp == 0)) //XOR for admin prayer setting and player mode w/ no ahelps
 				continue
 			else
-				boutput(M, "<span class='notice' [in_chapel? "style='font-size:1.5em'":""]><B>PRAYER: [is_atheist ? "(ATHEIST)" : ""]</B><a href='?src=\ref[M.client.holder];action=subtlemsg&targetckey=[client.ckey]'>[client.key]</a> / [client.mob.real_name ? client.mob.real_name : client.mob.name] <A HREF='?src=\ref[M.client.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'>: <I>[msg]</I></span>")
+				boutput(M, "<span class='notice' [in_chapel? "style='font-size:1.1em'":""]><B>PRAYER: [is_atheist ? "(ATHEIST)" : ""]</B><a href='?src=\ref[M.client.holder];action=subtlemsg&targetckey=[client.ckey]'>[client.key]</a> / [client.mob.real_name ? client.mob.real_name : client.mob.name] <A HREF='?src=\ref[M.client.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'>: <I>[msg]</I></span>")
 				if(M.client.holder.audible_prayers == 1)
 					M << sound("sound/misc/boing/[rand(1,6)].ogg", volume=50, wait=0)
 				else if(M.client.holder.audible_prayers == 2) // this is a terrible idea
@@ -225,7 +230,7 @@
 
 /proc/do_admin_pm(var/C, var/mob/user) //C is a passed ckey
 
-	var/mob/M = whois_ckey_to_mob_reference(C)
+	var/mob/M = ckey_to_mob(C)
 	if(M)
 		if (!( ismob(M) ))
 			return
@@ -239,7 +244,7 @@
 
 		var/t = input("Message:", text("Private message to [admin_key(M.client, 1)]")) as null|text
 
-		M = whois_ckey_to_mob_reference(C)
+		M = ckey_to_mob(C)
 		user = user_client.mob
 
 		if(!(user && user.client && user.client.holder && (user.client.holder.rank in list("Host", "Coder"))))

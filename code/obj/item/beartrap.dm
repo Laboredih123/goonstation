@@ -12,7 +12,6 @@
 	stamina_damage = 0
 	stamina_cost = 0
 	stamina_crit_chance = 5
-	event_handler_flags = USE_HASENTERED
 
 	armed
 		icon_state = "bear_trap-open"
@@ -46,7 +45,7 @@
 			actions.start(action_bar, M)
 		return
 
-	HasEntered(AM as mob|obj)
+	Crossed(atom/movable/AM as mob|obj)
 		if ((ishuman(AM)) && (src.armed))
 			var/mob/living/carbon/H = AM
 			src.triggered(H)
@@ -64,9 +63,8 @@
 		..()
 		return
 
-	proc/arm(var/proc_args)
+	proc/arm(mob/M)
 		if (!src.armed)
-			var/mob/M = proc_args[1]
 			logTheThing("combat", src, null, "armed a beartrap at [src.loc]")
 			set_icon_state("bear_trap-open")
 			M.drop_item(src)
@@ -75,7 +73,7 @@
 			playsound(src.loc, "sound/weapons/handcuffs.ogg", 30, 1, -3)
 		return
 
-	proc/disarm(var/proc_args)
+	proc/disarm(mob/M)
 		if (src.armed)
 			playsound(src.loc, "sound/weapons/handcuffs.ogg", 30, 1, -3)
 			set_icon_state("bear_trap-close")

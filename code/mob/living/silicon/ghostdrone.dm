@@ -35,6 +35,7 @@
 
 	New()
 		..()
+		START_TRACKING
 		hud = new(src)
 		src.attach_hud(hud)
 		//src.sight |= SEE_TURFS //Uncomment for meson-like vision. I'm not a fan of it though. -Wire
@@ -70,7 +71,7 @@
 		src.tools = list(
 			new /obj/item/magtractor(src),
 			new /obj/item/tool/omnitool/silicon(src),
-			new /obj/item/rcd/safe(src),
+			new /obj/item/rcd/material/cardboard(src),
 			new /obj/item/lamp_manufacturer(src),
 			new /obj/item/device/analyzer/atmospheric(src),
 			new /obj/item/device/t_scanner(src),
@@ -176,6 +177,7 @@
 		hud.update_pulling()
 
 	disposing()
+		STOP_TRACKING
 		if (src in available_ghostdrones)
 			available_ghostdrones -= src
 		..()
@@ -399,24 +401,17 @@
 		else
 			stat("No Cell Inserted!")
 
-	Bump(atom/movable/AM as mob|obj, yes)
-		SPAWN_DBG( 0 )
-			if ((!( yes ) || src.now_pushing))
-				return
-			//..()
-			if (!istype(AM, /atom/movable))
-				return
-			if (!src.now_pushing)
-				src.now_pushing = 1
-				if (!AM.anchored)
-					var/t = get_dir(src, AM)
-					step(AM, t)
-				src.now_pushing = null
-			if(AM)
-				AM.last_bumped = world.timeofday
-				AM.Bumped(src)
+	bump(atom/movable/AM as mob|obj)
+		if ( src.now_pushing)
 			return
-		return
+		if (!istype(AM, /atom/movable))
+			return
+		if (!src.now_pushing)
+			src.now_pushing = 1
+			if (!AM.anchored)
+				var/t = get_dir(src, AM)
+				step(AM, t)
+			src.now_pushing = null
 
 	//Four very important procs follow
 	proc/putonHat(obj/item/clothing/head/W as obj, mob/user as mob)
@@ -811,14 +806,14 @@
 			if ("birdwell", "burp")
 				if (src.emote_check(voluntary, 50))
 					message = "<B>[src]</B> birdwells."
-					playsound(get_turf(src), 'sound/vox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, 'sound/vox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
 					if (narrator_mode)
-						playsound(get_turf(src), 'sound/vox/scream.ogg', 50, 1, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, 'sound/vox/scream.ogg', 50, 1, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 					else
-						playsound(get_turf(src), src.sound_scream, 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, src.sound_scream, 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 					message = "<b>[src]</b> screams!"
 
 			if ("johnny")
@@ -903,9 +898,9 @@
 							if (39) message = "<B>[src]</B> farts so hard the AI feels it."
 							if (40) message = "<B>[src] <span style='color:red'>f</span><span style='color:blue'>a</span>r<span style='color:red'>t</span><span style='color:blue'>s</span>!</B>"
 					if (narrator_mode)
-						playsound(get_turf(src), 'sound/vox/fart.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, 'sound/vox/fart.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 					else
-						playsound(get_turf(src), src.sound_fart, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, src.sound_fart, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 #ifdef DATALOGGER
 					game_stats.Increment("farts")
 #endif
@@ -1012,8 +1007,10 @@
 			return src.emote(copytext(message, 2),1)
 
 		UpdateOverlays(speech_bubble, "speech_bubble")
+		var/speech_bubble_time = src.last_typing
 		SPAWN_DBG(1.5 SECONDS)
-			UpdateOverlays(null, "speech_bubble")
+			if(speech_bubble_time == src.last_typing)
+				UpdateOverlays(null, "speech_bubble")
 
 		return src.drone_broadcast(message)
 		// Removing normal dronesay stuff and changing :d to just ;
@@ -1072,7 +1069,7 @@
 		var/damage = round((((P.power/3)*P.proj_data.ks_ratio)*dmgmult), 1.0)
 		var/stun = round((P.power*(1.0-P.proj_data.ks_ratio)), 1.0)
 
-		src.changeStatus("stunned", stun*10)
+		src.changeStatus("stunned", stun SECONDS)
 
 		if (src.hat) //For hats getting shot off
 			UpdateOverlays(null, "hat")
@@ -1107,9 +1104,9 @@
 		setFace(pick("happy", "sad", "mad"), random_color())
 
 		if (limiter.canISpawn(/obj/effects/sparks))
-			var/obj/sparks = unpool(/obj/effects/sparks)
+			var/obj/sparks = new /obj/effects/sparks
 			sparks.set_loc(get_turf(src))
-			SPAWN_DBG(2 SECONDS) if (sparks) pool(sparks)
+			SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
 
 	ex_act(severity)
 		if (src.nodamage) return
@@ -1127,7 +1124,7 @@
 			if (3.0)
 				SPAWN_DBG(0)
 					src.TakeDamage(null, round(src.health / 3, 1.0))
-					src.changeStatus("stunned", 50)
+					src.changeStatus("stunned", 5 SECONDS)
 
 	blob_act(var/power)
 		if (src.nodamage) return
@@ -1279,7 +1276,7 @@
 	M.transforming = 1
 	M.canmove = 0
 	M.icon = null
-	M.invisibility = 101
+	APPLY_MOB_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if (isobserver(M) && M:corpse)
 		G.oldmob = M:corpse
@@ -1338,9 +1335,9 @@
 			src.see_in_dark = SEE_DARK_FULL
 
 			if (client.adventure_view)
-				src.see_invisible = 21
+				src.see_invisible = INVIS_ADVENTURE
 			else
-				src.see_invisible = 9
+				src.see_invisible = INVIS_CONSTRUCTION
 
 		..()
 

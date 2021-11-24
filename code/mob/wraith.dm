@@ -17,7 +17,7 @@
 	blinded = 0
 	anchored = 1
 	alpha = 180
-	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH
+	event_handler_flags =  IMMUNE_MANTA_PUSH
 	plane = PLANE_NOSHADOW_ABOVE
 
 	var/deaths = 0
@@ -40,6 +40,7 @@
 	//probably will change these around, but these might be alright to start. -kyle
 	var/holy_water_tol = 0		//unused presently
 	var/formaldehyde_tol = 25
+	var/weak_tk = FALSE			//if their click-drag TK is strong or not. Poltergeists prolly should not have strong tk, mebe one day.
 
 	var/datum/movement_controller/movement_controller
 
@@ -71,10 +72,11 @@
 	New(var/mob/M)
 		. = ..()
 		src.poltergeists = list()
-		src.invisibility = 16
+		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_SPOOKY)
+		APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 		//src.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 		src.sight |= SEE_SELF // let's not make it see through walls
-		src.see_invisible = 16
+		src.see_invisible = INVIS_SPOOKY
 		src.a_intent = "disarm"
 		src.see_in_dark = SEE_DARK_FULL
 		src.abilityHolder = new /datum/abilityHolder/wraith(src)
@@ -83,12 +85,13 @@
 		last_life_update = world.timeofday
 		src.hud = new hud_path (src)
 		src.attach_hud(hud)
+		src.flags |= UNCRUSHABLE
 
 		if (!movement_controller)
 			movement_controller = new /datum/movement_controller/poltergeist (src)
 
-		name = make_name()
-		real_name = name
+		real_name = make_name()
+		src.UpdateName()
 
 	is_spacefaring()
 		return !density
@@ -142,6 +145,7 @@
 			src.abilityHolder.addBonus(src.hauntBonus * (life_time_passed / life_tick_spacing))
 
 		src.abilityHolder.generatePoints(mult = (life_time_passed / life_tick_spacing))
+		src.abilityHolder.updateText()
 
 		if (src.health < 1)
 			src.death(0)
@@ -166,6 +170,7 @@
 		src.abilityHolder.regenRate = 1
 		src.health = initial(src.health) // oh sweet jesus it spammed so hard
 		src.haunting = 0
+		src.flags |= UNCRUSHABLE
 		src.hauntBonus = 0
 		deaths++
 		src.makeIncorporeal()
@@ -178,12 +183,15 @@
 
 		if (deaths < 2)
 			boutput(src, "<span class='alert'><b>You have been defeated...for now. The strain of banishment has weakened you, and you will not survive another.</b></span>")
+			logTheThing("combat", src, null, "lost a life as a wraith at [log_loc(src.loc)].")
 			src.justdied = 1
 			src.set_loc(pick_landmark(LANDMARK_LATEJOIN))
 			SPAWN_DBG(15 SECONDS) //15 seconds
 				src.justdied = 0
 		else
 			boutput(src, "<span class='alert'><b>Your connection with the mortal realm is severed. You have been permanently banished.</b></span>")
+			message_admins("Wraith [key_name(src)] died with no more respawns at [log_loc(src.loc)].")
+			logTheThing("combat", src, null, "died as a wraith with no more respawns at [log_loc(src.loc)].")
 			if (src.mind)
 				for (var/datum/objective/specialist/wraith/WO in src.mind.objectives)
 					WO.onBanished()
@@ -191,7 +199,7 @@
 			src.transforming = 1
 			src.canmove = 0
 			src.icon = null
-			src.invisibility = 101
+			APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 			if (client) client.color = null
 
@@ -227,7 +235,7 @@
 			for (var/datum/objective/specialist/wraith/WO in src.mind.objectives)
 				WO.onAbsorb(M)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	Cross(atom/movable/mover)
 		if (istype(mover, /obj/projectile))
 			var/obj/projectile/proj = mover
 			if (proj.proj_data.hits_wraiths)
@@ -361,7 +369,6 @@
 			src.set_dir(get_dir(loc, NewLoc))
 			src.set_loc(NewLoc)
 			OnMove()
-			NewLoc.HasEntered(src)
 
 			//if tile contains salt, wraith becomes corporeal
 			if (salted && !src.density && !src.justdied)
@@ -514,18 +521,18 @@
 		makeCorporeal()
 			if (!src.density)
 				src.set_density(1)
-				src.invisibility = 0
+				REMOVE_MOB_PROPERTY(src, PROP_INVISIBILITY, src)
 				src.alpha = 255
-				src.see_invisible = 0
+				src.see_invisible = INVIS_NONE
 				src.visible_message(pick("<span class='alert'>A horrible apparition fades into view!</span>", "<span class='alert'>A pool of shadow forms!</span>"), pick("<span class='alert'>A shell of ectoplasm forms around you!</span>", "<span class='alert'>You manifest!</span>"))
 
 		makeIncorporeal()
 			if (src.density)
 				src.visible_message(pick("<span class='alert'>[src] vanishes!</span>", "<span class='alert'>The wraith dissolves into shadow!</span>"), pick("<span class='notice'>The ectoplasm around you dissipates!</span>", "<span class='notice'>You fade into the aether!</span>"))
 				src.set_density(0)
-				src.invisibility = 10
+				APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_SPOOKY)
 				src.alpha = 160
-				src.see_invisible = 16
+				src.see_invisible = INVIS_SPOOKY
 
 		haunt()
 			if (src.density)
@@ -534,10 +541,12 @@
 
 			src.makeCorporeal()
 			src.haunting = 1
+			src.flags &= !UNCRUSHABLE
 
 			SPAWN_DBG (haunt_duration)
 				src.makeIncorporeal()
 				src.haunting = 0
+				src.flags |= UNCRUSHABLE
 
 			return 0
 
@@ -571,17 +580,6 @@
 			src.removeAbility(/datum/targetable/wraithAbility/whisper)
 			src.removeAbility(/datum/targetable/wraithAbility/blood_writing)
 			src.removeAbility(/datum/targetable/wraithAbility/make_poltergeist)
-
-		addAbility(var/abilityType)
-			abilityHolder.addAbility(abilityType)
-
-
-		removeAbility(var/abilityType)
-			abilityHolder.removeAbility(abilityType)
-
-
-		getAbility(var/abilityType)
-			return abilityHolder.getAbility(abilityType)
 
 
 		updateButtons()

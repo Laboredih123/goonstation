@@ -28,12 +28,12 @@
 
 /datum/ticket_reward/tonic
 	name = "Tonic"
-	path = /obj/item/reagent_containers/food/drinks/bottle/drowsy
+	path = /obj/item/reagent_containers/food/drinks/bottle/soda/drowsy
 	description = "A divine lemon soda tonic that synchronizes your circadian rhythm and empowers your REM sleep."
 
 /datum/ticket_reward/ale
 	name = "Ginger Ale"
-	path = /obj/item/reagent_containers/food/drinks/bottle/gingerale
+	path = /obj/item/reagent_containers/food/drinks/bottle/soda/gingerale
 	description = "A soothing ginger root drink, chock full of vitamins A through K."
 
 /datum/ticket_reward/peach_drink
@@ -156,7 +156,7 @@
 			src.current_tickets++
 			src.updateUsrDialog()
 		else
-			src.attack_hand(user)
+			src.Attackhand(user)
 		return
 
 	attack_hand(var/mob/user as mob)

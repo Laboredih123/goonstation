@@ -213,7 +213,10 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		src.add_fingerprint(user)
-		M.emote("sneeze")
+		if (user.zone_sel.selecting == "head")
+			M.emote("sneeze")
+		else
+			M.emote(pick("giggle", "laugh"))
 
 var/list/parrot_species = list("eclectus" = /datum/species_info/parrot/eclectus,
 	"eclectusf" = /datum/species_info/parrot/eclectus/female,
@@ -575,7 +578,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 					return
 				src.change_stack_amount(0 - amt)
 				var/obj/item/dice/coin/poker_chip/P = new src.type(user.loc)
-				P.attack_hand(user)
+				P.Attackhand(user)
 		else
 			..(user)
 
@@ -1091,8 +1094,8 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	item_state = "sailormoon"
 
 /obj/item/clothing/head/sailormoon
-	name = "hair clips"
-	desc = "Shiny red hair clips to keep your hair in a very specific style and are about useless for anything else."
+	name = "red hairclips"
+	desc = "Shiny red hairclips to keep your hair in a very specific style and are about useless for anything else."
 	icon_state = "sailormoon"
 
 /obj/item/clothing/glasses/sailormoon
@@ -1120,7 +1123,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 				if (!usagi.equip_if_possible(src, usagi.slot_glasses))
 					usagi.put_in_hand_or_drop(src)
 			else
-				src.attack_hand(usr)
+				src.Attackhand(usr)
 			return
 		return ..(hit_atom)
 
@@ -1223,7 +1226,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 /mob/living/carbon/human/proc/sailormoon_reshape() // stolen from Spy's tommyize stuff
 	var/datum/appearanceHolder/AH = new
 	AH.gender = "female"
-	AH.customization_first = "Sailor Moon"
+	AH.customization_first = new /datum/customization_style/hair/gimmick/sailor_moon
 	AH.customization_first_color = "#FFD700"
 	AH.owner = src
 	AH.parentHolder = src.bioHolder
@@ -1284,7 +1287,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 		if (!AM)
 			return ..()
 		user.visible_message("<span class='alert'><b>[user] somehow cuts [AM] out of [M] with [src]!</b></span>")
-		playsound(get_turf(M), src.hitsound, 50, 1)
+		playsound(M, src.hitsound, 50, 1)
 		if (istype(AM, /obj/item))
 			user.u_equip(AM)
 		AM.set_loc(get_turf(M))
@@ -1311,6 +1314,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	mat_changename = 0
 	mat_changedesc = 0
 	mat_appearances_to_ignore = list("gold") // we already look fine ty
+	muzzle_flash = "muzzle_flash_launch"
 	var/last_shot = 0
 	var/shot_delay = 15
 	var/cash_amt = 1000
@@ -1328,6 +1332,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 		if (!istype(target, /turf) || !istype(start, /turf))
 			return
 		if (target == user.loc || target == loc)
+			boutput(user, "<span class='success'>\The [src] beeps, \"You're a big shot, this end needs to point in the direction of poor people!\"</span>")
 			return
 
 		if ((last_shot + shot_delay) <= world.time)
@@ -1336,6 +1341,11 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 				return
 
 			last_shot = world.time
+
+			if (src.muzzle_flash)
+				if (isturf(user.loc))
+					var/turf/origin = user.loc
+					muzzle_flash_attack_particle(user, origin, target, src.muzzle_flash)
 
 			var/turf/T = get_turf(src)
 			var/chosen_bling// = pick(60;/obj/item/spacecash,20;/obj/item/coin,10;/obj/item/raw_material/gemstone,10;/obj/item/raw_material/gold)
@@ -1347,7 +1357,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 				chosen_bling = pick(src.possible_bling_common)
 			else
 				chosen_bling = /obj/item/spacecash
-			var/obj/item/bling = unpool(chosen_bling)
+			var/obj/item/bling = new chosen_bling
 			bling.set_loc(T)
 			bling.throwforce = 8
 			src.cash_amt = max(src.cash_amt-src.shot_cost, 0)
@@ -1358,13 +1368,16 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 			playsound(T, "sound/effects/bamf.ogg", 40, 1)
 			user.visible_message("<span class='success'><b>[user]</b> blasts some bling at [target]!</span>")
 
+	shoot_point_blank(mob/M, mob/user, second_shot)
+		shoot(get_turf(M), get_turf(user), user, 0, 0)
+
 	attackby(var/obj/item/spacecash/C as obj, mob/user as mob)
 		if (!istype(C))
 			return ..()
 		if (C.amount <= 0) // how??
 			boutput(user, "<span class='success'>\The [src] beeps, \"Your cash is trash! It ain't worth jack, mack!\"<br>[C] promptly vanishes in a puff of logic.</span>")
 			user.u_equip(C)
-			pool(C)
+			qdel(C)
 			return
 		if (src.cash_amt >= src.cash_max)
 			boutput(user, "<span class='success'>\The [src] beeps, \"I ain't need no more money, honey!\"</span>")
@@ -1377,7 +1390,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 		else
 			src.cash_amt += C.amount
 			user.u_equip(C)
-			pool(C)
+			qdel(C)
 		boutput(user, "<span class='success'>\The [src] beeps, \"That's the good stuff!\"</span>")
 
 /obj/item/gun/bling_blaster/cheapo
@@ -1519,21 +1532,27 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 		else
 			src.bangfired = 1
 			user?.visible_message("<span class='alert'><span class='alert'>[user] fires [src][target ? " at [target]" : null]! [description]</span>")
-			playsound(get_turf(user), "sound/musical_instruments/Trombone_Failiure.ogg", 50, 1)
+			playsound(user, "sound/musical_instruments/Trombone_Failiure.ogg", 50, 1)
 			icon_state = "bangflag[icon_state]"
 			return
 
 /obj/item/bang_gun/ak47
 	name = "ak-477"
+	icon = 'icons/obj/large/48x32.dmi'
 	icon_state = "ak47"
+	item_state = "ak47"
 	desc = "There are 30 bullets left! Each shot will currently use 3 bullets!"
 	description = "A bang flag unfurls out of the barrel!"
+	two_handed = 1
 
 /obj/item/bang_gun/hunting_rifle
 	name = "Old Hunting Rifle"
-	icon_state = "hunting_rifle"
+	icon = 'icons/obj/large/48x32.dmi'
+	icon_state = "ohr"
+	item_state = "ohr"
 	desc = "There are 4 bullets left! Each shot will currently use 1 bullet!"
 	description = "A bang flag unfurls out of the barrel!"
+	two_handed = 1
 
 /*
 /obj/item // if I accidentally commit this uncommented PLEASE KILL ME tia <3

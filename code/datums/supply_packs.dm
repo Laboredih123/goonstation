@@ -27,7 +27,7 @@
 //SUPPLY PACKS
 //NOTE: only secure crate types use the access var (and are lockable)
 //NOTE: hidden packs only show up when the computer has been hacked.
-
+ABSTRACT_TYPE(/datum/supply_packs)
 /datum/supply_packs
 	var/name = null
 	var/desc = null
@@ -264,16 +264,35 @@
 	containertype = /obj/storage/crate
 	containername = "Electrical Maintenance Crate"
 
+/datum/supply_packs/powercell
+	name = "Power Cell Crate"
+	desc = "x3 Power Cell"
+	category = "Engineering Department"
+	contains = list(/obj/item/cell/charged = 3)
+	cost = 2500
+	containertype = /obj/storage/crate
+	containername = "Power Cell Crate"
+
 /datum/supply_packs/firefighting
 	name = "Firefighting Supplies Crate"
-	desc = "x3 Extinguisher, x3 Firefighting Grenade, x2 Firesuit"
+	desc = "x3 Extinguisher, x3 Firefighting Grenade, x2 Firesuit, x2 Firefighter Helmets"
 	category = "Engineering Department"
 	contains = list(/obj/item/extinguisher = 3,
 	/obj/item/chem_grenade/firefighting = 3,
-	/obj/item/clothing/suit/fire = 2)
+	/obj/item/clothing/suit/fire = 2,
+	/obj/item/clothing/head/helmet/firefighter = 2)
 	cost = 1000
 	containertype = /obj/storage/crate
 	containername = "Firefighting Supplies Crate"
+
+/datum/supply_packs/engineering_grenades
+	name = "Station Pressurization Crate"
+	desc = "4x Red Oxygen Grenades, x4 Metal Foam Grenades"
+	category = "Engineering Department"
+	contains = list(/obj/item/old_grenade/oxygen = 4, /obj/item/chem_grenade/metalfoam = 4)
+	cost = 1200
+	containertype = /obj/storage/crate
+	containername = "Station Pressurization Crate"
 
 /datum/supply_packs/generator
 	name = "Experimental Local Generator"
@@ -300,17 +319,19 @@
 
 /datum/supply_packs/medicalchems
 	name = "Medical: Medical Reservoir Crate"
-	desc = "x4 Assorted reservoir tanks, x2 Sedative bottles, x2 Hyposprays, 2x Automenders, x1 Syringe Kit"
+	desc = "x4 Assorted reservoir tanks, x2 Sedative bottles, x2 Hyposprays, x1 Auto-mender, x2 Brute Auto-mender Refill Cartridges, x2 Burn Auto-mender Refill Cartridges, x1 Syringe Kit"
 	category = "Medical Department"
 	contains = list(/obj/item/reagent_containers/glass/beaker/large/antitox,
 					/obj/item/reagent_containers/glass/beaker/large/epinephrine,
 					/obj/item/reagent_containers/food/drinks/reserve/brute,
 					/obj/item/reagent_containers/food/drinks/reserve/burn,
 					/obj/item/reagent_containers/glass/bottle/morphine = 2,
-					/obj/item/reagent_containers/mender = 2,
+					/obj/item/reagent_containers/mender,
+					/obj/item/reagent_containers/mender_refill_cartridge/brute = 2,
+					/obj/item/reagent_containers/mender_refill_cartridge/burn = 2,
 					/obj/item/reagent_containers/hypospray = 2,
 					/obj/item/storage/box/syringes)
-	cost = 1750
+	cost = 2300
 	containertype = /obj/storage/crate/medical
 	containername = "Medical Crate"
 
@@ -385,9 +406,10 @@
 	category = "Research Department"
 	contains = list(/mob/living/carbon/human/npc/monkey = 4,
 						/obj/item/clothing/mask/monkey_translator)
-	cost = 500
-	containertype = /obj/storage/crate/medical
+	cost = 2500
+	containertype = /obj/storage/secure/crate/medical/monkey
 	containername = "Lab Monkey Crate"
+	hidden = 1
 
 /datum/supply_packs/bee
 	name = "Honey Production Kit"
@@ -640,7 +662,7 @@
 
 /datum/supply_packs/office
 	name = "Office Supply Crate"
-	desc = "x4 Paper Bins, x2 Clipboards, x1 Sticky Note Box, x5 Writing Implement Sets, x1 Stapler, x1 Scissors"
+	desc = "x4 Paper Bins, x2 Clipboards, x1 Sticky Note Box, x5 Writing Implement Sets, x1 Stapler, x1 Scissors, x2 Canvas"
 	contains = list(/obj/item/paper_bin = 4,
 		/obj/item/clipboard = 2,
 		/obj/item/item_box/postit,
@@ -651,6 +673,7 @@
 		/obj/item/storage/box/crayon,
 		/obj/item/staple_gun/red,
 		/obj/item/scissors,
+		/obj/item/canvas = 2,
 		/obj/item/stamp = 2)
 	cost = 250
 	containername = "Office Supply Crate"
@@ -688,11 +711,11 @@
 
 /datum/supply_packs/takeout_pizza
 	name = "Soft Soft Pizzeria Delivery"
-	desc = "Two fresh-baked pizza meals, straight from the oven to your airlock."
+	desc = "Two soft serve pizzas, straight from the oven to your airlock."
 	category = "Civilian Department"
-	contains = list(/obj/item/reagent_containers/food/snacks/pizza = 2,
+	contains = list(/obj/random_item_spawner/pizza = 1,
 					/obj/item/reagent_containers/food/snacks/fries = 2,
-					/obj/item/reagent_containers/food/drinks/cola = 2)
+					/obj/random_item_spawner/cola = 1)
 	cost = 200
 	containertype = /obj/storage/crate/pizza
 	containername = "Soft Soft Pizza Delivery"
@@ -751,11 +774,11 @@
 	category = "Medical Department"
 	contains = list(/obj/item/parts/robot_parts/robot_frame,
 					/obj/item/parts/robot_parts/head/sturdy,
-					/obj/item/parts/robot_parts/chest,
+					/obj/item/parts/robot_parts/chest/standard,
 					/obj/item/parts/robot_parts/arm/left/sturdy,
 					/obj/item/parts/robot_parts/arm/right/sturdy,
-					/obj/item/parts/robot_parts/leg/left,
-					/obj/item/parts/robot_parts/leg/right,
+					/obj/item/parts/robot_parts/leg/left/standard,
+					/obj/item/parts/robot_parts/leg/right/standard,
 					/obj/item/cable_coil)
 	cost = 4500
 	containertype = /obj/storage/crate/wooden
@@ -862,7 +885,7 @@
 	desc = "Turn Cargo into a microbrewery."
 	contains = list(/obj/reagent_dispensers/still,
 					/obj/item/reagent_containers/food/drinks/drinkingglass/pitcher = 2,
-					/obj/item/reagent_containers/food/drinks/bottle = 6)
+					/obj/item/reagent_containers/food/drinks/bottle/soda = 6)
 	cost = 5000
 	containertype = /obj/storage/crate/wooden
 	containername = "Home Distillery Kit"
@@ -952,6 +975,7 @@
 	cost = 5000
 	containertype = /obj/storage/crate/wooden
 	containername = "Spare XL Air Mix Canister Crate"
+
 /datum/supply_packs/oxygen_canister
 	name = "Spare Oxygen Canister"
 	desc = "Spare oxygen canister, for resupplying Engineering's fuel or refilling oxygen tanks."
@@ -1024,6 +1048,50 @@
 	containertype = /obj/storage/crate/wooden
 	containername = "Furnishings Crate"
 
+/datum/supply_packs/furniture_eventtablered
+	name = "Red Event Table Crate"
+	desc = "A flat-packed set of tables, each with a fancy red tablecloth."
+	contains = list(/obj/item/furniture_parts/table/clothred = 5)
+	cost = 25000
+	containertype = /obj/storage/crate/wooden
+	containername = "Red Event Table Crate"
+
+/datum/supply_packs/furniture_neon
+	name = "Neon Furnishings Crate"
+	desc = "A flat-packed set of tables and stools, each in eye-searing neon."
+	contains = list(/obj/item/furniture_parts/table/neon = 4,
+					/obj/item/furniture_parts/stool/neon = 4)
+	cost = 20000
+	containertype = /obj/storage/crate/wooden
+	containername = "Neon Furnishings Crate"
+
+/datum/supply_packs/furniture_scrap
+	name = "Scrap Furnishings Crate"
+	desc = "A flat-packed set of...trash and scrap parts. I guess you could make furniture out of it?"
+	contains = list(/obj/item/furniture_parts/table/scrap = 4,
+					/obj/item/furniture_parts/wood_chair/scrap = 4)
+	cost = 20000
+	containertype = /obj/storage/crate/wooden
+	containername = "Scrap Furnishings Crate"
+
+/datum/supply_packs/furniture_regal
+	name = "Regal Furnishings Crate"
+	desc = "A set of very fancy flat-packed, regal furniture."
+	contains = list(/obj/item/furniture_parts/wood_chair/regal = 4,
+					/obj/item/furniture_parts/table/regal = 4,
+					/obj/item/furniture_parts/decor/regallamp = 2)
+	cost = 80000
+	containertype = /obj/storage/crate/wooden
+	containername = "Regal Furnishings Crate"
+
+/datum/supply_packs/furniture_throne
+	name = "Golden Throne"
+	desc = "A flat-packed throne. It can't be real gold for that price..."
+	contains = list(/obj/item/furniture_parts/throne_gold)
+	cost = 150000
+	containertype = /obj/storage/crate/wooden
+	containername = "Throne Crate"
+
 /datum/supply_packs/hat
 	name = "Haberdasher's Crate"
 	desc = "A veritable smörgåsbord of head ornaments."
@@ -1031,6 +1099,18 @@
 	cost = 5000
 	containertype = /obj/storage/crate/packing
 	containername = "Haberdasher's Crate"
+
+/datum/supply_packs/headbands
+	name = "Bargain Bows and Bands Box"
+	desc = "Headbands for all occasions."
+	cost = 2000
+	contains = list(/obj/item/clothing/head/headband/giraffe = 1,
+					/obj/item/clothing/head/headband/antlers = 1,
+					/obj/item/clothing/head/headband/nyan/tiger = 1,
+					/obj/item/clothing/head/headband/nyan/leopard = 1,
+					/obj/item/clothing/head/headband/nyan/snowleopard = 1,
+					/obj/item/clothing/head/headband/bee = 2,
+					/obj/item/clothing/head/headband/nyan/random = 1)
 
 /datum/supply_packs/mask
 	name = "Masquerade Crate"
@@ -1100,7 +1180,8 @@
 					/obj/item/vending/restock_cartridge/cola,
 					/obj/item/vending/restock_cartridge/kitchen,
 					/obj/item/vending/restock_cartridge/monkey,
-					/obj/item/vending/restock_cartridge/standard)
+					/obj/item/vending/restock_cartridge/standard,
+					/obj/item/vending/restock_cartridge/capsule)
 	cost = 3000
 	containertype = /obj/storage/crate
 	containername = "Necessities Vending Machine Restocking Pack"
@@ -1236,7 +1317,7 @@
 /* ================================================= */
 /* -------------------- Complex -------------------- */
 /* ================================================= */
-
+ABSTRACT_TYPE(/datum/supply_packs/complex)
 /datum/supply_packs/complex
 	hidden = 0
 	var/list/blueprints = list()
@@ -1291,7 +1372,8 @@
 	desc = "1x Ruckingenur frame, 1x Manufacturer frame, 1x reclaimer frame, 1x device analyzer, 1x soldering iron"
 	category = "Engineering Department"
 	contains = list(/obj/item/electronics/scanner,
-					/obj/item/electronics/soldering)
+					/obj/item/electronics/soldering,
+					/obj/item/deconstructor)
 	frames = list(/obj/machinery/rkit,
 					/obj/machinery/manufacturer/mechanic,
 					/obj/machinery/portable_reclaimer)
@@ -1386,6 +1468,27 @@
 	hidden = 1
 	containertype = /obj/storage/crate
 	containername = "AI Kit"
+
+/datum/supply_packs/complex/status_display
+	name = "Disassembled Status Displays"
+	desc = "Contains four disassembled status display panels as they have not yet been installed on all NanoTrasen space objects."
+	category = "Engineering Department"
+	frames = list(/obj/machinery/status_display,
+		/obj/machinery/status_display,
+		/obj/machinery/status_display,
+		/obj/machinery/status_display)
+	cost = 6000
+	containertype = /obj/storage/crate
+	containername = "Status Display Kit"
+
+/datum/supply_packs/complex/eppd_kit
+	name = "Emergency Pressurzation Kit"
+	desc = "Frames: 1x Extreme-Pressure Pressurization Device"
+	category = "Engineering Department"
+	frames = list(/obj/machinery/portable_atmospherics/pressurizer)
+	cost = 5000
+	containertype = /obj/storage/crate
+	containername = "Prototype EPPD Kit"
 
 /datum/supply_packs/complex/basic_power_kit
 	name = "Basic Power Kit"
@@ -1637,4 +1740,18 @@
 	cost = 2000
 	containername = "Percussion Band Kit"
 	contains = list(/obj/item/instrument/tambourine,/obj/item/instrument/triangle,/obj/item/instrument/cowbell)
+	containertype = /obj/storage/crate/wooden
+
+//Western
+
+/datum/supply_packs/west_coats
+	name = "Dusty Old Coats"
+	desc = "4x coats in various colors."
+	category = "Civilian Department"
+	contains = list(/obj/item/clothing/suit/gimmick/guncoat,
+			/obj/item/clothing/suit/gimmick/guncoat/black,
+			/obj/item/clothing/suit/gimmick/guncoat/tan,
+			/obj/item/clothing/suit/gimmick/guncoat/dirty)
+	cost = 2000
+	containername = "Dusty Old Clothing Crate"
 	containertype = /obj/storage/crate/wooden

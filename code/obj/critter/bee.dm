@@ -45,7 +45,7 @@
 	"butt-nc","butt-plant","butt-cyber","purplebutt","santa","yellow","blue","red","green","black","white",
 	"psyche","wizard","wizardred","wizardpurple","witch","obcrown","macrown","safari","viking","dolan",
 	"camhat","redcamhat","mailcap","paper","policehelm","bikercap","apprentice","chavcap","flatcap","ntberet",
-	"captain-fancy","rank-fancy","mime_beret","mime_bowler","buckethat")
+	"captain-fancy","rank-fancy","mime_beret","mime_bowler","buckethat", "syndicate_top", "syndicate_top_biggest", "lesbeean")
 
 	var/sleep_y_offset = 5 // this amount removed from the hat's pixel_y on sleep or death
 	var/hat_y_offset = 0
@@ -169,7 +169,7 @@
 						src.visible_message("<span class='alert'><b>[user]</b> attempts to wrangle [src], but [src] is [pick("mad","grumpy","hecka grumpy","agitated", "too angry")] and resists!</span>")
 					return
 
-				user.pulling = src
+				user.set_pulling(src)
 				src.wanderer = 0
 				if (src.task == "wandering")
 					src.task = "thinking"
@@ -253,7 +253,7 @@
 				src.attacking = 0
 			return
 
-		src.visible_message("<span class='alert'><B>[src]</B> bites [M] with its [pick("tiny","eeny-weeny","minute","little", "nubby")] [prob(50) ? "mandibles" : "bee-teeth"]!</span>")
+		src.visible_message("<span class='alert'><B>[src]</B> bites [M] with its [pick("tiny","eeny-weeny","minute","little", "nubby")] [prob(50) ? "mandibles" : "bee-teeth"]!</span>", group = "beeattack")
 		logTheThing("combat", src.name, M, "bites [constructTarget(M,"combat")]")
 		random_brute_damage(M, 2, 1)
 		if (isliving(M))
@@ -276,7 +276,7 @@
 		if (M.stat || M.getStatusDuration("paralysis"))
 			src.task = "thinking"
 			return
-		src.visible_message("<span class='alert'><B>[src]</B> pokes [M] with its [pick("nubby","stubby","tiny")] little stinger!</span>")
+		src.visible_message("<span class='alert'><B>[src]</B> pokes [M] with its [pick("nubby","stubby","tiny")] little stinger!</span>", group = "beeattack")
 		logTheThing("combat", src.name, M, "stings [constructTarget(M,"combat")]")
 		if (isliving(M))
 			var/mob/living/H = M
@@ -374,7 +374,7 @@
 				shorn = 1
 				shorn_time = world.time
 				user.visible_message("<b>[user]</b> shears \the [src]!","You shear \the [src].")
-				var/obj/item/material_piece/cloth/beewool/BW = unpool(/obj/item/material_piece/cloth/beewool)
+				var/obj/item/material_piece/cloth/beewool/BW = new /obj/item/material_piece/cloth/beewool
 				BW.set_loc(src.loc)
 				if (shorn_item)
 					new shorn_item(src.loc)
@@ -489,6 +489,38 @@
 
 		src.hat = ourHat
 
+		// TIME. FOR. CRIME.
+		if (istype(src.hat, /obj/item/clothing/head/bighat/syndicate))
+			var/obj/item/clothing/head/bighat/syndicate/beeBigHat = src.hat
+			var/icon/workingIcon = new /icon(beeBigHat.wear_image_icon, beeBigHat.icon_state, SOUTH)
+
+			workingIcon.Shift(SOUTH, 5)
+
+			var/icon/leftIcon = new /icon()
+			leftIcon.Insert(workingIcon, "hat", SOUTH)
+			leftIcon.Insert(workingIcon, "hat", WEST)
+			leftIcon.Shift(WEST, 2)
+			hat_overlay_left = image(leftIcon, "hat")
+
+			var/icon/rightIcon = new /icon()
+			rightIcon.Insert(workingIcon, "hat", NORTH)
+			rightIcon.Insert(workingIcon, "hat", EAST)
+			rightIcon.Shift(WEST, 4)
+			hat_overlay_right = image(rightIcon, "hat")
+
+			// ANNOUNCE THE CRIME!
+
+			SPAWN_DBG(1 SECOND)
+				playsound(src.loc, "sound/vox/bees.ogg", 100, 1)
+				sleep(1 SECOND)
+				playsound(src.loc, "sound/vox/great.ogg", 100, 1)
+				sleep(1 SECOND)
+				playsound(src.loc, "sound/vox/at.ogg", 100, 1)
+				sleep(1 SECOND)
+				playsound(src.loc, "sound/vox/crime.ogg", 100, 1)
+
+			return
+
 		var/icon/newHatIcon = new /icon()
 		var/icon/workingIcon = new /icon(src.hat_icon, "bhat-[src.hat.icon_state]", SOUTH)
 		newHatIcon.Insert(workingIcon, "hat", SOUTH)
@@ -506,13 +538,13 @@
 			return
 
 		if (prob(dance_chance))
-			src.visible_message("<b>[src]</b> responds with a dance of its own!")
+			src.visible_message("<b>[src]</b> responds with a dance of its own!", group = "beedance")
 			src.dance()
 		else
 			if (istype(src, /obj/critter/domestic_bee/trauma))
 				src.visible_message("<b>[src]</b> buzzes in short-lived comfort.")
 			else
-				src.visible_message("<b>[src]</b> buzzes [pick("to the beat", "in tune", "approvingly", "happily")].")
+				src.visible_message("<b>[src]</b> buzzes [pick("to the beat", "in tune", "approvingly", "happily")].", group = "beedance")
 
 	proc/dance()
 		set waitfor = 0
@@ -586,7 +618,7 @@
 		else
 			return ..()
 
-	CanPass(atom/mover, turf/target, height=0, air_group=0)
+	Cross(atom/mover)
 		if (istype(mover, /obj/projectile))
 			return prob(50)
 		else
@@ -803,8 +835,10 @@
 		/obj/item/clothing/head/apprentice,
 		/obj/item/clothing/head/wizard,
 		/obj/item/clothing/head/wizard/red,
+		/obj/item/clothing/head/bighat/syndicate,
 		/obj/item/clothing/head/helmet/viking,
-		/obj/item/clothing/head/void_crown
+		/obj/item/clothing/head/void_crown,
+		/obj/item/clothing/head/bighat/syndicate/biggest
 	)
 
 	New()
@@ -1127,7 +1161,7 @@
 			if ((get_dist(src, M) <= 6) && src.alive)
 				M.visible_message("<span class='alert'><b>[M.name] clutches their temples!</b></span>")
 				M.emote("scream")
-				M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 100))
+				M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 10 SECONDS))
 				M.take_brain_damage(10)
 
 				do_teleport(M, locate((world.maxx/2) + rand(-10,10), (world.maxy/2) + rand(-10,10), 1), 0)
@@ -1176,7 +1210,7 @@
 					src.visible_message("<span class='alert'><b>[user]</b> attempts to wrangle [src], but [src] is [pick("mad","grumpy","hecka grumpy","agitated", "too angry")] and resists!</span>")
 					return
 
-				user.pulling = src
+				user.set_pulling(src)
 				src.wanderer = 0
 				if (src.task == "wandering")
 					src.task = "thinking"
@@ -1658,6 +1692,7 @@
 			return
 		user.visible_message("[user] primes [src] and puts it down.", "You twist [src], priming it to hatch, then place it on the ground.")
 		user.u_equip(src)
+		logTheThing("station", user, null, "primes a bee egg for hatching at [log_loc(user)]")
 
 		SPAWN_DBG(0)
 			src.hatch(user,get_turf(user))
@@ -1800,6 +1835,7 @@
 		else
 			newLarva.desc = "A moon...larva.  A space bee larva, but kinda odd."
 			newLarva.custom_desc = "A moon bee.  It's like a regular space bee, but it has a peculiar gleam in its eyes..."
+		newLarva.custom_bee_type = /obj/critter/domestic_bee/moon
 		newLarva.throw_at(get_edge_target_turf(src, src.dir), 2, 1)
 		qdel (src)
 

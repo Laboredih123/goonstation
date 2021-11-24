@@ -143,7 +143,7 @@
 
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
-			if(H.traitHolder && H.traitHolder.hasTrait("smoothtalker"))
+			if (H.traitHolder.hasTrait("smoothtalker") || H.traitHolder.hasTrait("training_quartermaster"))
 				adjustedTolerance = round(adjustedTolerance * 1.5)
 
 		var/hikeperc = askingprice - goods.price
@@ -193,17 +193,16 @@
 			while(putamount > 0)
 				putamount--
 				new C.comtype(S)
-			invoice.info += "<br>Final Cost of Goods: [total_price] credits."
 
-			wagesystem.shipping_budget -= total_price
+		invoice.info += "<br>Final Cost of Goods: [total_price] credits."
 
-			src.wipe_cart(1) //This tells wipe_cart to not increase the amount in stock when clearing it out.
+		wagesystem.shipping_budget -= total_price
+
+		src.wipe_cart(1) //This tells wipe_cart to not increase the amount in stock when clearing it out.
 		src.currently_selling = 0 //At this point the shopping cart has been processed
-		var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("1149")
 		var/datum/signal/pdaSignal = get_free_signal()
 		pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SALES), "sender"="00000000", "message"="Deal with \"[src.name]\" concluded. Total Cost: [total_price] credits")
-		pdaSignal.transmission_method = TRANSMISSION_RADIO
-		transmit_connection.post_signal(null, pdaSignal)
+		radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(pdaSignal)
 		shippingmarket.receive_crate(S)
 
 	proc/wipe_cart(var/sold_stuff)
@@ -211,6 +210,7 @@
 			if (COM.reference && istype(COM.reference,/datum/commodity/))
 				if (COM.reference.amount > -1 && !sold_stuff) //If we sold shit then don't increase the amount. Fuck.
 					COM.reference.amount += COM.amount
+			COM.amount = 0
 			src.shopping_cart -= COM
 		src.shopping_cart.Cut()
 

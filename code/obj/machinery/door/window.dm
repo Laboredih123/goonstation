@@ -13,11 +13,13 @@
 	var/base_state = "left"
 	visible = 0
 	flags = ON_BORDER
+	health = 500
+	health_max = 500
 	opacity = 0
 	brainloss_stumble = 1
 	autoclose = 1
-	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
-	object_flags = CAN_REPROGRAM_ACCESS
+	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT
+	object_flags = CAN_REPROGRAM_ACCESS | BOTS_DIRBLOCK
 
 	New()
 		..()
@@ -32,7 +34,7 @@
 			user.show_text("You cannot control this door.", "red")
 			return
 		else
-			return src.attackby(null, user)
+			return src.Attackby(null, user)
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if (user.getStatusDuration("stunned") || user.getStatusDuration("weakened") || user.stat || user.restrained())
@@ -95,13 +97,13 @@
 		close()
 		return 1
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	Cross(atom/movable/mover)
 		if (istype(mover, /obj/projectile))
 			var/obj/projectile/P = mover
 			if (P.proj_data.window_pass)
 				return 1
 
-		if (get_dir(loc, target) == dir) // Check for appropriate border.
+		if (get_dir(loc, mover) == dir) // Check for appropriate border.
 			if(density && mover && mover.flags & DOORPASS && !src.cant_emag)
 				if (ismob(mover) && mover:pulling && src.bumpopen(mover))
 					// If they're pulling something and the door would open anyway,
@@ -112,6 +114,12 @@
 			return !density
 		else
 			return 1
+
+	gas_cross(turf/target)
+		if(get_dir(loc, target) == dir)
+			return !density
+		else
+			return TRUE
 
 	CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 		if (istype(mover, /obj/projectile))

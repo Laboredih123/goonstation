@@ -199,7 +199,7 @@
 				src.shorn = 1
 				src.shorn_time = world.time
 				user.visible_message("<b>[user]</b> shears \the [src]!","You shear \the [src].")
-				var/obj/item/material_piece/cloth/beewool/BW = unpool(/obj/item/material_piece/cloth/beewool)
+				var/obj/item/material_piece/cloth/beewool/BW = new /obj/item/material_piece/cloth/beewool
 				BW.set_loc(src.loc)
 				return
 
@@ -566,7 +566,7 @@
 
 				honeycube.set_loc(holder.owner.loc)
 				holder.owner.visible_message("<b>[holder.owner] regurgitates [MT]!</b>")
-				playsound(get_turf(holder.owner), "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
+				playsound(holder.owner, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 		return 0
 
 /datum/targetable/critter/bee_teleport
@@ -598,14 +598,14 @@
 			return 1
 		holder.owner.visible_message("<span class='combat'><b>[holder.owner]</b> stares at [MT]!</span>")
 		if(do_buzz)
-			playsound(get_turf(holder.owner), 'sound/voice/animal/buzz.ogg', 100, 1)
+			playsound(holder.owner, 'sound/voice/animal/buzz.ogg', 100, 1)
 		boutput(MT, "<span class='combat'>You feel a horrible pain in your head!</span>")
 		MT.changeStatus("stunned", 2 SECONDS)
 		SPAWN_DBG(2.5 SECONDS)
 			if ((get_dist(holder.owner, MT) <= 6) && !isdead(holder.owner))
 				MT.visible_message("<span class='combat'><b>[MT] clutches their temples!</b></span>")
 				MT.emote("scream")
-				MT.setStatus("paralysis", max(MT.getStatusDuration("paralysis"), 200))
+				MT.setStatus("paralysis", max(MT.getStatusDuration("paralysis"), 20 SECONDS))
 				MT.take_brain_damage(10)
 
 				do_teleport(MT, locate((world.maxx/2) + rand(-10,10), (world.maxy/2) + rand(-10,10), 1), 0)
@@ -785,9 +785,9 @@
 			return
 		else
 			setunconscious(src)
-			src.setStatus("paralysis", 100)
-			src.setStatus("stunned", 100)
-			src.setStatus("weakened", 100)
+			src.setStatus("paralysis", 10 SECONDS)
+			src.setStatus("stunned", 10 SECONDS)
+			src.setStatus("weakened", 10 SECONDS)
 			src.sleeping = 10
 			src.playing_dead--
 			src.hud.update_health()
@@ -1056,5 +1056,46 @@
 			for (var/mob/O in hearers(src, null))
 				O.show_message("[src] beeps[prob(50) ? " in a comforted manner, and gives [user] the ASCII" : ""].",2)
 		return
+
+
+obj/effects/bees
+	plane = PLANE_NOSHADOW_ABOVE
+	particles = new/particles/swarm/bees
+
+	New(atom/movable/A)
+		..()
+		if(istype(A))
+			A.vis_contents += src
+
+	disposing()
+		var/atom/movable/A
+		A = src.loc
+		if(istype(A))
+			A.vis_contents -= src
+		. = ..()
+
+
+particles/swarm/bees
+	icon = 'icons/misc/bee.dmi'
+	icon_state = list("mini-bee"=1, "mini-bee2"=1)
+	friction = 0.10
+	count = 10
+	spawning = 0.35
+	fade = 5
+#ifndef SPACEMAN_DMM
+	fadein = 5
+#endif
+	lifespan = generator("num", 50, 80, LINEAR_RAND)
+	width = 64
+	position = generator("box", list(-10,-10,0), list(10,10,50))
+	bound1 = list(-32, -32, -100)
+	bound2 = list(32, 32, 100)
+	gravity = list(0, -0.1)
+	drift = generator("box", list(-0.4, -0.1, 0), list(0.4, 0.15, 0))
+	velocity = generator("box", list(-2, -0.1, 0), list(2, 0.5, 0))
+	height = 64
+
+	start_none
+		count = 0
 
 #undef ADMIN_BEES_ONLY

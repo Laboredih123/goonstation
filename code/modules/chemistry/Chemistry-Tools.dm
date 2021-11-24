@@ -29,22 +29,6 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		ensure_reagent_holder()
 		create_initial_reagents(new_initial_reagents)
 
-	proc/setup_reagents(new_initial_reagents) //proccall overhead idk man dont put this in new just copy paste :)
-		ensure_reagent_holder()
-		create_initial_reagents(new_initial_reagents)
-
-	pooled()
-		if (src.reagents)
-			src.reagents.clear_reagents()
-		..()
-
-	unpooled()
-		if (src.reagents)
-			src.reagents.clear_reagents()
-		..()
-		setup_reagents(last_new_initial_reagents)
-
-
 	move_trigger(var/mob/M, kindof)
 		if (..() && reagents)
 			reagents.move_trigger(M, kindof)
@@ -103,12 +87,12 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			var/atom/target_loc = usr.loc
 			var/ok = 1
 			var/atom/L = src
-			while(!istype(L, /turf) && L != target_loc)
+			while(!istype(L, /turf) && L != target_loc && L.loc)
 				L = L.loc
 				if(istype(L, /turf))
 					ok = 0
 			L = over_object
-			while(!istype(L, /turf) && L != target_loc)
+			while(!istype(L, /turf) && L != target_loc && L.loc)
 				L = L.loc
 				if(istype(L, /turf))
 					ok = 0
@@ -177,7 +161,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 					boutput(user, "<span class='notice'>You splash all of the solution onto [target].</span>")
 					target.visible_message("<span class='alert'><b>[user.name]</b> splashes the [src.name]'s contents onto [target.name]!</span>")
 				else
-					boutput(user, "<span class='notice'>You apply [src.amount_per_transfer_from_this] units of the solution to [target].</span>")
+					boutput(user, "<span class='notice'>You apply [min(src.amount_per_transfer_from_this,src.reagents.total_volume)] units of the solution to [target].</span>")
 					target.visible_message("<span class='alert'><b>[user.name]</b> applies some of the [src.name]'s contents to [target.name].</span>")
 				var/mob/living/MOB = target
 				logTheThing("combat", user, MOB, "splashes [src] onto [constructTarget(MOB,"combat")] [log_reagents(src)] at [log_loc(MOB)].") // Added location (Convair880).
@@ -322,7 +306,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			boutput(user, "<span class='notice'>You rip up the [I] into tiny pieces and sprinkle it into [src].</span>")
 
 			I.reagents.trans_to(src, I.reagents.total_volume)
-			pool(I)
+			qdel(I)
 
 		else if (istype(I, /obj/item/reagent_containers/food/snacks/breadloaf))
 			if (src.reagents.total_volume >= src.reagents.maximum_volume)
@@ -366,10 +350,14 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 				return
 
 		//Hacky thing to make silver bullets (maybe todo later : all items can be dipped in any solution?)
-		else if (istype(I, /obj/item/ammo/bullets/bullet_22) || istype(I, /obj/item/ammo/bullets/a38) || istype(I, /obj/item/ammo/bullets/custom) || (I.type == /obj/item/handcuffs) || istype(I,/datum/projectile/bullet/revolver_38))
+		else if (istype(I, /obj/item/ammo/bullets/bullet_22HP) ||istype(I, /obj/item/ammo/bullets/bullet_22) || istype(I, /obj/item/ammo/bullets/a38) || istype(I, /obj/item/ammo/bullets/custom) || (I.type == /obj/item/handcuffs) || istype(I,/datum/projectile/bullet/revolver_38))
 			if ("silver" in src.reagents.reaction(I, react_volume = src.reagents.total_volume))
 				user.visible_message("<span class='alert'><b>[user]</b> dips [I] into [src] coating it in silver. Watch out, evil creatures!</span>")
+				I.tooltip_rebuild = 1
 			else
+				if(istype(I, /obj/item/ammo/bullets))
+					var/obj/item/ammo/A = I
+					I = A.ammo_type
 				if (I.material && I.material.mat_id == "silver")
 					boutput(user, "<span class='notice'>[I] is already coated, more silver won't do any good.</span>")
 				else
@@ -405,7 +393,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 
 	proc/smash()
 		playsound(src.loc, pick('sound/impact_sounds/Glass_Shatter_1.ogg','sound/impact_sounds/Glass_Shatter_2.ogg','sound/impact_sounds/Glass_Shatter_3.ogg'), 100, 1)
-		var/obj/item/raw_material/shard/glass/G = unpool(/obj/item/raw_material/shard/glass)
+		var/obj/item/raw_material/shard/glass/G = new /obj/item/raw_material/shard/glass
 		G.set_loc(src.loc)
 		var/turf/U = src.loc
 		src.reagents.reaction(U)
@@ -433,7 +421,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 	icon_state = "bucket"
 	item_state = "bucket"
 	amount_per_transfer_from_this = 10
-	initial_volume = 50
+	initial_volume = 120
 	flags = FPRINT | OPENCONTAINER | SUPPRESSATTACK
 	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
 	can_recycle = FALSE

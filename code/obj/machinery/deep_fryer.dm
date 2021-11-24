@@ -6,6 +6,7 @@
 	anchored = 1
 	density = 1
 	flags = NOSPLASH
+	status = REQ_PHYSICAL_ACCESS
 	mats = 20
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS
 	var/obj/item/fryitem = null
@@ -42,7 +43,7 @@
 			else
 				logTheThing("combat", user, null, "pours chemicals [log_reagents(W)] into the [src] at [log_loc(src)].") // Logging for the deep fryer (Convair880).
 				src.visible_message("<span class='notice'>[user] pours [W:amount_per_transfer_from_this] units of [W]'s contents into [src].</span>")
-				playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 100, 1)
+				playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
 				W.reagents.trans_to(src, W:amount_per_transfer_from_this)
 				if (!W.reagents.total_volume) boutput(user, "<span class='alert'><b>[W] is now empty.</b></span>")
 
@@ -90,7 +91,7 @@
 
 	MouseDrop_T(obj/item/W as obj, mob/user as mob)
 		if (istype(W) && in_interact_range(W, user) && in_interact_range(src, user))
-			return src.attackby(W, user)
+			return src.Attackby(W, user)
 		return ..()
 
 	onVarChanged(variable, oldval, newval)

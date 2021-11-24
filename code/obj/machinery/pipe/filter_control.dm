@@ -10,7 +10,7 @@
 		desc = "A remote control for a filter: [control]"
 
 /obj/machinery/filter_control/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return src.Attackhand(user)
 
 /obj/machinery/filter_control/attackby(obj/item/weapon/W, mob/user as mob)
 	if (istype(W, /obj/item/weapon/detective_scanner))
@@ -34,8 +34,8 @@
 		for(var/mob/O in viewers(user, null))
 			O.show_message(text("<span class='alert'>[] has shorted out the []'s access system with an electromagnetic card!</span>", user, src), 1)
 		src.updateicon()
-		return src.attack_hand(user)
-	return src.attack_hand(user)
+		return src.Attackhand(user)
+	return src.Attackhand(user)
 
 /obj/machinery/filter_control/process()
 	if(!(status & NOPOWER))
@@ -94,10 +94,10 @@
 		if (src.allowed(usr) || src.emagged && !(status & BROKEN))
 			if (href_list["tg"])	//someone modified the html so I added a check here
 				// toggle gas
-				src.f_mask ^= text2num(href_list["tg"])
+				src.f_mask ^= text2num_safe(href_list["tg"])
 				for(var/obj/machinery/inlet/filter/FI as anything in machine_registry[MACHINES_INLETS])
 					if(FI.control == src.control)
-						FI.f_mask ^= text2num(href_list["tg"])
+						FI.f_mask ^= text2num_safe(href_list["tg"])
 		else
 			usr.see("<span class='alert'>Access Denied ([src.name] operation restricted to authorized atmospheric technicians.)</span>")
 		AutoUpdateAI(src)

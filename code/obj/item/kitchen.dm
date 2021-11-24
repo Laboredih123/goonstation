@@ -102,7 +102,7 @@ TRAYS
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style='color:red'><b>[user]</b> fumbles [src] and jabs [his_or_her(user)]self.</span>")
+			user.visible_message("<span style='color:red'><b>[user]</b> fumbles [src] and jabs [himself_or_herself(user)].</span>")
 			random_brute_damage(user, 5)
 		if (!spoon_surgery(M,user))
 			return ..()
@@ -158,6 +158,7 @@ TRAYS
 	hitsound = 'sound/impact_sounds/Flesh_Cut_1.ogg'
 	force = 7.0
 	throwforce = 10
+	w_class = W_CLASS_SMALL
 	desc = "A long bit of metal that is sharpened on one side, used for cutting foods. Also useful for butchering dead animals. And live ones."
 	dir = NORTH
 
@@ -359,24 +360,10 @@ TRAYS
 	item_state = "cleaver"
 	desc = "An extremely sharp cleaver in a rectangular shape. Only for the professionals."
 	force = 12.0
-	throwforce = 3.0
+	throwforce = 12
+	w_class = W_CLASS_NORMAL
 	hit_type = DAMAGE_CUT
 	hitsound = 'sound/impact_sounds/Blade_Small_Bloody.ogg'
-
-	attack(mob/living/carbon/human/target as mob, mob/user as mob)
-		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts \himself.</span>")
-			random_brute_damage(user, 20)
-			JOB_XP(user, "Clown", 1)
-		if(prob(5))
-			user.changeStatus("weakened", 4 SECONDS)
-			user.visible_message("<span class='alert'><b>[user]</b>'s hand slips from the [src] and accidentally cuts [himself_or_herself(user)]. </span>")
-			random_brute_damage(user, 20)
-			take_bleeding_damage(user, null, 10, DAMAGE_CUT)
-			playsound(src, 'sound/impact_sounds/Flesh_Stab_3.ogg', 40, 1)
-		else
-			return ..()
-
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		if(iscarbon(A))
@@ -440,7 +427,9 @@ TRAYS
 	amount = 6
 	var/max_amount = 6
 	var/box_type = "donutbox"
+	var/has_closed_state = 1
 	var/contained_food = /obj/item/reagent_containers/food/snacks/donut/custom/random
+	var/allowed_food = /obj/item/reagent_containers/food/snacks/donut
 	var/contained_food_name = "donut"
 	tooltip_flags = REBUILD_DIST
 
@@ -456,6 +445,7 @@ TRAYS
 		max_amount = 12
 		box_type = "eggbox"
 		contained_food = /obj/item/reagent_containers/food/snacks/ingredient/egg
+		allowed_food = /obj/item/reagent_containers/food/snacks/ingredient/egg
 		contained_food_name = "egg"
 
 	lollipop
@@ -465,8 +455,11 @@ TRAYS
 		amount = 8
 		max_amount = 8
 		box_type = "lpop"
+		has_closed_state = 0
 		contained_food = /obj/item/reagent_containers/food/snacks/lollipop/random_medical
+		allowed_food = /obj/item/reagent_containers/food/snacks/lollipop
 		contained_food_name = "lollipop"
+		w_class = W_CLASS_SMALL
 
 	New()
 		..()
@@ -482,10 +475,10 @@ TRAYS
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(src.amount >= src.max_amount)
-			boutput(user, "You can't fit anything else in this box!")
+			boutput(user, "You can't fit anything else in [src]!")
 			return
 		else
-			if(istype(W, src.contained_food))
+			if(istype(W, src.allowed_food))
 				user.drop_item()
 				W.set_loc(src)
 				src.amount ++
@@ -501,9 +494,13 @@ TRAYS
 				return ..()
 
 	attack_hand(mob/user as mob)
+		if((!istype(src.loc, /turf) && !user.is_in_hands(src)) || src.amount == 0)
+			..()
+			return
 		src.add_fingerprint(user)
-		var/obj/item/reagent_containers/food/snacks/myFood = locate(src.contained_food) in src
-		if(myFood)
+		var/list/obj/item/reagent_containers/food/snacks/myFoodList = src.contents
+		if(myFoodList.len >= 1)
+			var/obj/item/reagent_containers/food/snacks/myFood = myFoodList[myFoodList.len]
 			if(src.amount >= 1)
 				src.amount--
 				tooltip_rebuild = 1
@@ -517,6 +514,15 @@ TRAYS
 				user.put_in_hand_or_drop(newFood)
 				boutput(user, "You take [newFood] out of [src].")
 		src.update()
+
+	attack_self(mob/user as mob)
+		if(!src.has_closed_state) return
+		if(src.icon_state == "[src.box_type]")
+			src.icon_state = "[src.box_type][src.amount]"
+			boutput(user, "You open [src].")
+		else
+			src.icon_state = "[src.box_type]"
+			boutput(user, "You close [src].")
 
 	proc/update()
 		src.icon_state = "[src.box_type][src.amount]"
@@ -591,7 +597,7 @@ TRAYS
 	proc/unique_attack_garbage_fuck(mob/M as mob, mob/user as mob)
 		attack_particle(user,M)
 		M.TakeDamageAccountArmor("head", force, 0, 0, DAMAGE_BLUNT)
-		playsound(get_turf(src), "sound/impact_sounds/plate_break.ogg", 50, 1)
+		playsound(src, "sound/impact_sounds/plate_break.ogg", 50, 1)
 
 		var/turf/shardturf = get_turf(M)
 
@@ -603,7 +609,7 @@ TRAYS
 			src.set_loc(shardturf)
 
 		for (var/i in 1 to 2)
-			var/obj/O = unpool(/obj/item/raw_material/shard/glass)
+			var/obj/O = new /obj/item/raw_material/shard/glass
 			O.set_loc(shardturf)
 			if(src.material)
 				O.setMaterial(copyMaterial(src.material))
@@ -750,7 +756,7 @@ TRAYS
 			unique_attack_garbage_fuck(M, user)
 		else
 			M.visible_message("<span class='alert'>[user] taps [M] over the head with [src].</span>")
-			playsound(get_turf(src), src.hit_sound, 30, 1)
+			playsound(src, src.hit_sound, 30, 1)
 			logTheThing("combat", user, M, "taps [constructTarget(M,"combat")] over the head with [src].")
 
 	attack_hand(mob/user as mob)
@@ -891,7 +897,7 @@ TRAYS
 
 	unique_attack_garbage_fuck(mob/M as mob, mob/user as mob)
 		M.TakeDamageAccountArmor("head", src.force, 0, 0, DAMAGE_BLUNT)
-		playsound(get_turf(src), "sound/weapons/trayhit.ogg", 50, 1)
+		playsound(src, "sound/weapons/trayhit.ogg", 50, 1)
 		src.visible_message("\The [src] falls out of [user]'s hands due to the impact!")
 		user.drop_item(src)
 

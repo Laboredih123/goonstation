@@ -94,7 +94,7 @@
 			src.clogged += (20 * C.amount) //One piece of cloth clogs for about 1 minute. (cause the machine loop updates ~3 second interval)
 			user.show_text("You stuff [I] into the drain.")
 			logTheThing("station", user, null, "clogs [name] shut temporarily at [log_loc(user)].")
-			pool(I)
+			qdel(I)
 			src.update_icon()
 			return
 
@@ -124,7 +124,7 @@
 
 	New()
 		..()
-		src.invisibility = 100
+		src.invisibility = INVIS_ALWAYS_ISH
 
 ///////////////////
 //////spawner//////
@@ -270,7 +270,7 @@
 				if (T.active_liquid && T.active_liquid.group && T.active_liquid.group.reagents)
 					T.active_liquid.group.drain(T.active_liquid,slurp,src)
 					if (prob(80))
-						playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 50, 0.1, 0.7)
+						playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 0.1, 0.7)
 				update_icon()
 
 		else if (pissing)
@@ -420,7 +420,7 @@
 	desc = "A deployable sea ladder that will allow you to descend to and ascend from the trench."
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "ladder_off"
-	item_state = "folded_chair"
+	item_state = "sea_ladder"
 	w_class = W_CLASS_NORMAL
 	throwforce = 10
 	flags = FPRINT | TABLEPASS | CONDUCT
@@ -514,7 +514,7 @@
 
 	attackby(obj/item/I, mob/user)
 		if (isscrewingtool(I) || ispryingtool(I) || ispulsingtool(I))
-			src.attack_hand(user)
+			src.Attackhand(user)
 		else
 			boom()
 

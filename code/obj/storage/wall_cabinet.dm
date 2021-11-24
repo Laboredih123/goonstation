@@ -86,7 +86,8 @@
 	/obj/item/pen,
 	/obj/item/staple_gun/red,
 	/obj/item/scissors,
-	/obj/item/stamp)
+	/obj/item/stamp,
+	/obj/item/canvas)
 
 	make_my_stuff()
 		..()
@@ -261,6 +262,15 @@
 	/obj/item/clothing/under/gimmick/chaps= 1,
 	/obj/item/clothing/under/gimmick/shirtnjeans = 1)
 
+/obj/item/storage/wall/clothingrack/clothes_shooting_range //for the shooting range prefab; Consumerism.
+	spawn_contents = list(/obj/item/clothing/under/gimmick/utena = 1,
+	/obj/item/clothing/suit/hoodie = 1,
+	/obj/item/clothing/suit/wintercoat = 1,
+	/obj/item/clothing/suit/labcoat/hitman = 1,
+	/obj/item/clothing/suit/johnny_coat = 1,
+	/obj/item/clothing/under/gimmick/chaps= 1,
+	/obj/item/clothing/under/gimmick/shirtnjeans = 1)
+
 obj/item/storage/wall/clothingrack/hatrack
 	name = "hat shelf"
 	desc = "It's a shelf designed for many hats."
@@ -312,7 +322,7 @@ obj/item/storage/wall/clothingrack/hatrack
 
 /obj/item/storage/wall/toolshelf
 	name = "tool shelf"
-	icon = 'icons/obj/64x64.dmi'
+	icon = 'icons/obj/large/64x64.dmi'
 	density = 0
 	slots = 7
 	anchored = 1
@@ -335,7 +345,7 @@ obj/item/storage/wall/clothingrack/hatrack
 
 /obj/item/storage/wall/mineralshelf
 	name = "mineral shelf"
-	icon = 'icons/obj/64x64.dmi'
+	icon = 'icons/obj/large/64x64.dmi'
 	density = 0
 	slots = 7
 	anchored = 1

@@ -13,7 +13,8 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	var/uses = 0
 	var/max_uses = 0 // If can_be_charged == 1, how many charges can these gloves store?
 	var/stunready = 0
-	var/weighted = 0
+	///additive modifier to punch damage
+	var/punch_damage_modifier = 0
 	var/atom/movable/overlay/overl = null
 	var/activeweapon = 0 // Used for gloves that can be toggled to turn into a weapon (example, bladed gloves)
 
@@ -104,7 +105,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 				return
 			boutput(user, "<span class='notice'>You attach the wires to the [src.name].</span>")
 			src.stunready = 1
-			src.setSpecialOverride(/datum/item_special/spark, 0)
+			src.setSpecialOverride(/datum/item_special/spark, src, 0)
 			src.material_prints += ", electrically charged"
 			return
 
@@ -140,11 +141,6 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 
 		..()
 
-	proc/damage_bonus()
-		if (weighted)
-			return 3
-		return 0
-
 	proc/distort_prints(var/prints as text, var/get_glove_ID = 1) // Ditto (Convair880).
 
 		var/data = null
@@ -173,17 +169,18 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		boutput(usr, "Your gloves do nothing special")
 		return
 
-	proc/setSpecialOverride(var/type = null, active = 1)
+	proc/setSpecialOverride(var/type = null, master = null, active = 1)
 		if(!ispath(type))
 			if(isnull(type))
 				src.specialoverride?.onRemove()
 				src.specialoverride = null
+				src.overridespecial = FALSE
 			return null
 
 		src.specialoverride?.onRemove()
 
 		var/datum/item_special/S = new type
-		S.master = src
+		S.master = master
 		src.overridespecial = active
 		S.onAdd()
 		src.specialoverride = S
@@ -234,6 +231,19 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	setupProperties()
 		..()
 		setProperty("heatprot", 7)
+
+	slasher
+		name = "Padded Gloves"
+		desc = "These gloves are padded and lined with insulating material."
+		cant_self_remove = 1
+		cant_other_remove = 1
+		material_prints = "black insulative fibers"
+
+		setupProperties()
+			..()
+			setProperty("heatprot", 15)
+			setProperty("conductivity", 0)
+			setProperty("exploprot", 10)
 
 /obj/item/clothing/gloves/black/attackby(obj/item/W, mob/user)
 	if (istool(W, TOOL_CUTTING | TOOL_SNIPPING))
@@ -311,14 +321,20 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		onMaterialChanged()
 			..()
 			if(istype(src.material))
-				if(src.material.hasProperty("density"))//linear function, 10 points of disarm-block for every 25 density, starting from density==10
-					src.setProperty("deflection", round(max(src.material.getProperty("density")**0.5+0.2*(src.material.getProperty("density")-20),0)))
-				else
-					src.setProperty("deflection", 0)
-				if(src.material.hasProperty("hard"))//Curve hits 0.5 at 30 (fibrilith), 1 at 60 (carbon fibre), 1.2 at 85 (starstone, aka maximum)
-					src.setProperty("rangedprot", round(max(0,-0.5034652-(-0.04859378/0.02534389)*(1-eulers**(-0.02534398*src.material.getProperty("hard")))),0.1)) //holy best-fit curve batman!
-				else
-					src.setProperty("rangedprot", 0)
+				var/types = list()
+				if(src.material.getProperty("density") > 10 || src.material.getProperty("hard") > 10)
+					types["blunt"] = 0.5 * ceil((max(src.material.getProperty("density"), src.material.getProperty("hard")) - 10)**0.5)
+				if(src.material.getProperty("density") > 10)
+					types["cut"] = 0.5 * ceil((src.material.getProperty("density") - 10)**0.5)
+				if(src.material.getProperty("hard") > 10)
+					types["stab"] = 0.5 * ceil((src.material.getProperty("density") - 10)**0.5)
+				if(src.material.hasProperty("thermal"))
+					var/thermal = 100 - src.material.getProperty("thermal")
+					if(thermal > 10)
+						types["burn"] = 0.5 * ceil((thermal - 10)**0.5)
+
+				AddComponent(/datum/component/wearertargeting/unarmedblock/unarmed_bonus_block, list(SLOT_GLOVES), types)
+
 			return
 
 /obj/item/clothing/gloves/swat
@@ -362,7 +378,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		setProperty("conductivity", 0)
 	New()
 		..()
-		setSpecialOverride(/datum/item_special/spark)
+		setSpecialOverride(/datum/item_special/spark, src)
 
 
 /obj/item/clothing/gloves/yellow
@@ -373,7 +389,6 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	material_prints = "insulative fibers"
 	can_be_charged = 1
 	max_uses = 4
-	permeability_coefficient = 0.5
 
 	setupProperties()
 		..()
@@ -404,6 +419,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	crit_override = 1
 	bonus_crit_chance = 0
 	stamina_dmg_mult = 0.35
+	var/weighted
 
 	setupProperties()
 		..()
@@ -425,6 +441,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 			return
 		boutput(user, "You slip the horseshoe inside one of the gloves.")
 		src.weighted = 1
+		src.punch_damage_modifier += 3
 		tooltip_rebuild = 1
 		qdel(W)
 	else
@@ -436,7 +453,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	icon = 'icons/obj/junk.dmi'
 	icon_state = "horseshoe"
 	force = 6.5
-	throwforce = 25
+	throwforce = 15
 	throw_speed = 3
 	throw_range = 6
 	w_class = W_CLASS_TINY
@@ -499,10 +516,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 
 			playsound(user, "sound/effects/elec_bigzap.ogg", 40, 1)
 
-			for (var/obj/item/cloaking_device/I in user)
-				if (I.active)
-					I.deactivate(user)
-					user.visible_message("<span class='notice'><b>[user]'s cloak is disrupted!</b></span>")
+			SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 
 			if(isturf(target))
 				target_r = new/obj/elec_trg_dummy(target)
@@ -515,7 +529,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 				var/list/affected = DrawLine(last, target_r, /obj/line_obj/elec ,'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",OBJ_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
 
 				for(var/obj/O in affected)
-					SPAWN_DBG(0.6 SECONDS) pool(O)
+					SPAWN_DBG(0.6 SECONDS) qdel(O)
 
 				if(istype(target_r, /obj/machinery/power/generatorTemp))
 					var/obj/machinery/power/generatorTemp/gen = target_r
@@ -531,7 +545,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 							src.electrocute(target_r, 100, netnum)
 							break
 						if("disarm")
-							target_r:weakened += 3
+							target.changeStatus("weakened", 3 SECONDS)
 							break
 
 				var/list/next = new/list()
@@ -564,7 +578,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	desc = "A strange gauntlet made of cogs and brass machinery. It has seven slots along the side."
 	icon_state = "brassgauntlet"
 	item_state = "brassgauntlet"
-	weighted = 1
+	punch_damage_modifier = 3
 	burn_possible = 0
 	cant_self_remove = 1
 	cant_other_remove = 1
