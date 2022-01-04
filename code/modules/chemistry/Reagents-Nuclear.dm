@@ -27,9 +27,11 @@ datum
 		u238
 			name = "uranium-238"
 			id = "u238"
-			desc = "A slightly radioactive heavy metal not suitable for nuclear fission. This is the unenriched byproduct form."
-			color = "#1E461E"
-			alpha = 255
+			description = "A slightly radioactive heavy metal not suitable for nuclear fission. This is the unenriched byproduct form."
+			fluid_r = 30
+			fluid_g = 70
+			fluid_b = 30
+			transparency = 255
 
 			nuke_compat = 1
 			fissile = 1
@@ -52,10 +54,12 @@ datum
 		u235
 			name = "uranium-235"
 			id = "u235"
-			desc = "A radioactive dull silver-green heavy metal. This is the enriched form suitable for use as nuclear fuel."
+			description = "A radioactive dull silver-green heavy metal. This is the enriched form suitable for use as nuclear fuel."
 			reagent_state = SOLID
-			color = "#286428"
-			alpha = 255
+			fluid_r = 40
+			fluid_g = 100
+			fluid_b = 40
+			transparency = 255
 
 			nuke_compat = 1
 			fissile = 1
@@ -78,10 +82,12 @@ datum
 		pu239
 			name = "plutonium-239"
 			id = "pu239"
-			desc = "A highly radioactive dull silver-blue heavy metal. This is the enriched form suitable for use as nuclear fuel."
+			description = "A highly radioactive dull silver-blue heavy metal. This is the enriched form suitable for use as nuclear fuel."
 			reagent_state = SOLID
-			color = "#282864"
-			alpha = 255
+			fluid_r = 40
+			fluid_g = 40
+			fluid_b = 100
+			transparency = 255
 
 			nuke_compat = 1
 			fissile = 1
@@ -105,12 +111,12 @@ datum
 		kremfuel
 			name = "kremlinium"
 			id = "kremfuel"
-			desc = "debug metal"
+			description = "debug metal"
 			reagent_state = SOLID
 			fluid_r = 150
 			fluid_g = 0
 			fluid_b = 0
-			alpha = 255
+			transparency = 255
 
 			nuke_compat = 1
 			fissile = 1
