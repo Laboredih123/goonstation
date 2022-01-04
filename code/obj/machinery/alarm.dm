@@ -291,7 +291,7 @@
 	if(..())
 		return
 	if(href_list["toggle_override"])
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(control_frequency)
+		var/datum/radio_frequency/frequency = radio_controller.get_frequency(control_frequency)
 
 		if(!frequency) return
 
@@ -304,7 +304,7 @@
 		else
 			signal.data["command"] = "valve_undivert"
 
-		frequency.post_signal(src, signal)
+		frequency.packet_network.post_packet(src, signal)
 
 		e_gas = !e_gas
 
@@ -323,7 +323,7 @@
 		status |= NOPOWER
 
 /obj/machinery/alarm/proc/panic(var/time)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(control_frequency)
+	var/datum/radio_frequency/frequency = radio_controller.get_frequency(control_frequency)
 
 	if(!frequency) return
 
@@ -335,7 +335,7 @@
 	signal.data["tag"] = id
 	signal.data["command"] = "set_siphon"
 
-	frequency.post_signal(src, signal)
+	frequency.packet_network.post_packet(src, signal)
 
 	signal = get_free_signal()
 	signal.source = src
@@ -343,10 +343,10 @@
 	signal.data["tag"] = id
 	signal.data["command"] = "purge"
 
-	frequency.post_signal(src, signal)
+	frequency.packet_network.post_packet(src, signal)
 
 /obj/machinery/alarm/proc/unpanic()
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(control_frequency)
+	var/datum/radio_frequency/frequency = radio_controller.get_frequency(control_frequency)
 
 	if(!frequency) return
 
@@ -358,7 +358,7 @@
 	signal.data["tag"] = id
 	signal.data["command"] = "set_scrubbing"
 
-	frequency.post_signal(src, signal)
+	frequency.packet_network.post_packet(src, signal)
 
 	signal = get_free_signal()
 	signal.source = src
@@ -366,4 +366,4 @@
 	signal.data["tag"] = id
 	signal.data["command"] = "end_purge"
 
-	frequency.post_signal(src, signal)
+	frequency.packet_network.post_packet(src, signal)

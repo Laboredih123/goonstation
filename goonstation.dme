@@ -1058,6 +1058,8 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\modules\power\TEG.dm"
 #include "code\modules\power\terminal.dm"
 #include "code\modules\power\turbine.dm"
+#include "code\modules\power\nuke\analyzer.dm"
+#include "code\modules\power\nuke\bar.dm"
 #include "code\modules\power\nuke\centrifuge.dm"
 #include "code\modules\power\nuke\knobs.dm"
 #include "code\modules\power\nuke\Mat_Nuke.dm"
