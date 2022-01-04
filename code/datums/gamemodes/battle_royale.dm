@@ -82,15 +82,13 @@ var/global/list/datum/mind/battle_pass_holders = list()
 /datum/game_mode/battle_royale/proc/battle_shuttle_spawn(var/datum/mind/player)
 	bestow_objective(player,/datum/objective/battle_royale/win)
 	boutput(player.current, "<B>Objective</B>: Defeat all other battlers!")
-	player.current.nodamage = 1 // No murder on the battle shuttle
 		// Stuff them on the shuttle
 	player.current.set_loc(pick_landmark(LANDMARK_BATTLE_ROYALE_SPAWN))
 	equip_battler(player.current)
 	SPAWN_DBG(MAX_TIME_ON_SHUTTLE)
-		if(istype(get_area(player.current),/area/shuttle/escape/transit/battle_shuttle))
+		if(istype(get_area(player.current),/area/shuttle/battle))
 			boutput(player.current,"<span class='alert'>You are thrown out of the shuttle for taking too long!</span>")
 			player.current.set_loc(pick(get_area_turfs(current_battle_spawn,1)))
-			player.current.nodamage = 0
 			player.current.removeOverlayComposition(/datum/overlayComposition/shuttle_warp)
 			player.current.removeOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
 	SHOW_BATTLE_ROYALE_TIPS(player.current)
@@ -133,7 +131,7 @@ var/global/list/datum/mind/battle_pass_holders = list()
 		// oh and tell anyone on the shuttle it moved I guess
 		for(var/client/C)
 			if (C.mob)
-				if(istype(get_area(C.mob),/area/shuttle/escape/transit/battle_shuttle))
+				if(istype(get_area(C.mob),/area/shuttle/battle))
 					boutput(C.mob, "<span class='notice'>The battle shuttle is now flying over [current_battle_spawn_name]!</span>")
 
 	// Is it time for a storm

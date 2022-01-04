@@ -22,6 +22,9 @@ mob/new_player
 	New()
 		. = ..()
 		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_ALWAYS)
+	#ifdef I_DONT_WANNA_WAIT_FOR_THIS_PREGAME_SHIT_JUST_GO
+		ready = 1
+	#endif
 
 	// How could this even happen? Regardless, no log entries for unaffected mobs (Convair880).
 	ex_act(severity)
@@ -328,6 +331,8 @@ mob/new_player
 			else if (istype(character.mind.purchased_bank_item, /datum/bank_purchaseable/space_diner) || istype(character.mind.purchased_bank_item, /datum/bank_purchaseable/mail_order))
 				// Location is set in bank_purchaseable Create()
 				boutput(character.mind.current,"<h3 class='notice'>You've arrived through an alternative mode of travel! Good luck!</h3>")
+			else if (istype(ticker.mode, /datum/game_mode/assday))
+				character.set_loc(pick_landmark(LANDMARK_BATTLE_ROYALE_SPAWN))
 			else if (map_settings?.arrivals_type == MAP_SPAWN_CRYO)
 				var/obj/cryotron/starting_loc = null
 				if (ishuman(character) && by_type[/obj/cryotron])
@@ -418,7 +423,7 @@ mob/new_player
 			// probalby could be a define but dont give a shite
 			var/maxslots = 5
 			var/list/slots = list()
-			var/shown = min(max(c, (limit == -1 ? 99 : limit)), maxslots)
+			var/shown = clamp(c, (limit == -1 ? 99 : limit), maxslots)
 			// if there's still an open space, show a final join link
 			if (limit == -1 || (limit > maxslots && c < limit))
 				slots += "<a href='byond://?src=\ref[src];SelectedJob=\ref[J]' class='latejoin-card' style='border-color: [J.linkcolor];' title='Join the round as [J.name].'>&#x2713;&#xFE0E;</a>"
@@ -623,13 +628,12 @@ a.latejoin-card:hover {
 
 		var/mob/new_character = null
 		if (J)
-			new_character = new J.mob_type(src.loc, client.preferences.AH)
+			new_character = new J.mob_type(src.loc, client.preferences.AH, client.preferences)
 		else
-			new_character = new /mob/living/carbon/human(src.loc, client.preferences.AH) // fallback
+			new_character = new /mob/living/carbon/human(src.loc, client.preferences.AH, client.preferences) // fallback
 
 		close_spawn_windows()
 
-		client.preferences.copy_to(new_character,src)
 		if(ishuman(new_character))
 			var/mob/living/carbon/human/H = new_character
 			H.update_colorful_parts()
