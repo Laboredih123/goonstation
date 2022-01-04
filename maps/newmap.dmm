@@ -425,10 +425,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/science/testchamber)
-"io" = (
-/obj/item/nuke,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "ix" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/simulated/floor,
@@ -461,6 +457,13 @@
 "iR" = (
 /turf/space,
 /area/station/crew_quarters/captain)
+"iV" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/rcd/construction/safe/admin_crimes,
+/turf/simulated/floor,
+/area/station/crew_quarters/captain)
 "je" = (
 /turf/space,
 /area/space)
@@ -475,6 +478,10 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos)
+"jm" = (
+/obj/item/nuke,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "jn" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/cable{
@@ -544,6 +551,10 @@
 	},
 /turf/simulated/floor,
 /area/space)
+"kl" = (
+/obj/item/nuke/rod/u235_test,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "km" = (
 /turf/simulated/wall/auto/supernorn,
 /area/space)
@@ -1302,17 +1313,8 @@
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "zQ" = (
-/obj/window{
-	dir = 8;
-	icon_state = "rwindow";
-	reinf = 1
-	},
-/obj/machinery/atmospherics/unary/heat_reservoir{
-	current_heat_capacity = 10000000000000000000000000;
-	current_temperature = 10000000000000000000000000;
-	dir = 4;
-	icon_state = "intact_on";
-	on = 1
+/obj/machinery/atmospherics/unary/heat_exchanger{
+	dir = 4
 	},
 /turf/space,
 /area/station/crew_quarters/captain)
@@ -1532,6 +1534,10 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos)
+"Dy" = (
+/obj/item/nuke/rod/kfuel_test,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "DA" = (
 /obj/machinery/atmospherics/binary/passive_gate,
 /turf/simulated/wall/auto/reinforced/supernorn,
@@ -1638,13 +1644,6 @@
 /obj/landmark/start{
 	name = "Clown"
 	},
-/turf/simulated/floor,
-/area/station/crew_quarters/captain)
-"Fe" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/item/rcd/construction/safe/admin_crimes,
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
 "Fw" = (
@@ -2294,10 +2293,6 @@
 /obj/map/light/brighterwhite,
 /turf/unsimulated/floor/engine,
 /area/station/science/testchamber)
-"RJ" = (
-/obj/item/nuke/rod/pu239_test,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "RZ" = (
 /obj/landmark/map{
 	name = "NEWMAP"
@@ -2365,10 +2360,6 @@
 	},
 /turf/space,
 /area/station/crew_quarters/captain)
-"Tt" = (
-/obj/item/nuke/rod/kfuel_test,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "Tz" = (
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 8
@@ -2493,8 +2484,8 @@
 /obj/grille,
 /turf/space,
 /area/space)
-"VS" = (
-/obj/item/nuke/rod/u235_test,
+"VY" = (
+/obj/item/nuke/rod/pu239_test,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "Wl" = (
@@ -5073,7 +5064,7 @@ Lw
 qE
 eg
 hw
-Fe
+iV
 Hj
 Ln
 xi
@@ -21064,7 +21055,7 @@ je
 km
 zf
 PJ
-Tt
+Dy
 PJ
 zN
 PJ
@@ -21366,7 +21357,7 @@ je
 km
 Ax
 zN
-RJ
+VY
 zN
 zN
 zN
@@ -21668,7 +21659,7 @@ je
 km
 bd
 PJ
-VS
+kl
 PJ
 zN
 PJ
@@ -21975,7 +21966,7 @@ zN
 zN
 zN
 zN
-io
+jm
 km
 je
 je

@@ -1,5 +1,6 @@
 /obj/machinery/power/nuke_analyzer
-	var/html = {"<!doctype html>
+	attack_hand(var/mob/user as mob)
+		var/html = {"<!doctype html>
 <html>
 
 <head>
@@ -207,3 +208,8 @@
 </body>
 
 </html>"}
+		src.add_dialog(user)
+		user.Browse(html, "window=computer")
+		onclose(user, "computer")
+		return
+
