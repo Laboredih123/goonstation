@@ -1,23 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aJ" = (
+/obj/random_item_spawner/snacks/lots,
+/obj/random_item_spawner/snacks/lots,
+/obj/random_item_spawner/snacks/lots,
+/obj/random_item_spawner/snacks/lots,
+/obj/random_item_spawner/snacks/lots,
+/obj/random_item_spawner/snacks/lots,
+/obj/storage/crate/wooden,
+/turf/unsimulated/floor/white/checker2,
+/area/shuttle/escape/centcom)
 "aY" = (
 /obj/decal/fakeobjects/tallsmes,
 /turf/unsimulated/floor{
 	icon_state = "floor"
 	},
 /area/centcom/outside)
-"bg" = (
-/obj/table/reinforced/auto,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 7
-	},
-/obj/item/device/radio{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/escape/centcom)
 "bt" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -28,9 +25,7 @@
 /area/centcom/outside)
 "bM" = (
 /obj/machinery/computer/announcement,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
+/turf/unsimulated/floor/white,
 /area/shuttle/escape/centcom)
 "bP" = (
 /obj/decal/fakeobjects/pipe{
@@ -68,9 +63,16 @@
 	},
 /area/centcom)
 "dw" = (
-/turf/simulated/wall/auto/shuttle{
-	icon_state = "4"
-	},
+/turf/unsimulated/floor/carpet/green/fancy/edge/south,
+/area/shuttle/escape/centcom)
+"dA" = (
+/obj/table/auto,
+/obj/item/device/microphone,
+/turf/unsimulated/floor/white,
+/area/shuttle/escape/centcom)
+"eb" = (
+/obj/map/light/brightwhite,
+/turf/unsimulated/floor/specialroom/gym,
 /area/shuttle/escape/centcom)
 "ei" = (
 /obj/decal/tile_edge/line/black{
@@ -109,23 +111,41 @@
 	},
 /area/shuttle/escape/centcom)
 "fl" = (
-/obj/machinery/sleeper/compact{
-	dir = 8
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor3"
-	},
+/turf/unsimulated/floor/carpet/green/fancy/edge/nw,
 /area/shuttle/escape/centcom)
 "fn" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
+/obj/stool/chair{
+	dir = 1
 	},
+/turf/unsimulated/floor/white,
+/area/shuttle/escape/centcom)
+"fD" = (
+/turf/simulated/wall/auto/shuttle,
 /area/shuttle/escape/centcom)
 "fX" = (
 /turf/unsimulated/floor/arrival{
 	dir = 4
 	},
 /area/centcom)
+"gy" = (
+/obj/table/auto,
+/obj/item/clothing/mask/wrestling{
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/wrestling/black{
+	pixel_y = 3
+	},
+/obj/item/clothing/mask/wrestling/blue{
+	pixel_x = -3
+	},
+/obj/item/clothing/mask/wrestling/green{
+	pixel_x = 3
+	},
+/obj/stool/chair/boxingrope_corner{
+	dir = 9
+	},
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
 "hv" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -139,15 +159,24 @@
 	},
 /area/centcom/outside)
 "hD" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor6"
+/obj/fitness/speedbag/captain,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
 	},
+/turf/unsimulated/floor/grey,
+/area/shuttle/escape/centcom)
+"hR" = (
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "hY" = (
-/obj/machinery/door/airlock/pyro/glass/command,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
+/obj/wingrille_spawn/auto,
+/obj/decal/stage_edge{
+	layer = 2.9
 	},
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "ir" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -168,12 +197,11 @@
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
-"jw" = (
-/obj/table/reinforced/auto,
-/obj/item/storage/toolbox/emergency,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
+"jA" = (
+/obj/stool/chair/boxingrope_corner{
+	dir = 8
 	},
+/turf/unsimulated/floor/specialroom/gym,
 /area/shuttle/escape/centcom)
 "jY" = (
 /obj/decal/tile_edge/line/orange{
@@ -198,6 +226,13 @@
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
+"kC" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 10
+	},
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
 "kE" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/decal/tile_edge/stripe/corner/extra_big,
@@ -205,16 +240,8 @@
 /turf/unsimulated/floor/black,
 /area/centcom/outside)
 "kF" = (
-/obj/stool/chair/comfy/shuttle/red{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 10
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor4"
-	},
+/obj/machinery/vending/alcohol,
+/turf/unsimulated/floor/white/checker2,
 /area/shuttle/escape/centcom)
 "kL" = (
 /obj/stool/bench/blue/auto,
@@ -222,22 +249,11 @@
 	dir = 1
 	},
 /area/centcom)
-"kQ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor3"
-	},
-/area/shuttle/escape/centcom)
 "lJ" = (
-/obj/indestructible/shuttle_corner{
-	dir = 0;
-	icon_state = "7"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5
 	},
-/turf/simulated/wall/auto/shuttle{
-	icon_state = "3"
-	},
+/turf/unsimulated/floor/grey,
 /area/shuttle/escape/centcom)
 "lL" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -257,24 +273,37 @@
 	},
 /area/centcom/outside)
 "mh" = (
-/obj/indestructible/shuttle_corner{
-	dir = 4
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor4"
-	},
-/area/shuttle/escape/centcom)
-"ml" = (
-/obj/stool/chair/comfy/shuttle/red{
-	dir = 8
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor4"
-	},
+/obj/storage/secure/closet/fridge,
+/obj/item/reagent_containers/food/snacks/burger,
+/obj/item/reagent_containers/food/snacks/burger,
+/obj/item/reagent_containers/food/snacks/burger,
+/obj/item/reagent_containers/food/snacks/burger,
+/obj/item/reagent_containers/food/snacks/burger/baconburger,
+/obj/item/reagent_containers/food/snacks/burger/baconburger,
+/obj/item/reagent_containers/food/snacks/burger/baconburger,
+/obj/item/reagent_containers/food/snacks/burger/baconburger,
+/obj/item/reagent_containers/food/snacks/burger/cheeseburger,
+/obj/item/reagent_containers/food/snacks/burger/cheeseburger,
+/obj/item/reagent_containers/food/snacks/burger/cheeseburger,
+/obj/item/reagent_containers/food/snacks/burger/cheeseburger,
+/obj/item/reagent_containers/food/snacks/burger/fishburger,
+/obj/item/reagent_containers/food/snacks/burger/fishburger,
+/obj/item/reagent_containers/food/snacks/burger/fishburger,
+/obj/item/reagent_containers/food/snacks/burger/fishburger,
+/obj/item/reagent_containers/food/snacks/burger/monkeyburger,
+/obj/item/reagent_containers/food/snacks/burger/roburger,
+/obj/item/reagent_containers/food/snacks/burger/tikiburger,
+/turf/unsimulated/floor/white/checker2,
 /area/shuttle/escape/centcom)
 "mr" = (
 /obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
+"mu" = (
+/obj/stool/chair/boxingrope_corner{
+	dir = 10
+	},
+/turf/unsimulated/floor/specialroom/gym,
 /area/shuttle/escape/centcom)
 "nb" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -286,7 +315,21 @@
 /obj/indestructible/shuttle_corner{
 	dir = 1
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
+"ns" = (
+/obj/table/auto,
+/obj/item/storage/belt/wrestling,
+/obj/item/storage/belt/wrestling{
+	pixel_y = 5
+	},
+/obj/item/storage/belt/wrestling{
+	pixel_y = 10
+	},
+/obj/stool/chair/boxingrope_corner{
+	dir = 5
+	},
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "nG" = (
 /obj/decal/poster/wallsign/danger_highvolt{
@@ -297,30 +340,49 @@
 "og" = (
 /turf/unsimulated/wall/auto/lead/blue,
 /area/centcom)
-"op" = (
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 10
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor6"
-	},
-/area/shuttle/escape/centcom)
-"pd" = (
-/obj/stool/chair/comfy/shuttle{
+"oh" = (
+/turf/unsimulated/floor/stairs{
 	dir = 8
 	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor3"
-	},
 /area/shuttle/escape/centcom)
-"pm" = (
-/obj/stool/chair/comfy/shuttle/red{
+"op" = (
+/obj/fitness/speedbag/syndie,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
+	},
+/turf/unsimulated/floor/grey,
+/area/shuttle/escape/centcom)
+"oz" = (
+/obj/table/auto,
+/obj/item/cigarbox/gold,
+/obj/item/device/light/zippo/gold,
+/turf/unsimulated/floor/carpet/green/fancy/edge/sw,
+/area/shuttle/escape/centcom)
+"oB" = (
+/obj/machinery/door/airlock/pyro/glass/windoor{
+	dir = 8
+	},
+/turf/unsimulated/floor/white/checker2,
+/area/shuttle/escape/centcom)
+"oQ" = (
+/obj/decal/boxingropeenter{
+	dir = 8
+	},
+/turf/unsimulated/floor/specialroom/gym,
+/area/shuttle/escape/centcom)
+"pd" = (
+/obj/window/crystal/south,
+/turf/simulated/floor/airless/black/grime,
+/area/shuttle/escape/centcom)
+"ph" = (
+/obj/stool/chair/comfy/red{
 	dir = 4
 	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor4"
-	},
+/turf/unsimulated/floor/carpet/green/fancy/edge/west,
+/area/shuttle/escape/centcom)
+"pm" = (
+/obj/machinery/deep_fryer,
+/turf/unsimulated/floor/white/checker2,
 /area/shuttle/escape/centcom)
 "pu" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -350,13 +412,23 @@
 /obj/machinery/light/small/floor,
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
-"qq" = (
-/obj/stool/chair/comfy/shuttle/brown,
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 10
+"qb" = (
+/turf/unsimulated/floor/stairs{
+	dir = 4
 	},
-/turf/unsimulated/floor/shuttle,
+/area/shuttle/escape/centcom)
+"qq" = (
+/obj/machinery/vending/cola,
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
+"qI" = (
+/obj/decal/stage_edge{
+	dir = 2
+	},
+/turf/unsimulated/floor/stairs{
+	dir = 1;
+	icon_state = "stairs_middle"
+	},
 /area/shuttle/escape/centcom)
 "qO" = (
 /turf/unsimulated/wall{
@@ -413,12 +485,17 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 4
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "sx" = (
-/turf/simulated/wall/auto/shuttle{
-	icon_state = "13"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
 	},
+/turf/unsimulated/floor/grey,
+/area/shuttle/escape/centcom)
+"sz" = (
+/obj/stool/chair/boxingrope_corner,
+/turf/unsimulated/floor/specialroom/gym,
 /area/shuttle/escape/centcom)
 "uh" = (
 /obj/shrub,
@@ -434,6 +511,64 @@
 /obj/machinery/light/small/floor,
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
+"uN" = (
+/obj/table/auto,
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	rand_pos = 1
+	},
+/turf/unsimulated/floor/carpet/green,
+/area/shuttle/escape/centcom)
 "uU" = (
 /turf/unsimulated/floor/arrival,
 /area/centcom)
@@ -441,6 +576,12 @@
 /turf/simulated/wall/auto/shuttle{
 	icon_state = "3"
 	},
+/area/shuttle/escape/centcom)
+"vL" = (
+/obj/indestructible/shuttle_corner{
+	dir = 8
+	},
+/turf/unsimulated/floor/shiny,
 /area/shuttle/escape/centcom)
 "vN" = (
 /obj/decal/fakeobjects/pipe{
@@ -458,20 +599,35 @@
 	icon_state = "floor"
 	},
 /area/centcom/outside)
+"vO" = (
+/turf/unsimulated/floor/carpet/green,
+/area/shuttle/escape/centcom)
+"vQ" = (
+/obj/stool/chair{
+	dir = 4
+	},
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
 "wq" = (
-/obj/stool/chair/comfy/shuttle/brown,
-/obj/machinery/light,
-/turf/unsimulated/floor/shuttle,
+/obj/loudspeaker,
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "wI" = (
-/obj/stool/chair/comfy/shuttle/pilot,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
+/obj/stool/chair/comfy/shuttle/pilot{
+	dir = 1
 	},
+/turf/unsimulated/floor/white,
+/area/shuttle/escape/centcom)
+"wK" = (
+/obj/machinery/vending/coffee,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 10
+	},
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "wT" = (
-/obj/machinery/light/small/floor,
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "xi" = (
 /obj/stool/chair/blue{
@@ -482,12 +638,11 @@
 	},
 /area/centcom)
 "xj" = (
-/obj/stool/chair/comfy/shuttle/green{
-	dir = 4
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor6"
-	},
+/turf/unsimulated/floor/grey,
 /area/shuttle/escape/centcom)
 "xq" = (
 /obj/decal/tile_edge/line/orange{
@@ -502,18 +657,29 @@
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
+"xQ" = (
+/obj/window/reinforced/west,
+/turf/unsimulated/floor/white/checker2,
+/area/shuttle/escape/centcom)
 "xT" = (
 /obj/wingrille_spawn/auto,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
+/turf/unsimulated/floor/white,
+/area/shuttle/escape/centcom)
+"ye" = (
+/obj/table/auto,
+/obj/item/wrestlingbell,
+/turf/unsimulated/floor/white,
 /area/shuttle/escape/centcom)
 "yK" = (
-/obj/table/auto,
-/obj/item/kitchen/food_box/donut_box,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor6"
+/obj/fitness/weightlifter,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
 	},
+/obj/machinery/light/small/floor,
+/turf/unsimulated/floor/grey,
+/area/shuttle/escape/centcom)
+"zm" = (
+/turf/unsimulated/floor/specialroom/gym,
 /area/shuttle/escape/centcom)
 "zv" = (
 /obj/shrub,
@@ -571,6 +737,16 @@
 "AA" = (
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
+"AG" = (
+/obj/decal/stage_edge{
+	dir = 2
+	},
+/obj/machinery/light/small/floor,
+/turf/unsimulated/floor/stairs{
+	dir = 1;
+	icon_state = "Stairs_wide"
+	},
+/area/shuttle/escape/centcom)
 "AM" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9;
@@ -605,12 +781,30 @@
 	icon_state = "floor"
 	},
 /area/centcom/outside)
+"Bq" = (
+/obj/stool/chair/comfy/red{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet/green/fancy/edge/east,
+/area/shuttle/escape/centcom)
+"Bu" = (
+/obj/indestructible/shuttle_corner{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
 "BC" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
+"BQ" = (
+/obj/decal/boxingropeenter{
+	dir = 4
+	},
+/turf/unsimulated/floor/specialroom/gym,
+/area/shuttle/escape/centcom)
 "CB" = (
 /obj/indestructible/shuttle_corner{
 	dir = 0
@@ -626,6 +820,18 @@
 	dir = 0
 	},
 /turf/unsimulated/floor/shuttlebay,
+/area/shuttle/escape/centcom)
+"Dr" = (
+/obj/table/auto,
+/obj/item/storage/belt/wrestling,
+/obj/item/storage/belt/wrestling{
+	pixel_y = 5
+	},
+/obj/item/storage/belt/wrestling{
+	pixel_y = 10
+	},
+/obj/stool/chair/boxingrope_corner,
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "DB" = (
 /obj/decal/fakeobjects/pipe{
@@ -661,19 +867,9 @@
 /area/centcom/outside)
 "EC" = (
 /obj/table/auto,
-/obj/item/storage/firstaid/fire{
-	pixel_x = -6
-	},
-/obj/item/storage/firstaid/brute{
-	pixel_x = 7
-	},
-/obj/item/storage/firstaid/oxygen{
-	pixel_x = 1;
-	pixel_y = 10
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor3"
-	},
+/obj/item/cigarbox/gold,
+/obj/item/device/light/zippo/gold,
+/turf/unsimulated/floor/carpet/green/fancy/edge/east,
 /area/shuttle/escape/centcom)
 "EN" = (
 /obj/shrub{
@@ -713,6 +909,15 @@
 	},
 /turf/unsimulated/floor/black,
 /area/centcom/outside)
+"Fv" = (
+/obj/stool/chair/boxingrope_corner{
+	dir = 4
+	},
+/turf/unsimulated/floor/specialroom/gym,
+/area/shuttle/escape/centcom)
+"Gb" = (
+/turf/unsimulated/floor/carpet/green/fancy/edge/ne,
+/area/shuttle/escape/centcom)
 "Gj" = (
 /obj/machinery/light/small/floor,
 /turf/unsimulated/floor/black,
@@ -739,9 +944,6 @@
 /obj/machinery/light/small/floor,
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
-"GM" = (
-/turf/unsimulated/floor/shuttle,
-/area/shuttle/escape/centcom)
 "GQ" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -755,6 +957,15 @@
 	icon_state = "floor"
 	},
 /area/centcom/outside)
+"GX" = (
+/obj/machinery/door/airlock/pyro/security{
+	dir = 4
+	},
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
+"He" = (
+/turf/unsimulated/floor/carpet/green/fancy/innercorner/nw,
+/area/shuttle/escape/centcom)
 "Hf" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8
@@ -763,9 +974,7 @@
 /area/shuttle/escape/centcom)
 "HA" = (
 /obj/machinery/computer/shuttle,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
+/turf/unsimulated/floor/white,
 /area/shuttle/escape/centcom)
 "Ih" = (
 /obj/decal/poster/wallsign/hazard_caution,
@@ -788,13 +997,26 @@
 	},
 /area/centcom/outside)
 "IL" = (
-/obj/stool/chair/comfy/shuttle{
-	dir = 1
-	},
+/obj/table/auto,
+/obj/random_item_spawner/snacks/lots,
 /obj/machinery/light,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
+/turf/unsimulated/floor/white,
+/area/shuttle/escape/centcom)
+"IQ" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
+/obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
+/obj/machinery/door/airlock/pyro/glass/windoor,
+/turf/unsimulated/floor/white/checker2,
+/area/shuttle/escape/centcom)
+"IS" = (
+/obj/stool/chair/boxingrope_corner{
+	dir = 6
 	},
+/turf/unsimulated/floor/specialroom/gym,
 /area/shuttle/escape/centcom)
 "IY" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -819,10 +1041,10 @@
 	},
 /area/centcom)
 "Jb" = (
-/obj/machinery/door/airlock/pyro/glass,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor6"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
 	},
+/turf/unsimulated/floor/grey,
 /area/shuttle/escape/centcom)
 "Jh" = (
 /obj/shrub{
@@ -842,21 +1064,19 @@
 	},
 /turf/unsimulated/floor/black,
 /area/centcom/outside)
-"Kb" = (
-/obj/stool/chair/comfy/shuttle{
-	dir = 8
+"JT" = (
+/obj/indestructible/shuttle_corner{
+	dir = 4
 	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
+/turf/unsimulated/floor/white/checker2,
 /area/shuttle/escape/centcom)
 "KB" = (
+/obj/machinery/deep_fryer,
 /obj/machinery/light{
-	dir = 1
+	dir = 1;
+	pixel_y = 10
 	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor4"
-	},
+/turf/unsimulated/floor/white/checker2,
 /area/shuttle/escape/centcom)
 "KC" = (
 /turf/unsimulated/floor/stairs/dark/wide{
@@ -872,30 +1092,20 @@
 /turf/unsimulated/floor/black,
 /area/centcom/outside)
 "KS" = (
-/obj/table/auto,
-/obj/machinery/coffeemaker{
-	pixel_x = -1;
-	pixel_y = 2
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9
 	},
-/obj/drink_rack/mug{
-	pixel_x = -26;
-	pixel_y = 4
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor6"
-	},
+/turf/unsimulated/floor/grey,
 /area/shuttle/escape/centcom)
 "KU" = (
-/obj/machinery/sleeper/compact{
-	dir = 8
+/obj/stool/chair/comfy/red{
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -10
 	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor3"
-	},
+/turf/unsimulated/floor/carpet/green/fancy/edge/nw,
 /area/shuttle/escape/centcom)
 "Lu" = (
 /obj/decal/tile_edge/line/black{
@@ -918,17 +1128,13 @@
 /turf/unsimulated/floor/black,
 /area/centcom/outside)
 "Mf" = (
-/obj/machinery/door/airlock/pyro/security{
-	name = "Secure Transport"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor4"
-	},
+/obj/table/reinforced/bar/auto,
+/obj/random_item_spawner/snacks/lots,
+/obj/machinery/door/airlock/pyro/glass/windoor,
+/turf/unsimulated/floor/white/checker2,
 /area/shuttle/escape/centcom)
 "Mq" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor3"
-	},
+/turf/unsimulated/floor/carpet/green/fancy/edge/north,
 /area/shuttle/escape/centcom)
 "MC" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -941,9 +1147,19 @@
 	icon_state = "floor"
 	},
 /area/centcom)
+"MJ" = (
+/obj/stool/chair/couch/red{
+	dir = 5
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 10
+	},
+/turf/unsimulated/floor/carpet/green/fancy/edge/se,
+/area/shuttle/escape/centcom)
 "Nt" = (
-/obj/stool/chair/comfy/shuttle/brown,
-/turf/unsimulated/floor/shuttle,
+/obj/wingrille_spawn/auto/crystal,
+/turf/simulated/floor/airless/black/grime,
 /area/shuttle/escape/centcom)
 "NG" = (
 /turf/simulated/wall/auto/shuttle{
@@ -982,9 +1198,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 0
 	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
+/turf/unsimulated/floor/white,
 /area/shuttle/escape/centcom)
 "OU" = (
 /obj/decal/fakeobjects/pipe{
@@ -1037,6 +1251,16 @@
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
+"Ra" = (
+/obj/decal/stage_edge{
+	dir = 2
+	},
+/obj/machinery/light/small/floor,
+/turf/unsimulated/floor/stairs{
+	dir = 1;
+	icon_state = "Stairs2_wide"
+	},
+/area/shuttle/escape/centcom)
 "Rd" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10
@@ -1050,6 +1274,12 @@
 /obj/machinery/light/small/floor,
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
+"Rh" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/unsimulated/floor/grey,
+/area/shuttle/escape/centcom)
 "Rp" = (
 /turf/unsimulated/floor/stairs/dark/wide{
 	dir = 9
@@ -1106,16 +1336,14 @@
 	},
 /area/centcom/outside)
 "SL" = (
-/obj/indestructible/shuttle_corner{
-	dir = 8
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor3"
-	},
+/obj/access_spawn/security,
+/obj/machinery/door/airlock/pyro/glass/windoor,
+/turf/simulated/floor/airless/black/grime,
 /area/shuttle/escape/centcom)
 "Tl" = (
-/turf/simulated/wall/auto/shuttle{
-	icon_state = "8"
+/obj/machinery/door/airlock/pyro/glass/command,
+/turf/unsimulated/floor/stairs{
+	dir = 1
 	},
 /area/shuttle/escape/centcom)
 "Ts" = (
@@ -1144,6 +1372,18 @@
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
+"Uo" = (
+/obj/table/auto,
+/obj/item/clothing/gloves/boxing{
+	pixel_y = 5
+	},
+/obj/item/clothing/gloves/boxing,
+/obj/item/clothing/gloves/boxing{
+	pixel_y = -4
+	},
+/obj/stool/chair/boxingrope_corner,
+/turf/unsimulated/floor/wood/three,
+/area/shuttle/escape/centcom)
 "VJ" = (
 /obj/decal/poster/wallsign/danger_highvolt{
 	pixel_y = 32
@@ -1154,7 +1394,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 0
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "VQ" = (
 /obj/decal/fakeobjects/pipe{
@@ -1173,9 +1413,7 @@
 /obj/indestructible/shuttle_corner{
 	dir = 1
 	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
+/turf/unsimulated/floor/white,
 /area/shuttle/escape/centcom)
 "Wt" = (
 /obj/stool/bench/blue/auto,
@@ -1187,10 +1425,10 @@
 /turf/unsimulated/floor/arrival,
 /area/centcom)
 "Xe" = (
-/obj/machinery/door/airlock/pyro/medical/alt,
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor3"
+/obj/stool/chair/couch/red{
+	dir = 9
 	},
+/turf/unsimulated/floor/carpet/green/fancy/edge/south,
 /area/shuttle/escape/centcom)
 "Xm" = (
 /obj/decal/fakeobjects/pipe{
@@ -1205,6 +1443,16 @@
 	icon_state = "floor"
 	},
 /area/centcom/outside)
+"Xn" = (
+/obj/decal/boxingropeenter,
+/turf/unsimulated/floor/specialroom/gym,
+/area/shuttle/escape/centcom)
+"Xs" = (
+/obj/fitness/stacklifter,
+/obj/decal/tile_edge/stripe/extra_big,
+/obj/machinery/light/small/floor,
+/turf/unsimulated/floor/grey,
+/area/shuttle/escape/centcom)
 "XE" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6;
@@ -1213,12 +1461,7 @@
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
 "Yu" = (
-/obj/stool/chair/comfy/shuttle{
-	dir = 4
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
+/turf/unsimulated/floor/white,
 /area/shuttle/escape/centcom)
 "Yy" = (
 /obj/decal/tile_edge/line/orange{
@@ -1234,17 +1477,14 @@
 /turf/unsimulated/floor/shuttlebay,
 /area/shuttle/escape/centcom)
 "Zb" = (
-/obj/stool/chair/comfy/shuttle/brown,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -10
 	},
-/turf/unsimulated/floor/shuttle,
+/turf/unsimulated/floor/wood/three,
 /area/shuttle/escape/centcom)
 "ZL" = (
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor4"
-	},
+/turf/unsimulated/floor/white/checker2,
 /area/shuttle/escape/centcom)
 
 (1,1,1) = {"
@@ -1425,7 +1665,7 @@ PQ
 Bh
 ve
 ve
-Bh
+ve
 ve
 mr
 sk
@@ -1450,16 +1690,16 @@ XE
 nb
 CH
 Bh
-SL
+vL
 KU
-fl
-Oc
+ph
+oz
 Nt
 Zb
-GM
-Nt
-Nt
-GM
+wT
+wT
+wT
+wT
 Zb
 nf
 Gv
@@ -1479,16 +1719,16 @@ ce
 CB
 SL
 fl
-Mq
-Mq
+He
+vO
 dw
 Nt
-Nt
-GM
-Nt
-Nt
-GM
-Nt
+wT
+vQ
+vQ
+vQ
+qb
+vQ
 wq
 Oc
 QB
@@ -1505,19 +1745,19 @@ QF
 bt
 ce
 Ay
-kQ
+pd
 Mq
-Mq
-Mq
+vO
+uN
 Xe
-GM
-wT
-GM
-GM
-wT
-GM
 Nt
-Nt
+wT
+gy
+jA
+jA
+oQ
+jA
+mu
 Oc
 xT
 xT
@@ -1534,20 +1774,20 @@ bt
 ce
 fg
 pd
-pd
-pd
+Gb
+Bq
 EC
-dw
+MJ
 Nt
-Nt
-GM
-Nt
-Nt
-GM
-Nt
-Nt
+wT
+Uo
+eb
+zm
+zm
+eb
+Xn
 Tl
-bg
+Yu
 Yu
 Wl
 Gv
@@ -1561,22 +1801,22 @@ DB
 TR
 Rg
 YT
-Bh
+fD
+GX
 ve
 ve
 ve
-sx
-Nt
-Nt
+Bu
 wT
-Nt
-Nt
-GM
-wT
-GM
+Ra
+zm
+zm
+zm
+zm
+sz
 hY
 fn
-fn
+Yu
 IL
 xT
 BC
@@ -1594,16 +1834,16 @@ KS
 xj
 xj
 Jb
-GM
-GM
-GM
-GM
-GM
-GM
-Nt
-Nt
-dw
-fn
+wT
+wT
+qI
+zm
+eb
+eb
+zm
+sz
+hY
+dA
 wI
 HA
 xT
@@ -1621,17 +1861,17 @@ Oc
 yK
 hD
 op
-Jb
-GM
-GM
-GM
-GM
-GM
-GM
-Nt
-Nt
-dw
-fn
+Xs
+wT
+wT
+qI
+zm
+eb
+eb
+zm
+sz
+hY
+ye
 wI
 bM
 xT
@@ -1645,22 +1885,22 @@ DB
 XE
 uD
 CH
-NG
+fD
 lJ
-ve
-ve
+Rh
+Rh
 sx
-Nt
-Nt
 wT
-Nt
-Nt
-GM
 wT
-GM
+AG
+zm
+zm
+zm
+zm
+sz
 hY
 fn
-fn
+Yu
 IL
 xT
 BC
@@ -1674,21 +1914,21 @@ bt
 ce
 es
 pm
-pm
-pm
-pm
-dw
-Nt
-Nt
-GM
-Nt
-Nt
-GM
-Nt
-Nt
-dw
-jw
-Kb
+oB
+xQ
+xQ
+Mf
+wT
+wT
+Dr
+eb
+zm
+zm
+eb
+Xn
+Tl
+Yu
+Yu
 Oo
 Hf
 BC
@@ -1706,14 +1946,14 @@ ZL
 ZL
 ZL
 Mf
-GM
 wT
-GM
-GM
 wT
-GM
-Nt
-Nt
+ns
+Fv
+Fv
+BQ
+Fv
+IS
 Oc
 xT
 xT
@@ -1730,17 +1970,17 @@ bt
 ce
 Io
 mh
-ml
 ZL
 ZL
-dw
-Nt
-Nt
-GM
-Nt
-Nt
-GM
-Nt
+ZL
+IQ
+wT
+wT
+hR
+hR
+hR
+oh
+hR
 wq
 Oc
 km
@@ -1757,18 +1997,18 @@ DB
 TR
 Rd
 YT
-NG
-mh
+ve
+JT
 kF
-ml
-Oc
-Nt
+aJ
+fD
+wK
 qq
-GM
-Nt
-Nt
-GM
-qq
+wT
+wT
+wT
+wT
+kC
 VL
 Hf
 BC
