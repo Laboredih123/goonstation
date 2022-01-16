@@ -92,13 +92,12 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "cd" = (
-/obj/machinery/atmospherics/binary/volume_pump{
-	dir = 1;
-	icon_state = "intact_on";
-	on = 1;
-	transfer_rate = 1000
-	},
 /obj/map/light/brighterwhite,
+/obj/machinery/atmospherics/unary/heat_reservoir{
+	current_temperature = 5000;
+	icon_state = "intact_on";
+	on = 1
+	},
 /turf/simulated/floor,
 /area/station/atmos)
 "ci" = (
@@ -191,10 +190,8 @@
 /turf/simulated/floor/engine,
 /area/space)
 "eo" = (
-/obj/machinery/atmospherics/pipe/simple/insulated{
-	can_rupture = 0
-	},
-/turf/simulated/wall/auto/reinforced/supernorn,
+/obj/machinery/atmospherics/pipe/vent,
+/turf/space,
 /area/space)
 "er" = (
 /obj/machinery/door/poddoor/blast/pyro{
@@ -294,6 +291,12 @@
 	},
 /turf/space,
 /area/space)
+"fF" = (
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	dir = 5
+	},
+/turf/simulated/floor,
+/area/station/atmos)
 "gb" = (
 /obj/landmark/start{
 	name = "Roboticist"
@@ -365,7 +368,7 @@
 	layer = 8;
 	name = "Incinerator Release"
 	},
-/turf/space,
+/turf/simulated/floor/airless/engine/vacuum,
 /area/research_outpost/toxins)
 "ho" = (
 /obj/forcefield/energyshield/perma{
@@ -438,7 +441,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/airless/plating,
+/turf/simulated/floor/airless/engine/vacuum,
 /area/research_outpost/toxins)
 "iG" = (
 /obj/grille/catwalk{
@@ -640,7 +643,7 @@
 	icon_state = "on";
 	on = 1
 	},
-/turf/simulated/floor/airless/plating,
+/turf/simulated/floor/airless/engine/vacuum,
 /area/research_outpost/toxins)
 "lN" = (
 /obj/grille/catwalk{
@@ -661,6 +664,13 @@
 /obj/landmark/start/latejoin,
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"mi" = (
+/obj/map/light/brighterwhite,
+/obj/machinery/atmospherics/pipe/manifold/overfloor{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/station/atmos)
 "mz" = (
 /obj/machinery/atmospherics/unary/cold_sink{
 	current_temperature = 0;
@@ -792,6 +802,12 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"pf" = (
+/obj/map/light/brighterwhite,
+/obj/machinery/atmospherics/filter,
+/obj/machinery/atmospherics/filter,
+/turf/simulated/floor,
+/area/station/atmos)
 "pm" = (
 /obj/grille/catwalk{
 	dir = 6;
@@ -946,13 +962,11 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
 "sj" = (
-/obj/machinery/atmospherics/unary/heat_reservoir{
-	current_temperature = 5000;
-	icon_state = "intact_on";
-	on = 1
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	can_rupture = 0
 	},
-/turf/simulated/floor,
-/area/station/atmos)
+/turf/simulated/wall/auto/reinforced/supernorn,
+/area/space)
 "sm" = (
 /turf/simulated/floor,
 /area/station/crew_quarters/bar)
@@ -1001,8 +1015,13 @@
 /turf/space,
 /area/station/crew_quarters/captain)
 "tF" = (
-/obj/machinery/atmospherics/pipe/simple/insulated{
-	dir = 5
+/obj/machinery/atmospherics/mixer{
+	frequency = 1229;
+	icon_state = "intact_on";
+	id_tag = "toxin_intermix";
+	master_id = "toxin_intermix_control";
+	on = 1;
+	pixel_x = -1
 	},
 /turf/simulated/floor,
 /area/station/atmos)
@@ -1142,8 +1161,7 @@
 /area/research_outpost/toxins)
 "vX" = (
 /obj/machinery/atmospherics/pipe/simple/junction{
-	dir = 4;
-	pixel_y = 1
+	dir = 4
 	},
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/space)
@@ -1165,16 +1183,8 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
 "wn" = (
-/obj/machinery/atmospherics/mixer{
-	frequency = 1229;
-	icon_state = "intact_on";
-	id_tag = "toxin_intermix";
-	master_id = "toxin_intermix_control";
-	on = 1;
-	pixel_x = -1
-	},
-/turf/simulated/floor,
-/area/station/atmos)
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/space)
 "wp" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -1213,10 +1223,11 @@
 	},
 /area/space)
 "xj" = (
-/obj/machinery/atmospherics/valve/digital{
+/obj/map/light/brighterwhite,
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	can_rupture = 0;
 	dir = 4
 	},
-/obj/map/light/brighterwhite,
 /turf/simulated/floor,
 /area/station/atmos)
 "xL" = (
@@ -1506,7 +1517,7 @@
 "Dl" = (
 /obj/machinery/power/turbine,
 /obj/cable,
-/turf/simulated/floor/airless/plating,
+/turf/simulated/floor/airless/engine/vacuum,
 /area/research_outpost/toxins)
 "Dm" = (
 /obj/disposalpipe/junction{
@@ -1539,7 +1550,7 @@
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "DA" = (
-/obj/machinery/atmospherics/binary/passive_gate,
+/obj/machinery/atmospherics/valve/digital,
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/space)
 "DG" = (
@@ -1575,7 +1586,7 @@
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 1
 	},
-/turf/simulated/floor/airless/plating,
+/turf/simulated/floor/airless/engine/vacuum,
 /area/research_outpost/toxins)
 "Ep" = (
 /obj/cable{
@@ -1646,6 +1657,12 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"Fl" = (
+/obj/machinery/atmospherics/valve/digital{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/atmos)
 "Fw" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor,
@@ -1671,7 +1688,7 @@
 	id = "incinerator";
 	on = 0
 	},
-/turf/simulated/floor/airless/plating,
+/turf/simulated/floor/airless/engine/vacuum,
 /area/research_outpost/toxins)
 "Gm" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -1932,10 +1949,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "Lk" = (
-/obj/machinery/atmospherics/pipe/simple/insulated{
-	can_rupture = 0;
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold/overfloor,
 /turf/simulated/floor,
 /area/station/atmos)
 "Ln" = (
@@ -1973,12 +1987,11 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/research_outpost/toxins)
 "LW" = (
-/obj/machinery/computer/atmosphere/mixercontrol{
-	frequency = 1229;
-	id = "toxin_intermix_control";
-	mixerid = "toxin_intermix"
-	},
 /obj/map/light/brighterwhite,
+/obj/machinery/atmospherics/pipe/tank{
+	dir = 4;
+	initialize_directions = 8
+	},
 /turf/simulated/floor,
 /area/station/atmos)
 "Ma" = (
@@ -2152,6 +2165,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
+"OM" = (
+/obj/machinery/atmospherics/filter,
+/turf/simulated/floor,
+/area/station/atmos)
 "OW" = (
 /obj/grille/catwalk{
 	dir = 10;
@@ -2179,6 +2196,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/space)
+"Pk" = (
+/obj/map/light/brighterwhite,
+/obj/machinery/atmospherics/portables_connector,
+/turf/simulated/floor,
+/area/station/atmos)
 "Pl" = (
 /obj/map/light/brighterwhite,
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -2234,6 +2256,7 @@
 "Qa" = (
 /obj/machinery/power/apc/autoname_south,
 /obj/cable,
+/obj/machinery/dispenser,
 /turf/simulated/floor,
 /area/station/atmos/highcap_storage)
 "Qj" = (
@@ -2421,6 +2444,15 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"UP" = (
+/obj/machinery/atmospherics/binary/volume_pump{
+	dir = 1;
+	icon_state = "intact_on";
+	on = 1;
+	transfer_rate = 1000
+	},
+/turf/simulated/floor,
+/area/station/atmos)
 "Vi" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor,
@@ -2574,6 +2606,14 @@
 /obj/map/light/brighterwhite,
 /turf/simulated/floor,
 /area/station/atmos/highcap_storage)
+"YI" = (
+/obj/machinery/computer/atmosphere/mixercontrol{
+	frequency = 1229;
+	id = "toxin_intermix_control";
+	mixerid = "toxin_intermix"
+	},
+/turf/simulated/floor,
+/area/station/atmos)
 "YK" = (
 /obj/machinery/dispenser,
 /turf/simulated/floor,
@@ -4127,10 +4167,10 @@ je
 je
 je
 je
-je
-bK
-qT
-qT
+eo
+sj
+UP
+Lg
 qT
 qT
 qT
@@ -4429,8 +4469,8 @@ je
 je
 je
 je
-Sk
-eo
+je
+bK
 cd
 Lg
 IN
@@ -4733,8 +4773,8 @@ je
 je
 je
 bK
-sj
-Lg
+ka
+fF
 qT
 qT
 qT
@@ -5035,10 +5075,10 @@ je
 je
 je
 bK
-ZJ
+Pk
 tF
-IN
-qT
+mi
+Lg
 IN
 eJ
 IN
@@ -5337,10 +5377,10 @@ je
 je
 je
 bK
-ka
-wn
-bY
-Lg
+YI
+qT
+Fl
+qT
 qT
 qT
 qT
@@ -5638,7 +5678,7 @@ je
 je
 je
 je
-bK
+wn
 LW
 qT
 xj
@@ -7462,9 +7502,9 @@ qT
 IN
 qT
 IN
-qT
-IN
-qT
+wK
+Dw
+wK
 IN
 qT
 IN
@@ -7764,9 +7804,9 @@ qT
 qT
 qT
 qT
-qT
-qT
-qT
+zw
+zw
+zw
 qT
 qT
 qT
@@ -8064,13 +8104,13 @@ qT
 IN
 qT
 IN
-qT
-IN
-qT
-IN
-qT
-IN
-qT
+ka
+Kk
+OM
+pf
+OM
+Kk
+Lg
 IN
 qT
 IN
@@ -14094,7 +14134,7 @@ bK
 bK
 bK
 bK
-bK
+wn
 je
 je
 je
@@ -15318,7 +15358,7 @@ km
 iR
 Gr
 zQ
-Yw
+Gr
 zQ
 Gr
 Jo

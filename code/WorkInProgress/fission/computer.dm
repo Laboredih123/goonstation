@@ -6,7 +6,7 @@
 	icon = 'icons/obj/machines/nuclear.dmi'
 	icon_state = "Sing2"
 
-	var/id = 0.0
+	id = 0.0
 
 	req_access = list(access_heads)
 	var/authenticated = 0

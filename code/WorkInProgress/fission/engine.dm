@@ -261,7 +261,7 @@ REACTOR
 
 	proc/setupCherenkovRad()
 
-	UpdateIcon()
+	proc/updateicon()
 		if (status & BROKEN)
 			icon_state = "reactoroff"
 			return
