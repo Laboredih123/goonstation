@@ -3180,6 +3180,9 @@ ABSTRACT_TYPE(/area/station/catwalk)
 /area/station/routing/airbridge
 		name = "Airbridge Router"
 
+/area/station/routing/sortingRoom
+		name = "Mail Sorting Room"
+
 /// Off-station research outpost. Used for Cog2.
 /area/research_outpost
 	name = "Research Outpost"
@@ -3254,6 +3257,10 @@ ABSTRACT_TYPE(/area/station/catwalk)
 /area/syndicate_station/firing_range
 		name = "firing range"
 		icon_state = "blue"
+
+/area/syndicate_station/assault_pod
+		name = "forward assault pod"
+		icon_state = "red"
 
 /area/syndicate_station/medbay
 		name = "medical bay"
