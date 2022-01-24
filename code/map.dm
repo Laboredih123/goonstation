@@ -24,7 +24,7 @@ var/global/list/mapNames = list(
 	"Donut 2" = 		list("id" = "DONUT2", 		"settings" = "donut2",			"playerPickable" = ASS_JAM),
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 1, 	"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 1),
-	"New Map" = 		list("id" = "NEWMAP", 		"settings" = "newmap", 		"playerPickable" = 1),
+	"New Map" = 		list("id" = "NEWMAP", 		"settings" = "cogmap2", 		"playerPickable" = 1),
 	"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 	"settings" = "oshan", 			"playerPickable" = 1),

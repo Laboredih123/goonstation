@@ -507,7 +507,7 @@
 /area/station/atmos/highcap_storage)
 "jz" = (
 /obj/machinery/atmospherics/pipe/simple/insulated,
-/obj/machinery/ignition_switch{
+/obj/machinery/activation_button/ignition_switch{
 	id = "incinerator"
 	},
 /turf/simulated/wall/auto/reinforced/supernorn,
@@ -1414,7 +1414,9 @@
 /area/station/atmos/highcap_storage)
 "Bc" = (
 /obj/map/light/brighterwhite,
-/obj/machinery/atmospherics/retrofilter,
+/obj/machinery/atmospherics/retrofilter{
+	name = "Gas filter 2"
+	},
 /turf/simulated/floor,
 /area/station/atmos)
 "Bd" = (
@@ -2533,7 +2535,7 @@
 /turf/space,
 /area/space)
 "Wy" = (
-/obj/machinery/ignition_switch{
+/obj/machinery/activation_button/ignition_switch{
 	id = "combust"
 	},
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -2663,6 +2665,12 @@
 /obj/machinery/disposal,
 /turf/simulated/floor,
 /area/station/crew_quarters/bar)
+"Zx" = (
+/obj/machinery/atmospherics/retrofilter{
+	name = "Gas filter 3"
+	},
+/turf/simulated/floor,
+/area/station/atmos)
 "ZB" = (
 /obj/item/device/multitool,
 /obj/item/device/multitool,
@@ -6900,7 +6908,7 @@ ka
 Kk
 wc
 Bc
-wc
+Zx
 Kk
 Lg
 IN
