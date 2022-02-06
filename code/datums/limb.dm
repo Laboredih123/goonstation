@@ -1296,11 +1296,12 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 /proc/ghostcritter_blocked_objects() // Generates an associate list of (type = 1) that can be checked much faster than looping istypes
 	var/blocked_types = list(/obj/item/device/flash,\
 	/obj/item/reagent_containers/glass/beaker,\
+	/obj/machinery/light_switch,\
 	/obj/item/reagent_containers/glass/bottle,\
 	/obj/item/scalpel,\
 	/obj/item/circular_saw,\
 	/obj/machinery/emitter,\
-	/obj/machinery/field_generator,\
+	/obj/item/mechanics,\
 	/obj/item/staple_gun,\
 	/obj/item/scissors,\
 	/obj/item/razor_blade,\
@@ -1310,6 +1311,7 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 	/obj/item/reagent_containers/food/snacks/einstein_loaf,\
 	/obj/reagent_dispensers,\
 	/obj/machinery/chem_dispenser,\
+	/obj/machinery/field_generator,\
 	/obj/machinery/portable_atmospherics/canister,\
 	/obj/machinery/networked/teleconsole,\
 	/obj/storage/crate, /obj/storage/closet,\
@@ -1442,6 +1444,15 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 /datum/limb/small_critter/strong
 	max_wclass = 3
 	stam_damage_mult = 1
+
+/datum/limb/small_critter/pincers
+	dmg_type = DAMAGE_STAB
+	max_wclass = 2
+	stam_damage_mult = 0.5
+	dam_low = 2
+	dam_high = 4
+	sound_attack = "sound/items/Wirecutter.ogg"
+	actions = list("snips", "pinches", "slashes")
 
 /datum/limb/small_critter/possum
 	dam_low = 0

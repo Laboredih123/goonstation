@@ -313,7 +313,7 @@
 			src.affecting:was_harmed(src.assailant)
 
 	proc/stunned_targets_can_break()
-		. = TRUE // Allow stunned players to break all grabs
+		.= (src.state == GRAB_PIN)
 
 	proc/check()
 		if(!assailant || !affecting)
@@ -604,7 +604,8 @@
 	.= 0
 	if (src.chokehold && src.chokehold.state == GRAB_KILL)
 		if (tool_flags & TOOL_CUTTING && hit_type == DAMAGE_CUT)		//bleed em a bit
-			take_bleeding_damage(src.chokehold.affecting, src.chokehold.assailant, 0.5 * mult, bloodsplatter = 0)
+			src.chokehold.affecting.TakeDamage(zone="All", brute=(1 * mult))  //hurt em a bit
+			take_bleeding_damage(src.chokehold.affecting, src.chokehold.assailant, 1.4 * mult, bloodsplatter = 0)
 
 /obj/item/proc/try_grab(var/mob/living/target, var/mob/living/user)
 	.= 0
