@@ -130,7 +130,7 @@
 		if (2)
 			alert_signal.data["alert"] = "reset"
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, alert_signal, null, "alarm")
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, alert_signal)
 
 /obj/machinery/alarm/attackby(var/obj/item/W as obj, user as mob)
 	if (issnippingtool(W))
@@ -358,7 +358,7 @@
 	signal.data["tag"] = id
 	signal.data["command"] = "set_scrubbing"
 
-	frequency.packet_network.post_packet(src, signal)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
 	signal = get_free_signal()
 	signal.source = src
@@ -366,4 +366,4 @@
 	signal.data["tag"] = id
 	signal.data["command"] = "end_purge"
 
-	frequency.packet_network.post_packet(src, signal)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
