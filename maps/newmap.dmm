@@ -54,6 +54,12 @@
 /obj/machinery/power/nuke_analyzer,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
+"be" = (
+/obj/fluid_pipe/elbow{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "bh" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -145,8 +151,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/bar)
 "dv" = (
-/obj/map/light/brighterwhite,
-/obj/machinery/nuclear_engine,
+/obj/machinery/power/nuke/nuke_turbine,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "dD" = (
@@ -281,6 +286,10 @@
 	icon_state = "catwalk_cross"
 	},
 /area/space)
+"fn" = (
+/obj/map/light/brighterwhite,
+/turf/simulated/wall/auto/supernorn,
+/area/station/engine/core/nuclear)
 "fx" = (
 /turf/simulated/floor/plating,
 /area/station/science/testchamber)
@@ -481,10 +490,6 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos)
-"jm" = (
-/obj/item/nuke,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "jn" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/cable{
@@ -532,6 +537,12 @@
 	},
 /turf/space,
 /area/station/crew_quarters/captain)
+"jJ" = (
+/obj/fluid_pipe/sink/outlet_pump{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "jQ" = (
 /obj/disposalpipe/segment{
 	dir = 4;
@@ -568,7 +579,9 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "kD" = (
-/obj/machinery/power/nuke/nuke_turbine,
+/obj/fluid_pipe/source/inlet_pump{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "kH" = (
@@ -591,10 +604,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/science/testchamber)
-"kZ" = (
-/obj/item/nuclear_fuel_rod,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "lh" = (
 /obj/machinery/atmospherics/manifold_valve{
 	dir = 4;
@@ -681,6 +690,10 @@
 /obj/map/light/brighterwhite,
 /turf/space,
 /area/station/crew_quarters/captain)
+"mC" = (
+/obj/fluid_pipe/elbow,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "mJ" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -770,10 +783,6 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos/highcap_storage)
-"oH" = (
-/obj/item/nuclear_control_rod,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "oM" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8;
@@ -792,10 +801,6 @@
 	},
 /turf/space,
 /area/space)
-"oU" = (
-/obj/item/nuclear_fuel_rod/u235,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "pa" = (
 /obj/landmark/start{
 	name = "Quartermaster"
@@ -1246,6 +1251,13 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"xX" = (
+/obj/fluid_pipe/straight{
+	dir = 4
+	},
+/obj/forcefield/energyshield/perma,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "ya" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -1288,10 +1300,6 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos)
-"zf" = (
-/obj/machinery/power/nuke,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "zg" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -1379,10 +1387,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
-"Ax" = (
-/obj/machinery/power/nuke/fchamber,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "AG" = (
 /obj/lattice{
 	dir = 1;
@@ -1476,11 +1480,6 @@
 /obj/map/light/brighterwhite,
 /turf/simulated/floor/plating,
 /area/research_outpost/toxins)
-"BV" = (
-/obj/map/light/brighterwhite,
-/obj/item/nuclear_fuel_rod/u235,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "Cc" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/map/light/brighterwhite,
@@ -1516,6 +1515,11 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos)
+"CY" = (
+/obj/map/light/brighterwhite,
+/obj/fluid_pipe/straight,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "Dl" = (
 /obj/machinery/power/turbine,
 /obj/cable,
@@ -1984,10 +1988,18 @@
 	},
 /turf/space,
 /area/station/crew_quarters/captain)
+"LK" = (
+/obj/machinery/chem_dispenser_admin,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "LM" = (
 /obj/machinery/atmospherics/pipe/simple/insulated,
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/research_outpost/toxins)
+"LU" = (
+/obj/fluid_pipe/sink,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "LW" = (
 /obj/map/light/brighterwhite,
 /obj/machinery/atmospherics/pipe/tank{
@@ -2293,6 +2305,10 @@
 	},
 /turf/space,
 /area/station/crew_quarters/captain)
+"QM" = (
+/obj/fluid_pipe/source/inlet_pump,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "QR" = (
 /obj/machinery/atmospherics/unary/furnace_connector{
 	dir = 4;
@@ -2314,6 +2330,12 @@
 	},
 /turf/simulated/floor,
 /area/research_outpost/toxins)
+"Rm" = (
+/obj/fluid_pipe/sink/outlet_pump{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "Ru" = (
 /obj/map/light/brighterwhite,
 /turf/unsimulated/floor/engine,
@@ -2455,6 +2477,12 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos)
+"UR" = (
+/obj/fluid_pipe/source{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "Vi" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor,
@@ -2581,11 +2609,6 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/bar)
-"XY" = (
-/obj/map/light/brighterwhite,
-/obj/item/nuclear_control_rod,
-/turf/simulated/floor,
-/area/station/engine/core/nuclear)
 "Yg" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -18081,10 +18104,10 @@ je
 je
 je
 km
-zN
-dv
-zN
-PJ
+kD
+fn
+jJ
+fn
 zN
 PJ
 zN
@@ -18383,9 +18406,9 @@ je
 je
 je
 km
+xX
 zN
-zN
-zN
+xX
 zN
 zN
 zN
@@ -18685,9 +18708,9 @@ je
 je
 je
 km
-zN
-PJ
-zN
+mC
+CY
+be
 PJ
 zN
 PJ
@@ -19289,8 +19312,8 @@ je
 je
 je
 km
-oU
-BV
+zN
+PJ
 zN
 PJ
 zN
@@ -19591,13 +19614,13 @@ je
 je
 je
 km
-kZ
-kZ
 zN
 zN
-zN
-zN
-zN
+QM
+UR
+dv
+LU
+Rm
 zN
 km
 je
@@ -19893,8 +19916,8 @@ je
 je
 je
 km
-oH
-XY
+zN
+PJ
 zN
 PJ
 zN
@@ -20799,7 +20822,7 @@ je
 je
 je
 km
-kD
+zN
 zN
 zN
 zN
@@ -21101,7 +21124,7 @@ je
 je
 je
 km
-zf
+zN
 PJ
 Dy
 PJ
@@ -21403,7 +21426,7 @@ je
 je
 je
 km
-Ax
+zN
 zN
 VY
 zN
@@ -22009,12 +22032,12 @@ je
 km
 zN
 zN
+LK
 zN
 zN
 zN
 zN
 zN
-jm
 km
 je
 je

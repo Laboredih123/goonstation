@@ -12,120 +12,114 @@
 		products: list of byproducts created when parent reagent undergoes fission. requires products_r
 		products_r: percentage at which the above byproducts are created. 1-to-1, must match index of above. requires products
 */
-datum
-	material
-		fissile
-			var
-				nuke_compat = 1
-				fissile = 0
-				part_type = "neutron"
-				epv = 0
-				hpe = 0
-				absorb = 0.0
-				k_factor = 0
+/datum/material/fissile
+	var/nuke_compat = 1
+	var/fissile = 0
+	var/part_type = "neutron"
+	var/epv = 0
+	var/hpe = 0
+	var/absorb = 0.0
+	var/k_factor = 0
 
-datum
-	material
-		fissile
-			u238
-				name = "uranium-238"
-				mat_id = "u-238"
-				desc = "A slightly radioactive heavy metal not suitable for nuclear fission. This is the unenriched byproduct form."
-				color = "#1E461E"
-				alpha = 255
-				material_flags = MATERIAL_METAL
+/datum/material/fissile/u238
+	name = "uranium-238"
+	mat_id = "u-238"
+	desc = "A slightly radioactive heavy metal not suitable for nuclear fission. This is the unenriched byproduct form."
+	color = "#1E461E"
+	alpha = 255
+	material_flags = MATERIAL_METAL
 
-				nuke_compat = 1
-				fissile = 1
-				part_type = "neutron"
-				epv = 0.1
-				hpe = 20
-				absorb = 0.90
-				k_factor = 0.3
+	nuke_compat = 1
+	fissile = 1
+	part_type = "neutron"
+	epv = 0.1
+	hpe = 20
+	absorb = 0.90
+	k_factor = 0.3
 
-				New()
-					..()
-					setProperty("density", 75)
-					setProperty("fissile", 10)
-					setProperty("radioactive", 25)
-					setProperty("hard", 50)
-					setProperty("thermal", 50)
-					setProperty("stability", 80)
+	New()
+		..()
+		setProperty("density", 75)
+		setProperty("fissile", 10)
+		setProperty("radioactive", 25)
+		setProperty("hard", 50)
+		setProperty("thermal", 50)
+		setProperty("stability", 80)
 
-			u235
-				name = "uranium-235"
-				mat_id = "u-235"
-				desc = "A radioactive dull silver-green heavy metal. This is the enriched form suitable for use as nuclear fuel."
-				color = "#286428"
-				alpha = 255
-				material_flags = MATERIAL_METAL | MATERIAL_ENERGY
+/datum/material/fissile/u235
+	name = "uranium-235"
+	mat_id = "u-235"
+	desc = "A radioactive dull silver-green heavy metal. This is the enriched form suitable for use as nuclear fuel."
+	color = "#286428"
+	alpha = 255
+	material_flags = MATERIAL_METAL | MATERIAL_ENERGY
 
-				nuke_compat = 1
-				fissile = 1
-				part_type = "neutron"
-				epv = 5
-				hpe = 20
-				absorb = 0.80
-				k_factor = 3.0
+	nuke_compat = 1
+	fissile = 1
+	part_type = "neutron"
+	epv = 5
+	hpe = 20
+	absorb = 0.80
+	k_factor = 3.0
 
-				New()
-					..()
-					setProperty("density", 75)
-					setProperty("fissile", 75)
-					setProperty("radioactive", 55)
-					setProperty("hard", 40)
-					setProperty("thermal", 45)
-					setProperty("stability", 20)
+	New()
+		..()
+		setProperty("density", 75)
+		setProperty("fissile", 75)
+		setProperty("radioactive", 55)
+		setProperty("hard", 40)
+		setProperty("thermal", 45)
+		setProperty("stability", 20)
 
-			pu239
-				name = "plutonium-239"
-				mat_id = "pu-239"
-				desc = "A highly radioactive dull silver-blue heavy metal. This is the enriched form suitable for use as nuclear fuel."
-				color = "#282864"
-				alpha = 255
-				material_flags = MATERIAL_METAL | MATERIAL_ENERGY
+/datum/material/fissile/pu239
+	name = "plutonium-239"
+	mat_id = "pu-239"
+	desc = "A highly radioactive dull silver-blue heavy metal. This is the enriched form suitable for use as nuclear fuel."
+	color = "#282864"
+	alpha = 255
+	material_flags = MATERIAL_METAL | MATERIAL_ENERGY
 
-				nuke_compat = 1
-				fissile = 1
-				part_type = "neutron"
-				epv = 7
-				hpe = 30
-				absorb = 0.85
-				k_factor = 5.0
+	nuke_compat = 1
+	fissile = 1
+	part_type = "neutron"
+	epv = 7
+	hpe = 30
+	absorb = 0.85
+	k_factor = 5.0
 
-				New()
-					..()
-					setProperty("density", 85)
-					setProperty("radioactive", 65)
-					setProperty("fissile", 85)
-					setProperty("hard", 40)
-					setProperty("thermal", 40)
-					setProperty("stability", 20)
+	New()
+		..()
+		setProperty("density", 85)
+		setProperty("radioactive", 65)
+		setProperty("fissile", 85)
+		setProperty("hard", 40)
+		setProperty("thermal", 40)
+		setProperty("stability", 20)
 
-			kremfuel
-				name = "kremlinium"
-				mat_id = "kmetal"
-				desc = "debug metal"
-				color = "#DEDEFF"
-				alpha = 255
-				material_flags = MATERIAL_METAL | MATERIAL_ENERGY
+/datum/material/fissile/kremfuel
+	name = "kremlinium"
+	mat_id = "kmetal"
+	desc = "debug metal"
+	color = "#DEDEFF"
+	alpha = 255
+	material_flags = MATERIAL_METAL | MATERIAL_ENERGY
 
-				nuke_compat = 1
-				fissile = 1
-				part_type = "neutron"
-				epv = 400
-				hpe = 400
-				absorb = 1.0
-				k_factor = 20.0
+	nuke_compat = 1
+	fissile = 1
+	part_type = "neutron"
+	epv = 400
+	hpe = 400
+	absorb = 1.0
+	k_factor = 20.0
 
-				New()
-					..()
-					setProperty("density", 90)
-					setProperty("radioactive", 100)
-					setProperty("fissile", 100)
-					setProperty("hard", 50)
-					setProperty("thermal", 80)
-					setProperty("stability", 5)
+	New()
+		..()
+		setProperty("density", 90)
+		setProperty("radioactive", 100)
+		setProperty("fissile", 100)
+		setProperty("hard", 50)
+		setProperty("thermal", 80)
+		setProperty("stability", 5)
 
 
 /obj/item/material_piece/u235_o

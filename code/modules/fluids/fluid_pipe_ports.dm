@@ -1,5 +1,5 @@
 
-/obj/fluid_pipe/source/inlet_pump
+/obj/disposalpipe/fluid_pipe/source/inlet_pump
 	name = "Inlet Pump"
 	icon_state = "pipe-t"
 	pipe_shape = "source"
@@ -29,9 +29,11 @@
 		..()
 
 	proc/process()
-		if(!src.open) return
+		if(!src.open)
+			return
 		var/turf/simulated/T = get_turf(src)
-		if(T.active_liquid == null) return
+		if(T.active_liquid == null)
+			return
 		var/datum/reagents/Removed = T.active_liquid.group.suck(T.active_liquid, src.used_capacity)
 
 		DEBUG_MESSAGE_VARDBG("sucked up", Removed)
@@ -41,7 +43,7 @@
 			src.network.pipe_cont.add_reagent(reagent_id, current.volume, current.data)
 
 
-/obj/fluid_pipe/sink/outlet_pump
+/obj/disposalpipe/fluid_pipe/sink/outlet_pump
 	name = "Outlet Pump"
 	icon_state = "pipe-t"
 	pipe_shape = "sink"
@@ -71,7 +73,8 @@
 		..()
 
 	proc/process()
-		if(!src.open) return
+		if(!src.open)
+			return
 
 		var/turf/simulated/T = get_turf(src)
 		T.fluid_react(src.network.pipe_cont.reagent_list, src.used_capacity)

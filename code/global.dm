@@ -471,7 +471,7 @@ var/global
 	/* nuclear reactor & parameter set, if it exists */
 	obj/machinery/power/nuke/fchamber/nuke_core = null
 	obj/machinery/power/nuke/nuke_turbine/nturbine = null
-	datum/nuke_knobset/nuke_knobs = null
+	datum/nuke_knobset/nuke_knobs = new /datum/nuke_knobset
 
 	//Resource Management
 	list/localResources = list()

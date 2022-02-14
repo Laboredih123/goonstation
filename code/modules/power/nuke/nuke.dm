@@ -4,8 +4,8 @@
 	var/core_heat = T20C
 	var/heat_transfer = 0
 
-	var/obj/fluid_pipe/sink/n_input
-	var/obj/fluid_pipe/source/n_output
+	var/obj/disposalpipe/fluid_pipe/sink/n_input
+	var/obj/disposalpipe/fluid_pipe/source/n_output
 
 	/* transfers heat from the n_input pipe of a fchamber or turbine into the core
 	   we calculate the total thermal energy: (heat capcity) * (mass) * (temp)
@@ -29,10 +29,10 @@
 		for(var/rid in fp.reagent_list)
 			var/datum/reagent/cur = fp.reagent_list[rid]
 			var/part = cur.volume / fp.total_volume
-			//DEBUG_MESSAGE("\[[src.type]\] reagent part vol: [cur.volume] \n total vol: [fp.total_volume]")
+			DEBUG_MESSAGE("\[[src.type]\] reagent part vol: [cur.volume] \n total vol: [fp.total_volume]")
 			fluid_composite_heat_capacity += part * cur.heat_capacity
 
-		//DEBUG_MESSAGE("\[[src.type]\] fluid_composite_heat_capacity: [fluid_composite_heat_capacity]")
+		DEBUG_MESSAGE("\[[src.type]\] fluid_composite_heat_capacity: [fluid_composite_heat_capacity]")
 
 		fluid_energy = fp.total_temperature * fluid_composite_heat_capacity * fluid_mass
 		core_energy  = src.core_heat * nuke_knobs.core_capacity * nuke_knobs.core_mass
@@ -82,15 +82,15 @@
 	var/datum/nuke_knobset = null
 
 	New()
-		src.nuke_knobset = new /datum/nuke_knobset()
+		src.nuke_knobset = new /datum/nuke_knobset
 		nuke_core = src
 		nuke_knobs = src.nuke_knobset
 
 		SPAWN_DBG(0.5 SECONDS)
 			debug_messages = 1 /* XXX */
-			//make_fluid_networks()
-			var/obj/fluid_pipe/sink/temp_i = locate(/obj/fluid_pipe/sink) in get_step(src,NORTH)
-			var/obj/fluid_pipe/source/temp_o = locate(/obj/fluid_pipe/source) in get_step(src,SOUTH)
+			make_fluid_networks()
+			var/obj/disposalpipe/fluid_pipe/sink/temp_i = locate(/obj/disposalpipe/fluid_pipe/sink) in get_step(src,NORTH)
+			var/obj/disposalpipe/fluid_pipe/source/temp_o = locate(/obj/disposalpipe/fluid_pipe/source) in get_step(src,SOUTH)
 			//n_input = temp_i.network
 			//n_output = temp_o.network
 			n_input = temp_i

@@ -19,21 +19,20 @@
 
 
 /datum/nuke_knobset
-	var
-		/* create this many energy units per 1 unit of heat consumed by the turbines */
-		joules_per_heat = 1
+	/* create this many energy units per 1 unit of heat consumed by the turbines */
+	var/joules_per_heat = 1
 
-		/* heat capacity of reactor & turbine cores */
-		core_capacity = 100
+	/* heat capacity of reactor & turbine cores */
+	var/core_capacity = 100
 
-		/* thermal mass of reactor & turbine cores */
-		core_mass = 500
+	/* thermal mass of reactor & turbine cores */
+	var/core_mass = 500
 
-		/* mass units per fluid volume unit */
-		fluid_mass = 1
+	/* mass units per fluid volume unit */
+	var/fluid_mass = 1
 
-		/* per-tick nuke debug messages */
-		stfu = 1
+	/* per-tick nuke debug messages */
+	var/stfu = 1
 
 	New()
 		..()
