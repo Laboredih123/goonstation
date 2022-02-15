@@ -14,7 +14,6 @@
 	New()
 		nturbine = src
 		SPAWN_DBG(5 DECI SECONDS)
-			make_fluid_networks()
 			var/obj/disposalpipe/fluid_pipe/sink/temp_i = locate(/obj/disposalpipe/fluid_pipe/sink) in get_step(src,SOUTH)
 			var/obj/disposalpipe/fluid_pipe/source/temp_o = locate(/obj/disposalpipe/fluid_pipe/source) in get_step(src,NORTH)
 			//n_input = temp_i.network
