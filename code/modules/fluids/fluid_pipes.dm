@@ -13,9 +13,10 @@
 	var/capacity = DEFAULT_FLUID_CAPACITY
 	var/used_capacity = 0
 	var/pipe_type = FLUIDPIPE_NORMAL
+	var/initialize_directions = 0
 	var/list/obj/disposalpipe/fluid_pipe/edges = list()
 	var/visited = 0 // Used by DFS when creating networks
-	var/datum/flow_network/network = new // Which network is mine?
+	var/datum/flow_network/network // Which network is mine?
 
 	New()
 		START_TRACKING
@@ -34,134 +35,131 @@
 		DEBUG_MESSAGE("This is a [pipe_type] facing [dir].")
 		switch(pipe_shape)
 			if("straight")
-				// welcome to a way-too-long switch statement
-				// I might compress this. I might not. Leave me alone.
-				switch(src.dir)
-					if(NORTH,SOUTH)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y + 1, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y - 1, src.z))
-							edges.Add(pipe)
-							break
-					if(EAST, WEST)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x + 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x - 1, src.y, src.z))
-							edges.Add(pipe)
-							break
+				var/connect_directions
+
+				switch(dir)
+					if(NORTH)
+						connect_directions = NORTH|SOUTH
+					if(SOUTH)
+						connect_directions = NORTH|SOUTH
+					if(EAST)
+						connect_directions = EAST|WEST
+					if(WEST)
+						connect_directions = EAST|WEST
+
+				for(var/direction in cardinal)
+					if(direction&connect_directions)
+						for(var/obj/disposalpipe/fluid_pipe/target in get_step(src,direction))
+							if(target.initialize_directions & get_dir(target,src))
+								edges.Add(target)
+								break
 			if("Y")
-				switch(src.dir)
+				var/connect_directions
+
+				switch(dir)
 					if(NORTH)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x + 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x - 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y + 1, src.z))
-							edges.Add(pipe)
-							break
+						connect_directions = EAST|WEST|NORTH
 					if(SOUTH)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x + 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x - 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y - 1, src.z))
-							edges.Add(pipe)
-							break
+						connect_directions = EAST|WEST|SOUTH
 					if(EAST)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y + 1, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y - 1, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x + 1, src.y, src.z))
-							edges.Add(pipe)
-							break
+						connect_directions = EAST|NORTH|SOUTH
 					if(WEST)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y + 1, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y - 1, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x - 1, src.y, src.z))
-							edges.Add(pipe)
-							break
+						connect_directions = WEST|NORTH|SOUTH
+
+				for(var/direction in cardinal)
+					if(direction&connect_directions)
+						for(var/obj/disposalpipe/fluid_pipe/target in get_step(src,direction))
+							if(target.initialize_directions & get_dir(target,src))
+								edges.Add(target)
+								break
 			if("elbow")
-				switch(src.dir)
+				var/connect_directions
+
+				switch(dir)
 					if(NORTH)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y + 1, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x + 1, src.y, src.z))
-							edges.Add(pipe)
-							break
+						connect_directions = NORTH|EAST
 					if(SOUTH)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x - 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y - 1, src.z))
-							edges.Add(pipe)
-							break
+						connect_directions = SOUTH|WEST
 					if(EAST)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x + 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y - 1, src.z))
-							edges.Add(pipe)
-							break
+						connect_directions = SOUTH|EAST
 					if(WEST)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y + 1, src.z))
-							edges.Add(pipe)
-							break
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x - 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-			if("source","sink")
-				switch(src.dir)
-					if(NORTH)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y + 1, src.z))
-							edges.Add(pipe)
-							break
-					if(SOUTH)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x, src.y - 1, src.z))
-							edges.Add(pipe)
-							break
-					if(EAST)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x + 1, src.y, src.z))
-							edges.Add(pipe)
-							break
-					if(WEST)
-						for(var/obj/disposalpipe/fluid_pipe/pipe in locate(src.x - 1, src.y, src.z))
-							edges.Add(pipe)
-							break
+						connect_directions = NORTH|WEST
+
+				for(var/direction in cardinal)
+					if(direction&connect_directions)
+						for(var/obj/disposalpipe/fluid_pipe/target in get_step(src,direction))
+							if(target.initialize_directions & get_dir(target,src))
+								edges.Add(target)
+								break
+			if("source", "sink")
+				var/connect_directions = dir
+
+				for(var/direction in cardinal)
+					if(direction&connect_directions)
+						for(var/obj/disposalpipe/fluid_pipe/target in get_step(src,direction))
+							if(target.initialize_directions & get_dir(target,src))
+								edges.Add(target)
+								break
 		DEBUG_MESSAGE("[edges.len] adjacent nodes found.")
 
 	straight
 		icon_state = "pipe-s"
 		pipe_shape = "straight"
+
+		New()
+			..()
+			switch(dir)
+				if(NORTH, SOUTH)
+					initialize_directions = NORTH|SOUTH
+				if(EAST, WEST)
+					initialize_directions = EAST|WEST
 	t_junction
 		icon_state = "pipe-y" // Ignore the arrow for now
 		pipe_shape = "Y"
 
+		New()
+			..()
+			switch(dir)
+				if(NORTH)
+					initialize_directions = EAST|WEST|NORTH
+				if(SOUTH)
+					initialize_directions = EAST|WEST|SOUTH
+				if(WEST)
+					initialize_directions = WEST|NORTH|SOUTH
+				if(EAST)
+					initialize_directions = EAST|NORTH|SOUTH
 	elbow
 		icon_state = "pipe-c"
 		pipe_shape = "elbow"
+
+		New()
+			..()
+			switch(dir)
+				if(NORTH)
+					initialize_directions = NORTH|EAST
+				if(SOUTH)
+					initialize_directions = SOUTH|WEST
+				if(EAST)
+					initialize_directions = SOUTH|EAST
+				if(WEST)
+					initialize_directions = NORTH|WEST
 	source
 		icon_state = "pipe-t"
 		pipe_shape = "source"
 		pipe_type = FLUIDPIPE_SOURCE
 
+		New()
+			..()
+			initialize_directions = dir
+
 	sink
 		icon_state = "pipe-t"
 		pipe_shape = "sink"
 		pipe_type = FLUIDPIPE_SINK
+
+		New()
+			..()
+			initialize_directions = dir
 
 proc/make_fluid_networks()
 	DEBUG_MESSAGE("Setting up fluid pipe networks.")

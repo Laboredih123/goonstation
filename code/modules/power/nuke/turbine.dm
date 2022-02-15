@@ -14,6 +14,7 @@
 	New()
 		nturbine = src
 		SPAWN(5 DECI SECONDS)
+			make_fluid_networks()
 			var/obj/disposalpipe/fluid_pipe/sink/temp_i = locate(/obj/disposalpipe/fluid_pipe/sink) in get_step(src,SOUTH)
 			var/obj/disposalpipe/fluid_pipe/source/temp_o = locate(/obj/disposalpipe/fluid_pipe/source) in get_step(src,NORTH)
 			//n_input = temp_i.network
@@ -26,7 +27,7 @@
 		displayHtml = buildHtml()
 		src.add_dialog(user)
 		user.Browse(displayHtml, "window=fissionchamber;size=550x700;can_resize=1;can_minimize=1;allow-html=1;show-url=1;statusbar=1;enable-http-images=1;can-scroll=1")
-		onclose(user, "computer")
+		onclose(user, "fissionchamber")
 
 	proc/gen_tick()
 		if(!active)

@@ -77,5 +77,4 @@
 			return
 
 		var/turf/simulated/T = get_turf(src)
-		T.fluid_react(src.network.pipe_cont.reagent_list, src.used_capacity)
-		src.network.pipe_cont.remove_any(src.used_capacity)
+		src.network.pipe_cont.trans_to(T, src.network.pipe_cont.total_volume)

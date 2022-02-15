@@ -55,7 +55,7 @@
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "be" = (
-/obj/fluid_pipe/elbow{
+/obj/disposalpipe/fluid_pipe/elbow{
 	dir = 8
 	},
 /turf/simulated/floor,
@@ -538,7 +538,7 @@
 /turf/space,
 /area/station/crew_quarters/captain)
 "jJ" = (
-/obj/fluid_pipe/sink/outlet_pump{
+/obj/disposalpipe/fluid_pipe/sink/outlet_pump{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -579,7 +579,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "kD" = (
-/obj/fluid_pipe/source/inlet_pump{
+/obj/disposalpipe/fluid_pipe/source/inlet_pump{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -691,7 +691,7 @@
 /turf/space,
 /area/station/crew_quarters/captain)
 "mC" = (
-/obj/fluid_pipe/elbow,
+/obj/disposalpipe/fluid_pipe/elbow,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "mJ" = (
@@ -1252,7 +1252,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
 "xX" = (
-/obj/fluid_pipe/straight{
+/obj/disposalpipe/fluid_pipe/straight{
 	dir = 4
 	},
 /obj/forcefield/energyshield/perma,
@@ -1517,7 +1517,7 @@
 /area/station/atmos)
 "CY" = (
 /obj/map/light/brighterwhite,
-/obj/fluid_pipe/straight,
+/obj/disposalpipe/fluid_pipe/straight,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "Dl" = (
@@ -1997,7 +1997,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/research_outpost/toxins)
 "LU" = (
-/obj/fluid_pipe/sink,
+/obj/disposalpipe/fluid_pipe/sink,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "LW" = (
@@ -2306,7 +2306,7 @@
 /turf/space,
 /area/station/crew_quarters/captain)
 "QM" = (
-/obj/fluid_pipe/source/inlet_pump,
+/obj/disposalpipe/fluid_pipe/source/inlet_pump,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "QR" = (
@@ -2331,7 +2331,7 @@
 /turf/simulated/floor,
 /area/research_outpost/toxins)
 "Rm" = (
-/obj/fluid_pipe/sink/outlet_pump{
+/obj/disposalpipe/fluid_pipe/sink/outlet_pump{
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -2478,7 +2478,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "UR" = (
-/obj/fluid_pipe/source{
+/obj/disposalpipe/fluid_pipe/source{
 	dir = 1
 	},
 /turf/simulated/floor,
