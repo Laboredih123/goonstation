@@ -1,5 +1,5 @@
 
-/obj/disposalpipe/fluid_pipe/source/inlet_pump
+/obj/fluid_pipe/source/inlet_pump
 	name = "Inlet Pump"
 	icon_state = "pipe-t"
 	pipe_shape = "source"
@@ -43,7 +43,7 @@
 			src.network.pipe_cont.add_reagent(reagent_id, current.volume, current.data)
 
 
-/obj/disposalpipe/fluid_pipe/sink/outlet_pump
+/obj/fluid_pipe/sink/outlet_pump
 	name = "Outlet Pump"
 	icon_state = "pipe-t"
 	pipe_shape = "sink"

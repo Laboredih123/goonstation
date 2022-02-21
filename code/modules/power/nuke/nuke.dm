@@ -4,8 +4,8 @@
 	var/core_heat = T20C
 	var/heat_transfer = 0
 
-	var/obj/disposalpipe/fluid_pipe/sink/n_input
-	var/obj/disposalpipe/fluid_pipe/source/n_output
+	var/obj/fluid_pipe/sink/n_input
+	var/obj/fluid_pipe/source/n_output
 
 	/* transfers heat from the n_input pipe of a fchamber or turbine into the core
 	   we calculate the total thermal energy: (heat capcity) * (mass) * (temp)
@@ -89,8 +89,8 @@
 		SPAWN(0.5 SECONDS)
 			debug_messages = 1 /* XXX */
 			make_fluid_networks()
-			var/obj/disposalpipe/fluid_pipe/sink/temp_i = locate(/obj/disposalpipe/fluid_pipe/sink) in get_step(src,NORTH)
-			var/obj/disposalpipe/fluid_pipe/source/temp_o = locate(/obj/disposalpipe/fluid_pipe/source) in get_step(src,SOUTH)
+			var/obj/fluid_pipe/sink/temp_i = locate(/obj/fluid_pipe/sink) in get_step(src,NORTH)
+			var/obj/fluid_pipe/source/temp_o = locate(/obj/fluid_pipe/source) in get_step(src,SOUTH)
 			//n_input = temp_i.network
 			//n_output = temp_o.network
 			n_input = temp_i
@@ -103,8 +103,9 @@
 
 	attack_hand(mob/user as mob)
 		displayHtml = buildHtml()
-		user << browse(displayHtml,  "window=fissionchamber;size=550x700;can_resize=1;can_minimize=1;allow-html=1;show-url=1;statusbar=1;enable-http-images=1;can-scroll=1")
-		return
+		src.add_dialog(user)
+		user.Browse(displayHtml, "window=fissionchamber;size=550x700;can_resize=1;can_minimize=1;allow-html=1;show-url=1;statusbar=1;enable-http-images=1;can-scroll=1")
+		onclose(user, "fissionchamber")
 
 	proc/buildHtml()
 		var/html = ""

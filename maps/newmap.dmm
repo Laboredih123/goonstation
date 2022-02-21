@@ -55,7 +55,7 @@
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "be" = (
-/obj/disposalpipe/fluid_pipe/elbow{
+/obj/fluid_pipe/elbow{
 	dir = 8
 	},
 /turf/simulated/floor,
@@ -125,6 +125,7 @@
 /area/station/crew_quarters/bar)
 "cP" = (
 /obj/machinery/light,
+/obj/machinery/chem_dispenser,
 /turf/simulated/floor,
 /area/station/crew_quarters/bar)
 "cS" = (
@@ -151,9 +152,13 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/bar)
 "dv" = (
-/obj/machinery/power/nuke/nuke_turbine,
+/obj/machinery/power/nuke/fchamber,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
+"dA" = (
+/obj/wingrille_spawn/full,
+/turf/space,
+/area/space)
 "dD" = (
 /obj/machinery/disposal_pipedispenser/mobile{
 	dir = 8
@@ -306,6 +311,13 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos)
+"fZ" = (
+/obj/fluid_pipe/sink/outlet_pump{
+	dir = 4;
+	name = "Outlet Pump 5"
+	},
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "gb" = (
 /obj/landmark/start{
 	name = "Roboticist"
@@ -413,6 +425,10 @@
 /obj/map/light/brighterwhite,
 /turf/simulated/floor,
 /area/station/atmos/highcap_storage)
+"hL" = (
+/obj/wingrille_spawn/crystal,
+/turf/space,
+/area/space)
 "hP" = (
 /obj/machinery/atmospherics/pipe/manifold{
 	dir = 4;
@@ -452,6 +468,10 @@
 	},
 /turf/simulated/floor/airless/engine/vacuum,
 /area/research_outpost/toxins)
+"iF" = (
+/obj/wingrille_spawn/reinforced_crystal/full,
+/turf/space,
+/area/space)
 "iG" = (
 /obj/grille/catwalk{
 	dir = 6
@@ -538,7 +558,7 @@
 /turf/space,
 /area/station/crew_quarters/captain)
 "jJ" = (
-/obj/disposalpipe/fluid_pipe/sink/outlet_pump{
+/obj/fluid_pipe/sink/outlet_pump{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -579,7 +599,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "kD" = (
-/obj/disposalpipe/fluid_pipe/source/inlet_pump{
+/obj/fluid_pipe/source/inlet_pump{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -625,6 +645,10 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
 	},
+/turf/space,
+/area/space)
+"lA" = (
+/obj/wingrille_spawn/reinforced/full,
 /turf/space,
 /area/space)
 "lB" = (
@@ -691,7 +715,7 @@
 /turf/space,
 /area/station/crew_quarters/captain)
 "mC" = (
-/obj/disposalpipe/fluid_pipe/elbow,
+/obj/fluid_pipe/elbow,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "mJ" = (
@@ -854,6 +878,10 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"pV" = (
+/obj/wingrille_spawn/auto/crystal,
+/turf/space,
+/area/space)
 "qn" = (
 /obj/machinery/air_sensor{
 	frequency = 1470
@@ -885,6 +913,12 @@
 "qT" = (
 /turf/simulated/floor,
 /area/station/atmos)
+"qY" = (
+/obj/fluid_pipe/source/inlet_pump{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "ri" = (
 /obj/machinery/alarm{
 	control_frequency = "1470";
@@ -1211,6 +1245,10 @@
 	},
 /turf/simulated/floor,
 /area/station/atmos)
+"wN" = (
+/obj/wingrille_spawn/reinforced_crystal,
+/turf/space,
+/area/space)
 "wT" = (
 /obj/wingrille_spawn/auto,
 /obj/machinery/atmospherics/pipe/manifold{
@@ -1252,7 +1290,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
 "xX" = (
-/obj/disposalpipe/fluid_pipe/straight{
+/obj/fluid_pipe/straight{
 	dir = 4
 	},
 /obj/forcefield/energyshield/perma,
@@ -1517,7 +1555,7 @@
 /area/station/atmos)
 "CY" = (
 /obj/map/light/brighterwhite,
-/obj/disposalpipe/fluid_pipe/straight,
+/obj/fluid_pipe/straight,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "Dl" = (
@@ -1743,6 +1781,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
+"Hi" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/storage/box/beakerbox,
+/obj/item/storage/box/beakerbox,
+/obj/item/storage/box/beakerbox,
+/turf/simulated/floor,
+/area/station/crew_quarters/bar)
 "Hj" = (
 /obj/item/device/analyzer/atmospheric/upgraded,
 /turf/simulated/floor,
@@ -1758,6 +1805,10 @@
 /obj/map/light/brighterwhite,
 /turf/simulated/floor/plating,
 /area/station/science/testchamber)
+"HD" = (
+/obj/machinery/chemicompiler_stationary,
+/turf/simulated/floor,
+/area/station/crew_quarters/bar)
 "HH" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -1838,6 +1889,11 @@
 /obj/lattice,
 /turf/space,
 /area/space)
+"IG" = (
+/obj/map/light/brighterwhite,
+/obj/forcefield/energyshield/perma,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "IK" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8;
@@ -1846,6 +1902,10 @@
 /obj/map/light/brighterwhite,
 /turf/space,
 /area/station/crew_quarters/captain)
+"IL" = (
+/obj/wingrille_spawn/reinforced,
+/turf/space,
+/area/space)
 "IN" = (
 /obj/map/light/brighterwhite,
 /turf/simulated/floor,
@@ -1857,6 +1917,10 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/bar)
+"IQ" = (
+/obj/wingrille_spawn/crystal/full,
+/turf/space,
+/area/space)
 "Jd" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -1997,7 +2061,9 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/research_outpost/toxins)
 "LU" = (
-/obj/disposalpipe/fluid_pipe/sink,
+/obj/fluid_pipe/source{
+	name = "fluid pipe 3"
+	},
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "LW" = (
@@ -2306,7 +2372,8 @@
 /turf/space,
 /area/station/crew_quarters/captain)
 "QM" = (
-/obj/disposalpipe/fluid_pipe/source/inlet_pump,
+/obj/fluid_pipe/t_junction,
+/obj/forcefield/energyshield/perma,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "QR" = (
@@ -2331,9 +2398,11 @@
 /turf/simulated/floor,
 /area/research_outpost/toxins)
 "Rm" = (
-/obj/disposalpipe/fluid_pipe/sink/outlet_pump{
-	dir = 1
+/obj/fluid_pipe/t_junction{
+	dir = 1;
+	name = "fluid pipe 2"
 	},
+/obj/forcefield/energyshield/perma,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "Ru" = (
@@ -2384,6 +2453,13 @@
 /obj/machinery/light,
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"SH" = (
+/obj/fluid_pipe/source/inlet_pump{
+	dir = 8;
+	name = "Inlet Pump 1"
+	},
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "SU" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -2478,7 +2554,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "UR" = (
-/obj/disposalpipe/fluid_pipe/source{
+/obj/fluid_pipe/sink{
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -2550,6 +2626,10 @@
 /obj/item/nuke/rod/pu239_test,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
+"We" = (
+/obj/wingrille_spawn,
+/turf/space,
+/area/space)
 "Wl" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -2562,6 +2642,10 @@
 	},
 /turf/space,
 /area/space)
+"Wq" = (
+/obj/forcefield/energyshield/perma,
+/turf/simulated/floor,
+/area/station/engine/core/nuclear)
 "Wy" = (
 /obj/machinery/activation_button/ignition_switch{
 	id = "combust"
@@ -2572,6 +2656,10 @@
 	},
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/space)
+"WL" = (
+/obj/machinery/chem_heater,
+/turf/simulated/floor,
+/area/station/crew_quarters/bar)
 "WY" = (
 /obj/map/light/brighterwhite,
 /turf/simulated/floor,
@@ -7853,7 +7941,7 @@ sm
 sm
 aH
 sm
-Ag
+Hi
 dr
 km
 xi
@@ -8458,7 +8546,7 @@ sm
 aH
 sm
 Ag
-sm
+WL
 NJ
 xi
 je
@@ -8760,7 +8848,7 @@ sm
 aH
 sm
 Ag
-sm
+HD
 km
 xi
 je
@@ -12665,7 +12753,7 @@ It
 It
 It
 tH
-je
+We
 je
 km
 km
@@ -12968,7 +13056,7 @@ It
 It
 tH
 je
-je
+dA
 km
 hw
 KV
@@ -13269,7 +13357,7 @@ hn
 je
 It
 tH
-je
+IL
 je
 km
 hw
@@ -13572,7 +13660,7 @@ It
 It
 tH
 je
-je
+lA
 km
 hw
 KV
@@ -13873,7 +13961,7 @@ AG
 AG
 AG
 fA
-je
+wN
 je
 km
 hw
@@ -14176,7 +14264,7 @@ je
 je
 je
 je
-je
+iF
 km
 eX
 Pu
@@ -14477,7 +14565,7 @@ je
 je
 je
 je
-je
+hL
 je
 km
 iR
@@ -14775,12 +14863,12 @@ je
 je
 je
 je
+pV
+pV
 je
 je
 je
-je
-je
-je
+IQ
 km
 iR
 Gr
@@ -15077,8 +15165,8 @@ je
 je
 je
 je
-je
-je
+Ln
+Ln
 je
 je
 je
@@ -19012,11 +19100,11 @@ je
 km
 zN
 zN
+Wq
 zN
 zN
 zN
-zN
-zN
+Wq
 zN
 km
 je
@@ -19313,13 +19401,13 @@ je
 je
 km
 zN
-PJ
+IG
+jJ
+IG
 zN
-PJ
-zN
-PJ
-zN
-PJ
+IG
+fZ
+IG
 km
 je
 je
@@ -19917,13 +20005,13 @@ je
 je
 km
 zN
-PJ
+IG
+qY
+IG
 zN
-PJ
-zN
-PJ
-zN
-PJ
+IG
+SH
+IG
 km
 je
 je
@@ -20220,11 +20308,11 @@ je
 km
 hW
 zN
+Wq
 zN
 zN
 zN
-zN
-zN
+Wq
 zN
 km
 je

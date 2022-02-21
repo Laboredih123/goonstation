@@ -3,7 +3,7 @@
 	By Firebarrage
 */
 
-/obj/disposalpipe/fluid_pipe
+/obj/fluid_pipe
 	name = "fluid pipe"
 	desc = "A pipe. For fluids."
 	icon = 'icons/obj/disposal.dmi'
@@ -14,7 +14,7 @@
 	var/used_capacity = 0
 	var/pipe_type = FLUIDPIPE_NORMAL
 	var/initialize_directions = 0
-	var/list/obj/disposalpipe/fluid_pipe/edges = list()
+	var/list/obj/fluid_pipe/edges = list()
 	var/visited = 0 // Used by DFS when creating networks
 	var/datum/flow_network/network // Which network is mine?
 
@@ -49,7 +49,7 @@
 
 				for(var/direction in cardinal)
 					if(direction&connect_directions)
-						for(var/obj/disposalpipe/fluid_pipe/target in get_step(src,direction))
+						for(var/obj/fluid_pipe/target in get_step(src,direction))
 							if(target.initialize_directions & get_dir(target,src))
 								edges.Add(target)
 								break
@@ -68,7 +68,7 @@
 
 				for(var/direction in cardinal)
 					if(direction&connect_directions)
-						for(var/obj/disposalpipe/fluid_pipe/target in get_step(src,direction))
+						for(var/obj/fluid_pipe/target in get_step(src,direction))
 							if(target.initialize_directions & get_dir(target,src))
 								edges.Add(target)
 								break
@@ -87,7 +87,7 @@
 
 				for(var/direction in cardinal)
 					if(direction&connect_directions)
-						for(var/obj/disposalpipe/fluid_pipe/target in get_step(src,direction))
+						for(var/obj/fluid_pipe/target in get_step(src,direction))
 							if(target.initialize_directions & get_dir(target,src))
 								edges.Add(target)
 								break
@@ -96,7 +96,7 @@
 
 				for(var/direction in cardinal)
 					if(direction&connect_directions)
-						for(var/obj/disposalpipe/fluid_pipe/target in get_step(src,direction))
+						for(var/obj/fluid_pipe/target in get_step(src,direction))
 							if(target.initialize_directions & get_dir(target,src))
 								edges.Add(target)
 								break
@@ -166,10 +166,10 @@ proc/make_fluid_networks()
 
 	// Populate all edges
 	// TODO in future: We dont need to do this every time we remake the fluid networks, only update the moved pipes.
-	for_by_tcl(node, /obj/disposalpipe/fluid_pipe)
+	for_by_tcl(node, /obj/fluid_pipe)
 		node.populate_edges()
 
-	var/obj/disposalpipe/fluid_pipe/root = find_unvisited_node()
+	var/obj/fluid_pipe/root = find_unvisited_node()
 	if(!root)
 		DEBUG_MESSAGE("No fluid pipes detected.")
 		return
@@ -180,28 +180,27 @@ proc/make_fluid_networks()
 	while(root)
 
 proc/find_unvisited_node()
-	for_by_tcl(pipe, /obj/disposalpipe/fluid_pipe)
+	for_by_tcl(pipe, /obj/fluid_pipe)
 		if(!pipe.network)
 			return pipe
 	return 0
 
 // Represents a single connected set of fluid pipes
 /datum/flow_network
-	var/list/obj/disposalpipe/fluid_pipe/nodes = list()
-	var/list/obj/disposalpipe/fluid_pipe/sources = list()
-	var/list/obj/disposalpipe/fluid_pipe/sinks = list()
+	var/list/obj/fluid_pipe/nodes = list()
+	var/list/obj/fluid_pipe/sources = list()
+	var/list/obj/fluid_pipe/sinks = list()
 	var/datum/reagents/fp_holder/pipe_cont = new /datum/reagents/fp_holder()
 	#define REACTOR 1
 	#define TURBINE 2
 	var/last = 0
 
-	New(var/obj/disposalpipe/fluid_pipe/root)
+	New(var/obj/fluid_pipe/root)
 		..()
-		pipe_cont.net = src
 		START_TRACKING
 		DEBUG_MESSAGE("Constructing fluid pipe network")
 		nodes = DFS(root)
-		for(var/obj/disposalpipe/fluid_pipe/N in nodes)
+		for(var/obj/fluid_pipe/N in nodes)
 			N.network = src
 			if(N.pipe_type == FLUIDPIPE_SINK)
 				sinks.Add(N)
@@ -212,9 +211,9 @@ proc/find_unvisited_node()
 
 		// Remove for full release
 		DEBUG_MESSAGE("Fluid network created. Listing structure.")
-		for(var/obj/disposalpipe/fluid_pipe/node in nodes)
+		for(var/obj/fluid_pipe/node in nodes)
 			var/edges = "([node.loc.x], [node.loc.y]): \["
-			for(var/obj/disposalpipe/fluid_pipe/adj in node.edges)
+			for(var/obj/fluid_pipe/adj in node.edges)
 				edges += "([adj.loc.x], [adj.loc.y]), "
 			edges += "\]"
 			DEBUG_MESSAGE(edges)
@@ -224,7 +223,7 @@ proc/find_unvisited_node()
 		..()
 
 	proc/clear_DFS_flags()
-		for(var/obj/disposalpipe/fluid_pipe/FN in nodes)
+		for(var/obj/fluid_pipe/FN in nodes)
 			FN.visited = 0
 
 // Look at me! I paid attention in my algorithms class!
@@ -234,7 +233,7 @@ proc/find_unvisited_node()
 // and allow a second source to increase its intake but this wont allow that to happen
 // The only solution to this is recalculating flows every tick but we're not going to do that.
 proc/ford_fulkerson(var/datum/flow_network/FN)
-	var/list/obj/disposalpipe/fluid_pipe/path = list()
+	var/list/obj/fluid_pipe/path = list()
 	FN.clear_DFS_flags()
 	path = find_augmenting_path(FN)
 	DEBUG_MESSAGE("Augmenting path: [print_pipe_list(path)]")
@@ -245,25 +244,25 @@ proc/ford_fulkerson(var/datum/flow_network/FN)
 
 proc/find_augmenting_path(var/datum/flow_network/FN)
 	// Try to find one from each source
-	var/list/obj/disposalpipe/fluid_pipe/stack = list()
-	for(var/obj/disposalpipe/fluid_pipe/source in FN.sources)
+	var/list/obj/fluid_pipe/stack = list()
+	for(var/obj/fluid_pipe/source in FN.sources)
 		FN.clear_DFS_flags()
 		find_source_sink_path(source,stack)
 		if(stack.len > 0)
 			return stack
 	return null
 
-proc/find_source_sink_path(var/obj/disposalpipe/fluid_pipe/source, var/list/obj/disposalpipe/fluid_pipe/stack)
+proc/find_source_sink_path(var/obj/fluid_pipe/source, var/list/obj/fluid_pipe/stack)
 	// Push self
 	stack.Add(source)
 	if(source.pipe_type == FLUIDPIPE_SINK)
 		return
 	DEBUG_MESSAGE("Pushing pipe [showCoords(source.x,source.y,source.z)]")
 	source.visited = 1
-	for(var/obj/disposalpipe/fluid_pipe/adj in source.edges)
+	for(var/obj/fluid_pipe/adj in source.edges)
 		if(adj.visited || adj.used_capacity == adj.capacity)
 			continue
-		find_source_sink_path(adj,stack)
+		find_source_sink_path(adj,stack)	
 		// Did the DFS succeed?
 		if(stack[stack.len].pipe_type == FLUIDPIPE_SINK)
 			return // We did it!
@@ -273,33 +272,33 @@ proc/find_source_sink_path(var/obj/disposalpipe/fluid_pipe/source, var/list/obj/
 	return
 
 
-proc/print_pipe_list(var/obj/disposalpipe/fluid_pipe/pipes)
+proc/print_pipe_list(var/obj/fluid_pipe/pipes)
 	. = "\["
-	for(var/obj/disposalpipe/fluid_pipe/pipe in pipes)
+	for(var/obj/fluid_pipe/pipe in pipes)
 		. += "[showCoords(pipe.x,pipe.y,pipe.z)], "
 	. += "]"
 
 
-proc/flow_through(var/list/obj/disposalpipe/fluid_pipe/path, max_allowed_flow)
+proc/flow_through(var/list/obj/fluid_pipe/path, max_allowed_flow)
 	var/min_capacity = path[1].capacity - path[1].used_capacity
 	// How much can we send?
-	for(var/obj/disposalpipe/fluid_pipe/pipe in path)
+	for(var/obj/fluid_pipe/pipe in path)
 		if(pipe.capacity - pipe.used_capacity < min_capacity)
 			min_capacity = pipe.capacity - pipe.used_capacity
 	min_capacity = clamp(min_capacity,0,max_allowed_flow)
 	DEBUG_MESSAGE("Pushing [min_capacity] through this path.")
-	for(var/obj/disposalpipe/fluid_pipe/pipe in path)
+	for(var/obj/fluid_pipe/pipe in path)
 		pipe.used_capacity += min_capacity
 	return
 
 
-proc/DFS(var/obj/disposalpipe/fluid_pipe/root)
+proc/DFS(var/obj/fluid_pipe/root)
 	root.visited = 1
-	var/list/obj/disposalpipe/fluid_pipe/nodes = list()
+	var/list/obj/fluid_pipe/nodes = list()
 	nodes.Add(root)
 	if(!root.edges)
 		return
-	for(var/obj/disposalpipe/fluid_pipe/adj in root.edges)
+	for(var/obj/fluid_pipe/adj in root.edges)
 		if(!adj.visited)
 			adj.visited = 1
 			nodes += DFS(adj)
@@ -307,7 +306,7 @@ proc/DFS(var/obj/disposalpipe/fluid_pipe/root)
 
 // Its like the normal DFS but its loud. As in it yells pipe locations at you. For testing.
 // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-proc/DFS_LOUD(var/obj/disposalpipe/fluid_pipe/root)
+proc/DFS_LOUD(var/obj/fluid_pipe/root)
 	DEBUG_MESSAGE("DFS Start - Arrived at node [showCoords(root.x,root.y,root.z)]")
 	var/listret = "\["
 	for(var/i = 1; i <= root.edges.len; i++)
@@ -315,11 +314,11 @@ proc/DFS_LOUD(var/obj/disposalpipe/fluid_pipe/root)
 	listret += "]"
 	DEBUG_MESSAGE("Adjacent nodes: [listret]")
 	root.visited = 1
-	var/list/obj/disposalpipe/fluid_pipe/nodes = list()
+	var/list/obj/fluid_pipe/nodes = list()
 	nodes.Add(root)
 	if(!root.edges)
 		return
-	for(var/obj/disposalpipe/fluid_pipe/adj in root.edges)
+	for(var/obj/fluid_pipe/adj in root.edges)
 		if(!adj.visited)
 			adj.visited = 1
 			nodes += DFS_LOUD(adj)
@@ -331,6 +330,5 @@ proc/DFS_LOUD(var/obj/disposalpipe/fluid_pipe/root)
 	return nodes
 
 /datum/reagents/fp_holder
-	var/datum/flow_network/net
 	New()
 		..()

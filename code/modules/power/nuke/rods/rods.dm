@@ -30,7 +30,7 @@
 
 	New()
 		..()
-		setMaterial(/datum/material/fissile/u238)
+		setMaterial(getMaterial("u-235"))
 
 /obj/item/nuke/rod/pu239_test
 	name = "Pu239 for testing"
@@ -42,7 +42,7 @@
 
 	New()
 		..()
-		setMaterial(/datum/material/fissile/pu239)
+		setMaterial(getMaterial("pu-239"))
 
 
 /obj/item/nuke/rod/kfuel_test
@@ -55,4 +55,4 @@
 
 	New()
 		..()
-		setMaterial(/datum/material/fissile/kremfuel)
+		setMaterial(getMaterial("kmetal"))
