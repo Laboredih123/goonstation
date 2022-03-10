@@ -24,7 +24,7 @@ var/datum/preMapLoad/preMapLoad = new
 #include "_std\__std.dme"
 
 // Secret Code Handling
-#ifndef FASTDMM
+#if !defined(FASTDMM) && !defined(DISABLE_SECRETS)
 #include "+secret\__secret.dme"
 #endif
 #include "code\__secret_public.dme"
@@ -268,6 +268,8 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\datums\components\fragile_item.dm"
 #include "code\datums\components\fullauto.dm"
 #include "code\datums\components\geiger_counter.dm"
+#include "code\datums\components\glue_ready.dm"
+#include "code\datums\components\glued.dm"
 #include "code\datums\components\legs.dm"
 #include "code\datums\components\light.dm"
 #include "code\datums\components\loc_invisibility.dm"
@@ -637,6 +639,7 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\modules\admin\buildmodes\copy.dm"
 #include "code\modules\admin\buildmodes\elecflash.dm"
 #include "code\modules\admin\buildmodes\fireflash.dm"
+#include "code\modules\admin\buildmodes\glue.dm"
 #include "code\modules\admin\buildmodes\lighting.dm"
 #include "code\modules\admin\buildmodes\load_map.dm"
 #include "code\modules\admin\buildmodes\location.dm"
@@ -1163,6 +1166,7 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\modules\sound\sound.dm"
 #include "code\modules\sound\soundCache.dm"
 #include "code\modules\speech\floating_chat.dm"
+#include "code\modules\station_map\station_map.dm"
 #include "code\modules\status_system\statusEffects.dm"
 #include "code\modules\status_system\statusFoodBad.dm"
 #include "code\modules\status_system\statusFoodBuffs.dm"

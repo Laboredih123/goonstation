@@ -277,7 +277,7 @@ datum
 			transparency = 200
 			value = 66 // vOv
 			//addiction_prob = 25
-			stun_resist = 1000
+			stun_resist = 100
 			threshold = THRESHOLD_INIT
 
 			cross_threshold_over()
@@ -797,6 +797,88 @@ datum
 				id = "invislube"
 				visible = 0
 
+		glue
+			name = "space glue"
+			id = "spaceglue"
+			description = "Industrial superglue that is sure to stick to everything."
+			reagent_state = LIQUID
+			depletion_rate = 0.6
+			fluid_r = 230
+			fluid_b = 60
+			fluid_g = 230
+			transparency = 180
+			viscosity = 0.8
+			block_slippy = 1
+			var/counter
+
+			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed)
+				. = ..()
+				if(method == TOUCH)
+					var/mob/living/L = M
+					. = 0
+
+					if(L.getStatusDuration("slowed")>=10 SECONDS)
+						L.setStatus("staggered", max(M.getStatusDuration("staggered"), (0.3 SECONDS)*volume_passed))
+						if(!ON_COOLDOWN(M, "stuck in glue", 15 SECOND))
+							boutput(M, "<span class='notice'>You get stuck in the glue!</span>")
+					else
+						L.changeStatus("slowed", min((0.4 SECONDS)*volume_passed, 10 SECONDS))
+				return
+
+			reaction_turf(var/turf/target, var/volume)
+				var/list/covered = holder.covered_turf()
+				var/turf/simulated/T = target
+				var/volume_mult = 1
+
+				if (length(covered))
+					if (volume/covered.len < 2) //reduce time based on dilution
+						volume_mult = min(volume / 9, 1)
+
+				if (istype(T))
+					if(T.sticky == TRUE) return
+					var/wet = image('icons/effects/water.dmi',"sticky_floor")
+					T.UpdateOverlays(wet, "wet_overlay")
+					T.sticky = TRUE
+					T.wet = 0
+					SPAWN(80 SECONDS * volume_mult)
+						T.UpdateOverlays(null, "wet_overlay")
+						T.sticky = FALSE
+				return
+
+			on_mob_life(var/mob/M, var/mult = 1, var/method, var/volume_passed)
+				if (!M) M = holder.my_atom
+				if (!counter) counter = 1
+				switch(counter += (1 * mult))
+					if(20 to INFINITY)
+						M.druggy = max(M.druggy, 15)
+						if (M.canmove && prob(20))
+							M.change_misstep_chance(5 * mult)
+						if(probmult(5)) M.emote(pick("twitch","drool","moan"))
+
+				..()
+				return
+
+			reaction_obj(obj/O, volume)
+				if(volume < 5)
+					return
+				if(isgrab(O))
+					return
+				if(O.GetComponent(/datum/component/glued) || O.GetComponent(/datum/component/glue_ready))
+					return
+				if(O.invisibility >= INVIS_ALWAYS_ISH)
+					return
+				var/silent = FALSE
+				var/list/covered = holder.covered_turf()
+				if (length(covered) > 5)
+					silent = TRUE
+				volume /= max(length(covered), 1)
+				O.AddComponent(/datum/component/glue_ready, volume * 5 SECONDS, 5 SECONDS)
+				var/turf/T = get_turf(O)
+				if(!silent)
+					T.visible_message("<span class='notice'>\The [O] is coated in a layer of glue!</span>")
+				if(istype(holder, /datum/reagents/fluid_group))
+					holder.remove_reagent(src.id, min(volume, src.volume - 4))
+
 // metal foaming agent
 // this is lithium hydride. Add other recipies (e.g. MiH + H2O -> MiOH + H2) eventually
 
@@ -863,16 +945,32 @@ datum
 				..()
 				return
 
+			proc/unglue_attached_to(atom/A)
+				var/atom/Aloc = isturf(A) ? A : A.loc
+				for(var/atom/movable/AM in Aloc)
+					var/datum/component/glued/glued_comp = AM.GetComponent(/datum/component/glued)
+					if(glued_comp?.glued_to == A)
+						qdel(glued_comp)
+
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
 				if (method == TOUCH)
 					remove_stickers(M, volume)
+				unglue_attached_to(M)
 
 			reaction_obj(var/obj/O, var/volume)
 				remove_stickers(O, volume)
+				var/datum/component/glued/glued_comp = O.GetComponent(/datum/component/glued)
+				if(glued_comp)
+					qdel(glued_comp)
+				var/datum/component/glue_ready/glue_ready_comp = O.GetComponent(/datum/component/glue_ready)
+				if(glue_ready_comp)
+					qdel(glue_ready_comp)
+				unglue_attached_to(O)
 
 			reaction_turf(var/turf/T, var/volume)
 				remove_stickers(T, volume)
+				unglue_attached_to(T)
 
 			proc/remove_stickers(var/atom/target, var/volume)
 				var/can_remove_amt = volume / 10
@@ -3289,17 +3387,6 @@ datum
 			fluid_b = 254
 			transparency = 50
 
-		glue
-			name = "glue"
-			id = "glue"
-			description = "Hopefully you weren't the kind of kid to eat this stuff."
-			reagent_state = LIQUID
-			fluid_r = 250
-			fluid_g = 250
-			fluid_b = 250
-			transparency = 255
-			viscosity = 0.7
-
 		magnesium_chloride
 			name = "magnesium chloride"
 			id = "magnesium_chloride"
@@ -3675,7 +3762,8 @@ datum
 			fluid_b = 0
 			transparency = 255
 			value = 4
-			threshold = 2
+			threshold = THRESHOLD_INIT
+			threshold_volume = 2
 
 			cross_threshold_over()
 				if(holder?.my_atom && !istype(holder.my_atom, /turf))
