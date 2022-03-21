@@ -19,6 +19,8 @@
 	var/dependent = 0 // if we're host to a mainframe's mind
 	var/shell = 0 // are we available for use as a shell for an AI
 
+	var/obj/machinery/lawrack/law_rack_connection = null // which rack we're getting our laws from
+
 	var/obj/item/cell/cell = null
 
 	can_bleed = 0
@@ -36,6 +38,8 @@
 /mob/living/silicon/New()
 	..()
 	src.botcard = new /obj/item/card/id(src)
+	src.law_rack_connection = ticker?.ai_law_rack_manager.default_ai_rack
+	logTheThing("station", src, src.law_rack_connection, "New cyborg [src.name] connects to default rack at [log_loc(src.law_rack_connection)]")
 
 /mob/living/silicon/disposing()
 	req_access = null
@@ -188,6 +192,8 @@
 	return 0 // we have no hands doofus
 
 /mob/living/silicon/click(atom/target, params, location, control)
+	if (src.targeting_ability)
+		..()
 	if (!src.stat && !src.restrained() && !src.getStatusDuration("weakened") && !src.getStatusDuration("paralysis") && !src.getStatusDuration("stunned"))
 		if(src.client.check_any_key(KEY_OPEN | KEY_BOLT | KEY_SHOCK) && istype(target, /obj) )
 			var/obj/O = target
@@ -270,7 +276,7 @@
 		return
 
 	var/message_a = src.say_quote(message)
-	var/rendered = "<i><span class='game say'>Robotic Talk, <span class='name' data-ctx='\ref[src.mind]'>[src.name]</span> <span class='message'>[message_a]</span></span></i>"
+	var/rendered = "<span class='game roboticsay'>Robotic Talk, <span class='name' data-ctx='\ref[src.mind]'>[src.name]</span> <span class='message'>[message_a]</span></span>"
 	for (var/mob/living/S in mobs)
 		if(!S.stat)
 			if(S.robot_talk_understand)
@@ -282,7 +288,7 @@
 			else if(istype(S, /mob/living/intangible/flock))
 				var/mob/living/intangible/flock/f = S
 				if(f.flock?.snooping)
-					var/flockrendered = "<i><span class='game say'>[flockBasedGarbleText("Robotic Talk", -20, f.flock)], <span class='name' data-ctx='\ref[src.mind]'>[flockBasedGarbleText(src.name, -15, f.flock)]</span> <span class='message'>[flockBasedGarbleText(message_a, 0, f.flock)]</span></span></i>"
+					var/flockrendered = "<span class='game roboticsay'>[flockBasedGarbleText("Robotic Talk", -20, f.flock)], <span class='name' data-ctx='\ref[src.mind]'>[flockBasedGarbleText(src.name, -15, f.flock)]</span> <span class='message'>[flockBasedGarbleText(message_a, 0, f.flock)]</span></span>"
 					f.show_message(flockrendered, 2)
 
 	var/list/listening = hearers(1, src)
@@ -301,7 +307,7 @@
 		message_b = src.say_quote(message_b)
 		message_b = "<i>[message_b]</i>"
 
-		rendered = "<i><span class='game say'><span class='name' data-ctx='\ref[src.mind]'>[src.voice_name]</span> <span class='message'>[message_b]</span></span></i>"
+		rendered = "<span class='game roboticsay'><span class='name' data-ctx='\ref[src.mind]'>[src.voice_name]</span> <span class='message'>[message_b]</span></span>"
 
 		for (var/mob/M in heard)
 			var/thisR = rendered
@@ -311,7 +317,7 @@
 
 	message = src.say_quote(message)
 
-	rendered = "<i><span class='game say'>Robotic Talk, <span class='name' data-ctx='\ref[src.mind]'>[src.name]</span> <span class='message'>[message_a]</span></span></i>"
+	rendered = "<span class='game roboticsay'>Robotic Talk, <span class='name' data-ctx='\ref[src.mind]'>[src.name]</span> <span class='message'>[message_a]</span></span>"
 
 	for (var/mob/M in mobs)
 		if (istype(M, /mob/new_player))
@@ -549,9 +555,11 @@ var/global/list/module_editors = list()
 	. += pick("Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega")
 	. += "-[rand(1, 99)]"
 
+ //This whol proc seems like dead code - commenting it out until I'm sure
 // This proc adds and removes robot-related antagonist roles as needed (Convair880).
 /mob/living/silicon/proc/handle_robot_antagonist_status(var/action = "", var/remove = 0, var/mob/source)
-	if (!src || !issilicon(src))
+	return
+/*	if (!src || !issilicon(src))
 		return
 	if (!src.mind)
 		return
@@ -720,6 +728,7 @@ var/global/list/module_editors = list()
 				R.show_laws()
 
 	return
+	*/
 
 
 /mob/living/silicon/is_cold_resistant()
