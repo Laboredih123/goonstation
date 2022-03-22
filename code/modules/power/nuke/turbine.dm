@@ -15,8 +15,8 @@
 		nturbine = src
 		SPAWN(5 DECI SECONDS)
 			make_fluid_networks()
-			var/obj/fluid_pipe/sink/temp_i = locate(/obj/fluid_pipe/sink) in get_step(src,SOUTH)
-			var/obj/fluid_pipe/source/temp_o = locate(/obj/fluid_pipe/source) in get_step(src,NORTH)
+			var/obj/fluid_pipe/source/temp_i = locate(/obj/fluid_pipe/source) in get_step(src,SOUTH)
+			var/obj/fluid_pipe/sink/temp_o = locate(/obj/fluid_pipe/sink) in get_step(src,NORTH)
 			//n_input = temp_i.network
 			//n_output = temp_o.network
 			n_input = temp_i
@@ -36,27 +36,28 @@
 		if(src.n_input.network.last == TURBINE)
 			return /* XXX make this sync */
 
-		var/heat_inc = n_input.network.pipe_cont.total_temperature
+		var/heat_inc = n_input.network.reagents.total_temperature
 
 		if(heat_inc > src.core_heat)
 			var/delta = heat_inc - src.core_heat
 			src.genlast = delta * nuke_knobs.joules_per_heat
-			add_avail(src.genlast)
+			add_avail(genlast WATTS)
 			src.core_heat += delta/10
-			n_output.network.pipe_cont.temperature_reagents(heat_inc - delta, n_output.used_capacity, 2, 300) /* XXX fix this */
+			n_output.network.reagents.temperature_reagents(heat_inc - delta, n_output.used_capacity, 2, 300) /* XXX fix this */
 
 
-		var/before = src.core_heat
-		transfer_heat_fp()
-		if(before > src.core_heat)
-			src.n_output.network.last = TURBINE
+		var/before = core_heat
+		n_input.network.reagents.trans_to(src.n_output.network, src.n_input.network.reagents.total_volume)
+		transfer_heat_reagents()
+		if(before > core_heat)
+			n_output.network.last = TURBINE
 			return
 
-		src.genlast = src.heat_transfer * nuke_knobs.joules_per_heat
-		add_avail(src.genlast)
-		src.n_output.network.last = TURBINE
+		genlast = heat_transfer * nuke_knobs.joules_per_heat
+		add_avail(genlast WATTS)
+		n_output.network.last = TURBINE
 
-		src.updateUsrDialog()
+		updateUsrDialog()
 
 	process()
 		gen_tick()
@@ -70,11 +71,11 @@
 		html += K_STYLE
 		html += "</head><body>"
 		html += "<div class=\"ib\">"
-		html += "<h1>core heat: [src.core_heat] C</h1>"
-		html += "<h1>coolant flow: [src.n_input.used_capacity] mols/tick</h1>"
-		html += "<h1>in  coolant temp: [src.n_input.network.pipe_cont.total_temperature] C</h1>"
-		html += "<h1>out coolant temp: [src.n_output.network.pipe_cont.total_temperature] C</h1>"
-		html += "<h1>heat delta: [src.heat_transfer] C</h1>"
+		html += "<h1>core heat: [core_heat] C</h1>"
+		html += "<h1>coolant flow: [n_input.used_capacity] mols/tick</h1>"
+		html += "<h1>in  coolant temp: [n_input.network.reagents.total_temperature] C</h1>"
+		html += "<h1>out coolant temp: [n_output.network.reagents.total_temperature] C</h1>"
+		html += "<h1>heat delta: [heat_transfer] K</h1>"
 		html += "<h1>power generated: [nturbine.genlast] \"E\"?</h1>"
 		html += "</div>"
 

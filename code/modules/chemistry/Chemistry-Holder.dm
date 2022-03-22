@@ -180,7 +180,7 @@ datum
 				var/datum/reagent/current_reagent = reagent_list[reagent_id]
 				if(current_reagent)
 					var/transfer_amt = current_reagent.volume*remove_ratio
-					R.add_reagent(reagent_id, transfer_amt, current_reagent.data)
+					R.add_reagent(reagent_id, transfer_amt, current_reagent.data, total_temperature)
 					src.remove_reagent(reagent_id, transfer_amt)
 
 			src.update_total()

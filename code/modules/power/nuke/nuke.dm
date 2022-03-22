@@ -4,18 +4,17 @@
 	var/core_heat = T20C
 	var/heat_transfer = 0
 
-	var/obj/fluid_pipe/sink/n_input
-	var/obj/fluid_pipe/source/n_output
+	var/obj/fluid_pipe/source/n_input
+	var/obj/fluid_pipe/sink/n_output
 
 	/* transfers heat from the n_input pipe of a fchamber or turbine into the core
 	   we calculate the total thermal energy: (heat capcity) * (mass) * (temp)
 	   of the incoming liquid and the core, and subtract them to make a delta.
 	   the fluid LOSES heat and the core GAINS heat .. or vice versa if delta is negative */
-	proc/transfer_heat_fp()
-		var/datum/reagents/fp_holder/fp = src.n_input.network.pipe_cont
-		var/fluid_mass = src.n_input.used_capacity * nuke_knobs.fluid_mass
-		var/delta_t = fp.total_temperature - src.core_heat;
-		var/fluid_composite_heat_capacity = 0
+	proc/transfer_heat_reagents()
+		var/datum/reagents/inreagents = n_input.network.reagents
+		var/fluid_mass = n_input.used_capacity * nuke_knobs.fluid_mass
+		var/delta_t = inreagents.total_temperature - core_heat;
 		var/delta_energy = 0
 		var/fluid_energy_after = 0
 		var/fluid_energy = 0
@@ -26,19 +25,13 @@
 
 		if(delta_t == 0) return
 
-		for(var/rid in fp.reagent_list)
-			var/datum/reagent/cur = fp.reagent_list[rid]
-			var/part = cur.volume / fp.total_volume
-			DEBUG_MESSAGE("\[[src.type]\] reagent part vol: [cur.volume] \n total vol: [fp.total_volume]")
-			fluid_composite_heat_capacity += part * cur.heat_capacity
+		DEBUG_MESSAGE("\[[src.type]\] inreagents.composite_heat_capacity: [inreagents.composite_heat_capacity]")
 
-		DEBUG_MESSAGE("\[[src.type]\] fluid_composite_heat_capacity: [fluid_composite_heat_capacity]")
-
-		fluid_energy = fp.total_temperature * fluid_composite_heat_capacity * fluid_mass
+		fluid_energy = inreagents.total_temperature * inreagents.composite_heat_capacity * fluid_mass
 		core_energy  = src.core_heat * nuke_knobs.core_capacity * nuke_knobs.core_mass
 		delta_energy = fluid_energy - core_energy
 
-		fluid_energy_after = src.core_heat * fluid_composite_heat_capacity * fluid_mass
+		fluid_energy_after = src.core_heat * inreagents.composite_heat_capacity * fluid_mass
 		fluid_energy_delta = fluid_energy - fluid_energy_after
 		core_energy_after = core_energy + fluid_energy_delta
 		core_temp_after = core_energy_after / (nuke_knobs.core_capacity * nuke_knobs.core_mass)
@@ -53,19 +46,19 @@
 			DEBUG_MESSAGE("\[[src.type]\] fluid energy delta: [fluid_energy_delta]")
 			DEBUG_MESSAGE("\[[src.type]\] core temp after: [core_temp_after], change: [core_temp_after - src.core_heat]")
 
-		src.n_output.network.pipe_cont.total_temperature = src.core_heat
-		src.core_heat = core_temp_after
-		src.heat_transfer = delta_energy
-
-		//delta_energy = fluid_composite_heat_capacity * fluid_mass * delta_t
+		//src.n_output.network.reagents.total_temperature = src.core_heat
+		//src.core_heat = core_temp_after
 		//src.heat_transfer = delta_energy
 
-		//DEBUG_MESSAGE("delta_energy: [delta_energy]")
+		delta_energy = inreagents.composite_heat_capacity * fluid_mass * delta_t
+		heat_transfer = delta_energy
 
-		//src.core_heat += (delta_energy / (nuke_knobs.core_capacity * nuke_knobs.core_mass))
-
-		//src.n_output.network.pipe_cont.total_temperature += (delta_energy / (fluid_composite_heat_capacity * fluid_mass))
-		fp.temperature_react()
+		DEBUG_MESSAGE("delta_energy: [delta_energy]")
+		if (!fluid_mass && !inreagents.composite_heat_capacity)
+			return
+		core_heat += (delta_energy / (nuke_knobs.core_capacity * nuke_knobs.core_mass))
+		n_output.network.reagents.total_temperature += (delta_energy / (inreagents.composite_heat_capacity * fluid_mass))
+		inreagents.temperature_react()
 
 /obj/machinery/power/nuke/fchamber
 	name = "Nuclear Reactor Fission Chamber"
@@ -89,15 +82,15 @@
 		SPAWN(0.5 SECONDS)
 			debug_messages = 1 /* XXX */
 			make_fluid_networks()
-			var/obj/fluid_pipe/sink/temp_i = locate(/obj/fluid_pipe/sink) in get_step(src,NORTH)
-			var/obj/fluid_pipe/source/temp_o = locate(/obj/fluid_pipe/source) in get_step(src,SOUTH)
+			var/obj/fluid_pipe/source/temp_i = locate(/obj/fluid_pipe/source) in get_step(src,NORTH)
+			var/obj/fluid_pipe/sink/temp_o = locate(/obj/fluid_pipe/sink) in get_step(src,SOUTH)
 			//n_input = temp_i.network
 			//n_output = temp_o.network
 			n_input = temp_i
 			n_output = temp_o
 
-			//temp_i.network.pipe_cont.add_reagent("water", n_input.capacity, null)
-			//temp_o.network.pipe_cont.add_reagent("water", n_input.capacity, null)
+			//temp_i.network.reagents.add_reagent("water", n_input.capacity, null)
+			//temp_o.network.reagents.add_reagent("water", n_input.capacity, null)
 
 			..()
 
@@ -116,11 +109,11 @@
 		html += "</head><body>"
 		html += "<div class=\"ib\">"
 		html += "<h1>heat generated: [src.debug_heat] C</h1>"
-		html += "<h1>core heat: [src.core_heat] C</h1>"
-		html += "<h1>coolant flow: [src.n_input.used_capacity] mols/tick</h1>"
-		html += "<h1>in  coolant temp: [src.n_input.network.pipe_cont.total_temperature] C</h1>"
-		html += "<h1>out coolant temp: [src.n_output.network.pipe_cont.total_temperature] C</h1>"
-		html += "<h1>heat delta: [src.heat_transfer] C</h1>"
+		html += "<h1>core temperature: [src.core_heat] C</h1>"
+		html += "<h1>coolant flow: [src.n_input.used_capacity] units/tick</h1>"
+		html += "<h1>in coolant temp: [src.n_input.network.reagents.total_temperature] C</h1>"
+		html += "<h1>out coolant temp: [src.n_output.network.reagents.total_temperature] C</h1>"
+		html += "<h1>heat delta: [src.heat_transfer] Joules</h1>"
 		html += "</div>"
 		html += "<div class=\"ib\">"
 		html += "<table class=\"rs_table\">"
@@ -173,7 +166,7 @@
 				src.updateUsrDialog()
 
 	proc/test_ff()
-		ford_fulkerson(n_input.network)
+		n_input.network.ford_fulkerson()
 
 	proc/gen_tick()
 		if(!active) return
@@ -222,14 +215,14 @@
 
 		//src.test_ff()
 
-		/*var/heat_before = n_input.network.pipe_cont.total_temperature
-		n_output.network.pipe_cont.temperature_reagents(debug_heat + core_heat, n_output.used_capacity, 2, 300) /* XXX fix this */
-		var/heat_delta = n_output.network.pipe_cont.total_temperature - heat_before
+		/*var/heat_before = n_input.network.reagents.total_temperature
+		n_output.network.reagents.temperature_reagents(debug_heat + core_heat, n_output.used_capacity, 2, 300) /* XXX fix this */
+		var/heat_delta = n_output.network.reagents.total_temperature - heat_before
 		heat_transfer = heat_delta
 
 		core_heat += (debug_heat - heat_delta)*/
-
-		transfer_heat_fp()
+		src.n_input.network.reagents.trans_to(n_output.network, n_input.used_capacity)
+		transfer_heat_reagents()
 
 		src.n_output.network.last = REACTOR
 

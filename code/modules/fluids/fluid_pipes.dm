@@ -33,10 +33,9 @@
 		edges = list()
 		DEBUG_MESSAGE("Populating edges of pipe [log_loc(src)].")
 		DEBUG_MESSAGE("This is a [pipe_type] facing [dir].")
+		var/connect_directions
 		switch(pipe_shape)
 			if("straight")
-				var/connect_directions
-
 				switch(dir)
 					if(NORTH)
 						connect_directions = NORTH|SOUTH
@@ -46,16 +45,7 @@
 						connect_directions = EAST|WEST
 					if(WEST)
 						connect_directions = EAST|WEST
-
-				for(var/direction in cardinal)
-					if(direction&connect_directions)
-						for(var/obj/fluid_pipe/target in get_step(src,direction))
-							if(target.initialize_directions & get_dir(target,src))
-								edges.Add(target)
-								break
 			if("Y")
-				var/connect_directions
-
 				switch(dir)
 					if(NORTH)
 						connect_directions = EAST|WEST|NORTH
@@ -65,16 +55,7 @@
 						connect_directions = EAST|NORTH|SOUTH
 					if(WEST)
 						connect_directions = WEST|NORTH|SOUTH
-
-				for(var/direction in cardinal)
-					if(direction&connect_directions)
-						for(var/obj/fluid_pipe/target in get_step(src,direction))
-							if(target.initialize_directions & get_dir(target,src))
-								edges.Add(target)
-								break
 			if("elbow")
-				var/connect_directions
-
 				switch(dir)
 					if(NORTH)
 						connect_directions = NORTH|EAST
@@ -84,22 +65,14 @@
 						connect_directions = SOUTH|EAST
 					if(WEST)
 						connect_directions = NORTH|WEST
-
-				for(var/direction in cardinal)
-					if(direction&connect_directions)
-						for(var/obj/fluid_pipe/target in get_step(src,direction))
-							if(target.initialize_directions & get_dir(target,src))
-								edges.Add(target)
-								break
-			if("source", "sink")
-				var/connect_directions = dir
-
-				for(var/direction in cardinal)
-					if(direction&connect_directions)
-						for(var/obj/fluid_pipe/target in get_step(src,direction))
-							if(target.initialize_directions & get_dir(target,src))
-								edges.Add(target)
-								break
+			if("trunk")
+				connect_directions = dir
+		for(var/direction in cardinal)
+			if(direction&connect_directions)
+				for(var/obj/fluid_pipe/target in get_step(src,direction))
+					if(target.initialize_directions & get_dir(target,src))
+						edges.Add(target)
+						break
 		DEBUG_MESSAGE("[edges.len] adjacent nodes found.")
 
 	straight
@@ -145,16 +118,15 @@
 					initialize_directions = NORTH|WEST
 	source
 		icon_state = "pipe-t"
-		pipe_shape = "source"
+		pipe_shape = "trunk"
 		pipe_type = FLUIDPIPE_SOURCE
 
 		New()
 			..()
 			initialize_directions = dir
-
 	sink
 		icon_state = "pipe-t"
-		pipe_shape = "sink"
+		pipe_shape = "trunk"
 		pipe_type = FLUIDPIPE_SINK
 
 		New()
@@ -190,7 +162,7 @@ proc/find_unvisited_node()
 	var/list/obj/fluid_pipe/nodes = list()
 	var/list/obj/fluid_pipe/sources = list()
 	var/list/obj/fluid_pipe/sinks = list()
-	var/datum/reagents/fp_holder/pipe_cont = new /datum/reagents/fp_holder()
+	var/datum/reagents/reagents = new /datum/reagents()
 	#define REACTOR 1
 	#define TURBINE 2
 	var/last = 0
@@ -206,7 +178,7 @@ proc/find_unvisited_node()
 				sinks.Add(N)
 			else if(N.pipe_type == FLUIDPIPE_SOURCE)
 				sources.Add(N)
-		ford_fulkerson(src)
+		src.ford_fulkerson()
 
 
 		// Remove for full release
@@ -226,50 +198,51 @@ proc/find_unvisited_node()
 		for(var/obj/fluid_pipe/FN in nodes)
 			FN.visited = 0
 
-// Look at me! I paid attention in my algorithms class!
-// Warning: For efficiency flow is pre-calculated based on an assumption
-// that the full capacity is used every tick. This may not actually be the case.
-// So there are some weird cases where you could theoretically turn off one source
-// and allow a second source to increase its intake but this wont allow that to happen
-// The only solution to this is recalculating flows every tick but we're not going to do that.
-proc/ford_fulkerson(var/datum/flow_network/FN)
-	var/list/obj/fluid_pipe/path = list()
-	FN.clear_DFS_flags()
-	path = find_augmenting_path(FN)
-	DEBUG_MESSAGE("Augmenting path: [print_pipe_list(path)]")
-	while(length(path))
-		flow_through(path, DEFAULT_FLUID_CAPACITY / FN.sources.len)
-		path = find_augmenting_path(FN)
+	// Look at me! I paid attention in my algorithms class!
+	// Warning: For efficiency flow is pre-calculated based on an assumption
+	// that the full capacity is used every tick. This may not actually be the case.
+	// So there are some weird cases where you could theoretically turn off one source
+	// and allow a second source to increase its intake but this wont allow that to happen
+	// The only solution to this is recalculating flows every tick but we're not going to do that.
+	proc/ford_fulkerson()
+		var/list/obj/fluid_pipe/path = list()
+		clear_DFS_flags()
+		path = find_augmenting_path()
 		DEBUG_MESSAGE("Augmenting path: [print_pipe_list(path)]")
+		while(length(path))
+			flow_through(path, DEFAULT_FLUID_CAPACITY / sources.len)
+			path = find_augmenting_path()
+			DEBUG_MESSAGE("Augmenting path: [print_pipe_list(path)]")
 
-proc/find_augmenting_path(var/datum/flow_network/FN)
-	// Try to find one from each source
-	var/list/obj/fluid_pipe/stack = list()
-	for(var/obj/fluid_pipe/source in FN.sources)
-		FN.clear_DFS_flags()
-		find_source_sink_path(source,stack)
-		if(stack.len > 0)
-			return stack
-	return null
+	proc/find_augmenting_path()
+		// Try to find one from each source
+		var/list/obj/fluid_pipe/stack = list()
+		for(var/obj/fluid_pipe/source in sources)
+			clear_DFS_flags()
+			find_source_sink_path(source,stack)
 
-proc/find_source_sink_path(var/obj/fluid_pipe/source, var/list/obj/fluid_pipe/stack)
-	// Push self
-	stack.Add(source)
-	if(source.pipe_type == FLUIDPIPE_SINK)
+			if(stack.len > 0)
+				return stack
+		return null
+
+	proc/find_source_sink_path(var/obj/fluid_pipe/source, var/list/obj/fluid_pipe/stack)
+		// Push self
+		stack.Add(source)
+		if(source in sinks)
+			return
+		DEBUG_MESSAGE("Pushing pipe [showCoords(source.x,source.y,source.z)]")
+		source.visited = 1
+		for(var/obj/fluid_pipe/adj in source.edges)
+			if(adj.visited || adj.used_capacity == adj.capacity)
+				continue
+			find_source_sink_path(adj,stack)
+			// Did the DFS succeed?
+			if(stack[stack.len] in sinks)
+				return // We did it!
+		//Well shit. Dead end.
+		stack.Remove(source)
+		DEBUG_MESSAGE("Popping pipe [showCoords(source.x,source.y,source.z)]")
 		return
-	DEBUG_MESSAGE("Pushing pipe [showCoords(source.x,source.y,source.z)]")
-	source.visited = 1
-	for(var/obj/fluid_pipe/adj in source.edges)
-		if(adj.visited || adj.used_capacity == adj.capacity)
-			continue
-		find_source_sink_path(adj,stack)	
-		// Did the DFS succeed?
-		if(stack[stack.len].pipe_type == FLUIDPIPE_SINK)
-			return // We did it!
-	//Well shit. Dead end.
-	stack.Remove(source)
-	DEBUG_MESSAGE("Popping pipe [showCoords(source.x,source.y,source.z)]")
-	return
 
 
 proc/print_pipe_list(var/obj/fluid_pipe/pipes)
@@ -329,6 +302,4 @@ proc/DFS_LOUD(var/obj/fluid_pipe/root)
 	DEBUG_MESSAGE("DFS end - returning [listret].")
 	return nodes
 
-/datum/reagents/fp_holder
-	New()
-		..()
+
