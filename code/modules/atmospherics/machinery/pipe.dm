@@ -380,7 +380,15 @@ obj/machinery/atmospherics/pipe
 
 		attackby(var/obj/item/W as obj, var/mob/user as mob)
 			if(isweldingtool(W))
-
+				if(user.a_intent == INTENT_HARM)
+					var/obj/item/atmosconstruct/C = new(src.loc)
+					C.pipe_type = "pipe"
+					C.icon_state = "pipe"
+					C.dir = src.dir
+					C.color = src.color
+					C.level = src.level
+					qdel(src)
+					return
 				if(!ruptured)
 					boutput(user, "<span class='alert'>That isn't damaged!</span>")
 					return

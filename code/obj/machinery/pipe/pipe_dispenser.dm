@@ -1,8 +1,8 @@
-/*
 /obj/machinery/pipedispenser
 	name = "Pipe Dispenser"
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "autolathe"
+	desc = "A piece of machinery that dispenses pipes. You haven't seen these in stations for quite some time."
+	icon = 'icons/obj/manufacturer.dmi'
+	icon_state = "pipe-fab"
 	density = 1
 	anchored = 1.0
 
@@ -11,22 +11,20 @@
 		return
 
 	var/dat = {"
-<A href='?src=\ref[src];make=0'>Pipe<BR>
-<A href='?src=\ref[src];make=1'>Bent Pipe<BR>
+<A href='?src=\ref[src];make="pipe"'>Pipe<BR>
+<A href='?src=\ref[src];make='>Bent Pipe<BR>
 <A href='?src=\ref[src];make=2'>Heat Exchange Pipe<BR>
 <A href='?src=\ref[src];make=3'>Heat Exchange Bent Pipe<BR>
 <A href='?src=\ref[src];make=4'>Connector<BR>
 <A href='?src=\ref[src];make=5'>Manifold<BR>
-<A href='?src=\ref[src];make=6'>Junction<BR>
-<A href='?src=\ref[src];make=7'>Vent<BR>
-<A href='?src=\ref[src];make=8'>Valve<BR>
-<A href='?src=\ref[src];make=9'>Pipe-Pump<BR>"}
-//<A href='?src=\ref[src];make=10'>Filter Inlet<BR>
+<A href='?src=\ref[src];make=6'>Heat Junction<BR>
+<A href='?src=\ref[src];make=7'>Passive Vent<BR>
+<A href='?src=\ref[src];make=8'>Manual Valve<BR>
+<A href='?src=\ref[src];make=9'>Pump<BR>"}
 
 
-	user.Browse("<HEAD><TITLE>Pipe Dispenser</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	usr.Browse("<HEAD><TITLE>Pipe Dispenser</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
 	onclose(user, "pipedispenser")
-	return
 
 /obj/machinery/pipedispenser/Topic(href, href_list)
 	if(..())
@@ -34,19 +32,32 @@
 	src.add_dialog(usr)
 	src.add_fingerprint(usr)
 	if(href_list["make"])
-		var/p_type = text2num_safe(href_list["make"])
-		var/obj/item/pipe/P = new /obj/item/pipe(src.loc)
-		P.pipe_type = p_type
-		P.update()
+		var/obj/item/atmosconstruct/C = new (src.loc)
+		switch(text2num_safe(href_list["make"])) //mmhhhh long switch statements
+			if(0)
+				C.pipe_type = "pipe"
+			if(1)
+				C.pipe_type = "bentpipe"
+				C.dir = SOUTHWEST
+			if(2)
+				C.pipe_type = "heatpipe"
+			if(3)
+				C.pipe_type = "heatbentpipe"
+			if(4)
+				C.pipe_type = "connector"
+			if(5)
+				C.pipe_type = "manifold"
+			if(6)
+				C.pipe_type = "heatjunction"
+			if(7)
+				C.pipe_type = "pvent"
+			if(8)
+				C.pipe_type = "manvalve"
+			if(9)
+				C.pipe_type = "pump"
+		C.icon_state = C.pipe_type
+		src.color = "#777777"
 
-	for(var/mob/M in viewers(1, src))
-		if ((M.client && M.machine == src))
-			src.Attackhand(M)
-	return
-
-/obj/machinery/pipedispenser/New()
-	..()
-*/
 
 /obj/machinery/disposal_pipedispenser
 	name = "Disposal Pipe Dispenser"
