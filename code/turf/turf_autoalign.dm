@@ -695,7 +695,7 @@
 	connect_diagonal = 1
 	connects_to = list(/turf/unsimulated/wall/auto/supernorn, /turf/unsimulated/wall/auto/reinforced/supernorn, /obj/machinery/door,
 	/obj/window, /turf/simulated/wall/false_wall/reinforced, /turf/unsimulated/wall/auto/adventure/old, /turf/unsimulated/wall/setpieces/fakewindow, /turf/unsimulated/wall/auto/adventure/meat)
-	connects_with_overlay = list(/obj/machinery/door, /obj/window)
+	connects_with_overlay = list(/obj/machinery/door)
 
 /turf/unsimulated/wall/auto/supernorn/wood
 	icon = 'icons/turf/walls_wood.dmi'
