@@ -412,23 +412,23 @@ obj/machinery/atmospherics/retrofilter
 		var/node_out1_connect = turn(dir, -90)
 		var/node_out2_connect = dir
 
+		SPAWN(0.1 SECONDS)
+			for(var/obj/machinery/atmospherics/target in get_step(src,node_out1_connect))
+				if(target.initialize_directions & get_dir(target,src))
+					node_out1 = target
+					break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_out1_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_out1 = target
-				break
+			for(var/obj/machinery/atmospherics/target in get_step(src,node_out2_connect))
+				if(target.initialize_directions & get_dir(target,src))
+					node_out2 = target
+					break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_out2_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_out2 = target
-				break
+			for(var/obj/machinery/atmospherics/target in get_step(src,node_in_connect))
+				if(target.initialize_directions & get_dir(target,src))
+					node_in = target
+					break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_in_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_in = target
-				break
-
-		UpdateIcon()
+			UpdateIcon()
 
 	build_network()
 		if(!network_out1 && node_out1)
