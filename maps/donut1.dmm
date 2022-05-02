@@ -289,16 +289,6 @@
 	},
 /turf/simulated/wall/auto/supernorn,
 /area/station/chapel/office)
-"aX" = (
-/obj/machinery/communications_dish,
-/obj/machinery/power/data_terminal,
-/obj/cable{
-	icon_state = "0-2"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/brig/prison)
 "aY" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	dir = 8;
@@ -617,7 +607,8 @@
 	dir = 4;
 	name = "autoname - SS13";
 	network = "Atmo";
-	tag = ""
+	tag = "";
+	pixel_x = -10
 	},
 /turf/simulated/floor/airless/engine,
 /area/space)
@@ -797,16 +788,6 @@
 	},
 /turf/simulated/floor/airless/plating,
 /area/station/solar/south)
-"cA" = (
-/obj/machinery/networked/radio,
-/obj/machinery/power/data_terminal,
-/obj/cable{
-	icon_state = "0-2"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/brig/prison)
 "cB" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 6
@@ -1486,12 +1467,6 @@
 	},
 /turf/space,
 /area/space)
-"eL" = (
-/obj/machinery/shuttle/engine/propulsion{
-	icon_state = "alt_propulsion"
-	},
-/turf/space,
-/area/shuttle/brig/prison)
 "eM" = (
 /turf/simulated/floor/specialroom/chapel{
 	dir = 8
@@ -1520,6 +1495,11 @@
 /obj/item/device/infra,
 /obj/cable{
 	icon_state = "4-8"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
 	},
 /turf/simulated/floor,
 /area/station/science/lab)
@@ -1975,7 +1955,7 @@
 /area/station/bridge)
 "gj" = (
 /obj/machinery/shuttle/engine/propulsion{
-	icon_state = "alt_heater-R"
+	icon_state = "alt_propulsion"
 	},
 /turf/simulated/wall/auto/shuttle{
 	icon_state = "9"
@@ -2282,7 +2262,8 @@
 	c_tag = "autotag";
 	dir = 4;
 	name = "autoname - SS13";
-	tag = ""
+	tag = "";
+	pixel_x = -10
 	},
 /turf/simulated/floor,
 /area/station/science/lab)
@@ -3329,6 +3310,12 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -3346,9 +3333,6 @@
 "kF" = (
 /obj/table/auto,
 /obj/item/cell,
-/obj/cable{
-	icon_state = "1-4"
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -5398,16 +5382,6 @@
 /obj/stool/chair,
 /turf/simulated/floor,
 /area/station/security/checkpoint/customs)
-"qT" = (
-/obj/grille/steel,
-/obj/window/auto,
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/unsimulated/floor/shuttle{
-	icon_state = "floor2"
-	},
-/area/shuttle/brig/prison)
 "qU" = (
 /obj/machinery/light,
 /turf/simulated/floor,
@@ -5821,7 +5795,8 @@
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 0;
-	name = "autoname - SS13"
+	name = "autoname - SS13";
+	pixel_y = 20
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
@@ -5952,7 +5927,7 @@
 /area/station/solar/south)
 "sw" = (
 /obj/machinery/shuttle/engine/propulsion{
-	icon_state = "alt_heater-L"
+	icon_state = "alt_propulsion"
 	},
 /turf/simulated/wall/auto/shuttle{
 	icon_state = "5"
@@ -5967,6 +5942,16 @@
 /obj/item/clothing/suit/bedsheet,
 /turf/simulated/floor,
 /area/station/security/brig)
+"sy" = (
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/communications_dish,
+/turf/unsimulated/floor/shuttle{
+	icon_state = "floor2"
+	},
+/area/shuttle/brig/prison)
 "sz" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet,
@@ -6614,9 +6599,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "uH" = (
-/obj/machinery/door/unpowered/shuttle{
-	icon_state = "doorc0"
-	},
+/obj/machinery/door/unpowered/shuttle,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -6741,7 +6724,8 @@
 /obj/machinery/camera{
 	c_tag = "Atmospherics Gas Processing West";
 	dir = 8;
-	name = "autoname  - SS13"
+	name = "autoname  - SS13";
+	pixel_x = 10
 	},
 /turf/space,
 /area/space)
@@ -7471,9 +7455,6 @@
 /obj/item/device/detective_scanner,
 /obj/item/device/detective_scanner,
 /obj/cable{
-	icon_state = "1-8"
-	},
-/obj/cable{
 	icon_state = "4-8"
 	},
 /turf/unsimulated/floor/shuttle{
@@ -7944,7 +7925,8 @@
 /obj/machinery/camera{
 	c_tag = "Atmospherics Gas Processing East";
 	dir = 4;
-	name = "Security Camera"
+	name = "Security Camera";
+	pixel_x = -10
 	},
 /turf/space,
 /area/space)
@@ -8462,7 +8444,8 @@
 	dir = 4;
 	name = "autoname - SS13";
 	network = "Atmo";
-	tag = ""
+	tag = "";
+	pixel_x = -10
 	},
 /turf/simulated/floor/engine{
 	name = "plasma floor";
@@ -9070,7 +9053,8 @@
 	c_tag = "autotag";
 	dir = 4;
 	name = "autoname - SS13";
-	tag = ""
+	tag = "";
+	pixel_x = -10
 	},
 /turf/simulated/floor,
 /area/station/science/storage)
@@ -9469,7 +9453,8 @@
 	dir = 4;
 	name = "autoname - SS13";
 	network = "Atmo";
-	tag = ""
+	tag = "";
+	pixel_x = -10
 	},
 /turf/simulated/floor/engine{
 	carbon_dioxide = 50000;
@@ -11185,7 +11170,8 @@
 	dir = 4;
 	name = "autoname - SS13";
 	network = "Atmo";
-	tag = ""
+	tag = "";
+	pixel_x = -10
 	},
 /turf/simulated/floor/engine{
 	name = "o2 floor";
@@ -11519,9 +11505,7 @@
 /turf/space,
 /area/space)
 "Jy" = (
-/obj/machinery/door/unpowered/shuttle{
-	icon_state = "doorc0"
-	},
+/obj/machinery/door/unpowered/shuttle,
 /turf/unsimulated/floor{
 	desc = "";
 	icon = 'icons/turf/shuttle.dmi';
@@ -11602,7 +11586,8 @@
 	dir = 4;
 	name = "autoname - SS13";
 	network = "Atmo";
-	tag = ""
+	tag = "";
+	pixel_x = -10
 	},
 /turf/simulated/floor/engine{
 	name = "n2 floor";
@@ -13565,6 +13550,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
+"PR" = (
+/obj/machinery/camera{
+	c_tag = "Atmospherics Excess Gas Storage";
+	name = "autoname - SS13";
+	network = "Atmo";
+	tag = "";
+	pixel_y = 20
+	},
+/turf/simulated/floor/airless/engine,
+/area/space)
 "PS" = (
 /turf/simulated/floor,
 /area/station/security/detectives_office{
@@ -15866,7 +15861,7 @@
 /area/station/hallway/primary/west)
 "WL" = (
 /obj/machinery/shuttle/engine/propulsion{
-	icon_state = "alt_heater-M"
+	icon_state = "alt_propulsion"
 	},
 /turf/simulated/wall/auto/shuttle{
 	icon_state = "12"
@@ -19392,7 +19387,7 @@ PD
 PD
 PD
 ny
-Zi
+PR
 zG
 tE
 EK
@@ -36627,7 +36622,7 @@ WO
 WO
 WO
 WO
-WO
+PD
 PD
 PD
 PD
@@ -36752,6 +36747,7 @@ DV
 DV
 Ic
 Ge
+PD
 WO
 WO
 WO
@@ -36778,8 +36774,7 @@ WO
 WO
 WO
 WO
-WO
-WO
+PD
 PD
 PD
 PD
@@ -36904,34 +36899,34 @@ DV
 DV
 Ic
 Ol
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
+WO
 PD
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
-WO
 PD
 PD
 PD
@@ -37056,6 +37051,7 @@ DV
 qU
 Ic
 Ol
+PD
 WO
 WO
 WO
@@ -37082,8 +37078,7 @@ WO
 WO
 WO
 WO
-WO
-WO
+PD
 PD
 PD
 PD
@@ -37235,7 +37230,7 @@ WO
 WO
 WO
 WO
-WO
+PD
 PD
 PD
 PD
@@ -59428,7 +59423,7 @@ ec
 Rf
 ec
 sw
-eL
+PD
 PD
 PD
 PD
@@ -59553,8 +59548,8 @@ PD
 PD
 PD
 PD
-aX
-qT
+PD
+pa
 xj
 qK
 qK
@@ -59580,7 +59575,7 @@ fR
 fR
 qK
 WL
-eL
+PD
 PD
 PD
 PD
@@ -59705,7 +59700,7 @@ PD
 PD
 PD
 PD
-PD
+sy
 pa
 kC
 Nu
@@ -59732,7 +59727,7 @@ zv
 ly
 Nu
 WL
-eL
+PD
 PD
 PD
 PD
@@ -59857,8 +59852,8 @@ PD
 PD
 PD
 PD
-cA
-qT
+PD
+pa
 kF
 qK
 qK
@@ -59884,7 +59879,7 @@ ly
 zv
 Nu
 WL
-eL
+PD
 PD
 PD
 PD
@@ -60036,7 +60031,7 @@ ec
 CT
 ec
 gj
-eL
+PD
 PD
 PD
 PD
