@@ -1,5 +1,25 @@
 
 (t)sun may 01 22
+(u)NightmareChamillian
+(p)8383
+(e)|
+(+)Drones now get a more inbuilt floor tiles. 500 more, to be precise.
+(u)Bartimeus973
+(p)8371
+(e)|
+(+)An apple a day will keep doctors away if you throw it hard enough
+(u)Chatauscours
+(p)8396
+(e)|
+(*)Added mining headset. Spawns on miners and in miner equimpent boxes.
+(u)Chatauscours
+(p)8405
+(e)⚖|balance
+(*)Changed the chameleon suit to the chameleon outfit in the infiltrator class crate.
+(u)Bartimeus973
+(p)8262
+(e)🎨|sprites
+(*)Using the "regrow tail" ability as a reptilian will now make the tail twitchy for a bit!
 (u)Flaborized & TheMightyAltroll
 (p)8315
 (e)🆕🎨|feature, sprites
