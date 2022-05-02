@@ -388,9 +388,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/engineering{
+	dir = 4
 	},
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
@@ -554,9 +553,7 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "bP" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/external,
 /obj/access_spawn/public,
 /obj/cable{
 	icon_state = "0-2"
@@ -696,9 +693,8 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "cl" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
@@ -1166,9 +1162,7 @@
 /turf/simulated/floor,
 /area/station/security/brig)
 "dM" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/security,
 /obj/access_spawn/engineering_atmos,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
@@ -1277,9 +1271,8 @@
 /turf/simulated/floor/white,
 /area/station/medical/research)
 "eb" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/external{
+	dir = 8
 	},
 /obj/access_spawn/engineering,
 /turf/simulated/floor,
@@ -2148,9 +2141,8 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
 "gM" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "External Airlock";
-	req_access_txt = 13
+/obj/machinery/door/airlock/pyro/external{
+	name = "External Access"
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
@@ -2660,9 +2652,8 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "iu" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
@@ -2705,9 +2696,8 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/turret_protected/ai_upload)
 "iz" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /turf/simulated/floor/plating,
@@ -2803,9 +2793,8 @@
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/security{
+	dir = 4
 	},
 /obj/access_spawn/brig,
 /turf/simulated/floor,
@@ -2945,9 +2934,8 @@
 /turf/simulated/floor/plating,
 /area/station/science/testchamber)
 "jr" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /turf/simulated/floor/plating,
@@ -3700,9 +3688,10 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/bridge)
 "lF" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/command{
+	name = "AI Upload";
+	req_access_txt = "16";
+	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -3825,9 +3814,7 @@
 /turf/simulated/floor,
 /area/station/storage/secure)
 "lU" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/engineering,
 /obj/machinery/door/firedoor/pyro,
 /obj/access_spawn/engineering_atmos,
 /turf/simulated/floor,
@@ -4369,18 +4356,15 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/maintenance/north)
 "nH" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/external,
 /obj/access_spawn/engineering,
 /turf/simulated/floor,
 /area/station/engine/storage{
 	name = "Engineering Hallway"
 	})
 "nI" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /obj/cable{
@@ -4648,9 +4632,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "ov" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/maintenance,
 /obj/access_spawn/maint,
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
@@ -4877,9 +4859,10 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "pn" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass/engineering{
+	name = "Core Access";
+	req_access = null;
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
@@ -5064,9 +5047,8 @@
 /turf/space,
 /area/station/engine/proto)
 "pR" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 4
 	},
 /obj/access_spawn/public,
 /turf/simulated/floor,
@@ -5451,9 +5433,8 @@
 /turf/simulated/floor/engine/vacuum,
 /area/station/engine/proto)
 "qW" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "Senior Staff"
+/obj/machinery/door/airlock/pyro/command{
+	dir = 4
 	},
 /obj/access_spawn/heads,
 /turf/simulated/floor,
@@ -5779,9 +5760,8 @@
 /turf/simulated/floor,
 /area/station/security/brig)
 "rW" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 4
 	},
 /obj/access_spawn/public,
 /turf/simulated/floor,
@@ -5919,9 +5899,8 @@
 /turf/space,
 /area/station/engine/engineering)
 "sq" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -5930,9 +5909,10 @@
 /turf/simulated/floor/plating,
 /area/space)
 "sr" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/engineering{
+	name = "Power Room";
+	req_access = null;
+	dir = 4
 	},
 /obj/access_spawn/engineering_power,
 /obj/cable{
@@ -6155,9 +6135,8 @@
 /turf/simulated/floor/plating/airless,
 /area/space)
 "sY" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
@@ -6643,9 +6622,8 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/hallway/secondary/entry)
 "uE" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/engineering{
+	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -7130,6 +7108,11 @@
 /obj/access_spawn/heads,
 /turf/simulated/floor,
 /area/station/bridge)
+"wc" = (
+/obj/machinery/door/airlock/pyro/glass/toxins,
+/obj/access_spawn/tox,
+/turf/simulated/floor,
+/area/station/science/lab)
 "wd" = (
 /obj/window{
 	dir = 2
@@ -7206,8 +7189,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass{
+	name = "Emergency Storage A";
+	req_access_txt = "41"
 	},
 /obj/access_spawn/public,
 /turf/simulated/floor,
@@ -7797,9 +7781,8 @@
 /turf/simulated/floor/white,
 /area/station/medical/research)
 "xV" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "External Airlock";
-	req_access_txt = 13
+/obj/machinery/door/airlock/pyro/external{
+	name = "External Access"
 	},
 /turf/simulated/floor,
 /area/station/engine/engineering)
@@ -8009,8 +7992,9 @@
 /turf/space,
 /area/space)
 "yF" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass/engineering{
+	name = "Gas Storage";
+	req_access = null
 	},
 /obj/access_spawn/engineering,
 /turf/simulated/floor,
@@ -8109,8 +8093,9 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
 "yT" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "Custodial Closet"
+/obj/machinery/door/airlock/pyro{
+	name = "Janitor's Supply Closet";
+	req_access_txt = "26"
 	},
 /obj/access_spawn/janitor,
 /turf/simulated/floor,
@@ -8282,9 +8267,8 @@
 	},
 /area/shuttle/brig/prison)
 "zw" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
@@ -8509,9 +8493,8 @@
 /turf/simulated/floor,
 /area/station/security/brig)
 "Ab" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /obj/cable{
@@ -8794,9 +8777,9 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "AS" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4;
+	name = "External Access"
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -9007,6 +8990,12 @@
 /obj/indestructible/shuttle_corner,
 /turf/space,
 /area/shuttle/arrival/station)
+"Bx" = (
+/obj/machinery/door/airlock/pyro/external{
+	name = "External Access"
+	},
+/turf/space,
+/area/space)
 "By" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -9096,9 +9085,7 @@
 /turf/simulated/floor/airless/engine,
 /area/station/storage/secure)
 "BJ" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/toxins_alt,
 /obj/access_spawn/tox,
 /turf/simulated/floor,
 /area/station/science/lab)
@@ -9247,9 +9234,8 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "Cl" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass/security{
+	dir = 4
 	},
 /obj/access_spawn/security,
 /turf/simulated/floor,
@@ -9387,9 +9373,7 @@
 /turf/simulated/floor,
 /area/station/engine/engineering)
 "CK" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/maintenance,
 /obj/access_spawn/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
@@ -9400,9 +9384,7 @@
 /turf/simulated/floor/white,
 /area/station/hallway/primary/north)
 "CM" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/maintenance,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -9492,9 +9474,10 @@
 /turf/simulated/floor,
 /area/station/turret_protected/ai_upload)
 "CZ" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass/engineering{
+	name = "Core Access";
+	req_access = null;
+	dir = 4
 	},
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
@@ -9929,9 +9912,9 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "Eo" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/security{
+	dir = 4;
+	req_access_txt = "1"
 	},
 /obj/access_spawn/security,
 /turf/simulated/floor,
@@ -10198,9 +10181,7 @@
 /turf/simulated/floor/airless/plating,
 /area/space)
 "Fi" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/external,
 /obj/access_spawn/public,
 /obj/cable{
 	icon_state = "1-2"
@@ -10710,9 +10691,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/pyro/classic{
-	name = "External Airlock";
-	req_access_txt = 13
+/obj/machinery/door/airlock/pyro/external{
+	name = "External Access"
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
@@ -10877,8 +10857,8 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/turret_protected/ai)
 "Hh" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/external{
+	name = "External Access"
 	},
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
@@ -11273,9 +11253,9 @@
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/security{
+	dir = 4;
+	req_access_txt = "1"
 	},
 /obj/access_spawn/security,
 /obj/cable{
@@ -11565,9 +11545,10 @@
 /turf/simulated/floor,
 /area/station/science/storage)
 "Jn" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "AI Upload"
+/obj/machinery/door/airlock/pyro/command{
+	name = "AI Upload";
+	req_access_txt = "16";
+	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -11614,9 +11595,8 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "Ju" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -11632,7 +11612,7 @@
 /turf/space,
 /area/space)
 "Jy" = (
-/obj/machinery/door/unpowered/shuttle,
+/obj/machinery/door/airlock/pyro/external,
 /turf/unsimulated/floor{
 	desc = "";
 	icon = 'icons/turf/shuttle.dmi';
@@ -11768,9 +11748,8 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "JQ" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -11991,9 +11970,10 @@
 /turf/simulated/floor,
 /area/station/storage/secure)
 "KG" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/engineering{
+	name = "Engineering Control Room";
+	req_access_txt = "44";
+	dir = 4
 	},
 /obj/access_spawn/engineering,
 /obj/machinery/door/firedoor/pyro{
@@ -12002,9 +11982,10 @@
 /turf/simulated/floor,
 /area/station/engine/monitoring)
 "KH" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/command{
+	dir = 4;
+	name = "E.V.A.";
+	req_access = null
 	},
 /obj/access_spawn/eva,
 /obj/cable{
@@ -12039,9 +12020,8 @@
 	},
 /area/station/chapel/office)
 "KL" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -13005,9 +12985,8 @@
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/courtroom)
@@ -13068,9 +13047,8 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/quartersA)
 "NX" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "Secure Storage"
+/obj/machinery/door/airlock/pyro/engineering{
+	dir = 4
 	},
 /obj/access_spawn/public,
 /turf/simulated/floor,
@@ -13207,10 +13185,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "External Airlock";
-	req_access_txt = 13
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4;
+	name = "External Access"
 	},
 /turf/simulated/floor,
 /area/station/engine/core)
@@ -13328,9 +13305,8 @@
 /turf/simulated/floor/plating/airless,
 /area/space)
 "OO" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/access_spawn/maint,
 /turf/simulated/floor/plating,
@@ -13483,9 +13459,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/quartersB)
 "Pl" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/maintenance,
 /obj/access_spawn/maint,
 /obj/cable{
 	icon_state = "1-2"
@@ -13678,10 +13652,9 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/engine/proto)
 "PM" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "External Airlock";
-	req_access_txt = 13
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4;
+	name = "External Access"
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
@@ -14170,9 +14143,8 @@
 	},
 /area/space)
 "Rp" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass/toxins{
+	dir = 4
 	},
 /obj/access_spawn/tox,
 /turf/simulated/floor,
@@ -14333,9 +14305,10 @@
 	name = "Foresnics"
 	})
 "RT" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/engineering{
+	name = "Engineering Control Room";
+	req_access_txt = "44";
+	dir = 4
 	},
 /obj/access_spawn/engineering,
 /obj/machinery/door/firedoor/pyro{
@@ -14737,9 +14710,8 @@
 /turf/simulated/floor,
 /area/station/security/brig)
 "SZ" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 4
 	},
 /obj/access_spawn/public,
 /turf/simulated/floor,
@@ -14778,9 +14750,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/atmos)
 "Tg" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/maintenance,
 /obj/access_spawn/maint,
 /turf/simulated/floor,
 /area/station/hallway/secondary/entry)
@@ -15058,9 +15028,7 @@
 /turf/simulated/floor/engine/caution,
 /area/station/engine/combustion_chamber)
 "TX" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/maintenance,
 /obj/access_spawn/maint,
 /obj/cable{
 	icon_state = "1-2"
@@ -15068,9 +15036,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "TY" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/security,
 /obj/access_spawn/security,
 /turf/simulated/floor,
 /area/station/security/main)
@@ -15146,9 +15112,8 @@
 	},
 /area/shuttle/brig/prison)
 "Uk" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/maintenance{
+	dir = 4
 	},
 /obj/cable{
 	icon_state = "4-8"
@@ -15284,9 +15249,7 @@
 /turf/simulated/floor,
 /area/station/storage/eva)
 "UH" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/security,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -15457,9 +15420,7 @@
 	name = "Engineering Hallway"
 	})
 "Vf" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/external,
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "Vg" = (
@@ -15582,8 +15543,9 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "Vw" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/command{
+	name = "E.V.A.";
+	req_access = null
 	},
 /obj/access_spawn/eva,
 /turf/simulated/floor,
@@ -15671,9 +15633,10 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/engine/power)
 "VJ" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass/engineering{
+	name = "Core Access";
+	req_access = null;
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
@@ -15846,8 +15809,9 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "Wg" = (
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/command{
+	name = "Teleporter";
+	req_access_txt = "17"
 	},
 /obj/access_spawn/teleporter,
 /turf/simulated/floor,
@@ -16348,9 +16312,8 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "XG" = (
-/obj/machinery/door/airlock/pyro/classic{
-	dir = 8;
-	name = "airlock"
+/obj/machinery/door/airlock/pyro/glass/toxins{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
@@ -16503,9 +16466,7 @@
 /area/station/crew_quarters/quartersB)
 "Yf" = (
 /obj/machinery/door/firedoor/pyro,
-/obj/machinery/door/airlock/pyro/classic{
-	name = "airlock"
-	},
+/obj/machinery/door/airlock/pyro/maintenance,
 /turf/simulated/floor,
 /area/station/crew_quarters/courtroom)
 "Yh" = (
@@ -21249,7 +21210,7 @@ PD
 PD
 PD
 PD
-PD
+Bx
 PD
 PD
 PN
@@ -22773,7 +22734,7 @@ xn
 TE
 sN
 aT
-BJ
+wc
 EL
 SH
 Az
