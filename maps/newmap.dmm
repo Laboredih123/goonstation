@@ -15,7 +15,7 @@
 	can_rupture = 0;
 	dir = 1
 	},
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "aq" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -48,7 +48,7 @@
 	on = 1;
 	target_pressure = 250
 	},
-/turf/simulated/floor/engine,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "bd" = (
 /obj/machinery/power/nuke_analyzer,
@@ -64,7 +64,7 @@
 	name = "Permanent Atmospheric Forcefield";
 	powerlevel = 1
 	},
-/turf/simulated/floor/airless/engine,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -191,7 +191,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
 "ei" = (
-/turf/simulated/floor/engine,
+/turf/simulated/floor/airless/engine/glow/blue,
 /area/space)
 "eo" = (
 /obj/machinery/atmospherics/pipe/vent,
@@ -202,7 +202,7 @@
 	id = "testchambervent"
 	},
 /obj/grille,
-/turf/space,
+/turf/simulated/floor/airless/engine,
 /area/space)
 "ev" = (
 /obj/landmark/start{
@@ -232,7 +232,7 @@
 	on = 1;
 	target_pressure = 250
 	},
-/turf/simulated/floor/engine,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "eH" = (
 /obj/forcefield/energyshield/perma{
@@ -400,6 +400,10 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"hj" = (
+/obj/map/light/brighterwhite,
+/turf/simulated/floor/airless/engine/glow/blue,
+/area/space)
 "hn" = (
 /obj/machinery/door/poddoor/pyro{
 	id = "incinerator";
@@ -457,7 +461,8 @@
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 8
 	},
-/turf/simulated/floor/airless/plating,
+/obj/lattice,
+/turf/space,
 /area/space)
 "hW" = (
 /obj/machinery/centrifuge/nuclear,
@@ -483,7 +488,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/airless/engine/vacuum,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "iF" = (
 /obj/wingrille_spawn/reinforced_crystal/full,
@@ -513,6 +518,9 @@
 /obj/item/rcd/construction/safe/admin_crimes,
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"iZ" = (
+/turf/simulated/floor/engine/glow,
+/area/station/science/testchamber)
 "je" = (
 /turf/space,
 /area/space)
@@ -685,7 +693,7 @@
 	icon_state = "on";
 	on = 1
 	},
-/turf/simulated/floor/airless/engine/vacuum,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "lN" = (
 /obj/grille/catwalk{
@@ -879,10 +887,6 @@
 /area/station/atmos)
 "pD" = (
 /obj/map/light/brighterwhite,
-/obj/fluid_spawner,
-/obj/fluid_spawner,
-/obj/fluid_spawner,
-/obj/fluid_spawner,
 /turf/space/fluid,
 /area/station/engine/core/nuclear)
 "pU" = (
@@ -899,7 +903,7 @@
 /obj/machinery/air_sensor{
 	frequency = 1470
 	},
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "qA" = (
 /obj/forcefield/energyshield/perma{
@@ -930,6 +934,9 @@
 /obj/fluid_pipe/sink/inlet_pump{
 	dir = 8
 	},
+/obj/fluid_spawner,
+/obj/fluid_spawner,
+/obj/fluid_spawner,
 /turf/simulated/floor,
 /area/station/engine/core/nuclear)
 "ri" = (
@@ -1005,7 +1012,7 @@
 "rS" = (
 /obj/forcefield/energyshield/perma,
 /obj/machinery/door/airlock/pyro/glass/toxins,
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow,
 /area/station/science/testchamber)
 "sg" = (
 /obj/machinery/power/terminal{
@@ -1043,7 +1050,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	frequency = "1470"
 	},
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "tg" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -1103,20 +1110,30 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"tV" = (
+/obj/railing{
+	dir = 8
+	},
+/obj/railing{
+	dir = 4
+	},
+/obj/map/light/brighterwhite,
+/turf/simulated/floor/engine/caution/westeast,
+/area/space)
 "tZ" = (
 /obj/map/light/brighterwhite,
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	can_rupture = 0;
 	dir = 1
 	},
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow,
 /area/station/science/testchamber)
 "uk" = (
 /obj/machinery/camera/television{
 	c_tag = "test chamber1";
 	name = "camera - test chamber1"
 	},
-/turf/simulated/floor/engine,
+/turf/simulated/floor/airless/engine/glow/blue,
 /area/space)
 "ul" = (
 /obj/machinery/door/poddoor/blast/pyro{
@@ -1511,7 +1528,7 @@
 	c_tag = "test chamber4";
 	name = "camera - test chamber4"
 	},
-/turf/simulated/floor/engine,
+/turf/simulated/floor/airless/engine/glow/blue,
 /area/space)
 "BE" = (
 /obj/cable{
@@ -1544,6 +1561,17 @@
 	},
 /turf/space,
 /area/space)
+"Cj" = (
+/obj/machinery/mass_driver{
+	dir = 1;
+	id = "bombsaway"
+	},
+/obj/railing{
+	dir = 4
+	},
+/obj/map/light/brighterwhite,
+/turf/simulated/floor/engine/caution/westeast,
+/area/space)
 "Cn" = (
 /obj/machinery/light{
 	dir = 1
@@ -1568,7 +1596,7 @@
 "Dl" = (
 /obj/machinery/power/turbine,
 /obj/cable,
-/turf/simulated/floor/airless/engine/vacuum,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "Dm" = (
 /obj/disposalpipe/junction{
@@ -1587,7 +1615,7 @@
 	name = "Permanent Atmospheric Forcefield";
 	powerlevel = 1
 	},
-/turf/simulated/floor/engine,
+/turf/simulated/floor/airless/engine/glow/blue,
 /area/space)
 "Dw" = (
 /obj/map/light/brighterwhite,
@@ -1609,7 +1637,7 @@
 /obj/machinery/door/poddoor/blast/pyro{
 	id = "testchambershield"
 	},
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow,
 /area/station/science/testchamber)
 "DL" = (
 /obj/landmark/start{
@@ -1637,7 +1665,7 @@
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 1
 	},
-/turf/simulated/floor/airless/engine/vacuum,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "Em" = (
 /obj/cable{
@@ -1657,7 +1685,7 @@
 	dir = 4;
 	name = "camera - test chamber"
 	},
-/turf/simulated/floor/engine,
+/turf/simulated/floor/airless/engine/glow/blue,
 /area/space)
 "Ew" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -1706,7 +1734,7 @@
 	dir = 8;
 	name = "camera - test chamber2"
 	},
-/turf/simulated/floor/engine,
+/turf/simulated/floor/airless/engine/glow/blue,
 /area/space)
 "Fb" = (
 /obj/landmark/start{
@@ -1714,12 +1742,28 @@
 	},
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
+"Fk" = (
+/obj/wingrille_spawn/reinforced_crystal/full,
+/obj/machinery/door/poddoor/blast/pyro{
+	id = "testchambershield"
+	},
+/turf/simulated/floor/engine/glow/blue,
+/area/station/science/testchamber)
 "Fl" = (
 /obj/machinery/atmospherics/valve/digital{
 	dir = 4
 	},
 /turf/simulated/floor,
 /area/station/atmos)
+"Fn" = (
+/obj/railing{
+	dir = 8
+	},
+/obj/railing{
+	dir = 4
+	},
+/turf/simulated/floor/engine/caution/westeast,
+/area/space)
 "Fw" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor,
@@ -1745,7 +1789,7 @@
 	id = "incinerator";
 	on = 0
 	},
-/turf/simulated/floor/airless/engine/vacuum,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "Gm" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -1868,9 +1912,12 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "HZ" = (
-/obj/machinery/launcher_loader/north,
 /obj/railing{
 	dir = 4
+	},
+/obj/machinery/computer/pod{
+	dir = 8;
+	id = "bombsaway"
 	},
 /turf/simulated/floor/airless/plating,
 /area/space)
@@ -2261,7 +2308,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
 "Oo" = (
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "Oq" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -2338,12 +2385,13 @@
 /area/station/crew_quarters/captain)
 "PE" = (
 /obj/machinery/mass_driver{
-	dir = 1
+	dir = 1;
+	id = "bombsaway"
 	},
 /obj/railing{
 	dir = 4
 	},
-/turf/simulated/floor/airless/plating,
+/turf/simulated/floor/engine/caution/misc,
 /area/space)
 "PJ" = (
 /obj/map/light/brighterwhite,
@@ -2382,7 +2430,7 @@
 	dir = 1;
 	name = "camera - test chamber3"
 	},
-/turf/simulated/floor/engine,
+/turf/simulated/floor/airless/engine/glow/blue,
 /area/space)
 "Qu" = (
 /obj/machinery/portable_atmospherics/pump,
@@ -2435,7 +2483,7 @@
 /area/station/engine/core/nuclear)
 "Ru" = (
 /obj/map/light/brighterwhite,
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow,
 /area/station/science/testchamber)
 "RZ" = (
 /obj/landmark/map{
@@ -2541,7 +2589,7 @@
 	icon_state = "1-2"
 	},
 /obj/map/light/brighterwhite,
-/turf/simulated/floor/engine,
+/turf/simulated/floor/engine/glow,
 /area/research_outpost/toxins)
 "Uf" = (
 /obj/machinery/computer/general_air_control,
@@ -2713,7 +2761,7 @@
 	on = 1;
 	volume_rate = 1000
 	},
-/turf/unsimulated/floor/engine,
+/turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "Xy" = (
 /turf/simulated/floor/plating,
@@ -2784,11 +2832,6 @@
 	dir = 10
 	},
 /turf/space,
-/area/space)
-"Zl" = (
-/obj/map/light/brighterwhite,
-/obj/grille/catwalk,
-/turf/simulated/floor/airless/plating/catwalk,
 /area/space)
 "Zn" = (
 /obj/grille/catwalk{
@@ -5827,7 +5870,7 @@ je
 je
 je
 je
-wn
+bK
 LW
 qT
 xj
@@ -6914,18 +6957,18 @@ ei
 ei
 ei
 ei
+hj
 ei
 ei
 ei
 ei
 ei
+hj
 ei
 ei
 ei
 ei
-ei
-ei
-ei
+hj
 ei
 ei
 ei
@@ -9028,7 +9071,7 @@ ei
 ei
 ei
 ei
-ei
+hj
 ei
 ei
 ei
@@ -9039,7 +9082,7 @@ ei
 ei
 ei
 ei
-ei
+hj
 ei
 ei
 ei
@@ -9114,15 +9157,15 @@ YN
 YN
 YN
 YN
-Zl
 YN
-Zl
 YN
-Zl
 YN
-Zl
 YN
-Zl
+YN
+YN
+YN
+YN
+YN
 YN
 YN
 YN
@@ -9351,104 +9394,104 @@ ei
 ei
 ei
 Dp
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-PE
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+tV
+Fn
+Fn
+Fn
+Fn
+Cj
 PE
 HZ
 bK
@@ -9739,12 +9782,12 @@ je
 je
 je
 je
-bK
-bK
-bK
-bK
-bK
-bK
+bQ
+bQ
+bQ
+bQ
+bQ
+bQ
 bK
 bK
 bK
@@ -10042,9 +10085,9 @@ je
 je
 je
 er
+iZ
 Oo
-Oo
-Oo
+iZ
 Oo
 DG
 fx
@@ -10646,9 +10689,9 @@ je
 je
 je
 er
+iZ
 Oo
-Oo
-Oo
+iZ
 Oo
 DG
 fx
@@ -10952,7 +10995,7 @@ Oo
 Ru
 qn
 Ru
-DG
+Fk
 Hv
 DV
 Hv
@@ -11250,9 +11293,9 @@ je
 je
 je
 er
+iZ
 Oo
-Oo
-Oo
+iZ
 Oo
 DG
 fx
@@ -11444,18 +11487,18 @@ ei
 ei
 ei
 ei
+hj
 ei
 ei
 ei
 ei
 ei
+hj
 ei
 ei
 ei
 ei
-ei
-ei
-ei
+hj
 ei
 ei
 ei
@@ -11854,9 +11897,9 @@ je
 je
 je
 er
+iZ
 Oo
-Oo
-Oo
+iZ
 Oo
 rS
 ri
@@ -12155,12 +12198,12 @@ je
 je
 je
 je
-bK
-bK
-bK
-bK
-bK
-bK
+bQ
+bQ
+bQ
+bQ
+bQ
+bQ
 bK
 bK
 JV

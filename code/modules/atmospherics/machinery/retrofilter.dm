@@ -3,7 +3,15 @@
 //TODO: Make this more modular and use APPLY_TO_GASES
 
 //TODO: Hacking.
-obj/machinery/atmospherics/retrofilter
+
+#define MODE_OXYGEN (1<<0) //Let oxygen through
+#define MODE_NITROGEN (1<<1) //Let nitrogen through
+#define MODE_CO2 (1<<2) //Let CO2 through
+#define MODE_PLASMA (1<<3) //Let plasma through.
+#define MODE_FART (1<<4) //Let fart through.
+#define MODE_TRACE (1<<5) //Let trace gases (Like N2O) through.
+
+/obj/machinery/atmospherics/retrofilter
 	icon = 'icons/obj/atmospherics/retro_filter.dmi'
 	icon_state = "intact_off"
 //
@@ -31,11 +39,6 @@ obj/machinery/atmospherics/retrofilter
 	var/transfer_ratio = 0.80 //Percentage of passing gas to consider for transfer.
 
 	var/filter_mode = 0 //Bitfield determining gases to filter.
-	var/const/MODE_OXYGEN = 1 //Let oxygen through
-	var/const/MODE_NITROGEN = 2 //Let nitrogen through
-	var/const/MODE_CO2 = 4 //Let CO2 through
-	var/const/MODE_PLASMA = 8 //Let plasma through.
-	var/const/MODE_TRACE = 16 //Let trace gases (Like N2O) through.
 
 	var/locked = 1
 	var/open = 0
@@ -128,7 +131,7 @@ obj/machinery/atmospherics/retrofilter
 			src.remove_dialog(user)
 			return
 
-		var/list/gases = list("O2", "N2", "CO2", "Plasma", "OTHER")
+		var/list/gases = list("O2", "N2", "CO2", "Plasma", "FARTS", "OTHER")
 		src.add_dialog(user)
 		var/dat = "<head><title>Gas Filtration Unit Mk VII</title></head><body><hr>"// "Filter Release Rate:<BR><br><A href='?src=\ref[src];fp=-[num2text(src.maxrate, 9)]'>M</A> <A href='?src=\ref[src];fp=-100000'>-</A> <A href='?src=\ref[src];fp=-10000'>-</A> <A href='?src=\ref[src];fp=-1000'>-</A> <A href='?src=\ref[src];fp=-100'>-</A> <A href='?src=\ref[src];fp=-1'>-</A> [src.f_per] <A href='?src=\ref[src];fp=1'>+</A> <A href='?src=\ref[src];fp=100'>+</A> <A href='?src=\ref[src];fp=1000'>+</A> <A href='?src=\ref[src];fp=10000'>+</A> <A href='?src=\ref[src];fp=100000'>+</A> <A href='?src=\ref[src];fp=[num2text(src.maxrate, 9)]'>M</A><BR><br>"
 		for (var/i = 1; i <= gases.len; i++)
@@ -137,30 +140,16 @@ obj/machinery/atmospherics/retrofilter
 			else
 				dat += "[gases[i]]: <a href='?src=\ref[src];toggle_gas=[1 << (i - 1)]'>[(src.filter_mode & (1 << (i - 1))) ? "Releasing" : "Passing"]</a><br>"
 
-		var/pressure = MIXTURE_PRESSURE(air_in)
+		dat += "<hr>Gas Levels:<br>"
+
 		var/total_moles = TOTAL_MOLES(air_in)
 
-		dat += "<hr>Gas Levels: <br>Gas Pressure: [round(pressure,0.1)] kPa<br><br>"
-
 		if (total_moles)
-			var/o2_level = air_in.oxygen/total_moles
-			var/n2_level = air_in.nitrogen/total_moles
-			var/co2_level = air_in.carbon_dioxide/total_moles
-			var/plasma_level = air_in.toxins/total_moles
-			var/unknown_level =  1-(o2_level+n2_level+co2_level+plasma_level)
+			dat += "Gas Pressure: [round(MIXTURE_PRESSURE(air_in),0.1)] kPa<br>"
 
-			dat += "Nitrogen: [round(n2_level*100)]%<br>"
-
-			dat += "Oxygen: [round(o2_level*100)]%<br>"
-
-			dat += "Carbon Dioxide: [round(co2_level*100)]%<br>"
-
-			dat += "Plasma: [round(plasma_level*100)]%<br>"
-
-			if(unknown_level > 0.01)
-				dat += "OTHER: [round(unknown_level)]%<br>"
+			dat += "[CONCENTRATION_REPORT(air_in, "<br>")]"
 		else
-			dat += "Nitrogen: 0%<br>Oxygen: 0%<br>Carbon Dioxide: 0%<br>Plasma: 0%<br>"
+			dat += "No gases.<br>"
 
 		dat += "<br><A href='?src=\ref[src];close=1'>Close</A>"
 
@@ -215,7 +204,7 @@ obj/machinery/atmospherics/retrofilter
 				src.overlays += image(src.icon, "filter-n2")
 			if (filter_mode & MODE_CO2)
 				src.overlays += image(src.icon, "filter-co2")
-			if (filter_mode & (MODE_PLASMA | MODE_TRACE))
+			if (filter_mode & (MODE_PLASMA | MODE_TRACE | MODE_FART))
 				src.overlays += image(src.icon, "filter-tox")
 
 		return
@@ -254,6 +243,7 @@ obj/machinery/atmospherics/retrofilter
 			//Unlike the regular filter, we can pick and choose the gas to remove!
 			//One might say that a little filter being this advanced is rather unrealistic
 			//However, who gives a fuck.
+
 			if (filter_mode & MODE_PLASMA)
 				if(removed.toxins)
 					filtered_out.toxins = removed.toxins
@@ -270,6 +260,10 @@ obj/machinery/atmospherics/retrofilter
 				if(removed.carbon_dioxide)
 					filtered_out.carbon_dioxide = removed.carbon_dioxide
 					removed.carbon_dioxide = 0
+			if (filter_mode & MODE_FART)
+				if (removed.farts)
+					filtered_out.farts = removed.farts
+					removed.farts = 0
 			if (filter_mode & MODE_TRACE)
 				if(removed && length(removed.trace_gases))
 					for(var/datum/gas/trace_gas as anything in removed.trace_gases)
@@ -353,7 +347,7 @@ obj/machinery/atmospherics/retrofilter
 				return
 			src.add_fingerprint(user)
 			user.show_message("<span class='alert'>Now bypassing the access system... <I>(This may take a while)</I></span>", 1)
-			if(!do_after(user, 100))
+			if(!do_after(user, 10 SECONDS))
 				return
 			C.use(4)
 			src.hacked = 1
