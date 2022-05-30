@@ -1240,10 +1240,6 @@
 	},
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/space)
-"wc" = (
-/obj/machinery/atmospherics/retrofilter,
-/turf/simulated/floor,
-/area/station/atmos)
 "wj" = (
 /obj/map/light/brighterwhite,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -1486,7 +1482,7 @@
 "Bc" = (
 /obj/map/light/brighterwhite,
 /obj/machinery/atmospherics/retrofilter{
-	name = "Gas filter 2"
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/station/atmos)
@@ -2851,7 +2847,7 @@
 /area/station/crew_quarters/bar)
 "Zx" = (
 /obj/machinery/atmospherics/retrofilter{
-	name = "Gas filter 3"
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/station/atmos)
@@ -7090,7 +7086,7 @@ qT
 IN
 ka
 Kk
-wc
+Zx
 Bc
 Zx
 Kk

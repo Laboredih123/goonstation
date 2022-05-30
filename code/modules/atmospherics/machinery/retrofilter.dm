@@ -8,7 +8,7 @@
 #define MODE_NITROGEN (1<<1) //Let nitrogen through
 #define MODE_CO2 (1<<2) //Let CO2 through
 #define MODE_PLASMA (1<<3) //Let plasma through.
-#define MODE_FART (1<<4) //Let fart through.
+#define MODE_FARTS (1<<4) //Let fart through.
 #define MODE_TRACE (1<<5) //Let trace gases (Like N2O) through.
 
 /obj/machinery/atmospherics/retrofilter
@@ -50,13 +50,13 @@
 		src.tag = ""
 		switch(dir)
 			if(NORTH)
-				initialize_directions = NORTH|EAST|SOUTH
-			if(SOUTH)
-				initialize_directions = NORTH|SOUTH|WEST
-			if(EAST)
-				initialize_directions = EAST|WEST|SOUTH
-			if(WEST)
 				initialize_directions = NORTH|EAST|WEST
+			if(SOUTH)
+				initialize_directions = EAST|SOUTH|WEST
+			if(EAST)
+				initialize_directions = EAST|NORTH|SOUTH
+			if(WEST)
+				initialize_directions = NORTH|SOUTH|WEST
 		if(radio_controller)
 			initialize()
 
@@ -131,7 +131,7 @@
 			src.remove_dialog(user)
 			return
 
-		var/list/gases = list("O2", "N2", "CO2", "Plasma", "FARTS", "OTHER")
+		var/list/gases = list("O2", "N2", "CO2", "Plasma", "Farts", "OTHER")
 		src.add_dialog(user)
 		var/dat = "<head><title>Gas Filtration Unit Mk VII</title></head><body><hr>"// "Filter Release Rate:<BR><br><A href='?src=\ref[src];fp=-[num2text(src.maxrate, 9)]'>M</A> <A href='?src=\ref[src];fp=-100000'>-</A> <A href='?src=\ref[src];fp=-10000'>-</A> <A href='?src=\ref[src];fp=-1000'>-</A> <A href='?src=\ref[src];fp=-100'>-</A> <A href='?src=\ref[src];fp=-1'>-</A> [src.f_per] <A href='?src=\ref[src];fp=1'>+</A> <A href='?src=\ref[src];fp=100'>+</A> <A href='?src=\ref[src];fp=1000'>+</A> <A href='?src=\ref[src];fp=10000'>+</A> <A href='?src=\ref[src];fp=100000'>+</A> <A href='?src=\ref[src];fp=[num2text(src.maxrate, 9)]'>M</A><BR><br>"
 		for (var/i = 1; i <= gases.len; i++)
@@ -168,7 +168,7 @@
 			var/gasToToggle = text2num(href_list["toggle_gas"])
 			if (!gasToToggle)
 				return
-			gasToToggle = clamp(gasToToggle, 1, 16)
+			gasToToggle = clamp(gasToToggle, 1, 32)
 			if (filter_mode & gasToToggle)
 				filter_mode &= ~gasToToggle
 			else
@@ -204,8 +204,10 @@
 				src.overlays += image(src.icon, "filter-n2")
 			if (filter_mode & MODE_CO2)
 				src.overlays += image(src.icon, "filter-co2")
-			if (filter_mode & (MODE_PLASMA | MODE_TRACE | MODE_FART))
+			if (filter_mode & (MODE_PLASMA | MODE_TRACE))
 				src.overlays += image(src.icon, "filter-tox")
+			if (filter_mode & MODE_FARTS)
+				src.overlays += image(src.icon, "filter-farts")
 
 		return
 
@@ -260,7 +262,7 @@
 				if(removed.carbon_dioxide)
 					filtered_out.carbon_dioxide = removed.carbon_dioxide
 					removed.carbon_dioxide = 0
-			if (filter_mode & MODE_FART)
+			if (filter_mode & MODE_FARTS)
 				if (removed.farts)
 					filtered_out.farts = removed.farts
 					removed.farts = 0
@@ -395,29 +397,28 @@
 		return null
 
 	initialize()
-		if(node_out1 && node_in) return
+		if(node_out1 && node_in && node_out2) return
+		SPAWN(1 DECI SECOND)
+			var/node_in_connect = turn(dir, -90)
+			var/node_out1_connect = dir
+			var/node_out2_connect = turn(dir, 90)
 
-		var/node_in_connect = turn(dir, -180)
-		var/node_out1_connect = turn(dir, -90)
-		var/node_out2_connect = dir
+			for(var/obj/machinery/atmospherics/target in get_step(src,node_out1_connect))
+				if(target.initialize_directions & get_dir(target,src))
+					node_out1 = target
+					break
 
+			for(var/obj/machinery/atmospherics/target in get_step(src,node_out2_connect))
+				if(target.initialize_directions & get_dir(target,src))
+					node_out2 = target
+					break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_out1_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_out1 = target
-				break
+			for(var/obj/machinery/atmospherics/target in get_step(src,node_in_connect))
+				if(target.initialize_directions & get_dir(target,src))
+					node_in = target
+					break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_out2_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_out2 = target
-				break
-
-		for(var/obj/machinery/atmospherics/target in get_step(src,node_in_connect))
-			if(target.initialize_directions & get_dir(target,src))
-				node_in = target
-				break
-
-		UpdateIcon()
+			UpdateIcon()
 
 	build_network()
 		if(!network_out1 && node_out1)
