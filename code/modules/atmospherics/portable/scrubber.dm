@@ -2,7 +2,7 @@
 	name = "Portable Air Scrubber"
 
 	icon = 'icons/obj/atmospherics/atmos.dmi'
-	icon_state = "scrubber:0"
+	icon_state = "pscrubber:0"
 	density = 1
 
 	var/on = FALSE
@@ -12,17 +12,27 @@
 	volume = 750
 	desc = "A device which filters out harmful air from an area."
 	p_class = 1.5
+	var/image/tank_hatch
 
 
 	//for smoke
 	var/drain_min = 5
 	var/drain_max = 12
 
+	New()
+		..()
+		tank_hatch = image('icons/obj/atmospherics/atmos.dmi', "")
+
 /obj/machinery/portable_atmospherics/scrubber/update_icon()
 	if(on)
-		icon_state = "scrubber:1"
+		icon_state = "pscrubber:1"
 	else
-		icon_state = "scrubber:0"
+		icon_state = "pscrubber:0"
+	if (holding)
+		tank_hatch.icon_state = "pscrubber:T"
+	else
+		tank_hatch.icon_state = ""
+	src.UpdateOverlays(tank_hatch, "tankhatch")
 
 /obj/machinery/portable_atmospherics/scrubber/proc/scrub(datum/gas_mixture/removed)
 	//Filter it
@@ -193,3 +203,20 @@ Inlet flow: <A href='?src=\ref[src];volume_adj=-10'>-</A> <A href='?src=\ref[src
 		usr.Browse(null, "window=scrubber")
 		return
 	return
+
+/obj/machinery/portable_atmospherics/scrubber/stationary
+	icon_state = "scrubber:0"
+	anchored = TRUE
+	on = TRUE
+/obj/machinery/portable_atmospherics/scrubber/stationary/update_icon()
+	if(on)
+		icon_state = "scrubber:1"
+	else
+		icon_state = "scrubber:0"
+	if (holding)
+		tank_hatch.icon_state = "scrubber:T"
+	else
+		tank_hatch.icon_state = ""
+	src.UpdateOverlays(tank_hatch, "tankhatch")
+
+

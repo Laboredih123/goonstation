@@ -2,14 +2,14 @@
 	name = "Portable Air Pump"
 
 	icon = 'icons/obj/atmospherics/atmos.dmi'
-	icon_state = "siphon:0"
+	icon_state = "psiphon-off"
 	dir = NORTH //so it spawns with the fan side showing
 	density = 1
 	mats = 12
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER
 	var/on = 0
 	var/direction_out = 0 //0 = siphoning, 1 = releasing
-	var/target_pressure = 100
+	var/target_pressure = ONE_ATMOSPHERE
 	var/image/tank_hatch
 
 
@@ -24,17 +24,17 @@
 
 /obj/machinery/portable_atmospherics/pump/update_icon()
 	if(on)
-		icon_state = "siphon:1"
+		icon_state = "psiphon-on"
 
 		animate(src, pixel_x = 2, easing = SINE_EASING, loop=-1, time = 0.5 SECONDS)
 		animate(pixel_x = -2, easing = SINE_EASING, loop=-1, time = 0.5 SECONDS)
 	else
-		icon_state = "siphon:0"
+		icon_state = "psiphon-off"
 		animate(src)
 		pixel_x = 0
 
 	if (holding)
-		tank_hatch.icon_state = "siphon:T"
+		tank_hatch.icon_state = "psiphon-T-overlay"
 	else
 		tank_hatch.icon_state = ""
 	src.UpdateOverlays(tank_hatch, "tankhatch")
@@ -213,3 +213,27 @@ Target Pressure: <A href='?src=\ref[src];pressure_adj=-100'>-</A> <A href='?src=
 		if (user && !isdead(user))
 			user.suiciding = 0
 	return 1
+
+/obj/machinery/portable_atmospherics/pump/stationary
+	icon_state = "siphon:0"
+	anchored = TRUE
+	on = TRUE
+	direction_out = 1
+
+	New()
+		..()
+		air_contents.oxygen = (O2STANDARD*src.maximum_pressure*volume*5/(T20C*R_IDEAL_GAS_EQUATION))
+		air_contents.nitrogen = (N2STANDARD*src.maximum_pressure*volume*5/(T20C*R_IDEAL_GAS_EQUATION))
+
+/obj/machinery/portable_atmospherics/pump/stationary/update_icon()
+	if(on)
+		icon_state = "siphon:1"
+	else
+		icon_state = "siphon:0"
+
+	if (holding)
+		tank_hatch.icon_state = "siphon:T"
+	else
+		tank_hatch.icon_state = ""
+	src.UpdateOverlays(tank_hatch, "tankhatch")
+

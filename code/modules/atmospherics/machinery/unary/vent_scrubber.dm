@@ -8,7 +8,7 @@
 	level = 1
 
 	var/id = null
-	var/frequency = "1439"
+	var/frequency = FREQ_AIR_ALARM_CONTROL
 
 	var/on = 1
 	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing
