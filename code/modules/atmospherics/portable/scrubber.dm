@@ -205,6 +205,7 @@ Inlet flow: <A href='?src=\ref[src];volume_adj=-10'>-</A> <A href='?src=\ref[src
 	return
 
 /obj/machinery/portable_atmospherics/scrubber/stationary
+	name = "Stationary air scrubber"
 	icon_state = "scrubber:0"
 	anchored = TRUE
 	on = TRUE

@@ -215,6 +215,7 @@ Target Pressure: <A href='?src=\ref[src];pressure_adj=-100'>-</A> <A href='?src=
 	return 1
 
 /obj/machinery/portable_atmospherics/pump/stationary
+	name = "Stationary air siphon"
 	icon_state = "siphon:0"
 	anchored = TRUE
 	on = TRUE
