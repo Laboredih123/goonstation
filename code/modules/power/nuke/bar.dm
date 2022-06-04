@@ -45,7 +45,7 @@
 		else if(val <= incr * 4)
 			return src.vdescr[4]
 		return src.vdescr[5]
-
+		/*
 		epv
 			upper = 450
 			lower = 0
@@ -130,6 +130,7 @@
 			vdescr[3] = "This sample is a basic fissile material suitable for use as fuel in the reactor."
 			vdescr[4] = "This sample is highly enriched and exceedingly volatile: it would be hard to control in the reactor."
 			vdescr[5] = "This sample violates the Geneva Convention and possessing it is probably a crime against humanity. It is a gnat's fart away from vaporizing the whole station."
+			*/
 
 /obj/item/material_piece/nuke_bar
 	name = "wtf bug show this to kremlin" /* names are auto generated */
