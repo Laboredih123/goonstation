@@ -6,8 +6,9 @@
 	dir = NORTH //so it spawns with the fan side showing
 	density = 1
 	mats = 12
+	flags = TGUI_INTERACTIVE
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER
-	var/on = 0
+	var/on = FALSE
 	var/direction_out = 0 //0 = siphoning, 1 = releasing
 	var/target_pressure = ONE_ATMOSPHERE
 	var/image/tank_hatch
@@ -109,81 +110,57 @@
 		return
 	return src.Attackhand(user)
 
-/obj/machinery/portable_atmospherics/pump/attack_hand(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/pump/ui_interact(mob/user, datum/tgui/ui)
+	ui = tgui_process.try_update_ui(user, src, ui)
+	if (!ui)
+		ui = new(user, src, "PortablePump", name)
+		ui.open()
 
-	src.add_dialog(user)
-	var/holding_text
+/obj/machinery/portable_atmospherics/pump/ui_data(mob/user)
+	. = list(
+		"pressure" = MIXTURE_PRESSURE(src.air_contents),
+		"on" = src.on,
+		"maxPressure" = src.maximum_pressure,
+		"connected" = src.connected_port ? TRUE : FALSE,
+		"holding" = null, // need to explicitly tell the client it doesn't exist so it renders properly
+		"targetPressure" = src.target_pressure,
+		"direction_out" = src.direction_out
+	)
 
-	if(holding)
-		holding_text = {"<BR><B>Tank Pressure</B>: [MIXTURE_PRESSURE(holding.air_contents)] KPa<BR>
-<A href='?src=\ref[src];remove_tank=1'>Remove Tank</A><BR>
-"}
-	var/output_text = {"<TT><B>[name]</B><BR>
-Pressure: [MIXTURE_PRESSURE(air_contents)] KPa<BR>
-Port Status: [(connected_port)?("Connected"):("Disconnected")]
-[holding_text]
-<BR>
-Power Switch: <A href='?src=\ref[src];power=1'>[on?("On"):("Off")]</A><BR>
-Pump Direction: <A href='?src=\ref[src];direction=1'>[direction_out?("Out"):("In")]</A><BR>
-Target Pressure: <A href='?src=\ref[src];pressure_adj=-100'>-</A> <A href='?src=\ref[src];pressure_adj=-10'>-</A> <A href='?src=\ref[src];pressure_set=1'>[target_pressure]</A> <A href='?src=\ref[src];pressure_adj=10'>+</A> <A href='?src=\ref[src];pressure_adj=100'>+</A><BR>
-<HR>
-<A href='?action=mach_close&window=pump'>Close</A><BR>
-"}
+	if(src.holding)
+		. += list(
+			"holding" = list(
+				"name" = src.holding.name,
+				"pressure" = MIXTURE_PRESSURE(src.holding.air_contents),
+				"maxPressure" = PORTABLE_ATMOS_MAX_RELEASE_PRESSURE,
+			)
+		)
 
-	user.Browse(output_text, "window=pump;size=600x300")
-	onclose(user, "pump")
+/obj/machinery/portable_atmospherics/pump/ui_static_data(mob/user)
+	. = list(
+		"minRelease" = 0,
+		"maxRelease" = 10*ONE_ATMOSPHERE,
+	)
 
-	return
-
-/obj/machinery/portable_atmospherics/pump/Topic(href, href_list)
-	if(..())
+/obj/machinery/portable_atmospherics/pump/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
 		return
-	if (usr.stat || usr.restrained())
-		return
-
-	if (((BOUNDS_DIST(src, usr) == 0) && istype(src.loc, /turf)))
-		src.add_dialog(usr)
-
-		if(href_list["power"])
+	switch(action)
+		if("toggle-power")
 			on = !on
-			if (src.direction_out)
-				if (src.on)
-					if(src.air_contents.check_if_dangerous())
-						message_admins("[key_name(usr)] turns on [src] [alert_atmos(src)], pumping its contents into the air at [log_loc(src)].")
-					logTheThing("station", usr, null, "turns on [src] [log_atmos(src)], pumping its contents into the air at [log_loc(src)].")
-				else
-					logTheThing("station", usr, null, "turns off [src] [log_atmos(src)], stopping it from pumping its contents into the air at [log_loc(src)].")
-
-		if(href_list["direction"])
+			. = TRUE
+		if("toggle-pump")
 			direction_out = !direction_out
-
-		if (href_list["remove_tank"])
-			if(holding)
-				holding.set_loc(loc)
-				usr.put_in_hand_or_eject(holding) // try to eject it into the users hand, if we can
-				holding = null
-			if (src.on && src.direction_out)
-				if(src.air_contents.check_if_dangerous())
-					message_admins("[key_name(usr)] removed a tank from [src] [alert_atmos(src)], pumping its contents into the air at [log_loc(src)].")
-				logTheThing("station", usr, null, "removed a tank from [src] [log_atmos(src)], pumping its contents into the air at [log_loc(src)].")
-
-		if (href_list["pressure_adj"])
-			var/diff = text2num_safe(href_list["pressure_adj"])
-			target_pressure = clamp(target_pressure+diff, 0, 10*ONE_ATMOSPHERE)
-
-		else if (href_list["pressure_set"])
-			var/change = input(usr,"Target Pressure (0-[10*ONE_ATMOSPHERE]):","Enter target pressure",target_pressure) as num
-			if(!isnum_safe(change)) return
-			target_pressure = clamp(change, 0, 10*ONE_ATMOSPHERE)
-
-		src.updateUsrDialog()
-		src.add_fingerprint(usr)
-		UpdateIcon()
-	else
-		usr.Browse(null, "window=pump")
-		return
-	return
-
+			. = TRUE
+		if("set-pressure")
+			var/new_target_pressure = params["targetPressure"]
+			if(isnum(new_target_pressure))
+				target_pressure = new_target_pressure
+				. = TRUE
+		if("eject-tank")
+			eject_tank()
+			. = TRUE
 
 /obj/machinery/portable_atmospherics/pump/suicide(var/mob/living/carbon/human/user)
 	if (!istype(user) || !src.user_can_suicide(user))
