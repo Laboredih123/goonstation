@@ -94,7 +94,7 @@
 
 			..()
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user)
 		displayHtml = buildHtml()
 		src.add_dialog(user)
 		user.Browse(displayHtml, "window=fissionchamber;size=550x700;can_resize=1;can_minimize=1;allow-html=1;show-url=1;statusbar=1;enable-http-images=1;can-scroll=1")
