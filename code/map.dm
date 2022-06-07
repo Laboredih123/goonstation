@@ -25,6 +25,7 @@ var/global/list/mapNames = list(
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 1, 	"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 1),
 	"New Map" = 		list("id" = "NEWMAP", 		"settings" = "cogmap2", 		"playerPickable" = 1),
+	"Crash" = 			list("id" = "CRASH", 		"settings" = "horizon/crash", 		"playerPickable" = 0),
 	"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 	"settings" = "oshan", 			"playerPickable" = 1),
@@ -493,6 +494,10 @@ var/global/list/mapNames = list(
 		/datum/job/special/lawyer = 1,
 		/datum/job/special/atmospheric_technician = 1
 	)
+
+/datum/map_settings/horizon/crash
+	name = "CRASH"
+	display_name = "The Fall of NSS Horizon"
 
 /datum/map_settings/manta
 	name = "MANTA"

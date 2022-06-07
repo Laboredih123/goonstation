@@ -304,6 +304,9 @@
 /mob/living/critter/flock/drone/Cross(atom/movable/mover)
 	if(isflockmob(mover))
 		return TRUE
+	else if (istype(mover, /obj/flock_structure/cage))
+		animate_flock_passthrough(src)
+		return TRUE
 	else
 		return !src.density
 
@@ -860,7 +863,7 @@
 		return
 
 	// CONVERT TURF
-	if(!isturf(target) && (!HAS_ATOM_PROPERTY(target,PROP_ATOM_FLOCK_THING) || istype(target, /obj/lattice/flock)) && !istype(target, /obj/structure/girder))
+	if(!isturf(target) && (!HAS_ATOM_PROPERTY(target,PROP_ATOM_FLOCK_THING) || istype(target, /obj/lattice/flock)))
 		target = get_turf(target)
 
 	if(istype(target, /turf) && !istype(target, /turf/simulated) && !istype(target, /turf/space))
@@ -990,7 +993,7 @@
 	if(istype(target, /mob/living/critter/flock/drone))
 		var/mob/living/critter/flock/drone/f = target
 		if(isdead(f))
-			actions.start(new/datum/action/bar/icon/butcher_living_critter(f), user)
+			actions.start(new/datum/action/bar/icon/butcher_living_critter(f,f.butcher_time), user)
 		else
 			boutput(user, "<span class='alert'>You can't butcher a living flockdrone!</span>")
 	else

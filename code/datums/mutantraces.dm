@@ -1109,8 +1109,8 @@ TYPEINFO(/datum/mutantrace)
 	decomposes = FALSE
 	race_mutation = /datum/bioEffect/mutantrace/skeleton
 	dna_mutagen_banned = FALSE
+	var/obj/item/organ/head/head_tracker
 	self_click_fluff = list("ribcage", "funny bone", "femur", "scapula")
-	var/obj/item/organ/head/head
 
 	New(var/mob/living/carbon/human/M)
 		..()
@@ -1125,8 +1125,16 @@ TYPEINFO(/datum/mutantrace)
 			mob.blood_id = initial(mob.blood_id)
 		. = ..()
 
-	proc/set_head(var/head)
-		src.head = head
+	proc/set_head(var/obj/item/organ/head/head)
+		if (isskeleton(head.linked_human) && head.linked_human != mob)
+			var/mob/living/carbon/human/H = head.linked_human
+			var/datum/mutantrace/skeleton/S = H.mutantrace
+			if (H.eye == head)
+				H.set_eye(null)
+			S.head_tracker = null
+			boutput(H, "<span class='alert'><b>You feel as if your head has been repossessed by another!</b></span>")
+		head_tracker = head
+		head_tracker.linked_human = mob
 
 /obj/item/joint_wax
 	name = "joint wax"
