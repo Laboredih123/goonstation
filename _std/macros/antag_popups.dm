@@ -53,6 +53,10 @@
 	<a href='?src=\ref[src];action=eyespider'>Eye/Butt Spider</a> |
 	<a href='?src=\ref[src];action=legworm'>Legworm</a>
 </div>
+<div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Flock</b>
+	<a href='?src=\ref[src];action=flocktrace'>Flocktrace</a> |
+	<a href='?src=\ref[src];action=flockmind'>Flockmind</a>
+</div>
 <div class='antagType' style='border-color:#AEC6CF'><b class='title' style='background:#AEC6CF'>Other Antags</b>
 	<a href='?src=\ref[src];action=grinch'>Grinch</a> |
 	<a href='?src=\ref[src];action=hunter'>Hunter</a> |
@@ -88,20 +92,10 @@
 		M << link("https://wiki.ss13.co/index.php?search=[phrase]")
 
 	Topic(href, href_list)
-		var/mob/M
-		if (ismob(usr))
-			M = usr
-			if (M.client.holder.level < 0)
-				alert("UM, EXCUSE ME??  YOU AREN'T AN ADMIN, GET DOWN FROM THERE!")
-				M << csound("sound/voice/farts/poo2.ogg")
-				return
-		else
-			alert("How the hell are you not a mob?! I can't show the panel to you, you don't exist!")
-			return
 		if (href_list["action"])
-			M.show_antag_popup(href_list["action"], FALSE)
+			usr.show_antag_popup(href_list["action"], FALSE)
 		if (href_list["wiki"])
-			searchWiki(M, href_list["wiki"])
+			searchWiki(usr, href_list["wiki"])
 
 	//show antag popup to a mob
 	proc/show_popup(mob/M, var/popup_name)
@@ -176,6 +170,12 @@
 				filename = "html/mindslave/eyespider.html"
 			if ("legworm")
 				filename = "html/mindslave/legworm.html"
+
+			//flock
+			if("flocktrace")
+				filename = "html/traitorTips/flocktraceTips.html"
+			if("flockmind")
+				filename = "html/traitorTips/flockmindTips.html"
 
 			// other antags
 			if ("grinch")

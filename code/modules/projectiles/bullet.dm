@@ -255,6 +255,8 @@ toxic - poisons
 		pistol
 			casing = /obj/item/casing/small
 			shot_sound = 'sound/weapons/tranq_pistol.ogg'
+			shot_volume = 30
+			silentshot = 1
 
 	//haha gannets, fuck you I stole ur shit! - kyle
 	law_giver
@@ -437,9 +439,16 @@ toxic - poisons
 	dissipation_rate = 0
 	ie_type = null
 
-	on_end(var/obj/projectile/O)
+	on_hit(atom/hit, direction, obj/projectile/P)
 		..()
-		var/turf/T = get_turf(O)
+		drop_as_ammo(P)
+
+	on_max_range_die(obj/projectile/P)
+		..()
+		drop_as_ammo(P)
+
+	proc/drop_as_ammo(obj/projectile/P)
+		var/turf/T = get_turf(P)
 		if(T)
 			var/obj/item/ammo/bullets/foamdarts/ammo_dropped = new /obj/item/ammo/bullets/foamdarts (T)
 			ammo_dropped.amount_left = 1

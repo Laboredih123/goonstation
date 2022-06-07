@@ -403,7 +403,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_lhan = list(/obj/item/storage/firstaid/regular/doctor_spawn)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_jump = list(/obj/item/clothing/under/rank/medical_director)
-	slot_suit = list(/obj/item/clothing/suit/labcoat)
+	slot_suit = list(/obj/item/clothing/suit/labcoat/medical)
 	slot_ears = list(/obj/item/device/radio/headset/command/md)
 	slot_eyes = list(/obj/item/clothing/glasses/healthgoggles/upgraded)
 	items_in_backpack = list(/obj/item/device/flash, /obj/item/robodefibrillator)
@@ -670,7 +670,7 @@ ABSTRACT_TYPE(/datum/job/research)
 	slot_back = list(/obj/item/storage/backpack/medic)
 	slot_belt = list(/obj/item/storage/belt/medical)
 	slot_jump = list(/obj/item/clothing/under/rank/medical)
-	slot_suit = list(/obj/item/clothing/suit/labcoat)
+	slot_suit = list(/obj/item/clothing/suit/labcoat/medical)
 	slot_foot = list(/obj/item/clothing/shoes/red)
 	slot_lhan = list(/obj/item/storage/firstaid/regular/doctor_spawn)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
@@ -2417,9 +2417,9 @@ ABSTRACT_TYPE(/datum/job/special/halloween/critter)
 
 
 // Use this one for late respawns to dael with existing antags. they are weaker cause they dont get a laser rifle or frags
-/datum/job/special/ntso_specialist_weak
+/datum/job/special/nt_security
 	linkcolor = "#3348ff"
-	name = "Nanotrasen Security Operative"
+	name = "Nanotrasen Security Consultant"
 	limit = 1 // backup during HELL WEEK. players will probably like it
 	wages = PAY_TRADESMAN
 	requires_whitelist = 1

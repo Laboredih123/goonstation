@@ -230,7 +230,7 @@
 			msg += "<br>"
 		msg += "[src] has a power charge of [bicon(src.cell)] [src.cell.charge]/[src.cell.maxcharge]</span>"
 
-		. += msg.Join("")
+		. += msg.Join()
 
 		if (src.health < src.max_health)
 			if (src.health < (src.max_health / 2))
@@ -383,7 +383,7 @@
 		if (src.client && src.client.check_key(KEY_PULL))
 			var/atom/movable/movable = target
 			if (istype(movable))
-				movable.pull()
+				movable.pull(src)
 			return
 
 		var/reach = can_reach(src, target)
@@ -470,7 +470,7 @@
 			src.icon_state = "drone-dead"
 		return 1
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W, mob/user)
 		if(isweldingtool(W))
 			if (user.a_intent == INTENT_HARM)
 				if (W:try_weld(user,0,-1,0,0))
@@ -826,14 +826,14 @@
 			if ("birdwell", "burp")
 				if (src.emote_check(voluntary, 50))
 					message = "<B>[src]</B> birdwells."
-					playsound(src, 'sound/vox/birdwell.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, 'sound/vox/birdwell.ogg', 50, 1, 0, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
 					if (narrator_mode)
 						playsound(src, 'sound/vox/scream.ogg', 50, 1, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 					else
-						playsound(src, src.sound_scream, 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, src.sound_scream, 80, 0, 0, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 					message = "<b>[src]</b> screams!"
 
 			if ("johnny")
@@ -1026,12 +1026,6 @@
 		if (dd_hasprefix(message, "*"))
 			return src.emote(copytext(message, 2),1)
 
-		UpdateOverlays(speech_bubble, "speech_bubble")
-		var/speech_bubble_time = src.last_typing
-		SPAWN(1.5 SECONDS)
-			if(speech_bubble_time == src.last_typing)
-				UpdateOverlays(null, "speech_bubble")
-
 		return src.drone_broadcast(message)
 		// Removing normal dronesay stuff and changing :d to just ;
 		// Not much of a reason for drones to have local say imo.
@@ -1220,6 +1214,9 @@
 			var/obj/item/MTI = MT.holding
 			if (MTI && (MTI.tool_flags & tool_flag))
 				return MT.holding
+		I = locate(/obj/item/tool/omnitool) in src.tools //Try the omnitool if all else fails
+		if (I && (I.tool_flags & tool_flag))
+			return I
 		return null
 
 	hotkey(name)

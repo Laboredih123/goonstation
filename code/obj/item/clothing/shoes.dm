@@ -14,11 +14,11 @@
 	compatible_species = list("human")
 	protective_temperature = 500
 	permeability_coefficient = 0.50
-		//cogwerks - burn vars
+	//cogwerks - burn vars
 	burn_point = 400
 	burn_output = 800
 	burn_possible = 1
-	health = 25
+	health = 5
 	tooltip_flags = REBUILD_DIST
 	var/step_sound = "step_default"
 	var/step_priority = STEP_PRIORITY_NONE
@@ -42,7 +42,7 @@
 				if (LACES_CUT)
 					. += "The laces are cut."
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W, mob/user)
 		if (istype(W, /obj/item/tank/air) || istype(W, /obj/item/tank/oxygen) || istype(W, /obj/item/tank/emergency_oxygen) || istype(W, /obj/item/tank/jetpack))
 			var/uses = 0
 
@@ -268,7 +268,7 @@
 	var/list/crayons = list() // stonepillar's crayon project
 	var/max_crayons = 5
 
-	attackby(obj/item/W as obj, mob/living/user as mob)
+	attackby(obj/item/W, mob/living/user)
 		if (istype(W, /obj/item/pen/crayon))
 			if (user.bioHolder.HasEffect("clumsy"))
 				var/obj/item/pen/crayon/C = W
@@ -290,7 +290,7 @@
 		else
 			return ..()
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user)
 		if (length(src.crayons) && src.loc == user)
 			if (!user.bioHolder.HasEffect("clumsy"))
 				boutput(user, "<span class='alert'>You aren't funny enough to do that. Wait, did the shoes just laugh at you?</span>")
@@ -342,6 +342,7 @@
 /obj/item/clothing/shoes/cowboy
 	name = "Cowboy boots"
 	icon_state = "cowboy"
+	compatible_species = list("human", "cow")
 
 /obj/item/clothing/shoes/cowboy/boom
 	name = "Boom Boots"
@@ -495,7 +496,7 @@
 		return
 
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W, mob/user)
 		if (istype(W, /obj/item/tank))
 			if (src.tank)
 				boutput(user, "<span class='alert'>There's already a tank installed!</span>")
@@ -709,6 +710,7 @@
 	name = "Real Cowboy Boots"
 	icon_state = "westboot"
 	desc = "Perfect for riding horses, if only you had one!"
+	compatible_species = list("human", "cow")
 
 /obj/item/clothing/shoes/westboot/black
 	name = "Black Cowboy Boots"

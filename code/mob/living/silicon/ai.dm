@@ -320,7 +320,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 //sound.dm
 
 
-/mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
+/mob/living/silicon/ai/attackby(obj/item/W, mob/user)
 	if (istype(W,/obj/item/device/borg_linker) && !isghostdrone(user))
 		var/obj/item/device/borg_linker/linker = W
 		if(src.dismantle_stage<2)
@@ -506,6 +506,16 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 			if(butt.donor == user)
 				user.unlock_medal("Law 1: Don't be an asshat", 1)
 		return
+
+	else if(istype(W,/obj/item/ai_plating_kit))
+		if(src.coreSkin != "default") // to avoid having your hard-earned skin being lost because someone bought the clown one or something
+			user.show_message("<span class='alert'>[src] already has a plating kit installed!")
+		else
+			var/obj/item/ai_plating_kit/kit = W
+			src.setSkin(kit.skin)
+			playsound(src.loc, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
+			user.visible_message("<span class='notice'>[user] permanently installs the [W] on [src]!</span>")
+			qdel(W)
 
 	else ..()
 	src.update_appearance()
@@ -1970,11 +1980,11 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	set desc = "Change your name."
 
 	var/mob/message_mob = src.get_message_mob()
-	if (!src || !message_mob.client || isdead(src))
+	if (!message_mob.client || isdead(src))
 		return
 
 	if (!ON_COOLDOWN(src, "ai_self_rename", src.rename_cooldown))
-		choose_name(retries=3, default_name=real_name)
+		choose_name(retries = 3, default_name = src.real_name, renaming_mob = message_mob)
 	else
 		src.show_text("This ability is still on cooldown for [round(GET_COOLDOWN(src, "ai_self_rename") / 10)] seconds!", "red")
 
@@ -2402,7 +2412,8 @@ proc/get_mobs_trackable_by_AI()
 
 	vox_help(src)
 
-/mob/living/silicon/ai/choose_name(var/retries = 3, var/what_you_are = null, var/default_name = null, var/force_instead = 0)
+/// Lets the AI choose its own name. If renaming_mob is non-null, then that mob is allowed to rename the AI instead.
+/mob/living/silicon/ai/choose_name(var/retries = 3, var/default_name = null, var/force_instead = FALSE, var/mob/renaming_mob = null)
 	var/obj/item/organ/brain/brain_owner = src.brain.owner
 	if(isnull(default_name))
 		default_name = pick_string_autokey("names/ai.txt")
@@ -2411,7 +2422,7 @@ proc/get_mobs_trackable_by_AI()
 		if(force_instead)
 			newname = default_name
 		else
-			newname = input(src, "You are an AI. Would you like to change your name to something else?", "Name Change", default_name) as null|text
+			newname = input(renaming_mob || src, "You are an AI. Would you like to change your name to something else?", "Name Change", default_name) as null|text
 			if(newname && newname != default_name)
 				phrase_log.log_phrase("name-ai", newname, no_duplicates=TRUE)
 		if (src.brain.owner != brain_owner)
@@ -2428,8 +2439,10 @@ proc/get_mobs_trackable_by_AI()
 				src.show_text("Your name cannot be blank. Please choose a different name.", "red")
 				continue
 			else
-				if (tgui_alert(src, "Use the name [newname]?", newname, list("Yes", "No")) == "Yes")
+				if (tgui_alert(renaming_mob, "Use the name [newname]?", newname, list("Yes", "No")) == "Yes")
 					src.real_name = newname
+					if (src.deployed_to_eyecam)
+						src.eyecam.real_name = newname
 					break
 				else
 					continue
@@ -2437,6 +2450,7 @@ proc/get_mobs_trackable_by_AI()
 		src.real_name = default_name
 
 	src.UpdateName()
+	src.eyecam.UpdateName()
 	src.internal_pda.name = "[src.name]'s Internal PDA Unit"
 	src.internal_pda.owner = "[src.name]"
 
@@ -2486,7 +2500,7 @@ proc/get_mobs_trackable_by_AI()
 			if(build_step == 2)
 				UpdateOverlays(image_wire_overlay, "wires")
 
-/obj/ai_core_frame/attackby(obj/item/W as obj, mob/user as mob)
+/obj/ai_core_frame/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/sheet))
 		if (W.material.material_flags & MATERIAL_METAL) // metal sheets
 			if (src.build_step < 1)
@@ -2670,13 +2684,13 @@ ABSTRACT_TYPE(/obj/item/ai_plating_kit)
 
 /obj/item/ai_plating_kit/syndicate
 	name = "AI Frame Plating Kit"
-	desc = "A kit for putting the plating on an AI frame! WARNING: Choking hazard, not intended for children under 3 years. <i>(Syndicate AI system not included)</i>"
+	desc = "A kit for putting the plating on an AI! WARNING: Choking hazard, not intended for children under 3 years. <i>(Syndicate AI system not included)</i>"
 	icon_state = "syndie_kit" // get it???
 	skin = "syndicate"
 	contraband = 1 // crime
 
 /obj/item/ai_plating_kit/clown
 	name = "AI Frame Plating Kit"
-	desc = "A kit for putting the plating on an AI frame! WARNING: Choking hazard, not intended for children under 3 years. It smells funny."
+	desc = "A kit for putting the plating on an AI! WARNING: Choking hazard, not intended for children under 3 years. It smells funny."
 	icon_state = "clown_kit"
 	skin = "clown"
