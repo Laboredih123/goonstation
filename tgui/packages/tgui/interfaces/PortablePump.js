@@ -39,7 +39,7 @@ export const PortablePump = (props, context) => {
   return (
     <Window
       width={305}
-      height={345}>
+      height={365}>
       <Window.Content>
         <Flex>
           <Flex.Item>

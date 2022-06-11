@@ -34,7 +34,7 @@ export const PortableScrubber = (props, context) => {
   return (
     <Window
       width={305}
-      height={320}>
+      height={340}>
       <Window.Content>
         <Flex>
           <Flex.Item>
