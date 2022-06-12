@@ -149,6 +149,7 @@
 	switch(action)
 		if("toggle-power")
 			on = !on
+			UpdateIcon()
 			. = TRUE
 		if("toggle-pump")
 			direction_out = !direction_out

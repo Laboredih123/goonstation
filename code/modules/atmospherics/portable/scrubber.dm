@@ -183,6 +183,7 @@
 	switch(action)
 		if("toggle-power")
 			on = !on
+			UpdateIcon()
 			. = TRUE
 		if("set-inlet-flow")
 			var/new_inlet_flow = params["inletFlow"]
