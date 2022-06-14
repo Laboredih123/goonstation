@@ -182,16 +182,16 @@
 		return
 	switch(action)
 		if("toggle-power")
-			on = !on
-			UpdateIcon()
+			src.on = !src.on
+			src.UpdateIcon()
 			. = TRUE
 		if("set-inlet-flow")
 			var/new_inlet_flow = params["inletFlow"]
 			if(isnum(new_inlet_flow))
-				inlet_flow = new_inlet_flow
+				src.inlet_flow = new_inlet_flow
 				. = TRUE
 		if("eject-tank")
-			eject_tank()
+			src.eject_tank()
 			. = TRUE
 
 

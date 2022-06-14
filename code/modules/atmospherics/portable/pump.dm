@@ -148,19 +148,19 @@
 		return
 	switch(action)
 		if("toggle-power")
-			on = !on
-			UpdateIcon()
+			src.on = !src.on
+			src.UpdateIcon()
 			. = TRUE
 		if("toggle-pump")
-			direction_out = !direction_out
+			src.direction_out = !src.direction_out
 			. = TRUE
 		if("set-pressure")
 			var/new_target_pressure = params["targetPressure"]
 			if(isnum(new_target_pressure))
-				target_pressure = new_target_pressure
+				src.target_pressure = new_target_pressure
 				. = TRUE
 		if("eject-tank")
-			eject_tank()
+			src.eject_tank()
 			. = TRUE
 
 /obj/machinery/portable_atmospherics/pump/suicide(var/mob/living/carbon/human/user)

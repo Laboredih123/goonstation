@@ -2968,6 +2968,7 @@
 /area/space)
 "im" = (
 /obj/machinery/atmospherics/valve,
+/obj/machinery/light,
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "in" = (
@@ -9343,8 +9344,7 @@
 	},
 /area/shuttle/arrival/station)
 "zM" = (
-/obj/wingrille_spawn/reinforced,
-/obj/window/auto/reinforced,
+/obj/wingrille_spawn/reinforced/full,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -9703,8 +9703,7 @@
 /turf/simulated/floor,
 /area/station/teleporter)
 "AI" = (
-/obj/wingrille_spawn/reinforced,
-/obj/window/auto/reinforced,
+/obj/wingrille_spawn/reinforced/full,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -9728,6 +9727,7 @@
 /area/station/medical/medbay)
 "AL" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
+/obj/machinery/igniter,
 /turf/simulated/floor/engine/vacuum,
 /area/station/engine/proto)
 "AN" = (
@@ -12765,9 +12765,9 @@
 /turf/simulated/floor/bluewhite,
 /area/station/medical/research)
 "Ji" = (
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 10
+/obj/machinery/door_control{
+	id = "smallengine";
+	pixel_x = 28
 	},
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
@@ -13863,8 +13863,7 @@
 /turf/simulated/floor/airless/plating,
 /area/station/solar/north)
 "Mk" = (
-/obj/wingrille_spawn/reinforced,
-/obj/window/auto/reinforced,
+/obj/wingrille_spawn/reinforced/full,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -17000,11 +16999,10 @@
 /turf/simulated/floor,
 /area/space)
 "UR" = (
-/obj/window/auto/reinforced,
-/obj/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
+/obj/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/security/main)
 "US" = (
