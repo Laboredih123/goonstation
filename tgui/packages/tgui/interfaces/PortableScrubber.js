@@ -36,42 +36,38 @@ export const PortableScrubber = (props, context) => {
       width={305}
       height={340}>
       <Window.Content>
-        <Flex>
-          <Flex.Item>
-            <PortableBasicInfo
-              connected={connected}
-              pressure={pressure}
-              maxPressure={maxPressure}>
-              <Divider />
-              <LabeledList>
-                <LabeledList.Item label="Scrubber Power">
-                  <Button
-                    content={on ? 'On' : 'Off'}
-                    color={on ? 'green' : 'red'}
-                    onClick={handleTogglePower} />
-                </LabeledList.Item>
-                <LabeledList.Item label="Inlet Flow">
-                  <Button
-                    onClick={() => handleSetInletFlow(minFlow)}
-                    content="Min" />
-                  <NumberInput
-                    animated
-                    width="7em"
-                    value={inletFlow}
-                    minValue={minFlow}
-                    maxValue={maxFlow}
-                    onChange={(e, newInletFlow) => handleSetInletFlow(newInletFlow)} />
-                  <Button
-                    onClick={() => handleSetInletFlow(maxFlow)}
-                    content="Max" />
-                </LabeledList.Item>
-              </LabeledList>
-            </PortableBasicInfo>
-            <PortableHoldingTank
-              holding={holding}
-              onEjectTank={handleEjectTank} />
-          </Flex.Item>
-        </Flex>
+        <PortableBasicInfo
+          connected={connected}
+          pressure={pressure}
+          maxPressure={maxPressure}>
+          <Divider />
+          <LabeledList>
+            <LabeledList.Item label="Scrubber Power">
+              <Button
+                content={on ? 'On' : 'Off'}
+                color={on ? 'green' : 'red'}
+                onClick={handleTogglePower} />
+            </LabeledList.Item>
+            <LabeledList.Item label="Inlet Flow">
+              <Button
+                onClick={() => handleSetInletFlow(minFlow)}
+                content="Min" />
+              <NumberInput
+                animated
+                width="7em"
+                value={inletFlow}
+                minValue={minFlow}
+                maxValue={maxFlow}
+                onChange={(e, newInletFlow) => handleSetInletFlow(newInletFlow)} />
+              <Button
+                onClick={() => handleSetInletFlow(maxFlow)}
+                content="Max" />
+            </LabeledList.Item>
+          </LabeledList>
+        </PortableBasicInfo>
+        <PortableHoldingTank
+          holding={holding}
+          onEjectTank={handleEjectTank} />
       </Window.Content>
     </Window>
   );
