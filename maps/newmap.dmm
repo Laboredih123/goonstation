@@ -48,7 +48,7 @@
 	on = 1;
 	target_pressure = 250
 	},
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "bd" = (
 /obj/machinery/power/nuke_analyzer,
@@ -64,7 +64,7 @@
 	name = "Permanent Atmospheric Forcefield";
 	powerlevel = 1
 	},
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -202,7 +202,7 @@
 	id = "testchambervent"
 	},
 /obj/grille,
-/turf/simulated/floor/airless/engine,
+/turf/simulated/floor/engine/glow/blue,
 /area/space)
 "ev" = (
 /obj/landmark/start{
@@ -232,7 +232,7 @@
 	on = 1;
 	target_pressure = 250
 	},
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "eH" = (
 /obj/forcefield/energyshield/perma{
@@ -410,7 +410,7 @@
 	layer = 8;
 	name = "Incinerator Release"
 	},
-/turf/simulated/floor/airless/engine/vacuum,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "ho" = (
 /obj/forcefield/energyshield/perma{
@@ -488,7 +488,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "iF" = (
 /obj/wingrille_spawn/reinforced_crystal/full,
@@ -518,9 +518,6 @@
 /obj/item/rcd/construction/safe/admin_crimes,
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
-"iZ" = (
-/turf/simulated/floor/engine/glow,
-/area/station/science/testchamber)
 "je" = (
 /turf/space,
 /area/space)
@@ -693,7 +690,7 @@
 	icon_state = "on";
 	on = 1
 	},
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "lN" = (
 /obj/grille/catwalk{
@@ -1012,7 +1009,7 @@
 "rS" = (
 /obj/forcefield/energyshield/perma,
 /obj/machinery/door/airlock/pyro/glass/toxins,
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "sg" = (
 /obj/machinery/power/terminal{
@@ -1047,9 +1044,7 @@
 /turf/simulated/floor,
 /area/station/crew_quarters/captain)
 "td" = (
-/obj/machinery/atmospherics/unary/vent_scrubber{
-	frequency = "1470"
-	},
+/obj/machinery/atmospherics/unary/vent_scrubber/breathable,
 /turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "tg" = (
@@ -1118,7 +1113,7 @@
 	dir = 4
 	},
 /obj/map/light/brighterwhite,
-/turf/simulated/floor/engine/caution/westeast,
+/turf/simulated/floor/engine/glow,
 /area/space)
 "tZ" = (
 /obj/map/light/brighterwhite,
@@ -1126,7 +1121,7 @@
 	can_rupture = 0;
 	dir = 1
 	},
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "uk" = (
 /obj/machinery/camera/television{
@@ -1592,7 +1587,7 @@
 "Dl" = (
 /obj/machinery/power/turbine,
 /obj/cable,
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "Dm" = (
 /obj/disposalpipe/junction{
@@ -1628,13 +1623,6 @@
 /obj/machinery/atmospherics/valve/digital,
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/space)
-"DG" = (
-/obj/wingrille_spawn/reinforced_crystal/full,
-/obj/machinery/door/poddoor/blast/pyro{
-	id = "testchambershield"
-	},
-/turf/simulated/floor/engine/glow,
-/area/station/science/testchamber)
 "DL" = (
 /obj/landmark/start{
 	name = "Staff Assistant"
@@ -1661,7 +1649,7 @@
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 1
 	},
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "Em" = (
 /obj/cable{
@@ -1758,7 +1746,7 @@
 /obj/railing{
 	dir = 4
 	},
-/turf/simulated/floor/engine/caution/westeast,
+/turf/simulated/floor/engine/glow,
 /area/space)
 "Fw" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
@@ -1785,7 +1773,7 @@
 	id = "incinerator";
 	on = 0
 	},
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "Gm" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -2277,11 +2265,6 @@
 	},
 /turf/space,
 /area/space)
-"ND" = (
-/obj/map/light/brighterwhite,
-/obj/machinery/atmospherics/pipe/tank/rad_particles/east,
-/turf/simulated/floor,
-/area/station/atmos/highcap_storage)
 "NJ" = (
 /obj/wingrille_spawn/auto,
 /turf/simulated/floor,
@@ -2479,7 +2462,7 @@
 /area/station/engine/core/nuclear)
 "Ru" = (
 /obj/map/light/brighterwhite,
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/station/science/testchamber)
 "RZ" = (
 /obj/landmark/map{
@@ -2585,7 +2568,7 @@
 	icon_state = "1-2"
 	},
 /obj/map/light/brighterwhite,
-/turf/simulated/floor/engine/glow,
+/turf/simulated/floor/engine/glow/blue,
 /area/research_outpost/toxins)
 "Uf" = (
 /obj/machinery/computer/general_air_control,
@@ -10081,11 +10064,11 @@ je
 je
 je
 er
-iZ
 Oo
-iZ
 Oo
-DG
+Oo
+Oo
+Fk
 fx
 fx
 fx
@@ -10403,7 +10386,7 @@ MU
 xT
 MU
 jq
-ND
+WY
 jA
 ML
 jA
@@ -10685,11 +10668,11 @@ je
 je
 je
 er
-iZ
 Oo
-iZ
 Oo
-DG
+Oo
+Oo
+Fk
 fx
 DV
 fx
@@ -10705,7 +10688,7 @@ xT
 xT
 jq
 jq
-oF
+jq
 oF
 oF
 oF
@@ -11289,11 +11272,11 @@ je
 je
 je
 er
-iZ
 Oo
-iZ
 Oo
-DG
+Oo
+Oo
+Fk
 fx
 DV
 fx
@@ -11893,9 +11876,9 @@ je
 je
 je
 er
-iZ
 Oo
-iZ
+Oo
+Oo
 Oo
 rS
 ri
