@@ -11154,7 +11154,7 @@
 "cYe" = (
 /obj/bookshelf/persistent{
 	density = 0;
-	layer = 10;
+	layer = 3.01;
 	pixel_y = 19
 	},
 /obj/disposalpipe/segment/transport,
@@ -15837,8 +15837,8 @@
 /turf/simulated/floor/black,
 /area/station/engine/gas)
 "ery" = (
-/obj/machinery/manufacturer/general,
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
+/obj/machinery/manufacturer/science,
 /turf/simulated/floor/plating/jen,
 /area/station/science/gen_storage)
 "erB" = (
@@ -47476,9 +47476,7 @@
 /area/station/quartermaster/office)
 "nHR" = (
 /obj/disposalpipe/segment/mail,
-/obj/storage/secure/closet/medical{
-	name = "locker"
-	},
+/obj/storage/secure/closet/medical/cloning,
 /turf/simulated/floor/white,
 /area/station/medical/medbay/cloner)
 "nHT" = (

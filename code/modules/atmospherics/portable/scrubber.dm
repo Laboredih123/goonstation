@@ -155,25 +155,21 @@
 	. = list(
 		"pressure" = MIXTURE_PRESSURE(src.air_contents),
 		"on" = src.on,
-		"maxPressure" = src.maximum_pressure,
-		"connected" = src.connected_port ? TRUE : FALSE,
-		"holding" = null, // need to explicitly tell the client it doesn't exist so it renders properly
+		"connected" = !!src.connected_port,
 		"inletFlow" = src.inlet_flow
 	)
 
-	if(src.holding)
-		. += list(
-			"holding" = list(
-				"name" = src.holding.name,
-				"pressure" = MIXTURE_PRESSURE(src.holding.air_contents),
-				"maxPressure" = PORTABLE_ATMOS_MAX_RELEASE_PRESSURE,
-			)
-		)
+	.["holding"] = isnull(holding) ? null : list(
+		"name" = src.holding.name,
+		"pressure" = MIXTURE_PRESSURE(src.holding.air_contents),
+		"maxPressure" = PORTABLE_ATMOS_MAX_RELEASE_PRESSURE,
+	)
 
 /obj/machinery/portable_atmospherics/scrubber/ui_static_data(mob/user)
 	. = list(
 		"minFlow" = 0,
 		"maxFlow" = 100,
+		"maxPressure" = src.maximum_pressure
 	)
 
 /obj/machinery/portable_atmospherics/scrubber/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -188,27 +184,8 @@
 		if("set-inlet-flow")
 			var/new_inlet_flow = params["inletFlow"]
 			if(isnum(new_inlet_flow))
-				src.inlet_flow = new_inlet_flow
+				src.inlet_flow = clamp(new_inlet_flow, 0, 100)
 				. = TRUE
 		if("eject-tank")
 			src.eject_tank()
 			. = TRUE
-
-
-/obj/machinery/portable_atmospherics/scrubber/stationary
-	name = "Stationary air scrubber"
-	icon_state = "scrubber:0"
-	anchored = TRUE
-	on = TRUE
-/obj/machinery/portable_atmospherics/scrubber/stationary/update_icon()
-	if(on)
-		icon_state = "scrubber:1"
-	else
-		icon_state = "scrubber:0"
-	if (holding)
-		tank_hatch.icon_state = "scrubber:T"
-	else
-		tank_hatch.icon_state = ""
-	src.UpdateOverlays(tank_hatch, "tankhatch")
-
-

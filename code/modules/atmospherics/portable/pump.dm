@@ -120,26 +120,22 @@
 	. = list(
 		"pressure" = MIXTURE_PRESSURE(src.air_contents),
 		"on" = src.on,
-		"maxPressure" = src.maximum_pressure,
-		"connected" = src.connected_port ? TRUE : FALSE,
-		"holding" = null, // need to explicitly tell the client it doesn't exist so it renders properly
+		"connected" = !!src.connected_port,
 		"targetPressure" = src.target_pressure,
 		"direction_out" = src.direction_out
 	)
 
-	if(src.holding)
-		. += list(
-			"holding" = list(
-				"name" = src.holding.name,
-				"pressure" = MIXTURE_PRESSURE(src.holding.air_contents),
-				"maxPressure" = PORTABLE_ATMOS_MAX_RELEASE_PRESSURE,
-			)
-		)
+	.["holding"] = isnull(holding) ? null : list(
+		"name" = src.holding.name,
+		"pressure" = MIXTURE_PRESSURE(src.holding.air_contents),
+		"maxPressure" = PORTABLE_ATMOS_MAX_RELEASE_PRESSURE,
+	)
 
 /obj/machinery/portable_atmospherics/pump/ui_static_data(mob/user)
 	. = list(
 		"minRelease" = 0,
-		"maxRelease" = 10*ONE_ATMOSPHERE,
+		"maxRelease" = 10 * ONE_ATMOSPHERE,
+		"maxPressure" = src.maximum_pressure
 	)
 
 /obj/machinery/portable_atmospherics/pump/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -157,7 +153,7 @@
 		if("set-pressure")
 			var/new_target_pressure = params["targetPressure"]
 			if(isnum(new_target_pressure))
-				src.target_pressure = new_target_pressure
+				src.target_pressure = clamp(new_target_pressure, 0, 10*ONE_ATMOSPHERE)
 				. = TRUE
 		if("eject-tank")
 			src.eject_tank()
