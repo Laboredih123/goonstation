@@ -189,3 +189,21 @@
 		if("eject-tank")
 			src.eject_tank()
 			. = TRUE
+
+/obj/machinery/portable_atmospherics/scrubber/stationary
+	name = "Stationary air scrubber"
+	icon_state = "scrubber:0"
+	anchored = TRUE
+	on = TRUE
+
+/obj/machinery/portable_atmospherics/scrubber/stationary/update_icon()
+	if(on)
+		icon_state = "scrubber:1"
+	else
+		icon_state = "scrubber:0"
+
+	if (holding)
+		tank_hatch.icon_state = "scrubber:T"
+	else
+		tank_hatch.icon_state = ""
+	src.UpdateOverlays(tank_hatch, "tankhatch")

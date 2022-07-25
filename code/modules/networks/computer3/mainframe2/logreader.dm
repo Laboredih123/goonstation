@@ -35,9 +35,10 @@
 
 	New()
 		..()
-		SPAWN(0.5 SECONDS)
-			src.net_id = generate_net_id(src)
 
+		src.net_id = generate_net_id(src)
+
+		SPAWN(1 SECOND)
 			if(!src.link)
 				var/turf/T = get_turf(src)
 				var/obj/machinery/power/data_terminal/test_link = locate() in T
@@ -296,23 +297,23 @@
 		if(!signal || !src.net_id || signal.encryption)
 			return
 
-		var/target = signal.data["sender"] ? signal.data["sender"] : signal.data["netid"]
+		var/target = signal.data["sender"]
 		if(!target)
+			return
+
+		if(signal.transmission_method != TRANSMISSION_WIRE) //This is a wired device only.
 			return
 
 		if(signal.data["target_device"] && signal.data["target_device"] != device_tag)
 			return
 
 		//We care very deeply about address_1.
-		if(lowertext(signal.data["address_1"]) != lowertext(src.net_id))
-			if((signal.data["address_1"] == "ping") && ((signal.data["net"] == null) || ("[signal.data["net"]]" == "[src.net_number]")))
+		if(signal.data["address_1"] != src.net_id)
+			if((signal.data["address_1"] == "ping") && ((signal.data["net"] == null) || ("[signal.data["net"]]" == "[src.net_number]")) && signal.data["sender"])
 				SPAWN(0.5 SECONDS) //Send a reply for those curious jerks
-					if (signal.transmission_method == TRANSMISSION_WIRE)
-						src.post_status(target, "command", "ping_reply", "device", src.device_tag, "netid", src.net_id, "net", "[net_number]")
-					// else ????
-				return
-			if (!signal.data["target_device"])
-				return
+					src.post_status(target, "command", "ping_reply", "device", src.device_tag, "netid", src.net_id, "net", "[src.net_number]")
+
+			return
 
 		var/sigcommand = lowertext(signal.data["command"])
 		if(!sigcommand || !target)
@@ -320,14 +321,16 @@
 
 		switch(sigcommand)
 			if("term_connect") //Terminal interface stuff.
+				/*
 				if(target == src.host_id)
 					src.host_id = null
 					src.updateUsrDialog()
 					SPAWN(0.3 SECONDS)
 						src.post_status(target, "command","term_disconnect")
 					return
+				*/
 
-				if(src.host_id)
+				if(src.host_id && src.host_id != target)
 					return
 
 				src.timeout = initial(src.timeout)

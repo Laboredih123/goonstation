@@ -1,4 +1,4 @@
-#include "..\newmap.dmm"
+#include "..\donut1.dmm"
 #include "..\z2.dmm"
 #include "..\z3.dmm"
 #include "z4.dm"
