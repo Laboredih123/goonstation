@@ -271,7 +271,7 @@
 /turf/simulated/floor/plating/airless,
 /area/station/wreckage)
 "aaG" = (
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/quarters_east)
 "aaH" = (
 /obj/grille/steel,
@@ -282,8 +282,7 @@
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/quarters_east)
 "aaI" = (
-/obj/grille/steel,
-/obj/window/reinforced,
+/obj/wingrille_spawn/auto/reinforced,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/quarters_east)
 "aaJ" = (
@@ -396,7 +395,7 @@
 /turf/simulated/floor/carpet/green/fancy/edge/nw,
 /area/station/crew_quarters/quarters_east)
 "aba" = (
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "abb" = (
 /obj/lattice{
@@ -455,7 +454,7 @@
 	},
 /area/station/wreckage)
 "abk" = (
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/wreckage)
 "abl" = (
 /obj/decal/cleanable/dirt,
@@ -753,11 +752,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "abS" = (
-/obj/grille/steel,
-/obj/window/reinforced,
+/obj/wingrille_spawn/auto/reinforced,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/lounge)
 "abT" = (
@@ -791,7 +789,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "abW" = (
 /obj/cable{
@@ -799,7 +797,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "abX" = (
 /turf/space,
@@ -1363,7 +1361,7 @@
 /turf/simulated/floor/airless/plating/catwalk,
 /area/space)
 "adl" = (
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/space)
 "adm" = (
 /obj/item/storage/toilet/random{
@@ -1427,8 +1425,7 @@
 	},
 /area/station/wreckage)
 "ads" = (
-/obj/machinery/door/airlock{
-	icon_state = "door_locked";
+/obj/machinery/door/airlock/pyro{
 	locked = 1;
 	name = "bolted airlock"
 	},
@@ -1437,7 +1434,7 @@
 	},
 /area/station/wreckage)
 "adt" = (
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/pyro{
 	name = "Guest Room"
 	},
 /turf/simulated/floor/carpet/green/fancy/edge,
@@ -1453,7 +1450,9 @@
 	},
 /area/station/crew_quarters/lounge)
 "adv" = (
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 8
+	},
 /turf/simulated/floor/bluegreen,
 /area/station/crew_quarters/lounge)
 "adw" = (
@@ -1496,7 +1495,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "adD" = (
 /obj/lattice,
@@ -1620,7 +1619,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/medical{
+/obj/machinery/door/airlock/pyro/medical{
+	dir = 4;
 	name = "Test Chamber"
 	},
 /obj/access_spawn/research,
@@ -1632,7 +1632,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/medical{
+/obj/machinery/door/airlock/pyro/medical{
+	dir = 4;
 	name = "Test Chamber"
 	},
 /obj/access_spawn/research,
@@ -1644,7 +1645,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4
+	},
 /obj/access_spawn/research,
 /turf/simulated/floor/plating,
 /area/station/science/gen_storage)
@@ -1686,7 +1689,7 @@
 /area/space)
 "adY" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/wreckage)
 "adZ" = (
 /obj/disposalpipe/segment/horizontal,
@@ -1726,8 +1729,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass/command{
-	icon_state = "door_locked";
+/obj/machinery/door/airlock/pyro/glass/command{
+	dir = 4;
 	locked = 1;
 	name = "Conference Center"
 	},
@@ -1798,7 +1801,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/pyro/glass{
+	dir = 8
+	},
 /turf/simulated/floor/bluegreen,
 /area/station/crew_quarters/lounge)
 "aem" = (
@@ -1853,7 +1858,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "aes" = (
 /obj/stool/chair/comfy/shuttle/red{
@@ -1983,7 +1988,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4
+	},
 /obj/access_spawn/research,
 /turf/simulated/floor/black,
 /area/station/science/laser{
@@ -2012,8 +2019,8 @@
 /turf/simulated/floor,
 /area/station/wreckage)
 "aeJ" = (
-/obj/machinery/door/airlock/glass/command{
-	icon_state = "door_locked";
+/obj/machinery/door/airlock/pyro/glass/command{
+	dir = 4;
 	locked = 1;
 	name = "Conference Center"
 	},
@@ -2066,9 +2073,8 @@
 /area/station/crew_quarters/lounge)
 "aeS" = (
 /obj/decal/cleanable/dirt,
-/obj/machinery/door/airlock/glass/medical{
-	name = "Bar";
-	req_access = list(0)
+/obj/machinery/door/airlock/pyro/glass/med{
+	name = "Bar"
 	},
 /turf/simulated/floor/wood/two,
 /area/station/crew_quarters/lounge)
@@ -2201,13 +2207,13 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/pyro{
 	name = "Guest Room"
 	},
 /turf/simulated/floor/carpet/blue/fancy/narrow/north,
 /area/station/crew_quarters/quarters_east)
 "afn" = (
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/pyro{
 	name = "Guest Room"
 	},
 /turf/simulated/floor/carpet/blue/fancy/narrow/north,
@@ -2345,7 +2351,7 @@
 /area/station/solar/small_backup3)
 "afJ" = (
 /obj/disposalpipe/segment/vertical,
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/wreckage)
 "afK" = (
 /obj/machinery/light{
@@ -2401,7 +2407,8 @@
 /turf/simulated/floor/carpet/blue/standard/edge/ne,
 /area/station/crew_quarters/quarters_east)
 "afT" = (
-/obj/machinery/door/airlock/classic{
+/obj/machinery/door/airlock/pyro/classic{
+	dir = 4;
 	name = "WC"
 	},
 /turf/simulated/floor{
@@ -2440,7 +2447,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "aga" = (
 /obj/cable{
@@ -2448,7 +2455,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "agb" = (
 /obj/decal/cleanable/dirt,
@@ -2529,7 +2536,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/medical{
+/obj/machinery/door/airlock/pyro/medical{
 	name = "Test Chamber"
 	},
 /obj/access_spawn/research,
@@ -2554,8 +2561,8 @@
 /area/station/crew_quarters/lounge)
 "ags" = (
 /obj/decal/cleanable/dirt,
-/obj/machinery/door/airlock{
-	icon_state = "door_locked";
+/obj/machinery/door/airlock/pyro{
+	dir = 4;
 	locked = 1;
 	name = "bolted airlock"
 	},
@@ -2649,7 +2656,7 @@
 /area/station/crew_quarters/quarters_east)
 "agG" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "agH" = (
 /obj/decal/cleanable/dirt,
@@ -2745,7 +2752,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/lounge)
 "agQ" = (
 /turf/simulated/wall/auto/asteroid/lighted,
@@ -2813,8 +2820,7 @@
 /turf/simulated/floor/industrial,
 /area/space)
 "ahb" = (
-/obj/grille/steel,
-/obj/window/reinforced,
+/obj/wingrille_spawn/auto/reinforced,
 /turf/simulated/floor/plating,
 /area/station/wreckage)
 "ahc" = (
@@ -2964,14 +2970,16 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/pyro/medical,
 /obj/access_spawn/research,
 /turf/simulated/floor/black,
 /area/station/science/laser{
 	name = "Testing Asteroid"
 	})
 "ahx" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4
+	},
 /turf/simulated/floor/plating/airless,
 /area/station/wreckage)
 "ahy" = (
@@ -2999,7 +3007,9 @@
 /area/station/crew_quarters/lounge)
 "ahC" = (
 /obj/decal/cleanable/dirt,
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/station/crew_quarters/lounge)
 "ahD" = (
@@ -3038,7 +3048,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/classic{
+/obj/machinery/door/airlock/pyro/classic{
+	dir = 4;
 	name = "WC"
 	},
 /turf/simulated/floor{
@@ -3181,7 +3192,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/medical{
+/obj/machinery/door/airlock/pyro/medical{
 	name = "Test Chamber"
 	},
 /obj/access_spawn/research,
@@ -3346,7 +3357,9 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/pyro/medical{
+	dir = 4
+	},
 /obj/access_spawn/research,
 /turf/simulated/floor/purple,
 /area/station/science/laser{
@@ -3365,15 +3378,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/classic{
+/obj/machinery/door/airlock/pyro/classic{
 	name = "Research Outhouse"
 	},
 /obj/access_spawn/research,
 /turf/simulated/floor/grey/blackgrime,
 /area/station/science/restroom)
 "aiS" = (
-/obj/grille/steel,
-/obj/window/reinforced,
+/obj/wingrille_spawn/auto/reinforced,
 /obj/disposalpipe/segment/vertical,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/lounge)
@@ -4110,11 +4122,8 @@
 /obj/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/station/science/spectral)
-"akY" = (
-/turf/simulated/wall/auto/reinforced/gannets,
-/area/space)
 "akZ" = (
-/turf/simulated/wall/auto/reinforced/gannets,
+/turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/construction)
 "ala" = (
 /turf/space,
@@ -4634,7 +4643,7 @@
 	name = "Testing Asteroid"
 	})
 "amB" = (
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/science/laser{
 	name = "Testing Asteroid"
 	})
@@ -4770,7 +4779,7 @@
 	name = "Testing Asteroid"
 	})
 "anb" = (
-/turf/simulated/wall/auto/reinforced/gannets,
+/turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/laser{
 	name = "Testing Asteroid"
 	})
@@ -4862,7 +4871,7 @@
 /turf/space,
 /area/station/science/spectral)
 "anq" = (
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/science/gen_storage)
 "anr" = (
 /obj/securearea{
@@ -4870,7 +4879,7 @@
 	name = "COLLISION HAZARD"
 	},
 /obj/map/light/dimreddish,
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/space)
 "ans" = (
 /turf/simulated/floor/black,
@@ -5062,7 +5071,7 @@
 /area/station/science/construction)
 "anT" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
-/turf/simulated/wall/auto/reinforced/gannets,
+/turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/construction)
 "anU" = (
 /obj/lattice,
@@ -5145,7 +5154,7 @@
 /area/station/solar/north)
 "aok" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
-/turf/simulated/wall/auto/reinforced/gannets,
+/turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/laser{
 	name = "Testing Asteroid"
 	})
@@ -5315,7 +5324,7 @@
 	})
 "aoN" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
-/turf/simulated/wall/auto/reinforced/gannets,
+/turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/construction)
 "aoV" = (
 /obj/landmark/artifact,
@@ -5444,13 +5453,13 @@
 /area/station/solar/north)
 "apn" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/science/laser{
 	name = "Testing Asteroid"
 	})
 "apo" = (
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
-/turf/simulated/wall/auto/reinforced/gannets,
+/turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/laser{
 	name = "Testing Asteroid"
 	})
@@ -5499,7 +5508,7 @@
 /turf/simulated/floor/grey/whitegrime/other,
 /area/station/science/gen_storage)
 "apy" = (
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/science/construction)
 "apz" = (
 /obj/table/reinforced/auto,
@@ -5849,7 +5858,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/science/construction)
 "aqn" = (
 /obj/machinery/power/furnace{
@@ -5881,7 +5890,7 @@
 /turf/simulated/floor/plating,
 /area/station/science/construction)
 "aqs" = (
-/turf/simulated/wall/auto/reinforced/gannets,
+/turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/restroom)
 "aqt" = (
 /obj/grille/catwalk,
@@ -5889,7 +5898,7 @@
 /turf/simulated/floor/airless/plating/catwalk,
 /area/station/solar/north)
 "aqu" = (
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/station/science/restroom)
 "aqv" = (
 /obj/item/basketball,
@@ -6188,7 +6197,7 @@
 	icon_state = "1-2"
 	},
 /obj/map/light/dimreddish,
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/space)
 "arh" = (
 /obj/securearea{
@@ -6204,7 +6213,7 @@
 	icon_state = "1-2"
 	},
 /obj/map/light/dimreddish,
-/turf/simulated/wall/auto/gannets,
+/turf/simulated/wall/auto/supernorn,
 /area/space)
 "ari" = (
 /obj/machinery/power/solar/small_backup1,
@@ -56305,6 +56314,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/east)
+"mis" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/simulated/wall/auto/supernorn,
+/area/station/crew_quarters/quarters_east)
 "miR" = (
 /obj/grille/steel,
 /obj/disposalpipe/segment/transport{
@@ -114241,7 +114254,7 @@ aaa
 aaa
 aab
 aab
-akY
+arn
 alB
 alU
 amz
@@ -114543,7 +114556,7 @@ aaa
 aaa
 aab
 aab
-akY
+arn
 alC
 alV
 amA
@@ -114845,7 +114858,7 @@ aaa
 aaa
 aaa
 aaa
-akY
+arn
 alD
 alW
 alW
@@ -115147,7 +115160,7 @@ aaa
 aaa
 aaa
 aaa
-akY
+arn
 alE
 alE
 aad
@@ -142318,7 +142331,7 @@ aee
 aeK
 aaG
 aaG
-agx
+mis
 aaG
 ahG
 aaG
@@ -143526,7 +143539,7 @@ aef
 aeK
 aaG
 aaG
-agx
+mis
 aaG
 aaG
 aaG
