@@ -28,7 +28,6 @@ var/fartcount = 0
 	desc = "These cheap sandals don't even look legal."
 	icon_state = "thong"
 	protective_temperature = 0
-	permeability_coefficient = 1
 	var/possible_names = list("sandals", "flip-flops", "thongs", "rubber slippers", "jandals", "slops", "chanclas")
 	var/stapled = FALSE
 
@@ -56,6 +55,7 @@ var/fartcount = 0
 		setProperty("coldprot", 0)
 		setProperty("heatprot", 0)
 		setProperty("conductivity", 1)
+		delProperty("chemprot")
 
 
 
@@ -278,7 +278,7 @@ ABSTRACT_TYPE(/obj/machinery/vending/meat)
 			var/list/grills = list()
 
 			var/obj/machinery/bot/guardbot/old/tourguide/murray = pick(by_type[/obj/machinery/bot/guardbot/old/tourguide])
-			if (murray && get_dist(src,murray) > 7)
+			if (murray && GET_DIST(src,murray) > 7)
 				murray = null
 			if (istype(murray))
 				if (!findtext(murray.name, "murraycompliment"))
@@ -494,7 +494,7 @@ ABSTRACT_TYPE(/obj/machinery/vending/meat)
 
 		for (var/mob/SB in by_cat[TR_CAT_SHITTYBILLS])
 			var/mob/living/carbon/human/biker/S = SB
-			if (get_dist(S,src) <= 7)
+			if (GET_DIST(S,src) <= 7)
 				if(!(S.ai_active) || (prob(25)))
 					S.say("That's my brother, you [JOHN_PICK("insults")]!")
 					M.add_karma(-1)
@@ -579,7 +579,7 @@ obj/item/paper/tug/warehouse
 /turf/simulated/wall/r_wall/afterbar
 	name = "wall"
 	desc = null
-	attackby(obj/item/W as obj, mob/user as mob, params)
+	attackby(obj/item/W, mob/user, params)
 		return
 
 
@@ -663,7 +663,7 @@ Urs' Hauntdog critter
 	on_pet(mob/user)
 		if (..())
 			return 1
-		if (prob(ASS_JAM?50:25))
+		if (prob(25))
 			var/turf/T = get_turf(src)
 			src.visible_message("[src] screams![prob(5) ? " ...uh?" : null]",\
 			"You screams!")

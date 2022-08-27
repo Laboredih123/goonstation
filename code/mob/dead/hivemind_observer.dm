@@ -23,7 +23,7 @@
 		if (dd_hasprefix(message, "*"))
 			return
 
-		logTheThing("diary", src, null, "(HIVEMIND): [message]", "hivesay")
+		logTheThing(LOG_DIARY, src, "(HIVEMIND): [message]", "hivesay")
 
 		if (src.client && src.client.ismuted())
 			boutput(src, "You are currently muted and may not speak.")
@@ -55,6 +55,8 @@
 				return
 
 	point_at(atom/target)
+		if(ON_COOLDOWN(src, "hivemind_member_point", 1 SECOND))
+			return
 		make_hive_point(target, color="#e2a059")
 
 	/// Like make_point, but the point is an image that is only displayed to hivemind members
@@ -68,6 +70,10 @@
 			boutput(member, "<span class='game hivesay'><span class='prefix'>HIVEMIND: </span><b>[src]</b> points to [target].</span>")
 			member.client.images += point
 			viewers += member.client
+		var/matrix/M = matrix()
+		M.Translate((hivemind_owner.owner.x - target.x)*32, (hivemind_owner.owner.y - target.y)*32)
+		point.transform = M
+		animate(point, transform=null, time=2)
 		SPAWN(time)
 			for (var/client/viewer in viewers)
 				viewer.images -= point
@@ -121,6 +127,7 @@
 				my_ghost.z = 1
 
 		observers -= src
+		my_ghost.show_antag_popup("changeling_leave")
 		qdel(src)
 
 	proc/set_owner(var/datum/abilityHolder/changeling/new_owner)
@@ -158,8 +165,8 @@
 
 	if(world.time >= can_exit_hivemind_time && hivemind_owner && hivemind_owner.master != src)
 		hivemind_owner.hivemind -= src
-		boutput(src, __red("You have parted with the hivemind."))
+		boutput(src, "<span class='alert'>You have parted with the hivemind.</span>")
 		src.boot()
 	else
-		boutput(src, __red("You are not able to part from the hivemind at this time. You will be able to leave in [(can_exit_hivemind_time/10 - world.time/10)] seconds."))
+		boutput(src, "<span class='alert'>You are not able to part from the hivemind at this time. You will be able to leave in [(can_exit_hivemind_time/10 - world.time/10)] seconds.</span>")
 

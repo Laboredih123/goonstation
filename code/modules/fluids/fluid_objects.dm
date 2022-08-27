@@ -67,17 +67,17 @@
 
 
 
-	attackby(obj/item/I as obj, mob/user as mob)
+	attackby(obj/item/I, mob/user)
 		if (isweldingtool(I))
 			if(!I:try_weld(user, 2))
 				return
 
 			if (!src.welded)
 				src.welded = 1
-				logTheThing("station", user, null, "welded [name] shut at [log_loc(user)].")
+				logTheThing(LOG_STATION, user, "welded [name] shut at [log_loc(user)].")
 				user.show_text("You weld the drain shut.")
 			else
-				logTheThing("station", user, null, "un-welded [name] at [log_loc(user)].")
+				logTheThing(LOG_STATION, user, "un-welded [name] at [log_loc(user)].")
 				src.welded = 0
 				user.show_text("You unseal the drain with your welder.")
 
@@ -91,7 +91,7 @@
 			var/obj/item/material_piece/cloth/C = I
 			src.clogged += (20 * C.amount) //One piece of cloth clogs for about 1 minute. (cause the machine loop updates ~3 second interval)
 			user.show_text("You stuff [I] into the drain.")
-			logTheThing("station", user, null, "clogs [name] shut temporarily at [log_loc(user)].")
+			logTheThing(LOG_STATION, user, "clogs [name] shut temporarily at [log_loc(user)].")
 			qdel(I)
 			src.UpdateIcon()
 			return
@@ -326,7 +326,7 @@
 			return
 		return
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user)
 		src.add_dialog(user)
 		var/offtext
 		var/intext
@@ -495,11 +495,11 @@
 
 	proc/boom()
 		if (src.active)
-			logTheThing("bombing", src.fingerprintslast, null, "A naval mine explodes at [log_loc(src)]. Last touched by [src.fingerprintslast ? "[src.fingerprintslast]" : "*null*"].")
+			logTheThing(LOG_BOMBING, src.fingerprintslast, "A naval mine explodes at [log_loc(src)]. Last touched by [src.fingerprintslast ? "[src.fingerprintslast]" : "*null*"].")
 			src.blowthefuckup(boom_str)
 
 
-	attack_hand(var/mob/living/carbon/human/user as mob)
+	attack_hand(var/mob/living/carbon/human/user)
 		src.add_fingerprint(user)
 
 		active = !active

@@ -18,6 +18,7 @@
 	//var/obj/o_shooter = null
 	var/list/targets = list()
 	var/power = 20 // temp var to store what the current power of the projectile should be when it hits something
+	var/armor_ignored = 0
 	var/max_range = PROJ_INFINITE_RANGE //max range
 	var/initial_power = 20 // local copy of power for determining power when hitting things
 	var/implanted = null
@@ -56,6 +57,7 @@
 	var/reflectcount = 0
 	var/is_processing = 0//MBC BANDAID FOR BAD BUG : Sometimes Launch() is called twice and spawns two process loops, causing DOUBLEBULLET speed and collision. this fix is bad but i cant figure otu the real issue
 	var/is_detonating = 0//to start modeling fuses
+	var/has_died = FALSE // for disabling collision when a projectile has died but hasn't been disposed yet, e.g. under on_end effects
 
 	proc/rotateDirection(var/angle)
 		var/oldxo = xo
@@ -100,6 +102,7 @@
 	proc/collide(atom/A as mob|obj|turf|area, first = 1)
 		if (!A) return // you never know ok??
 		if (QDELETED(src)) return // if disposed = true, QDELETED(src) or set for garbage collection and shouldn't process bumps
+		if (has_died) return
 		if (!proj_data) return // this apparently happens sometimes!! (more than you think!)
 		if (proj_data?.on_pre_hit(A, src.angle, src))
 			return // Our bullet doesnt want to hit this
@@ -125,7 +128,7 @@
 			//die()
 			return
 
-		var/sigreturn = SEND_SIGNAL(src, COMSIG_PROJ_COLLIDE, A)
+		var/sigreturn = SEND_SIGNAL(src, COMSIG_OBJ_PROJ_COLLIDE, A)
 		sigreturn |= SEND_SIGNAL(A, COMSIG_ATOM_HITBY_PROJ, src)
 		if(QDELETED(src)) //maybe a signal proc QDELETED(src) us
 			return
@@ -151,18 +154,6 @@
 				O.bullet_act(src)
 			T = A
 			if ((sigreturn & PROJ_ATOM_CANNOT_PASS) || (T.density && !goes_through_walls && !(sigreturn & PROJ_PASSWALL) && !(sigreturn & PROJ_ATOM_PASSTHROUGH)))
-				if (proj_data?.icon_turf_hit && istype(A, /turf/simulated/wall))
-					var/turf/simulated/wall/W = A
-					if (src.forensic_ID)
-						W.forensic_impacts += src.forensic_ID
-
-					if (W.proj_impacts.len <= 10)
-						var/image/impact = image('icons/obj/projectiles.dmi', proj_data.icon_turf_hit)
-						impact.transform = turn(impact.transform, pick(0, 90, 180, 270))
-						impact.pixel_x += rand(-12,12)
-						impact.pixel_y += rand(-12,12)
-						W.proj_impacts += impact
-						W.update_projectile_image(ticker.round_elapsed_ticks)
 				if (proj_data?.hit_object_sound)
 					playsound(A, proj_data.hit_object_sound, 60, 0.5)
 				die()
@@ -170,8 +161,8 @@
 			if (src.proj_data) //ZeWaka: Fix for null.ticks_between_mob_hits
 				if (proj_data.hit_mob_sound)
 					playsound(A.loc, proj_data.hit_mob_sound, 60, 0.5)
-			SEND_SIGNAL(A, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
-			SEND_SIGNAL(A, COMSIG_DISGUISER_DEACTIVATE)
+			SEND_SIGNAL(A, COMSIG_MOB_CLOAKING_DEVICE_DEACTIVATE)
+			SEND_SIGNAL(A, COMSIG_MOB_DISGUISER_DEACTIVATE)
 			if (ishuman(A))
 				var/mob/living/carbon/human/H = A
 				H.stamina_stun()
@@ -213,6 +204,7 @@
 
 
 	proc/die()
+		has_died = TRUE
 		if (proj_data)
 			proj_data.on_end(src)
 		qdel(src)
@@ -465,7 +457,7 @@ datum/projectile
 	var/name = "projectile"
 	var/icon = 'icons/obj/projectiles.dmi'
 	var/icon_state = "bullet"	// A special note: the icon state, if not a point-symmetric sprite, should face NORTH by default.
-	var/icon_turf_hit = null // what kinda overlay they puke onto turfs when they hit
+	var/impact_image_state = null // what kinda overlay they puke onto non-mobs when they hit
 	var/brightness = 0
 	var/color_red = 0
 	var/color_green = 0
@@ -480,6 +472,8 @@ datum/projectile
 									// When firing in a straight line, I was getting doubled falloff values on the fourth tile from the shooter, as well as others further along. -Tarm
 	var/ks_ratio = 1.0           /* Kill/Stun ratio, when it hits a mob the damage/stun is based upon this and the power
 	                                eg 1.0 will cause damage = to power while 0.0 would cause just stun = to power */
+
+	var/armor_ignored = 0		 // Percentage of armor to ignore. Old-style AP is 0.66 = ignore 66% of target's armor
 
 	var/sname = "stun"           // name of the projectile setting, used when you change a guns setting
 	var/shot_sound = 'sound/weapons/Taser.ogg' // file location for the sound you want it to play
@@ -923,6 +917,10 @@ datum/projectile/snowball
 	else
 		P.max_range = min(DATA.dissipation_delay + round(P.power / DATA.dissipation_rate), DATA.max_range)
 
+	if (DATA.reagent_payload)
+		P.create_reagents(15)
+		P.reagents.add_reagent(DATA.reagent_payload, 15)
+
 	return P
 
 /proc/stun_bullet_hit(var/obj/projectile/O, var/mob/living/L)
@@ -1016,7 +1014,7 @@ datum/projectile/snowball
 	ry = P.yo - dn * ny
 
 	if (rx == ry && rx == 0)
-		logTheThing("debug", null, null, "<b>Reflecting Projectiles</b>: Reflection failed for [P.name] (incidence: [P.incidence], direction: [P.xo];[P.yo]).")
+		logTheThing(LOG_DEBUG, null, "<b>Reflecting Projectiles</b>: Reflection failed for [P.name] (incidence: [P.incidence], direction: [P.xo];[P.yo]).")
 		return // unknown error
 
 	//spawns the new projectile in the same location as the existing one, not inside the hit thing

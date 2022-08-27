@@ -7,7 +7,7 @@
 
 #define MIN_TIMING 0.25
 #define MAX_TIMING 0.5
-#define MAX_NOTE_INPUT 2048
+#define MAX_NOTE_INPUT 15360
 
 /obj/player_piano //this is the big boy im pretty sure all this code is garbage
 	name = "player piano"
@@ -56,7 +56,7 @@
 		if (new_timing)
 			set_timing(new_timing)
 
-	attackby(obj/item/W as obj, mob/user as mob) //this one is big and sucks, where all of our key and construction stuff is
+	attackby(obj/item/W, mob/user) //this one is big and sucks, where all of our key and construction stuff is
 		if (istype(W, /obj/item/piano_key)) //piano key controls
 			var/mode_sel = input("Which do you want to do?", "Piano Control") as null|anything in list("Reset Piano", "Toggle Looping", "Adjust Timing")
 
@@ -83,7 +83,7 @@
 						return
 					src.visible_message("<span class='alert'>[user] sticks \the [W] into a slot on \the [src] and twists it! \The [src] rumbles indifferently.")
 
-		else if (istype(W, /obj/item/screwdriver)) //unanchoring piano
+		else if (isscrewingtool(W)) //unanchoring piano
 			if (anchored)
 				user.visible_message("[user] starts loosening the piano's castors...", "You start loosening the piano's castors...")
 				if (!do_after(user, 3 SECONDS) || anchored != 1)
@@ -102,7 +102,7 @@
 				user.visible_message("[user] tightens the piano's castors!", "You tighten the piano's castors!")
 				return
 
-		else if (istype(W, /obj/item/crowbar)) //prying off panel
+		else if (ispryingtool(W)) //prying off panel
 			if (is_busy)
 				boutput(user, "You can't do that while the piano is running!")
 				return
@@ -131,7 +131,7 @@
 				UpdateIcon(0)
 				qdel(W)
 
-		else if (istype(W, /obj/item/wirecutters)) //turning off looping... forever!
+		else if (issnippingtool(W)) //turning off looping... forever!
 			if (is_looping == 2)
 				boutput(user, "There's no wires to snip!")
 				return
@@ -142,7 +142,7 @@
 			playsound(user, "sound/items/Wirecutter.ogg", 65, 1)
 			user.visible_message("<span class='alert'>[user] snips the looping control wire!</span>", "You snip the looping control wire!")
 
-		else if (istype(W, /obj/item/device/multitool)) //resetting piano the hard way
+		else if (ispulsingtool(W)) //resetting piano the hard way
 			if (panel_exposed == 0)
 				..()
 				return
@@ -154,7 +154,7 @@
 		else
 			..()
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user)
 		if (is_busy)
 			src.visible_message("<span class='alert'>\The [src] emits an angry beep!</span>")
 			return
@@ -197,11 +197,11 @@
 		..()
 
 	proc/allowChange(var/mob/M) //copypasted from mechanics code because why do something someone else already did better
-		if(hasvar(M, "l_hand") && istype(M:l_hand, /obj/item/device/multitool)) return 1
-		if(hasvar(M, "r_hand") && istype(M:r_hand, /obj/item/device/multitool)) return 1
+		if(hasvar(M, "l_hand") && ispulsingtool(M:l_hand)) return 1
+		if(hasvar(M, "r_hand") && ispulsingtool(M:r_hand)) return 1
 		if(hasvar(M, "module_states"))
 			for(var/atom/A in M:module_states)
-				if(istype(A, /obj/item/device/multitool))
+				if(ispulsingtool(A))
 					return 1
 		return 0
 

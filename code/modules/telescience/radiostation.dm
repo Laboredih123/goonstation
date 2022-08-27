@@ -128,7 +128,7 @@
 	desc = "A large and complicated audio mixing desk. Complete with fancy displays, dials, knobs and automated faders."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "mixtable-2"
-	anchored = 1.0
+	anchored = 1
 	density = 1
 	flags = TGUI_INTERACTIVE
 	var/static/list/accents
@@ -226,7 +226,7 @@
 			if(!isnull(accent_id))
 				var/datum/bioEffect/speech/accent = src.accents[accent_id]
 				message = accent.OnSpeak(message)
-			logTheThing("say", usr, name, "SAY: [message] (Synthesizing the voice of <b>([constructTarget(name,"say")])</b> with accent [accent_id])")
+			logTheThing(LOG_SAY, usr, "SAY: [message] (Synthesizing the voice of <b>([constructTarget(name,"say")])</b> with accent [accent_id])")
 			var/original_name = usr.real_name
 			usr.real_name = copytext(name, 1, MOB_NAME_MAX_LENGTH)
 			usr.say(message)
@@ -239,7 +239,7 @@
 	desc = "An old school vinyl record player sat on a set of drawers. Shame you don't have any records."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "mixtable-3"
-	anchored = 1.0
+	anchored = 1
 	density = 1
 	var/has_record = 0
 	var/is_playing = 0
@@ -249,7 +249,7 @@
 		..()
 		MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
-/obj/submachine/record_player/attackby(obj/item/W as obj, mob/user as mob)
+/obj/submachine/record_player/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/record))
 		if(has_record)
 			boutput(user, "The record player already has a record inside!")
@@ -261,7 +261,7 @@
 			W.set_loc(src)
 			src.record_inside = W
 			src.has_record = 1
-			var/R = html_encode(input("What is the name of this record?","Record Name", src.record_inside.record_name) as null|text)
+			var/R = copytext(html_encode(input("What is the name of this record?","Record Name", src.record_inside.record_name) as null|text), 1, MAX_MESSAGE_LEN)
 			if(!in_interact_range(src, user))
 				boutput(user, "You're out of range of the [src.name]!")
 				return
@@ -289,7 +289,7 @@
 	else
 		..()
 
-/obj/submachine/record_player/attack_hand(mob/user as mob)
+/obj/submachine/record_player/attack_hand(mob/user)
 	if(has_record)
 		if(!is_playing)
 			boutput(user, "You remove the record from the record player. It looks worse for the wear.")
@@ -310,7 +310,7 @@
 	var/record_name = ""
 	var/add_overlay = 1
 	w_class = W_CLASS_NORMAL
-	throwforce = 3.0
+	throwforce = 3
 	throw_speed = 3
 	throw_range = 8
 	force = 2
@@ -322,13 +322,13 @@
 	if (record_name)
 		src.desc = "A fairly large record. There's a sticker on it that says \"[record_name]\"."
 
-/obj/item/record/attack(mob/M as mob, mob/user as mob) // copied plate code
+/obj/item/record/attack(mob/M, mob/user) // copied plate code
 	if (user.a_intent == INTENT_HARM)
 		if (M == user)
 			boutput(user, "<span class='alert'><B>You smash the record over your own head!</b></span>")
 		else
 			M.visible_message("<span class='alert'><B>[user] smashes [src] over [M]'s head!</B></span>")
-			logTheThing("combat", user, M, "smashes [src] over [constructTarget(M,"combat")]'s head! ")
+			logTheThing(LOG_COMBAT, user, "smashes [src] over [constructTarget(M,"combat")]'s head! ")
 		M.TakeDamageAccountArmor("head", force, 0, 0, DAMAGE_BLUNT)
 		M.changeStatus("weakened", 2 SECONDS)
 		playsound(src, "shatter", 70, 1)
@@ -339,7 +339,7 @@
 		qdel(src)
 	else
 		M.visible_message("<span class='alert'>[user] taps [M] over the head with [src].</span>")
-		logTheThing("combat", user, M, "taps [constructTarget(M,"combat")] over the head with [src].")
+		logTheThing(LOG_COMBAT, user, "taps [constructTarget(M,"combat")] over the head with [src].")
 
 ABSTRACT_TYPE(/obj/item/record/random)
 
@@ -635,7 +635,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	icon_state = "record_blue"
 	song = "sound/radio_station/music/poo.ogg"
 
-/obj/item/record/poo/attackby(obj/item/P as obj, mob/user as mob)
+/obj/item/record/poo/attackby(obj/item/P, mob/user)
 	if (istype(P, /obj/item/magnifying_glass))
 		boutput(user, "<span class='notice'>You examine the record with the magnifying glass.</span>")
 		sleep(2 SECONDS)
@@ -693,7 +693,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "sleeve_1"
 	desc = "A sturdy record sleeve, designed to hold multiple records."
-	max_wclass = 3
+	max_wclass = W_CLASS_NORMAL
 	can_hold = list(/obj/item/record)
 
 /obj/item/storage/box/record/clown_collection
@@ -787,13 +787,13 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	desc = "A large standalone reel-to-reel tape deck."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "tapedeck"
-	anchored = 1.0
+	anchored = 1
 	density = 1
 	var/has_tape = 0
 	var/is_playing = 0
 	var/obj/item/radio_tape/tape_inside = null
 
-/obj/submachine/tape_deck/attackby(obj/item/W as obj, mob/user as mob)
+/obj/submachine/tape_deck/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/radio_tape))
 		if(has_tape)
 			boutput(user, "The tape deck already has a tape inserted!")
@@ -814,7 +814,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 			sleep(6000)
 			is_playing = 0
 
-/obj/submachine/tape_deck/attack_hand(mob/user as mob)
+/obj/submachine/tape_deck/attack_hand(mob/user)
 	if(has_tape)
 		if(!is_playing)
 			if(istype(src.tape_inside,/obj/item/radio_tape/advertisement))
@@ -962,6 +962,14 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	name = "compact tape - 'Owls'"
 	audio = "sound/radio_station/adverts/owl.ogg"
 	name_of_thing = "Owls"
+
+/obj/item/radio_tape/adventure
+	audio_type = "???"
+	name = "compact tape - 'Unlabeled'"
+	audio = "sound/ambience/spooky/Somewhere_Tone.ogg"
+	name_of_thing = "found tape"
+	interesting = "The tape seems pretty corrupted."
+
 
 // Drawer
 /*/obj/table/wood/auto/desk/radio

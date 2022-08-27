@@ -21,6 +21,10 @@
 #define BIOME_HIGHMEDIUM_HUMIDITY "highmedium_humidity"
 #define BIOME_HIGH_HUMIDITY "high_humidity"
 
+#define MAPGEN_IGNORE_FLORA (1 << 0)
+#define MAPGEN_IGNORE_FAUNA (1 << 1)
+#define MAPGEN_IGNORE_BUILDABLE (1 << 2)
+#define MAPGEN_ALLOW_VEHICLES (1 << 3)
 
 // map region allocator defines
 

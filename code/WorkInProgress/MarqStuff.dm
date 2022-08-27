@@ -451,18 +451,9 @@
 					boutput(user, "<span class='alert'>[I] is empty.</span>")
 				else
 					var/amt = min(reagents.maximum_volume - reagents.total_volume, I.reagents.total_volume)
-					logTheThing("combat", user, null, "poisoned [src] [log_reagents(I)] at [log_loc(user)].") // Logs would be nice (Convair880).
+					logTheThing(LOG_COMBAT, user, "poisoned [src] [log_reagents(I)] at [log_loc(user)].") // Logs would be nice (Convair880).
 					I.reagents.trans_to(src, amt)
 					boutput(user, "<span class='notice'>You dip [src] into [I], coating it with [amt] units of reagents.</span>")
-
-/obj/item/arrowhead
-	name = "arrowhead"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "arrowhead"
-
-	examine()
-		. = ..()
-		. += "There [amount == 1 ? "is" : "are"] [amount] arrowhead[amount != 1 ? "s" : null] in the stack."
 
 /obj/item/implant/projectile/body_visible/arrow
 	name = "arrow"
@@ -582,8 +573,8 @@
 	damage_type = D_KINETIC
 	hit_type = DAMAGE_STAB
 	implanted = null
-	ks_ratio = 1.0
-	icon_turf_hit = "bhole"
+	ks_ratio = 1
+	impact_image_state = "bhole"
 	icon_state = "arrow"
 
 	on_hit(var/atom/A, angle, var/obj/projectile/P)
@@ -709,7 +700,7 @@
 		var/default_power = 20
 		if(loaded.head_material)
 			if(loaded.head_material.hasProperty("hard"))
-				current_projectile.power = round(20+loaded.head_material.getProperty("hard") / 2.6) //20-50 damage with 0 and 80 hardness(approximately)
+				current_projectile.power = round(17+loaded.head_material.getProperty("hard") * 3) //pretty close to the 20-50 range
 			else
 				current_projectile.power = default_power
 		else
@@ -744,12 +735,13 @@
 		else
 			var/spread_base = 40
 			if(src.material)
-				if(src.material.hasProperty("density"))
-					var/mod = src.material.getProperty("density")
-					mod -= 50
-					mod /= 2
-					mod = mod * (-1)
-					spread_base += mod
+				if(src.material.getProperty("density") <= 2)
+					spread_base *= 1.5
+				else if (src.material.getProperty("density") >= 5)
+					spread_base *= 0.75
+
+				else if (src.material.getProperty("density") >= 7)
+					spread_base *= 0.5
 
 			spread_angle = spread_base
 			if (aim)
