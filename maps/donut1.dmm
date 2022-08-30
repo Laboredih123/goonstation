@@ -17472,9 +17472,6 @@
 /obj/machinery/door/airlock/pyro/engineering{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/insulated{
-	dir = 6
-	},
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
