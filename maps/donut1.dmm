@@ -415,7 +415,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/maintenance/south)
 "bj" = (
-/obj/window/auto,
+/obj/window,
 /turf/simulated/floor,
 /area/station/chapel)
 "bk" = (
@@ -1315,6 +1315,13 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/east)
+"dH" = (
+/obj/machinery/portable_atmospherics/canister/oxygen{
+	name = "High-Capacity Canister: \[O2\]";
+	filled = 1
+	},
+/turf/simulated/floor/blue,
+/area/station/engine/gas)
 "dI" = (
 /obj/wingrille_spawn/reinforced,
 /turf/simulated/floor,
@@ -1329,6 +1336,10 @@
 /area/station/chapel/office)
 "dK" = (
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/decal/tile_edge/stripe{
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe,
 /turf/simulated/floor/white,
 /area/station/atmos)
 "dL" = (
@@ -2960,6 +2971,16 @@
 	},
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
+"ik" = (
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 8
+	},
+/turf/simulated/floor/red,
+/area/station/engine/gas)
 "il" = (
 /obj/window/reinforced{
 	dir = 4
@@ -3145,6 +3166,7 @@
 /area/station/medical/medbay)
 "iM" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
+/obj/decal/tile_edge/stripe,
 /turf/simulated/floor/red,
 /area/station/atmos)
 "iN" = (
@@ -3228,7 +3250,11 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "jb" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/portable_atmospherics/canister/oxygen{
+	name = "High-Capacity Canister: \[O2\]";
+	filled = 1
+	},
+/obj/decal/tile_edge/stripe,
 /turf/simulated/floor/blue,
 /area/station/engine/gas)
 "jc" = (
@@ -5242,7 +5268,7 @@
 	},
 /area/shuttle/brig/prison)
 "oN" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/engine/core)
 "oP" = (
@@ -5520,7 +5546,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/bridge)
 "pC" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/engine/singcore{
 	name = "Engine Launcher Room"
@@ -5732,11 +5758,15 @@
 /turf/simulated/floor/circuit,
 /area/station/bridge)
 "qe" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide{
+	filled = 1;
+	name = "High-Capacity Canister \[CO2\]"
+	},
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 10
 	},
+/obj/decal/tile_edge/stripe,
 /turf/simulated/floor/black,
 /area/station/engine/gas)
 "qf" = (
@@ -5833,7 +5863,10 @@
 /turf/simulated/floor/plating,
 /area/station/atmos)
 "qt" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/sleeping_agent{
+	name = "Low-Capacity Canister: \[N2O\]";
+	filled = 0.25
+	},
 /obj/machinery/power/apc/autoname_east,
 /obj/cable{
 	icon_state = "0-8"
@@ -6417,8 +6450,14 @@
 /turf/simulated/floor/blue,
 /area/station/crew_quarters/quartersB)
 "rX" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
 /obj/machinery/light,
+/obj/decal/tile_edge/stripe{
+	dir = 1
+	},
 /turf/simulated/floor/red,
 /area/station/engine/gas)
 "rY" = (
@@ -7178,7 +7217,7 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "ud" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 10
 	},
@@ -7346,7 +7385,12 @@
 /obj/window/reinforced{
 	dir = 2
 	},
-/obj/machinery/portable_atmospherics/scrubber,
+/obj/machinery/portable_atmospherics/scrubber{
+	on = 1;
+	anchored = 1;
+	name = "Stationary air scrubber";
+	icon_state = "scrubber:1"
+	},
 /turf/simulated/floor/airless/engine,
 /area/station/storage/secure)
 "uy" = (
@@ -8386,6 +8430,19 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/brig/prison)
+"xk" = (
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 8
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 1
+	},
+/turf/simulated/floor/red,
+/area/station/engine/gas)
 "xl" = (
 /obj/cable,
 /obj/cable{
@@ -8793,8 +8850,14 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "yj" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/portable_atmospherics/canister/oxygen{
+	name = "High-Capacity Canister: \[O2\]";
+	filled = 1
+	},
 /obj/machinery/light/small/floor,
+/obj/decal/tile_edge/stripe{
+	dir = 4
+	},
 /turf/simulated/floor/blue,
 /area/station/engine/gas)
 "yk" = (
@@ -9240,7 +9303,7 @@
 	},
 /area/space)
 "zA" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor,
 /area/station/engine/monitoring)
@@ -9276,7 +9339,7 @@
 	},
 /area/station/storage/tools)
 "zE" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/junction{
 	dir = 1
 	},
@@ -9295,7 +9358,10 @@
 /turf/simulated/floor/airless/engine,
 /area/space)
 "zH" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/sleeping_agent{
+	name = "Low-Capacity Canister: \[N2O\]";
+	filled = 0.25
+	},
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 4
 	},
@@ -9340,8 +9406,7 @@
 	},
 /area/shuttle/arrival/station)
 "zM" = (
-/obj/wingrille_spawn/reinforced,
-/obj/window/auto/reinforced,
+/obj/wingrille_spawn/reinforced/full,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -9700,8 +9765,7 @@
 /turf/simulated/floor,
 /area/station/teleporter)
 "AI" = (
-/obj/wingrille_spawn/reinforced,
-/obj/window/auto/reinforced,
+/obj/wingrille_spawn/reinforced/full,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -9791,7 +9855,13 @@
 	},
 /area/station/crew_quarters/courtroom)
 "AX" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 1
+	},
 /turf/simulated/floor/red,
 /area/station/engine/gas)
 "AY" = (
@@ -10060,6 +10130,7 @@
 	name = "autoname - SS13";
 	pixel_y = 20
 	},
+/obj/decal/tile_edge/stripe,
 /turf/simulated/floor/red,
 /area/station/atmos)
 "BH" = (
@@ -10124,7 +10195,11 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "BQ" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide{
+	filled = 1;
+	name = "High-Capacity Canister \[CO2\]"
+	},
+/obj/decal/tile_edge/stripe,
 /turf/simulated/floor/black,
 /area/station/engine/gas)
 "BR" = (
@@ -10713,7 +10788,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "DB" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/junction{
 	dir = 1
 	},
@@ -10768,10 +10843,16 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "DK" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 20
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 1
 	},
 /turf/simulated/floor/red,
 /area/station/engine/gas)
@@ -10967,7 +11048,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "Em" = (
-/obj/window/auto,
+/obj/window,
 /obj/machinery/door/poddoor/pyro{
 	density = 0;
 	icon_state = "pdoor0";
@@ -11343,6 +11424,16 @@
 	dir = 4
 	},
 /area/station/maintenance/north)
+"Fs" = (
+/obj/machinery/portable_atmospherics/canister/oxygen{
+	name = "High-Capacity Canister: \[O2\]";
+	filled = 1
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/blue,
+/area/station/engine/gas)
 "Fu" = (
 /obj/landmark/start{
 	name = "Captain"
@@ -11418,7 +11509,12 @@
 /turf/simulated/floor/airless/plating,
 /area/station/solar/north)
 "FB" = (
-/obj/machinery/portable_atmospherics/scrubber,
+/obj/machinery/portable_atmospherics/scrubber{
+	on = 1;
+	anchored = 1;
+	name = "Stationary air scrubber";
+	icon_state = "scrubber:1"
+	},
 /turf/simulated/floor/arrival{
 	dir = 5
 	},
@@ -11750,7 +11846,12 @@
 /turf/simulated/floor/specialroom/medbay,
 /area/station/medical/medbay)
 "Gw" = (
-/obj/machinery/portable_atmospherics/pump,
+/obj/machinery/portable_atmospherics/pump{
+	icon_state = "siphon:1";
+	on = 1;
+	direction_out = 1;
+	name = "Stationary air siphon"
+	},
 /obj/machinery/light/small/floor,
 /turf/simulated/floor,
 /area/station/atmos)
@@ -11828,6 +11929,17 @@
 /obj/machinery/atmospherics/unary/cryo_cell,
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
+"GG" = (
+/obj/machinery/portable_atmospherics/canister/oxygen{
+	name = "High-Capacity Canister: \[O2\]";
+	filled = 1
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 4
+	},
+/obj/decal/tile_edge/stripe,
+/turf/simulated/floor/blue,
+/area/station/engine/gas)
 "GH" = (
 /obj/storage/secure,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
@@ -13015,6 +13127,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
+"JP" = (
+/obj/window,
+/turf/simulated/floor,
+/area/station/crew_quarters/bar)
 "JQ" = (
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
@@ -13313,7 +13429,10 @@
 /turf/simulated/floor/delivery,
 /area/station/storage/eva)
 "KI" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide{
+	filled = 1;
+	name = "High-Capacity Canister \[CO2\]"
+	},
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 8;
@@ -13399,7 +13518,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/engine/proto)
 "KU" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/engine/storage{
 	name = "Engineering Hallway"
@@ -13614,7 +13733,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "LA" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
 	},
@@ -13857,8 +13976,7 @@
 /turf/simulated/floor/airless/plating,
 /area/station/solar/north)
 "Mk" = (
-/obj/wingrille_spawn/reinforced,
-/obj/window/auto/reinforced,
+/obj/wingrille_spawn/reinforced/full,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -14179,10 +14297,14 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "Nc" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/portable_atmospherics/canister/oxygen{
+	name = "High-Capacity Canister: \[O2\]";
+	filled = 1
+	},
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/decal/tile_edge/stripe,
 /turf/simulated/floor/blue,
 /area/station/engine/gas)
 "Nd" = (
@@ -14374,7 +14496,7 @@
 	},
 /area/syndicate_station)
 "NG" = (
-/obj/wingrille_spawn/auto,
+/obj/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 6
 	},
@@ -15079,7 +15201,10 @@
 	},
 /area/space)
 "PC" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide{
+	filled = 1;
+	name = "High-Capacity Canister \[CO2\]"
+	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -15131,7 +15256,10 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "PK" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 10
@@ -15681,6 +15809,15 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
+"Rl" = (
+/obj/machinery/portable_atmospherics/pump{
+	icon_state = "siphon:1";
+	on = 1;
+	direction_out = 1;
+	name = "Stationary air siphon"
+	},
+/turf/simulated/floor,
+/area/station/atmos)
 "Rm" = (
 /obj/storage/secure/closet/medical/medicine,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
@@ -16227,6 +16364,19 @@
 	},
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
+"SN" = (
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 8
+	},
+/turf/simulated/floor/red,
+/area/station/engine/gas)
 "SO" = (
 /obj/table/auto,
 /obj/item/device/igniter,
@@ -16320,6 +16470,13 @@
 /obj/access_spawn/public,
 /turf/simulated/floor/purple,
 /area/station/crew_quarters/quartersA)
+"Ta" = (
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
+/turf/simulated/floor/red,
+/area/station/engine/gas)
 "Tb" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -16377,7 +16534,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/west)
 "Tj" = (
-/obj/wingrille_spawn/auto,
+/obj/window,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/exit)
 "Tk" = (
@@ -16985,11 +17142,10 @@
 /turf/simulated/floor,
 /area/space)
 "UR" = (
-/obj/window/auto/reinforced,
-/obj/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
+/obj/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/security/main)
 "US" = (
@@ -17348,7 +17504,12 @@
 /obj/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/scrubber,
+/obj/machinery/portable_atmospherics/scrubber{
+	on = 1;
+	anchored = 1;
+	name = "Stationary air scrubber";
+	icon_state = "scrubber:1"
+	},
 /turf/simulated/floor/airless/engine,
 /area/station/storage/secure)
 "VO" = (
@@ -17577,6 +17738,14 @@
 	dir = 8
 	},
 /area/station/bridge)
+"Wq" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/decal/tile_edge/stripe,
+/obj/decal/tile_edge/stripe{
+	dir = 4
+	},
+/turf/simulated/floor/red,
+/area/station/atmos)
 "Wr" = (
 /obj/machinery/door/firedoor/pyro{
 	layer = 29.1
@@ -17743,10 +17912,27 @@
 	icon_state = "12"
 	},
 /area/shuttle/brig/prison)
+"WM" = (
+/obj/machinery/portable_atmospherics/pump{
+	icon_state = "siphon:1";
+	on = 1;
+	direction_out = 1;
+	name = "Stationary air siphon"
+	},
+/turf/simulated/floor/arrival{
+	dir = 4
+	},
+/area/station/hallway/secondary/entry)
 "WN" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/portable_atmospherics/canister/toxins{
+	name = "High-Capacity Canister \[Plasma\]";
+	filled = 1
+	},
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 1
 	},
 /turf/simulated/floor/red,
 /area/station/engine/gas)
@@ -18040,6 +18226,15 @@
 /obj/machinery/teleport/portal_ring,
 /turf/simulated/floor,
 /area/station/teleporter)
+"XC" = (
+/obj/machinery/portable_atmospherics/scrubber{
+	on = 1;
+	anchored = 1;
+	name = "Stationary air scrubber";
+	icon_state = "scrubber:1"
+	},
+/turf/simulated/floor,
+/area/station/atmos)
 "XD" = (
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 8
@@ -18573,7 +18768,10 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/sleeping_agent{
+	name = "Low-Capacity Canister: \[N2O\]";
+	filled = 0.25
+	},
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "Zc" = (
@@ -18777,7 +18975,7 @@
 /turf/simulated/floor/carpet/red,
 /area/space)
 "ZN" = (
-/obj/wingrille_spawn/auto,
+/obj/window,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/entry)
 "ZO" = (
@@ -21663,7 +21861,7 @@ ny
 PD
 nJ
 em
-WD
+XC
 em
 Gw
 YA
@@ -21967,9 +22165,9 @@ PD
 PD
 nJ
 sg
-iK
+Rl
 YA
-WD
+XC
 Rc
 kw
 fx
@@ -22271,7 +22469,7 @@ PD
 PD
 nJ
 YA
-WD
+XC
 YA
 Gw
 YA
@@ -22575,9 +22773,9 @@ PD
 PD
 Tf
 wv
-iK
+Rl
 YA
-WD
+XC
 Rc
 kw
 iF
@@ -22879,7 +23077,7 @@ PD
 PD
 nJ
 YA
-WD
+XC
 YA
 Gw
 YA
@@ -23183,9 +23381,9 @@ PD
 PD
 nJ
 sg
-iK
+Rl
 YA
-WD
+XC
 Rc
 kw
 fx
@@ -23487,7 +23685,7 @@ PD
 PD
 nJ
 YA
-WD
+XC
 YA
 Gw
 YA
@@ -23791,9 +23989,9 @@ PD
 PD
 nJ
 sg
-iK
+Rl
 YA
-WD
+XC
 nU
 kw
 fx
@@ -25036,7 +25234,7 @@ PD
 PD
 nO
 FB
-Wk
+WM
 vM
 Wk
 wm
@@ -25162,7 +25360,7 @@ nD
 Wf
 mu
 pj
-iM
+Wq
 dK
 pe
 hS
@@ -28228,8 +28426,8 @@ SZ
 Ex
 Jj
 Ex
-hD
-hD
+JP
+JP
 Ex
 rW
 vW
@@ -33694,8 +33892,8 @@ yF
 as
 as
 rM
-jb
-jb
+dH
+dH
 jb
 AX
 bx
@@ -33846,8 +34044,8 @@ Ip
 Hn
 lD
 Ib
-Nc
-Nc
+Fs
+Fs
 Nc
 WN
 RD
@@ -33998,9 +34196,9 @@ oN
 rM
 PC
 BQ
-jb
+dH
 yj
-jb
+GG
 rX
 bx
 sB
@@ -34150,10 +34348,10 @@ oN
 rM
 PC
 BQ
-jb
-AX
-AX
-AX
+GG
+xk
+ik
+Ta
 bx
 sB
 SM
@@ -34302,10 +34500,10 @@ oN
 rM
 PC
 BQ
-AX
-AX
-AX
-AX
+SN
+Ta
+Ta
+Ta
 bx
 sB
 FO
@@ -34455,9 +34653,9 @@ Wu
 KI
 qe
 DK
-AX
+Ta
 PK
-AX
+Ta
 bx
 sB
 vn
