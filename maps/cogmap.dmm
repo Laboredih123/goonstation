@@ -41577,7 +41577,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/tox_storage,
+/obj/access_spawn/artlab,
 /obj/firedoor_spawn,
 /turf/simulated/floor/delivery,
 /area/station/science/artifact)
@@ -51001,7 +51001,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/access_spawn/research,
+/obj/access_spawn/research_foyer,
 /turf/simulated/floor/purple,
 /area/station/science/lobby)
 "dmC" = (
@@ -52934,10 +52934,6 @@
 	},
 /obj/table/auto,
 /obj/machinery/recharger,
-/obj/item/storage/box/stinger_kit{
-	pixel_x = -6;
-	pixel_y = 8
-	},
 /obj/item/reagent_containers/food/snacks/donut/custom/frosted{
 	pixel_x = 7;
 	pixel_y = -6
@@ -54684,7 +54680,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/access_spawn/research,
+/obj/access_spawn/robotdepot,
 /obj/firedoor_spawn,
 /turf/simulated/floor/delivery,
 /area/station/science/lobby)
@@ -61424,7 +61420,7 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/access_spawn/tox,
+/obj/access_spawn/telesci,
 /obj/firedoor_spawn,
 /turf/simulated/floor/delivery,
 /area/station/science/teleporter)
@@ -63903,7 +63899,7 @@
 	name = "Research Sector";
 	req_access_txt = null
 	},
-/obj/access_spawn/research,
+/obj/access_spawn/research_foyer,
 /turf/simulated/floor/purple,
 /area/station/science/lobby)
 "vUo" = (
