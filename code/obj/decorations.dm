@@ -1255,7 +1255,7 @@ obj/decoration/gibberBroken
 	icon = 'icons/obj/decoration.dmi'
 	desc = "A terribly cheap and discontinued old model of laser pistol."
 	icon_state = "laser_pistol"
-	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_guns.dmi'
 	item_state = "protopistol"
 	stamina_damage = 0
 	stamina_cost = 4
@@ -1495,8 +1495,9 @@ obj/decoration/pottedfern
 		anchored = 1
 
 		SPAWN(0)
-			for(var/i=0, i<rand(30,40), i++)
+			for(var/i=0, i<rand(15,25), i++)
 				particleMaster.SpawnSystem(new /datum/particleSystem/fireworks(src.loc))
+				playsound(src.loc, 'sound/effects/firework.ogg', 50, 1)
 				sleep(rand(2, 15))
 
 			for(var/mob/O in oviewers(world.view, src))
