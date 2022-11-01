@@ -28,6 +28,14 @@
 	"Vent pump" = /obj/machinery/atmospherics/unary/vent_pump
 	)
 
+	var/static/list/disposalforcreation = list(
+		"Pipe" = 1,
+		"Bent pipe" = 2,
+		"Junction" = 3,
+		"Y-Junction" = 4,
+		"Trunk" = 5
+	)
+/*
 /obj/machinery/disposal_pipedispenser/New()
 	..()
 
@@ -42,7 +50,24 @@
 	dat += "<BR><b>Atmospheric Pipes</b><br><br>"
 	for (var/type in pipesforcreation)
 		dat += "<A href='?src=\ref[src];atmosmake=[type]'>[type]</A><BR>"
+*/
 
+/obj/machinery/disposal_pipedispenser/ui_interact(mob/user, datum/tgui/ui)
+	ui = tgui_process.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PipeDispenser")
+		ui.open()
+
+/obj/machinery/disposal_pipedispenser/ui_static_data(mob/user)
+	. = list()
+
+	for(var/type in disposalforcreation)
+		.["Disposals"] += list(type)
+
+	for (var/type in pipesforcreation)
+		.["Atmos"] += list(type)
+
+/*
 /obj/machinery/disposal_pipedispenser/attack_hand(mob/user)
 	if(..())
 		return
@@ -86,6 +111,7 @@
 
 		usr.Browse(null, "window=pipedispenser")
 		src.remove_dialog(usr)
+*/
 
 /obj/machinery/disposal_pipedispenser/mobile
 	name = "Disposal Pipe Dispenser Cart"
