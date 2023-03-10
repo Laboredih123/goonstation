@@ -215,7 +215,6 @@ var/global/harddel_count = 0
 
 #ifdef LOG_HARD_DELETE_REFERENCES
 /datum/var/ref_tracker_visited = 0
-/client/var/ref_tracker_visited = 0
 var/global/ref_tracker_generation = 0
 
 proc/ref_visit_list(var/list/L, var/list/next, var/datum/target, var/list/result, var/list/stack=null)

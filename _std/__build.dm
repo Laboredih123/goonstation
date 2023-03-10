@@ -30,12 +30,12 @@ o+`        `-` ``..-:yooos-..----------..`
 
 //------------ OPTIONS TO GO FAST ------------//
 
-//#define IM_REALLY_IN_A_FUCKING_HURRY_HERE 1  // Skip setup for atmos, Z5, don't show changelogs, skip pregame lobby
-//#define GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW 1  // Only include the map Atlas, no other zlevels. Boots way faster
+#define IM_REALLY_IN_A_FUCKING_HURRY_HERE 1  // Skip setup for atmos, Z5, don't show changelogs, skip pregame lobby
+#define GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW 1  // Only include the map Atlas, no other zlevels. Boots way faster
 
 //////--- CONVENIENCE OPTIONS FOR TESTING ETC ---//
 
-//#define DEBUG_EVERYONE_GETS_CAPTAIN_ID // all IDs are captain rank, kept separate from below options to avoid disrupting access-related tests
+#define DEBUG_EVERYONE_GETS_CAPTAIN_ID // all IDs are captain rank, kept separate from below options to avoid disrupting access-related tests
 //#define NO_COOLDOWNS // disables all /datum/targetable cooldowns
 
 //#define STOP_DISTRACTING_ME //All of the below
@@ -44,16 +44,16 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define ALL_ROBOT_AND_COMPUTERS_MUST_SHUT_THE_HELL_UP // Prevents ALL bots from spawning (not cyborgs)
 //#define BAD_MONKEY_NO_BANANA // Prevents landmark monkeys from spawning- monkeys can still be vended etc
 //#define CLONING_IS_A_SIN // Don't prebake clones
-//#define I_KNOW_WHAT_IM_DOING_PROBABLY // Suppresses gottagofast warning about only using one z-level.
+#define I_KNOW_WHAT_IM_DOING_PROBABLY // Suppresses gottagofast warning about only using one z-level.
 //#define LOW_SECURITY // Deletes turrets
 //#define NO_CRITTERS // Deletes mob critters
-//#define NO_RANDOM_ROOMS // Don't generate random rooms. Random room areas will be left blank and the landmark will be visible
-//#define NO_RANDOM_EVENTS // Don't spawn random events
-//#define NO_SHUTTLE_CALLS // Don't autocall the shuttle
-//#define I_AM_HACKERMAN // Lets you varedit things you normally couldn't (admin holders, server config)
-//#define CHECK_MORE_RUNTIMES // Enables checking for some additional errors which might be too costly on live server
+#define NO_RANDOM_ROOMS // Don't generate random rooms. Random room areas will be left blank and the landmark will be visible
+#define NO_RANDOM_EVENTS // Don't spawn random events
+#define NO_SHUTTLE_CALLS // Don't autocall the shuttle
+#define I_AM_HACKERMAN // Lets you varedit things you normally couldn't (admin holders, server config)
+#define CHECK_MORE_RUNTIMES // Enables checking for some additional errors which might be too costly on live server
 
-//#define Z_LOG_ENABLE 1  // Enable additional world.log logging
+#define Z_LOG_ENABLE 1  // Enable additional world.log logging
 
 //------------- PROFILING OPTIONS -------------//
 
@@ -93,7 +93,7 @@ o+`        `-` ``..-:yooos-..----------..`
 // Makes the delete queue go through every single datum in the game when a hard del happens
 // It gets reported to the debug log. This process takes about 4 minutes per hard deletion
 // (during that time the server will be frozen).
-//#define LOG_HARD_DELETE_REFERENCES
+#define LOG_HARD_DELETE_REFERENCES
 //#define LOG_HARD_DELETE_REFERENCES_2_ELECTRIC_BOOGALOO
 // The same thing but powered by extools. Better, harder, faster, stronger.
 // You'll need an extools version that has the right stuff in it to make this work.
@@ -101,7 +101,7 @@ o+`        `-` ``..-:yooos-..----------..`
 //#define AUTO_REFERENCE_TRACKING_ON_HARD_DEL
 
 // Toggle this to turn .dispose() into qdel( ). Useful for trying to find lingering references locally.
-//#define DISPOSE_IS_QDEL
+#define DISPOSE_IS_QDEL
 
 //------------- MAP OVERRIDES -------------//
 
