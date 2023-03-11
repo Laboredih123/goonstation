@@ -207,7 +207,7 @@
 	main.restartProcess(src.name)
 
 /datum/controller/process/proc/kill()
-	if (!killed)
+	/*if (!killed)
 		var/msg = "[name] process was killed at tick #[ticks]."
 		logTheThing(LOG_DEBUG, null, msg)
 		logTheThing(LOG_DIARY, null, msg, "debug")
@@ -217,11 +217,11 @@
 		onKill()
 
 		// This should del
-		del(src)
+		del(src)*/
 
 /datum/controller/process/proc/scheck()
 	. = 0
-	if (killed)
+	/*if (killed)
 		// The kill proc is the only place where killed is set.
 		// The kill proc should have deleted this datum, and all sleeping procs that are
 		// owned by it.
@@ -230,6 +230,7 @@
 		// This will only really help if the doWork proc ends up in an infinite loop.
 		handleHung()
 		CRASH("Process [name] hung and was restarted.")
+	*/
 
   // Allow the process to continue if it's already been waiting to run for a while.
 	if (cpu_defer_count >= PROCESS_MAX_DEFER_COUNT)
