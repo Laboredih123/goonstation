@@ -41,7 +41,7 @@
 		egg = C.abilityHolder.getAbility(/datum/targetable/critter/vomitegg/cluwne)
 	if (C.babies)
 		for (var/datum/weakref/ref as anything in C.babies)
-			if (ref.deref() == null)
+			if (deref(ref) == null)
 				C.babies.Remove(ref)
 	return !egg.disabled && (length(C.babies) < max_spiders)
 

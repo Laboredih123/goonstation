@@ -506,7 +506,7 @@
 		var/defenders = 0		//this is the amount of babies that will defend you
 		var/count = 0
 		for (var/datum/weakref/ref as anything in babies)
-			var/mob/living/critter/spider/clown/CS = ref.deref()
+			var/mob/living/critter/spider/clown/CS = deref(ref)
 			if (!istype(CS))
 				babies.Remove(ref)
 				continue

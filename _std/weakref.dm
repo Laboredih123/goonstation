@@ -17,18 +17,18 @@ proc/get_weakref(datum/dat)
 		dat.weakref = new(dat)
 	. = dat.weakref
 
+proc/deref(datum/weakref/ref)
+	RETURN_TYPE(/datum)
+	var/datum/dat = locate(ref?.addr)
+	if(!QDELETED(dat) && dat?.weakref == ref)
+		return dat
+
 /datum/weakref
 	var/addr = null
 
 	New(datum/dat)
 		. = ..()
 		addr = ref(dat)
-
-	proc/deref()
-		RETURN_TYPE(/datum)
-		var/datum/dat = locate(addr)
-		if(!QDELETED(dat) && dat?.weakref == src)
-			return dat
 
 	disposing()
 		deref()?.weakref = null

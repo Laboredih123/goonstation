@@ -13,7 +13,7 @@
 		var/mob/living/carbon/human/H = src.owner.current
 		var/obj/trinket
 		if (H.trinket)
-			trinket = H.trinket.deref()
+			trinket = deref(H.trinket)
 			trinket.set_loc(null)
 		H.unequip_all(TRUE)
 

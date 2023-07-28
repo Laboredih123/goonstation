@@ -447,7 +447,7 @@
 
 	if(istype(value, /datum/weakref))
 		var/datum/weakref/weakref = value
-		var/datum/deref = weakref.deref()
+		var/datum/deref = deref(weakref)
 		if(isnull(deref))
 			html += " <span style='font-size:0.65em;'>INVALID</span>"
 		else

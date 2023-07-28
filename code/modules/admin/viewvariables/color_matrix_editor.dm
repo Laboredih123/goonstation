@@ -90,7 +90,7 @@
 	qdel(src)
 
 /datum/color_matrix_editor/proc/on_confirm()
-	var/atom/target_atom = target.deref()
+	var/atom/target_atom = deref(target)
 	if(istype(target_atom))
 		target_atom.color = current_color
 	else if (istype(target_atom, /client))
