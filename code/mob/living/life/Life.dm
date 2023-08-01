@@ -295,8 +295,8 @@
 			// overlays
 			src.updateOverlaysClient(src.client)
 
-		if (src.observers.len)
-			for (var/mob/x in src.observers)
+		if (length(src.observers))
+			for (var/mob/x as anything in src.observers)
 				if (x.client)
 					src.updateOverlaysClient(x.client)
 

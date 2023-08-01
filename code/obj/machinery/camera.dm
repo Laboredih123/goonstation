@@ -463,18 +463,19 @@
 	var/dir_var = "" //The direction we're trying to fill
 	var/rec_var = "" //The reciprocal of this direction
 
-	if(direction & NORTH)
-		dir_var = "c_north"
-		rec_var = "c_south"
-	else if(direction & EAST)
-		dir_var ="c_east"
-		rec_var = "c_west"
-	else if(direction & SOUTH)
-		dir_var = "c_south"
-		rec_var = "c_north"
-	else if(direction & WEST)
-		dir_var = "c_west"
-		rec_var = "c_east"
+	switch(direction)
+		if(NORTH)
+			dir_var = "c_north"
+			rec_var = "c_south"
+		if(EAST)
+			dir_var ="c_east"
+			rec_var = "c_west"
+		if(SOUTH)
+			dir_var = "c_south"
+			rec_var = "c_north"
+		if(WEST)
+			dir_var = "c_west"
+			rec_var = "c_east"
 
 	if(!dir_var) return
 

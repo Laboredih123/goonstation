@@ -161,7 +161,7 @@
 				if (src.no_gravity || (old_loc.throw_unlimited && !src.is_spacefaring()) )
 
 					spacemove = 1
-					for (var/atom/A in oview(1,src))
+					for (var/atom/A as anything in oview(1,src))
 						if (A.stops_space_move && (!src.no_gravity || !isfloor(A)))
 							spacemove = 0
 							break
@@ -277,7 +277,7 @@
 						for (var/obj/item/grab/G in src.equipped_list(check_for_magtractor = 0))
 							pulling += G.affecting
 
-						for (var/atom/movable/A in pulling)
+						for (var/atom/movable/A as anything in pulling)
 							if (GET_DIST(src, A) == 0) // if we're moving onto the same tile as what we're pulling, don't pull
 								continue
 							if (A == src || A == pushing)

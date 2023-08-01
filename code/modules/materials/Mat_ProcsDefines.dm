@@ -47,9 +47,8 @@ var/global/list/material_cache = buildMaterialCache()
 
 /// Called AFTER the material of the object was changed.
 /atom/proc/onMaterialChanged()
-	if(istype(src.material))
+	if(!isnull(src.material))
 		explosion_resistance = material.hasProperty("density") ? sqrt(round(max(4, material.getProperty("density")) - 4)) : explosion_resistance
-		explosion_protection = material.hasProperty("density") ? sqrt(round(max(4, material.getProperty("density")) - 4)) : explosion_protection
 		if( !(flags & CONDUCT) && (src.material.getProperty("electrical") >= 5)) flags |= CONDUCT
 
 
@@ -94,6 +93,7 @@ var/global/list/material_cache = buildMaterialCache()
 		else
 			if(use_descriptors)
 				var/strPrefix = jointext(mat1.getPrefixes(), " ")
+				strPrefix += jointext(mat1.getMaterialPrefixList(), " ")
 				for(var/X in mat1.getMaterialPrefixList())
 					strPrefix += " [X]"
 				trim(strPrefix)
@@ -107,7 +107,7 @@ var/global/list/material_cache = buildMaterialCache()
 
 	if (src.mat_changedesc && setname)
 		var/traitDesc = mat1.getMaterialTraitDesc()
-		if (istype(src, /obj))
+		if (isobj(src))
 			var/obj/O2 = src
 			O2.desc = "[!isnull(O2.real_desc) ? "[O2.real_desc]" : "[initial(O2.desc)]"] It is made of [mat1.getName()].[length(traitDesc) ? " " + traitDesc : ""]"
 		else

@@ -37,7 +37,7 @@ so you'll want your single-digit days to have 0s in front
 /datum/changelog/proc/get_testmerge_changelog(pr_num)
 	. = list()
 
-	var/file_text = file2text("testmerges/[pr_num].json")
+	var/file_text = rustg_file_read("testmerges/[pr_num].json")
 	var/json = json_decode(file_text)
 
 	var/body = json["body"]
@@ -99,7 +99,11 @@ so you'll want your single-digit days to have 0s in front
 						html += "<li class=\"date testmerge\">Current Testmerged PRs</li>"
 						continue
 					if (length(collapsible_html)) // test -1 below because the prior changes would've eaten it
-						html += "<li class=\"collapse-button[tmerge_lines_left > -1 ? " testmerge" : ""]\">Minor Changes</li><div class='collapsible'>[collapsible_html.Join()]</div>"
+						html += "<li class=\"collapse-button"
+						html += tmerge_lines_left > -1 ? " testmerge" : ""
+						html += "\">Minor Changes</li><div class='collapsible'>"
+						html += collapsible_html.Join()
+						html += "</div>"
 						collapsible_html.Cut()
 						author = null
 						added_collapsible_author = 0
@@ -166,7 +170,9 @@ so you'll want your single-digit days to have 0s in front
 								else
 									html += "th, "
 						if("1")
-							html += "[date1][date2]th, "
+							html += date1
+							html += date2
+							html += "th, "
 						else
 							html += date1
 							html += date2
@@ -179,7 +185,9 @@ so you'll want your single-digit days to have 0s in front
 									html += "rd, "
 								else
 									html += "th, "
-					html += "20[copytext(line, 15, 17)]</li>"
+					html += "20"
+					html += copytext(line, 15, 17)
+					html += "</li>"
 				if("(u)")
 					#ifdef APRIL_FOOLS_2021
 					author = "CodeDude"
@@ -192,7 +200,11 @@ so you'll want your single-digit days to have 0s in front
 					emoji_labels = null
 				if("(*)")
 					if(!added_author && author)
-						html += "<li class=\"admin[tmerge_lines_left > 0 ? " testmerge" : ""]\"><span><i class=\"icon-check\"></i> [author]</span> updated:"
+						html += "<li class=\"admin"
+						html += tmerge_lines_left > 0 ? " testmerge" : ""
+						html += "\"><span><i class=\"icon-check\"></i> "
+						html += author
+						html += "</span> updated:"
 						if(emoji_labels)
 							var/list/emoji_parts = splittext(emoji_labels, "|")
 							#ifdef APRIL_FOOLS_2021
@@ -228,7 +240,7 @@ so you'll want your single-digit days to have 0s in front
 				else
 					continue
 
-		if(collapsible_html.len)
+		if(length(collapsible_html))
 			html += "<li class=\"collapse-button[tmerge_lines_left > 0 ? " testmerge" : ""]\">Minor Changes</li><div class='collapsible'>[collapsible_html.Join()]</div>"
 		html += "</ul>"
 		return html.Join()
@@ -253,7 +265,7 @@ so you'll want your single-digit days to have 0s in front
     <li>Official Forums<br><strong><a target="_blank" href="https://forum.ss13.co/">https://forum.ss13.co</a></strong></li>
 </ul>"}
 
-	html += changelog_parse(file2text("strings/changelog.txt"), "Changelog", src.testmerge_changes)
+	html += changelog_parse(rustg_file_read("strings/changelog.txt"), "Changelog", src.testmerge_changes)
 	html += {"
 <h3>GoonStation 13 Development Team</h3>
 <p class="team">

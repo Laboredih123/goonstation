@@ -478,11 +478,11 @@ TYPEINFO(/atom)
 	..()
 	src.last_turf = isturf(src.loc) ? src.loc : null
 	//hey this is mbc, there is probably a faster way to do this but i couldnt figure it out yet
-	if (isturf(src.loc))
+	if (src.last_turf)
 		var/turf/T = src.loc
 		if (src.event_handler_flags & USE_PROXIMITY)
 			T.checkinghasproximity++
-			for (var/turf/T2 in range(1, T))
+			for (var/turf/T2 as anything in RANGE_TURFS(1, T))
 				T2.neighcheckinghasproximity++
 		if(src.opacity)
 			T.opaque_atom_count++
@@ -492,11 +492,11 @@ TYPEINFO(/atom)
 				covered_turf.passability_cache = null
 	if(!isnull(src.loc))
 		src.loc.Entered(src, null)
-		if(isturf(src.loc)) // call it on the area too
+		if(!isnull(last_turf)) // call it on the area too
 			src.loc.loc.Entered(src, null)
-			for(var/atom/A in src.loc)
-				if(A != src)
-					A.Crossed(src)
+			for(var/atom/movable/AM as anything in src.loc)
+				if(AM != src)
+					AM.Crossed(src)
 
 
 /atom/movable/disposing()
@@ -613,7 +613,7 @@ TYPEINFO(/atom)
 				covered_turf.passability_cache = null
 		if (src.event_handler_flags & USE_PROXIMITY)
 			last_turf.checkinghasproximity = max(last_turf.checkinghasproximity-1, 0)
-			for (var/turf/T2 in range(1, last_turf))
+			for (var/turf/T2 as anything in RANGE_TURFS(1, last_turf))
 				T2.neighcheckinghasproximity--
 	if(isturf(src.loc))
 		var/turf/T = src.loc
@@ -623,7 +623,7 @@ TYPEINFO(/atom)
 				covered_turf.passability_cache = null
 		if (src.event_handler_flags & USE_PROXIMITY)
 			T.checkinghasproximity++
-			for (var/turf/T2 in range(1, T))
+			for (var/turf/T2 as anything in RANGE_TURFS(1, T))
 				T2.neighcheckinghasproximity++
 
 	last_turf = isturf(src.loc) ? src.loc : null
@@ -1031,9 +1031,9 @@ TYPEINFO(/atom)
 			for(var/turf/covered_turf as anything in oldlocs)
 				covered_turf.pass_unstable -= src.pass_unstable
 				covered_turf.passability_cache = null
-		for(var/atom/A in oldloc)
-			if(A != src)
-				A.Uncrossed(src)
+		for(var/atom/movable/AM as anything in oldloc)
+			if(AM != src)
+				AM.Uncrossed(src)
 
 	// area.Exited called if we are on turfs and changing areas or if exiting a turf into a non-turf (just like Move does it internally)
 	if((my_area != new_area || !isturf(newloc)) && isturf(oldloc))
@@ -1046,28 +1046,28 @@ TYPEINFO(/atom)
 			for(var/turf/covered_turf as anything in src.locs)
 				covered_turf.pass_unstable += src.pass_unstable
 				covered_turf.passability_cache = null
-		for(var/atom/A in newloc)
-			if(A != src)
-				A.Crossed(src)
+		for(var/atom/movable/AM as anything in newloc)
+			if(AM != src)
+				AM.Crossed(src)
 
 	// area.Entered called if we are on turfs and changing areas or if entering a turf from a non-turf (just like Move does it internally)
 	if((my_area != new_area || !isturf(oldloc)) && isturf(newloc))
 		new_area.Entered(src, oldloc)
 
 	if (islist(src.attached_objs) && length(attached_objs))
-		for (var/atom/movable/M in src.attached_objs)
+		for (var/atom/movable/M as anything in src.attached_objs)
 			M.set_loc(src.loc)
 
 	if (isturf(last_turf) && (src.event_handler_flags & USE_PROXIMITY))
 		last_turf.checkinghasproximity = max(last_turf.checkinghasproximity-1, 0)
-		for (var/turf/T2 in range(1, last_turf))
+		for (var/turf/T2 as anything in RANGE_TURFS(1, last_turf))
 			T2.neighcheckinghasproximity--
 
 	if (isturf(src.loc))
 		last_turf = src.loc
 		if (src.event_handler_flags & USE_PROXIMITY)
 			last_turf.checkinghasproximity++
-			for (var/turf/T2 in range(1, last_turf))
+			for (var/turf/T2 as anything in RANGE_TURFS(1, last_turf))
 				T2.neighcheckinghasproximity++
 	else
 		last_turf = null
@@ -1215,7 +1215,7 @@ TYPEINFO(/atom)
 		return TRUE
 
 	// slow 😩
-	for (var/atom/movable/AM in T)
+	for (var/atom/movable/AM as anything in T)
 		if (!AM.anchored)
 			continue
 		if (connect_to[AM.type] && !exceptions[AM.type])
@@ -1235,7 +1235,6 @@ TYPEINFO(/atom)
  * connect_diagonals 0 = no diagonal sprites, 1 = diagonal only if both adjacent cardinals are present, 2 = always allow diagonals
  */
 /atom/proc/get_connected_directions_bitflag(list/valid_atoms = list(), list/exceptions = list(), cross_areas = TRUE, connect_diagonal = 0)
-	var/ordir = null
 	var/connected_directions = 0
 	if (!valid_atoms || !islist(valid_atoms))
 		return
@@ -1247,13 +1246,26 @@ TYPEINFO(/atom)
 			connected_directions |= dir
 
 	if (connect_diagonal)
-		for (var/i = 1 to 4)  // needed for bitshift
-			ordir = ordinal[i]
-			if (connect_diagonal < 2 && (ordir & connected_directions) != ordir)
-				continue
-			var/turf/OT = get_step(src, ordir)
+		if (!(connect_diagonal < 2 && (NORTHEAST & connected_directions) != NORTHEAST))
+			var/turf/OT = get_step(src, NORTHEAST)
 			if (should_auto_connect(OT, valid_atoms, exceptions, cross_areas))
-				connected_directions |= 8 << i
+				connected_directions |= 8 << 1
+
+		if (!(connect_diagonal < 2 && (SOUTHEAST & connected_directions) != SOUTHEAST))
+			var/turf/OT = get_step(src, SOUTHEAST)
+			if (should_auto_connect(OT, valid_atoms, exceptions, cross_areas))
+				connected_directions |= 8 << 2
+
+		if (!(connect_diagonal < 2 && (SOUTHWEST & connected_directions) != SOUTHWEST))
+			var/turf/OT = get_step(src, SOUTHWEST)
+			if (should_auto_connect(OT, valid_atoms, exceptions, cross_areas))
+				connected_directions |= 8 << 3
+
+		if (!(connect_diagonal < 2 && (NORTHWEST & connected_directions) != NORTHWEST))
+			var/turf/OT = get_step(src, NORTHWEST)
+			if (should_auto_connect(OT, valid_atoms, exceptions, cross_areas))
+				connected_directions |= 8 << 4
+
 	return connected_directions
 
 /proc/scaleatomall()

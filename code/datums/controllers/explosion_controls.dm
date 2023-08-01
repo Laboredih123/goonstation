@@ -13,7 +13,7 @@ var/datum/explosion_controller/explosions
 	proc/explode_at(atom/source, turf/epicenter, power, brisance = 1, angle = 0, width = 360, turf_safe=FALSE, range_cutoff_fraction=1)
 		SEND_SIGNAL(source, COMSIG_ATOM_EXPLODE, args)
 		if(istype(source)) // Oshan hotspots rudely send a datum here 😐
-			for(var/atom/movable/loc_ancestor in obj_loc_chain(source))
+			for(var/atom/movable/loc_ancestor as anything in obj_loc_chain(source))
 				SEND_SIGNAL(loc_ancestor, COMSIG_ATOM_EXPLODE_INSIDE, args)
 		var/atom/A = epicenter
 		if(istype(A))
@@ -49,7 +49,7 @@ var/datum/explosion_controller/explosions
 		kaboom_ready = TRUE
 
 	proc/highest_explosion_power(obj/object)
-		for (var/turf/T in object.locs)
+		for (var/turf/T as anything in object.locs)
 			. = max(., queued_turfs[T])
 
 	proc/kaboom()
@@ -65,15 +65,16 @@ var/datum/explosion_controller/explosions
 			queued_turfs[T] = 2 * (queued_turfs[T])**(1 / (2 * RSS_SCALE))
 			p = queued_turfs[T]
 			explosion = queued_turfs_blame[T]
-			if (p >= 6)
-				for (var/mob/M in T)
-					M.ex_act(1, explosion?.last_touched, p)
-			else if (p > 3)
-				for (var/mob/M in T)
-					M.ex_act(2, explosion?.last_touched, p)
-			else
-				for (var/mob/M in T)
-					M.ex_act(3, explosion?.last_touched, p)
+			switch(p)
+				if (-INFINITY to 3)
+					for (var/mob/M in T)
+						M.ex_act(3, explosion?.last_touched, p)
+				if (3 to 6)
+					for (var/mob/M in T)
+						M.ex_act(2, explosion?.last_touched, p)
+				if(6 to INFINITY)
+					for(var/mob/M in T)
+						M.ex_act(1, explosion?.last_touched, p)
 
 		LAGCHECK(LAG_HIGH)
 
@@ -84,12 +85,13 @@ var/datum/explosion_controller/explosions
 					continue
 				var/power = highest_explosion_power(O)
 				var/severity
-				if (power >= 6)
-					severity = 1
-				else if (power > 3)
-					severity = 2
-				else
-					severity = 3
+				switch(power)
+					if (-INFINITY to 3)
+						severity = 3
+					if (3 to 6)
+						severity = 2
+					if(6 to INFINITY)
+						severity = 1
 				O.ex_act(severity, explosion?.last_touched, power)
 				O.last_explosion = explosion
 
@@ -104,15 +106,22 @@ var/datum/explosion_controller/explosions
 			p = queued_turfs[T]
 			explosion = queued_turfs_blame[T]
 #ifdef EXPLOSION_MAPTEXT_DEBUGGING
-			if (p >= 6)
-				T.maptext = "<span style='color: #ff0000;' class='pixel c sh'>[p]</span>"
-			else if (p > 3)
-				T.maptext = "<span style='color: #ffff00;' class='pixel c sh'>[p]</span>"
-			else
-				T.maptext = "<span style='color: #00ff00;' class='pixel c sh'>[p]</span>"
-
+			switch(power)
+				if (-INFINITY to 3)
+					T.maptext = "<span style='color: #00ff00;' class='pixel c sh'>[p]</span>"
+				if (3 to 6)
+					T.maptext = "<span style='color: #ffff00;' class='pixel c sh'>[p]</span>"
+				if(6 to INFINITY)
+					T.maptext = "<span style='color: #ff0000;' class='pixel c sh'>[p]</span>"
 #else
-			var/severity = p >= 6 ? 1 : p > 3 ? 2 : 3
+			var/severity
+			switch(p)
+				if (-INFINITY to 3)
+					severity = 3
+				if (3 to 6)
+					severity = 2
+				if(6 to INFINITY)
+					severity = 1
 			if(next_turf_safe)
 				if(istype(T, /turf/simulated/wall))
 					continue // they can break even on severity 3

@@ -67,7 +67,7 @@ var/global/totally_random_jobs = FALSE
 
 	var/list/unassigned = list()
 
-	for (var/client/C)
+	for (var/client/C as anything in clients)
 		var/mob/new_player/player = C.mob
 		if (!istype(player) || !player.mind) continue
 		if ((player.mind.special_role == ROLE_WRAITH) || (player.mind.special_role == ROLE_BLOB) || (player.mind.special_role == ROLE_FLOCKMIND))

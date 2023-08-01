@@ -14,7 +14,7 @@
 			file = group
 		if (findtext(file, "/"))
 			var/list/parts = splittext(file, "/")
-			file = parts[parts.len]
+			file = parts[length(parts)]
 		. = file
 
 
@@ -112,6 +112,7 @@
 	return path
 
 
+var/static/list/binary_extensions = list("jpg", "jpeg", "png", "svg", "bmp", "gif", "eot", "woff", "woff2", "ttf", "otf")
 //Converts placeholder tags to filepaths appropriate for local-hosting offline (absolute, no subdirs)
 /proc/parseAssetLinks(file, path)
 	if (!file) return 0
@@ -119,10 +120,10 @@
 	//Get file extension
 	if (path)
 		var/list/parts = splittext(path, ".")
-		var/ext = parts[parts.len]
+		var/ext = parts[length(parts)]
 		ext = lowertext(ext)
 		//Is this file a binary thing
-		if (ext in list("jpg", "jpeg", "png", "svg", "bmp", "gif", "eot", "woff", "woff2", "ttf", "otf"))
+		if (ext in binary_extensions)
 			return 0
 
 	//Look for resource placeholder tags. {{resource("path/to/file")}}

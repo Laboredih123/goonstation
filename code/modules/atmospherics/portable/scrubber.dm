@@ -98,7 +98,7 @@ TYPEINFO(/obj/machinery/portable_atmospherics/scrubber)
 		if(src.holding)
 			src.scrub_mixture(src.holding.air_contents, src.inlet_flow)
 		else
-			for(var/turf/T in range(1, src))
+			for(var/turf/T as anything in RANGE_TURFS(1, src))
 				if(issimulatedturf(T) && isfloor(T))
 					src.scrub_turf(T, T == src.loc ? src.inlet_flow : src.inlet_flow / 2)
 		var/filtered_out_moles = TOTAL_MOLES(src.air_contents) - original_my_moles

@@ -884,7 +884,9 @@ ADMIN_INTERACT_PROCS(/obj/machinery/power/apc, proc/toggle_operating, proc/zapSt
 		var/equip = power_levels["power_equip"]
 		var/environ = power_levels["power_environ"]
 
-		for(var/obj/machinery/power/apc/APC in src.area)
+		for_by_tcl(APC, /obj/machinery/power/apc)
+			if(APC.area != src.area)
+				return
 			power_levels = APC.get_power_levels()
 			light |= power_levels["power_light"]
 			equip |= power_levels["power_equip"]

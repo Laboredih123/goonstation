@@ -272,7 +272,9 @@ var/list/list/by_cat = list()
 	TYPE/typeinfo_type = /typeinfo ## TYPE; \
 	TYPE/get_typeinfo() { /* maybe unnecessary, possibly replace the proc with a macro */ \
 		RETURN_TYPE(/typeinfo ## TYPE); \
-		return get_singleton(src.typeinfo_type); \
+		if(!(src.typeinfo_type in singletons)) { \
+			singletons[src.typeinfo_type] = new src.typeinfo_type; } \
+		return singletons[src.typeinfo_type]; \
 	} \
 	/typeinfo ## TYPE
 
@@ -294,7 +296,9 @@ var/list/list/by_cat = list()
 */
 /datum/proc/get_typeinfo()
 	RETURN_TYPE(/typeinfo/datum)
-	return get_singleton(src.typeinfo_type)
+	if(!(src.typeinfo_type in singletons))
+		singletons[src.typeinfo_type] = new src.typeinfo_type
+	return singletons[src.typeinfo_type]
 
 /**
  * Retrieves the typeinfo datum for a given type.

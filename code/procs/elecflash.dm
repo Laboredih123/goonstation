@@ -3,7 +3,7 @@
 var/global/mutable_appearance/elecflash_ma = null
 
 /proc/elecflash(var/atom/center, var/radius = 0, var/power=1, var/exclude_center = 1)//power 1 to 6
-	if (!center || center.qdeled || center.disposed)
+	if (QDELETED(center))
 		return
 
 	var/turf/center_turf = get_turf(center)
@@ -11,7 +11,6 @@ var/global/mutable_appearance/elecflash_ma = null
 		elecflash_ma = new
 		elecflash_ma.name = "electricity"
 		elecflash_ma.icon = 'icons/effects/electile.dmi'
-		elecflash_ma.alpha = 255
 		elecflash_ma.invisibility = INVIS_NONE
 		elecflash_ma.layer = TURF_LAYER
 		elecflash_ma.plane = PLANE_ABOVE_LIGHTING
@@ -95,8 +94,7 @@ var/global/mutable_appearance/elecflash_ma = null
 	playsound(center_turf, sound, 50, 1)
 
 	SPAWN(3 SECONDS)
-		for(var/atom in elecs)
-			var/atom/A = atom
+		for(var/atom/A as anything in elecs)
 			qdel(A)
 		elecs.Cut()
 		elecs = null

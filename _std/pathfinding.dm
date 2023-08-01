@@ -144,10 +144,6 @@
 		heuristic = min(heuristic, GET_DIST(tile, goal))
 	f_value = number_tiles + heuristic
 
-/// TODO: Macro this to reduce proc overhead
-/proc/HeapPathWeightCompare(datum/jps_node/a, datum/jps_node/b)
-	return b.f_value - a.f_value
-
 /// The datum used to handle the JPS pathfinding, completely self-contained
 /datum/pathfind
 	/// The thing that we're actually trying to path for
@@ -194,7 +190,7 @@
 			ends[T] += goal
 		else
 			ends[T] = list(goal)
-	open = new /datum/heap(/proc/HeapPathWeightCompare)
+	open = new /datum/heap
 	sources = new()
 	src.options = options
 	src.max_distance = options[POP_MAX_DIST]
@@ -240,10 +236,10 @@
 			continue
 
 		var/turf/current_turf = current_processed_node.tile
-		for(var/scan_direction in list(EAST, WEST, NORTH, SOUTH))
+		for(var/scan_direction in cardinal)
 			cardinal_scan_spec(current_turf, scan_direction, current_processed_node)
 
-		for(var/scan_direction in list(NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST))
+		for(var/scan_direction in ordinal)
 			diag_scan_spec(current_turf, scan_direction, current_processed_node)
 
 		LAGCHECK(LAG_MED)
@@ -299,9 +295,7 @@
 	var/turf/current_turf = original_turf
 	var/turf/lag_turf = original_turf
 
-	while(TRUE)
-		if(FINISHED_SEARCH)
-			return
+	while(!FINISHED_SEARCH)
 		lag_turf = current_turf
 		current_turf = get_step(current_turf, heading)
 		steps_taken++
@@ -372,9 +366,7 @@
 	var/turf/current_turf = original_turf
 	var/turf/lag_turf = original_turf
 
-	while(TRUE)
-		if(FINISHED_SEARCH)
-			return
+	while(!FINISHED_SEARCH)
 		lag_turf = current_turf
 		current_turf = get_step(current_turf, heading)
 		steps_taken++

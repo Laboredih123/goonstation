@@ -69,7 +69,7 @@ ABSTRACT_TYPE(/datum/mapPrefab)
 		if(isnull(target) || !verify_position(target))
 			return FALSE
 
-		var/loaded = file2text(prefabPath)
+		var/loaded = rustg_file_read(prefabPath)
 		if(!loaded)
 			CRASH("mapPrefab: Prefab '[name]' with path '[prefabPath]' not found")
 

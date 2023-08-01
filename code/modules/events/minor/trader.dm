@@ -26,7 +26,7 @@
 		var/docked_where = shuttle == "diner" ? "space diner" : "station";
 		command_alert("A merchant shuttle will dock with the [docked_where] shortly.", "Commerce and Customs Alert")
 		signal_dock(shuttle, DOCK_EVENT_INCOMING)
-		for(var/client/C in clients)
+		for(var/client/C as anything in clients)
 			if(C.mob && (C.mob.z == Z_LEVEL_STATION))
 				C.mob.playsound_local(C.mob, 'sound/misc/announcement_chime.ogg', 30, 0)
 		SPAWN(30 SECONDS)

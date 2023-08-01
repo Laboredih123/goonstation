@@ -535,13 +535,13 @@ ADMIN_INTERACT_PROCS(/obj/window, proc/smash)
 					affected_simturfs += get_step(src, neigh_dir)
 
 		if(need_rebuild)
-			for(var/turf/simulated/T in affected_simturfs)
+			for(var/turf/simulated/T as anything in affected_simturfs)
 				if(T.parent) //Rebuild/update nearby group geometry
 					air_master.groups_to_rebuild |= T.parent
 				else
 					air_master.tiles_to_update |= T
 		else
-			for(var/turf/simulated/T in affected_simturfs)
+			for(var/turf/simulated/T as anything in affected_simturfs)
 				air_master.tiles_to_update |= T
 
 		if (map_currently_underwater)
@@ -841,7 +841,7 @@ ADMIN_INTERACT_PROCS(/obj/window, proc/smash)
 		src.update_damage_overlay()
 
 	proc/update_neighbors()
-		for (var/turf/simulated/wall/auto/T in orange(1,src))
+		for (var/turf/simulated/wall/auto/T in ORANGE_TURFS(1,src))
 			T.UpdateIcon()
 		for (var/obj/window/auto/O in orange(1,src))
 			O.UpdateIcon()

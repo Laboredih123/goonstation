@@ -55,7 +55,7 @@ var/list/globalPropList = null
 			src.properties = list()
 
 		if(globalPropList[propId] != null)
-			for(var/datum/objectProperty/X in src.properties)
+			for(var/datum/objectProperty/X as anything in src.properties)
 				if(X.id == propId)
 					X.onChange(src, src.properties[X], ((propVal != null) ? propVal : X.defaultValue))
 					src.properties[X] = propVal

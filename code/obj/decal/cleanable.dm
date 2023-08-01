@@ -103,10 +103,8 @@ proc/make_cleanable(var/type,var/loc)
 			var/turf/T = src.loc
 			T.messy++
 
-	Crossed(atom/movable/AM as mob|obj)
+	Crossed(atom/movable/AM)
 		..()
-		if (src.qdeled || src.disposed)
-			return
 		if (src.stain && !src.dry && (ishuman(AM) || istype(AM, /obj/item/clothing)))
 			src.Stain(AM)
 		if (!src.slippery || src.dry)
@@ -318,10 +316,8 @@ proc/make_cleanable(var/type,var/loc)
 				src.color = rgb(reagent.fluid_r, reagent.fluid_g, reagent.fluid_b)
 
 
-	Crossed(atom/movable/AM as mob|obj)
+	Crossed(atom/movable/AM)
 		..()
-		if (!istype(AM))
-			return
 		if (src.dry == FRESH_BLOOD && src.reagents.total_volume >= 5 && src.can_track)
 			if (ishuman(AM))
 				var/mob/living/carbon/human/H = AM

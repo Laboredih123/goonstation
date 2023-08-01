@@ -266,7 +266,7 @@ ABSTRACT_TYPE(/datum/mutantrace)
 		src.limb_list.Add(l_limb_arm_type_mutantrace, r_limb_arm_type_mutantrace, l_limb_leg_type_mutantrace, r_limb_leg_type_mutantrace)
 		src.mob = M
 		var/list/obj/item/clothing/restricted = list(mob.w_uniform, mob.shoes, mob.wear_suit)
-		for(var/obj/item/clothing/W in restricted)
+		for(var/obj/item/clothing/W as anything in restricted)
 			if (istype(W,/obj/item/clothing))
 				if(W.compatible_species.Find(src.name) || (src.uses_human_clothes && W.compatible_species.Find("human")))
 					continue
@@ -305,7 +305,7 @@ ABSTRACT_TYPE(/datum/mutantrace)
 				REMOVE_ATOM_PROPERTY(src.mob, PROP_MOB_BREATHLESS, src.type)
 
 			var/list/obj/item/clothing/restricted = list(src.mob.w_uniform, src.mob.shoes, src.mob.wear_suit)
-			for (var/obj/item/clothing/W in restricted)
+			for (var/obj/item/clothing/W as anything in restricted)
 				if (istype(W,/obj/item/clothing))
 					if (W.compatible_species.Find("human"))
 						continue

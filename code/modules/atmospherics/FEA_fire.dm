@@ -37,7 +37,6 @@
 
 	if (src.active_hotspot)
 		if (locate(/obj/fire_foam) in src)
-			src.active_hotspot.dispose() // have to call this now to force the lighting cleanup
 			qdel(src.active_hotspot)
 			src.active_hotspot = null
 			return FALSE

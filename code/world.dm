@@ -1828,7 +1828,7 @@ var/global/mob/twitch_mob = 0
 	// the space filling this z-level will be somewhat broken (which you will hopefully replace with whatever it is you want to replace it with).
 	if (!isnum(new_maxz) || new_maxz <= src.maxz)
 		return src.maxz
-	for (var/zlevel = world.maxz+1; zlevel <= new_maxz; zlevel++)
+	for (var/zlevel in world.maxz+1 to new_maxz)
 		src.maxz++
 		src.setupZLevel(zlevel)
 	return src.maxz
@@ -1852,7 +1852,7 @@ var/opt_inactive = null
 		sleep(10 SECONDS)
 
 /world/proc/KickInactiveClients()
-	for(var/client/C in clients)
+	for(var/client/C as anything in clients)
 		if(!C.holder && ((C.inactivity/10)/60) >= 15)
 			boutput(C, "<span class='alert'>You have been inactive for more than 15 minutes and have been disconnected.</span>")
 			del(C)

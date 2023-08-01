@@ -258,7 +258,7 @@ ABSTRACT_TYPE(/datum/material)
 	proc/getMaterialTraitDesc()
 		var/string = ""
 		var/list/allTriggers = (src.triggersTemp + src.triggersChem + src.triggersPickup + src.triggersDrop + src.triggersExp + src.triggersOnAdd + src.triggersOnLife + src.triggersOnAttack + src.triggersOnAttacked + src.triggersOnEntered)
-		for(var/datum/materialProc/P in allTriggers)
+		for(var/datum/materialProc/P as anything in allTriggers)
 			if(length(P.desc))
 				if(length(string))
 					if(!findtext(string,P.desc))
@@ -278,7 +278,7 @@ ABSTRACT_TYPE(/datum/material)
 	//material procs
 
 	proc/getProperty(var/property, var/type = VALUE_CURRENT)
-		for(var/datum/material_property/P in properties)
+		for(var/datum/material_property/P as anything in properties)
 			if(P.id == property)
 				switch(type)
 					if(VALUE_CURRENT)
@@ -331,7 +331,7 @@ ABSTRACT_TYPE(/datum/material)
 		return
 
 	proc/hasProperty(var/property)
-		for(var/datum/material_property/P in properties)
+		for(var/datum/material_property/P as anything in properties)
 			if(P.id == property)
 				return 1
 		return 0

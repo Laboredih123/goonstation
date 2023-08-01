@@ -69,8 +69,8 @@
 		var/obj/badcode = pick(planes)
 		handler.screen_loc = "map_[viewport_id]:1,1"
 		badcode.screen_loc = "map_[viewport_id]:1,1 TO [endLoc.x - startLoc.x],[startLoc.y - endLoc.y]"//a lazy way to expand the viewport
-		for(var/y = endLoc.y, y <= startLoc.y, y++)
-			for(var/x = startLoc.x, x <= endLoc.x, x++)
+		for(var/y in endLoc.y to startLoc.y)
+			for(var/x in startLoc.x to endLoc.x)
 				contentBlock += locate(x,y,startLoc.z)
 		handler.vis_contents = contentBlock
 
@@ -78,16 +78,16 @@
 
 /client/proc/getViewportsByType(var/kind)
 	.=list()
-	for(var/datum/viewport/vp in viewports)
+	for(var/datum/viewport/vp as anything in viewports)
 		if(vp.kind == kind)
 			. += vp
 
 /client/proc/getViewportById(var/id)
-	for(var/datum/viewport/vp in viewports)
+	for(var/datum/viewport/vp as anything in viewports)
 		if(vp.getID() == id) return vp
 
 /client/proc/clearViewportsByType(var/kind)
-	for(var/datum/viewport/vp in getViewportsByType(kind))
+	for(var/datum/viewport/vp as anything in getViewportsByType(kind))
 		if(vp.kind == kind)
 			qdel(vp)
 
@@ -121,7 +121,7 @@
 	var/datum/viewport/vp = new(src.client, "AI: Viewport")
 	var/turf/ourPos = get_turf(src)
 	var/turf/startPos = null
-	for(var/i = 4, i >= 0 || !startPos, i--)
+	for(var/i in 4 to 0 step -1)
 		startPos = locate(ourPos.x - i, ourPos.y + i, ourPos.z)
 		if(startPos) break
 	vp.clickToMove = 1

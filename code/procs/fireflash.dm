@@ -83,7 +83,7 @@
 	if (falloff)
 		max_dist = min((temp - (T0C + 60)) / falloff, radius)
 	open[Ce] = 0
-	while (open.len)
+	while (length(open))
 		var/turf/T = open[1]
 		var/dist = open[T]
 		open -= T
@@ -160,11 +160,11 @@
 		LAGCHECK(LAG_REALTIME)
 
 	SPAWN(1 DECI SECOND) // dumb lighting hotfix
-		for(var/obj/hotspot/A in hotspots)
+		for(var/obj/hotspot/A as anything in hotspots)
 			A.set_real_color() // enable light
 
 	SPAWN(3 SECONDS)
-		for(var/obj/hotspot/A in hotspots)
+		for(var/obj/hotspot/A as anything in hotspots)
 			if (!A.disposed)
 				qdel(A)
 			//LAGCHECK(LAG_REALTIME)  //MBC : maybe caused lighting bug?

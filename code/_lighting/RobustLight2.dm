@@ -83,9 +83,11 @@ datum/light
 			if (!T.RL_Lights)
 				T.RL_Lights = list()
 			T.RL_Lights |= src
+		START_TRACKING
 
 
 	disposing()
+		STOP_TRACKING
 		disable(queued_run = 1) //dont queue... we wanna actually disable it before remove_from_turf etc
 		remove_from_turf()
 		detach()
@@ -585,10 +587,11 @@ proc
 			LAGCHECK(LAG_HIGH)
 			T.RL_Init()
 		*/
-		for (var/datum/light/light)
+		for_by_tcl(light, /datum/light)
 			if (light.enabled)
 				light.apply()
-		for (var/turf/T in world)
+		var/list/turfsinworld = block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
+		for (var/turf/T as anything in turfsinworld)
 			LAGCHECK(LAG_HIGH)
 			RL_UPDATE_LIGHT(T)
 
@@ -852,7 +855,7 @@ atom
 				. = ..()
 
 			if (src.RL_Attached) // TODO: defer updates and update all affected tiles at once?
-				var/dont_queue = (loc == null) //if we are being thrown to a null loc, dont queue this move. we need it Now.
+				var/dont_queue = isnull(loc) //if we are being thrown to a null loc, dont queue this move. we need it Now.
 				for (var/datum/light/light as anything in src.RL_Attached)
 					light.move(src.x+0.5, src.y+0.5, src.z, src.dir, queued_run = dont_queue)
 

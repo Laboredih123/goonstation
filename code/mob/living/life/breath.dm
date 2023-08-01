@@ -63,7 +63,7 @@
 		else // plain old automatic breathing
 			breathe(environment)
 
-		if (istype(owner.loc, /obj/))
+		if (isobj(owner.loc))
 			var/obj/location_as_object = owner.loc
 			location_as_object.handle_internal_lifeform(owner, 0, get_multiplier())
 		..()

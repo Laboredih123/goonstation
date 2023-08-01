@@ -24,7 +24,7 @@
 		var/found_held = null
 		var/list/purchasables = list()
 
-		for(var/datum/bank_purchaseable/p in persistent_bank_purchaseables)
+		for(var/datum/bank_purchaseable/p as anything in persistent_bank_purchaseables)
 			if(!p.hasJobXP(user.client.key)) continue
 			purchasables += list(
 				list(

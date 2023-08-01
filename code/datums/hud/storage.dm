@@ -162,7 +162,7 @@
 
 		src.obj_locs = list()
 		var/i = 0
-		for (var/obj/item/I in master.get_contents())
+		for (var/obj/item/I as anything in master.get_contents())
 			if (!(I in src.objects)) // ugh
 				add_object(I, HUD_LAYER+1)
 			var/obj_loc = "[x+(i%sx)],[y-round(i/sx)]" //no pixel coords cause that makes click detection harder above

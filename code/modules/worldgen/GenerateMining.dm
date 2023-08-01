@@ -73,7 +73,7 @@ var/list/miningModifiers = list()
 		ambient_light = TRENCH_LIGHT
 
 /proc/decideSolid(var/turf/current, var/turf/center, var/sizemod = 0)
-	if(!current || !center || (current.loc.type != /area/space && !istype(current.loc , /area/allowGenerate) && !isgenplanet(current)) || !istype(current, /turf/space))
+	if(!current || !center || (!istype_exact(current.loc, /area/space) && !istype(current.loc , /area/allowGenerate) && !isgenplanet(current)) || !istype(current, /turf/space))
 		return 0
 	if(ISDISTEDGE(current, AST_MAPBORDER))
 		return 0
@@ -243,7 +243,7 @@ var/list/miningModifiers = list()
 			var/turf/X = pick(miningZ)
 			var/quality = rand(-101,101)
 
-			while(!istype(X, /turf/space) || ISDISTEDGE(X, AST_MAPSEEDBORDER) || (X.loc.type != /area/space && !istype(X.loc , /area/allowGenerate) && !isgenplanet(X)))
+			while(!istype(X, /turf/space) || ISDISTEDGE(X, AST_MAPSEEDBORDER) || (!istype_exact(X.loc, /area/space) && !istype(X.loc , /area/allowGenerate) && !isgenplanet(X)))
 				X = pick(miningZ)
 				LAGCHECK(LAG_REALTIME)
 
@@ -279,8 +279,8 @@ var/list/miningModifiers = list()
 				LAGCHECK(LAG_REALTIME)
 
 			var/list/placed = list()
-			for(var/turf/T in solidTiles)
-				if((T?.loc?.type == /area/space) || istype(T?.loc , /area/allowGenerate) || isgenplanet(T))
+			for(var/turf/T as anything in solidTiles)
+				if(istype_exact(T.loc, /area/space) || istype(T?.loc , /area/allowGenerate) || isgenplanet(T))
 					var/turf/simulated/wall/auto/asteroid/AST = T.ReplaceWith(/turf/simulated/wall/auto/asteroid, FALSE, TRUE, FALSE, TRUE)
 					placed.Add(AST)
 					AST.quality = quality

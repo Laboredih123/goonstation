@@ -504,7 +504,7 @@ var/list/stinkThingies = list("ass","armpit","excretions","leftovers","administr
 
 	. = new/list()
 	var/list/areas = get_areas(areatype)
-	for(var/area/R in areas)
+	for(var/area/R as anything in areas)
 		for(var/turf/T in R)
 			if(floors_only && (!isfloor(T) || is_blocked_turf(T)))
 				continue

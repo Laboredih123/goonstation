@@ -530,13 +530,13 @@ var/list/datum/bioEffect/mutini_effects = list()
 				else
 					filteredGood[instance] = instance.probability
 
-		if(!filteredGood.len || !length(filteredBad))
+		if(!length(filteredGood) || !length(filteredBad))
 			logTheThing(LOG_DEBUG, null, {"<b>Genetics:</b> Unable to build effect pool for
 			 [owner ? "\ref[owner] [owner.name]" : "*NULL*"]. (filteredGood.len = [filteredGood.len],
 			  filteredBad.len = [filteredBad.len])"})
 			return
 
-		for(var/g=0, g<5, g++)
+		for(var/g in 0 to 4)
 			var/datum/bioEffect/selectedG = weighted_pick(filteredGood)
 			if(selectedG)
 				var/datum/bioEffect/selectedNew = selectedG.GetCopy()
@@ -548,7 +548,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 			else
 				break
 
-		for(var/b=0, b<5, b++)
+		for(var/b in 0 to 4)
 			var/datum/bioEffect/selectedB = weighted_pick(filteredBad)
 			if(selectedB)
 				var/datum/bioEffect/selectedNew = selectedB.GetCopy()
@@ -560,7 +560,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 			else
 				break
 
-		if (filteredSecret.len)
+		if (length(filteredSecret))
 			var/datum/bioEffect/selectedS = weighted_pick(filteredSecret)
 			var/datum/bioEffect/selectedNew = selectedS.GetCopy()
 			selectedNew.dnaBlocks.ModBlocks() //Corrupt the local copy
@@ -575,23 +575,21 @@ var/list/datum/bioEffect/mutini_effects = list()
 		var/datum/bioEffect/BE
 		for(var/curr in effects)
 			BE = effects[curr]
-			if (BE)
-				BE.OnLife(mult)
-				if(BE.timeLeft != -1)
-					BE.timeLeft -= 1*mult
-					if(BE.timeLeft <= 0)
-						if(BE.degrade_after && BE.degrade_to)
-							AddEffect(BE.degrade_to, do_stability = 0)
-						RemoveEffect(BE.id)
-		return
+			if (!BE)
+				continue
+			BE.OnLife(mult)
+			if(BE.timeLeft != -1)
+				BE.timeLeft -= 1*mult
+				if(BE.timeLeft <= 0)
+					if(BE.degrade_after && BE.degrade_to)
+						AddEffect(BE.degrade_to, do_stability = 0)
+					RemoveEffect(BE.id)
 
 	proc/OnMobDraw()
 		var/datum/bioEffect/BE
 		for(var/curr in effects)
 			BE = effects[curr]
-			if (BE) //Wire: Fix for: Cannot execute null.OnMobDraw()
-				BE.OnMobDraw()
-		return
+			BE?.OnMobDraw()
 
 	proc/CreateUid() //Creates a new uid and returns it.
 		var/newUid = ""
@@ -709,7 +707,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 
 				src.genetic_stability -= newEffect.stability_loss
 				src.genetic_stability = max(0,src.genetic_stability)
-			if(owner && length(newEffect.msgGain) > 0)
+			if(owner && length(newEffect.msgGain))
 				if (newEffect.isBad)
 					boutput(owner, "<span class='alert'>[newEffect.msgGain]</span>")
 				else

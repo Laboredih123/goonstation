@@ -545,7 +545,7 @@ var/global/list/atomTooltips = new()
 	if ((src in atomTooltips) && islist(atomTooltips[src]))
 		var/list/thingTooltips = atomTooltips[src]
 
-		for (var/datum/tooltip/t in thingTooltips)
+		for (var/datum/tooltip/t as anything in thingTooltips)
 			qdel(t)
 
 		atomTooltips.Remove(src)

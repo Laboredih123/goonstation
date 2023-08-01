@@ -58,14 +58,14 @@ TYPEINFO(/turf/simulated/wall)
 
 	onMaterialChanged()
 		..()
-		if(istype(src.material))
-			if(src.material.getProperty("density") >= 6)
-				health *= 1.5
-			else if (src.material.getProperty("density") <= 2)
-				health *= 0.75
+		if(!isnull(src.material))
+			switch(src.material.getProperty("density"))
+				if(6 to INFINITY)
+					health *= 1.5
+				if (-INFINITY to 2)
+					health *= 0.75
 			if(src.material.getMaterialFlags() & MATERIAL_CRYSTAL)
 				health /= 2
-		return
 
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m steel wall
@@ -356,7 +356,7 @@ TYPEINFO(/turf/simulated/wall)
 
 	onMaterialChanged()
 		..()
-		if(istype(src.material))
+		if(!isnull(src.material))
 			if(src.material.getProperty("density") >= 6)
 				health *= 1.5
 			else if (src.material.getProperty("density") <= 2)

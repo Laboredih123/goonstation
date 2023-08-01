@@ -33,7 +33,7 @@ var/datum/geneticsResearchManager/genResearch = new()
 
 			var/tier = newEntry.tier
 
-			if(researchTreeTiered["[tier]"] == null)
+			if(isnull(researchTreeTiered["[tier]"]))
 				researchTreeTiered["[tier]"] = new/list()
 
 			researchTreeTiered["[tier]"] += newEntry

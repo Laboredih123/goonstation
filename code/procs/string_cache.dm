@@ -12,7 +12,7 @@ var/global/list/string_cache
 		if(fexists("[directory][filename]"))
 			string_cache[filename] = list()
 			var/list/stringsList = list()
-			var/text = file2text("[directory][filename]")
+			var/text = rustg_file_read("[directory][filename]")
 			text = replacetext(text, "\\\n", "")
 			text = replacetext(text, "\n\t", "@,")
 			var/list/lines = splittext(text, "\n")

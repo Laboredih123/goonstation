@@ -15,7 +15,7 @@
 
 /atom/movable/screen/disposing()
 	if (clients)
-		for(var/client/C in clients)
+		for(var/client/C as anything in clients)
 			if (C.mob)
 				if(ishuman(C.mob))
 					var/mob/living/carbon/human/H = C.mob

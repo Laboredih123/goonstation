@@ -19,14 +19,15 @@
 
 	var/dx = 0
 	var/dy = 0
-	if(direct & NORTH)
-		dy = 1
-	else if(direct & SOUTH)
-		dy = -1
-	if(direct & EAST)
-		dx = 1
-	else if(direct & WEST)
-		dx = -1
+	switch(direct)
+		if(NORTH)
+			dy = 1
+		if(SOUTH)
+			dy = -1
+		if(EAST)
+			dx = 1
+		if(WEST)
+			dx = -1
 
 	var/obj/machinery/camera/oldcam = old
 
@@ -60,7 +61,8 @@
 			continue
 
 		var/list/new_types = splittext("[cur_area.type]", "/")
-		for(var/i = 1; i <= old_types.len && i <= new_types.len; i++)
+		var/mintypelength = min(length(old_types), length(new_types))
+		for(var/i in 1 to mintypelength)
 			if(old_types[i] == new_types[i])
 				shared_types++
 			else

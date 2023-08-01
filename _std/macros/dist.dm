@@ -14,3 +14,9 @@
 #define GET_EUCLIDEAN_DIST(A, B) sqrt(GET_SQUARED_EUCLIDEAN_DIST(A, B))
 /// Returns if A is in range of B given range using the euclidean metric
 #define IN_EUCLIDEAN_RANGE(A, B, range) (GET_SQUARED_EUCLIDEAN_DIST(A, B) <= (range) * (range))
+///thingy that is fast
+#define RANGE_TURFS(RADIUS, CENTER) block(locate(max(CENTER.x-(RADIUS),1), max(CENTER.y-(RADIUS),1), CENTER.z), \
+    locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
+  )
+
+#define ORANGE_TURFS(RADIUS, CENTER) (RANGE_TURFS(RADIUS, CENTER) - CENTER)

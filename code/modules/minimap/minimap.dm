@@ -144,7 +144,7 @@
 		var/min_x = src.x_max
 		var/max_y = src.y_min
 		var/min_y = src.y_max
-		for (var/turf/T in block(locate(src.x_min, src.y_min, src.z_level), locate(src.x_max, src.y_max, src.z_level)))
+		for (var/turf/T as anything in block(locate(src.x_min, src.y_min, src.z_level), locate(src.x_max, src.y_max, src.z_level)))
 			if (!src.valid_turf(T))
 				continue
 			max_x = max(max_x, T.x)

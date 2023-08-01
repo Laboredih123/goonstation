@@ -53,25 +53,23 @@
 			Z_LOG_DEBUG("Mining Map", "Generating map ...")
 			map = icon('icons/misc/trenchMapEmpty.dmi', "template")
 			var/turf_color = null
-			for (var/x = 1, x <= world.maxx, x++)
-				for (var/y = 1, y <= world.maxy, y++)
-					var/turf/T = locate(x,y,5)
-					if (istype(T, /turf/simulated/wall/auto/asteroid) || istype(T, /turf/simulated/floor/plating/airless/asteroid))
-						turf_color = "solid"
-					else if (istype(T, /turf/space))
-						turf_color = "empty"
+			for (var/turf/T as anything in block(locate(1, 1, 5), locate(world.maxx, world.maxy, 5)))
+				if (istype(T, /turf/simulated/wall/auto/asteroid) || istype(T, /turf/simulated/floor/plating/airless/asteroid))
+					turf_color = "solid"
+				else if (istype(T, /turf/space))
+					turf_color = "empty"
+				else
+					if (istype(T.loc, /area/shuttle/sea_elevator) || istype(T.loc, /area/mining) || istype(T.loc, /area/prefab/sea_mining) || istype(T.loc, /area/station/solar/small_backup3))
+						turf_color = "station"
 					else
-						if (T.loc && istype(T.loc, /area/shuttle/sea_elevator) || istype(T.loc, /area/mining) || istype(T.loc, /area/prefab/sea_mining) || istype(T.loc, /area/station/solar/small_backup3))
-							turf_color = "station"
-						else
-							turf_color = "other"
+						turf_color = "other"
 
-					map.DrawBox(map_colors[turf_color], x * 2, y * 2, x * 2 + 1, y * 2 + 1)
+					map.DrawBox(map_colors[turf_color], T.x<<1, T.y<<1, (T.x<<1) + 1, (T.y<<1) + 1)
 
 			for (var/beacon in by_type[/obj/warp_beacon])
 				if (istype(beacon, /obj/warp_beacon/miningasteroidbelt))
 					var/turf/T = get_turf(beacon)
-					map.DrawBox(map_colors["station"], T.x * 2 - 2, T.y * 2 - 2, T.x * 2 + 2, T.y * 2 + 2)
+					map.DrawBox(map_colors["station"], (T.x<<1) - 2, (T.y<<1) - 2, (T.x<<1) + 2, (T.y<<1) + 2)
 
 			Z_LOG_DEBUG("Mining Map", "Map generation complete")
 			generate_map_html()
@@ -83,8 +81,8 @@
 			return
 
 		var/list/hotspots = list()
-		for (var/datum/sea_hotspot/S in hotspot_groups)
-			hotspots += {"<div class='hotspot' style='bottom: [S.center.y * 2]px; left: [S.center.x * 2]px; width: [S.radius * 4 + 2]px; height: [S.radius * 4 + 2]px; margin-left: -[S.radius * 2]px; margin-bottom: -[S.radius * 2]px;'></div>"}
+		for (var/datum/sea_hotspot/S as anything in hotspot_groups)
+			hotspots += {"<div class='hotspot' style='bottom: [S.center.y<<1]px; left: [S.center.x<<1]px; width: [(S.radius<<2) + 2]px; height: [(S.radius<<2) + 2]px; margin-left: -[S.radius * 2]px; margin-bottom: -[S.radius * 2]px;'></div>"}
 
 		src.map_html = {"
 <!doctype html>

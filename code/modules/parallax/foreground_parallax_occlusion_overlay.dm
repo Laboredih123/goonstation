@@ -20,16 +20,34 @@
 				CT.update_parallax_occlusion_overlay(FALSE, src)
 
 	// Ordinal
-	for (var/i = 1 to 4)
-		var/ordir = ordinal[i]
-		if ((ordir & connected_directions) != ordir)
-			continue
-		var/turf/OT = get_step(src, ordir)
+	if (!((NORTHEAST & connected_directions) != NORTHEAST))
+		var/turf/OT = get_step(src, NORTHEAST)
 		if (OT == called_from_turf || !isnull(OT.GetOverlayImage("foreground_parallax_occlusion_overlay")))
-			connected_directions |= 8 << i
+			connected_directions |= 8 << 1
+			if (update_neighbors)
+				OT.update_parallax_occlusion_overlay(FALSE, src)
+
+	if (!((SOUTHEAST & connected_directions) != SOUTHEAST))
+		var/turf/OT = get_step(src, SOUTHEAST)
+		if (OT == called_from_turf || !isnull(OT.GetOverlayImage("foreground_parallax_occlusion_overlay")))
+			connected_directions |= 8 << 2
+			if (update_neighbors)
+				OT.update_parallax_occlusion_overlay(FALSE, src)
+
+	if (!((SOUTHWEST & connected_directions) != SOUTHWEST))
+		var/turf/OT = get_step(src, SOUTHWEST)
+		if (OT == called_from_turf || !isnull(OT.GetOverlayImage("foreground_parallax_occlusion_overlay")))
+			connected_directions |= 8 << 3
+			if (update_neighbors)
+				OT.update_parallax_occlusion_overlay(FALSE, src)
+
+	if (!((NORTHWEST & connected_directions) != NORTHWEST))
+		var/turf/OT = get_step(src, NORTHWEST)
+		if (OT == called_from_turf || !isnull(OT.GetOverlayImage("foreground_parallax_occlusion_overlay")))
+			connected_directions |= 8 << 4
 			if (update_neighbors)
 				OT.update_parallax_occlusion_overlay(FALSE, src)
 
 	var/image/our_overlay = src.GetOverlayImage("foreground_parallax_occlusion_overlay") || new /image/foreground_parallax_occlusion_overlay
 	our_overlay.icon_state = "overlay-[connected_directions]"
-	src.UpdateOverlays(our_overlay, "foreground_parallax_occlusion_overlay")
+	src.AddOverlaysAllOff(our_overlay, "foreground_parallax_occlusion_overlay")

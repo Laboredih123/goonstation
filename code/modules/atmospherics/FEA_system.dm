@@ -73,7 +73,8 @@ var/global/total_gas_mixtures = 0
 
 	var/start_time = world.timeofday
 
-	for(var/turf/simulated/S in world)
+	var/list/turf/turf_candidates = block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
+	for(var/turf/simulated/S in turf_candidates)
 		if(!S.gas_impermeable && !S.parent)
 			assemble_group_turf(S)
 		S.update_air_properties()
@@ -86,8 +87,8 @@ var/global/total_gas_mixtures = 0
 	set waitfor = 0
 	var/list/turf/simulated/members = list(base) // Confirmed group members
 	var/list/turf/simulated/possible_members = list(base) // Possible places for group expansion
-	var/list/turf/simulated/possible_borders
-	var/list/turf/simulated/possible_space_borders
+	var/list/turf/simulated/possible_borders = list()
+	var/list/turf/simulated/possible_space_borders = list()
 	var/possible_space_length = 0
 
 	while(length(possible_members)) //Keep expanding, looking for new members
@@ -101,16 +102,19 @@ var/global/total_gas_mixtures = 0
 							possible_members += T
 							members += T
 						else
-							LAZYLISTINIT(possible_borders)
 							possible_borders |= test
 					else if(istype(T, /turf/space) && !istype(T, /turf/space/fluid))
-						LAZYLISTINIT(possible_space_borders)
 						possible_space_borders |= test
 						test.length_space_border++
 
 			if(test.length_space_border)
 				possible_space_length += test.length_space_border
 			possible_members -= test
+
+	if(!length(possible_borders))
+		possible_borders = null
+	if(!length(possible_space_borders))
+		possible_space_borders = null
 
 	if(length(members) > 1)
 		var/datum/air_group/group = new
@@ -200,7 +204,7 @@ var/global/total_gas_mixtures = 0
 /// Do not call. Used by [/datum/controller/air_system/proc/process].
 /datum/controller/air_system/proc/process_update_tiles()
 	PROTECTED_PROC(TRUE)
-	for(var/turf/simulated/T in tiles_to_update) // ZEWAKA-ATMOS SPACE + SPACE FLUID LEAKAGE
+	for(var/turf/simulated/T as anything in tiles_to_update) // ZEWAKA-ATMOS SPACE + SPACE FLUID LEAKAGE
 		T.update_air_properties()
 	tiles_to_update.len = 0
 
@@ -210,7 +214,7 @@ var/global/total_gas_mixtures = 0
 	PROTECTED_PROC(TRUE)
 	var/list/turf/turf_list = list()
 
-	for(var/datum/air_group/turf_AG in groups_to_rebuild) // Deconstruct groups, gathering their old members
+	for(var/datum/air_group/turf_AG as anything in groups_to_rebuild) // Deconstruct groups, gathering their old members
 		if(turf_AG.group_processing)	// Ensure correct air is used for reconstruction, otherwise parent is destroyed
 			turf_AG.suspend_group_processing()
 		for(var/turf/simulated/T as anything in turf_AG.members)

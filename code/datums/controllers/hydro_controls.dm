@@ -26,14 +26,10 @@ var/global/list/hydro_controller_queue = list(
 		pot_health_display = image('icons/obj/hydroponics/machines_hydroponics.dmi', "led-health")
 		pot_harvest_display = image('icons/obj/hydroponics/machines_hydroponics.dmi', "led-harv")
 
-		for (var/B in typesof(/datum/plantmutation))
-			if (B == /datum/plantmutation)
-				continue
+		for (var/B in childrentypesof(/datum/plantmutation))
 			src.mutations += new B(src)
 
-		for (var/C in typesof(/datum/plant_gene_strain))
-			if (C == /datum/plant_gene_strain)
-				continue
+		for (var/C in childrentypesof(/datum/plant_gene_strain))
 			src.strains += new C(src)
 
 		// You need to do plants after the others or they won't set up properly due to mutations and strains
@@ -42,7 +38,7 @@ var/global/list/hydro_controller_queue = list(
 			src.plant_species += new A(src)
 
 		SPAWN(0)
-			for (var/datum/plant/P in src.plant_species)
+			for (var/datum/plant/P as anything in src.plant_species)
 				for (var/X in P.mutations)
 					if (ispath(X))
 						P.mutations += HY_get_mutation_from_path(X)
@@ -68,7 +64,7 @@ var/global/list/hydro_controller_queue = list(
 			var/obj/item/thing = entry["thing"]
 			var/datum/plant/species
 
-			for (var/datum/plant/P in src.plant_species)
+			for (var/datum/plant/P as anything in src.plant_species)
 				if (species_path == P.type)
 					species = P
 					break
@@ -83,7 +79,7 @@ var/global/list/hydro_controller_queue = list(
 			var/obj/item/thing = entry["thing"]
 			var/datum/plantmutation/mutation
 
-			for (var/datum/plantmutation/M in src.mutations)
+			for (var/datum/plantmutation/M as anything in src.mutations)
 				if (mutation_path == M.type)
 					mutation = M
 					break
@@ -98,7 +94,7 @@ var/global/list/hydro_controller_queue = list(
 			var/obj/item/thing = entry["thing"]
 			var/datum/plant_gene_strain/strain
 
-			for (var/datum/plant_gene_strain/S in src.strains)
+			for (var/datum/plant_gene_strain/S as anything in src.strains)
 				if (strain_path == S.type)
 					strain = S
 					break
@@ -136,10 +132,10 @@ var/global/list/hydro_controller_queue = list(
 	if (!mutation_path)
 		logTheThing(LOG_DEBUG, null, "<b>Hydro Controller:</b> Attempt to find mutation with null path in controller")
 		return null
-	if (!hydro_controls.mutations.len)
+	if (!length(hydro_controls.mutations))
 		logTheThing(LOG_DEBUG, null, "<b>Hydro Controller:</b> Cant find mutation due to empty mutation list in controller")
 		return null
-	for (var/datum/plantmutation/M in hydro_controls.mutations)
+	for (var/datum/plantmutation/M as anything in hydro_controls.mutations)
 		if (mutation_path == M.type)
 			return M
 	logTheThing(LOG_DEBUG, null, "<b>Hydro Controller:</b> Mutation \"[mutation_path]\" not found")
@@ -155,10 +151,10 @@ var/global/list/hydro_controller_queue = list(
 	if (!strain_path)
 		logTheThing(LOG_DEBUG, null, "<b>Hydro Controller:</b> Attempt to find strain with null path in controller")
 		return null
-	if (!hydro_controls.strains.len)
+	if (!length(hydro_controls.strains))
 		logTheThing(LOG_DEBUG, null, "<b>Hydro Controller:</b> Cant find strain due to empty strain list in controller")
 		return null
-	for (var/datum/plant_gene_strain/S in hydro_controls.strains)
+	for (var/datum/plant_gene_strain/S as anything in hydro_controls.strains)
 		if (strain_path == S.type)
 			return S
 	logTheThing(LOG_DEBUG, null, "<b>Hydro Controller:</b> Strain \"[strain_path]\" not found")

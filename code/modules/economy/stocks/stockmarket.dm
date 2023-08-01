@@ -30,7 +30,7 @@
 		var/list/locations = list("Earth", "Luna", "Mars", "Saturn", "Jupiter", "Uranus", "Pluto", "Europa", "Io", "Phobos", "Deimos", "Space", "Venus", "Neptune", "Mercury", "Kalliope", "Ganymede", "Callisto", "Amalthea", "Himalia")
 		var/list/first = list("The", "First", "Premier", "Finest", "Prime")
 		var/list/company = list("Investments", "Securities", "Corporation", "Bank", "Brokerage", "& Co.", "Brothers", "& Sons", "Investement Firm", "Union", "Partners", "Capital", "Trade", "Holdings")
-		for (var/i = 1, i <= 5, i++)
+		for (var/i in 1 to 5)
 			var/pname = ""
 			switch (rand(1,5))
 				if (1)
@@ -93,7 +93,7 @@
 						if (2)
 							sname = "[pname] [pick(company)]"
 						if (3)
-							sname = "[pname]"
+							sname = pname
 
 			S.name = sname
 			S.short_name = generateDesignation(S.name)

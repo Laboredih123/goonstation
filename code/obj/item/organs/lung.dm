@@ -113,17 +113,18 @@
 			if (probmult(20))
 				update.emotes |= pick("giggle", "laugh")
 
-		if (prob(15) && (FARD_pp > fart_smell_min))
-			boutput(donor, "<span class='alert'>Smells like someone [pick("died","soiled themselves","let one rip","made a bad fart","peeled a dozen eggs")] in here!</span>")
-			if ((FARD_pp > fart_vomit_min) && prob(50))
-				var/vomit_message = "<span class='notice'>[donor] vomits from the [pick("stink","stench","awful odor")]!!</span>"
-				donor.vomit(0, null, vomit_message)
-		if (FARD_pp > fart_choke_min)
-			donor.take_oxygen_deprivation(6.9 * mult/LUNG_COUNT)
-			if (prob(20))
-				update.emotes |= "cough"
-				if (prob(30))
-					boutput(donor, "<span class='alert'>Oh god it's so bad you could choke to death in here!</span>")
+		if (FARD_pp > fart_smell_min)
+			if(prob(15))
+				boutput(donor, "<span class='alert'>Smells like someone [pick("died","soiled themselves","let one rip","made a bad fart","peeled a dozen eggs")] in here!</span>")
+				if ((FARD_pp > fart_vomit_min) && prob(50))
+					var/vomit_message = "<span class='notice'>[donor] vomits from the [pick("stink","stench","awful odor")]!!</span>"
+					donor.vomit(0, null, vomit_message)
+			if (FARD_pp > fart_choke_min)
+				donor.take_oxygen_deprivation(6.9 * mult/LUNG_COUNT)
+				if (prob(20))
+					update.emotes |= "cough"
+					if (prob(30))
+						boutput(donor, "<span class='alert'>Oh god it's so bad you could choke to death in here!</span>")
 
 		if (breath.temperature > min(temp_tolerance) && !donor.is_heat_resistant()) // Hot air hurts :(
 			var/lung_burn = clamp(breath.temperature - temp_tolerance, 0, 30) / 3

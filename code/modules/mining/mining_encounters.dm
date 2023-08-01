@@ -965,15 +965,14 @@
 // Modifiers
 
 /proc/Turfspawn_Asteroid_SeedSpecificOre(var/list/turfs,var/ore_name = "mauxite",var/veins = 0,fullbright=TRUE)
-	if (!turfs || length(turfs) < 1)
+	if (!turfs || !length(turfs))
 		return list()
 
-	if (!isnum(veins) && veins <= 1)
+	if (!veins)
 		veins = rand(2,6)
 
-	while (veins > 0)
-		veins--
-		if (length(turfs) < 1)
+	for (var/vein in 1 to veins)
+		if (!length(turfs))
 			break
 
 		var/datum/ore/O = mining_controls.get_ore_from_string(ore_name)
@@ -999,7 +998,7 @@
 			O.onGenerate(AST)
 			AST.mining_health = O.mining_health
 			AST.mining_max_health = O.mining_health
-			if (prob(O.event_chance) && length(O.events) > 0)
+			if (prob(O.event_chance) && length(O.events))
 				var/new_event = pick(O.events)
 				var/datum/ore/event/E = new new_event
 				E.set_up(O)
@@ -1009,7 +1008,7 @@
 	return turfs
 
 /proc/Turfspawn_Asteroid_SeedOre(var/list/turfs,var/veins,var/rarity_mod = 0,fullbright=TRUE)
-	if (!turfs || length(turfs) < 1)
+	if (!turfs || !length(turfs))
 		return list()
 
 	if (!isnum(veins) && veins <= 1)
@@ -1019,7 +1018,7 @@
 
 	while (veins > 0)
 		veins--
-		if (length(turfs) < 1)
+		if (!length(turfs))
 			break
 		var/rarity_roller = RarityClassRoll(100,rarity_mod,list(90,50))
 		var/list/ores_to_pick = list()
@@ -1035,7 +1034,7 @@
 		var/ore_tiles = rand(O.tiles_per_rock_min,O.tiles_per_rock_max)
 
 		while (ore_tiles > 0)
-			if (length(turfs) < 1)
+			if (!length(turfs))
 				break
 			ore_tiles--
 			var/turf/simulated/wall/auto/asteroid/AST = pick(turfs)
@@ -1055,7 +1054,7 @@
 			O.onGenerate(AST)
 			AST.mining_health = O.mining_health
 			AST.mining_max_health = O.mining_health
-			if (prob(O.event_chance) && length(O.events) > 0)
+			if (prob(O.event_chance) && length(O.events))
 				var/new_event = pick(O.events)
 				var/datum/ore/event/E = new new_event
 				E.set_up(O)
@@ -1065,7 +1064,7 @@
 	return turfs
 
 /proc/Turfspawn_Asteroid_SeedEvents(var/list/turfs,var/amount)
-	if (!turfs || length(turfs) < 1)
+	if (!turfs || !length(turfs))
 		return list()
 	if (!isnum(amount) || amount <= 0)
 		amount = rand(1,6)
@@ -1075,7 +1074,7 @@
 
 	while (amount > 0)
 		amount--
-		if (length(turfs) < 1)
+		if (!length(turfs))
 			break
 		E = weighted_pick(mining_controls.weighted_events)
 		AST = pick(turfs)

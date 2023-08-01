@@ -232,15 +232,7 @@ ABSTRACT_TYPE(/obj/item/parts)
 
 		holder.visible_message("<span class='alert'>[holder.name]'s [object.name] flies off in a [src.streak_descriptor] arc!</span>")
 
-		switch(direction)
-			if(NORTH)
-				direction = WEST
-			if(EAST)
-				direction = NORTH
-			if(SOUTH)
-				direction = EAST
-			if(WEST)
-				direction = SOUTH
+		direction = turn(direction, 90)
 
 		if(side != "left")
 			direction = turn(direction,180)
@@ -389,7 +381,7 @@ ABSTRACT_TYPE(/obj/item/parts)
 	SPAWN(0)
 		/// Number of tiles where it should try to make a splatter
 		var/num_splats = rand(round(dist * 0.2), dist) + 1
-		for (var/turf/T in linepath)
+		for (var/turf/T as anything in linepath)
 			if(step_to(src, T, 0, 300) || num_splats-- >= 1)
 				if (ispath(streak_splatter))
 					make_cleanable(streak_splatter,src.loc)

@@ -21,8 +21,7 @@
 	reset_anchored(src)
 	// Automatically drop anything in store / id / belt if you're not wearing a uniform.
 	if (!src.w_uniform)
-		for (var/atom in list(src.r_store, src.l_store, src.wear_id, src.belt)) //assuming things in all these slots will only ever be items
-			var/obj/item/thing = atom
+		for (var/obj/item/thing in list(src.r_store, src.l_store, src.wear_id, src.belt)) //assuming things in all these slots will only ever be items
 			if (thing)
 				u_equip(thing, 1)
 
@@ -117,31 +116,25 @@
 		suit_image.color = src.w_uniform.color
 		src.w_uniform.update_wear_image(src, src.w_uniform.wear_image.icon != src.w_uniform.wear_image_icon)
 		UpdateOverlays(suit_image, "suit_image1")
-		var/counter = 1
-		while (counter < 6)
-			counter++
-			UpdateOverlays(null, "suit_image[counter]")
+		ClearOverlaysAllOff("suit_image2", "suit_image3", "suit_image4", "suit_image5", "suit_image6")
 
-		if (src.w_uniform.worn_material_texture_image != null)
+		if (src.w_uniform.worn_material_texture_image)
 			src.w_uniform.worn_material_texture_image.layer = src.w_uniform.wear_image.layer + 0.1
 			UpdateOverlays(src.w_uniform.worn_material_texture_image, "material_suit")
 		else
-			UpdateOverlays(null, "material_suit")
+			ClearOverlaysAllOff("material_suit")
 
 		if (src.w_uniform.blood_DNA)
 			blood_image.icon_state =  "uniformblood_c"
 			blood_image.layer = src.w_uniform.wear_layer + 0.1
 			UpdateOverlays(blood_image, "suit_image_blood")
 		else
-			UpdateOverlays(null, "suit_image_blood")
+			ClearOverlaysAllOff("suit_image_blood")
 
 	else
-		var/counter = 0
-		while (counter < 6)
-			counter++
-			UpdateOverlays(null, "suit_image[counter]")
-		UpdateOverlays(null, "suit_image_blood")
-		UpdateOverlays(null, "material_suit")
+		ClearOverlaysAllOff("suit_image1", "suit_image2", "suit_image3", "suit_image4", "suit_image5", "suit_image6")
+		ClearOverlaysAllOff("suit_image_blood")
+		ClearOverlaysAllOff("material_suit")
 
 /mob/living/carbon/human/proc/update_id(head_offset)
 	if (src.wear_id)
@@ -681,13 +674,7 @@
 	if (!src.bioHolder)
 		return // fuck u
 
-	UpdateOverlays(null, "hair_one", 1, 1)
-	UpdateOverlays(null, "hair_two", 1, 1)
-	UpdateOverlays(null, "hair_three", 1, 1)
-
-	UpdateOverlays(null, "hair_special_one", 1, 1)
-	UpdateOverlays(null, "hair_special_two", 1, 1)
-	UpdateOverlays(null, "hair_special_three", 1, 1)
+	ClearOverlaysForcedCached("hair_one", "hair_two", "hair_three", "hair_special_one", "hair_special_two", "hair_special_three")
 
 	var/obj/item/clothing/suit/back_clothing = src.back // typed version of back to check hair sealage; might not be clothing, we check type below
 	var/seal_hair = ((src.wear_suit && src.wear_suit.over_hair) || (src.head && src.head.seal_hair) \
@@ -730,37 +717,18 @@
 				UpdateOverlays(image_cust_two, "hair_two", 1, 1)
 				UpdateOverlays(image_cust_three, "hair_three", 1, 1)
 			else
-				UpdateOverlays(null, "hair_one", 1, 1)
-				UpdateOverlays(null, "hair_two", 1, 1)
-				UpdateOverlays(null, "hair_three", 1, 1)
+				ClearOverlaysForcedCached("hair_one", "hair_two", "hair_three")
 
 			if (AHH.mob_appearance_flags & HAS_SPECIAL_HAIR || src.special_hair_override)
 				UpdateOverlays(image_special_one, "hair_special_one", 1, 1)
 				UpdateOverlays(image_special_two, "hair_special_two", 1, 1)
 				UpdateOverlays(image_special_three, "hair_special_three", 1, 1)
 			else
-				UpdateOverlays(null, "hair_special_one", 1, 1)
-				UpdateOverlays(null, "hair_special_two", 1, 1)
-				UpdateOverlays(null, "hair_special_three", 1, 1)
+				ClearOverlaysForcedCached("hair_special_one", "hair_special_two", "hair_special_three")
 		else
-			UpdateOverlays(null, "hair_one", 1, 1)
-			UpdateOverlays(null, "hair_two", 1, 1)
-			UpdateOverlays(null, "hair_three", 1, 1)
-
-			UpdateOverlays(null, "hair_special_one", 1, 1)
-			UpdateOverlays(null, "hair_special_two", 1, 1)
-			UpdateOverlays(null, "hair_special_three", 1, 1)
+			ClearOverlaysForcedCached("hair_one", "hair_two", "hair_three", "hair_special_one", "hair_special_two", "hair_special_three")
 	else
-		UpdateOverlays(null, "hair_one", 1, 1)
-		UpdateOverlays(null, "hair_two", 1, 1)
-		UpdateOverlays(null, "hair_three", 1, 1)
-
-		UpdateOverlays(null, "hair_special_one", 1, 1)
-		UpdateOverlays(null, "hair_special_two", 1, 1)
-		UpdateOverlays(null, "hair_special_three", 1, 1)
-
-		UpdateOverlays(null, "nose", 1, 1)
-		UpdateOverlays(null, "eyes", 1, 1)
+		ClearOverlaysForcedCached("hair_one", "hair_two", "hair_three", "hair_special_one", "hair_special_two", "hair_special_three", "nose", "eyes")
 
 
 /mob/living/carbon/human/update_burning_icon(var/force_remove=0, var/datum/statusEffect/simpledot/burning/B = 0)
@@ -883,7 +851,7 @@ var/list/update_body_limbs = list("r_leg" = "stump_leg_right", "l_leg" = "stump_
 	..()
 
 	var/datum/appearanceHolder/AHOLD = null
-	if (src?.bioHolder?.mobAppearance)
+	if (src.bioHolder?.mobAppearance)
 		AHOLD = src.bioHolder.mobAppearance
 	else	// otherwise you're gonna explode into a shower of runtimes
 		return

@@ -143,14 +143,13 @@
 		for (var/atom/A in src.objects)
 			C.screen -= A
 
-	proc/create_screen(id, name, icon, state, loc, layer = HUD_LAYER, dir = SOUTH, tooltipTheme = null, desc = null, customType = null, mouse_opacity = 1)
+	proc/create_screen(id, name, icon, state, loc, layer = HUD_LAYER, dir = SOUTH, tooltipTheme = null, desc = null, customType = /atom/movable/screen/hud, mouse_opacity = 1)
 		var/atom/movable/screen/hud/S
-		if (customType)
-			if (!ispath(customType, /atom/movable/screen/hud))
-				CRASH("Invalid type passed to create_screen ([customType])")
-			S = new customType
-		else
-			S = new
+		#ifdef CHECK_MORE_RUNTIMES
+		if (!ispath(customType, /atom/movable/screen/hud))
+			CRASH("Invalid type passed to create_screen ([customType])")
+		#endif
+		S = new customType
 
 		S.name = name
 		S.desc = desc
@@ -165,7 +164,7 @@
 		S.mouse_opacity = mouse_opacity
 		src.objects += S
 
-		for (var/client/C in src.clients)
+		for (var/client/C as anything in src.clients)
 			C.screen += S
 		return S
 

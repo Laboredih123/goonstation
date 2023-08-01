@@ -244,7 +244,7 @@ TYPEINFO(/area)
 
 	/// Gets called when a movable atom exits an area.
 	Exited(var/atom/movable/A)
-		if (ismob(A))
+		if (ismob(A) || locate(/mob) in A)
 			var/mob/M = A
 			if (M?.client)
 				if (sound_loop || sound_group)
@@ -255,13 +255,12 @@ TYPEINFO(/area)
 						if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && !mobarea?.sound_loop)
 							M.client.playAmbience(src, AMBIENCE_LOOPING, 0) //pass 0 to cancel
 
-		if ((isliving(A) || iswraith(A)) || locate(/mob) in A)
 			//world.log << "[src] exited by [A]"
 			//Deal with this too
-			var/list/exitingMobs = get_all_mobs_in(A)
+			var/list/exitingMobs = get_all_mobs_in(M)
 
-			if (length(exitingMobs) > 0)
-				for (var/mob/exitingM in exitingMobs)
+			if (length(exitingMobs))
+				for (var/mob/exitingM as anything in exitingMobs)
 					if (exitingM.ckey && exitingM.client && exitingM.mind)
 						var/area/the_area = get_area(exitingM)
 						if( sanctuary && !blocked && !(the_area.sanctuary) )
@@ -278,6 +277,7 @@ TYPEINFO(/area)
 								SEND_SIGNAL(src, COMSIG_AREA_DEACTIVATED)
 
 						//Put whatever you want here. See Entering above.
+
 
 		..()
 

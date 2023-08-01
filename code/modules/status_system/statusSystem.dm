@@ -192,7 +192,7 @@ var/global/list/statusGroupLimits = list("Food"=4)
 							localInstance.owner = null
 							return null
 					localInstance.duration = (isnull(localInstance.maxDuration) ? (duration):(min(duration, localInstance.maxDuration)))
-					localInstance.archivedOwnerInfo = "OwnerName:[src.name] - OwnerType:[src.type] - ContLen:[src.contents.len] - StatusLen:[src.statusEffects.len]"
+					localInstance.archivedOwnerInfo = "OwnerName:[src.name] - OwnerType:[src.type] - ContLen:[length(src.contents)] - StatusLen:[length(src.statusEffects)]"
 					localInstance.onAdd(optional)
 					statusEffects |= localInstance
 					globalStatusInstances |= localInstance
@@ -214,7 +214,7 @@ var/global/list/statusGroupLimits = list("Food"=4)
 						return null
 
 				localInstance.duration = (isnull(localInstance.maxDuration) ? (duration):(min(duration, localInstance.maxDuration)))
-				localInstance.archivedOwnerInfo = "OwnerName:[src.name] - OwnerType:[src.type] - ContLen:[src.contents.len] - StatusLen:[src.statusEffects.len]"
+				localInstance.archivedOwnerInfo = "OwnerName:[src.name] - OwnerType:[src.type] - ContLen:[length(src.contents)] - StatusLen:[length(src.statusEffects)]"
 				localInstance.onAdd(optional)
 				statusEffects |= localInstance
 				globalStatusInstances |= localInstance

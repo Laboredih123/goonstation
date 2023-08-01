@@ -212,7 +212,7 @@ var/makingpowernetssince = 0
 	. = list()
 	var/cdir
 
-	for(var/turf/T in orange(1, src))
+	for(var/turf/T as anything in ORANGE_TURFS(1, src))
 		cdir = get_dir(T, src)
 		for(var/obj/cable/C in T)
 			if(C.netnum && unmarked)
@@ -261,7 +261,7 @@ var/makingpowernetssince = 0
 			M.netnum = num
 			P = M.get_connections(1)
 
-		if(length(P) == 0)
+		if(!length(P))
 			if(length(more))
 				O = more[length(more)]
 				more -= O

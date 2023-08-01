@@ -46,7 +46,7 @@
 			//	return 0.62 //todo : a cooler underwater effect if possible
 			//if (istype(T, /turf/space))
 			//	return 0 // in space nobody can hear you fart
-		if (T.turf_flags & IS_TYPE_SIMULATED) //danger :)
+		if (issimulatedturf(T)) //danger :)
 			var/datum/gas_mixture/air = T.return_air()
 			if (air)
 				attenuate *= MIXTURE_PRESSURE(air) / ONE_ATMOSPHERE
@@ -133,7 +133,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.2, 0.5, 0.5, 1, 1)
 	if (isnull(source_turf))
 		return
 
-	var/play_id = "[(source_turf.x / SOUND_LIMITER_GRID_SIZE)] [round(source_turf.y / SOUND_LIMITER_GRID_SIZE)] [source_turf.z] [SOUNDIN_ID]"
+	var/play_id = jointext(list(source_turf.x / SOUND_LIMITER_GRID_SIZE, round(source_turf.y / SOUND_LIMITER_GRID_SIZE), source_turf.z, SOUNDIN_ID), " ")
 	if (!limiter || !limiter.canISpawn(/sound) || !limiter.canISpawn(play_id, 1))
 		return
 
@@ -172,7 +172,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.2, 0.5, 0.5, 1, 1)
 
 	// at this multiple of the max range the sound will be below TOO_QUIET level, derived from falloff equation lower in the code
 	var/rangemult = 0.18/(-(TOO_QUIET + 0.0542  * vol)/(TOO_QUIET - vol))**(10/17)
-	for (var/mob/M in GET_NEARBY(source_turf, rangemult * (MAX_SOUND_RANGE + extrarange)))
+	for (var/mob/M as anything in GET_NEARBY(source_turf, rangemult * (MAX_SOUND_RANGE + extrarange)))
 		var/client/C = M.client
 		if (!C)
 			continue
@@ -201,7 +201,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.2, 0.5, 0.5, 1, 1)
 			ourvolume = vol
 
 			//Custom falloff handling, see: https://www.desmos.com/calculator/ybukxuu9l9
-			if (dist > falloff_cache.len)
+			if (dist > length(falloff_cache))
 				falloff_cache.len = dist
 			var/falloffmult
 			if(extrarange == 0)

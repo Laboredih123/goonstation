@@ -15,17 +15,20 @@
 		var/lasttime = 0
 
 		// Zamu here -- I checked and this doesn't even register as 1 on a timeofday check
-		var/totalcount = 0
+		var/list/obj/everyobj = list()
 		for(var/obj/object in world)
-			totalcount++
+			everyobj += object
 
-		for(var/obj/object in world)
+		var/totalcount = length(everyobj)
+		var/totalpct = totalcount/100
+
+		for(var/obj/object as anything in everyobj)
 			object.initialize()
 			itemcount++
 			if (game_start_countdown)
 				if (lasttime != world.timeofday)
 					lasttime = world.timeofday
-					game_start_countdown.update_status("Initializing items\n([itemcount], [round(itemcount / totalcount * 100)]%)")
+					game_start_countdown.update_status("Initializing items\n([itemcount], [round(itemcount / totalpct)]%)")
 
 			LAGCHECK(LAG_HIGH)
 

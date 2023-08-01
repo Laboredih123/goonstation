@@ -121,9 +121,9 @@ var/global/datum/phrase_log/phrase_log = new
 
 	proc/load()
 		if(fexists(src.uncool_words_filename))
-			uncool_words = regex(jointext(json_decode(file2text(src.uncool_words_filename)),"|"), "i")
+			uncool_words = regex(jointext(json_decode(rustg_file_read(src.uncool_words_filename)),"|"), "i")
 		if(fexists(src.filename))
-			src.phrases = json_decode(file2text(src.filename))
+			src.phrases = json_decode(rustg_file_read(src.filename))
 		else
 			src.phrases = list()
 		src.original_lengths = list()

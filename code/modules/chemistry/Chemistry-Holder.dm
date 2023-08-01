@@ -417,16 +417,15 @@ proc/chem_helmet_check(mob/living/carbon/human/H, var/what_liquid="hot")
 		var/list/old_reactions = active_reactions
 		active_reactions = list()
 		reaction_loop:
-			for(var/datum/chemical_reaction/C in src.possible_reactions)
-				if(src.disposed)
+			for(var/datum/chemical_reaction/C as anything in src.possible_reactions)
+				if(QDELETED(src))
 					return
 				if (!islist(C.required_reagents)) //This shouldn't happen but when practice meets theory...they beat the shit out of one another I guess
 					continue
 
 				//Min / max temp intervals
-				if(total_temperature < C.min_temperature)
+				if(total_temperature > C.max_temperature || total_temperature < C.min_temperature)
 					continue
-				else if(total_temperature > C.max_temperature) continue
 
 				var/total_matching_reagents = 0
 				var/created_volume = src.maximum_volume
@@ -451,7 +450,7 @@ proc/chem_helmet_check(mob/living/carbon/human/H, var/what_liquid="hot")
 						created_volume = min(created_volume, amount * (C.result_amount ? C.result_amount : 1) / B_required_volume)
 					else
 						break
-				if(total_matching_reagents == C.required_reagents.len)
+				if(total_matching_reagents == length(C.required_reagents))
 					for (var/inhibitor in C.inhibitors)
 						if (src.has_reagent(inhibitor))
 							continue reaction_loop
@@ -504,7 +503,7 @@ proc/chem_helmet_check(mob/living/carbon/human/H, var/what_liquid="hot")
 						continue
 					active_reactions += C
 
-		if (!active_reactions.len)
+		if (!length(active_reactions))
 			if (processing_reactions)
 				processing_reactions = 0
 				active_reagent_holders -= src
@@ -516,7 +515,7 @@ proc/chem_helmet_check(mob/living/carbon/human/H, var/what_liquid="hot")
 	proc/process_reactions()
 		defer_reactions = 1
 		deferred_reaction_checks = 0
-		for(var/datum/chemical_reaction/C in src.active_reactions)
+		for(var/datum/chemical_reaction/C as anything in src.active_reactions)
 			if (C.result_amount <= 0)
 				src.active_reactions -= C
 				continue
@@ -775,7 +774,7 @@ proc/chem_helmet_check(mob/living/carbon/human/H, var/what_liquid="hot")
 		var/datum/reagent/current_reagent = reagent_list[reagent]
 
 		if(!current_reagent)
-			if (length(reagents_cache) <= 0)
+			if (!length(reagents_cache))
 				build_reagent_cache()
 
 			current_reagent = reagents_cache[reagent]

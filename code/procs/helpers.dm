@@ -537,7 +537,7 @@ proc/get_angle(atom/a, atom/b)
 	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
 	var/j			//Generic integer for counting
 	if(dxabs>=dyabs)	//x distance is greater than y
-		for(j=0;j<dxabs;j++)//It'll take dxabs steps to get there
+		for(j in 0 to dxabs-1)//It'll take dxabs steps to get there
 			y+=dyabs
 			if(y>=dxabs)	//Every dyabs steps, step once in y direction
 				y-=dxabs
@@ -545,7 +545,7 @@ proc/get_angle(atom/a, atom/b)
 			px+=sdx		//Step on in x direction
 			. += locate(px,py,M.z)//Add the turf to the list
 	else
-		for(j=0;j<dyabs;j++)
+		for(j in 0 to dyabs-1)
 			x+=dxabs
 			if(x>=dyabs)
 				x-=dyabs
@@ -2184,7 +2184,7 @@ var/list/lowercase_letters = list("a", "b", "c", "d", "e", "f", "g", "h", "i", "
 	. = list()
 	if(ismob(found))
 		. += found
-	for(var/atom/thing in found)
+	for(var/atom/thing as anything in found)
 		var/list/outp = get_all_mobs_in(thing)
 		. += outp
 
@@ -2547,8 +2547,10 @@ proc/connectdirs_to_byonddirs(var/connectdir_bitflag)
 /proc/do_hud_offset_thing(atom/movable/A, new_screen_loc)
 	var/icon/IC = new/icon(A.icon)
 	var/width = IC.Width()
+	if(width == 32) //if we're 32-width, just use the loc we're given
+		return new_screen_loc
 	var/regex/locfinder = new(@"^(\w*)([+-]\d)?(:\d+)?(.*)$") //chops up X-axis of a screen_loc
-	if(width != 32 && locfinder.Find("[new_screen_loc]")) //if we're 32-width, just use the loc we're given
+	if(locfinder.Find("[new_screen_loc]"))
 		var/offset = 0
 		if(startswith(locfinder.group[3], ":"))
 			offset = text2num(copytext(locfinder.group[3], 2))

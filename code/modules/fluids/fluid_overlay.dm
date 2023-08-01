@@ -99,18 +99,53 @@
 
 	var/mutable_appearance/ma
 
-	for(var/i = 1, i <= 4, i++)
-		var/icon/I = new /icon('icons/obj/fluid.dmi', "overlay_[i]")
-		I.Blend(new /icon(src.icon, src.icon_state),ICON_MULTIPLY)
+	var/icon/I = new /icon('icons/obj/fluid.dmi', "overlay_1")
+	I.Blend(new /icon(src.icon, src.icon_state),ICON_MULTIPLY)
 
-		var/image/submerged_image = image(I)
-		ma = new(submerged_image)
-		ma.layer = src.layer + 1
-		ma.appearance_flags = RESET_COLOR | PIXEL_SCALE
-		ma.icon = I
-		ma.blend_mode = BLEND_MULTIPLY
-		submerged_image.appearance = ma
-		submerged_images += submerged_image
+	var/image/submerged_image = image(I)
+	ma = new(submerged_image)
+	ma.layer = src.layer + 1
+	ma.appearance_flags = RESET_COLOR | PIXEL_SCALE
+	ma.icon = I
+	ma.blend_mode = BLEND_MULTIPLY
+	submerged_image.appearance = ma
+	submerged_images += submerged_image
+
+	I = new /icon('icons/obj/fluid.dmi', "overlay_2")
+	I.Blend(new /icon(src.icon, src.icon_state),ICON_MULTIPLY)
+
+	submerged_image = image(I)
+	ma = new(submerged_image)
+	ma.layer = src.layer + 1
+	ma.appearance_flags = RESET_COLOR | PIXEL_SCALE
+	ma.icon = I
+	ma.blend_mode = BLEND_MULTIPLY
+	submerged_image.appearance = ma
+	submerged_images += submerged_image
+
+	I = new /icon('icons/obj/fluid.dmi', "overlay_3")
+	I.Blend(new /icon(src.icon, src.icon_state),ICON_MULTIPLY)
+
+	submerged_image = image(I)
+	ma = new(submerged_image)
+	ma.layer = src.layer + 1
+	ma.appearance_flags = RESET_COLOR | PIXEL_SCALE
+	ma.icon = I
+	ma.blend_mode = BLEND_MULTIPLY
+	submerged_image.appearance = ma
+	submerged_images += submerged_image
+
+	I = new /icon('icons/obj/fluid.dmi', "overlay_4")
+	I.Blend(new /icon(src.icon, src.icon_state),ICON_MULTIPLY)
+
+	submerged_image = image(I)
+	ma = new(submerged_image)
+	ma.layer = src.layer + 1
+	ma.appearance_flags = RESET_COLOR | PIXEL_SCALE
+	ma.icon = I
+	ma.blend_mode = BLEND_MULTIPLY
+	submerged_image.appearance = ma
+	submerged_images += submerged_image
 
 /obj/proc/show_submerged_image(var/depth) //depth from 0 - 4
 	if (depth == 1) depth = 0

@@ -18,7 +18,7 @@
 		// Iterates through all turfs on the map, creating a list for each minimap type required, this minimap type list itself containing lists of turfs to be drawn to an icon.
 		var/list/area_directory = list()
 		var/list/dynamic_area_directory = list()
-		for (var/turf/T in block(locate(x_min, y_min, z_level), locate(x_max, y_max, z_level)))
+		for (var/turf/T as anything in block(locate(x_min, y_min, z_level), locate(x_max, y_max, z_level)))
 			if (!src.valid_turf(T))
 				continue
 			var/area/A = T.loc

@@ -2339,7 +2339,7 @@
 						chat_text.plane = PLANE_NOSHADOW_ABOVE
 						chat_text.layer = 420
 					chat_text.measure(src.client)
-					for(var/image/chat_maptext/I in src.chat_text.lines)
+					for(var/image/chat_maptext/I as anything in src.chat_text.lines)
 						if(I != chat_text)
 							I.bump_up(chat_text.measured_height)
 

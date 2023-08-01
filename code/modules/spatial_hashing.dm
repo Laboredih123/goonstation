@@ -71,7 +71,7 @@ var/global/list/datum/spatial_hashmap/spatial_z_maps = init_spatial_maps()
 		last_update = world.time
 		for (var/i in 1 to cols*rows) //clean
 			hashmap[i].len = 0
-		for (var/client/C in clients) //register
+		for (var/client/C as anything in clients) //register
 			if (C.mob)
 				var/turf/T = get_turf(C.mob)
 				if (T?.z == my_z)
@@ -102,10 +102,11 @@ var/global/list/datum/spatial_hashmap/spatial_z_maps = init_spatial_maps()
 		ADD_BUCKET(A.x,max_y)
 
 		//NW,NE,SW,SE
-		min_x = A.x - (atomboundsize * (sqrt(2)/2))
-		min_y = A.y - (atomboundsize * (sqrt(2)/2))
-		max_x = A.x + (atomboundsize * (sqrt(2)/2))
-		max_y = A.y + (atomboundsize * (sqrt(2)/2))
+		var/scaledatomboundsize = atomboundsize * (sqrt(2)/2)
+		min_x = A.x - scaledatomboundsize
+		min_y = A.y - scaledatomboundsize
+		max_x = A.x + scaledatomboundsize
+		max_y = A.y + scaledatomboundsize
 		ADD_BUCKET(min_x,min_y)
 		ADD_BUCKET(min_x,max_y)
 		ADD_BUCKET(max_x,min_y)

@@ -121,14 +121,15 @@ var/global/logLength = 0
 /proc/log_tgui(user, message, context,
 		datum/tgui_window/window,
 		datum/src_object)
+	set waitfor = 0
 	var/entry = "\[tgui\] " // |GOONSTATION-CHANGE| (tgui:->\[tgui\])
 	// Insert user info
 	if(!user)
 		entry += "(nobody)" // |GOONSTATION-CHANGE| (<nobody>->(nobody))
-	else if(istype(user, /mob))
+	else if(ismob(user))
 		var/mob/mob = user
 		entry += "[mob.ckey] (as [mob] at [mob.x],[mob.y],[mob.z])"
-	else if(istype(user, /client))
+	else if(isclient(user))
 		var/client/client = user
 		entry += "[client.ckey]"
 	// Insert context
@@ -146,6 +147,7 @@ var/global/logLength = 0
 	if(message)
 		entry += "<br>[message]" // |GOONSTATION-CHANGE| (\n->br)
 	entry += "<br>" // |GOONSTATION-CHANGE| (br)
+	sleep(world.tick_lag)
 	WRITE_LOG(roundLog_name, entry)
 	logLength++
 

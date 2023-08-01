@@ -45,7 +45,7 @@ TYPEINFO(/datum/mapPrefab/shuttle)
 
 	post_cleanup(turf/target, datum/loadedProperties/props)
 		// fixes for stuff that doesn't load properly, might be removable once we improve DMM loader using Init()
-		for(var/turf/T in block(target, locate(props.maxX, props.maxY, props.maxZ)))
+		for(var/turf/T as anything in block(target, locate(props.maxX, props.maxY, props.maxZ)))
 			T.UpdateIcon()
 			for(var/obj/machinery/light/L in T)
 				L.seton(TRUE)

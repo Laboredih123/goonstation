@@ -18,7 +18,7 @@ var/list/clothingbooth_paths = list()
 
 		var/match_found = FALSE
 		if(length(boothlist))
-			for(var/i=1, i<=boothlist.len, i++)
+			for(var/i in 1 to length(boothlist))
 				if(boothlist[i]["category"] == category_name)
 					match_found = TRUE
 					boothlist[i]["items"] += list(list(

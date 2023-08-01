@@ -612,7 +612,7 @@ var/list/special_pa_observing_verbs = list(
 
 	if (src.holder)
 		src.holder.owner = src
-		for(var/i = 1; i < 9; i++)
+		for(var/i in 1 to 8)
 			if (src.holder.level + 2 >= i && length(admin_verbs) >= i && !isnull(admin_verbs[i]))
 				src.verbs += admin_verbs[i]
 

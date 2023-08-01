@@ -224,7 +224,7 @@ ABSTRACT_TYPE(/datum/terrainify)
 				ast_list |= AST
 			Turfspawn_Asteroid_SeedOre(ast_list, veins=rand(1,3), rarity_mod=rand(5,25), fullbright=FALSE)
 
-		for(var/i=0, i<ore, i++)
+		for(var/i in 0 to ore-1)
 			Turfspawn_Asteroid_SeedOre(turfs, veins=veins, rarity_mod=rarity, fullbright=FALSE)
 
 		for(var/i in 1 to ore/2)

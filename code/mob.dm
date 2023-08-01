@@ -337,7 +337,7 @@
 		var/area/AR = get_area(src)
 		AR?.mobs_not_in_global_mobs_list?.Remove(src)
 
-	for(var/mob/dead/target_observer/TO in observers)
+	for(var/mob/dead/target_observer/TO as anything in observers)
 		observers -= TO
 		TO.ghostize()
 
@@ -361,13 +361,11 @@
 		traitHolder.owner = null
 	traitHolder = null
 
-	if (bioHolder)
-		bioHolder.dispose()
-		bioHolder.owner = null
-		bioHolder = null
+	bioHolder?.dispose()
+	bioHolder = null
 
-	for (var/datum/hud/H in huds)
-		for (var/atom/movable/screen/hud/S in H.objects)
+	for (var/datum/hud/H as anything in huds)
+		for (var/atom/movable/screen/hud/S as anything in H.objects)
 			if (S:master == src)
 				S:master = null
 //KYLE: KEELIN, LOOK. Something like this? I dunno, it's so slow too:
@@ -388,12 +386,8 @@
 		src.abilityHolder.dispose()
 		src.abilityHolder = null
 
-	if (src.targeting_ability)
-		src.targeting_ability = null
-
-	if(src.item_abilities)
-		src.item_abilities:len = 0
-		src.item_abilities = null
+	src.targeting_ability = null
+	src.item_abilities = null
 
 	if (zone_sel)
 		if (zone_sel.master == src)
@@ -404,13 +398,11 @@
 		src.contextLayout.dispose()
 		src.contextLayout = null
 
-	if (src.buckled)
-		src.buckled.buckled_guy = null
+	src.buckled?.buckled_guy = null
 
 	mobs.Remove(src)
-	if (ai)
-		qdel(ai)
-		ai = null
+	qdel(ai)
+	ai = null
 	mind = null
 	ckey = null
 	client = null
@@ -1781,7 +1773,7 @@
 		get_our_fluids_here += get_turf(src)
 
 		var/transfer_amount = src.reagents.total_volume / length(get_our_fluids_here)
-		for(var/atom/A in get_our_fluids_here)
+		for(var/atom/A as anything in get_our_fluids_here)
 			if(isturf(A))
 				var/turf/T = A
 				T.fluid_react(src.reagents, src.reagents.total_volume, airborne=prob(10))

@@ -181,7 +181,7 @@
 
 	onMaterialChanged()
 		..()
-		if (istype(src.material))
+		if (!isnull(src.material))
 			health_max = material.getProperty("density") * 10
 			health = health_max
 

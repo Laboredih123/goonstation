@@ -603,7 +603,7 @@
 		.= 0 //return created fluids
 		var/obj/fluid/F
 		var/membercount = length(src.members)
-		for (var/i = 1, i <= membercount, i++)
+		for (var/i in 1 to membercount)
 			LAGCHECK(LAG_HIGH)
 			if (src.qdeled) return
 			if (i > membercount) continue

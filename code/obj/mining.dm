@@ -151,14 +151,15 @@
 
 	proc/erase_area()
 		var/turf/origin = get_turf(src)
-		for (var/turf/T in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
-			for (var/obj/O in T)
+		for (var/turf/T as anything in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
+			for (var/atom/movable/AM as anything in T)
+				var/obj/O = AM
 				if (!(O.type in mining_controls.magnet_do_not_erase) && !istype(O, /obj/magnet_target_marker))
 					qdel(O)
+				var/mob/M = AM
+				if(ismobcritter(M) && isdead(M)) // we don't care about dead critters
+					qdel(M)
 			T.ClearAllOverlays()
-			for (var/mob/living/L in T)
-				if(ismobcritter(L) && isdead(L)) // we don't care about dead critters
-					qdel(L)
 			if(istype(T,/turf/unsimulated) && ( T.GetComponent(/datum/component/buildable_turf) || (station_repair.station_generator && (origin.z == Z_LEVEL_STATION))))
 				T.ReplaceWith(/turf/space, force=TRUE)
 			else
@@ -168,7 +169,7 @@
 	proc/generate_walls()
 		var/list/walls = list()
 		var/turf/origin = get_turf(src)
-		for (var/cx = origin.x - 1, cx <= origin.x + width, cx++)
+		for (var/cx in (origin.x - 1) to (origin.x + width))
 			var/turf/S = locate(cx, origin.y - 1, origin.z)
 			if (S)
 				var/Q = new /obj/forcefield/mining(S)
@@ -177,7 +178,7 @@
 			if (S)
 				var/Q = new /obj/forcefield/mining(S)
 				walls += Q
-		for (var/cy = origin.y, cy <= origin.y + height - 1, cy++)
+		for (var/cy in origin.y to (origin.y + height - 1))
 			var/turf/S = locate(origin.x - 1, cy, origin.z)
 			if (S)
 				var/Q = new /obj/forcefield/mining(S)
@@ -192,30 +193,25 @@
 		// this used to use an area, which meant it only checked
 		var/turf/origin = get_turf(src)
 		var/unacceptable = FALSE
-		for (var/turf/T in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
-
-			for (var/mob/living/L in T)
-				if(ismobcritter(L)) // we don't care about critters
+		for (var/turf/T as anything in block(origin, locate(origin.x + width - 1, origin.y + height - 1, origin.z)))
+			for(var/atom/movable/AM as anything in T)
+				if(ismobcritter(AM)) // we don't care about critters
 					continue
-				if(!isintangible(L)) //neither blob overmind or AI eye should block this
+				if(!isintangible(AM) || isvehicle(AM)) //neither blob overmind or AI eye should block this
 					unacceptable = TRUE
 					break
-			for (var/obj/machinery/vehicle/V in T)
-				unacceptable = TRUE
-				break
-
-			for (var/obj/artifact/A in T) // check if an artifact has someone inside
-				if (istype(A, /obj/artifact/prison))
-					var/datum/artifact/prison/P = A.artifact
+				if (istype(AM, /obj/artifact/prison))  // check if an artifact has someone inside
+					var/datum/artifact/prison/P = AM:artifact
 					if(istype(P.prisoner))
 						unacceptable = TRUE
 						break
-				else if (istype(A, /obj/artifact/cloner))
-					var/datum/artifact/cloner/C = A.artifact
+				else if (istype(AM, /obj/artifact/cloner))
+					var/datum/artifact/cloner/C = AM:artifact
 					if(istype(C.clone))
 						unacceptable = TRUE
 						break
-
+			if(unacceptable)
+				break
 		return unacceptable
 
 	proc/UL()
@@ -595,7 +591,7 @@
 		if (!length(wall_bits))
 			wall_bits = target.generate_walls()
 
-		for (var/obj/forcefield/mining/M in wall_bits)
+		for (var/obj/forcefield/mining/M as anything in wall_bits)
 			M.set_opacity(1)
 			M.set_density(1)
 			M.invisibility = INVIS_NONE
@@ -770,7 +766,7 @@
 			.["isLinked"] = TRUE
 		else
 			var/list/linkedMagnets = list()
-			for (var/obj/M in linked_magnets)
+			for (var/obj/machinery/mining_magnet/M as anything in linked_magnets)
 				var/magnetData = list(
 					name = M.name,
 					x = M.x,
@@ -825,7 +821,7 @@
 			linked_magnets += MC.linked_magnet
 		else
 			badmagnets++
-	if (linked_magnets.len)
+	if (length(linked_magnets))
 		return 0
 	if (badmagnets)
 		return 1
@@ -1191,9 +1187,9 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 			light = src.GetOverlayImage("ambient")
 		src.ClearAllOverlays() // i know theres probably a better way to handle this
 		if(light)
-			src.UpdateOverlays(light, "ambient")
+			src.AddOverlaysAllOff(light, "ambient")
 		if(src.fullbright)
-			src.UpdateOverlays(new/image/fullbright, "fullbright")
+			src.AddOverlaysAllOff(new/image/fullbright, "fullbright")
 		src.top_overlays()
 		src.ore_overlays()
 
@@ -1201,28 +1197,28 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 		var/image/top_overlay = image('icons/turf/walls_asteroid.dmi',"top[src.topnumber]")
 		top_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls_asteroid.dmi',"mask2[src.icon_state]"))
 		top_overlay.layer = ASTEROID_TOP_OVERLAY_LAYER
-		UpdateOverlays(top_overlay, "ast_top_rock")
+		src.AddOverlaysAllOff(top_overlay, "ast_top_rock")
 
 	proc/ore_overlays()
 		if(src.ore) // make sure ores dont turn invisible
 			var/image/ore_overlay = image('icons/turf/walls_asteroid.dmi',"[src.ore?.name][src.orenumber]")
 			ore_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls_asteroid.dmi',"mask-side_[src.icon_state]"))
 			ore_overlay.layer = ASTEROID_ORE_OVERLAY_LAYER // so meson goggle nerds can still nerd away
-			src.UpdateOverlays(ore_overlay, "ast_ore")
+			src.AddOverlaysAllOff(ore_overlay, "ast_ore")
 
 	proc/space_overlays()
-		for (var/turf/space/A in orange(src,1))
+		for (var/turf/space/A in ORANGE_TURFS(1, src))
 			var/image/edge_overlay = image('icons/turf/walls_asteroid.dmi', "edge[get_dir(A,src)]")
 			edge_overlay.appearance_flags = PIXEL_SCALE | TILE_BOUND | RESET_COLOR | RESET_ALPHA
 			edge_overlay.layer = src.layer + 1
 			edge_overlay.plane = PLANE_WALL-1
 			edge_overlay.layer = TURF_EFFECTS_LAYER
 			edge_overlay.color = src.stone_color
-			A.UpdateOverlays(edge_overlay, "ast_edge_[get_dir(A,src)]")
+			A.AddOverlaysAllOff(edge_overlay, "ast_edge_[get_dir(A,src)]")
 			src.space_overlays += edge_overlay
 
 	Del()
-		for(var/turf/T in orange(src, 1))
+		for(var/turf/T as anything in ORANGE_TURFS(1, src))
 			T.ClearSpecificOverlays("ast_edge_[get_dir(T, src)]")
 		..()
 

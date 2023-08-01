@@ -75,7 +75,7 @@
 			var/ts = childrentypesof(/datum/stock/industry)
 			var/in_t = pick(ts)
 			industry = new in_t
-		for (var/i = 0, i < rand(2, 5), i++)
+		for (var/i in 0 to rand(2, 5)-1)
 			products += industry.generateProductName(name)
 
 	proc/frc(amt)

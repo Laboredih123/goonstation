@@ -721,7 +721,7 @@
 	src.canmove = 0
 	src.lying = 1
 	src.last_sleep = 0
-	src.UpdateOverlays(null, "sleep_bubble")
+	src.ClearOverlaysAllOff("sleep_bubble")
 	var/h = src.hand
 	src.hand = 0
 	drop_item()
@@ -2716,7 +2716,7 @@
 			if (prob(50) && organHolder.butt.loc == src)
 				ret += organHolder.butt
 
-	for (var/atom/movable/A in contents)
+	for (var/atom/movable/A as anything in contents)
 		if (A in processed)
 			continue
 		if (istype(A, /atom/movable/screen)) // maybe people will stop gibbing out their stamina bars now  :|

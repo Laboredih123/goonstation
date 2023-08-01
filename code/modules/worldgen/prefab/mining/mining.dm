@@ -21,11 +21,10 @@ ABSTRACT_TYPE(/datum/mapPrefab/mining)
 		return locate(adjustX, adjustY, target.z)
 
 	verify_position(turf/target)
-		for(var/x=0, x<prefabSizeX; x++)
-			for(var/y=0, y<prefabSizeY; y++)
-				var/turf/L = locate(target.x+x, target.y+y, target.z)
-				if(L?.loc && ((L.loc.type != /area/space) && !istype(L.loc , /area/allowGenerate)))
-					return FALSE
+		var/list/turf/toverify = block(locate(target.x, target.y, target.z), locate(target.x+prefabSizeX-1, target.y+prefabSizeY-1, target.z))
+		for(var/turf/T as anything in toverify)
+			if(T.loc && (!istype_exact(T.loc, /area/space) && !istype(T.loc , /area/allowGenerate)))
+				return FALSE
 		return TRUE
 
 // Prefabs that only spawn in space
