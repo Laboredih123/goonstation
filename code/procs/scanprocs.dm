@@ -769,15 +769,15 @@
 		if (pda_readout == 1) // Output goes into PDA interface, not the user's chatbox.
 			data = "Air Pressure: [round(pressure, 0.1)] kPa<br>\
 			Temperature: [round(check_me.temperature)] K<br>\
-			[CONCENTRATION_REPORT(check_me, "<br>")]"
+			[CONCENTRATION_REPORT(check_me, "<br>", 1)]"
 
 		else if (simple_output) // For the log_atmos() proc.
 			data = "(<b>Pressure:</b> <i>[round(pressure, 0.1)] kPa</i>, <b>Temp:</b> <i>[round(check_me.temperature)] K</i>\
-			, <b>Contents:</b> <i>[CONCENTRATION_REPORT(check_me, ", ")]</i>"
+			, <b>Contents:</b> <i>[CONCENTRATION_REPORT(check_me, ", ", 1)]</i>"
 
 		else if (alert_output) // For the alert_atmos() proc.
 			data = "(<b>Pressure:</b> <i>[round(pressure, 0.1)] kPa</i>, <b>Temp:</b> <i>[round(check_me.temperature)] K</i>\
-			, <b>Contents:</b> <i>[SIMPLE_CONCENTRATION_REPORT(check_me, ", ")]</i>"
+			, <b>Contents:</b> <i>[SIMPLE_CONCENTRATION_REPORT(check_me, ", ", 1)]</i>"
 
 		else
 			data = "--------------------------------<br>\
@@ -786,7 +786,7 @@
 			Pressure: [round(pressure, 0.1)] kPa<br>\
 			Temperature: [round(check_me.temperature)] K<br>\
 			Volume: [check_me.volume] L<br>\
-			[SIMPLE_CONCENTRATION_REPORT(check_me, "<br>")]"
+			[SIMPLE_CONCENTRATION_REPORT(check_me, "<br>", 1)]"
 
 	else
 		// Only used for "Atmospheric Scan" accessible through the PDA interface, which targets the turf

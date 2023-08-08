@@ -955,7 +955,7 @@ TYPEINFO(/obj/machinery/networked/storage)
 
 				results.fields += "Tank Pressure: [round(pressure,0.1)] kPa"
 				if(total_moles)
-					LIST_CONCENTRATION_REPORT(environment, results.fields)
+					LIST_CONCENTRATION_REPORT(environment, results.fields, 1)
 					results.fields += "|n"
 
 				else
@@ -971,7 +971,7 @@ TYPEINFO(/obj/machinery/networked/storage)
 
 				results.fields += "Tank Pressure: [round(pressure,0.1)] kPa"
 				if(total_moles)
-					LIST_CONCENTRATION_REPORT(environment, results.fields)
+					LIST_CONCENTRATION_REPORT(environment, results.fields, 1)
 					results.fields += "|n"
 
 				else
