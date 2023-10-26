@@ -1386,13 +1386,26 @@ proc/outermost_movable(atom/movable/target)
 
 //Shoves a jump to link or whatever in the thing :effort:
 /proc/showCoords(x, y, z, plaintext, holder)
-	var text
 	if (plaintext)
-		text += "[x], [y], [z]"
+		return jointext(list(x, y, z), ", ")
 	else
-		text += "<a href='?src=[holder ? "\ref[holder]" : "%admin_ref%"];action=jumptocoords;target=[x],[y],[z]' title='Jump to Coords'>[x],[y],[z]</a>"
-
-	return text
+		var/list/text = list()
+		text += "<a href='?src="
+		text += holder ? ref(holder) : "%admin_ref%"
+		text += ";action=jumptocoords;target="
+		text += x
+		text += ","
+		text += y
+		text += ","
+		text += z
+		text += "' title='Jump to Coords'>"
+		text += x
+		text += ","
+		text += y
+		text += ","
+		text += z
+		text += "</a>"
+		return jointext(text, "")
 
 // hi I'm haine -throws more crap onto the pile-
 /proc/rand_deci(var/num1 = 1, var/num2 = 0, var/num3 = 2, var/num4 = 0)
@@ -2551,7 +2564,7 @@ proc/connectdirs_to_byonddirs(var/connectdir_bitflag)
 	var/icon/IC = new/icon(A.icon)
 	var/width = IC.Width()
 	var/regex/locfinder = new(@"^(\w*)([+-]\d)?(:\d+)?(.*)$") //chops up X-axis of a screen_loc
-	if(width != 32 && locfinder.Find("[new_screen_loc]")) //if we're 32-width, just use the loc we're given
+	if(width != 32 && findtext("[new_screen_loc]", locfinder)) //if we're 32-width, just use the loc we're given
 		var/offset = 0
 		if(startswith(locfinder.group[3], ":"))
 			offset = text2num(copytext(locfinder.group[3], 2))

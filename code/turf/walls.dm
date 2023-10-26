@@ -58,11 +58,12 @@ TYPEINFO(/turf/simulated/wall)
 
 	onMaterialChanged()
 		..()
-		if(istype(src.material))
-			if(src.material.getProperty("density") >= 6)
-				health *= 1.5
-			else if (src.material.getProperty("density") <= 2)
-				health *= 0.75
+		if(src.material)
+			switch(src.material.getProperty("density"))
+				if(6, INFINITY)
+					health *= 1.5
+				if (-INFINITY, 2)
+					health *= 0.75
 			if(src.material.getMaterialFlags() & MATERIAL_CRYSTAL)
 				health /= 2
 		return

@@ -129,7 +129,7 @@ ClearSpecificOverlays(1, "key0", "key1", "key2") 	//Same as above but retains ca
 	else if(!prev_data) //We don't have data and we won't add an overlay
 		return 0
 
-	var/hash = I ? "\ref[I.appearance]" : null
+	var/hash = I ? ref(I.appearance) : null
 	var/image/prev_overlay = prev_data[P_IMAGE] //overlay_refs[key]
 	if(!force && (prev_overlay == I) && hash == prev_data[P_ISTATE] ) //If it's the same image as the other one and the appearances match then do not update
 		return 0
@@ -140,7 +140,7 @@ ClearSpecificOverlays(1, "key0", "key1", "key2") 	//Same as above but retains ca
 	#endif
 	if(I)
 		for(var/ikey in overlay_refs)
-			if(ikey != key && overlay_refs[ikey][P_INDEX] > 0 && overlay_refs[ikey][P_ISTATE] == ref(I.appearance))
+			if(ikey != key && overlay_refs[ikey][P_INDEX] > 0 && overlay_refs[ikey][P_ISTATE] == hash)
 				// logTheThing(LOG_DEBUG, null, "Attempt to add duplicate overlay appearances on [identify_object(src)] with keys [key] and [ikey].")
 				I.layer += 0.0000001 * rand()
 
@@ -154,7 +154,7 @@ ClearSpecificOverlays(1, "key0", "key1", "key2") 	//Same as above but retains ca
 		prev_data[P_INDEX] = 0
 		for(var/ikey in overlay_refs) //Because we're storing the position of each overlay in the list we need to shift our indices down to stay synched
 			var/list/L = overlay_refs[ikey]
-			if(L?.len > 0 && L[P_INDEX] >= index)
+			if(length(L) && L[P_INDEX] >= index)
 				L[P_INDEX]--
 
 	if(I)
@@ -163,7 +163,7 @@ ClearSpecificOverlays(1, "key0", "key1", "key2") 	//Same as above but retains ca
 		prev_data[P_INDEX] = index
 
 		prev_data[P_IMAGE] = I
-		prev_data[P_ISTATE] = "\ref[I.appearance]"
+		prev_data[P_ISTATE] = hash
 
 		overlay_refs[key] = prev_data
 	else

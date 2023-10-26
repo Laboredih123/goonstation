@@ -4,7 +4,7 @@ var/RL_Suspended = 0
 
 proc/RL_Start()
 	global.RL_Started = 1
-	for (var/datum/light/light)
+	for_by_tcl(light, /datum/light)
 		if (light.enabled)
 			light.apply()
 	for (var/turf/T in world)
@@ -109,8 +109,10 @@ proc/get_moving_lights_stats()
 		if (!T.RL_Lights)
 			T.RL_Lights = list()
 		T.RL_Lights |= src
+	START_TRACKING
 
 /datum/light/disposing()
+	STOP_TRACKING
 	src.disable(queued_run = 1) //dont queue... we wanna actually disable it before remove_from_turf etc
 	src.remove_from_turf()
 	src.detach()

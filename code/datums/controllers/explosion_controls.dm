@@ -65,15 +65,16 @@ var/datum/explosion_controller/explosions
 			queued_turfs[T] = 2 * (queued_turfs[T])**(1 / (2 * RSS_SCALE))
 			p = queued_turfs[T]
 			explosion = queued_turfs_blame[T]
-			if (p >= 6)
-				for (var/mob/M in T)
-					M.ex_act(1, explosion?.last_touched, p)
-			else if (p > 3)
-				for (var/mob/M in T)
-					M.ex_act(2, explosion?.last_touched, p)
-			else
-				for (var/mob/M in T)
-					M.ex_act(3, explosion?.last_touched, p)
+			switch(p)
+				if (-INFINITY to 3)
+					for (var/mob/M in T)
+						M.ex_act(3, explosion?.last_touched, p)
+				if (3 to 6)
+					for (var/mob/M in T)
+						M.ex_act(2, explosion?.last_touched, p)
+				if (6 to INFINITY)
+					for (var/mob/M in T)
+						M.ex_act(1, explosion?.last_touched, p)
 
 		LAGCHECK(LAG_HIGH)
 
@@ -84,12 +85,13 @@ var/datum/explosion_controller/explosions
 					continue
 				var/power = highest_explosion_power(O)
 				var/severity
-				if (power >= 6)
-					severity = 1
-				else if (power > 3)
-					severity = 2
-				else
-					severity = 3
+				switch (power)
+					if (-INFINITY to 3)
+						severity = 3
+					if (3 to 6)
+						severity = 2
+					if (6 to INFINITY)
+						severity = 1
 				O.ex_act(severity, explosion?.last_touched, power)
 				O?.last_explosion = explosion
 

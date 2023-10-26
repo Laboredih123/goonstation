@@ -47,9 +47,8 @@ var/global/list/material_cache
 
 /// Called AFTER the material of the object was changed.
 /atom/proc/onMaterialChanged()
-	if(istype(src.material))
+	if(src.material)
 		explosion_resistance = material.hasProperty("density") ? sqrt(round(max(4, material.getProperty("density")) - 4)) : explosion_resistance
-		explosion_protection = material.hasProperty("density") ? sqrt(round(max(4, material.getProperty("density")) - 4)) : explosion_protection
 		if( !(flags & CONDUCT) && (src.material.getProperty("electrical") >= 5)) flags |= CONDUCT
 
 
@@ -147,7 +146,7 @@ var/global/list/material_cache
 		src.setTexture(null, key="material")
 		return
 
-	var/potential_new_icon_state = "[base_icon_state]$$[mat1.getID()]"
+	var/potential_new_icon_state = jointext(list(base_icon_state, "$$", mat1.getID()), "")
 	if(src.is_valid_icon_state(potential_new_icon_state))
 		src.icon_state = potential_new_icon_state
 		src.setTexture(null, key="material")

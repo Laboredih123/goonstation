@@ -112,6 +112,7 @@
 	return path
 
 
+var/global/list/extens = list("jpg", "jpeg", "png", "svg", "bmp", "gif", "eot", "woff", "woff2", "ttf", "otf")
 //Converts placeholder tags to filepaths appropriate for local-hosting offline (absolute, no subdirs)
 /proc/parseAssetLinks(file, path)
 	if (!file) return 0
@@ -119,10 +120,10 @@
 	//Get file extension
 	if (path)
 		var/list/parts = splittext(path, ".")
-		var/ext = parts[parts.len]
+		var/ext = parts[length(parts)]
 		ext = lowertext(ext)
 		//Is this file a binary thing
-		if (ext in list("jpg", "jpeg", "png", "svg", "bmp", "gif", "eot", "woff", "woff2", "ttf", "otf"))
+		if (ext in extens)
 			return 0
 
 	//Look for resource placeholder tags. {{resource("path/to/file")}}
@@ -131,7 +132,7 @@
 		fileText = file2text(file)
 	if (fileText && findtext(fileText, "{{resource"))
 		var/regex/R = new("\\{\\{resource\\(\"(.*?)\"\\)\\}\\}", "ig")
-		fileText = R.Replace(fileText, /proc/resource)
+		fileText = replacetext(fileText, R, /proc/resource)
 
 	return fileText
 
@@ -171,7 +172,7 @@
 		else //file is binary just throw it at the client as is
 			src << browse_rsc(fileRef, r)
 		if(i++ % 100 == 0)
-			sleep(1)
+			LAGCHECK(LAG_HIGH)
 
 
 //A thing for coders locally testing to use (as they might be offline = can't reach the CDN)

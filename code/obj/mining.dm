@@ -1208,14 +1208,14 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 		src.ore_overlays()
 
 	proc/top_overlays() // replaced what was here with cool stuff for autowalls
-		var/image/top_overlay = image('icons/turf/walls/asteroid.dmi',"top[src.topnumber]")
+		var/image/top_overlay = mutable_appearance('icons/turf/walls/asteroid.dmi',"top[src.topnumber]")
 		top_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls/asteroid.dmi',"mask2[src.icon_state]"))
 		top_overlay.layer = ASTEROID_TOP_OVERLAY_LAYER
 		UpdateOverlays(top_overlay, "ast_top_rock")
 
 	proc/ore_overlays()
 		if(src.ore) // make sure ores dont turn invisible
-			var/image/ore_overlay = image('icons/turf/walls/asteroid.dmi',"[src.ore?.name][src.orenumber]")
+			var/image/ore_overlay = mutable_appearance('icons/turf/walls/asteroid.dmi', jointext(list(src.ore?.name, src.orenumber), ""))
 			ore_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls/asteroid.dmi',"mask-side_[src.icon_state]"))
 			ore_overlay.layer = ASTEROID_ORE_OVERLAY_LAYER // so meson goggle nerds can still nerd away
 			src.UpdateOverlays(ore_overlay, "ast_ore")
@@ -1235,7 +1235,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 			if (skip_this)
 				A.ClearSpecificOverlays("ast_edge_[dir_from]")
 				continue
-			var/image/edge_overlay = image('icons/turf/walls/asteroid.dmi', "edge[dir_from]")
+			var/image/edge_overlay = mutable_appearance('icons/turf/walls/asteroid.dmi', "edge[dir_from]")
 			edge_overlay.appearance_flags = PIXEL_SCALE | TILE_BOUND | RESET_COLOR | RESET_ALPHA
 			edge_overlay.layer = src.layer + 1
 			edge_overlay.plane = PLANE_NOSHADOW_BELOW

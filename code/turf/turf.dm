@@ -333,17 +333,18 @@
 /turf/space/New()
 	..()
 	if(global.dont_init_space) return
-	if (icon_state == "placeholder") icon_state = "[rand(1,25)]"
-	if (icon_state == "aplaceholder") icon_state = "a[rand(1,10)]"
-	if (icon_state == "dplaceholder") icon_state = "[rand(1,25)]"
-	if (icon_state == "d2placeholder") icon_state = "near_blank"
-	if (blowout == 1)
-		icon_state = "blowout[rand(1,5)]"
+	switch(src.icon_state)
+		if ("placeholder") icon_state = "[rand(1,25)]"
+		if ("dplaceholder") icon_state = "[rand(1,25)]"
+		if ("aplaceholder") icon_state = "a[rand(1,10)]"
+		if ("d2placeholder") icon_state = "near_blank"
+	
 	if (derelict_mode == 1)
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "darkvoid"
 		name = "void"
 		desc = "Yep, this is fine."
+
 	#ifndef CI_RUNTIME_CHECKING
 	if(buzztile == null && prob(0.01) && src.z == Z_LEVEL_STATION) //Dumb shit to trick nerds.
 		buzztile = src
@@ -522,7 +523,7 @@ proc/generate_space_color()
 
 	return ..(Obj, newloc)
 
-/turf/Entered(atom/movable/M as mob|obj, atom/OldLoc)
+/turf/Entered(atom/movable/M, atom/OldLoc)
 	if(ismob(M) && !src.throw_unlimited && !M.no_gravity)
 		var/mob/tmob = M
 		tmob.inertia_dir = 0

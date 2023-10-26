@@ -75,22 +75,22 @@ dmm_suite
 		var/regex/grid = regex(@{"\(([0-9]*),([0-9]*),([0-9]*)\) = \{"\n((?:\l*\n)*)"\}"}, "g")
 		var/list/coordShifts = list()
 		var/maxZFound = 1
-		while(grid.Find(gridText))
+		while(findtext(gridText, grid))
 			gridLevels.Add(copytext(grid.group[4], 1, -1)) // Strip last \n
 			coordShifts.Add(list(list(grid.group[1], grid.group[2], grid.group[3])))
 			maxZFound = max(maxZFound, text2num(grid.group[3]))
 		// Create all Atoms at map location, from model key
 		if ((coordZ+maxZFound-1) > world.maxz)
 			world.setMaxZ(coordZ+maxZFound-1)
-		for(var/posZ = 1 to gridLevels.len)
+		for(var/posZ = 1 to length(gridLevels))
 			var zGrid = gridLevels[posZ]
 			// Reverse Y coordinate
 			var/list/yReversed = text2list(zGrid, "\n")
 			var/list/yLines = list()
-			for(var/posY = yReversed.len to 1 step -1)
+			for(var/posY = length(yReversed) to 1 step -1)
 				yLines.Add(yReversed[posY])
 			//
-			var yMax = yLines.len+(coordY-1)
+			var yMax = length(yLines)+(coordY-1)
 			if(world.maxy < yMax)
 				world.maxy = yMax
 				logTheThing(LOG_DEBUG, null, "[tag] caused map resize (Y) during prefab placement")
@@ -100,7 +100,7 @@ dmm_suite
 				world.maxx = xMax
 				logTheThing(LOG_DEBUG, null, "[tag] caused map resize (X) during prefab placement")
 
-			props.maxX = max(length(exampleLine)/key_len, gridLevels.len)+(coordX-1)
+			props.maxX = max(length(exampleLine)/key_len, length(gridLevels))+(coordX-1)
 			props.maxY = yMax
 			props.maxZ = coordZ
 
@@ -109,11 +109,11 @@ dmm_suite
 			var/gridCoordZ = text2num(coordShifts[posZ][3])  + coordZ - 1
 
 			if(flags && posZ == 1) // do this only once so we don't delete our own stuff if it's big!!!
-				for(var/internalPosZ = 1 to gridLevels.len)
+				for(var/internalPosZ = 1 to length(gridLevels))
 					var/igridCoordX = text2num(coordShifts[internalPosZ][1]) + coordX - 1
 					var/igridCoordY = text2num(coordShifts[internalPosZ][2])  + coordY - 1
 					var/igridCoordZ = text2num(coordShifts[internalPosZ][3])  + coordZ - 1
-					for(var/posY = 1 to yLines.len)
+					for(var/posY = 1 to length(yLines))
 						var yLine = yLines[posY]
 						for(var/posX = 1 to length(yLine)/key_len)
 							var/turf/T = locate(posX + igridCoordX - 1, posY+igridCoordY - 1, igridCoordZ)
@@ -124,7 +124,7 @@ dmm_suite
 									qdel(x)
 								LAGCHECK(LAG_MED)
 
-			for(var/posY = 1 to yLines.len)
+			for(var/posY = 1 to length(yLines))
 				var yLine = yLines[posY]
 				for(var/posX = 1 to length(yLine)/key_len)
 					var keyPos = ((posX-1)*key_len)+1
@@ -165,7 +165,7 @@ dmm_suite
 			var/stringIndex = 1
 			var/found
 			do
-				found = noStrings.Find(models, noStrings.next)
+				found = findtext(models, noStrings, noStrings.next)
 				if(found)
 					var indexText = {""[stringIndex]""}
 					stringIndex++
@@ -186,7 +186,7 @@ dmm_suite
 						var attributesText = copytext(atomModel, bracketPos+1, -1)
 						var/list/paddedAttributes = splittext(attributesText, semicolon_delim) // "Key = Value"
 						for(var/paddedAttribute in paddedAttributes)
-							key_value_regex.Find(paddedAttribute)
+							findtext(paddedAttribute, key_value_regex)
 							attributes[key_value_regex.group[1]] = key_value_regex.group[2]
 					// load areas first
 					if(!areaDone)
@@ -280,7 +280,7 @@ dmm_suite
 					var/key_str = list_value
 					var/val_str = null
 					if(findtext(key_str, "="))
-						key_value_regex.Find(key_str)
+						findtext(key_str, key_value_regex)
 						key_str = key_value_regex.group[1]
 						val_str = key_value_regex.group[2]
 						var/val = isnull(val_str) ? null : loadAttribute(trim(val_str), strings)

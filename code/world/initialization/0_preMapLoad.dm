@@ -234,4 +234,6 @@
 
 	var/init = LIBCALL(lib, "init")()
 	if("0" != init) CRASH("[lib] init error: [init]")
+	for(var/x in 1 to 1000000)
+		x = x*rand()
 #endif

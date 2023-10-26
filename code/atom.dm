@@ -539,7 +539,7 @@ TYPEINFO(/atom/movable)
 		src.loc.Entered(src, null)
 		if(isturf(src.loc)) // call it on the area too
 			src.loc.loc.Entered(src, null)
-			for(var/atom/A in src.loc)
+			for(var/atom/A as anything in src.loc)
 				if(A != src)
 					A.Crossed(src)
 
@@ -1097,7 +1097,7 @@ TYPEINFO(/atom/movable)
 			for(var/turf/covered_turf as anything in oldlocs)
 				covered_turf.pass_unstable -= src.pass_unstable
 				covered_turf.passability_cache = null
-		for(var/atom/A in oldloc)
+		for(var/atom/A as anything in oldloc)
 			if(A != src)
 				A.Uncrossed(src)
 
@@ -1112,7 +1112,7 @@ TYPEINFO(/atom/movable)
 			for(var/turf/covered_turf as anything in src.locs)
 				covered_turf.pass_unstable += src.pass_unstable
 				covered_turf.passability_cache = null
-		for(var/atom/A in newloc)
+		for(var/atom/A as anything in newloc)
 			if(A != src)
 				A.Crossed(src)
 
@@ -1121,7 +1121,7 @@ TYPEINFO(/atom/movable)
 		new_area.Entered(src, oldloc)
 
 	if (islist(src.attached_objs) && length(attached_objs))
-		for (var/atom/movable/M in src.attached_objs)
+		for (var/atom/movable/M as anything in src.attached_objs)
 			M.set_loc(src.loc)
 
 	if (isturf(last_turf) && (src.event_handler_flags & USE_PROXIMITY))
