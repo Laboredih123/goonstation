@@ -691,3 +691,119 @@
 
 	var/turf/T = src.loc			// hide if turf is not intact
 	hide(T.intact)
+
+
+/obj/machinery/atmospherics/pipe/fourway
+	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi'
+#ifdef IN_MAP_EDITOR
+	icon_state = "4way-map"
+#else
+	icon_state = "4way"
+#endif
+	name = "pipe manifold"
+	desc = "A manifold composed of regular pipes"
+	level = UNDERFLOOR
+	volume = 140
+	var/obj/machinery/atmospherics/node1
+	var/obj/machinery/atmospherics/node2
+	var/obj/machinery/atmospherics/node3
+	var/obj/machinery/atmospherics/node4
+
+/obj/machinery/atmospherics/pipe/fourway/overfloor
+	level = OVERFLOOR
+
+/obj/machinery/atmospherics/pipe/fourway/New()
+	..()
+	initialize_directions = (NORTH|SOUTH|EAST|WEST)
+
+/obj/machinery/atmospherics/pipe/fourway/hide(var/intact)
+	var/hide_pipe = CHECKHIDEPIPE(src)
+	invisibility = hide_pipe ? INVIS_ALWAYS : INVIS_NONE
+	SET_PIPE_UNDERLAY(src.node1, dir, "short", issimplepipe(src.node1) ?  src.node1.color : null, hide_pipe)
+	SET_PIPE_UNDERLAY(src.node2, turn(src.dir, 90), "short", issimplepipe(src.node2) ?  src.node2.color : null, hide_pipe)
+	SET_PIPE_UNDERLAY(src.node3, turn(src.dir, 180), "short", issimplepipe(src.node3) ?  src.node3.color : null, hide_pipe)
+	SET_PIPE_UNDERLAY(src.node4, turn(src.dir, -90), "short", issimplepipe(src.node4) ?  src.node4.color : null, hide_pipe)
+
+/obj/machinery/atmospherics/pipe/fourway/pipeline_expansion()
+	return list(node1, node2, node3, node4)
+
+/obj/machinery/atmospherics/pipe/fourway/process()
+	..()
+
+	if (!(src.node1 && src.node2 && src.node3 && src.node4))
+		parent.mingle_with_turf(loc, 70)
+
+/obj/machinery/atmospherics/pipe/fourway/disposing()
+	node1?.disconnect(src)
+	node2?.disconnect(src)
+	node3?.disconnect(src)
+	node4?.disconnect(src)
+	parent = null
+	..()
+
+/obj/machinery/atmospherics/pipe/fourway/disconnect(obj/machinery/atmospherics/reference)
+	if(reference == node1)
+		if(istype(node1, /obj/machinery/atmospherics/pipe))
+			if (parent)
+				parent.dispose()
+			parent = null
+		node1 = null
+
+	if(reference == node2)
+		if(istype(node2, /obj/machinery/atmospherics/pipe))
+			if (parent)
+				parent.dispose()
+			parent = null
+		node2 = null
+
+	if(reference == node3)
+		if(istype(node3, /obj/machinery/atmospherics/pipe))
+			if (parent)
+				parent.dispose()
+			parent = null
+		node3 = null
+
+	if(reference == node4)
+		if(istype(node4, /obj/machinery/atmospherics/pipe))
+			if (parent)
+				parent.dispose()
+			parent = null
+		node4  = null
+
+	UpdateIcon()
+
+	..()
+
+/obj/machinery/atmospherics/pipe/fourway/update_icon()
+	var/turf/T = get_turf(src)
+	src.hide(T.intact)
+	alpha = invisibility ? 128 : 255
+
+/obj/machinery/atmospherics/pipe/fourway/initialize()
+	var/node1_connect = dir
+	var/node2_connect = turn(src.dir, 90)
+	var/node3_connect = turn(src.dir, 180)
+	var/node4_connect = turn(src.dir, -90)
+
+	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
+		if(target.initialize_directions & get_dir(target,src))
+			src.node1 = target
+			break
+
+	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
+		if(target.initialize_directions & get_dir(target,src))
+			src.node2 = target
+			break
+
+	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
+		if(target.initialize_directions & get_dir(target,src))
+			src.node3 = target
+			break
+
+	for(var/obj/machinery/atmospherics/target in get_step(src,node4_connect))
+		if(target.initialize_directions & get_dir(target,src))
+			src.node4 = target
+			break
+
+	var/turf/T = src.loc			// hide if turf is not intact
+	hide(T.intact)
