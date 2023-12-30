@@ -1936,6 +1936,7 @@ var/datum/preMapLoad/preMapLoad = new
 #include "code\obj\item\tool\hedron_beam.dm"
 #include "code\obj\item\tool\omnitool.dm"
 #include "code\obj\item\tool\screwdriver.dm"
+#include "code\obj\item\tool\tanktest.dm"
 #include "code\obj\item\tool\weldingtool.dm"
 #include "code\obj\item\tool\wirecutters.dm"
 #include "code\obj\item\tool\wrench.dm"
