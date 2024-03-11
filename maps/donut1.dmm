@@ -40,7 +40,7 @@
 	},
 /area/station/medical/research)
 "af" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -122,7 +122,7 @@
 /obj/machinery/alarm{
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -173,7 +173,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "ay" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/door/poddoor/pyro{
 	density = 0;
 	dir = 4;
@@ -217,7 +217,7 @@
 /turf/simulated/floor/sanitary/white,
 /area/station/medical/morgue)
 "aE" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -319,7 +319,7 @@
 /area/station/science/lab)
 "aU" = (
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /turf/simulated/floor/delivery/caution,
 /area/station/engine/monitoring)
 "aV" = (
@@ -335,9 +335,8 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/chapel/office)
 "aY" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 8;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/wall/auto/reinforced/supernorn,
@@ -480,10 +479,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/atmos)
 "bq" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	icon_state = "on";
-	on = 1
-	},
+/obj/machinery/atmospherics/unary/outlet_injector/active,
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "br" = (
@@ -578,7 +574,7 @@
 	},
 /area/station/engine/monitoring)
 "bE" = (
-/obj/machinery/atmospherics/pipe/vent{
+/obj/machinery/atmospherics/unary/vent{
 	dir = 1
 	},
 /turf/simulated/floor/engine{
@@ -641,7 +637,7 @@
 /area/station/medical/research)
 "bP" = (
 /obj/machinery/door/airlock/pyro/external,
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -794,7 +790,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 4
 	},
@@ -810,10 +806,8 @@
 /obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 8;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 8
 	},
 /turf/simulated/floor/grass{
 	name = "astroturf"
@@ -821,7 +815,7 @@
 /area/station/science/lab)
 "co" = (
 /obj/machinery/door/window,
-/obj/access_spawn/chapel_office,
+/obj/mapping_helper/access/chapel_office,
 /obj/machinery/door/firedoor/pyro{
 	layer = 29.1
 	},
@@ -958,7 +952,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/space)
 "cK" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 1
 	},
 /obj/item/crowbar,
@@ -996,7 +990,7 @@
 /turf/simulated/floor,
 /area/station/maintenance/north)
 "cP" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 8
 	},
 /turf/simulated/floor/delivery,
@@ -1032,7 +1026,7 @@
 /area/station/crew_quarters/courtroom)
 "cU" = (
 /obj/machinery/door/window,
-/obj/access_spawn/tox,
+/obj/mapping_helper/access/tox,
 /obj/landmark/spawner{
 	name = "monkeyspawn_normal"
 	},
@@ -1053,7 +1047,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "cW" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/white,
 /area/station/medical/research)
 "cX" = (
@@ -1103,7 +1097,7 @@
 	},
 /area/station/bridge)
 "dc" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/science/lab)
 "dd" = (
@@ -1141,10 +1135,16 @@
 	},
 /area/shuttle/brig/prison)
 "dh" = (
-/obj/machinery/atmospherics/pipe/tank/nitrogen/west,
-/obj/machinery/atmospherics/pipe/tank/nitrogen/south,
-/obj/machinery/atmospherics/pipe/tank/nitrogen/north,
-/obj/machinery/atmospherics/pipe/tank/nitrogen/east,
+/obj/machinery/atmospherics/unary/tank/nitrogen{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/tank/nitrogen,
+/obj/machinery/atmospherics/unary/tank/nitrogen{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/tank/nitrogen{
+	dir = 4
+	},
 /obj/map/light/brighterwhite,
 /turf/simulated/floor/engine{
 	name = "n2 floor";
@@ -1153,7 +1153,7 @@
 	},
 /area/space)
 "di" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
@@ -1237,7 +1237,7 @@
 	},
 /area/space)
 "dw" = (
-/obj/machinery/atmospherics/pipe/vent{
+/obj/machinery/atmospherics/unary/vent{
 	dir = 1
 	},
 /turf/simulated/floor/engine{
@@ -1323,7 +1323,7 @@
 /turf/simulated/floor/blue,
 /area/station/engine/gas)
 "dI" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "dJ" = (
@@ -1352,7 +1352,7 @@
 /area/station/security/brig)
 "dM" = (
 /obj/machinery/door/airlock/pyro/security,
-/obj/access_spawn/engineering_atmos,
+/obj/mapping_helper/access/engineering_atmos,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
@@ -1475,7 +1475,7 @@
 /obj/machinery/door/airlock/pyro/external{
 	dir = 8
 	},
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /turf/simulated/floor,
 /area/station/engine/singcore{
 	name = "Engine Launcher Room"
@@ -1594,10 +1594,7 @@
 /turf/simulated/floor/bluewhite/corner,
 /area/station/medical/research)
 "es" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	icon_state = "on";
-	on = 1
-	},
+/obj/machinery/atmospherics/unary/outlet_injector/active,
 /obj/cable{
 	icon_state = "1-8"
 	},
@@ -1609,7 +1606,7 @@
 	},
 /area/station/turret_protected/ai_upload)
 "eu" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -1622,10 +1619,8 @@
 /obj/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/airless/engine,
 /area/station/storage/secure)
@@ -1749,9 +1744,8 @@
 	},
 /area/station/hallway/secondary/entry)
 "eQ" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 8;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor,
@@ -1777,7 +1771,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/security,
+/obj/mapping_helper/access/security,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
 "eU" = (
@@ -1808,7 +1802,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/engine/monitoring)
 "eZ" = (
@@ -1872,7 +1866,7 @@
 	},
 /area/station/hallway/secondary/exit)
 "fj" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /turf/unsimulated/floor/delivery/white,
@@ -1893,7 +1887,7 @@
 	dir = 8;
 	pixel_x = 20
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 1
 	},
 /obj/cable{
@@ -2140,7 +2134,7 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "fU" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/light{
 	dir = 1
@@ -2164,7 +2158,7 @@
 /turf/simulated/floor,
 /area/station/storage/secure)
 "fW" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 4
 	},
@@ -2197,9 +2191,8 @@
 	},
 /area/station/turret_protected/ai)
 "gb" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /obj/cable{
@@ -2261,7 +2254,7 @@
 	},
 /area/shuttle/brig/prison)
 "gk" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -2317,7 +2310,7 @@
 /obj/machinery/alarm{
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -2345,9 +2338,8 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "gv" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 1;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -2390,7 +2382,7 @@
 /turf/simulated/floor/specialroom/medbay,
 /area/station/medical/medbay)
 "gC" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -2521,7 +2513,7 @@
 /turf/simulated/floor/specialroom/medbay,
 /area/station/medical/medbay)
 "gU" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-4"
@@ -2539,7 +2531,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "gX" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "gZ" = (
@@ -2610,7 +2602,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
 /area/station/atmos)
@@ -2640,7 +2632,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/window/reinforced{
 	dir = 1
 	},
@@ -2677,7 +2669,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "hs" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
 "ht" = (
@@ -2698,7 +2690,7 @@
 	name = "Foresnics"
 	})
 "hv" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -2786,7 +2778,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "hI" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /obj/cable{
@@ -2817,9 +2809,7 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "hN" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	on = 1;
-	pixel_y = 1;
+/obj/machinery/atmospherics/binary/passive_gate/opened{
 	target_pressure = 1e+031
 	},
 /turf/simulated/floor,
@@ -2865,7 +2855,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "hV" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor,
 /area/station/atmos)
@@ -2893,7 +2883,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/retrofilter,
+/obj/machinery/atmospherics/trinary/retrofilter,
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "hZ" = (
@@ -2996,7 +2986,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/bridge)
 "io" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/hallway/secondary/entry)
 "ip" = (
@@ -3038,7 +3028,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 4
 	},
@@ -3086,7 +3076,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "iA" = (
@@ -3188,16 +3178,14 @@
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4
 	},
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/simulated/floor,
 /area/station/security/brig)
 "iR" = (
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/storage)
 "iS" = (
-/obj/machinery/atmospherics/binary/passive_gate{
-	on = 1;
-	pixel_y = 1;
+/obj/machinery/atmospherics/binary/passive_gate/opened{
 	target_pressure = 1e+031
 	},
 /turf/simulated/floor,
@@ -3242,9 +3230,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 8;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -3263,7 +3250,7 @@
 /turf/simulated/floor/delivery,
 /area/station/science/lab)
 "jd" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/engine/core)
 "jf" = (
@@ -3335,7 +3322,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "jt" = (
@@ -3400,7 +3387,7 @@
 /turf/simulated/floor/black,
 /area/station/bridge)
 "jC" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -3417,12 +3404,12 @@
 /obj/item/clothing/gloves/yellow,
 /obj/item/clothing/glasses/meson,
 /obj/item/clothing/shoes/black,
-/obj/item/clothing/suit/fire,
+/obj/item/clothing/suit/hazard/fire,
 /obj/item/clothing/mask/gas,
 /turf/simulated/floor,
 /area/station/engine/core)
 "jG" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -3582,7 +3569,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "kh" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/sleeping_agent,
@@ -3655,7 +3642,7 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "kr" = (
-/obj/wingrille_spawn,
+/obj/mapping_helper/wingrille_spawn,
 /turf/simulated/floor/white,
 /area/station/hallway/primary/north)
 "ks" = (
@@ -3693,16 +3680,14 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "kw" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /turf/simulated/floor,
 /area/station/atmos)
 "kx" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/engine/vacuum,
 /area/station/engine/proto)
@@ -3787,7 +3772,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/turret_protected/ai_upload)
 "kH" = (
-/obj/machinery/atmospherics/pipe/vent{
+/obj/machinery/atmospherics/unary/vent{
 	dir = 4
 	},
 /turf/simulated/floor/engine/caution,
@@ -3944,10 +3929,8 @@
 /turf/simulated/floor/airless/plating,
 /area/space)
 "le" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 4;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 4
 	},
 /turf/simulated/floor/airless/plating,
 /area/space)
@@ -4006,7 +3989,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/space)
 "ln" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -4017,7 +4000,7 @@
 /area/station/crew_quarters/courtroom)
 "lo" = (
 /obj/machinery/door/window/eastleft,
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -4027,7 +4010,7 @@
 /area/station/medical/medbay)
 "lq" = (
 /obj/machinery/door/airlock/pyro/external,
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /turf/simulated/floor/caution/northsouth{
 	dir = 1
 	},
@@ -4041,7 +4024,9 @@
 /turf/simulated/floor,
 /area/station/engine/core)
 "ls" = (
-/obj/machinery/atmospherics/unary/cold_sink/freezer/cryo/east,
+/obj/machinery/atmospherics/unary/cold_sink/freezer/cryo{
+	dir = 4
+	},
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "lt" = (
@@ -4073,7 +4058,7 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -4085,7 +4070,7 @@
 /obj/machinery/alarm{
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -4153,7 +4138,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/ai_upload,
+/obj/mapping_helper/access/ai_upload,
 /turf/simulated/floor/black,
 /area/station/turret_protected/ai_upload)
 "lG" = (
@@ -4282,7 +4267,7 @@
 "lU" = (
 /obj/machinery/door/airlock/pyro/engineering,
 /obj/machinery/door/firedoor/pyro,
-/obj/access_spawn/engineering_atmos,
+/obj/mapping_helper/access/engineering_atmos,
 /turf/simulated/floor,
 /area/station/atmos)
 "lV" = (
@@ -4489,9 +4474,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -4573,7 +4557,7 @@
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/head/helmet,
-/obj/access_spawn/head_of_personnel,
+/obj/mapping_helper/access/head_of_personnel,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -4600,7 +4584,7 @@
 /turf/simulated/floor/specialroom/medbay,
 /area/station/medical/medbay)
 "mP" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /turf/simulated/floor/plating/damaged1,
@@ -4616,13 +4600,13 @@
 /turf/simulated/floor,
 /area/station/engine/core)
 "mS" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 1
 	},
 /turf/simulated/floor,
 /area/station/atmos)
 "mT" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/light,
 /turf/simulated/floor/red,
 /area/station/science/lab)
@@ -4670,10 +4654,16 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "na" = (
-/obj/machinery/atmospherics/pipe/tank/sleeping_agent/east,
-/obj/machinery/atmospherics/pipe/tank/sleeping_agent/north,
-/obj/machinery/atmospherics/pipe/tank/sleeping_agent/south,
-/obj/machinery/atmospherics/pipe/tank/sleeping_agent/west,
+/obj/machinery/atmospherics/unary/tank/sleeping_agent{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/tank/sleeping_agent{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/tank/sleeping_agent,
+/obj/machinery/atmospherics/unary/tank/sleeping_agent{
+	dir = 8
+	},
 /obj/map/light/brighterwhite,
 /turf/simulated/floor/airless/engine,
 /area/space)
@@ -4826,7 +4816,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/space)
 "nz" = (
-/obj/machinery/atmospherics/retrofilter,
+/obj/machinery/atmospherics/trinary/retrofilter,
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "nB" = (
@@ -4860,7 +4850,7 @@
 	name = "Foresnics"
 	})
 "nF" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/hallway/primary/east)
 "nG" = (
@@ -4871,7 +4861,7 @@
 /area/station/maintenance/north)
 "nH" = (
 /obj/machinery/door/airlock/pyro/external,
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /turf/simulated/floor/engine,
 /area/station/engine/storage{
 	name = "Engineering Hallway"
@@ -4880,7 +4870,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -4893,7 +4883,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/atmos)
 "nK" = (
@@ -4927,7 +4917,7 @@
 /turf/simulated/floor/black,
 /area/station/bridge)
 "nO" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/entry)
 "nP" = (
@@ -4966,7 +4956,7 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "nS" = (
-/obj/wingrille_spawn/auto,
+/obj/mapping_helper/wingrille_spawn/auto,
 /turf/simulated/floor,
 /area/station/hallway/secondary/entry)
 "nT" = (
@@ -4989,7 +4979,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/security,
+/obj/mapping_helper/access/security,
 /turf/simulated/floor/red/side{
 	dir = 4
 	},
@@ -5012,7 +5002,7 @@
 	},
 /area/station/science/lab)
 "nZ" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor,
 /area/station/atmos)
@@ -5074,7 +5064,7 @@
 /turf/simulated/floor/orangeblack,
 /area/station/storage/eva)
 "oi" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -5109,9 +5099,8 @@
 /turf/simulated/floor/specialroom/medbay,
 /area/station/medical/medbay)
 "on" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor,
@@ -5123,7 +5112,7 @@
 /turf/space,
 /area/space)
 "op" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/junction,
 /turf/simulated/floor,
 /area/station/engine/storage{
@@ -5153,10 +5142,8 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "ot" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 4;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 4
 	},
 /turf/simulated/floor/engine{
 	name = "plasma floor";
@@ -5174,7 +5161,7 @@
 /area/station/maintenance/north)
 "ov" = (
 /obj/machinery/door/airlock/pyro/maintenance,
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "ow" = (
@@ -5221,7 +5208,7 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
 "oF" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -5268,7 +5255,7 @@
 	},
 /area/shuttle/brig/prison)
 "oN" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/engine/core)
 "oP" = (
@@ -5380,9 +5367,8 @@
 /area/station/engine/power)
 "pe" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/blue,
@@ -5451,7 +5437,7 @@
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -5546,7 +5532,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/bridge)
 "pC" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/engine/singcore{
 	name = "Engine Launcher Room"
@@ -5654,7 +5640,7 @@
 /obj/machinery/door/airlock/pyro/glass{
 	dir = 4
 	},
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /turf/simulated/floor/yellow,
 /area/station/storage/auxillary)
 "pS" = (
@@ -5690,7 +5676,7 @@
 	},
 /area/station/medical/research)
 "pW" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /turf/simulated/floor/delivery,
 /area/station/science/lab)
 "pX" = (
@@ -5838,9 +5824,8 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "qp" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 1;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/wall/auto/reinforced/supernorn,
@@ -5859,7 +5844,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/atmos)
 "qt" = (
@@ -5957,9 +5942,8 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "qF" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 8;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -5973,7 +5957,7 @@
 	},
 /area/shuttle/brig/prison)
 "qH" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -6036,7 +6020,7 @@
 /area/station/chapel)
 "qO" = (
 /obj/machinery/door/window,
-/obj/access_spawn/medlab,
+/obj/mapping_helper/access/medlab,
 /turf/simulated/floor/redwhite{
 	dir = 10
 	},
@@ -6084,7 +6068,7 @@
 /obj/machinery/door/airlock/pyro/command{
 	dir = 4
 	},
-/obj/access_spawn/heads,
+/obj/mapping_helper/access/heads,
 /turf/simulated/floor/delivery,
 /area/station/bridge)
 "qX" = (
@@ -6130,7 +6114,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "rc" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /turf/simulated/floor,
 /area/station/engine/storage{
 	name = "Engineering Hallway"
@@ -6170,7 +6154,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/turret_protected/ai)
 "rk" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-4"
@@ -6298,7 +6282,7 @@
 /turf/unsimulated/floor/shuttlebay,
 /area/syndicate_station)
 "rA" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -6412,10 +6396,8 @@
 /turf/simulated/floor/yellow/side,
 /area/station/storage/auxillary)
 "rR" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/engine/caution,
 /area/station/engine/combustion_chamber)
@@ -6435,10 +6417,8 @@
 /turf/simulated/floor/blueblack,
 /area/station/bridge)
 "rV" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/grime,
 /area/station/security/brig)
@@ -6446,7 +6426,7 @@
 /obj/machinery/door/airlock/pyro/glass{
 	dir = 4
 	},
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /turf/simulated/floor/blue,
 /area/station/crew_quarters/quartersB)
 "rX" = (
@@ -6556,7 +6536,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/crew_quarters/quartersA)
 "sk" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /obj/cable{
 	icon_state = "0-4"
@@ -6602,7 +6582,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor/plating,
 /area/space)
 "sr" = (
@@ -6611,7 +6591,7 @@
 	name = "Power Room";
 	req_access = null
 	},
-/obj/access_spawn/engineering_power,
+/obj/mapping_helper/access/engineering_power,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -6698,7 +6678,7 @@
 	},
 /area/station/security/main)
 "sA" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/engine/storage{
 	name = "Engineering Hallway"
@@ -6823,7 +6803,7 @@
 /area/station/teleporter)
 "sS" = (
 /obj/machinery/door/window/southleft,
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -6832,7 +6812,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/simulated/floor,
 /area/station/security/brig)
 "sU" = (
@@ -6864,7 +6844,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 6
 	},
@@ -6891,7 +6871,7 @@
 "tc" = (
 /obj/machinery/door/firedoor/pyro,
 /obj/machinery/door/window,
-/obj/access_spawn/medlab,
+/obj/mapping_helper/access/medlab,
 /turf/simulated/floor/bluewhite{
 	dir = 4
 	},
@@ -7027,9 +7007,8 @@
 /turf/simulated/floor,
 /area/station/engine/power)
 "tE" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 1;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/airless/engine,
@@ -7051,7 +7030,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/forensics,
+/obj/mapping_helper/access/forensics,
 /turf/simulated/floor,
 /area/station/security/detectives_office{
 	name = "Foresnics"
@@ -7097,7 +7076,7 @@
 /turf/simulated/floor,
 /area/station/engine/core)
 "tN" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -7169,10 +7148,8 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "tX" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 4;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 4
 	},
 /turf/simulated/floor/engine{
 	name = "o2 floor";
@@ -7181,7 +7158,7 @@
 	},
 /area/space)
 "tY" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/light,
 /turf/simulated/floor,
 /area/station/engine/storage{
@@ -7191,10 +7168,8 @@
 /turf/simulated/floor,
 /area/station/science/storage)
 "ua" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/space)
@@ -7217,7 +7192,7 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "ud" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 10
 	},
@@ -7230,7 +7205,7 @@
 	},
 /area/syndicate_station)
 "uf" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -7240,7 +7215,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/engineering_atmos,
+/obj/mapping_helper/access/engineering_atmos,
 /turf/simulated/floor,
 /area/station/atmos)
 "uh" = (
@@ -7270,7 +7245,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/heads,
+/obj/mapping_helper/access/heads,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -7288,7 +7263,7 @@
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/head/helmet,
-/obj/access_spawn/research_director,
+/obj/mapping_helper/access/research_director,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -7306,7 +7281,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/captain,
+/obj/mapping_helper/access/captain,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
@@ -7451,7 +7426,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/engineering_power,
+/obj/mapping_helper/access/engineering_power,
 /turf/simulated/floor,
 /area/station/hallway/primary/east)
 "uF" = (
@@ -7488,13 +7463,13 @@
 /obj/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "uL" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/engine/monitoring)
 "uM" = (
@@ -7535,7 +7510,7 @@
 /turf/space,
 /area/space)
 "uS" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -7566,7 +7541,7 @@
 	name = "Foresnics"
 	})
 "uV" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -7585,7 +7560,7 @@
 	},
 /area/station/engine/monitoring)
 "uY" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -7673,10 +7648,7 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "vj" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	icon_state = "on";
-	on = 1
-	},
+/obj/machinery/atmospherics/unary/outlet_injector/active,
 /turf/simulated/floor/engine/caution,
 /area/station/engine/combustion_chamber)
 "vk" = (
@@ -7827,7 +7799,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/bar,
+/obj/mapping_helper/access/bar,
 /turf/simulated/floor/carpet{
 	icon_state = "fpurple2"
 	},
@@ -7884,7 +7856,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "vO" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -7978,14 +7950,14 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/heads,
+/obj/mapping_helper/access/heads,
 /turf/simulated/floor/wood{
 	icon_state = "wooden"
 	},
 /area/station/bridge)
 "wc" = (
 /obj/machinery/door/airlock/pyro/glass,
-/obj/access_spawn/tox,
+/obj/mapping_helper/access/tox,
 /turf/simulated/floor/caution/northsouth,
 /area/station/science/lab)
 "wd" = (
@@ -8010,7 +7982,7 @@
 	},
 /area/shuttle/brig/prison)
 "wf" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -8031,10 +8003,8 @@
 /turf/simulated/floor,
 /area/station/engine/proto)
 "wi" = (
-/obj/machinery/atmospherics/binary/passive_gate{
+/obj/machinery/atmospherics/binary/passive_gate/opened{
 	dir = 1;
-	on = 1;
-	pixel_y = 1;
 	target_pressure = 1e+031
 	},
 /obj/cable{
@@ -8054,7 +8024,7 @@
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 4
 	},
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/simulated/floor,
 /area/station/security/brig)
 "wl" = (
@@ -8074,7 +8044,7 @@
 	name = "Emergency Storage A";
 	req_access_txt = "41"
 	},
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /turf/simulated/floor,
 /area/station/storage/emergency)
 "wo" = (
@@ -8165,7 +8135,7 @@
 /area/station/maintenance/north)
 "wz" = (
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /obj/machinery/camera{
@@ -8284,7 +8254,7 @@
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/arrivals)
 "wO" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 9
 	},
@@ -8323,7 +8293,7 @@
 /turf/simulated/floor/bot,
 /area/station/storage/emergency)
 "wS" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -8335,7 +8305,7 @@
 /turf/simulated/floor,
 /area/space)
 "wV" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/chapel/office)
 "wW" = (
@@ -8349,7 +8319,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "wY" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "wZ" = (
@@ -8413,7 +8383,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/ai_upload,
+/obj/mapping_helper/access/ai_upload,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -8536,9 +8506,8 @@
 /turf/unsimulated/floor/shuttlebay,
 /area/syndicate_station)
 "xx" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 1;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -8556,10 +8525,7 @@
 /obj/window/reinforced{
 	dir = 2
 	},
-/obj/machinery/atmospherics/unary/outlet_injector{
-	icon_state = "on";
-	on = 1
-	},
+/obj/machinery/atmospherics/unary/outlet_injector/active,
 /obj/machinery/door/poddoor/pyro{
 	density = 0;
 	icon_state = "pdoor0";
@@ -8574,7 +8540,7 @@
 	name = "Engineering Hallway"
 	})
 "xB" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -8607,7 +8573,7 @@
 	},
 /area/station/security/main)
 "xE" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-8"
@@ -8669,7 +8635,7 @@
 	dir = 1;
 	pixel_y = 21
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -8704,7 +8670,7 @@
 	},
 /area/space)
 "xQ" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -8755,7 +8721,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/simulated/floor/grey/side{
 	dir = 4
 	},
@@ -8837,10 +8803,8 @@
 	pixel_y = 24
 	},
 /obj/item/extinguisher,
-/obj/machinery/atmospherics/binary/pump{
-	dir = 8;
-	icon_state = "intact_on";
-	on = 1
+/obj/machinery/atmospherics/binary/pump/active{
+	dir = 8
 	},
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -8925,7 +8889,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/hallway/secondary/entry)
 "yv" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -8976,7 +8940,7 @@
 	name = "Gas Storage";
 	req_access = null
 	},
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /turf/simulated/floor,
 /area/station/engine/gas)
 "yG" = (
@@ -8986,8 +8950,8 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/atmos)
 "yH" = (
-/obj/wingrille_spawn,
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 5
 	},
@@ -9036,7 +9000,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 2
 	},
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/red/side,
 /area/station/security/brig)
@@ -9087,7 +9051,7 @@
 	name = "Janitor's Supply Closet";
 	req_access_txt = "26"
 	},
-/obj/access_spawn/janitor,
+/obj/mapping_helper/access/janitor,
 /turf/simulated/floor,
 /area/station/hallway/secondary/entry)
 "yV" = (
@@ -9095,12 +9059,12 @@
 /turf/simulated/floor/circuit,
 /area/station/turret_protected/ai)
 "yW" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "yX" = (
 /obj/item/device/radio/intercom,
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -9273,7 +9237,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 4
 	},
@@ -9303,7 +9267,7 @@
 	},
 /area/space)
 "zA" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor,
 /area/station/engine/monitoring)
@@ -9339,7 +9303,7 @@
 	},
 /area/station/storage/tools)
 "zE" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/junction{
 	dir = 1
 	},
@@ -9350,10 +9314,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/hallway/secondary/entry)
 "zG" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	icon_state = "on";
-	on = 1
-	},
+/obj/machinery/atmospherics/unary/outlet_injector/active,
 /obj/map/light/brighterwhite,
 /turf/simulated/floor/airless/engine,
 /area/space)
@@ -9375,7 +9336,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "zJ" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /obj/cable{
 	icon_state = "0-4"
@@ -9406,7 +9367,7 @@
 	},
 /area/shuttle/arrival/station)
 "zM" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -9430,7 +9391,7 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
 "zQ" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -9451,7 +9412,7 @@
 	},
 /area/station/security/brig)
 "zV" = (
-/obj/machinery/atmospherics/pipe/vent{
+/obj/machinery/atmospherics/unary/vent{
 	dir = 1
 	},
 /turf/simulated/floor/engine{
@@ -9511,7 +9472,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -9571,10 +9532,8 @@
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
 "Ai" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/airless/plating,
 /area/space)
@@ -9651,7 +9610,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "At" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -9741,7 +9700,7 @@
 	},
 /area/station/bridge)
 "AF" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /obj/decal/tile_edge/stripe/extra_big{
@@ -9765,7 +9724,7 @@
 /turf/simulated/floor,
 /area/station/teleporter)
 "AI" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -9782,7 +9741,9 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "AK" = (
-/obj/machinery/atmospherics/unary/cold_sink/freezer/cryo/east,
+/obj/machinery/atmospherics/unary/cold_sink/freezer/cryo{
+	dir = 4
+	},
 /turf/simulated/floor/bluewhite{
 	dir = 8
 	},
@@ -9963,10 +9924,8 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/turret_protected/ai_upload)
 "Bl" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 4;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 4
 	},
 /turf/simulated/floor/airless/engine,
 /area/space)
@@ -10034,9 +9993,8 @@
 	},
 /area/station/security/main)
 "Bu" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /obj/machinery/door_control{
@@ -10152,7 +10110,7 @@
 /area/station/storage/secure)
 "BJ" = (
 /obj/machinery/door/airlock/pyro/toxins_alt,
-/obj/access_spawn/tox,
+/obj/mapping_helper/access/tox,
 /turf/simulated/floor/delivery,
 /area/station/science/lab)
 "BK" = (
@@ -10326,7 +10284,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/research)
 "Ck" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/door/poddoor/pyro{
 	density = 0;
 	dir = 4;
@@ -10341,7 +10299,7 @@
 /obj/machinery/door/airlock/pyro/security{
 	dir = 8
 	},
-/obj/access_spawn/security,
+/obj/mapping_helper/access/security,
 /turf/simulated/floor/red,
 /area/station/security/checkpoint/arrivals)
 "Cm" = (
@@ -10349,7 +10307,7 @@
 /turf/simulated/floor/airless/plating,
 /area/space)
 "Co" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /obj/cable{
@@ -10361,7 +10319,7 @@
 /turf/simulated/floor/airless/plating,
 /area/space)
 "Cq" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -10430,7 +10388,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -10439,7 +10397,7 @@
 /obj/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -10477,7 +10435,7 @@
 /area/station/engine/engineering)
 "CK" = (
 /obj/machinery/door/airlock/pyro/maintenance,
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
@@ -10493,7 +10451,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "CN" = (
@@ -10522,7 +10480,7 @@
 /obj/window/reinforced{
 	dir = 2
 	},
-/obj/machinery/atmospherics/pipe/vent,
+/obj/machinery/atmospherics/unary/vent,
 /obj/machinery/door/poddoor/pyro{
 	density = 0;
 	icon_state = "pdoor0";
@@ -10596,7 +10554,7 @@
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 4
 	},
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /turf/simulated/floor,
 /area/station/engine/core)
 "Da" = (
@@ -10635,7 +10593,7 @@
 /turf/simulated/floor,
 /area/station/science/lab)
 "De" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /turf/simulated/floor,
 /area/station/hallway/primary/west)
@@ -10673,10 +10631,8 @@
 	},
 /area/shuttle/arrival/station)
 "Di" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/airless/engine,
 /area/space)
@@ -10693,7 +10649,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/engine/core)
 "Dn" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "Do" = (
@@ -10705,7 +10661,7 @@
 	},
 /area/station/chapel)
 "Dp" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -10788,7 +10744,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "DB" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/junction{
 	dir = 1
 	},
@@ -10831,7 +10787,7 @@
 /turf/simulated/floor/black,
 /area/station/security/checkpoint/customs)
 "DH" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/sleeping_agent,
 /turf/simulated/floor,
 /area/station/atmos)
@@ -10985,7 +10941,7 @@
 	dir = 8;
 	name = "airlock"
 	},
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -10996,7 +10952,7 @@
 /area/station/maintenance/south)
 "Ef" = (
 /obj/rack,
-/obj/item/clothing/suit/fire,
+/obj/item/clothing/suit/hazard/fire,
 /obj/item/clothing/glasses/meson,
 /obj/item/clothing/under/suit,
 /obj/item/clothing/shoes/black,
@@ -11074,7 +11030,7 @@
 	dir = 4;
 	req_access_txt = "1"
 	},
-/obj/access_spawn/security,
+/obj/mapping_helper/access/security,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/detectives_office{
 	name = "Foresnics"
@@ -11083,7 +11039,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -11110,7 +11066,7 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "Eu" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -11122,7 +11078,7 @@
 /turf/simulated/floor/white,
 /area/station/crew_quarters/quartersB)
 "Ew" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -11151,7 +11107,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/science/lab)
 "ED" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -11211,7 +11167,7 @@
 /turf/simulated/floor,
 /area/station/science/lab)
 "EM" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -11365,7 +11321,7 @@
 /area/space)
 "Fi" = (
 /obj/machinery/door/airlock/pyro/external,
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -11391,7 +11347,7 @@
 /turf/simulated/floor/white,
 /area/station/crew_quarters/quartersA)
 "Fn" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/item/wrench,
 /obj/cable{
@@ -11489,7 +11445,7 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "Fz" = (
-/obj/machinery/atmospherics/pipe/vent{
+/obj/machinery/atmospherics/unary/vent{
 	dir = 1
 	},
 /turf/simulated/floor/engine{
@@ -11645,7 +11601,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "FU" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -11698,7 +11654,7 @@
 	dir = 2;
 	name = "Hand Teleporter"
 	},
-/obj/access_spawn/captain,
+/obj/mapping_helper/access/captain,
 /turf/simulated/floor/blueblack,
 /area/station/bridge)
 "Gd" = (
@@ -11723,7 +11679,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -11731,7 +11687,7 @@
 "Gg" = (
 /obj/machinery/door/firedoor/pyro,
 /obj/machinery/door/window,
-/obj/access_spawn/medlab,
+/obj/mapping_helper/access/medlab,
 /turf/simulated/floor/bluewhite{
 	dir = 8
 	},
@@ -11746,7 +11702,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/engine/power)
 "Gi" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -11839,7 +11795,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "Gv" = (
-/obj/access_spawn/medical,
+/obj/mapping_helper/access/medical,
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
@@ -11868,7 +11824,7 @@
 /area/space)
 "Gy" = (
 /obj/machinery/door/window/eastleft,
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -11952,7 +11908,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/beer,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
-/obj/access_spawn/bar,
+/obj/mapping_helper/access/bar,
 /turf/simulated/floor/carpet{
 	dir = 9;
 	icon_state = "fpurple2"
@@ -11992,7 +11948,7 @@
 	},
 /area/station/chapel)
 "GM" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -12121,7 +12077,7 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "Hd" = (
-/obj/wingrille_spawn,
+/obj/mapping_helper/wingrille_spawn,
 /obj/decal/poster/wallsign/medbay,
 /turf/simulated/floor/white,
 /area/station/hallway/primary/north)
@@ -12157,7 +12113,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/engine/power)
 "Hk" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -12221,10 +12177,8 @@
 /turf/simulated/floor,
 /area/station/teleporter)
 "Hs" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 4;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 4
 	},
 /turf/simulated/floor/engine/caution,
 /area/station/engine/combustion_chamber)
@@ -12254,7 +12208,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/beer,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
-/obj/access_spawn/bar,
+/obj/mapping_helper/access/bar,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -10;
@@ -12371,7 +12325,7 @@
 /turf/simulated/floor,
 /area/station/medical/medbay)
 "HP" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/white,
 /area/station/medical/morgue)
 "HQ" = (
@@ -12457,7 +12411,7 @@
 /turf/simulated/floor,
 /area/station/engine/gas)
 "Ic" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/bridge)
 "Id" = (
@@ -12500,10 +12454,8 @@
 	},
 /area/station/crew_quarters/courtroom)
 "Ii" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 8;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 8
 	},
 /obj/machinery/igniter,
 /turf/simulated/floor/engine/vacuum,
@@ -12596,7 +12548,7 @@
 	dir = 4;
 	req_access_txt = "1"
 	},
-/obj/access_spawn/security,
+/obj/mapping_helper/access/security,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -12736,10 +12688,8 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "IP" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/engine{
 	name = "n2 floor";
@@ -12914,14 +12864,20 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/ai_upload,
+/obj/mapping_helper/access/ai_upload,
 /turf/simulated/floor/black,
 /area/station/hallway/primary/west)
 "Jp" = (
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/west,
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/south,
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/north,
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/east,
+/obj/machinery/atmospherics/unary/tank/carbon_dioxide{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/tank/carbon_dioxide,
+/obj/machinery/atmospherics/unary/tank/carbon_dioxide{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/tank/carbon_dioxide{
+	dir = 4
+	},
 /obj/map/light/brighterwhite,
 /turf/simulated/floor/engine{
 	carbon_dioxide = 50000;
@@ -12934,9 +12890,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -12962,7 +12917,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /turf/simulated/floor/yellow,
 /area/station/storage/auxillary)
 "Jv" = (
@@ -13015,7 +12970,7 @@
 	},
 /area/station/security/brig)
 "JC" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /turf/simulated/floor/delivery,
@@ -13038,10 +12993,8 @@
 /turf/simulated/floor/plating/airless,
 /area/space)
 "JF" = (
-/obj/machinery/atmospherics/binary/passive_gate{
+/obj/machinery/atmospherics/binary/passive_gate/opened{
 	dir = 8;
-	on = 1;
-	pixel_y = 1;
 	target_pressure = 1e+031
 	},
 /turf/simulated/floor,
@@ -13050,7 +13003,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/heads,
+/obj/mapping_helper/access/heads,
 /obj/cable{
 	icon_state = "1-4"
 	},
@@ -13095,7 +13048,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "JL" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /obj/item/storage/backpack,
@@ -13122,7 +13075,7 @@
 /obj/landmark{
 	name = "blobstart"
 	},
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -13138,7 +13091,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
@@ -13187,7 +13140,7 @@
 /turf/simulated/floor/redwhite,
 /area/station/medical/research)
 "JX" = (
-/obj/access_spawn/medical,
+/obj/mapping_helper/access/medical,
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
@@ -13210,7 +13163,7 @@
 /turf/simulated/floor,
 /area/station/storage/secure)
 "Ka" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/window/reinforced{
 	dir = 8
 	},
@@ -13268,7 +13221,7 @@
 /turf/simulated/floor/circuit,
 /area/station/turret_protected/ai)
 "Kj" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /turf/simulated/floor/plating/damaged1,
@@ -13357,7 +13310,7 @@
 	},
 /area/station/hallway/secondary/entry)
 "Kx" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 8
 	},
 /obj/cable{
@@ -13410,7 +13363,7 @@
 	name = "Engineering Control Room";
 	req_access_txt = "44"
 	},
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
@@ -13422,7 +13375,7 @@
 	name = "E.V.A.";
 	req_access = null
 	},
-/obj/access_spawn/eva,
+/obj/mapping_helper/access/eva,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -13464,7 +13417,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor/plating,
 /area/station/maintenance/northeast)
 "KN" = (
@@ -13496,7 +13449,7 @@
 /turf/simulated/floor/specialroom/medbay,
 /area/station/medical/medbay)
 "KQ" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
@@ -13507,7 +13460,7 @@
 /turf/simulated/floor,
 /area/station/engine/core)
 "KS" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -13518,7 +13471,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/engine/proto)
 "KU" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/engine/storage{
 	name = "Engineering Hallway"
@@ -13569,10 +13522,7 @@
 /area/station/security/brig)
 "Lc" = (
 /obj/stool/bench/red/auto,
-/obj/machinery/atmospherics/unary/outlet_injector{
-	icon_state = "on";
-	on = 1
-	},
+/obj/machinery/atmospherics/unary/outlet_injector/active,
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "Ld" = (
@@ -13685,7 +13635,7 @@
 	},
 /area/space)
 "Lt" = (
-/obj/access_spawn/medical,
+/obj/mapping_helper/access/medical,
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
@@ -13733,7 +13683,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "LA" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 6
 	},
@@ -13839,7 +13789,7 @@
 	},
 /area/shuttle/arrival/station)
 "LP" = (
-/obj/access_spawn/medical,
+/obj/mapping_helper/access/medical,
 /obj/machinery/door/window,
 /turf/simulated/floor/specialroom/medbay,
 /area/station/medical/medbay)
@@ -13919,7 +13869,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/maintenance/south)
 "Md" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -13976,7 +13926,7 @@
 /turf/simulated/floor/airless/plating,
 /area/station/solar/north)
 "Mk" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -14046,7 +13996,7 @@
 	name = "Engine Launcher Room"
 	})
 "Mw" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-8"
 	},
@@ -14102,7 +14052,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/atmos)
 "ME" = (
@@ -14211,7 +14161,7 @@
 	},
 /area/station/medical/medbay)
 "MS" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -14261,7 +14211,7 @@
 /turf/simulated/floor,
 /area/station/science/lab)
 "MX" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-8"
@@ -14326,7 +14276,7 @@
 /turf/simulated/floor,
 /area/station/science/testchamber)
 "Nf" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -14412,7 +14362,7 @@
 /obj/machinery/alarm{
 	pixel_y = 24
 	},
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
 	},
@@ -14453,10 +14403,8 @@
 	},
 /area/station/bridge)
 "NA" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/engine{
 	name = "o2 floor";
@@ -14474,7 +14422,7 @@
 	},
 /area/station/storage/auxillary)
 "NC" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /turf/unsimulated/floor/delivery/white,
 /area/station/engine/monitoring)
 "ND" = (
@@ -14496,7 +14444,7 @@
 	},
 /area/syndicate_station)
 "NG" = (
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/overfloor{
 	dir = 6
 	},
@@ -14522,9 +14470,8 @@
 	},
 /area/space)
 "NL" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 8;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/wall/auto/supernorn,
@@ -14542,9 +14489,8 @@
 /turf/simulated/floor/plating/damaged1,
 /area/station/engine/proto)
 "NO" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 1;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -14619,7 +14565,7 @@
 /obj/machinery/door/airlock/pyro/engineering{
 	dir = 4
 	},
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
 "NY" = (
@@ -14633,10 +14579,8 @@
 /turf/simulated/floor,
 /area/station/maintenance/north)
 "Oa" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 4;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 4
 	},
 /turf/simulated/floor/engine{
 	name = "n2 floor";
@@ -14683,7 +14627,7 @@
 /obj/window/reinforced{
 	dir = 2
 	},
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /turf/simulated/floor/plating/damaged1,
@@ -14799,7 +14743,7 @@
 /turf/simulated/floor,
 /area/station/teleporter)
 "OB" = (
-/obj/machinery/atmospherics/retrofilter,
+/obj/machinery/atmospherics/trinary/retrofilter,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "OC" = (
@@ -14890,7 +14834,7 @@
 /obj/machinery/door/airlock/pyro/maintenance{
 	dir = 4
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "OP" = (
@@ -14936,7 +14880,7 @@
 	},
 /area/station/hallway/secondary/exit)
 "OW" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/simulated/floor,
 /area/station/atmos)
@@ -14944,9 +14888,8 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 8;
-	on = 1;
 	transfer_rate = 1000
 	},
 /obj/machinery/light/small{
@@ -15008,7 +14951,7 @@
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/head/helmet,
-/obj/access_spawn/sec_lockers,
+/obj/mapping_helper/access/sec_lockers,
 /turf/unsimulated/floor{
 	desc = "";
 	icon = 'icons/turf/shuttle.dmi';
@@ -15037,9 +14980,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 8;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -15056,7 +14998,7 @@
 /area/station/crew_quarters/quartersB)
 "Pl" = (
 /obj/machinery/door/airlock/pyro/maintenance,
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -15235,7 +15177,7 @@
 /area/space)
 "PH" = (
 /obj/rack,
-/obj/item/clothing/suit/fire,
+/obj/item/clothing/suit/hazard/fire,
 /obj/item/clothing/shoes/black,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/under/color,
@@ -15277,7 +15219,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "PN" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/exit)
 "PO" = (
@@ -15346,10 +15288,16 @@
 	},
 /area/station/chapel/office)
 "PX" = (
-/obj/machinery/atmospherics/pipe/tank/toxins/west,
-/obj/machinery/atmospherics/pipe/tank/toxins/south,
-/obj/machinery/atmospherics/pipe/tank/toxins/north,
-/obj/machinery/atmospherics/pipe/tank/toxins/east,
+/obj/machinery/atmospherics/unary/tank/toxins{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/tank/toxins,
+/obj/machinery/atmospherics/unary/tank/toxins{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/tank/toxins{
+	dir = 4
+	},
 /obj/map/light/brighterwhite,
 /turf/simulated/floor/engine{
 	name = "plasma floor";
@@ -15513,7 +15461,7 @@
 /turf/simulated/floor/engine/caution,
 /area/station/engine/combustion_chamber)
 "Qv" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -15640,14 +15588,14 @@
 /area/station/hallway/secondary/exit)
 "QM" = (
 /obj/machinery/door/window,
-/obj/access_spawn/medlab,
+/obj/mapping_helper/access/medlab,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/grass{
 	name = "astroturf"
 	},
 /area/station/medical/research)
 "QN" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/entry)
@@ -15663,7 +15611,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/hallway/secondary/entry)
 "QQ" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/hallway/primary/south)
 "QR" = (
@@ -15756,8 +15704,7 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "Rd" = (
-/obj/machinery/atmospherics/binary/volume_pump{
-	on = 1;
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	transfer_rate = 1000
 	},
 /turf/simulated/floor,
@@ -15826,10 +15773,8 @@
 	},
 /area/station/medical/research)
 "Rn" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/engine{
 	name = "plasma floor";
@@ -15842,7 +15787,7 @@
 /obj/machinery/door/airlock/pyro/glass{
 	dir = 4
 	},
-/obj/access_spawn/tox,
+/obj/mapping_helper/access/tox,
 /turf/simulated/floor/caution/westeast,
 /area/station/science/lab)
 "Rq" = (
@@ -15887,7 +15832,7 @@
 /area/space)
 "Rw" = (
 /obj/machinery/door/window,
-/obj/access_spawn/medlab,
+/obj/mapping_helper/access/medlab,
 /turf/simulated/floor/grass{
 	name = "astroturf"
 	},
@@ -16021,7 +15966,7 @@
 	name = "Engineering Control Room";
 	req_access_txt = "44"
 	},
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
@@ -16073,7 +16018,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/hallway/primary/east)
 "Sa" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /obj/cable{
@@ -16129,7 +16074,7 @@
 /obj/window/reinforced{
 	dir = 2
 	},
-/obj/machinery/atmospherics/pipe/vent,
+/obj/machinery/atmospherics/unary/vent,
 /turf/simulated/floor/airless/engine,
 /area/station/storage/secure)
 "Si" = (
@@ -16195,10 +16140,8 @@
 /turf/simulated/floor/airless/plating,
 /area/station/solar/south)
 "Sq" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 4;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 4
 	},
 /turf/simulated/floor/engine{
 	carbon_dioxide = 50000;
@@ -16263,7 +16206,7 @@
 /turf/simulated/floor/yellow/side,
 /area/station/storage/tools)
 "SB" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -16294,7 +16237,7 @@
 /area/station/maintenance/north)
 "SG" = (
 /obj/machinery/portable_atmospherics/scrubber,
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -16348,9 +16291,8 @@
 /area/station/hallway/secondary/entry)
 "SL" = (
 /obj/item/device/radio/intercom,
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /obj/item/wrench,
@@ -16394,7 +16336,7 @@
 /area/station/science/lab)
 "SP" = (
 /obj/machinery/door/window,
-/obj/access_spawn/medlab,
+/obj/mapping_helper/access/medlab,
 /turf/simulated/floor/purplewhite,
 /area/station/medical/research)
 "SQ" = (
@@ -16446,7 +16388,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "SX" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 8
 	},
 /obj/machinery/light/small{
@@ -16467,7 +16409,7 @@
 /obj/machinery/door/airlock/pyro/glass{
 	dir = 4
 	},
-/obj/access_spawn/public,
+/obj/mapping_helper/access/public,
 /turf/simulated/floor/purple,
 /area/station/crew_quarters/quartersA)
 "Ta" = (
@@ -16481,9 +16423,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 1;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -16514,7 +16455,7 @@
 /area/station/atmos)
 "Tg" = (
 /obj/machinery/door/airlock/pyro/maintenance,
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor,
 /area/station/hallway/secondary/entry)
 "Th" = (
@@ -16538,10 +16479,8 @@
 /turf/simulated/floor/plating,
 /area/station/hallway/secondary/exit)
 "Tk" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /turf/simulated/floor/engine{
 	carbon_dioxide = 50000;
@@ -16593,7 +16532,7 @@
 /obj/machinery/door/window/northleft{
 	dir = 4
 	},
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/simulated/floor/red/side{
 	dir = 4
 	},
@@ -16654,7 +16593,7 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "TB" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/space)
 "TC" = (
@@ -16702,7 +16641,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -16724,9 +16663,8 @@
 /turf/simulated/floor/yellow/side,
 /area/station/storage/auxillary)
 "TK" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /obj/cable{
@@ -16750,7 +16688,7 @@
 	},
 /area/station/solar/north)
 "TN" = (
-/obj/wingrille_spawn,
+/obj/mapping_helper/wingrille_spawn,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -16798,7 +16736,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/pyro,
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/simulated/floor,
 /area/station/security/brig)
 "TT" = (
@@ -16826,7 +16764,7 @@
 /area/station/engine/combustion_chamber)
 "TX" = (
 /obj/machinery/door/airlock/pyro/maintenance,
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -16834,7 +16772,7 @@
 /area/station/maintenance/south)
 "TY" = (
 /obj/machinery/door/airlock/pyro/security,
-/obj/access_spawn/security,
+/obj/mapping_helper/access/security,
 /turf/simulated/floor,
 /area/station/security/main)
 "TZ" = (
@@ -16880,10 +16818,8 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "Ue" = (
-/obj/machinery/atmospherics/binary/passive_gate{
+/obj/machinery/atmospherics/binary/passive_gate/opened{
 	dir = 4;
-	on = 1;
-	pixel_y = 1;
 	target_pressure = 1e+031
 	},
 /turf/simulated/floor,
@@ -16922,7 +16858,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/access_spawn/maint,
+/obj/mapping_helper/access/maint,
 /turf/simulated/floor/plating,
 /area/station/maintenance/north)
 "Ul" = (
@@ -16963,7 +16899,7 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/north)
 "Uq" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -17003,7 +16939,7 @@
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/overfloor,
-/obj/access_spawn/brig,
+/obj/mapping_helper/access/brig,
 /turf/simulated/floor/red/side,
 /area/station/security/brig)
 "Ux" = (
@@ -17013,7 +16949,7 @@
 	},
 /area/syndicate_station)
 "Uy" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /turf/simulated/floor,
 /area/station/storage/secure)
 "Uz" = (
@@ -17029,10 +16965,16 @@
 /turf/simulated/floor/grime,
 /area/station/security/brig)
 "UB" = (
-/obj/machinery/atmospherics/pipe/tank/oxygen/east,
-/obj/machinery/atmospherics/pipe/tank/oxygen/north,
-/obj/machinery/atmospherics/pipe/tank/oxygen/south,
-/obj/machinery/atmospherics/pipe/tank/oxygen/west,
+/obj/machinery/atmospherics/unary/tank/oxygen{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/tank/oxygen{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/tank/oxygen,
+/obj/machinery/atmospherics/unary/tank/oxygen{
+	dir = 8
+	},
 /obj/map/light/brighterwhite,
 /turf/simulated/floor/engine{
 	name = "o2 floor";
@@ -17069,11 +17011,11 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/access_spawn/engineering_atmos,
+/obj/mapping_helper/access/engineering_atmos,
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "UI" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/chapel)
 "UJ" = (
@@ -17116,7 +17058,7 @@
 /turf/simulated/wall/auto/supernorn,
 /area/station/engine/core)
 "UO" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /obj/cable{
@@ -17145,7 +17087,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/wingrille_spawn/reinforced/full,
+/obj/mapping_helper/wingrille_spawn/reinforced/full,
 /turf/simulated/floor,
 /area/station/security/main)
 "US" = (
@@ -17236,7 +17178,7 @@
 /turf/simulated/floor/purple,
 /area/station/crew_quarters/quartersA)
 "Ve" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor,
 /area/station/engine/storage{
@@ -17273,10 +17215,8 @@
 /turf/simulated/floor/airless/plating,
 /area/station/solar/north)
 "Vj" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 1;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 1
 	},
 /obj/map/light/brighterwhite,
 /turf/simulated/floor,
@@ -17377,7 +17317,7 @@
 	name = "E.V.A.";
 	req_access = null
 	},
-/obj/access_spawn/eva,
+/obj/mapping_helper/access/eva,
 /turf/simulated/floor/delivery,
 /area/station/storage/eva)
 "Vx" = (
@@ -17415,7 +17355,7 @@
 /turf/simulated/floor/white,
 /area/station/medical/medbay)
 "VC" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/item/wrench,
 /obj/machinery/light{
@@ -17431,7 +17371,7 @@
 /turf/simulated/floor/circuit,
 /area/station/turret_protected/ai_upload)
 "VE" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -17475,7 +17415,7 @@
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
-/obj/access_spawn/engineering,
+/obj/mapping_helper/access/engineering,
 /turf/simulated/floor,
 /area/station/engine/core)
 "VK" = (
@@ -17555,7 +17495,7 @@
 /turf/simulated/floor/engine/caution,
 /area/station/engine/combustion_chamber)
 "VT" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -17610,7 +17550,7 @@
 	},
 /area/station/medical/medbay)
 "VZ" = (
-/obj/access_spawn/ai_upload,
+/obj/mapping_helper/access/ai_upload,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -17666,7 +17606,7 @@
 	name = "Teleporter";
 	req_access_txt = "17"
 	},
-/obj/access_spawn/teleporter,
+/obj/mapping_helper/access/teleporter,
 /turf/simulated/floor,
 /area/station/teleporter)
 "Wh" = (
@@ -17695,7 +17635,7 @@
 	},
 /area/station/hallway/secondary/entry)
 "Wl" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -17816,7 +17756,7 @@
 /turf/simulated/floor/blue,
 /area/station/crew_quarters/quartersB)
 "WA" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -17825,7 +17765,7 @@
 	name = "Engineering Hallway"
 	})
 "WB" = (
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/simulated/floor,
 /area/station/atmos)
@@ -17834,9 +17774,8 @@
 	dir = 1;
 	pixel_y = 21
 	},
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -17879,10 +17818,8 @@
 /turf/simulated/floor,
 /area/station/engine/core)
 "WI" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	dir = 8;
-	icon_state = "on";
-	on = 1
+/obj/machinery/atmospherics/unary/outlet_injector/active{
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/space)
@@ -17937,7 +17874,7 @@
 /turf/space,
 /area/shuttle/brig/station)
 "WP" = (
-/obj/machinery/atmospherics/retrofilter{
+/obj/machinery/atmospherics/trinary/retrofilter{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -18062,7 +17999,7 @@
 	})
 "Xf" = (
 /obj/grille/steel,
-/obj/machinery/atmospherics/pipe/vent,
+/obj/machinery/atmospherics/unary/vent,
 /turf/simulated/floor/engine/vacuum,
 /area/station/engine/proto)
 "Xg" = (
@@ -18134,7 +18071,7 @@
 	},
 /area/shuttle/brig/prison)
 "Xp" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-2"
@@ -18151,9 +18088,8 @@
 /turf/simulated/floor/blue,
 /area/station/crew_quarters/quartersB)
 "Xr" = (
-/obj/machinery/atmospherics/binary/volume_pump{
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	dir = 4;
-	on = 1;
 	transfer_rate = 1000
 	},
 /turf/simulated/floor/plating,
@@ -18233,13 +18169,13 @@
 /turf/simulated/floor,
 /area/station/atmos)
 "XD" = (
-/obj/machinery/atmospherics/pipe/vent{
+/obj/machinery/atmospherics/unary/vent{
 	dir = 8
 	},
 /turf/simulated/floor/airless/engine,
 /area/space)
 "XE" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable,
 /turf/simulated/floor/plating,
 /area/space)
@@ -18254,12 +18190,12 @@
 /obj/machinery/door/firedoor/pyro{
 	dir = 4
 	},
-/obj/access_spawn/tox_storage,
+/obj/mapping_helper/access/tox_storage,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/delivery,
 /area/station/science/storage)
 "XH" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "0-2"
 	},
@@ -18458,10 +18394,7 @@
 /turf/simulated/floor,
 /area/station/hallway/secondary/exit)
 "Ym" = (
-/obj/machinery/atmospherics/unary/outlet_injector{
-	icon_state = "on";
-	on = 1
-	},
+/obj/machinery/atmospherics/unary/outlet_injector/active,
 /turf/simulated/floor,
 /area/space)
 "Yn" = (
@@ -18506,7 +18439,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/overfloor,
 /turf/simulated/floor/plating,
 /area/station/atmos)
@@ -18587,21 +18520,20 @@
 /turf/simulated/floor,
 /area/station/hallway/primary/east)
 "YD" = (
-/obj/machinery/atmospherics/pipe/vent{
+/obj/machinery/atmospherics/unary/vent{
 	dir = 1
 	},
 /turf/simulated/floor/airless/engine,
 /area/space)
 "YE" = (
-/obj/machinery/atmospherics/binary/volume_pump{
-	on = 1;
+/obj/machinery/atmospherics/binary/volume_pump/active{
 	transfer_rate = 1000
 	},
 /obj/machinery/light/small/floor,
 /turf/simulated/floor,
 /area/station/atmos)
 "YF" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -18753,16 +18685,14 @@
 /turf/simulated/floor/engine/caution,
 /area/station/engine/combustion_chamber)
 "Za" = (
-/obj/machinery/atmospherics/binary/passive_gate{
+/obj/machinery/atmospherics/binary/passive_gate/opened{
 	dir = 4;
-	on = 1;
-	pixel_y = 1;
 	target_pressure = 1e+031
 	},
 /turf/simulated/floor,
 /area/station/engine/core)
 "Zb" = (
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/unary/portables_connector{
 	dir = 1
 	},
 /obj/machinery/portable_atmospherics/canister/sleeping_agent{
@@ -18824,7 +18754,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/south)
 "Zl" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /obj/window/reinforced{
 	dir = 8
 	},
@@ -18847,7 +18777,7 @@
 	},
 /area/station/medical/research)
 "Zr" = (
-/obj/wingrille_spawn/reinforced,
+/obj/mapping_helper/wingrille_spawn/reinforced,
 /turf/simulated/floor,
 /area/station/security/brig)
 "Zs" = (
