@@ -1,4 +1,4 @@
-/mob/
+/mob
 	var/list/stun_resist_mods = list()
 
 
@@ -149,7 +149,7 @@
 		#endif
 		#if STAMINA_NEG_CRIT_KNOCKOUT == 1
 		if(!src.getStatusDuration("weakened") && isalive(src))
-			src.visible_message("<span class='alert'>[src] collapses!</span>")
+			src.visible_message(SPAN_ALERT("[src] collapses!"))
 			src.changeStatus("weakened", (STAMINA_STUN_CRIT_TIME) SECONDS)
 		#endif
 	stamina_stun() //Just in case.
@@ -168,21 +168,18 @@
 	return
 
 /mob/living/stamina_stun(stunmult = 1)
-	if(!src.use_stamina) return
+	if(!src.use_stamina || src.no_stamina_stuns)
+		return
 	if(src.stamina <= 0)
 		var/chance = STAMINA_SCALING_KNOCKOUT_BASE
 		chance += (src.stamina / STAMINA_NEG_CAP) * STAMINA_SCALING_KNOCKOUT_SCALER
 		if(prob(chance))
 			if(!src.getStatusDuration("weakened") && isalive(src))
-				src.visible_message("<span class='alert'>[src] collapses!</span>")
+				src.visible_message(SPAN_ALERT("[src] collapses!"))
 				src.changeStatus("weakened", (STAMINA_STUN_TIME * stunmult) SECONDS)
 				src.force_laydown_standup()
 
 //new disorient thing
-
-#define DISORIENT_BODY 1
-#define DISORIENT_EYE 2
-#define DISORIENT_EAR 4
 
 /mob/proc/get_disorient_protection()
 	return min(GET_ATOM_PROPERTY(src, PROP_MOB_DISORIENT_RESIST_BODY), clamp(GET_ATOM_PROPERTY(src, PROP_MOB_DISORIENT_RESIST_BODY_MAX), 90, 100)) + 0
@@ -199,6 +196,8 @@
 
 /mob/proc/do_disorient(var/stamina_damage, var/weakened, var/stunned, var/paralysis, var/disorient = 60, var/remove_stamina_below_zero = 0, var/target_type = DISORIENT_BODY, stack_stuns = 1)
 	.= 1
+	if (src.no_stamina_stuns)
+		return FALSE
 	if (stunned)
 		if(stack_stuns)
 			src.changeStatus("stunned", stunned)

@@ -2,8 +2,9 @@
 	name = "computer"
 	icon = 'icons/obj/computer.dmi'
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	power_usage = 250
+	HELP_MESSAGE_OVERRIDE(null)
 	var/datum/light/light
 	var/light_r = 1
 	var/light_g = 1
@@ -27,7 +28,7 @@
 	attack_hand(var/mob/user)
 		. = ..()
 		if (!user.literate)
-			boutput(user, "<span class='alert'>You don't know how to read or write, operating a computer isn't going to work!</span>")
+			boutput(user, SPAN_ALERT("You don't know how to read or write, operating a computer isn't going to work!"))
 			return 1
 		interact_particle(user,src)
 
@@ -37,15 +38,23 @@
 	attackby(obj/item/W, mob/user)
 		if (can_reconnect)
 			if (ispulsingtool(W) && !(status & (BROKEN|NOPOWER)))
-				boutput(user, "<span class='notice'>You pulse the [name] to re-scan for equipment.</span>")
+				boutput(user, SPAN_NOTICE("You pulse the [name] to re-scan for equipment."))
 				connection_scan()
 				return
 		if (isscrewingtool(W) && src.circuit_type)
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/machinery/computer/proc/unscrew_monitor,\
 			list(W, user), W.icon, W.icon_state, null, null)
+			return
 		else
 			src.Attackhand(user)
+
+	get_help_message(dist, mob/user)
+		. = "You can use a <b>screwdriver</b> to unscrew the screen"
+		if (src.can_reconnect)
+			. += ",\nor a <b>multitool</b> to re-scan for equipment."
+		else
+			. += "."
 
 	proc/unscrew_monitor(obj/item/W as obj, mob/user as mob)
 		var/obj/computerframe/A = new /obj/computerframe(src.loc)
@@ -66,8 +75,8 @@
 			C.set_loc(src.loc)
 		A.set_dir(src.dir)
 		A.circuit = M
-		A.anchored = 1
-		src.special_deconstruct(A)
+		A.anchored = ANCHORED
+		src.special_deconstruct(A, user)
 		qdel(src)
 
 	///Put the code for finding the stuff your computer needs in this proc
@@ -75,7 +84,7 @@
 	//Placeholder so the multitool probing thing can go on this parent
 
 	///Special changes for deconstruction can be added by overriding this
-	proc/special_deconstruct(var/obj/computerframe/frame as obj)
+	proc/special_deconstruct(var/obj/computerframe/frame as obj, mob/user)
 
 
 /*
@@ -118,7 +127,6 @@
 	for(var/x in src.verbs)
 		src.verbs -= x
 	set_broken()
-	return
 
 /obj/machinery/computer/ex_act(severity)
 	switch(severity)
@@ -136,14 +144,11 @@
 				for(var/x in src.verbs)
 					src.verbs -= x
 				set_broken()
-		else
-	return
 
 /obj/machinery/computer/emp_act()
-	..()
+	. = ..()
 	if(prob(20))
 		src.set_broken()
-	return
 
 /obj/machinery/computer/blob_act(var/power)
 	if (prob(50 * power / 20))
@@ -184,10 +189,9 @@
 /obj/machinery/computer/process()
 	if(status & BROKEN)
 		return
-	..()
+	. = ..()
 	if(status & NOPOWER)
 		return
-	use_power(power_usage)
 
 /obj/machinery/computer/update_icon()
 	if(src.glow_in_dark_screen)
@@ -197,7 +201,7 @@
 		src.screen_image.layer = LIGHTING_LAYER_BASE
 		src.screen_image.color = list(0.33,0.33,0.33, 0.33,0.33,0.33, 0.33,0.33,0.33)
 		src.UpdateOverlays(screen_image, "screen_image")
-	..()
+	. = ..()
 
 /obj/machinery/computer/proc/set_broken()
 	if (status & BROKEN) return

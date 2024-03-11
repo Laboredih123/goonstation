@@ -3,13 +3,13 @@
 	desc = "A rotting, walking mass of flesh."
 	icon = 'icons/mob/wraith_critters.dmi'
 	icon_state = "rot_hulk"
-	density = 1
+	density = TRUE
 	speechverb_say = "moans"
 	hand_count = 2
-	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
-	can_help = 1
+	can_throw = TRUE
+	can_grab = TRUE
+	can_disarm = TRUE
+	can_help = TRUE
 	mob_flags = HEAVYWEIGHT_AI_MOB
 	custom_gib_handler = /proc/gibs
 	// HEALTHS
@@ -17,11 +17,13 @@
 	health_burn = 50
 	health_brute_vuln = 1
 	health_burn_vuln = 1.5
-	is_npc = 1
+	is_npc = TRUE
 
-	use_stamina = 0
+	faction = FACTION_WRAITH
 
-	can_lie = 0
+	use_stamina = FALSE
+
+	can_lie = FALSE
 	blood_id = "miasma"
 
 	setup_healths()
@@ -63,10 +65,10 @@
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(H.clothing_protects_from_chems())
-					boutput(M, "<span class='notice'>You are sprayed with guts, but your biosuit protects you!</span>")
+					boutput(M, SPAN_NOTICE("You are sprayed with guts, but your biosuit protects you!"))
 					continue
 				else
-					boutput(M, "<span class='alert'>You are sprayed with disgusting rotting flesh! You're pretty sure some of it got in your mouth.</span>")
+					boutput(M, SPAN_ALERT("You are sprayed with disgusting rotting flesh! You're pretty sure some of it got in your mouth."))
 			M.emote("scream")
 			M.take_toxin_damage(25)
 			if (M.reagents)
@@ -74,12 +76,12 @@
 
 		if (!gibbed)
 			gibs(src.loc)
-			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
+			playsound(src.loc, 'sound/impact_sounds/Slimy_Splat_1.ogg', 100, 1)
 			src.drop_item()
 			qdel(src)
 		else
 			gibs(src.loc)
-			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
+			playsound(src.loc, 'sound/impact_sounds/Slimy_Splat_1.ogg', 100, 1)
 
 /mob/living/critter/exploder/New(var/atom/L)
 	..()

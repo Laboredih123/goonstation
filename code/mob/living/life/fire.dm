@@ -7,7 +7,7 @@
 				for (var/atom/A as anything in owner.contents)
 					if (A.event_handler_flags & HANDLE_STICKER)
 						if (A:active)
-							owner.visible_message("<span class='alert'><b>[A]</b> is burnt to a crisp and destroyed!</span>")
+							owner.visible_message(SPAN_ALERT("<b>[A]</b> is burnt to a crisp and destroyed!"))
 							qdel(A)
 
 			if (isturf(owner.loc))
@@ -15,5 +15,7 @@
 				location.hotspot_expose(T0C + 300, 400)
 
 			for (var/atom/A in owner.contents)
-				if (A.material)
-					A.material.triggerTemp(A, T0C + 900)
+				A.material_trigger_on_temp(T0C + 900)
+
+			for (var/atom/equipped_stuff in owner.equipped())
+				equipped_stuff.material_trigger_on_temp(T0C + 900)

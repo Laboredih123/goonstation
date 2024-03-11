@@ -13,22 +13,23 @@
 #define FIELDNUM_NAME 1
 #define FIELDNUM_FULLNAME 2
 #define FIELDNUM_SEX 3
-#define FIELDNUM_AGE 4
-#define FIELDNUM_PRINT 5
-#define FIELDNUM_DNA 6
-#define FIELDNUM_PSTAT 7
-#define FIELDNUM_MSTAT 8
-#define FIELDNUM_BLOODTYPE 9
-#define FIELDNUM_MINDIS 10
-#define FIELDNUM_MINDET 11
-#define FIELDNUM_MAJDIS 12
-#define FIELDNUM_MAJDET 13
-#define FIELDNUM_ALLERGY 14
-#define FIELDNUM_ALGDET 15
-#define FIELDNUM_DISEASE 16
-#define FIELDNUM_DISDET 17
-#define FIELDNUM_TRAITS 18
-#define FIELDNUM_NOTES  19
+#define FIELDNUM_PRONOUNS 4
+#define FIELDNUM_AGE 5
+#define FIELDNUM_PRINT 6
+#define FIELDNUM_DNA 7
+#define FIELDNUM_PSTAT 8
+#define FIELDNUM_MSTAT 9
+#define FIELDNUM_BLOODTYPE 10
+#define FIELDNUM_MINDIS 11
+#define FIELDNUM_MINDET 12
+#define FIELDNUM_MAJDIS 13
+#define FIELDNUM_MAJDET 14
+#define FIELDNUM_ALLERGY 15
+#define FIELDNUM_ALGDET 16
+#define FIELDNUM_DISEASE 17
+#define FIELDNUM_DISDET 18
+#define FIELDNUM_TRAITS 19
+#define FIELDNUM_NOTES  20
 
 #define FIELDNUM_DELETE "d"
 #define FIELDNUM_NEWREC 99
@@ -39,18 +40,17 @@
 	req_access = list(access_medical)
 	var/tmp/menu = MENU_MAIN
 	var/tmp/field_input = 0
-	var/tmp/authenticated = null //Are we currently logged in?
 	var/datum/record_database/record_database = null
-	var/datum/computer/file/user_data/account = null
 	var/datum/db_record/active_general = null //General record
 	var/datum/db_record/active_medical = null //Medical record
 	var/log_string = null //Log usage of record system, can be dumped to a text file.
 	var/list/datum/db_record/possible_active = null
 
-	var/setup_acc_filepath = "/logs/sysusr"//Where do we look for login data?
 	var/setup_logdump_name = "medlog" //What name do we give our logdump textfile?
 
 	initialize()
+		if (..())
+			return TRUE
 /*
 		var/title_art = {"<pre>
   __  __        _     _____          _
@@ -58,27 +58,14 @@
  | |\\/| / -_) _` |___| | | | '_/ _` | / /
  |_|  |_\\___\\__,_|     |_| |_| \\__,_|_\\_\\</pre>"}
 */
-		src.authenticated = null
 		src.record_database = data_core.general
 		src.master.temp = null
 		src.menu = MENU_MAIN
 		src.field_input = 0
-		//src.print_text(" [title_art]")
-		if(!src.find_access_file()) //Find the account information, as it's essentially a ~digital ID card~
-			src.print_text("<b>Error:</b> Cannot locate user file.  Quitting...")
-			src.master.unload_program(src) //Oh no, couldn't find the file.
-			return
 
-		if(!src.check_access(src.account.access))
-			src.print_text("User [src.account.registered] does not have needed access credentials.<br>Quitting...")
-			src.master.unload_program(src)
-			return
-
-		src.authenticated = src.account.registered
 		src.log_string += "<br><b>LOGIN:</b> [src.authenticated]"
 
 		src.print_text(mainmenu_text())
-		return
 
 
 	input_text(text)
@@ -168,6 +155,7 @@
 							info += {"
 							Full Name: [src.active_general["full_name"]] ID: [src.active_general["id"]]
 							<br><br>Sex: [src.active_general["sex"]]
+							<br><br>Pronouns: [src.active_general["pronouns"]]
 							<br><br>Age: [src.active_general["age"]]
 							<br><br>Rank: [src.active_general["rank"]]
 							<br><br>Fingerprint: [src.active_general["fingerprint"]]
@@ -215,6 +203,18 @@
 				switch(field_number)
 					if (FIELDNUM_SEX)
 						src.print_text("Please select: (1) Female (2) Male (3) Other (0) Back")
+						src.menu = MENU_FIELD_INPUT
+						return
+
+					if (FIELDNUM_PRONOUNS)
+						var/list/pronoun_types = filtered_concrete_typesof(/datum/pronouns, /proc/pronouns_filter_is_choosable)
+						var/list/text_parts = list("Please select: ")
+						for (var/pronoun_type in pronoun_types)
+							var/datum/pronouns/pronouns = get_singleton(pronoun_type)
+							text_parts += pronouns.name
+							text_parts += ", "
+						text_parts += " (0) Back"
+						src.print_text(jointext(text_parts, ""))
 						src.menu = MENU_FIELD_INPUT
 						return
 
@@ -288,6 +288,19 @@
 								return
 							else
 								return
+
+					if (FIELDNUM_PRONOUNS)
+						if (inputText == "0")
+							src.menu = MENU_IN_RECORD
+							return
+						var/list/pronoun_types = filtered_concrete_typesof(/datum/pronouns, /proc/pronouns_filter_is_choosable)
+						for (var/pronoun_type in pronoun_types)
+							var/datum/pronouns/pronouns = get_singleton(pronoun_type)
+							if (pronouns.name == inputText)
+								src.active_general["pronouns"] = pronouns.name
+								return
+						src.print_text("Invalid pronouns.")
+						return
 
 					if (FIELDNUM_AGE)
 						var/newAge = round( min( text2num_safe(command), 99) )
@@ -515,7 +528,7 @@
 
 				var/list/datum/db_record/results = list()
 				for(var/datum/db_record/R as anything in data_core.general.records)
-					var/haystack = jointext(list(ckey(R["name"]), ckey(R["id"]), ckey(R["id"]), ckey(R["fingerprint"]), ckey(R["rank"])), " ")
+					var/haystack = jointext(list(ckey(R["name"]), ckey(R["dna"]), ckey(R["id"]), ckey(R["fingerprint"]), ckey(R["rank"])), " ")
 					if(findtext(haystack, searchText))
 						results += R
 
@@ -708,28 +721,29 @@
 			\[01]Name: [src.active_general["name"]] ID: [src.active_general["id"]]
 			<br>\[02]Full Name: [src.active_general["full_name"]]
 			<br>\[03]<b>Sex:</b> [src.active_general["sex"]]
-			<br>\[04]<b>Age:</b> [src.active_general["age"]]
+			<br>\[04]<b>Pronouns:</b> [src.active_general["pronouns"]]
+			<br>\[05]<b>Age:</b> [src.active_general["age"]]
 			<br>\[__]<b>Rank:</b> [src.active_general["rank"]]
-			<br>\[05]<b>Fingerprint:</b> [src.active_general["fingerprint"]]
-			<br>\[06]<b>DNA:</b> [src.active_general["dna"]]
+			<br>\[06]<b>Fingerprint:</b> [src.active_general["fingerprint"]]
+			<br>\[07]<b>DNA:</b> [src.active_general["dna"]]
 			<br>\[__]Photo: [istype(src.active_general["file_photo"], /datum/computer/file/image) ? "On File" : "None"]
-			<br>\[07]Physical Status: [src.active_general["p_stat"]]
-			<br>\[08]Mental Status: [src.active_general["m_stat"]]"}
+			<br>\[08]Physical Status: [src.active_general["p_stat"]]
+			<br>\[09]Mental Status: [src.active_general["m_stat"]]"}
 
 			if ((istype(src.active_medical, /datum/db_record) && data_core.medical.has_record(src.active_medical)))
 				view_string += {"<br><center><b>Medical Data:</b></center>
 				<br>\[__]Current Health: [src.active_medical["h_imp"]]
-				<br>\[09]Blood Type: [src.active_medical["bioHolder.bloodType"]]
-				<br>\[10]Minor Disabilities: [src.active_medical["mi_dis"]]
-				<br>\[11]Details: [src.active_medical["mi_dis_d"]]
-				<br>\[12]<br>Major Disabilities: [src.active_medical["ma_dis"]]
-				<br>\[13]Details: [src.active_medical["ma_dis_d"]]
-				<br>\[14]<br>Allergies: [src.active_medical["alg"]]
-				<br>\[15]Details: [src.active_medical["alg_d"]]
-				<br>\[16]<br>Current Diseases: [src.active_medical["cdi"]] (per disease info placed in log/comment section)
-				<br>\[17]Details: [src.active_medical["cdi_d"]]
-				<br>\[18]Traits: [src.active_medical["traits"]]
-				<br>\[19]Important Notes:
+				<br>\[10]Blood Type: [src.active_medical["bioHolder.bloodType"]]
+				<br>\[11]Minor Disabilities: [src.active_medical["mi_dis"]]
+				<br>\[12]Details: [src.active_medical["mi_dis_d"]]
+				<br>\[13]<br>Major Disabilities: [src.active_medical["ma_dis"]]
+				<br>\[14]Details: [src.active_medical["ma_dis_d"]]
+				<br>\[15]<br>Allergies: [src.active_medical["alg"]]
+				<br>\[16]Details: [src.active_medical["alg_d"]]
+				<br>\[17]<br>Current Diseases: [src.active_medical["cdi"]] (per disease info placed in log/comment section)
+				<br>\[18]Details: [src.active_medical["cdi_d"]]
+				<br>\[19]Traits: [src.active_medical["traits"]]
+				<br>\[20]Important Notes:
 				<br>&emsp;[src.active_medical["notes"]]"}
 			else
 				view_string += "<br><br><b>Medical Record Lost!</b>"
@@ -762,18 +776,6 @@
 			src.print_text(dat)
 			return 1
 
-		find_access_file() //Look for the whimsical account_data file
-			var/datum/computer/folder/accdir = src.holder.root
-			if(src.master.host_program) //Check where the OS is, preferably.
-				accdir = src.master.host_program.holder.root
-
-			var/datum/computer/file/user_data/target = parse_file_directory(setup_acc_filepath, accdir)
-			if(target && istype(target))
-				src.account = target
-				return 1
-
-			return 0
-
 #undef MENU_MAIN
 #undef MENU_INDEX
 #undef MENU_IN_RECORD
@@ -786,6 +788,7 @@
 #undef FIELDNUM_NAME
 #undef FIELDNUM_FULLNAME
 #undef FIELDNUM_SEX
+#undef FIELDNUM_PRONOUNS
 #undef FIELDNUM_AGE
 #undef FIELDNUM_PRINT
 #undef FIELDNUM_DNA

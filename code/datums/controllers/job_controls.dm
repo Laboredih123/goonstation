@@ -34,9 +34,11 @@ var/datum/job_controller/job_controls
 			for (var/A in concrete_typesof(/datum/job/special)) src.special_jobs += new A(src)
 		job_creator = new /datum/job/created(src)
 		//Add special daily variety job
-		var/variety_job_path = text2path("/datum/job/daily/[lowertext(time2text(world.realtime,"Day"))]")
-		if (variety_job_path)
-			src.staple_jobs += new variety_job_path(src)
+		for (var/datum/job/daily/variety_job_path as anything in concrete_typesof(/datum/job/daily))
+			if (initial(variety_job_path.day) == time2text(world.realtime,"Day"))
+				src.staple_jobs += new variety_job_path(src)
+			else
+				src.hidden_jobs += new variety_job_path(src)
 
 		for (var/datum/job/J in src.staple_jobs)
 			// Cull any of those nasty null jobs from the category heads
@@ -58,27 +60,27 @@ var/datum/job_controller/job_controls
 		dat += "<b><u>Job Controls</u></b><HR>"
 		dat += "<b>Command & Security Jobs</b><BR>"
 		for(var/datum/job/command/JOB in src.staple_jobs)
-			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [JOB.assigned]/[JOB.limit]</A> <a href='byond://?src=\ref[src];Edit=\ref[JOB]'>Edit</a><BR>"
 		for(var/datum/job/security/JOB in src.staple_jobs)
-			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [JOB.assigned]/[JOB.limit]</A> <a href='byond://?src=\ref[src];Edit=\ref[JOB]'>Edit</a><BR>"
 		dat += "<BR>"
 		dat += "<b>Research Jobs</b><BR>"
 		for(var/datum/job/research/JOB in src.staple_jobs)
-			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [JOB.assigned]/[JOB.limit]</A> <a href='byond://?src=\ref[src];Edit=\ref[JOB]'>Edit</a><BR>"
 		dat += "<BR>"
 		dat += "<b>Engineering Jobs</b><BR>"
 		for(var/datum/job/engineering/JOB in src.staple_jobs)
-			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [JOB.assigned]/[JOB.limit]</A> <a href='byond://?src=\ref[src];Edit=\ref[JOB]'>Edit</a><BR>"
 		dat += "<BR>"
 		dat += "<b>Civilian Jobs</b><BR>"
 		for(var/datum/job/civilian/JOB in src.staple_jobs)
-			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [JOB.assigned]/[JOB.limit]</A> <a href='byond://?src=\ref[src];Edit=\ref[JOB]'>Edit</a><BR>"
 		dat += "<BR>"
 		dat += "<b>Special Jobs</b><BR>"
 		for(var/datum/job/special/JOB in src.special_jobs)
-			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A><BR>"
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [JOB.assigned]/[JOB.limit]</A> <a href='byond://?src=\ref[src];Edit=\ref[JOB]'>Edit</a><BR>"
 		for(var/datum/job/created/JOB in src.special_jobs)
-			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [countJob("[JOB.name]")]/[JOB.limit]</A>"
+			dat += "<a href='byond://?src=\ref[src];AlterCap=\ref[JOB]'>[JOB.name]: [JOB.assigned]/[JOB.limit]</A> <a href='byond://?src=\ref[src];Edit=\ref[JOB]'>Edit</a>"
 			dat += " <a href='byond://?src=\ref[src];RemoveJob=\ref[JOB]'>(Remove)</A><BR>"
 		dat += "<BR>"
 		if (src.allow_special_jobs)
@@ -108,7 +110,7 @@ var/datum/job_controller/job_controls
 		dat += "<A href='?src=\ref[src];EditWages=1'>Wages Per Payday:</A> [src.job_creator.wages]<br>"
 		dat += "<A href='?src=\ref[src];EditLimit=1'>Job Limit:</A> [src.job_creator.limit]<br>"
 		dat += "<A href='?src=\ref[src];ChangeName=1'>Can Change Name on Spawn:</A> [src.job_creator.change_name_on_spawn ? "Yes":"No"]<br>"
-		dat += "<A href='?src=\ref[src];SetSpawnLoc=1'>Spawn Location:</A> [src.job_creator.special_spawn_location ? locate(src.job_creator.spawn_x,src.job_creator.spawn_y,src.job_creator.spawn_z) : "Default"]<br>"
+		dat += "<A href='?src=\ref[src];SetSpawnLoc=1'>Spawn Location:</A> [src.job_creator.special_spawn_location]<br>"
 		dat += "<A href='?src=\ref[src];SpawnId=1'>Spawns with ID:</A> [src.job_creator.spawn_id ? "Yes" : "No"]<br>"
 		dat += "<A href='?src=\ref[src];EditObjective=1'>Custom Objective:</A> [src.job_creator.objective][src.job_creator.objective ? (" (Crew Objective)") : ""]<br>"
 		dat += "<A href='?src=\ref[src];ToggleAnnounce=1'>Head of Staff-style Announcement:</A> [src.job_creator.announce_on_join?"Yes":"No"]<br>"
@@ -135,11 +137,11 @@ var/datum/job_controller/job_controls
 			dat += "<A href='?src=\ref[src];EditRhand=1'>Starting Right Hand Item:</A> [english_list(src.job_creator.slot_rhan)]<br>"
 			dat += "<A href='?src=\ref[src];EditImpl=1'>Starting Implant:</A> [src.job_creator.receives_implant]<br>"
 			for(var/i in 1 to 7)
-				dat += "<A href='?src=\ref[src];EditBpItem=[i]'>Starting Backpack Item [i]:</A> [src.job_creator.items_in_backpack.len >= i ? src.job_creator.items_in_backpack[i] : null]<br>"
+				dat += "<A href='?src=\ref[src];EditBpItem=[i]'>Starting Backpack Item [i]:</A> [length(src.job_creator.items_in_backpack) >= i ? src.job_creator.items_in_backpack[i] : null]<br>"
 			for(var/i in 1 to 7)
-				dat += "<A href='?src=\ref[src];EditBeltItem=[i]'>Starting Belt Item [i]:</A> [src.job_creator.items_in_belt.len >= i ? src.job_creator.items_in_belt[i] : null]<br>"
+				dat += "<A href='?src=\ref[src];EditBeltItem=[i]'>Starting Belt Item [i]:</A> [length(src.job_creator.items_in_belt) >= i ? src.job_creator.items_in_belt[i] : null]<br>"
 			dat += "<A href='?src=\ref[src];GetAccess=1'>Set Access Permissions </A>"
-			if (src.job_creator.access.len > 1)
+			if (length(src.job_creator.access) > 1)
 				dat += " "
 				dat += "<A href='?src=\ref[src];AddAccess=1'>(Add More):</A>"
 			dat += ":<BR>"
@@ -149,7 +151,7 @@ var/datum/job_controller/job_controls
 			dat += "<A href='?src=\ref[src];BioEffects=1'>Bio Effects:</A> [src.job_creator.bio_effects]<br>"
 		else if (ispath(src.job_creator.mob_type, /mob/living/critter))
 			dat += "<A href='?src=\ref[src];GetAccess=1'>Set Implanted Access Permissions</A>"
-			if (src.job_creator.access.len > 1)
+			if (length(src.job_creator.access) > 1)
 				dat += " "
 				dat += "<A href='?src=\ref[src];AddAccess=1'>(Add More):</A>"
 				dat += ":<BR>"
@@ -167,8 +169,9 @@ var/datum/job_controller/job_controls
 			if (src.load_another_ckey)
 				dat += "<b> (Showing [src.load_another_ckey]'s jobs)</b>"
 			dat += "<br><small>"
-			for (var/i=1, i <= CUSTOMJOB_SAVEFILE_PROFILES_MAX, i++)
-				dat += " <a href='?src=\ref[src];Load=[i]'>[src.savefile_get_job_name(usr,i) || i]</a>"
+			var/list/job_names = src.savefile_get_job_names(usr)
+			for (var/i in 1 to length(job_names))
+				dat += " <a href='?src=\ref[src];Load=[i]'>[job_names[i] || i]</a>"
 				dat += "&nbsp;"
 				if (!src.load_another_ckey)
 					dat += " <a href='?src=\ref[src];Save=[i]'>(Save here)</a>"
@@ -204,7 +207,7 @@ var/datum/job_controller/job_controls
 			var/list/alljobs = src.staple_jobs | src.special_jobs
 			var/datum/job/JOB = locate(href_list["RemoveJob"]) in alljobs
 			if (!istype(JOB,/datum/job/created/))
-				boutput(usr, "<span class='alert'><b>Removing integral jobs is not allowed. Bad for business, y'know.</b></span>")
+				boutput(usr, SPAN_ALERT("<b>Removing integral jobs is not allowed. Bad for business, y'know.</b>"))
 				return
 			message_admins("Admin [key_name(usr)] removed special job [JOB.name]")
 			logTheThing(LOG_ADMIN, usr, "removed special job [JOB.name]")
@@ -220,6 +223,12 @@ var/datum/job_controller/job_controls
 			src.job_config()
 
 		if(href_list["JobCreator"])
+			savefile_fix(usr.client)
+			src.job_creator()
+
+		if(href_list["Edit"])
+			src.job_creator = locate(href_list["Edit"])
+			savefile_fix(usr.client)
 			src.job_creator()
 
 		// JOB CREATOR COMMANDS
@@ -252,9 +261,9 @@ var/datum/job_controller/job_controls
 				L = typesof(/mob)
 
 			var/picker = null
-			if (L.len == 1)
+			if (length(L) == 1)
 				picker = L[1]
-			else if (L.len > 1)
+			else if (length(L) > 1)
 				picker = input(usr,"Select mob:","Job Creator",null) as null|anything in L
 			else
 				usr.show_text("No mob matching that name", "red")
@@ -278,9 +287,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/datum/mutantrace)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select mutantrace:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No mutantrace matching that name", "red")
@@ -306,9 +315,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/clothing/head)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select headgear:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No headgear matching that name", "red")
@@ -333,9 +342,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/clothing/mask)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select mask:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No mask matching that name", "red")
@@ -360,9 +369,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/device/radio/headset)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select headset:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No headset matching that name", "red")
@@ -387,9 +396,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/clothing/glasses)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select glasses:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No glasses matching that name", "red")
@@ -414,9 +423,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/clothing/suit)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select exosuit:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No exosuit matching that name", "red")
@@ -441,9 +450,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/clothing/under)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select jumpsuit:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No jumpsuit matching that name", "red")
@@ -470,9 +479,9 @@ var/datum/job_controller/job_controls
 						L = (typesof(/obj/item/card) - list(/obj/item/card/emag, /obj/item/card/emag/fake, /obj/item/card/id/gauntlet))
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select ID card:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No ID card matching that name", "red")
@@ -497,9 +506,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/clothing/gloves)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select gloves:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No gloves matching that name", "red")
@@ -524,9 +533,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/clothing/shoes)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select shoes:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No shoes matching that name", "red")
@@ -551,9 +560,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select backslot item:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No backslot item matching that name", "red")
@@ -564,7 +573,7 @@ var/datum/job_controller/job_controls
 					// used to be here. Anway, the job controller will not spawn unsuitable items (Convair880).
 					if (picker)
 						var/obj/item/check = new picker
-						if (!(check.flags & ONBACK))
+						if (!(check.c_flags & ONBACK))
 							usr.show_text("This item cannot be worn on the back slot.", "red")
 							qdel(check)
 							return
@@ -589,9 +598,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select beltslot item:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No beltslot item matching that name", "red")
@@ -600,7 +609,7 @@ var/datum/job_controller/job_controls
 					// Ditto (Convair880).
 					if (picker)
 						var/obj/item/check = new picker
-						if (!(check.flags & ONBELT))
+						if (!(check.c_flags & ONBELT))
 							usr.show_text("This item cannot be worn on the belt slot.", "red")
 							qdel(check)
 							return
@@ -625,9 +634,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select item:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No item matching that name", "red")
@@ -661,9 +670,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select item:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No item matching that name", "red")
@@ -697,9 +706,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select item:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No item matching that name", "red")
@@ -724,9 +733,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select item:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No item matching that name", "red")
@@ -751,9 +760,9 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/implant)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select implant:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No implant matching that name", "red")
@@ -768,7 +777,7 @@ var/datum/job_controller/job_controls
 			var/slot_num = text2num(href_list["EditBpItem"])
 			switch(alert("Clear or reselect slotted item?","Job Creator","Clear","Reselect"))
 				if("Clear")
-					if(src.job_creator.items_in_backpack.len >= slot_num)
+					if(length(src.job_creator.items_in_backpack) >= slot_num)
 						src.job_creator.items_in_backpack[slot_num] = null
 
 				if("Reselect")
@@ -781,15 +790,15 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select item:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No item matching that name", "red")
 						return
 
-					while(src.job_creator.items_in_backpack.len < slot_num)
+					while(length(src.job_creator.items_in_backpack) < slot_num)
 						src.job_creator.items_in_backpack += null
 					src.job_creator.items_in_backpack[slot_num] = picker
 
@@ -800,7 +809,7 @@ var/datum/job_controller/job_controls
 			var/slot_num = text2num(href_list["EditBeltItem"])
 			switch(alert("Clear or reselect slotted item?","Job Creator","Clear","Reselect"))
 				if("Clear")
-					if(src.job_creator.items_in_belt.len >= slot_num)
+					if(length(src.job_creator.items_in_belt) >= slot_num)
 						src.job_creator.items_in_belt[slot_num] = null
 
 				if("Reselect")
@@ -813,15 +822,15 @@ var/datum/job_controller/job_controls
 						L = typesof(/obj/item/)
 
 					var/picker = null
-					if (L.len == 1)
+					if (length(L) == 1)
 						picker = L[1]
-					else if (L.len > 1)
+					else if (length(L) > 1)
 						picker = input(usr,"Select item:","Job Creator",null) as null|anything in L
 					else
 						usr.show_text("No item matching that name", "red")
 						return
 
-					while(src.job_creator.items_in_belt.len < slot_num)
+					while(length(src.job_creator.items_in_belt) < slot_num)
 						src.job_creator.items_in_belt += null
 					src.job_creator.items_in_belt[slot_num] = picker
 
@@ -830,14 +839,14 @@ var/datum/job_controller/job_controls
 		if(href_list["GetAccess"])
 			var/picker = input("Make this job's access comparable to which job?","Job Creator") in list("Captain","Head of Security",
 			"Head of Personnel","Chief Engineer","Research Director","Security Officer","Detective","Geneticist","Pathologist","Roboticist","Scientist",
-			"Medical Doctor","Quartermaster","Miner","Mechanic","Engineer","Chef","Bartender","Botanist","Janitor","Chaplain","Staff Assistant","No Access")
+			"Medical Doctor","Quartermaster","Miner","Engineer","Chef","Bartender","Botanist","Janitor","Chaplain","Staff Assistant","No Access")
 			src.job_creator.access = get_access(picker)
 			src.job_creator()
 
 		if(href_list["AddAccess"])
 			var/picker = input("Make this job's access comparable to which job?","Job Creator") in list("Captain","Head of Security",
 			"Head of Personnel","Chief Engineer","Research Director","Security Officer","Detective","Geneticist","Pathologist","Roboticist","Scientist",
-			"Medical Doctor","Quartermaster","Miner","Mechanic","Engineer","Chef","Bartender","Botanist","Janitor","Chaplain","Staff Assistant","No Access")
+			"Medical Doctor","Quartermaster","Miner","Engineer","Chef","Bartender","Botanist","Janitor","Chaplain","Staff Assistant","No Access")
 			src.job_creator.access |= get_access(picker)
 			src.job_creator()
 
@@ -893,16 +902,20 @@ var/datum/job_controller/job_controls
 					alert("Please move to the target location and then press OK.")
 					var/atom/trg = get_turf(usr)
 					if(trg)
-						src.job_creator.special_spawn_location = 1
-						src.job_creator.spawn_x = trg.x
-						src.job_creator.spawn_y = trg.y
-						src.job_creator.spawn_z = trg.z
+						src.job_creator.special_spawn_location = trg
 			src.job_creator()
 
 		if(href_list["CreateJob"])
-			var/datum/job/match_check = find_job_in_controller_by_string(src.job_creator.name)
+			var/datum/job/match_check
+			try
+				match_check = find_job_in_controller_by_string(src.job_creator.name)
+			catch
+				;
+			if (match_check == src.job_creator)
+				boutput(usr, SPAN_ALERT("<b>This job already exists. All is well.</b>"))
+				return
 			if (match_check)
-				boutput(usr, "<span class='alert'><b>A job with this name already exists. It cannot be created.</b></span>")
+				boutput(usr, SPAN_ALERT("<b>A job with this name already exists. It cannot be created.</b>"))
 				return
 			else
 				var/datum/job/created/JOB = new /datum/job/created(src)
@@ -934,9 +947,6 @@ var/datum/job_controller/job_controls
 				JOB.access = JOB.access | src.job_creator.access
 				JOB.change_name_on_spawn = src.job_creator.change_name_on_spawn
 				JOB.special_spawn_location = src.job_creator.special_spawn_location
-				JOB.spawn_x = src.job_creator.spawn_x
-				JOB.spawn_y = src.job_creator.spawn_y
-				JOB.spawn_z = src.job_creator.spawn_z
 				JOB.bio_effects = src.job_creator.bio_effects
 				JOB.objective = src.job_creator.objective
 				JOB.announce_on_join = src.job_creator.announce_on_join
@@ -956,7 +966,7 @@ var/datum/job_controller/job_controls
 		if(href_list["Save"])
 			if (!src.check_user_changed())
 				src.savefile_save(usr.client, (isnum(text2num(href_list["Save"])) ? text2num(href_list["Save"]) : 1))
-				boutput(usr, "<span class='notice'><b>Job saved to Slot [text2num(href_list["Save"])].</b></span>")
+				boutput(usr, SPAN_NOTICE("<b>Job saved to Slot [text2num(href_list["Save"])].</b>"))
 			src.job_creator()
 
 		if(href_list["Load"])
@@ -964,7 +974,7 @@ var/datum/job_controller/job_controls
 				if (!src.savefile_load(usr.client, (isnum(text2num(href_list["Load"])) ? text2num(href_list["Load"]) : 1)))
 					alert(usr, "You do not have a job saved in this slot.")
 				else
-					boutput(usr, "<span class='notice'><b>Job loaded from Slot [text2num(href_list["Load"])].</b></span>")
+					boutput(usr, SPAN_NOTICE("<b>Job loaded from Slot [text2num(href_list["Load"])].</b>"))
 			src.job_creator()
 
 		if(href_list["SaveLoad"])
@@ -980,29 +990,40 @@ var/datum/job_controller/job_controls
 				alert(usr, "Could not find a savefile with that ckey!.")
 			src.job_creator()
 
-/proc/find_job_in_controller_by_string(var/string,var/staple_only = 0)
+///Soft supresses crash on failing to find a job
+/proc/find_job_in_controller_by_string(var/string, var/staple_only = 0, var/soft = FALSE, var/case_sensitive = TRUE)
+	RETURN_TYPE(/datum/job)
 	if (!string || !istext(string))
 		logTheThing(LOG_DEBUG, null, "<b>Job Controller:</b> Attempt to find job with bad string in controller detected")
 		return null
 	var/list/excluded_strings = list("Special Respawn","Custom Names","Everything Except Assistant",
-	"Engineering Department","Security Department","Heads of Staff", "Pod_Wars", "Syndicate", "Construction Worker")
+	"Engineering Department","Security Department","Heads of Staff", "Pod_Wars", "Syndicate", "Construction Worker", "MODE", "Ghostdrone", "Animal")
 	#ifndef MAP_OVERRIDE_MANTA
 	excluded_strings += "Communications Officer"
 	#endif
+	#ifndef CREATE_PATHOGENS
+	excluded_strings += "Pathologist"
+	#endif
 	if (string in excluded_strings)
 		return null
+	var/list/results = list()
 	for (var/datum/job/J in job_controls.staple_jobs)
-		if (J.name == string || (string in J.alias_names))
-			return J
+		if (J.match_to_string(string, case_sensitive))
+			results += J
 	if (!staple_only)
 		for (var/datum/job/J in job_controls.special_jobs)
-			if (J.name == string || (string in J.alias_names))
-				return J
+			if (J.match_to_string(string, case_sensitive))
+				results += J
 		for (var/datum/job/J in job_controls.hidden_jobs)
-			if (J.name == string || (string in J.alias_names))
-				return J
-	logTheThing(LOG_DEBUG, null, "<b>Job Controller:</b> Attempt to find job by string \"[string]\" in controller failed")
-	return null
+			if (J.match_to_string(string, case_sensitive))
+				results += J
+	if(length(results) == 1)
+		return results[1]
+	else if(length(results) > 1)
+		stack_trace("Multiple jobs share the name '[string]'!")
+		return results[1]
+	if (!soft)
+		CRASH("No job found with name '[string]'!")
 
 /proc/find_job_in_controller_by_path(var/path)
 	if (!path || !ispath(path) || !istype(path,/datum/job/))
@@ -1021,5 +1042,5 @@ var/datum/job_controller/job_controls
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 	set name = "Job Controls"
 
-	if (job_controls == null) boutput(src, "UH OH! Shit's broken as fuck!")
+	if (job_controls == null) boutput(src, "<h3 class='admin'>UH OH! Shit's broken as fuck!</h3>")
 	else src.debug_variables(job_controls)

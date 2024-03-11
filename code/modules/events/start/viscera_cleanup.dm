@@ -73,8 +73,6 @@
 				make_cleanable(/obj/decal/cleanable/vomit,pick(turfs))
 			for(i in 1 to rand(0,2))
 				make_cleanable(/obj/decal/cleanable/dirt,pick(turfs))
-			if(prob(5))
-				make_cleanable(/obj/decal/cleanable/urine,pick(turfs))
 			if(prob(1))
 				gibs(pick(turfs))
 
@@ -105,8 +103,6 @@
 			for(i in 1 to rand(0,3))
 				make_cleanable(/obj/decal/cleanable/blood,pick(turfs))
 			for(i in 1 to rand(0,3))
-				make_cleanable(/obj/decal/cleanable/urine,pick(turfs))
-			for(i in 1 to rand(0,3))
 				make_cleanable(/obj/decal/cleanable/water,pick(turfs))
 			for(i in 1 to rand(0,4))
 				make_cleanable(/obj/decal/cleanable/dirt,pick(turfs))
@@ -127,7 +123,7 @@
 
 		for(i in 1 to rand(0,30))
 			T = get_random_station_turf()
-			make_cleanable(/obj/decal/cleanable/dirt,pick(turfs))
+			make_cleanable(/obj/decal/cleanable/dirt,T)
 
 		for(i in 1 to rand(0,3))
 			var/item = weighted_pick(list(/obj/item/casing = 10, /obj/item/casing/rifle = 2, /obj/item/casing/small = 5))

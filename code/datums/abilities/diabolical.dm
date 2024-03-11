@@ -24,7 +24,7 @@
 		if (!spell.holder)
 			return
 		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span class='alert'>You can't use this ability here.</span>")
+			boutput(owner.holder.owner, SPAN_ALERT("You can't use this ability here."))
 			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
@@ -45,7 +45,7 @@
 	usesPoints = 0
 	regenRate = 0
 	tabName = "Souls"
-	notEnoughPointsMessage = "<span class='alert'>You need more souls to use this ability!</span>"
+	notEnoughPointsMessage = SPAN_ALERT("You need more souls to use this ability!")
 
 	onAbilityStat() // In the "Souls" tab.
 		..()
@@ -128,29 +128,29 @@
 			return 0
 
 		if (!ishuman(M))
-			boutput(M, "<span class='alert'>You cannot use any powers in your current form.</span>")
+			boutput(M, SPAN_ALERT("You cannot use any powers in your current form."))
 			return 0
 
 		if (M.transforming)
-			boutput(M, "<span class='alert'>You can't use any powers right now.</span>")
+			boutput(M, SPAN_ALERT("You can't use any powers right now."))
 			return 0
 
 		if (incapacitation_check(src.when_stunned) != 1)
-			boutput(M, "<span class='alert'>You can't use this ability while incapacitated!</span>")
+			boutput(M, SPAN_ALERT("You can't use this ability while incapacitated!"))
 			return 0
 
 		if (src.not_when_handcuffed == 1 && M.restrained())
-			boutput(M, "<span class='alert'>You can't use this ability when restrained!</span>")
+			boutput(M, SPAN_ALERT("You can't use this ability when restrained!"))
 			return 0
 
 		if (!(isdiabolical(M)))
-			boutput(M, "<span class='alert'>You aren't evil enough to use this power!</span>")
-			boutput(M, "<span class='alert'>Also, you should probably contact a coder because something has gone horribly wrong.</span>")
+			boutput(M, SPAN_ALERT("You aren't evil enough to use this power!"))
+			boutput(M, SPAN_ALERT("Also, you should probably contact a coder because something has gone horribly wrong."))
 			return 0
 
 		if (!(total_souls_value >= CONTRACT_COST))
-			boutput(M, "<span class='alert'>You don't have enough souls in your satanic bank account to buy another contract!</span>")
-			boutput(M, "<span class='alert'>You need [CONTRACT_COST - total_souls_value] more to afford a contract!</span>")
+			boutput(M, SPAN_ALERT("You don't have enough souls in your satanic bank account to buy another contract!"))
+			boutput(M, SPAN_ALERT("You need [CONTRACT_COST - total_souls_value] more to afford a contract!"))
 			return 0
 
 		return 1
@@ -175,8 +175,8 @@
 	not_when_handcuffed = 0
 
 	New()
-		..()
 		desc = "Spend [CONTRACT_COST] souls to summon a random new contract to your location"
+		..()
 
 	cast(mob/target)
 		if (!holder)
@@ -185,15 +185,15 @@
 		if (!M)
 			return 1
 		if (!(total_souls_value >= CONTRACT_COST))
-			boutput(M, "<span class='alert'>You don't have enough souls in your satanic bank account to buy another contract!</span>")
-			boutput(M, "<span class='alert'>You need [CONTRACT_COST - total_souls_value] more to afford a contract!</span>")
+			boutput(M, SPAN_ALERT("You don't have enough souls in your satanic bank account to buy another contract!"))
+			boutput(M, SPAN_ALERT("You need [CONTRACT_COST - total_souls_value] more to afford a contract!"))
 			return 1
 		if (!isdiabolical(M))
-			boutput(M, "<span class='alert'>You aren't evil enough to use this power!</span>")
-			boutput(M, "<span class='alert'>Also, you should probably contact a coder because something has gone horribly wrong.</span>")
+			boutput(M, SPAN_ALERT("You aren't evil enough to use this power!"))
+			boutput(M, SPAN_ALERT("Also, you should probably contact a coder because something has gone horribly wrong."))
 			return 1
 		souladjust(-CONTRACT_COST)
-		boutput(M, "<span class='alert'>You spend [CONTRACT_COST] souls and summon a brand new contract along with a pen! However, losing the power of those souls has weakened your weapons.</span>")
+		boutput(M, SPAN_ALERT("You spend [CONTRACT_COST] souls and summon a brand new contract along with a pen! However, losing the power of those souls has weakened your weapons."))
 		spawncontract(M, 1, 1) //strong contract + pen
 		soulcheck(M)
 		return 0
@@ -217,15 +217,15 @@
 	cast(mob/target)
 		var/mob/living/carbon/human/H = target
 		if (!istype(H))
-			boutput(holder.owner, "Your target must be human!")
+			boutput(holder.owner, SPAN_ALERT("Your target must be human!"))
 			return 1
 
-		holder.owner.visible_message("<span class='alert'><b>[holder.owner] shoots finger guns in [target]s direction.</b></span>")
+		holder.owner.visible_message(SPAN_ALERT("<b>[holder.owner] shoots finger guns in [target]s direction.</b>"))
 		playsound(holder.owner.loc, 'sound/effects/fingersnap.ogg', 50, 0, -1)
 
 		if (H.traitHolder.hasTrait("training_chaplain"))
-			boutput(holder.owner, "<span class='alert'>[H] has divine protection from magic.</span>")
-			H.visible_message("<span class='alert'>The spell has no effect on [H]!</span>")
+			boutput(holder.owner, SPAN_ALERT("[H] has divine protection from magic."))
+			H.visible_message(SPAN_ALERT("The spell has no effect on [H]!"))
 			JOB_XP(H, "Chaplain", 2)
 			return
 
@@ -315,9 +315,9 @@
 
 	tryCast()
 		if (is_incapacitated(holder.owner))
-			boutput(holder.owner, "<span class='alert'>You cannot cast this ability while you are incapacitated.</span>")
-			src.holder.locked = 0
-			return 999
+			boutput(holder.owner, SPAN_ALERT("You cannot cast this ability while you are incapacitated."))
+			src.holder.locked = FALSE
+			return CAST_ATTEMPT_FAIL_NO_COOLDOWN
 		. = ..()
 
 	cast(atom/T)
@@ -327,6 +327,7 @@
 		var/slide_amount = 22 // around 20-25 is just wide enough to show most of the person hiding underneath
 
 		if(usr.plane == PLANE_UNDERFLOOR)
+			APPLY_ATOM_PROPERTY(usr, PROP_MOB_HIDE_ICONS, "underfloor")
 			usr.flags &= ~(NODRIFT | DOORPASS | TABLEPASS)
 			APPLY_ATOM_PROPERTY(usr, PROP_MOB_CANTMOVE, "floorswitching")
 			REMOVE_ATOM_PROPERTY(usr, PROP_MOB_NO_MOVEMENT_PUFFS, "floorswitching")
@@ -342,6 +343,7 @@
 					animate_slide(floorturf, 0, 0, 4)
 
 		else
+			APPLY_ATOM_PROPERTY(usr, PROP_MOB_HIDE_ICONS, "underfloor")
 			APPLY_ATOM_PROPERTY(usr, PROP_MOB_CANTMOVE, "floorswitching")
 			animate_slide(floorturf, x_coeff * -slide_amount, y_coeff * -slide_amount, 4)
 			SPAWN(0.4 SECONDS)

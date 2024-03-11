@@ -110,12 +110,12 @@
 	make_my_stuff()
 		..()
 		var/made_sponge = FALSE
-		for (var/i = 1 to 7)
+		for (var/i = 1 to src.storage.slots)
 			if(prob(5) && !made_sponge)
-				new /obj/item/sponge/cheese(src)
+				src.storage.add_contents(new /obj/item/sponge/cheese(src))
 				made_sponge = TRUE
 			else
-				new /obj/item/reagent_containers/food/snacks/ingredient/cheese(src)
+				src.storage.add_contents(new /obj/item/reagent_containers/food/snacks/ingredient/cheese(src))
 
 /obj/item/storage/goodybag
 	name = "goodybag"
@@ -128,6 +128,7 @@
 		for (var/i=6, i>0, i--)
 			var/newcandy_path = pick(candytypes)
 			var/obj/item/reagent_containers/food/snacks/candy/newcandy = new newcandy_path(src)
+			src.storage.add_contents(newcandy)
 			if (prob(5))
 				newcandy.razor_blade = 1
 
@@ -136,3 +137,9 @@
 	desc = "A box of generic unbranded popsicles."
 	icon_state = "popsiclebox"
 	spawn_contents = list(/obj/item/popsicle = 7)
+
+/obj/item/storage/box/popsicle_sticks
+	name = "popsicle sticks"
+	desc = "A box of popsicle sticks, used for making various kinds of sweets."
+	icon_state = "sticks"
+	spawn_contents = list(/obj/item/stick = 7)

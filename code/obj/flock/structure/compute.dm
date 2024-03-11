@@ -2,11 +2,13 @@
 	name = "weird lookin' thinking thing"
 	desc = "It almost looks like a terminal of some kind."
 	flock_desc = "A computing node that provides compute power to the Flock."
+	tutorial_desc = "A computing node that provides compute power to the Flock. Created by converting a human computer."
 	flock_id = "Compute node"
 	health = 60
 	uses_health_icon = FALSE
 	icon_state = "compute"
-	compute = 60
+	compute = 30
+	show_in_tutorial = TRUE
 	var/static/display_count = 9
 	var/glow_color = "#7BFFFFa2"
 
@@ -29,7 +31,7 @@
 	. = ..()
 
 /obj/flock_structure/compute/building_specific_info()
-	return {"<span class='bold'>Compute generation:</span> Currently generating [src.compute_provided()]."}
+	return {"[SPAN_BOLD("Compute generation:")] Currently generating [src.compute_provided()]."}
 
 /obj/flock_structure/compute/mainframe
 	name = "big weird lookin' thinking thing"
@@ -38,3 +40,4 @@
 	health = 100
 	icon_state = "compute_mainframe"
 	compute = 180
+	show_in_tutorial = FALSE

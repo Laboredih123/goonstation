@@ -10,7 +10,7 @@
 	when_stunned = 3
 	not_when_handcuffed = 0
 	hunter_only = 0
-	dont_lock_holder = 1
+	lock_holder = FALSE
 	ignore_holder_lock = 1
 
 	cast(mob/target)
@@ -25,8 +25,8 @@
 		var/count = M.get_skull_value()
 
 		if (count <= 0)
-			boutput(M, "<span class='alert'><b>Combined trophy value: 0</b></span>")
+			boutput(M, SPAN_ALERT("<b>Combined trophy value: 0</b>"))
 		else
-			boutput(M, "<span class='notice'><b>Combined trophy value: [count]</b></span>")
+			boutput(M, SPAN_NOTICE("<b>Combined trophy value: [count]</b>"))
 
 		return 0

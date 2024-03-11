@@ -23,8 +23,10 @@ labels_to_emoji = {
 	'a-catering': '🍝',
 	'a-chemistry': '⚗',
 	'a-clothing': '🎩',
+	'a-critters': '🐁',
+	'a-events': '🌠',
 	'a-game-objects': '📦',
-	'a-gamemodes': '🧛‍♂️',
+	'a-gamemodes': '🧛',
 	'a-github': '🏗',
 	'a-hydroponics': '🌱',
 	'a-internal': '⚙',
@@ -34,6 +36,8 @@ labels_to_emoji = {
 	'a-medical': '💊',
 	'a-mutantraces': '👽',
 	'a-player-actions': '🔨',
+	'a-respawning': '🐣',
+	'a-rp': '🎭',
 	'a-science': '🔬',
 	'a-secret': '🔒',
 	'a-silicons': '🤖',
@@ -42,6 +46,7 @@ labels_to_emoji = {
 	'a-tooling': '🔧',
 	'a-traits': '💪',
 	'a-ui': '📄',
+	'a-vehicles': '🚗',
 	'c-balance': '⚖',
 	'c-bug': '🪲',
 	'c-code-quality': '🔎',
@@ -57,6 +62,7 @@ labels_to_emoji = {
 	'c-sound': '🔊',
 	'c-sprites': '🎨',
 	'e-contest': '🎉',
+	'e-fuck': '❗',
 }
 
 def parse_pr_changelog(pr):

@@ -1,6 +1,6 @@
 /obj/item/device/radio/intercom/ship
 	name = "Communication Panel"
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/item/device/radio/intercom/ship/send_hear()
 	if (src.listening)
@@ -14,7 +14,6 @@
 	active = 0
 	name = "Robustco Communication Array"
 	desc = "Enables long-distance communications and interfacing with pod bay door controls."
-	power_used = 10
 	system = "Communications"
 	icon_state = "com"
 	color = "#16CC77"
@@ -59,7 +58,7 @@
 				linked_magnet = MM
 				ui_interact(usr)
 				return null
-			boutput(usr, "<span class='alert'>No magnet found in range of seven meters.</span>")
+			boutput(usr, SPAN_ALERT("No magnet found in range of seven meters."))
 			return null
 
 	syndicate
@@ -119,6 +118,12 @@
 			O.show_message("<font color='green'><b>[bicon(ship)]\[[.]\]</b> says, \"[broadcast]\"</font>")
 
 		return null
+
+	proc/go_home()
+		return FALSE
+
+	proc/get_home_turf()
+		return
 
 /obj/item/device/ship_radio_control
 	name = "Ship Radio Control"

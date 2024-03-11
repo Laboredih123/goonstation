@@ -17,6 +17,7 @@
 	can_flip_bust = 1
 	object_flags = NO_GHOSTCRITTER
 	event_handler_flags = USE_FLUID_ENTER | NO_MOUSEDROP_QOL
+	pass_unstable = TRUE
 
 	get_desc()
 		. = ..()
@@ -33,7 +34,7 @@
 	attackby(obj/item/I, mob/user)
 		if(!src.open && istype(I, /obj/item/antitamper))
 			if(src.locked)
-				boutput(user, "<span class='alert'>[src] is already locked and doesn't need [I].</span>")
+				boutput(user, SPAN_ALERT("[src] is already locked and doesn't need [I]."))
 				return
 			var/obj/item/antitamper/AT = I
 			AT.attach_to(src, user)
@@ -43,6 +44,11 @@
 	Cross(atom/movable/mover)
 		if(istype(mover, /obj/projectile))
 			return 1
+		if(src.open && isliving(mover)) // let people climb onto the crate if the crate is open and against a wall basically
+			var/move_dir = get_dir(mover, src)
+			var/turf/next_turf = get_step(src, move_dir)
+			if(next_turf && !total_cross(next_turf, src))
+				return TRUE
 		return ..()
 
 	Uncross(atom/movable/O, do_bump = TRUE)
@@ -179,11 +185,16 @@
 	icon_state = "largebin"
 	icon_opened = "largebinopen"
 	icon_closed = "largebin"
+	throwforce = 10
 
 /obj/storage/crate/bin/lostandfound
 	name = "\improper Lost and Found bin"
 	desc = "Theoretically, items that are lost by a person are placed here so that the person may come and find them. This never happens."
-	spawn_contents = list(/obj/item/gnomechompski)
+	spawn_contents = list(/obj/item/gnomechompski, /obj/item/random_trinket_spawner, /obj/item/random_lost_item_spawner)
+
+/obj/storage/crate/bin/trash
+	name = "trash can"
+	desc = "A can for trash. Garbage. That kind of thing."
 
 /obj/storage/crate/adventure
 	name = "adventure crate"
@@ -241,6 +252,18 @@
 	/obj/item/clothing/mask/clown_hat,
 	/obj/item/storage/box/crayon,
 	/obj/item/storage/box/crayon/basic,
+	#ifdef SEASON_AUTUMN
+	/obj/item/clothing/shoes/clown_shoes/autumn,
+	/obj/item/clothing/head/clown_autumn_hat,
+	/obj/item/clothing/mask/clown_hat/autumn,
+	/obj/item/clothing/under/gimmick/clown_autumn,
+	#endif
+	#ifdef SEASON_WINTER
+	/obj/item/clothing/shoes/clown_shoes/winter,
+	/obj/item/clothing/head/clown_winter_hat,
+	/obj/item/clothing/mask/clown_hat/winter,
+	/obj/item/clothing/under/gimmick/clown_winter,
+	#endif
 	/obj/item/storage/box/balloonbox)
 
 	make_my_stuff()
@@ -249,11 +272,23 @@
 				new /obj/item/pen/crayon/rainbow(src)
 			return 1
 
-/obj/storage/crate/materials
-	name = "building materials crate"
-	spawn_contents = list(/obj/item/sheet/steel/fullstack,
-	/obj/item/sheet/glass/fullstack)
-
+/obj/storage/crate/radio
+	name = "radio headsets crate"
+	spawn_contents = list(
+		/obj/item/storage/box/PDAbox,
+		/obj/item/device/radio/headset/multifreq,
+		/obj/item/device/radio/headset/multifreq,
+		/obj/item/device/radio/headset/medical,
+		/obj/item/device/radio/headset/medical,
+		/obj/item/device/radio/headset/security,
+		/obj/item/device/radio/headset/security,
+		/obj/item/device/radio/headset/engineer,
+		/obj/item/device/radio/headset/engineer,
+		/obj/item/device/radio/headset/command,
+		/obj/item/device/radio/headset/command,
+		/obj/item/device/radio/headset/research,
+		/obj/item/device/radio/headset/research,
+	)
 /*
  *	SPOOKY haunted crate!
  */
@@ -296,12 +331,12 @@
 					continue
 
 				if (!S.not_in_crates)
-					possible_items += S
+					possible_items[S] = S.surplus_weight
 
 		if (islist(possible_items) && length(possible_items))
 			var/list/crate_contents = list()
 			while(telecrystals < 18)
-				var/datum/syndicate_buylist/item_datum = pick(possible_items)
+				var/datum/syndicate_buylist/item_datum = weighted_pick(possible_items)
 				crate_contents += item_datum.name
 				if(telecrystals + item_datum.cost > 24) continue
 				var/obj/item/I = new item_datum.item(src)
@@ -426,6 +461,8 @@
 	desc = "A big metal box that probably has goodies inside."
 	spawn_contents = list(/obj/random_item_spawner/loot_crate/surplus)
 
+TYPEINFO(/obj/storage/crate/chest)
+	mat_appearances_to_ignore = list("wood")
 /obj/storage/crate/chest
 	name = "treasure chest"
 	desc = "Glittering gold, trinkets and baubles. Paid for in blood."
@@ -433,10 +470,8 @@
 	icon_state = "chest"
 	icon_opened = "chest-open"
 	icon_closed = "chest"
-
-	New()
-		..()
-		src.setMaterial(getMaterial("wood"), appearance = 0, setname = 0)
+	mat_changename = FALSE
+	default_material = "wood"
 
 /obj/storage/crate/chest/coins
 	var/coins_count_min = 5
@@ -454,9 +489,16 @@
 		..()
 		var/bux_count = rand(3, 10)
 		for(var/i in 1 to bux_count)
-			var/obj/item/spacebux/bux = new(src, pick(10, 20, 50, 100, 200, 500))
+			var/obj/item/currency/spacebux/bux = new(src, pick(10, 20, 50, 100, 200, 500))
 			bux.pixel_x = rand(-9, 9)
 			bux.pixel_y = rand(0, 6)
+
+/obj/storage/crate/mail
+	name = "mail crate"
+	desc = "A mail crate."
+	icon_state = "mailcrate"
+	icon_opened = "mailcrateopen"
+	icon_closed = "mailcrate"
 
 // Gannets' Nuke Ops Specialist Class Crates
 
@@ -556,7 +598,9 @@
 	medic_rework
 		name = "Class Crate - Field Medic"
 		desc = "A crate containing a Specialist Operative loadout. This one is packed with medical supplies."
-		spawn_contents = list(/obj/item/device/analyzer/healthanalyzer/upgraded,
+		spawn_contents = list(/obj/item/gun/kinetic/veritate,
+		/obj/item/storage/pouch/veritate,
+		/obj/item/device/analyzer/healthanalyzer/upgraded,
 		/obj/item/storage/medical_pouch,
 		/obj/item/storage/belt/syndicate_medic_belt,
 		/obj/item/storage/backpack/satchel/syndie/syndicate_medic_satchel,
@@ -696,7 +740,7 @@
 		/obj/item/mining_tool)
 
 	rad
-		spawn_contents = list(/obj/item/clothing/suit/rad,
+		spawn_contents = list(/obj/item/clothing/suit/hazard/rad,
 		/obj/item/mine/radiation = 5,
 		/obj/item/clothing/head/rad_hood,
 		/obj/item/storage/pill_bottle/antirad,

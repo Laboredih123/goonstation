@@ -1,3 +1,4 @@
+ABSTRACT_TYPE(/datum/plant_gene_strain)
 /datum/plant_gene_strain
 	var/name = null                 // self-explanatory
 	var/desc = null                 // this too
@@ -14,6 +15,102 @@
 		if (!prob(process_proc_chance))
 			return 1
 
+	/// This proc is called when a commut does modify a stat. This lets more plants be affected by stuff like superior quality
+	/// and move some magic numbers out of plantpot.dm
+	/// This proc takes the base value of the stat and returns a modifier that is added/subtracted from the plant
+	proc/get_plant_stat_modifier(var/datum/plantgenes/gene_pool, var/gene_stat as text, var/value_base)
+		if (!gene_pool || !gene_stat)
+			return 0
+
+	/// This proc is called after a seed is created and received all changes associated with being spliced
+	/// This should also be called whenever you have changes that need to be done whenever this commut touches a seed
+	proc/changes_after_splicing(var/datum/plantgenes/gene_pool)
+		if (gene_pool)
+			return TRUE
+
+	/// This proc is called when a plant or seed firstly receives the gene strain in question e.g. through HYPaddCommut, HYPnewcommutcheck.
+	/// Use this if you want to manipulate the plantgenes if its the first time the generation of seeds gains it
+	/// This is not called when a seed receive this plant gene through passing along the generation e.g. splicing or HYPpassplantgenes.
+	proc/on_addition(var/datum/plantgenes/gene_pool)
+		if (gene_pool)
+			return TRUE
+
+	/// This proc is called when a plant or seed firstly receives the gene strain in question e.g. throught splicing or HYPpassplantgenes.
+	/// call this if you want a certain effect to happen multiple times each generation.
+	proc/on_passing(var/datum/plantgenes/gene_pool)
+		if (gene_pool)
+			return TRUE
+
+	/// This proc is called when a plant or seed removes the gene strain in question e.g. through HYPremoveCommut
+	/// This may be usefull for some whacky gene strains that do something when added and decides at some point to remove themselves and e.g. tank stats as a result
+	proc/on_removal(var/datum/plantgenes/gene_pool)
+		if (gene_pool)
+			return TRUE
+
+/datum/plant_gene_strain/temporary_splice_stabilizer
+	name = "Temporary Spliceability"
+	desc = "This seed was stabilized using advanced technology to be spliced once and won't be able to be spliced afterwards."
+
+	changes_after_splicing(var/datum/plantgenes/gene_pool)
+		. = ..()
+		if (.)
+			//we remove this commut and add splice disabler
+			HYPremoveCommut(gene_pool, /datum/plant_gene_strain/temporary_splice_stabilizer)
+			HYPaddCommut(gene_pool, /datum/plant_gene_strain/splicing/disabled)
+
+/datum/plant_gene_strain/overpowering_genome
+	name = "Overpowering Genome"
+	desc = "This seed's genomes are all dominant at all times"
+
+	on_addition(var/datum/plantgenes/gene_pool)
+		. = ..()
+		if (.)
+			gene_pool.d_species = 1
+			gene_pool.d_growtime = 1
+			gene_pool.d_harvtime = 1
+			gene_pool.d_cropsize = 1
+			gene_pool.d_harvests = 1
+			gene_pool.d_potency = 1
+			gene_pool.d_endurance = 1
+
+	on_passing(var/datum/plantgenes/gene_pool)
+		. = ..()
+		if (.)
+			gene_pool.d_species = 1
+			gene_pool.d_growtime = 1
+			gene_pool.d_harvtime = 1
+			gene_pool.d_cropsize = 1
+			gene_pool.d_harvests = 1
+			gene_pool.d_potency = 1
+			gene_pool.d_endurance = 1
+
+
+/datum/plant_gene_strain/accepting_genome
+	name = "Accepting Genome"
+	desc = "This seed's genomes are all recessive at all times"
+
+	on_addition(var/datum/plantgenes/gene_pool)
+		. = ..()
+		if (. && !HYPCheckCommut(gene_pool, /datum/plant_gene_strain/overpowering_genome))
+			gene_pool.d_species = 0
+			gene_pool.d_growtime = 0
+			gene_pool.d_harvtime = 0
+			gene_pool.d_cropsize = 0
+			gene_pool.d_harvests = 0
+			gene_pool.d_potency = 0
+			gene_pool.d_endurance = 0
+
+	on_passing(var/datum/plantgenes/gene_pool)
+		. = ..()
+		if (. && !HYPCheckCommut(gene_pool, /datum/plant_gene_strain/overpowering_genome))
+			gene_pool.d_species = 0
+			gene_pool.d_growtime = 0
+			gene_pool.d_harvtime = 0
+			gene_pool.d_cropsize = 0
+			gene_pool.d_harvests = 0
+			gene_pool.d_potency = 0
+			gene_pool.d_endurance = 0
+
 /datum/plant_gene_strain/immunity_toxin
 	name = "Toxin Immunity"
 	desc = "This genetic strain enables a plant to wholly resist damage from toxic substances."
@@ -29,6 +126,10 @@
 /datum/plant_gene_strain/metabolism_fast
 	name = "Fast Metabolism"
 	desc = "This gene causes a plant to grow faster, but also consume water more rapidly."
+
+/datum/plant_gene_strain/inert
+	name = "Inert"
+	desc = "This gene causes the plants produce to spawn, most of the time, without additional chemicals."
 
 /datum/plant_gene_strain/metabolism_slow
 	name = "Slow Metabolism"
@@ -54,6 +155,42 @@
 		if (PP.growth > 1)
 			PP.growth--
 
+/datum/plant_gene_strain/invasive
+	name = "Invasive Growth"
+	desc = "This gene causes the plant to take over other trays and grow onto other plants."
+	chance = 4 //this is a rare gene that is worth hunting for
+
+	on_process(var/obj/machinery/plantpot/carrying_plantpot)
+		if (..())
+			return
+		var/damage_to_other_plants = 10 // the amount of damage the plant deals to other plants
+		var/chance_to_damage = 20 // the chance per tick to damage plants or spread per tick.
+		var/health_treshold_for_spreading = 50 // percentage amount of starting health of the plant needed to be able to spread
+
+		var/datum/plant/current_planttype = carrying_plantpot.current
+		var/datum/plantgenes/current_plantgenes = carrying_plantpot.plantgenes
+		//This is normal behaviour on the creeper, we don't need to let it run twice. Instead, we improve the base behaviour of the creeper in it's respectable logic
+		if (istype(current_planttype, /datum/plant/artifact/creeper))
+			return
+		// We check for the health treshold and if we have grown sufficiently
+		if (carrying_plantpot.growth > (current_planttype.growtime - current_plantgenes?.get_effective_value("growtime")) && carrying_plantpot.health > round(current_planttype.starthealth * health_treshold_for_spreading / 100) && prob(chance_to_damage))
+			for (var/obj/machinery/plantpot/checked_plantpot in range(1,carrying_plantpot))
+				var/datum/plant/growing = checked_plantpot.current
+				// We don't try to destroy plants of our own type and cannot attack crystals
+				if (!checked_plantpot.dead && growing && !istype(growing,/datum/plant/crystal) && !istype(growing, current_planttype))
+					checked_plantpot.HYPdamageplant("physical", damage_to_other_plants, 1)
+				else if (checked_plantpot.dead)
+					checked_plantpot.HYPdestroyplant()
+				//Seedless prevents the plant from replanting. And inhibited potential as well.... no infinite maneaters, folks
+				else if (!growing && !HYPCheckCommut(current_plantgenes, /datum/plant_gene_strain/seedless) && !HYPCheckCommut(current_plantgenes, /datum/plant_gene_strain/reagent_blacklist))
+					//we create a new seed now
+					var/obj/item/seed/temporary_seed = HYPgenerateseedcopy(current_plantgenes, current_planttype, carrying_plantpot.generation)
+					// now we are able to plant the seed
+					checked_plantpot.HYPnewplant(temporary_seed)
+					spawn(0.5 SECONDS)
+						qdel(temporary_seed)
+					break
+
 /datum/plant_gene_strain/yield
 	name = "Enhanced Yield"
 	desc = "This gene allows a plant to grow a greater number of items without any harm done."
@@ -68,13 +205,26 @@
 /datum/plant_gene_strain/quality
 	name = "Superior Quality"
 	desc = "Produce harvested from this plant will be of a greater quality than usual."
-	var/quality_mult = 2
+	var/quality_mult = 0.2
 	var/quality_mod = 5
+
+	get_plant_stat_modifier(var/datum/plantgenes/gene_pool, var/gene_stat as text, var/value_base)
+		if (!gene_pool || !gene_stat)
+			return 0
+		if (gene_stat == "potency")
+			return max(value_base * src.quality_mult * -1, value_base * src.quality_mult)
 
 /datum/plant_gene_strain/quality/inferior
 	name = "Inferior Quality"
 	desc = "Produce harvested from this plant will be of much worse quality than usual."
+	quality_mult = -0.2
 	negative = 1
+
+	get_plant_stat_modifier(var/datum/plantgenes/gene_pool, var/gene_stat as text, var/value_base)
+		if (!gene_pool || !gene_stat)
+			return 0
+		if (gene_stat == "potency")
+			return min(value_base * src.quality_mult * -1, value_base * src.quality_mult)
 
 /datum/plant_gene_strain/splicing
 	name = "Splice Enabler"
@@ -85,6 +235,12 @@
 	name = "Splice Blocker"
 	desc = "Chromosomal alterations prevent seeds from this plant from being spliced as easily."
 	negative = 1
+
+/datum/plant_gene_strain/splicing/disabled
+	name = "Splice Disabler"
+	desc = "Chromosomal alterations prevent seeds from this plant from being spliced at all."
+	negative = 1
+	splice_mod = 100
 
 /datum/plant_gene_strain/damage_res
 	name = "Damage Resistance"
@@ -175,6 +331,11 @@
 		if (istype(T,/turf/) && T.RL_GetBrightness() >= 1)
 			PP.growth += 2
 
+/datum/plant_gene_strain/variable_harvest
+	name = "Variable Harvest"
+	desc = "This gene causes the plant to produce a variable number of harvests."
+	chance = 50
+
 /datum/plant_gene_strain/reagent_adder
 	name = "Hyperaquacity"
 	desc = "Produce harvested from this plant will contain a higher than usual amount of water."
@@ -189,3 +350,8 @@
 	name = "Enzymatic"
 	desc = "Produce harvested from this plant may contain powerful enzymes."
 	reagents_to_add = list ("booster_enzyme")
+
+/datum/plant_gene_strain/reagent_blacklist
+	name = "Inhibited Potential"
+	desc = "Produce harvested from this plant won't contain special dangerous chemicals"
+	var/list/reagents_to_remove = list("ghostchilijuice", "potassium", "lithium")

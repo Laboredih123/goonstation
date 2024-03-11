@@ -27,6 +27,7 @@ change the direction of created objects.<br>
 		"Missile", \
 		"Pop in", \
 		"Beam", \
+		"Poof", \
 		"None")
 	click_mode_right(var/ctrl, var/alt, var/shift)
 		if(ctrl)
@@ -39,7 +40,7 @@ change the direction of created objects.<br>
 
 	click_left(atom/object, var/ctrl, var/alt, var/shift)
 		if (!objpath)
-			boutput(usr, "<span class='alert'>No object path!</span>")
+			boutput(usr, SPAN_ALERT("No object path!"))
 			return
 		var/turf/T = get_turf(object)
 		if(!isnull(T) && objpath)
@@ -124,7 +125,7 @@ change the direction of created objects.<br>
 						marker.pixel_y = -16
 						marker.plane = PLANE_OVERLAY_EFFECTS
 						marker.layer = NOLIGHT_EFFECTS_LAYER_BASE
-						marker.appearance_flags = RESET_ALPHA | RESET_COLOR | NO_CLIENT_COLOR | KEEP_APART | RESET_TRANSFORM
+						marker.appearance_flags = RESET_ALPHA | RESET_COLOR | NO_CLIENT_COLOR | KEEP_APART | RESET_TRANSFORM | PIXEL_SCALE
 						marker.alpha = 100
 						usr.client.images += marker
 						SPAWN(0)
@@ -168,6 +169,16 @@ change the direction of created objects.<br>
 						T.ReplaceWith(objpath, keep_old_material=0, handle_air=0, force=1)
 					else
 						new objpath(T)
+				if("Poof")
+					if(ispath(objpath, /atom/movable))
+						new objpath(T)
+						var/obj/itemspecialeffect/poof/P = new /obj/itemspecialeffect/poof
+						P.setup(T)
+						playsound(T, 'sound/effects/poff.ogg', 50, TRUE, pitch = 1)
+					else if(ispath(objpath, /turf))
+						T.ReplaceWith(objpath, keep_old_material=0, handle_air=0, force=1)
+					else
+						new objpath(T)
 				else
 					var/atom/A = 0
 					if(ispath(objpath, /turf))
@@ -187,3 +198,7 @@ change the direction of created objects.<br>
 		else
 			if(isobj(object))
 				qdel(object)
+#ifdef QUICK_MOB_DELETION
+			if (ismob(object))
+				qdel(object)
+#endif

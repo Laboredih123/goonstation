@@ -49,11 +49,13 @@
 /turf/unsimulated/wall/auto/lead/blue,
 /area/centcom)
 "cu" = (
-/obj/wingrille_spawn/auto/reinforced,
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
 /turf/unsimulated/floor/shuttle,
 /area/shuttle/escape/centcom)
 "cA" = (
-/obj/machinery/atmospherics/portables_connector/west,
+/obj/machinery/atmospherics/unary/portables_connector{
+	dir = 8
+	},
 /obj/decal/fakeobjects{
 	density = 1;
 	icon = 'icons/obj/atmospherics/atmos.dmi';
@@ -71,7 +73,8 @@
 "cD" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 9;
-	name = "pipe"
+	name = "pipe";
+	color = "b4b4b4"
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
@@ -198,7 +201,7 @@
 	desc = "It's a pipe manifold.";
 	dir = 6;
 	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
-	icon_state = "manifold";
+	icon_state = "manifold-map";
 	name = "pipe"
 	},
 /turf/unsimulated/floor{
@@ -238,7 +241,9 @@
 	dir = 8;
 	icon_state = "line1"
 	},
-/obj/machinery/atmospherics/portables_connector/east,
+/obj/machinery/atmospherics/unary/portables_connector{
+	dir = 4
+	},
 /obj/decal/fakeobjects{
 	density = 1;
 	icon = 'icons/obj/atmospherics/atmos.dmi';
@@ -379,9 +384,10 @@
 /area/shuttle/escape/centcom)
 "oM" = (
 /obj/machinery/door/airlock/pyro/glass/command{
-	dir = 4
+	dir = 4;
+	hardened = 1
 	},
-/obj/access_spawn/heads,
+/obj/mapping_helper/access/heads,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -389,9 +395,10 @@
 "pj" = (
 /obj/machinery/door/airlock/pyro/security{
 	dir = 4;
-	name = "Secure Transport"
+	name = "Secure Transport";
+	hardened = 1
 	},
-/obj/access_spawn/security,
+/obj/mapping_helper/access/security,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor4"
 	},
@@ -410,7 +417,8 @@
 /area/shuttle/escape/centcom)
 "pI" = (
 /obj/machinery/door/airlock/pyro/glass{
-	dir = 4
+	dir = 4;
+	hardened = 1
 	},
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor6"
@@ -455,7 +463,7 @@
 	desc = "It's a pipe manifold.";
 	dir = 4;
 	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
-	icon_state = "manifold";
+	icon_state = "manifold-map";
 	name = "pipe"
 	},
 /turf/unsimulated/floor/shuttlebay,
@@ -470,7 +478,9 @@
 	},
 /area/centcom)
 "sP" = (
-/obj/machinery/atmospherics/portables_connector/east,
+/obj/machinery/atmospherics/unary/portables_connector{
+	dir = 4
+	},
 /obj/decal/fakeobjects{
 	density = 1;
 	icon = 'icons/obj/atmospherics/atmos.dmi';
@@ -518,7 +528,8 @@
 	},
 /obj/decal/fakeobjects/pipe{
 	dir = 10;
-	name = "pipe"
+	name = "pipe";
+	color = "b4b4b4"
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -569,7 +580,7 @@
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
 "vp" = (
-/turf/unsimulated/wall{
+/turf/unsimulated/wall/generic{
 	icon = 'icons/misc/worlds.dmi';
 	icon_state = "leadwindow_1";
 	name = "window";
@@ -580,7 +591,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 1;
 	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
-	icon_state = "manifold";
+	icon_state = "manifold-map";
 	name = "pipe"
 	},
 /turf/unsimulated/floor{
@@ -621,7 +632,7 @@
 /turf/unsimulated/floor/stairs/dark/wide,
 /area/centcom/outside)
 "xq" = (
-/obj/wingrille_spawn/auto/reinforced,
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor2"
 	},
@@ -686,7 +697,7 @@
 /obj/decal/fakeobjects/pipe{
 	dir = 2;
 	icon = 'icons/obj/atmospherics/valve.dmi';
-	icon_state = "valve0";
+	icon_state = "valve0-map";
 	name = "valve"
 	},
 /turf/unsimulated/floor{
@@ -751,7 +762,8 @@
 "DJ" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 4;
-	name = "pipe"
+	name = "pipe";
+	color = "b4b4b4"
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
@@ -874,7 +886,8 @@
 	},
 /obj/decal/fakeobjects/pipe{
 	dir = 4;
-	name = "pipe"
+	name = "pipe";
+	color = "b4b4b4"
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"
@@ -883,7 +896,8 @@
 "Jg" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
-	name = "pipe"
+	name = "pipe";
+	color = "b4b4b4"
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/centcom/outside)
@@ -1026,7 +1040,8 @@
 /area/centcom/outside)
 "NZ" = (
 /obj/machinery/door/airlock/pyro/glass/med{
-	dir = 4
+	dir = 4;
+	hardened = 1
 	},
 /turf/unsimulated/floor/shuttle{
 	icon_state = "floor3"
@@ -1085,7 +1100,7 @@
 /turf/unsimulated/floor/shuttle,
 /area/shuttle/escape/centcom)
 "Qs" = (
-/turf/unsimulated/wall{
+/turf/unsimulated/wall/generic{
 	dir = 4;
 	icon = 'icons/misc/worlds.dmi';
 	icon_state = "leadwindow_1";
@@ -1122,7 +1137,8 @@
 "RN" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 4;
-	name = "pipe"
+	name = "pipe";
+	color = "b4b4b4"
 	},
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8;
@@ -1161,7 +1177,8 @@
 	},
 /obj/decal/fakeobjects/pipe{
 	dir = 5;
-	name = "pipe"
+	name = "pipe";
+	color = "b4b4b4"
 	},
 /turf/unsimulated/floor{
 	icon_state = "floor"

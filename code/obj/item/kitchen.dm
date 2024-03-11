@@ -43,7 +43,8 @@ TRAYS
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
+	flags = FPRINT | TABLEPASS | CONDUCT
+	c_flags = ONBELT
 	stamina_damage = 5
 	stamina_cost = 10
 	stamina_crit_chance = 15
@@ -53,7 +54,7 @@ TRAYS
 
 	New()
 		..()
-		if(prob(60))
+		if(src.pixel_y == 0 && prob(60)) // Don't adjust map-set pixel adjustments
 			src.pixel_y = rand(0, 4)
 		BLOCK_SETUP(BLOCK_KNIFE)
 		return
@@ -69,7 +70,7 @@ TRAYS
 
 	proc/break_utensil(mob/living/carbon/user as mob, var/spawnatloc = 0)
 		var/location = get_turf(src)
-		user.visible_message("<span style=\"color:red\">[src] breaks!</span>")
+		user.visible_message(SPAN_ALERT("[src] breaks!"))
 		playsound(user.loc, 'sound/impact_sounds/Generic_Snap_1.ogg', 30, 1)
 		user.u_equip(src)
 		var/replacethis
@@ -101,11 +102,11 @@ TRAYS
 	icon_state = "spoon"
 	tool_flags = TOOL_SPOONING
 
-	attack(mob/living/carbon/M, mob/living/carbon/user)
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style='color:red'><b>[user]</b> fumbles [src] and jabs [himself_or_herself(user)].</span>")
+			user.visible_message(SPAN_ALERT("<b>[user]</b> fumbles [src] and jabs [himself_or_herself(user)]."))
 			random_brute_damage(user, 5)
-		if (!spoon_surgery(M,user))
+		if (!spoon_surgery(target,user))
 			return ..()
 
 	custom_suicide = TRUE
@@ -113,7 +114,7 @@ TRAYS
 		if (!src.user_can_suicide(user))
 			return 0
 		var/hisher = his_or_her(user)
-		user.visible_message("<span style='color:red'><b>[user] jabs [src] straight through [hisher] eye and into [hisher] brain!</b></span>")
+		user.visible_message(SPAN_ALERT("<b>[user] jabs [src] straight through [hisher] eye and into [hisher] brain!</b>"))
 		blood_slash(user, 25)
 		playsound(user.loc, src.hitsound, 50, 1)
 		user.TakeDamage("head", 150, 0)
@@ -130,19 +131,19 @@ TRAYS
 	dir = NORTH
 	throwforce = 7
 
-	attack(mob/living/carbon/M, mob/living/carbon/user)
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)].</span>")
+			user.visible_message(SPAN_ALERT("<b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)]."))
 			random_brute_damage(user, 10)
 			JOB_XP(user, "Clown", 1)
-		if(!saw_surgery(M,user)) // it doesn't make sense, no. but hey, it's something.
+		if(!saw_surgery(target,user)) // it doesn't make sense, no. but hey, it's something.
 			return ..()
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
 		if(!src.user_can_suicide(user))
 			return 0
-		user.visible_message("<span class='alert'><b>[user] stabs [src] right into [his_or_her(user)] heart!</b></span>")
+		user.visible_message(SPAN_ALERT("<b>[user] stabs [src] right into [his_or_her(user)] heart!</b>"))
 		blood_slash(user, 25)
 		playsound(user.loc, src.hitsound, 50, 1)
 		user.TakeDamage("chest", 150, 0)
@@ -151,7 +152,8 @@ TRAYS
 /obj/item/kitchen/utensil/knife
 	name = "knife"
 	icon_state = "knife"
-	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
+	flags = FPRINT | TABLEPASS | CONDUCT
+	c_flags = ONBELT
 	object_flags = NO_GHOSTCRITTER
 	tool_flags = TOOL_CUTTING
 	event_handler_flags = USE_GRAB_CHOKE | USE_FLUID_ENTER
@@ -166,21 +168,22 @@ TRAYS
 
 	New()
 		..()
+		src.AddComponent(/datum/component/bloodflick)
 		src.setItemSpecial(/datum/item_special/double)
 
-	attack(mob/living/carbon/M, mob/living/carbon/user)
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)].</span>")
+			user.visible_message(SPAN_ALERT("<b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)]."))
 			random_brute_damage(user, 20)
 			JOB_XP(user, "Clown", 1)
-		if(!scalpel_surgery(M,user))
+		if(!scalpel_surgery(target,user))
 			return ..()
 
 	custom_suicide = TRUE
 	suicide(var/mob/user as mob)
 		if(!src.user_can_suicide(user))
 			return 0
-		user.visible_message("<span class='alert'><b>[user] slashes [his_or_her(user)] own throat with [src]!</b></span>")
+		user.visible_message(SPAN_ALERT("<b>[user] slashes [his_or_her(user)] own throat with [src]!</b>"))
 		blood_slash(user, 25)
 		user.TakeDamage("head", 150, 0)
 		return 1
@@ -197,18 +200,18 @@ TRAYS
 		..()
 		src.icon_state = pick("spoon_plastic_pink","spoon_plastic_yellow","spoon_plastic_green","spoon_plastic_blue")
 
-	attack(mob/living/carbon/M, mob/living/carbon/user)
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and jabs [himself_or_herself(user)].</span>")
+			user.visible_message(SPAN_ALERT("<b>[user]</b> fumbles [src] and jabs [himself_or_herself(user)]."))
 			random_brute_damage(user, 5)
 		if (prob(20))
 			src.break_utensil(user)
 			return
-		if (!spoon_surgery(M,user))
+		if (!spoon_surgery(target,user))
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span style=\"color:red\"><b>[user] tries to jab [src] straight through [his_or_her(user)] eye and into [his_or_her(user)] brain!</b></span>")
+		user.visible_message(SPAN_ALERT("<b>[user] tries to jab [src] straight through [his_or_her(user)] eye and into [his_or_her(user)] brain!</b>"))
 		src.break_utensil(user)
 		spawn(100)
 			if (user)
@@ -227,18 +230,18 @@ TRAYS
 		..()
 		src.icon_state = pick("fork_plastic_pink","fork_plastic_yellow","fork_plastic_green","fork_plastic_blue")
 
-	attack(mob/living/carbon/M, mob/living/carbon/user)
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span style=\"color:red\"><b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)].</span>")
+			user.visible_message(SPAN_ALERT("<b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)]."))
 			random_brute_damage(user, 5)
 		if (prob(20))
 			src.break_utensil(user)
 			return
-		if (!saw_surgery(M,user))
+		if (!saw_surgery(target,user))
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span style=\"color:red\"><b>[user] tries to stab [src] right into [his_or_her(user)] heart!</b></span>")
+		user.visible_message(SPAN_ALERT("<b>[user] tries to stab [src] right into [his_or_her(user)] heart!</b>"))
 		src.break_utensil(user)
 		spawn(100)
 			if (user)
@@ -257,19 +260,19 @@ TRAYS
 		..()
 		src.icon_state = pick("knife_plastic_pink","knife_plastic_yellow","knife_plastic_green","knife_plastic_blue")
 
-	attack(mob/living/carbon/M, mob/living/carbon/user)
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)].</span>")
+			user.visible_message(SPAN_ALERT("<b>[user]</b> fumbles [src] and cuts [himself_or_herself(user)]."))
 			random_brute_damage(user, 5)
 			JOB_XP(user, "Clown", 1)
 		if(prob(20))
 			src.break_utensil(user)
 			return
-		if(!scalpel_surgery(M,user))
+		if(!scalpel_surgery(target,user))
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span class='alert'><b>[user] tries to slash [his_or_her(user)] own throat with [src]!</b></span>")
+		user.visible_message(SPAN_ALERT("<b>[user] tries to slash [his_or_her(user)] own throat with [src]!</b>"))
 		src.break_utensil(user)
 		SPAWN(10 SECONDS)
 			if(user)
@@ -340,7 +343,7 @@ TRAYS
 				src.icon_state = "chop_closed"
 				src.name = "chopsticks"
 			else
-				boutput(user,"<span style=\"color:red\"><b>The chopstics already have a wrapper!</b></span>")
+				boutput(user,SPAN_ALERT("<b>The chopstics already have a wrapper!</b>"))
 
 /obj/item/kitchen/utensil/fork/chopsticks
 	name = "chopsticks"
@@ -377,7 +380,7 @@ TRAYS
 				A:lastattackertime = world.time
 			random_brute_damage(C, 15, 1)
 			take_bleeding_damage(C, null, 10, DAMAGE_CUT)
-			playsound(src, 'sound/impact_sounds/Flesh_Stab_3.ogg', 40, 1)
+			playsound(src, 'sound/impact_sounds/Flesh_Stab_3.ogg', 40, TRUE)
 
 /obj/item/kitchen/utensil/knife/bread
 	name = "bread knife"
@@ -388,7 +391,7 @@ TRAYS
 	throwforce = 3
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span class='alert'><b>[user] drags [src] over [his_or_her(user)] own throat!</b></span>")
+		user.visible_message(SPAN_ALERT("<b>[user] drags [src] over [his_or_her(user)] own throat!</b>"))
 		blood_slash(user, 25)
 		user.TakeDamage("head", 150, 0)
 		return 1
@@ -401,16 +404,16 @@ TRAYS
 	desc = "A cutting tool with a rotary circular blade, designed to cut pizza. You can probably use it as a knife with enough patience."
 	tool_flags = TOOL_SAWING
 
-	attack(mob/living/carbon/M, mob/living/carbon/user)
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
-			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and pinches [his_or_her(user)] fingers against the blade guard.</span>")
+			user.visible_message(SPAN_ALERT("<b>[user]</b> fumbles [src] and pinches [his_or_her(user)] fingers against the blade guard."))
 			random_brute_damage(user, 5)
 			JOB_XP(user, "Clown", 1)
-		if(!saw_surgery(M,user))
+		if(!saw_surgery(target,user))
 			return ..()
 
 	suicide(var/mob/user as mob)
-		user.visible_message("<span class='alert'><b>[user] rolls [src] repeatedly over [his_or_her(user)] own throat and slices it wide open!</b></span>")
+		user.visible_message(SPAN_ALERT("<b>[user] rolls [src] repeatedly over [his_or_her(user)] own throat and slices it wide open!</b>"))
 		blood_slash(user, 25)
 		user.TakeDamage("head", 150, 0)
 		return 1
@@ -427,9 +430,8 @@ TRAYS
 	desc = "A box that can hold food! Well, not this one, I mean. You shouldn't be able to see this one."
 	icon = 'icons/obj/foodNdrink/food_related.dmi'
 	icon_state = "donutbox"
-	uses_multiple_icon_states = 1
-	amount = 6
-	var/max_amount = 6
+	var/count = 6
+	var/max_count = 6
 	var/box_type = "donutbox"
 	var/has_closed_state = 1
 	var/contained_food = /obj/item/reagent_containers/food/snacks/donut/custom/random
@@ -445,24 +447,39 @@ TRAYS
 		name = "egg carton"
 		desc = "A carton that holds a bunch of eggs. What kind of eggs? What grade are they? Are the eggs from space? Space chicken eggs?"
 		icon_state = "eggbox"
-		amount = 12
-		max_amount = 12
+		count = 12
+		max_count = 12
 		box_type = "eggbox"
 		contained_food = /obj/item/reagent_containers/food/snacks/ingredient/egg
 		allowed_food = /obj/item/reagent_containers/food/snacks/ingredient/egg
 		contained_food_name = "egg"
 
+		rancher
+			count = 4
+
 	lollipop
 		name = "lollipop bowl"
-		desc = "A little bowl of sugar-free lollipops, totally healthy in every way! They're medicinal, after all!"
+		desc = "A little bowl of lollipops, totally healthy in every way! They're medicinal, after all!"
 		icon_state = "lpop8"
-		amount = 8
-		max_amount = 8
+		count = 8
+		max_count = 8
 		box_type = "lpop"
 		has_closed_state = 0
-		contained_food = /obj/item/reagent_containers/food/snacks/lollipop/random_medical
-		allowed_food = /obj/item/reagent_containers/food/snacks/lollipop
+		contained_food = /obj/item/reagent_containers/food/snacks/candy/lollipop/random_medical
+		allowed_food = /obj/item/reagent_containers/food/snacks/candy/lollipop
 		contained_food_name = "lollipop"
+		w_class = W_CLASS_SMALL
+
+	sugar_box
+		name = "sugar cubes"
+		desc = "A box containing sugar cubes, for sweetening both your day AND your coffee."
+		icon_state = "sugarbox"
+		count = 6
+		max_count = 6
+		box_type = "sugarbox"
+		contained_food = /obj/item/reagent_containers/food/snacks/candy/sugar_cube
+		allowed_food = /obj/item/reagent_containers/food/snacks/candy/sugar_cube
+		contained_food_name = "sugar cube"
 		w_class = W_CLASS_SMALL
 
 	New()
@@ -475,19 +492,22 @@ TRAYS
 
 	get_desc(dist)
 		if(dist <= 1)
-			. += "There's [(src.amount > 0) ? src.amount : "no" ] [src.contained_food_name][s_es(src.amount)] in [src]."
+			. += "There's [(src.count > 0) ? src.count : "no" ] [src.contained_food_name][s_es(src.count)] in [src]."
 
 	attackby(obj/item/W, mob/user)
 		if (istype(W, /obj/item/tongs))
 			return src.Attackhand(user)
-		if(src.amount >= src.max_amount)
+		// Stops trying to fit sticker in the box when we want it ON the box
+		if (istype(W, /obj/item/sticker))
+			return
+		if(src.count >= src.max_count)
 			boutput(user, "You can't fit anything else in [src]!")
 			return
 		else
 			if(istype(W, src.allowed_food))
 				user.drop_item()
 				W.set_loc(src)
-				src.amount ++
+				src.count ++
 				tooltip_rebuild = 1
 				boutput(user, "You place [W] into [src].")
 				src.update()
@@ -499,22 +519,29 @@ TRAYS
 			if(!user.put_in_hand(src))
 				return ..()
 
+	proc/find_food()
+		// First in, last out food search
+		// Mostly needed since stickers add themselves to contents and need to stay there to be able to be removed...
+		for (var/i = length(src.contents) to 1 step -1)
+			var/obj/content = src.contents[i]
+			if (istype(content, /obj/item/reagent_containers/food/snacks))
+				return content
+
 	attack_hand(mob/user)
-		if((!istype(src.loc, /turf) && !user.is_in_hands(src)) || src.amount == 0)
+		if((!istype(src.loc, /turf) && !user.is_in_hands(src)) || src.count == 0)
 			..()
 			return
 		src.add_fingerprint(user)
-		var/list/obj/item/reagent_containers/food/snacks/myFoodList = src.contents
-		if(myFoodList.len >= 1)
-			var/obj/item/reagent_containers/food/snacks/myFood = myFoodList[myFoodList.len]
-			if(src.amount >= 1)
-				src.amount--
+		var/obj/item/reagent_containers/food/snacks/myFood = find_food(src.contents)
+		if(myFood)
+			if(src.count >= 1)
+				src.count--
 				tooltip_rebuild = 1
 			user.put_in_hand_or_drop(myFood)
 			boutput(user, "You take [myFood] out of [src].")
 		else
-			if(src.amount >= 1)
-				src.amount--
+			if(src.count >= 1)
+				src.count--
 				tooltip_rebuild = 1
 				var/obj/item/reagent_containers/food/snacks/newFood = new src.contained_food(src.loc)
 				user.put_in_hand_or_drop(newFood)
@@ -524,20 +551,24 @@ TRAYS
 	attack_self(mob/user as mob)
 		if(!src.has_closed_state) return
 		if(src.icon_state == "[src.box_type]")
-			src.icon_state = "[src.box_type][src.amount]"
+			src.icon_state = "[src.box_type][src.count]"
 			boutput(user, "You open [src].")
 		else
 			src.icon_state = "[src.box_type]"
 			boutput(user, "You close [src].")
 
 	proc/update()
-		src.icon_state = "[src.box_type][src.amount]"
+		src.icon_state = "[src.box_type][src.count]"
 		return
 
 //=-=-=-=-=-=-=-=-=-=-=-=-
 //TRAYS AND PLATES OH MY||
 //=-=-=-=-=-=-=-=-=-=-=-=-
 
+/** Number of pixels in each direction which we allow initial foods to be positioned in.
+ *  Really should be a var, but I'm not bothering to get more specific icon bounds rn
+ */
+#define FOOD_POSITION_RADIUS 6
 /obj/item/plate
 	name = "plate"
 	desc = "It's like a frisbee, but more dangerous!"
@@ -554,40 +585,103 @@ TRAYS
 	tooltip_flags = REBUILD_DIST
 	/// Will separate what we can put into plates/pizza boxes or not
 	var/is_plate = TRUE
-	/// The maximum amount of food you can fit on this plate
-	var/max_food = 2
-	/// Helps to track amount of food items inside the box
-	var/foods_inside = list()
+	// The maximum space and the inital space on the plate.
+	var/max_space = 3
+	/// Used to measure what you can fit on the plate before it gets full
+	var/space_left = 3
+	/// Used to track all the non-plate items inside the plate
+	var/list/obj/food_inside = list()
+	/** List of types of initial food on this plate; added and positioned in New(). Can be associative. For subtypes for mapping.
+	 *  Will runtime if the food doesn't fit.
+	 *  Ex: list(/obj/item/reagent_containers/food/snacks/plant/peach = 2, /obj/item/reagent_containers/food/snacks/plant/apple)
+	 *  [2 peaches and 1 apple]
+	 */
+	var/initial_foods = null
+	/// For mapping overrides- should this plate automatically place food on the same tile on it?
+	var/grabs_food_on_spawn = TRUE
 	/// The amount the plate contents are thrown when this plate is dropped or thrown
 	var/throw_dist = 3
 	/// The sound which is played when you plate someone on help intent, tapping them
 	var/hit_sound = 'sound/items/plate_tap.ogg'
 	/// Can this be stacked with other stackable plates?
 	var/stackable = TRUE
+	/// Do we have a plate stacked on us?
+	var/plate_stacked = FALSE
 
 	New()
 		..()
 		BLOCK_SETUP(BLOCK_BOOK)
+		for (var/type in src.initial_foods)
+			var/amt = src.initial_foods[type] || 1 // use value if assoc, otherwise just 1
+			for (var/i in 1 to amt)
+				. = src.add_contents(new type(src.loc))
+				if (!.)
+					stack_trace("Couldn't add food to plate with intitial foods [identify_object(src)]- likely ran out of space.")
+
+		/* Position initial foods. Will need to be refactored if we want to support mapped plate stacks. Uses regular polygons.
+		 * We prioritize initial foods over grabbing existing ones because initial foods are consistent; adding on-ground foods first would cause
+		 * inconsistent errors.
+		 */
+		var/n = length(src.food_inside) //! Number of foods we're placing/number of vertices
+		if (n)
+			// First one always goes in the middle
+			food_inside[1].pixel_x = 0
+			food_inside[1].pixel_y = 0
+			var/rad = FOOD_POSITION_RADIUS //! Radius which we're placing foods inside/radius of circumscribing circle
+			var/ang = 360 / n //! Angle between foods, in degrees
+			for (var/i in 2 to n)
+				food_inside[i].pixel_x = rad * sin(i * ang)
+				food_inside[i].pixel_y = rad * cos(i * ang)
+
+		if (src.grabs_food_on_spawn)
+			SPAWN(1 DECI SECOND)
+				if (isturf(src.loc))
+					for (var/obj/item/food_maybe in src.loc)
+						// This will fail for non-edibles so we can just blindfire the proc at everything
+						src.add_contents(food_maybe)
+
+	proc/check_height(obj/item/plate/other) //we go down and then we go up because plates are bidirectional like that
+		. = 1
+		var/obj/item/plate/curr = src
+		while(istype(curr.loc, /obj/item/plate))
+			curr = curr.loc
+			.++
+		curr = (locate(/obj/item/plate) in other)
+		while (curr)
+			.++
+			curr = (locate(/obj/item/plate) in curr)
 
 	/// Attempts to add an item to the plate, if there's space. Returns TRUE if food is successfully added.
 	proc/add_contents(obj/item/food, mob/user, click_params)
 		. = FALSE
+		if(food.cant_drop)
+			boutput(user, SPAN_ALERT("You can't do that, [food] is attached to you!"))
+			return
+
+
 		if (istype(food, /obj/item/plate))
 			if (food == src)
-				boutput(user, "<span class='alert'>You can't stack a [src] on itself!</span>")
+				boutput(user, SPAN_ALERT("You can't stack a [src] on itself!"))
 				return
+			if (src.plate_stacked)
+				boutput(user, SPAN_ALERT("You can't stack anything on [src], it already has a plate stacked on it!"))
+				return
+			if (src.check_height(food) >= 7)
+				boutput(user, SPAN_ALERT("You can't stack anything on [src], it's already stacked too high!"))
+				return
+
 			var/obj/item/plate/not_really_food = food
 			. = src.stackable && not_really_food.stackable // . is TRUE if we can stack the other plate on this plate, FALSE otherwise
 
-		if (length(src.foods_inside) == max_food && src.is_plate)
-			boutput(user, "<span class='alert'>There's no more space on \the [src]!</span>")
+		if (food.w_class > src.space_left && src.is_plate)
+			boutput(user, SPAN_ALERT("There's no more space on \the [src]!"))
 			return
 			                                    // anything that isn't a plate may as well hold anything that fits the "plate"
 		if (!food.edible && !. && src.is_plate) // plates aren't edible, so we check if we're adding a valid plate as well (. is TRUE if so)
-			boutput(user, "<span class='alert'>That's not food, it doesn't belong on \the [src]!</span>")
+			boutput(user, SPAN_ALERT("That's not food, it doesn't belong on \the [src]!"))
 			return
 		if (food.w_class > W_CLASS_NORMAL && !.) // same logic as above, but to check if we can stack it
-			boutput(user, "You try to think of a way to put [food] [src.is_plate ? "on" : "in"] \the [src] but it's not possible! It's too large!")
+			boutput(user, "You try to think of a way to put \the [food] [src.is_plate ? "on" : "in"] \the [src] but it's not possible! It's too large!")
 			return
 		if (food in src.vis_contents)
 			boutput(user, "That's already on the [src]!")
@@ -595,34 +689,38 @@ TRAYS
 
 		. = TRUE // If we got this far it's a valid plate content
 
-		if (!istype(food, /obj/item/plate/))
-			src.foods_inside += food
-
 		src.place_on(food, user, click_params) // this handles pixel positioning
 		food.set_loc(src)
+
+		if (istype(food, /obj/item/plate/))
+			src.plate_stacked = TRUE
+		else
+			src.food_inside += food
+			src.space_left -= food.w_class
 		src.vis_contents += food
 		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
 		food.event_handler_flags |= NO_MOUSEDROP_QOL
-		RegisterSignal(food, COMSIG_ATOM_MOUSEDROP, .proc/indirect_pickup)
-		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, .proc/remove_contents)
-		RegisterSignal(food, COMSIG_ATTACKHAND, .proc/remove_contents)
+		RegisterSignal(food, COMSIG_ATOM_MOUSEDROP, PROC_REF(indirect_pickup))
+		RegisterSignal(food, COMSIG_ATTACKHAND, PROC_REF(remove_contents))
 		src.UpdateIcon()
 		boutput(user, "You put [food] [src.is_plate ? "on" : "in"] \the [src].")
 
 	/// Removes a piece of food from the plate.
 	proc/remove_contents(obj/item/food)
-		if (food in src)
-			food.set_loc(get_turf(src))
+		if (!(food in src.contents))
+			return
+		MOVE_OUT_TO_TURF_SAFE(food, src)
 		src.vis_contents -= food
 		food.appearance_flags = initial(food.appearance_flags)
 		food.vis_flags = initial(food.vis_flags)
 		food.event_handler_flags = initial(food.event_handler_flags)
 		UnregisterSignal(food, COMSIG_ATOM_MOUSEDROP)
-		UnregisterSignal(food, COMSIG_MOVABLE_SET_LOC)
 		UnregisterSignal(food, COMSIG_ATTACKHAND)
-		if (!istype(food, /obj/item/plate/))
-			src.foods_inside -= food
+		if (istype(food, /obj/item/plate/))
+			src.plate_stacked = FALSE
+		else
+			src.food_inside -= food
 
 		src.UpdateIcon()
 
@@ -632,15 +730,15 @@ TRAYS
 			src.Attackhand(user)
 
 	/// Called when you throw or smash the plate, throwing the contents everywhere
-	proc/shit_goes_everywhere()
+	proc/shit_goes_everywhere(depth = 1)
 		if (length(src.contents))
-			src.visible_message("<span class='alert'>Everything [src.is_plate ? "on" : "in"] \the [src] goes flying!</span>")
+			src.visible_message(SPAN_ALERT("Everything [src.is_plate ? "on" : "in"] \the [src] goes flying!"))
 		for (var/atom/movable/food in src)
 			food.set_loc(get_turf(src))
 			if (istype(food, /obj/item/plate))
 				var/obj/item/plate/not_food = food
 				SPAWN(0.1 SECONDS) // This is rude but I want a small delay in smashing nested plates. More satisfying
-					not_food?.shatter()
+					not_food?.shatter(depth)
 			else
 				food.throw_at(get_offset_target_turf(src.loc, rand(throw_dist)-rand(throw_dist), rand(throw_dist)-rand(throw_dist)), 5, 1)
 
@@ -660,17 +758,17 @@ TRAYS
 		src.shatter()
 
 	/// The plate shatters into shards and tosses its contents around.
-	proc/shatter()
-		playsound(src, 'sound/impact_sounds/plate_break.ogg', 50, 1)
+	proc/shatter(depth = 1)
+		playsound(src, 'sound/impact_sounds/plate_break.ogg', 50, TRUE)
 		var/turf/T = get_turf(src)
-		for (var/i in 1 to 2)
+		for (var/i in 1 to (2 - (depth > 1)))
 			var/obj/O = new /obj/item/raw_material/shard/glass
 			O.set_loc(T)
 			if(src.material)
-				O.setMaterial(copyMaterial(src.material))
+				O.setMaterial(src.material)
 			O.throw_at(get_offset_target_turf(T, rand(-4,4), rand(-4,4)), 7, 1)
 
-		src.shit_goes_everywhere()
+		src.shit_goes_everywhere(depth + 1)
 
 		qdel(src)
 
@@ -687,46 +785,69 @@ TRAYS
 		if (isitem(a) && can_reach(user, src) && can_reach(user, a))
 			src.add_contents(a, user, params2list(params))
 
-	attack_self(mob/user) // in case you only have one arm or you stacked too many MONSTERs or something just dump a random piece of food
+	// in case you only have one arm or you stacked too many MONSTERs or something just dump a random piece of food
+	// chefs are too fancy for that and will instead get to name the dish
+	attack_self(mob/user)
 		. = ..()
-		if (length(src.contents))
-			src.remove_contents(pick(src.contents))
+		if(user.traitHolder?.hasTrait("training_chef"))
+			tooltip_rebuild = TRUE
+			var/holder = src.loc
+			var/str = copytext(html_encode(tgui_input_text(user, "Dish name?", "Set name")), 1, 64)
 
-	attack(mob/M, mob/user)
+			if (!length(str))
+				return
+
+			phrase_log.log_phrase("dish_name", str, no_duplicates=TRUE)
+
+			if (src.loc != holder)
+				return
+			if(url_regex?.Find(str))
+				return
+			if (length(str) > 64)
+				boutput(user, SPAN_ALERT("Name too long."))
+				return
+			src.name = "'[str]'"
+			boutput(user, SPAN_NOTICE("You name the dish '[str]'."))
+			logTheThing(LOG_STATION, user, "names a dish \"[str]\".")
+		else
+			if (length(src.contents))
+				src.remove_contents(pick(src.contents))
+
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		if(user.a_intent == INTENT_HARM && src.is_plate)
-			if(M == user)
-				boutput(user, "<span class='alert'><B>You smash [src] over your own head!</b></span>")
+			if(target == user)
+				boutput(user, SPAN_ALERT("<B>You smash [src] over your own head!</b>"))
 			else
-				M.visible_message("<span class='alert'><B>[user] smashes [src] over [M]'s head!</B></span>")
-				logTheThing(LOG_COMBAT, user, "smashes [src] over [constructTarget(M,"combat")]'s head! ")
+				target.visible_message(SPAN_ALERT("<B>[user] smashes [src] over [target]'s head!</B>"))
+				logTheThing(LOG_COMBAT, user, "smashes [src] over [constructTarget(target,"combat")]'s head! ")
 
-			unique_attack_garbage_fuck(M, user)
+			unique_attack_garbage_fuck(target, user)
 
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+			if(ishuman(target))
+				var/mob/living/carbon/human/H = target
 				if(istype(H.head, /obj/item/clothing/head/helmet))
-					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
+					target.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
 				else
-					M.changeStatus("weakened", 1 SECONDS)
-					M.force_laydown_standup()
-			else if(ismobcritter(M))
-				var/mob/living/critter/L = M
+					target.changeStatus("weakened", 1 SECONDS)
+					target.force_laydown_standup()
+			else if(ismobcritter(target))
+				var/mob/living/critter/L = target
 				var/has_helmet = FALSE
 				for(var/datum/equipmentHolder/head/head in L.equipment)
 					if(istype(head.item, /obj/item/clothing/head/helmet))
 						has_helmet = TRUE
 						break
 				if(has_helmet)
-					M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
+					target.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
 				else
-					M.changeStatus("weakened", 1 SECONDS)
-					M.force_laydown_standup()
+					target.changeStatus("weakened", 1 SECONDS)
+					target.force_laydown_standup()
 			else //borgs, ghosts, whatever
-				M.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
+				target.do_disorient(stamina_damage = 150, weakened = 0.1 SECONDS, disorient = 1 SECOND)
 		else
-			M.visible_message("<span class='alert'>[user] taps [M] over the head with [src].</span>")
+			target.visible_message(SPAN_ALERT("[user] taps [target] over the head with [src]."))
 			playsound(src, src.hit_sound, 30, 1)
-			logTheThing(LOG_COMBAT, user, "taps [constructTarget(M,"combat")] over the head with [src].")
+			logTheThing(LOG_COMBAT, user, "taps [constructTarget(target,"combat")] over the head with [src].")
 
 	dropped(mob/user)
 		..()
@@ -735,13 +856,33 @@ TRAYS
 				var/mob/living/carbon/human/H = user
 				if (!H.limbs.r_leg && !H.limbs.l_leg)
 					return // fix for legless players shattering plates when stacking and pulling disposed plates from null space
-			user.visible_message("<span class='alert'>[user] drops \the [src]!</span>")
+			user.visible_message(SPAN_ALERT("[user] drops \the [src]!"))
 			src.shatter()
 
 	Crossed(atom/movable/AM)
 		. = ..()
 		if (ishuman(AM) && AM.throwing) // only humans have the power to smash plates with their bodies
 			src.shatter()
+
+	Exited(var/obj/item/food)
+		src.remove_contents(food)
+		if (!istype(food, /obj/item/plate/))
+			src.food_inside -= food
+			src.space_left += food.w_class
+		. = ..()
+
+#undef FOOD_POSITION_RADIUS
+
+/obj/item/plate/breakfast
+	initial_foods = list(/obj/item/reagent_containers/food/snacks/breakfast)
+
+/obj/item/plate/monster
+	initial_foods = list(/obj/item/reagent_containers/food/snacks/burger/monsterburger)
+
+/obj/item/plate/bigtest
+	max_space = INFINITY
+	space_left = INFINITY
+	initial_foods = list(/obj/item/reagent_containers/food/snacks/scotch_egg = 6)
 
 /obj/item/plate/pizza_box
 	name = "pizza box"
@@ -753,34 +894,53 @@ TRAYS
 	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
 	item_state = "pizza_box"
 	is_plate = FALSE
+	max_space = 6
+	space_left = 6
 	var/open = FALSE
 
 	add_contents(obj/item/food, mob/user, click_params) // Due to non-plates skipping some checks in the original add_contents() we'll have to do our own checks.
 
 		if (!src.open && !istype(food, /obj/item/plate/))
-			boutput(user, "<span class='alert'>You have to open \the [src] to put something in it, silly!</span>")
+			boutput(user, SPAN_ALERT("You have to open \the [src] to put something in it, silly!"))
 			return
 
 		if (src.open && istype(food, /obj/item/plate/))
-			boutput(user, "<span class='alert'>You can only put \the [food] on top of \the [src] when it's closed!")
+			boutput(user, SPAN_ALERT("You can only put \the [food] on top of \the [src] when it's closed!"))
 			return
 
-		if (length(src.foods_inside) >= src.max_food && !istype(food, src.type))
-			boutput(user, "<span class='alert'>There's no more space in \the [src]!</span>")
+		if (food.w_class > src.space_left && !istype(food, src.type))
+			boutput(user, SPAN_ALERT("There's no more space in \the [src]!"))
+			return
+
+		if (src.open && istype(food, /obj/item/tongs)) // Stops borgs from seeing duplicate messages
 			return
 
 		. = ..()
 
+	proc/mousetrap_check(mob/user)
+		for(var/obj/item/mousetrap/MT in src.food_inside)
+			if (MT.armed)
+				user?.visible_message(SPAN_ALERT("<B>[user] opens the pizza box and sets off a mousetrap!</B>"),\
+					SPAN_ALERT("<B>You open the pizza box, but there was a live mousetrap in there!</B>"))
+				MT.triggered(user, user?.hand ? "l_hand" : "r_hand")
+				return TRUE
+		for(var/obj/item/mine/M in src.food_inside)
+			if (M.armed && M.used_up != TRUE)
+				user?.visible_message(SPAN_ALERT("<B>[user] opens the pizza box and sets off a [M.name]!</B>"),\
+					SPAN_ALERT("<B>You open the pizza box, but there was a live [M.name] in there!</B>"))
+				M.triggered(user)
+				return TRUE
+
 	proc/toggle_box(mob/user)
-		if (length(src.contents - src.foods_inside) > 0)
-			boutput(user, "<span class='alert'>You have to remove the boxes on \the [src] before you can open it!")
+		if (length(src.contents - src.food_inside) > 0)
+			boutput(user, SPAN_ALERT("You have to remove the boxes on \the [src] before you can open it!"))
 			return
 
 
 		if (src.open)
 			if(user.bioHolder.HasEffect("clumsy") && prob(10))
-				user.visible_message("<span class='alert'>[user] gets their finger caught in \the [src] when closing it. That thing is made out of cardboard! How is that possible?!</span>", \
-				"<span class='alert'>You close \the [src] with your finger in it! Yeow!</span>")
+				user.visible_message(SPAN_ALERT("[user] gets their finger caught in \the [src] when closing it. That thing is made out of cardboard! How is that possible?!"), \
+				SPAN_ALERT("You close \the [src] with your finger in it! Yeow!"))
 				user.setStatus("stunned", 1 SECOND)
 				user.TakeDamage((pick(TRUE, FALSE) ? "l_arm" : "r_arm"), 2, 0, 0, DAMAGE_BLUNT)
 				bleed(user, 1, 1)
@@ -796,7 +956,10 @@ TRAYS
 			src.UpdateIcon()
 
 		else
-			if (isnull(user))
+			if (src.mousetrap_check(user))
+				return FALSE
+
+			if (isnull(user)) // We only need a null-check here because of the shit_goes_everywhere proc
 				icon_state = "pizzabox_open"
 				src.open = TRUE
 				playsound(src.loc, 'sound/machines/click.ogg', 30, 0)
@@ -804,8 +967,8 @@ TRAYS
 				return
 
 			if (user.bioHolder.HasEffect("clumsy") && prob(33))
-				user.visible_message("<span class='alert'>[user] hits their head on the back of \the [src].</span>", \
-				"<span class='alert'>You hit the back of \the [src] on your own head! Ouch!</span>")
+				user.visible_message(SPAN_ALERT("[user] hits their head on the back of \the [src]."), \
+				SPAN_ALERT("You hit the back of \the [src] on your own head! Ouch!"))
 				user.setStatus("stunned", 1 SECOND)
 				user.TakeDamage("head", 2, 0, 0, DAMAGE_BLUNT)
 				playsound(user.loc, 'sound/impact_sounds/Metal_Clang_1.ogg', 80, 0)
@@ -817,6 +980,21 @@ TRAYS
 			src.open = TRUE
 			src.vis_contents = src.contents
 			src.UpdateIcon()
+
+	get_desc()
+		. = ..()
+
+		switch (round((space_left / max_space) * 100)) // Multiplying by 100 so we get a percentage, which we can work on a lot better than decimals
+			if (100) // space left is same as max space
+				. += " It is empty."
+			if (51 to 99) // less than half the space is used.
+				. += " It is mostly empty."
+			if (50) // half the space is used
+				. += " It is half [prob(50) ? "empty" : "full"]." // joke about the half empty/full cup dillema
+			if (1 to 49) // more than half the space is used
+				. += " It is mostly full."
+			if (0)
+				. += " It is full!"
 
 	shatter()
 		shit_goes_everywhere()
@@ -843,7 +1021,8 @@ TRAYS
 	throw_range = 4
 	force = 10
 	w_class = W_CLASS_BULKY //no trays of loaves in a backpack for you
-	max_food = 30 // will look like an absolute shitshow but sure
+	max_space = 30 // will look like an absolute shitshow but sure
+	space_left = 30
 	throw_dist = 5
 	two_handed = TRUE
 
@@ -893,13 +1072,13 @@ TRAYS
 
 	unique_attack_garbage_fuck(mob/M as mob, mob/user as mob)
 		M.TakeDamageAccountArmor("head", src.force, 0, 0, DAMAGE_BLUNT)
-		playsound(src, 'sound/weapons/trayhit.ogg', 25, 1)
+		playsound(src, 'sound/weapons/trayhit.ogg', 25, TRUE)
 		src.visible_message("\The [src] falls out of [user]'s hands due to the impact!")
 		user.drop_item(src)
 
 		if(tray_health == 0) //breakable trays because you flew too close to the sun, you tried to have unlimited damage AND stuns you fool, your hubris is too fat, too wide
 			src.visible_message("<b>\The [src] shatters!</b>")
-			playsound(src, 'sound/impact_sounds/Metal_Hit_Light_1.ogg', 70, 1)
+			playsound(src, 'sound/impact_sounds/Metal_Hit_Light_1.ogg', 70, TRUE)
 			new /obj/item/scrap(src.loc)
 			qdel(src)
 			return
@@ -964,9 +1143,9 @@ TRAYS
 					skip = "ALL"
 				var/ingredienttype
 				if(istype(FOOD,/obj/item/reagent_containers/food/snacks/ingredient/meat)) //setting ingredient type for the roller overlays
-					if(istype(FOOD,/obj/item/reagent_containers/food/snacks/ingredient/meat/fish))
+					if(istype(FOOD,/obj/item/reagent_containers/food/snacks/ingredient/meat/fish/fillet))
 						if(!fishflag)
-							if(istype(FOOD,/obj/item/reagent_containers/food/snacks/ingredient/meat/fish/small))
+							if(istype(FOOD,/obj/item/reagent_containers/food/snacks/ingredient/meat/fish/fillet/small))
 								fishflag = "fillet-white"
 							else
 								fishflag = FOOD.icon_state
@@ -975,9 +1154,9 @@ TRAYS
 				else
 					ingredienttype="nonmeat"
 				var/image/foodoverlay = new /image('icons/obj/kitchen.dmi',"[ingredienttype]-[src.toppings]") //setting up an overlay image
-				foodoverlay.color = FOOD.food_color
+				foodoverlay.color = FOOD.get_food_color()
 				foodoverlay.layer = (src.layer+3)
-				toppingdata.Add(FOOD.food_color)
+				toppingdata.Add(FOOD.get_food_color())
 				FOOD.reagents?.trans_to(roll,FOOD.reagents.total_volume)
 				for(var/food_effect in FOOD.food_effects)
 					if(food_effect in roll.food_effects)
@@ -988,9 +1167,9 @@ TRAYS
 				user.u_equip(FOOD)
 				qdel(FOOD)
 			else if(!src.seaweed)
-				boutput(user,"<span class='alert'>You need a seaweed sheet on the roller first, silly.</span>")
+				boutput(user,SPAN_ALERT("You need a seaweed sheet on the roller first, silly."))
 			else
-				boutput(user,"<span class='alert'>You need sticky rice!</span>")
+				boutput(user,SPAN_ALERT("You need sticky rice!"))
 		else
 			..()
 
@@ -1067,21 +1246,6 @@ TRAYS
 	desc = "a table! with WHEELS!"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "kitchen_island"
-
-//kitchen island
-/obj/surgery_tray/kitchen_island
-	name = "kitchen island"
-	desc = "a table! with wheels!"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "kitchen_island"
-
-/obj/item/fish/random // used by the Wholetuna Cordata plant
-	New()
-		..()
-		SPAWN(0)
-			var/fish = pick(/obj/item/fish/salmon,/obj/item/fish/carp,/obj/item/fish/bass)
-			new fish(get_turf(src))
-			qdel(src)
 
 /obj/item/tongs
 	name = "tongs"

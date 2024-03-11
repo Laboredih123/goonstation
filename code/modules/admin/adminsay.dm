@@ -18,7 +18,11 @@
 	var/special
 	if (src.holder.rank in list("Goat Fart", "Ayn Rand's Armpit"))
 		special = "gfartadmin"
-	message_admins("[key_name(src)]: <span class=\"adminMsgWrap [special]\">[msg]</span>", 1)
+
+	if (src.fakekey != null)
+		message_admins("[key_name(src)] (as [src.fakekey]): <span class='adminMsgWrap [special]'>[msg]</span>", 1)
+	else
+		message_admins("[key_name(src)]: <span class='adminMsgWrap [special]'>[msg]</span>", 1)
 
 	var/ircmsg[] = new()
 	ircmsg["key"] = src.key
@@ -50,7 +54,7 @@
 
 	logTheThing(LOG_ADMIN, usr, "forced everyone to say: [msg]")
 	logTheThing(LOG_DIARY, usr, "forced everyone to say: [msg]", "admin")
-	message_admins("<span class='internal'>[key_name(usr)] forced everyone to say: [msg]</span>")
+	message_admins(SPAN_INTERNAL("[key_name(usr)] forced everyone to say: [msg]"))
 
 /client/proc/cmd_admin_murraysay(msg as text)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
@@ -76,7 +80,7 @@
 
 	logTheThing(LOG_ADMIN, usr, "forced Murray to beep: [msg]")
 	logTheThing(LOG_DIARY, usr, "forced Murray to beep: [msg]", "admin")
-	message_admins("<span class='internal'>[key_name(usr)] forced Murray to beep: [msg]</span>")
+	message_admins(SPAN_INTERNAL("[key_name(usr)] forced Murray to beep: [msg]"))
 
 
 // more copies than a kinkos
@@ -101,7 +105,7 @@
 		maybeHS.speak(msg)
 		logTheThing(LOG_ADMIN, usr, "forced HeadSurgeon to beep: [msg]")
 		logTheThing(LOG_DIARY, usr, "forced HeadSurgeon: [msg]", "admin")
-		message_admins("<span class='internal'>[key_name(usr)] forced HeadSurgeon to beep: [msg]</span>")
+		message_admins(SPAN_INTERNAL("[key_name(usr)] forced HeadSurgeon to beep: [msg]"))
 		return
 
 	for (var/obj/item/clothing/suit/cardboard_box/head_surgeon/maybeHS in world)
@@ -109,7 +113,7 @@
 		maybeHS.speak(msg)
 		logTheThing(LOG_ADMIN, usr, "forced HeadSurgeon to beep: [msg]")
 		logTheThing(LOG_DIARY, usr, "forced HeadSurgeon: [msg]", "admin")
-		message_admins("<span class='internal'>[key_name(usr)] forced HeadSurgeon to beep: [msg]</span>")
+		message_admins(SPAN_INTERNAL("[key_name(usr)] forced HeadSurgeon to beep: [msg]"))
 		return
 
 
@@ -135,7 +139,7 @@
 
 	logTheThing(LOG_ADMIN, usr, "forced Bradbury II to beep: [msg]")
 	logTheThing(LOG_DIARY, usr, "forced Bradbury II to beep: [msg]", "admin")
-	message_admins("<span class='internal'>[key_name(usr)] forced Bradbury II to beep: [msg]</span>")
+	message_admins(SPAN_INTERNAL("[key_name(usr)] forced Bradbury II to beep: [msg]"))
 
 // surely Beepsky's too much of an upstanding character to copy and steal intellectual property!
 /client/proc/cmd_admin_beepsay(msg as text)
@@ -159,5 +163,5 @@
 
 	logTheThing(LOG_ADMIN, usr, "forced Beepsky to beep: [msg]")
 	logTheThing(LOG_DIARY, usr, "forced Beepsky to beep: [msg]", "admin")
-	message_admins("<span class='internal'>[key_name(usr)] forced Beepsky to beep: [msg]</span>")
+	message_admins(SPAN_INTERNAL("[key_name(usr)] forced Beepsky to beep: [msg]"))
 

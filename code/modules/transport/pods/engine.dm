@@ -18,6 +18,10 @@
 
 	activate()
 		..()
+		if(ship.fueltank.air_contents.toxins <= 0)
+			boutput(usr, "[ship.ship_message("No plasma located inside of the fuel tank!")]")
+			src.deactivate()
+			return
 		ship.powercapacity = src.powergenerated
 		return
 	////Warp requires recharge time
@@ -140,6 +144,10 @@
 
 	sleep(portaldelay)
 	P.target = target
+	if (istype(target, /obj/warp_beacon))
+		var/obj/warp_beacon/WB = target
+		if (WB.encrypted) // special beacon, ignore restricted Z checks and similar
+			P.bypass_tele_block = TRUE
 	ready = 0
 	warp_autopilot = 0
 	logTheThing(LOG_STATION, usr, "creates a wormhole (pod portal) (<b>Destination:</b> [target]) at [log_loc(usr)].")

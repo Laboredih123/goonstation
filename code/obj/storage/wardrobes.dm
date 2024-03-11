@@ -1,4 +1,6 @@
 
+TYPEINFO(/obj/storage/closet/dresser)
+	mat_appearances_to_ignore = list("wood")
 /obj/storage/closet/dresser
 	name = "dresser"
 	desc = "It's got room for all your fanciest or shabbiest outfits!"
@@ -82,7 +84,7 @@
 	icon_state = "orange"
 	icon_closed = "orange"
 	spawn_contents = list(/obj/item/clothing/under/color/orange = 4,
-	/obj/item/clothing/under/misc = 3,
+	/obj/item/clothing/under/misc/prisoner = 3,
 	/obj/item/clothing/shoes/orange = 4)
 
 /obj/storage/closet/wardrobe/yellow
@@ -128,7 +130,7 @@
 	icon_state = "mixed"
 	icon_closed = "mixed"
 	spawn_contents = list(/obj/item/clothing/under/rank/janitor = 1,
-	/obj/item/clothing/suit/bio_suit/janitor = 1,
+	/obj/item/clothing/suit/hazard/bio_suit/janitor = 1,
 	/obj/item/clothing/head/bio_hood/janitor = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/clothing/gloves/long = 1,
@@ -153,7 +155,7 @@
 	/obj/item/clothing/shoes/black,
 	/obj/item/clothing/under/misc/chaplain/nun,
 	/obj/item/clothing/head/nunhood,
-	/obj/item/clothing/shoes/sandal)
+	/obj/item/clothing/shoes/sandal/magic)
 
 /obj/storage/closet/wardrobe/black/formalwear
 	name = "formalwear closet"

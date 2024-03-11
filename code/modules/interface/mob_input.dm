@@ -35,7 +35,7 @@
 					src.targeting_ability = S
 					update_cursor()
 				return 100
-			if (!S.can_target_ghosts && ismob(target) && (!isliving(target) || iswraith(target) || isintangible(target)))
+			if (!S.target_ghosts && ismob(target) && (!isliving(target) || iswraith(target) || isintangible(target)))
 				src.show_text("It would have no effect on this target.", "red")
 				if(S.sticky)
 					src.targeting_ability = S
@@ -106,6 +106,33 @@
 				else if (dir & WEST)
 					set_dir(WEST)
 
+/**
+ * This proc is called when a mob double clicks on something with the left mouse button.
+ * Return TRUE if the click was handled, FALSE otherwise. Handled doubleclicks will suppress the Click() call that follows.
+ * (Note that the Click() call for the *first* click always happens.)
+ */
+/mob/proc/double_click(atom/target, location, control, list/params)
+	if(src.client?.check_key(KEY_EXAMINE) && !src.client?.preferences?.help_text_in_examine)
+		if(src.help_examine(target))
+			return TRUE
+
+/mob/proc/get_final_help_examine(atom/target)
+	. = target.get_help_message(GET_DIST(src, target), src)
+	var/list/additional_help_messages = list()
+	SEND_SIGNAL(target, COMSIG_ATOM_HELP_MESSAGE, src, additional_help_messages)
+	if (length(additional_help_messages))
+		if (.)
+			additional_help_messages = list(.)	+ additional_help_messages
+		. = jointext(additional_help_messages, "\n")
+	. = replacetext(trim(.), "\n", "<br>")
+
+/mob/proc/help_examine(atom/target)
+	var/help = get_final_help_examine(target)
+	if (help)
+		boutput(src, SPAN_HELPMSG("[help]"))
+		return TRUE
+	return FALSE
+
 /mob/proc/hotkey(name) //if this gets laggy, look into adding a small spam cooldown like with resting / eating?
 	switch (name)
 		if ("look_n")
@@ -133,6 +160,16 @@
 /mob/proc/get_ability_hotkey(mob/user, parameters)
 	if(!parameters["left"]) return
 	if(!user?.abilityHolder) return
+	if(istype(user.abilityHolder, /datum/abilityHolder/composite))
+		var/datum/abilityHolder/composite/holder = user.abilityHolder
+		for(var/datum/abilityHolder/H in holder.holders)
+			if(parameters["ctrl"] && H.ctrlPower)
+				return H.ctrlPower
+			if(parameters["alt"] && H.altPower)
+				return H.altPower
+			if(parameters["shift"] && H.shiftPower)
+				return H.shiftPower
+
 	if(parameters["ctrl"] && user.abilityHolder.ctrlPower)
 		return user.abilityHolder.ctrlPower
 	if(parameters["alt"] && user.abilityHolder.altPower)
@@ -168,12 +205,12 @@
 /mob/proc/apply_custom_keybinds(client/C)
 	PROTECTED_PROC(TRUE)
 
-	if(!C || !C.cloud_available())
+	if(!C)
 		//logTheThing(LOG_DEBUG, null, "<B>ZeWaka/Keybinds:</B> Attempted to fetch custom keybinds for [C.ckey] but failed.")
 		return
 
-	var/fetched_keylist = C.cloud_get("custom_keybind_data")
-	if (!isnull(fetched_keylist)) //The client has a list of custom keybinds.
+	var/fetched_keylist = C.player.cloudSaves.getData("custom_keybind_data")
+	if (!isnull(fetched_keylist) && fetched_keylist != "") //The client has a list of custom keybinds.
 		var/datum/keymap/new_map = new /datum/keymap(json_decode(fetched_keylist))
 		C.keymap.overwrite_by_action(new_map)
 		C.keymap.on_update(C)
@@ -188,7 +225,6 @@
 		src.client.applied_keybind_styles = list() //Reset currently applied styles
 		build_keybind_styles(src.client)
 		apply_custom_keybinds(src.client)
-		if (src.use_movement_controller)
-			var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-			if (controller)
-				controller.modify_keymap(src.client)
+		var/datum/movement_controller/controller = src.override_movement_controller
+		if (controller)
+			controller.modify_keymap(src.client)
