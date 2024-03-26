@@ -135,7 +135,7 @@ ClearSpecificOverlays(1, "key0", "key1", "key2") 	//Same as above but retains ca
 		return 0
 
 	// remove once https://www.byond.com/forum/post/2888142 is fixed
-	#if DM_VERSION >= 515 && !defined(SPACEMAN_DMM)
+	#if DM_VERSION >= 515 && !defined(SPACEMAN_DMM) && !defined(OPENDREAM) // TODO: Remove OD check once TGS can configure the spoofed version
 	#warn "remove the below"
 	#endif
 	if(I)
