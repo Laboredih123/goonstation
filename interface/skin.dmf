@@ -646,7 +646,7 @@ window "joinmenu"
 		font-size = 10
 		font-style = "bold"
 		saved-params = "is-checked"
-		text = ""
+		text = "Observe"
 		image = 'icons\\ui\\observe.png'
 		command = ".observe_round"
 	elem "button_ready_antag"
@@ -661,7 +661,7 @@ window "joinmenu"
 		saved-params = "is-checked"
 		is-visible = false
 		is-disabled = true
-		text = ""
+		text = "Ready (antag token)"
 		image = 'icons\\ui\\declare-ready-antag.png'
 		command = ".ready_antag"
 	elem "button_cancel"
@@ -676,7 +676,7 @@ window "joinmenu"
 		is-visible = false
 		is-disabled = true
 		saved-params = "is-checked"
-		text = ""
+		text = "Cancel"
 		image = 'icons\\ui\\cancel.png'
 		command = ".cancel_ready"
 	elem "button_ready"
@@ -689,7 +689,7 @@ window "joinmenu"
 		font-size = 10
 		font-style = "bold"
 		saved-params = "is-checked"
-		text = ""
+		text = "Ready"
 		image = 'icons\\ui\\declare-ready.png'
 		command = ".ready"
 	elem "button_joingame"
@@ -702,7 +702,7 @@ window "joinmenu"
 		font-size = 10
 		font-style = "bold"
 		saved-params = "is-checked"
-		text = ""
+		text = "Join Game"
 		image = 'icons\\ui\\join-game.png'
 		command = ".ready"
 	elem "button_charsetup"
@@ -715,7 +715,7 @@ window "joinmenu"
 		font-size = 10
 		font-style = "bold"
 		saved-params = "is-checked"
-		text = ""
+		text = "Character Setup"
 		image = 'icons\\ui\\edit-character-button.png'
 		command = "Character-Setup"
 
