@@ -100,7 +100,7 @@
 	icon_state = "medium_dir"
 	New(loc, dir=0)
 		..()
-		src.set_dir(dir)
+		src.dir = dir
 		switch(dir)
 			if(NORTH)
 				pixel_y += 32
@@ -128,12 +128,14 @@
 	show_medium_light()
 
 	if (length(medium_light_rgbas) == 1) //dont loop/average if list only contains 1 thing
-		for(var/obj/overlay/simple_light/medium/medium_light in src.medium_lights)
+		for(var/obj/overlay/simple_light/medium/medium_light as anything in src.medium_lights)
 			if(medium_light.icon_state == "medium_center")
-				medium_light.color = rgb(rgba[1], rgba[2], rgba[3], min(255, rgba[4]))
+				rgba[4] = min(255, rgba[4])
+				medium_light.color = rgba
 			else
 				// divided by two because the directional sprites are brighter
-				medium_light.color = rgb(rgba[1], rgba[2], rgba[3], min(255, rgba[4] / 2))
+				rgba[4] = min(255, rgba[4] / 2)
+				medium_light.color = rgba
 	else
 		update_medium_light_color()
 
@@ -186,18 +188,18 @@
 			var/obj/overlay/simple_light/medium/light = new(null, light_dir)
 			src:vis_contents += light
 			src.medium_lights += light
-	for(var/obj/overlay/simple_light/medium/light in src.medium_lights)
+	for(var/obj/overlay/simple_light/medium/light as anything in src.medium_lights)
 		light.invisibility = INVIS_NONE
 	update_medium_light_visibility()
 
 /atom/proc/hide_medium_light()
-	for(var/obj/overlay/simple_light/medium/light in src.medium_lights)
+	for(var/obj/overlay/simple_light/medium/light as anything in src.medium_lights)
 		light.invisibility = INVIS_ALWAYS
 
 /atom/proc/destroy_medium_light()
 	if (length(medium_light_rgbas))
 		hide_medium_light()
-	for(var/obj/overlay/simple_light/medium/light in src.medium_lights)
+	for(var/obj/overlay/simple_light/medium/light as anything in src.medium_lights)
 		src:vis_contents -= light
 		qdel(light)
 	medium_light_rgbas = null

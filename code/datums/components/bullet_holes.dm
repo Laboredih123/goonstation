@@ -30,7 +30,7 @@ TYPEINFO(/datum/component/bullet_holes)
 
 	src.impact_images = new/list(max_holes)
 
-	src.impact_image_base = image('icons/obj/projectiles.dmi', "blank")
+	src.impact_image_base = mutable_appearance('icons/obj/projectiles.dmi', "blank")
 	src.impact_image_base.blend_mode = BLEND_INSET_OVERLAY // so the holes don't go over the edge of things
 
 	RegisterSignal(parent, COMSIG_ATOM_HITBY_PROJ, PROC_REF(handle_impact))

@@ -155,9 +155,9 @@ TYPEINFO(/obj/item/peripheral)
 		..()
 		src.net_id = format_net_id("\ref[src]")
 		if(send_only)
-			MAKE_SENDER_RADIO_PACKET_COMPONENT("wireless", frequency)
+			MAKE_SENDER_RADIO_PACKET_COMPONENT_NETID("wireless", frequency)
 		else
-			MAKE_DEFAULT_RADIO_PACKET_COMPONENT("wireless", frequency)
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NETID("wireless", frequency)
 
 	receive_command(obj/source, command, datum/signal/signal)
 		if(..())
@@ -356,11 +356,11 @@ TYPEINFO(/obj/item/peripheral)
 			if (length(command) > 4)
 				var/new_net_number = text2num_safe( copytext(command, 5) )
 				if (new_net_number != null && new_net_number >= 0 && new_net_number <= 16)
-					newsignal.data["net"] = "[new_net_number]"
+					newsignal.data["net"] = new_net_number
 				else if (src.net_number)
-					newsignal.data["net"] = "[net_number]"
+					newsignal.data["net"] = net_number
 			else if (src.net_number)
-				newsignal.data["net"] = "[net_number]"
+				newsignal.data["net"] = net_number
 
 			newsignal.transmission_method = TRANSMISSION_WIRE
 			newsignal.source = src
@@ -388,7 +388,7 @@ TYPEINFO(/obj/item/peripheral)
 		if(!signal || !src.net_id || (signal.encryption && signal.encryption != code))
 			return
 
-		if(signal.transmission_method != TRANSMISSION_WIRE) //No radio for us thanks
+		if(signal.transmission_method == TRANSMISSION_RADIO) //No radio for us thanks
 			return
 
 		if(!src.link || !src.check_connection())
@@ -397,7 +397,7 @@ TYPEINFO(/obj/item/peripheral)
 		//They don't need to target us specifically to ping us.
 		//Otherwise, ff they aren't addressing us, ignore them
 		if(signal.data["address_1"] != src.net_id)
-			if((signal.data["address_1"] == "ping") && ((signal.data["net"] == null) || ("[signal.data["net"]]" == "[src.net_number]")) && signal.data["sender"])
+			if((signal.data["address_1"] == "ping") && (isnull(signal.data["net"]) || (signal.data["net"] == src.net_number)) && signal.data["sender"])
 				var/datum/signal/pingsignal = get_free_signal()
 				pingsignal.data["device"] = "PNET_ADAPTER"
 				pingsignal.data["netid"] = src.net_id
@@ -529,11 +529,11 @@ TYPEINFO(/obj/item/peripheral)
 					if (length(command) > 4)
 						var/new_net_number = text2num_safe( copytext(command, 5) )
 						if (new_net_number != null && new_net_number >= 0 && new_net_number <= 16)
-							newsignal.data["net"] = "[new_net_number]"
+							newsignal.data["net"] = new_net_number
 						else if (src.net_number)
-							newsignal.data["net"] = "[net_number]"
+							newsignal.data["net"] = net_number
 					else if (src.net_number)
-						newsignal.data["net"] = "[net_number]"
+						newsignal.data["net"] = net_number
 
 					newsignal.transmission_method = TRANSMISSION_WIRE
 					newsignal.source = src
@@ -570,7 +570,7 @@ TYPEINFO(/obj/item/peripheral)
 				src.check_wired_connection()
 			//Let's blindy attempt to generate a unique network ID!
 		src.net_id = format_net_id("\ref[src]")
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT("wireless", frequency)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NETID("wireless", frequency)
 
 
 	receive_command(obj/source, command, datum/signal/signal)
@@ -684,7 +684,7 @@ TYPEINFO(/obj/item/peripheral)
 						newsignal.data["sender"] = src.net_id
 
 						if (src.subnet)
-							newsignal.data["net"] = "[subnet]"
+							newsignal.data["net"] = subnet
 
 						newsignal.transmission_method = TRANSMISSION_WIRE
 						newsignal.source = src
@@ -753,7 +753,7 @@ TYPEINFO(/obj/item/peripheral)
 			return 1
 
 		if(!get_radio_connection_by_id(src, "wireless"))
-			MAKE_DEFAULT_RADIO_PACKET_COMPONENT("wireless", frequency)
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NETID("wireless", frequency)
 			get_radio_connection_by_id(src, "wireless").update_all_hearing(TRUE)
 
 		src.check_wired_connection()

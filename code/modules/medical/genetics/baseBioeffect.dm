@@ -188,7 +188,7 @@ ABSTRACT_TYPE(/datum/bioEffect)
 			var/datum/basePair/bpNew = new()
 			bpNew.bpp1 = bp.bpp1
 			bpNew.bpp2 = bp.bpp2
-			blockListCurr.Add(bpNew)
+			blockListCurr += bpNew
 
 		for(var/datum/basePair/bp as anything in blockListCurr)
 			if(prob(33))
@@ -206,21 +206,21 @@ ABSTRACT_TYPE(/datum/bioEffect)
 		if(owner.blockGaps > length(blockListCurr))
 			CRASH("bioEffect [owner.name] has [owner.blockGaps] block gaps but only [length(blockListCurr)] blocks")
 
-		for(var/i=0, i<owner.blockGaps, i++)
+		for(var/i in 0 to owner.blockGaps-1)
 			var/datum/basePair/bp = pick(blockListCurr - gapList)
-			gapList.Add(bp)
+			gapList += bp
 			bp.bpp1 = "?"
 			bp.bpp2 = "?"
 			bp.style = "X"
 
-		for(var/i=0, i<owner.lockedGaps, i++)
+		for(var/i = 0 to owner.lockedGaps-1)
 			if (!prob(owner.lockProb))
 				continue
 			var/datum/basePair/bp = pick(blockListCurr - gapList)
 			gapList.Add(bp)
 
 			bp.lockcode = ""
-			for (var/c = owner.lockedDiff, c > 0, c--)
+			for (var/c = owner.lockedDiff to 1 step -1)
 				bp.lockcode += pick(owner.lockedChars)
 			bp.locktries = owner.lockedTries
 
@@ -228,7 +228,7 @@ ABSTRACT_TYPE(/datum/bioEffect)
 			if (owner.req_mut_research)
 				diff = 0
 			else
-				var/difficulty = round((owner.lockedDiff ** owner.lockedChars.len) / owner.lockedTries)
+				var/difficulty = round((owner.lockedDiff ** length(owner.lockedChars)) / owner.lockedTries)
 				switch(difficulty)
 					if(11 to 20) diff = 2
 					if(21 to 30) diff = 3

@@ -989,10 +989,7 @@ ADMIN_INTERACT_PROCS(/obj/window, proc/smash)
 	opacity = 1
 	hitsound = 'sound/impact_sounds/Metal_Hit_Light_1.ogg'
 	shattersound = 'sound/impact_sounds/Metal_Hit_Light_1.ogg'
-	default_material = null
-
-	New()
-		..()
+	default_material = "steel" //null bad, who knew
 
 	update_nearby_tiles(need_rebuild, selfnotify)
 		return

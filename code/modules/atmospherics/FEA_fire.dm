@@ -2,8 +2,7 @@
 
 /// Exposes our reagents and material to some temperature, letting them figure out how to react to it.
 /atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if (src.reagents)
-		src.reagents.temperature_reagents(exposed_temperature, exposed_volume, 350, 300, 1)
+	src.reagents?.temperature_reagents(exposed_temperature, exposed_volume, 350, 300, 1)
 	src.material_trigger_on_temp(exposed_temperature)
 
 /obj/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -15,8 +14,7 @@
 /turf/proc/hotspot_expose(exposed_temperature, exposed_volume, source_of_heat, electric = FALSE)
 	SHOULD_CALL_PARENT(TRUE)
 	src.material_trigger_on_temp(exposed_temperature)
-	if (src.reagents)
-		src.reagents.temperature_reagents(exposed_temperature, exposed_volume, 350, 300, 1)
+	src.reagents?.temperature_reagents(exposed_temperature, exposed_volume, 350, 300, 1)
 	if(!ON_COOLDOWN(src, "hotspot_expose_to_atoms__1", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__2", 1 SECOND) || \
 		!ON_COOLDOWN(src, "hotspot_expose_to_atoms__3", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__4", 1 SECOND) || \
 		!ON_COOLDOWN(src, "hotspot_expose_to_atoms__5", 1 SECOND))
@@ -41,7 +39,6 @@
 	if (src.active_hotspot)
 		if (locate(/obj/fire_foam) in src)
 			src.active_hotspot.dispose() // have to call this now to force the lighting cleanup
-			qdel(src.active_hotspot)
 			src.active_hotspot = null
 			return FALSE
 
@@ -57,16 +54,8 @@
 					src.active_hotspot.volume = exposed_volume
 		return TRUE
 
-	var/igniting = FALSE
-
-	if ((exposed_temperature > PLASMA_MINIMUM_BURN_TEMPERATURE) && (air_contents.toxins > 0.5))
-		igniting = TRUE
-
-	if (igniting)
+	if ((exposed_temperature > PLASMA_MINIMUM_BURN_TEMPERATURE) && (air_contents.toxins > 0.5) && (air_contents.oxygen > 0.5))
 		if (locate(/obj/fire_foam) in src)
-			return FALSE
-
-		if (air_contents.oxygen < 0.5 || air_contents.toxins < 0.5)
 			return FALSE
 
 		if (parent?.group_processing)
@@ -76,21 +65,20 @@
 
 		src.active_hotspot.just_spawned = (current_cycle < air_master.current_cycle)
 		//remove just_spawned protection if no longer processing this cell
+		return TRUE
+	return FALSE
 
-	return igniting
-
-/// Adds a hotspot to self, deletes the previous if there was one. Sets processing to true also, since a fire kinda should be processed.
+/// Adds a hotspot to self, updates the previous instead if there was one. Sets processing to true also, since a fire kinda should be processed.
 /turf/proc/add_hotspot(temperature, volume)
-	src.active_hotspot?.dispose()
-	src.active_hotspot = new /obj/hotspot
+	if(isnull(src.active_hotspot))
+		src.active_hotspot = new /obj/hotspot(src)
 	src.active_hotspot.temperature = temperature
 	src.active_hotspot.volume = volume
-	src.active_hotspot.set_loc(src)
 	src.active_hotspot.set_real_color()
 	if (issimulatedturf(src))
 		var/turf/simulated/self = src
 		self.processing = TRUE
-		if(!self.parent)
+		if(isnull(self.parent))
 			air_master.active_singletons |= src
 
 /// The object that represents fire ingame. Very nice and warm.
@@ -213,20 +201,16 @@
 /// Interact with our turf, performing reactions, scaling volume up, and exposing things on our turf while [/obj/hotspot/var/bypassing] is FALSE,
 /// and simply scaling up while it is set to TRUE.
 /obj/hotspot/proc/perform_exposure()
-	var/turf/simulated/floor/location = loc
-	if(!issimulatedturf(location))
-		return FALSE
+	var/turf/simulated/floor/location = src.loc
 
 	if(src.volume > CELL_VOLUME*0.95)
 		bypassing = TRUE
-	else
-		bypassing = FALSE
-
-	if(bypassing)
 		if(!just_spawned)
 			src.volume = location.air.fuel_burnt*FIRE_GROWTH_RATE
 			src.temperature = location.air.temperature
 	else
+		bypassing = FALSE
+
 		var/datum/gas_mixture/affected = location.air.remove_ratio(src.volume/max((location.air.volume/5),1))
 
 		affected.temperature = src.temperature

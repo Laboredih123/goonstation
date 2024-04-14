@@ -70,31 +70,32 @@ What are the archived variables for?
 /// Process all reactions, return bitfield if notable reaction occurs.
 /datum/gas_mixture/proc/react(atom/dump_location, mult=1)
 	. = 0 //(used by pipe_network and hotspots)
-	var/reaction_rate
-	if(src.temperature > 900 && src.oxygen_agent_b > MINIMUM_REACT_QUANTITY && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
-		reaction_rate = min(src.carbon_dioxide*0.75, src.toxins*0.25, src.oxygen_agent_b*0.05)
-		reaction_rate = QUANTIZE(reaction_rate) * mult
+	if(src.temperature > 900 KELVIN && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
+		var/reaction_rate
+		if(src.oxygen_agent_b > MINIMUM_REACT_QUANTITY)
+			reaction_rate = min(src.carbon_dioxide*0.75, src.toxins*0.25, src.oxygen_agent_b*0.05)
+			reaction_rate = QUANTIZE(reaction_rate) * mult
 
-		src.carbon_dioxide -= reaction_rate
-		src.oxygen += reaction_rate
-		src.oxygen_agent_b -= reaction_rate*0.05
+			src.carbon_dioxide -= reaction_rate
+			src.oxygen += reaction_rate
+			src.oxygen_agent_b -= reaction_rate*0.05
 
-		src.temperature += (reaction_rate*20000)/HEAT_CAPACITY(src)
+			src.temperature += (reaction_rate*20000)/HEAT_CAPACITY(src)
 
-		if(reaction_rate > MINIMUM_REACT_QUANTITY)
-			. |= CATALYST_ACTIVE
-		. |= REACTION_ACTIVE
+			if(reaction_rate > MINIMUM_REACT_QUANTITY)
+				. |= CATALYST_ACTIVE
+			. |= REACTION_ACTIVE
 
-	if(src.temperature > 900 && src.farts > MINIMUM_REACT_QUANTITY && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
-		reaction_rate = min(src.carbon_dioxide*0.75, src.toxins*0.25, src.farts*0.05)
-		reaction_rate = QUANTIZE(reaction_rate) * mult
+		if(src.farts > MINIMUM_REACT_QUANTITY)
+			reaction_rate = min(src.carbon_dioxide*0.75, src.toxins*0.25, src.farts*0.05)
+			reaction_rate = QUANTIZE(reaction_rate) * mult
 
-		src.carbon_dioxide -= reaction_rate
-		src.toxins += reaction_rate
-		src.farts -= reaction_rate*0.05
+			src.carbon_dioxide -= reaction_rate
+			src.toxins += reaction_rate
+			src.farts -= reaction_rate*0.05
 
-		src.temperature += (reaction_rate*10000)/HEAT_CAPACITY(src)
-		. |= REACTION_ACTIVE
+			src.temperature += (reaction_rate*10000)/HEAT_CAPACITY(src)
+			. |= REACTION_ACTIVE
 
 	src.fuel_burnt = 0
 	if(src.temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
@@ -136,10 +137,9 @@ What are the archived variables for?
 
 				src.fuel_burnt += (plasma_burn_rate) * ( 1 + oxygen_burn_rate)
 
-	if(energy_released)
-		var/new_heat_capacity = HEAT_CAPACITY(src)
-		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			src.temperature = (src.temperature * old_heat_capacity + energy_released) / new_heat_capacity
+				var/new_heat_capacity = HEAT_CAPACITY(src)
+				if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+					src.temperature = (src.temperature * old_heat_capacity + energy_released) / new_heat_capacity
 
 	ASSERT(src.fuel_burnt >= 0)
 	return src.fuel_burnt
@@ -368,7 +368,7 @@ What are the archived variables for?
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		#define _SHARE_GAS_HEAT(GAS, SPECIFIC_HEAT, ...) \
 			if(delta_##GAS > 0) { heat_capacity_self_to_sharer += SPECIFIC_HEAT * delta_##GAS } \
-			else if(delta_##GAS < 0) { heat_capacity_sharer_to_self -= SPECIFIC_HEAT * delta_##GAS }
+			else { heat_capacity_sharer_to_self -= SPECIFIC_HEAT * delta_##GAS }
 		APPLY_TO_GASES(_SHARE_GAS_HEAT)
 		#undef _SHARE_GAS_HEAT
 
@@ -421,8 +421,8 @@ What are the archived variables for?
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		#define _MIMIC_GAS_HEAT(GAS, SPECIFIC_HEAT, ...) \
 			if(delta_##GAS) { \
-				var/GAS##_heat_capacity = SPECIFIC_HEAT * delta_##GAS; \
-				heat_transferred -= GAS##_heat_capacity * model.temperature; \
+			var/GAS##_heat_capacity = SPECIFIC_HEAT * delta_##GAS; \
+			heat_transferred -= GAS##_heat_capacity * model.temperature; \
 				heat_capacity_transferred -= GAS##_heat_capacity; \
 			}
 		APPLY_TO_GASES(_MIMIC_GAS_HEAT)

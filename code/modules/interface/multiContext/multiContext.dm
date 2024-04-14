@@ -103,7 +103,7 @@
 		qdel(C)
 
 /atom/New()
-	if(contextActions != null)
+	if(contextActions)
 		if(isnull(globalContextActions))
 			buildContextActions()
 

@@ -32,8 +32,6 @@
 	// drsingh - lets try caching these lists from process_group, see if we can't reduce the garbage collection
 	/// Tiles that border us that either have no group, aka singletons, or are not in group processing mode.
 	var/list/turf/simulated/border_individual
-	/// Groups that border us and are in group processing mode.
-	var/list/datum/air_group/border_group
 
 	//used to send the appropriate border tile of a group to the group proc
 	/// Tiles that border us and are in another group that is currently processing.
@@ -58,13 +56,13 @@
 
 /// Distribute air from the group out to members
 /datum/air_group/proc/suspend_group_processing()
-	ASSERT(group_processing == TRUE)
+	ASSERT(group_processing)
 	update_tiles_from_group()
 	group_processing = FALSE
 
 /// Collect air from the members to the group.
 /datum/air_group/proc/resume_group_processing()
-	ASSERT(group_processing == FALSE)
+	ASSERT(!group_processing)
 	update_group_from_tiles()
 	group_processing = TRUE
 
@@ -89,9 +87,12 @@
 
 /// Copy group air information to individual tile air. Used right before turning off group processing.
 /datum/air_group/proc/update_tiles_from_group()
-	for(var/turf/simulated/member as anything in members)
-		if (member.air)
-			member.air.copy_from(src.air)
+	for(var/turf/simulated/member as anything in members) //groups can be rather big, lets copy in the code rather than doing a bunch of proc calls
+		#define _COPY_GAS(GAS, ...) member.air.GAS = src.air.GAS;
+		APPLY_TO_GASES(_COPY_GAS)
+		#undef _COPY_GAS
+
+		member.air.temperature = src.air.temperature
 
 #ifdef ATMOS_ARCHIVING
 /datum/air_group/proc/archive()
@@ -135,12 +136,10 @@
 			src.check_regroup()
 
 	if(group_processing) //See if processing this group as a group
-		border_individual = null
-		border_group = null
-
-		enemies = null //used to send the appropriate border tile of a group to the group proc
-		self_group_borders = null
-		self_tile_borders = null
+		border_individual = list()
+		enemies = list() //used to send the appropriate border tile of a group to the group proc
+		self_group_borders = list()
+		self_tile_borders = list()
 
 #ifdef ATMOS_ARCHIVING
 		if(archived_cycle < air_master.current_cycle)
@@ -160,39 +159,35 @@
 
 					if(issimulatedturf(enemy_tile) && enemy_tile.parent && enemy_tile.parent.group_processing) //blahh danger
 						// Tile is a border with another group, and the other group is in group processing mode.
-						// Build border groups list
-						if(!border_group)
-							border_group = list()
-						border_group += enemy_tile.parent
 
 						// Build enemies list
-						if(!enemies)
-							enemies = list()
 						enemies += enemy_tile
 
 						// Build self-group border list
-						if(!self_group_borders)
-							self_group_borders = list()
 						self_group_borders += border_tile
 					else if(issimulatedturf(enemy_tile))
 						// Tile is a border with a singleton, not a group in group processing mode.
 						// Build individual border list
-						if(!border_individual)
-							border_individual = list()
 						border_individual |= enemy_tile
 
 						// Build self-tile-border list
-						if(!self_tile_borders)
-							self_tile_borders = list()
 						self_tile_borders += border_tile
 
-			LAGCHECK(LAG_REALTIME)
+			sleep(-1)
 
+		//clean up if not used
+		if(!length(enemies))
+			enemies = null
+			self_group_borders = null
+		if(!length(border_individual))
+			border_individual = null
+			self_tile_borders = null
 
 		// Process connections to adjacent groups
 		var/border_index = 1
-		if(border_group)
-			for(var/datum/air_group/AG as anything in border_group)
+		if(enemies)
+			for(var/turf/simulated/enemy_border as anything in enemies)
+				var/datum/air_group/AG = enemy_border.parent
 #ifdef ATMOS_ARCHIVING
 				if(AG.archived_cycle < archived_cycle)
 					//archive other groups information if it has not been archived yet this cycle
@@ -203,30 +198,24 @@
 					//Without it, each connection would be processed a second time as the second group is evaluated
 
 					var/connection_difference = 0
-					var/turf/simulated/floor/self_border
-					var/turf/simulated/floor/enemy_border
-					if(length(self_group_borders))
-						self_border = self_group_borders[border_index]
-					if(enemy_border)
-						enemy_border = enemies[border_index]
+					var/turf/simulated/floor/self_border = self_group_borders[border_index]
 					ATMOS_TILE_OPERATION_DEBUG(self_border)
-					ATMOS_TILE_OPERATION_DEBUG(enemy_border)
 
 					var/result = src.air.check_gas_mixture(AG.air)
-					if(result == GROUP_CHECK_PASS)
-						connection_difference = src.air.share(AG.air)
-					else if(result == SHARER_CHECK_FAIL)
-						AG.suspend_group_processing()
-						connection_difference = src.air.share(enemy_border.air)
-					else
-						abort_group = TRUE
-						break
-
-					if(connection_difference && !isnull(enemy_border) && !isnull(self_border))
-						if(connection_difference > 0)
-							self_border.consider_pressure_difference(connection_difference, get_dir(self_border,enemy_border))
+					switch(result)
+						if(GROUP_CHECK_PASS)
+							connection_difference = src.air.share(AG.air)
+						if(SHARER_CHECK_FAIL)
+							AG.suspend_group_processing()
+							connection_difference = src.air.share(enemy_border.air)
 						else
-							enemy_border.consider_pressure_difference(-connection_difference, get_dir(enemy_border,self_border))
+							abort_group = TRUE
+							break
+					if(connection_difference)
+						if(connection_difference > 0)
+							self_border?.consider_pressure_difference(connection_difference, get_dir(self_border,enemy_border))
+						else
+							enemy_border?.consider_pressure_difference(-connection_difference, get_dir(enemy_border,self_border))
 
 					border_index++
 
@@ -240,8 +229,7 @@
 
 				var/connection_difference = 0
 				var/turf/simulated/floor/self_border
-				if(self_tile_borders)
-					self_border = self_tile_borders[border_index]
+				self_border = self_tile_borders[border_index]
 
 				ATMOS_TILE_OPERATION_DEBUG(self_border)
 
@@ -256,20 +244,20 @@
 						else
 							abort_group = TRUE
 							break
-				else if(isturf(enemy_tile) && !enemy_tile.density) // optimization, if you ever need unsimmed walls to affect temperature change this
+				else if(!enemy_tile.density) // optimization, if you ever need unsimmed walls to affect temperature change this
 					if(src.air.check_turf(enemy_tile))
 						connection_difference = src.air.mimic(enemy_tile)
 					else
 						abort_group = TRUE
 						break
 
-				if(connection_difference)
-					if(connection_difference > 0 && !isnull(self_border))
-						self_border.consider_pressure_difference(connection_difference, get_dir(self_border,enemy_tile))
-					else
-						if(!isturf(enemy_tile))
-							air_master.groups_to_rebuild |= src
-							stack_trace("[enemy_tile], a nonturf, was in border_individual somehow. Rebuilding group after processing.")
+				if(connection_difference > 0)
+					self_border?.consider_pressure_difference(connection_difference, get_dir(self_border,enemy_tile))
+				/* should never happen, so this was a performance waste. if it does happen, find out why and kill it.
+				else
+					if(!isturf(enemy_tile))
+						air_master.groups_to_rebuild |= src
+						stack_trace("[enemy_tile], a nonturf, was in border_individual somehow. Rebuilding group after processing.") */
 
 				LAGCHECK(LAG_REALTIME)
 
@@ -279,9 +267,7 @@
 			if(length_space_border > 0)
 				var/connection_difference = 0
 				if(map_currently_underwater)
-					var/turf/space/sample = air_master.space_sample
-					if (!sample || !(sample.turf_flags & CAN_BE_SPACE_SAMPLE))
-						sample = air_master.update_space_sample()
+					var/turf/space/sample = air_master.update_space_sample()
 
 					if(src.air && sample && src.air.check_turf(sample))
 						connection_difference = src.air.mimic(sample, length_space_border)
@@ -290,10 +276,7 @@
 				else // faster check for actual space (modified check_turf)
 					var/moles = TOTAL_MOLES(src.air)
 					if(moles <= MINIMUM_AIR_TO_SUSPEND)
-						var/turf/space/sample = air_master.space_sample
-						if (!sample || !(sample.turf_flags & CAN_BE_SPACE_SAMPLE))
-							sample = air_master.update_space_sample()
-						connection_difference = air.mimic(sample, length_space_border)
+						connection_difference = air.mimic(air_master.update_space_sample(), length_space_border)
 					else
 						abort_group = TRUE
 
@@ -337,7 +320,7 @@
 			src.resume_group_processing()
 			return
 	else
-		if(src.air?.temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
+		if(src.air.temperature > FIRE_MINIMUM_TEMPERATURE_TO_EXIST)
 			for(var/turf/simulated/member as anything in members)
 				ATMOS_TILE_OPERATION_DEBUG(member)
 				member.hotspot_expose(air.temperature, CELL_VOLUME)
@@ -355,10 +338,7 @@
 	var/minDist
 	var/turf/space/sample
 	. = FALSE
-	sample = air_master.space_sample
-
-	if (!sample || !(sample.turf_flags & CAN_BE_SPACE_SAMPLE))
-		sample = air_master.update_space_sample()
+	sample = air_master.update_space_sample()
 
 	if (!sample)
 		return

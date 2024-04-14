@@ -64,7 +64,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 /turf/gas_cross(turf/target)
 	if(!target)
 		return FALSE
-	if(target?.gas_impermeable || src.gas_impermeable)
+	if(target.gas_impermeable || src.gas_impermeable)
 		return FALSE
 	for(var/atom/movable/AM as anything in src)
 		if(!AM.gas_cross(target))
@@ -167,8 +167,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 	if (model.graphic)
 		if (model.graphic != visuals_state)
 			if(!src.gas_icon_overlay)
-				src.gas_icon_overlay = new /obj/overlay/tile_gas_effect
-				src.gas_icon_overlay.set_loc(src)
+				src.gas_icon_overlay = new /obj/overlay/tile_gas_effect(src)
 			else
 				src.gas_icon_overlay.overlays.len = 0
 
@@ -179,7 +178,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 			src.gas_icon_overlay.dir = pick(cardinal)
 	else
 		if (src.gas_icon_overlay)
-			qdel(gas_icon_overlay)
+			gas_icon_overlay.dispose()
 			src.gas_icon_overlay = null
 
 /turf/simulated/New()
@@ -357,7 +356,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 	#endif
 
 	ATMOS_TILE_OPERATION_DEBUG(src)
-	var/list/turf/simulated/possible_fire_spreads
+	var/list/turf/simulated/possible_fire_spreads = src.active_hotspot ? list() : null
 	if(src.processing && src.air)
 		#ifdef ATMOS_ARCHIVING
 		if(archived_cycle < air_master.current_cycle) //archive self if not already done
@@ -388,8 +387,6 @@ var/global/list/turf/hotly_processed_turfs = list()
 						if(enemy_tile.current_cycle < current_cycle)
 							connection_difference = src.air.share(enemy_tile.air)
 					if(src.active_hotspot)
-						if(!possible_fire_spreads)
-							possible_fire_spreads = list()
 						possible_fire_spreads += enemy_tile
 				else if(!istype(enemy_tile, /turf/space/fluid))
 					connection_difference = src.air.mimic(enemy_tile)

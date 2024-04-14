@@ -523,25 +523,24 @@ TYPEINFO(/atom/movable)
 		src.AddComponent(/datum/component/analyzable, !isnull(src.mechanics_type_override) ? src.mechanics_type_override : src.type)
 	src.last_turf = isturf(src.loc) ? src.loc : null
 	//hey this is mbc, there is probably a faster way to do this but i couldnt figure it out yet
-	if (isturf(src.loc))
-		var/turf/T = src.loc
+	if (src.last_turf)
 		if (src.event_handler_flags & USE_PROXIMITY)
-			T.checkinghasproximity++
-			for (var/turf/T2 in range(1, T))
+			src.last_turf.checkinghasproximity++
+			for (var/turf/T2 in range(1, src.last_turf))
 				T2.neighcheckinghasproximity++
 		if(src.opacity)
-			T.opaque_atom_count++
+			src.last_turf.opaque_atom_count++
 		if(src.pass_unstable || src.density)
 			for(var/turf/covered_turf as anything in src.locs)
 				covered_turf.pass_unstable += src.pass_unstable
 				covered_turf.passability_cache = null
 	if(!isnull(src.loc))
 		src.loc.Entered(src, null)
-		if(isturf(src.loc)) // call it on the area too
-			src.loc.loc.Entered(src, null)
-			for(var/atom/A in src.loc)
-				if(A != src)
-					A.Crossed(src)
+		if(src.last_turf) // call it on the area too
+			last_turf.loc.Entered(src, null)
+			for(var/atom/movable/AM as anything in last_turf)
+				if(AM != src)
+					AM.Crossed(src)
 
 
 /atom/movable/disposing()
@@ -876,8 +875,10 @@ TYPEINFO(/atom/movable)
 
 //This will looks stupid on objects larger than 32x32. Might have to write something for that later. -Keelin
 /atom/proc/setTexture(var/texture, var/blendMode = BLEND_MULTIPLY, var/key = "texture")
-	var/image/I = isnull(texture) ? null : getTexturedImage(src, texture, blendMode)//, key)
-	src.UpdateOverlays(I, key)
+	if (texture)
+		src.AddOverlays(getTexturedImage(src, texture, blendMode), key)
+	else
+		src.ClearSpecificOverlays(key)
 
 	if(isitem(src) && key == "material")
 		worn_material_texture_image = isnull(texture) ? null : getTexturedWornImage(src, texture, blendMode)
@@ -1273,9 +1274,7 @@ TYPEINFO(/atom/movable)
 // auto-connecting sprites
 /// Check a turf and its contents to see if they're a valid auto-connection target
 /atom/proc/should_auto_connect(turf/T, connect_to = list(), list/exceptions = list(), cross_areas = TRUE)
-	if (!T) // nothing to connect to
-		return FALSE
-	if (!cross_areas && (get_area(T) != get_area(src))) // don't connect across areas
+	if (!T || (!cross_areas && (get_area(T) != get_area(src)))) // nothing to connect to and don't connect across areas
 		return FALSE
 
 	// quick path, basically istype(T, anything in connect-except)
@@ -1283,7 +1282,7 @@ TYPEINFO(/atom/movable)
 		return TRUE
 
 	// slow 😩
-	for (var/atom/movable/AM in T)
+	for (var/atom/movable/AM as anything in T)
 		if (!AM.anchored)
 			continue
 		if (connect_to[AM.type] && !exceptions[AM.type])

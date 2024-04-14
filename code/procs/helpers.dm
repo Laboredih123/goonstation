@@ -257,8 +257,8 @@ proc/castRay(var/atom/A, var/Angle, var/Distance) //Adapted from some forum stuf
 		return FALSE
 	if (T.density)
 		return TRUE
-	for(var/atom/A in T)
-		if(A?.density) // && A.anchored
+	for(var/atom/movable/AM as anything in T)
+		if(AM.density) // && A.anchored
 			return TRUE
 
 //is_blocked_turf for flock

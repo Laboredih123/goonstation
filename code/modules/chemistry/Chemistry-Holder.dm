@@ -413,7 +413,7 @@ proc/chem_helmet_check(mob/living/carbon/human/H, var/what_liquid="hot")
 		var/list/old_reactions = active_reactions
 		active_reactions = list()
 		reaction_loop:
-			for(var/datum/chemical_reaction/C in src.possible_reactions)
+			for(var/datum/chemical_reaction/C as anything in src.possible_reactions)
 				if(src.disposed)
 					return
 				if (!islist(C.required_reagents)) //This shouldn't happen but when practice meets theory...they beat the shit out of one another I guess

@@ -55,14 +55,12 @@
 		STOP_TRACKING
 		. = ..()
 
-	///Checks whether a turf should be rendered on the map through the minimaps_to_render_on bitflag on /area.
-	proc/valid_turf(var/turf/T)
-		if (!T.loc)
-			return FALSE
+	///Checks whether a turf shouldn't be rendered on the map through the minimaps_to_render_on bitflag on /area.
+	proc/invalid_turf(var/turf/T)
 		var/area/A = T.loc
 		if (!(src.minimap_type & A.minimaps_to_render_on))
-			return FALSE
-		return TRUE
+			return TRUE
+		return FALSE
 
 	///Create an alpha mask to hide anything outside the bounds of the physical map.
 	proc/create_alpha_mask()
@@ -144,8 +142,8 @@
 		var/min_x = src.x_max
 		var/max_y = src.y_min
 		var/min_y = src.y_max
-		for (var/turf/T in block(locate(src.x_min, src.y_min, src.z_level), locate(src.x_max, src.y_max, src.z_level)))
-			if (!src.valid_turf(T))
+		for (var/turf/T as anything in block(locate(src.x_min, src.y_min, src.z_level), locate(src.x_max, src.y_max, src.z_level)))
+			if (src.invalid_turf(T))
 				continue
 			max_x = max(max_x, T.x)
 			min_x = min(min_x, T.x)
@@ -184,7 +182,7 @@
 
 		src.zoom_coefficient = zoom
 
-		for (var/atom/target in src.minimap_markers)
+		for (var/atom/target as anything in src.minimap_markers)
 			var/datum/minimap_marker/minimap_marker = src.minimap_markers[target]
 			src.set_marker_position(minimap_marker, minimap_marker.target.x, minimap_marker.target.y, minimap_marker.target.z)
 
@@ -212,7 +210,7 @@
 
 		src.zoom_coefficient = zoom
 
-		for (var/atom/target in src.minimap_markers)
+		for (var/atom/target as anything in src.minimap_markers)
 			var/datum/minimap_marker/minimap_marker = src.minimap_markers[target]
 			src.set_marker_position(minimap_marker, minimap_marker.target.x, minimap_marker.target.y, minimap_marker.target.z)
 
@@ -231,19 +229,16 @@
 		src.create_alpha_mask()
 
 		// Update the position of all the map markers to reflect the new map scale.
-		for (var/atom/target in src.minimap_markers)
+		for (var/atom/target as anything in src.minimap_markers)
 			var/datum/minimap_marker/minimap_marker = src.minimap_markers[target]
 			src.set_marker_position(minimap_marker, minimap_marker.target.x, minimap_marker.target.y, minimap_marker.target.z)
 
 /datum/minimap/z_level/ai
 	//The Kondaru off-station Owlery and Abandoned Research Outpost are both considered part of the station, but have no AI cameras.
-	valid_turf(var/turf/T)
-		if (!T.loc)
-			return FALSE
+	invalid_turf(var/turf/T)
 		if ((map_settings.name in list("KONDARU", "DONUT3")) && (istype(T.loc, /area/station/garden/owlery) || istype(T.loc, /area/research_outpost/indigo_rye)))
-			return FALSE
-
-		. = ..()
+			return TRUE
+		return FALSE
 
 #ifndef LIVE_SERVER
 /client/verb/save_station_map()

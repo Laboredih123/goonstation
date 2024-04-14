@@ -82,10 +82,8 @@
 
 	onMaterialChanged()
 		..()
-		if(istype(src.material))
-			if(initial(src.opacity))
-				src.set_opacity(src.material.getAlpha() <= MATERIAL_ALPHA_OPACITY ? 0 : 1)
-		return
+		if(initial(src.opacity))
+			src.set_opacity(src.material.getAlpha() <= MATERIAL_ALPHA_OPACITY ? 0 : 1)
 
 	serialize(var/savefile/F, var/path, var/datum/sandbox/sandbox)
 		F["[path].type"] << type
@@ -342,13 +340,13 @@
 		if ("dplaceholder")
 			icon_state = "[rand(1,25)]"
 
-	if (derelict_mode == 1)
+	if (derelict_mode)
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "darkvoid"
 		name = "void"
 		desc = "Yep, this is fine."
 	#ifndef CI_RUNTIME_CHECKING
-	if(buzztile == null && prob(0.01) && src.z == Z_LEVEL_STATION) //Dumb shit to trick nerds.
+	if(isnull(buzztile) && src.z == Z_LEVEL_STATION && prob(0.01)) //Dumb shit to trick nerds.
 		buzztile = src
 		icon_state = "wiggle"
 		src.desc = "There appears to be a spatial disturbance in this area of space."
@@ -427,13 +425,14 @@ proc/generate_space_color()
 			starlight.layer = LIGHTING_LAYER_BASE
 			starlight.plane = PLANE_LIGHTING
 			starlight.blend_mode = BLEND_ADD
+			starlight.color = space_color
 
-		starlight.color = starlight_color_override ? starlight_color_override : src.color
-		if(!isnull(starlight_alpha))
-			starlight.alpha = starlight_alpha
-		src.underlays = list(starlight)
+		if(starlight_color_override)
+			starlight.color = starlight_color_override
+		starlight.alpha = starlight_alpha
+		src.underlays += starlight
 	else
-		src.underlays = null
+		src.underlays.len = 0
 	#endif
 
 // override for space turfs, since they should never hide anything
@@ -476,7 +475,7 @@ proc/generate_space_color()
 	..()
 	if (density)
 		pathable = 0
-	for(var/atom/movable/AM as mob|obj in src)
+	for(var/atom/movable/AM as anything in src)
 		src.Entered(AM)
 	if(current_state < GAME_STATE_WORLD_NEW)
 		RL_Init()
@@ -527,7 +526,7 @@ proc/generate_space_color()
 
 	return ..(Obj, newloc)
 
-/turf/Entered(atom/movable/M as mob|obj, atom/OldLoc)
+/turf/Entered(atom/movable/M, atom/OldLoc)
 	if(ismob(M) && !src.throw_unlimited && !M.no_gravity)
 		var/mob/tmob = M
 		tmob.inertia_dir = 0
@@ -542,18 +541,16 @@ proc/generate_space_color()
 				if (!(locate(/obj/table) in src) && !(locate(/obj/rack) in src))
 					Ar.sims_score = max(Ar.sims_score - 4, 0)
 
-	var/i = 0
-	i = 0
-	if (src.neighcheckinghasproximity > 0)
+	if (src.neighcheckinghasproximity)
+		var/i = 0
 		for (var/turf/T in range(1,src))
-			if (T.checkinghasproximity > 0)
-				for(var/thing in T)
-					var/atom/A = thing
+			if (T.checkinghasproximity)
+				for(var/atom/movable/AM as anything in T)
 					// I Said No sanity check
 					if(i++ >= 50)
 						break
-					if (A.event_handler_flags & USE_PROXIMITY)
-						A.HasProximity(M, 1) //IMPORTANT MBCNOTE : ADD USE_PROXIMITY FLAG TO ANY ATOM USING HASPROX THX BB
+					if (AM.event_handler_flags & USE_PROXIMITY)
+						AM.HasProximity(M, 1) //IMPORTANT MBCNOTE : ADD USE_PROXIMITY FLAG TO ANY ATOM USING HASPROX THX BB
 
 	if(!src.throw_unlimited && M?.no_gravity)
 		BeginSpacePush(M)
@@ -830,7 +827,6 @@ var/global/in_replace_with = 0
 
 	//cleanup old overlay to prevent some Stuff
 	//This might not be necessary, i think its just the wall overlays that could be manually cleared here.
-	new_turf.RL_Cleanup() //Cleans up/mostly removes the lighting.
 	new_turf.RL_Init()
 
 	//The following is required for when turfs change opacity during replace. Otherwise nearby lights will not be applying to the correct set of tiles.

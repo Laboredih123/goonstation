@@ -47,10 +47,10 @@ var/global/list/material_cache
 
 /// Called AFTER the material of the object was changed.
 /atom/proc/onMaterialChanged()
-	if(istype(src.material))
-		explosion_resistance = material.hasProperty("density") ? sqrt(round(max(4, material.getProperty("density")) - 4)) : explosion_resistance
-		explosion_protection = material.hasProperty("density") ? sqrt(round(max(4, material.getProperty("density")) - 4)) : explosion_protection
-		if( !(flags & CONDUCT) && (src.material.getProperty("electrical") >= 5)) flags |= CONDUCT
+	var/density = material.getProperty("density")
+	if(density)
+		explosion_resistance = sqrt(max(4, density) - 4)
+	if( !(flags & CONDUCT) && (src.material.getProperty("electrical") >= 5)) flags |= CONDUCT
 
 
 /// Simply removes a material from an object.
@@ -73,9 +73,9 @@ var/global/list/material_cache
 
 /// Sets the material of an object. PLEASE USE THIS TO SET MATERIALS UNLESS YOU KNOW WHAT YOU'RE DOING.
 /atom/proc/setMaterial(datum/material/mat1, appearance = TRUE, setname = TRUE, mutable = FALSE, use_descriptors = FALSE)
-	if(istext(mat1))
-		CRASH("setMaterial() called with a string instead of a material datum.")
-	if(!mat1 ||!istype(mat1, /datum/material))
+	if(!istype(mat1))
+		if(istext(mat1))
+			CRASH("setMaterial() called with a string instead of a material datum.")
 		return
 	if(mutable)
 		mat1 = mat1.getMutable()
@@ -286,9 +286,7 @@ var/global/list/material_cache
 
 /// Called when an atom is affected by a heat change
 /atom/proc/material_trigger_on_temp(var/temperature_applied)
-	if (src.material)
-		src.material.triggerTemp(src, temperature_applied)
-	return
+	src.material?.triggerTemp(src, temperature_applied)
 
 /// Called when the item is attacked with another atom for mat effects.
 /// If someone is smashed against the item or with hands, the mob itself is expected to be passed as attackatom

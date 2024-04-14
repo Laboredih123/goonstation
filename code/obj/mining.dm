@@ -887,7 +887,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 	var/default_ore = /obj/item/raw_material/rock
 	var/datum/ore/ore = null
 	var/datum/ore/event/event = null
-	var/list/space_overlays = null
+	var/space_overlays = FALSE
 	var/turf/replace_type = /turf/simulated/floor/plating/airless/asteroid
 
 	//NEW VARS
@@ -897,6 +897,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 	var/topnumber = 1
 	var/orenumber = 1
 	var/static/list/icon/topoverlaycache
+	var/static/list/image/spaceoverlaycache
 
 	dark
 		fullbright = 0
@@ -904,7 +905,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 
 		space_overlays()
 			. = ..()
-			if (length(space_overlays)) // Are we on the edge of a chunk wall
+			if (space_overlays) // Are we on the edge of a chunk wall
 				if (src.ore) return // Skip if there's ore here already
 				var/list/color_vals = bioluminescent_algae?.get_color(src)
 				if (length(color_vals))
@@ -1038,7 +1039,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 
 		space_overlays()
 			. = ..()
-			if (!length(space_overlays)) // Are we on the edge of a chunk wall
+			if (!space_overlays) // Are we on the edge of a chunk wall
 				return
 			var/image/algea = image('icons/obj/sealab_objects.dmi', "algae")
 			var/color_vals = list(rand(100,200), rand(100,200), rand(100,200), 30)  // random colors, muted
@@ -1062,7 +1063,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 
 	New(var/loc)
 		LAZYLISTINIT(topoverlaycache)
-		src.space_overlays = list()
+		LAZYLISTINIT(spaceoverlaycache)
 		src.topnumber = pick(1,2,3)
 		src.orenumber = pick(1,2,3)
 		..()
@@ -1075,9 +1076,8 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 					space_overlays()
 
 	generate_worldgen()
-		. = ..()
+		..()
 		src.space_overlays()
-		src.top_overlays()
 
 	ex_act(severity)
 		switch(severity)
@@ -1211,25 +1211,29 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 		var/image/top_overlay = mutable_appearance('icons/turf/walls/asteroid.dmi',"top[src.topnumber]")
 		var/icon/cached = topoverlaycache["mask2[src.icon_state]"]
 		if(!cached)
-			topoverlaycache["mask2[src.icon_state]"] = icon('icons/turf/walls/asteroid.dmi',"mask2[src.icon_state]")
-			cached = topoverlaycache["mask2[src.icon_state]"]
+			cached = icon('icons/turf/walls/asteroid.dmi',"mask2[src.icon_state]")
+			topoverlaycache["mask2[src.icon_state]"] = cached
 		top_overlay.filters += filter(type="alpha", icon=cached)
 		top_overlay.layer = ASTEROID_TOP_OVERLAY_LAYER
-		UpdateOverlays(top_overlay, "ast_top_rock")
+		src.AddOverlays(top_overlay, "ast_top_rock")
 
 	proc/ore_overlays()
 		if(src.ore) // make sure ores dont turn invisible
-			var/image/ore_overlay = mutable_appearance('icons/turf/walls/asteroid.dmi',"[src.ore?.name][src.orenumber]")
+			var/image/ore_overlay = mutable_appearance('icons/turf/walls/asteroid.dmi',"[src.ore.name][src.orenumber]")
 			ore_overlay.filters += filter(type="alpha", icon=icon('icons/turf/walls/asteroid.dmi',"mask-side_[src.icon_state]"))
 			ore_overlay.layer = ASTEROID_ORE_OVERLAY_LAYER // so meson goggle nerds can still nerd away
-			src.UpdateOverlays(ore_overlay, "ast_ore")
+			src.AddOverlays(ore_overlay, "ast_ore")
 
 	proc/space_overlays()
 		for (var/turf/A in orange(src,1))
 			var/dir_from = get_dir(A, src)
 			var/dir_to = get_dir(src, A)
-			var/skip_this = !istype(A, /turf/space)
-			if (!skip_this && !is_cardinal(dir_to))
+			var/skip_this
+			if(!istype(A, /turf/space))
+				A.ClearSpecificOverlays("ast_edge_[dir_from]")
+				continue
+
+			if (!is_cardinal(dir_to))
 				for (var/cardinal_dir in cardinal)
 					if (dir_to & cardinal_dir)
 						var/turf/T = get_step(src, cardinal_dir)
@@ -1239,14 +1243,17 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 			if (skip_this)
 				A.ClearSpecificOverlays("ast_edge_[dir_from]")
 				continue
-			var/image/edge_overlay = mutable_appearance('icons/turf/walls/asteroid.dmi', "edge[dir_from]")
-			edge_overlay.appearance_flags = PIXEL_SCALE | TILE_BOUND | RESET_COLOR | RESET_ALPHA
-			edge_overlay.layer = src.layer + 1
-			edge_overlay.plane = PLANE_NOSHADOW_BELOW
-			edge_overlay.layer = TURF_EFFECTS_LAYER
-			edge_overlay.color = src.stone_color
-			A.UpdateOverlays(edge_overlay, "ast_edge_[dir_from]")
-			src.space_overlays += edge_overlay
+			var/image/cached = spaceoverlaycache["edge[dir_from][src.stone_color]"]
+			if(!cached)
+				cached = mutable_appearance('icons/turf/walls/asteroid.dmi', "edge[dir_from]")
+				cached.appearance_flags = PIXEL_SCALE | TILE_BOUND | RESET_COLOR | RESET_ALPHA
+				cached.layer = src.layer + 1
+				cached.plane = PLANE_NOSHADOW_BELOW
+				cached.layer = TURF_EFFECTS_LAYER
+				cached.color = src.stone_color
+				spaceoverlaycache["edge[dir_from][src.stone_color]"] = cached
+			A.AddOverlays(cached, "ast_edge_[dir_from]")
+			src.space_overlays = TRUE
 
 	Del()
 		for(var/turf/T in orange(src, 1))
@@ -1386,15 +1393,13 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/asteroid)
 			hotspot_controller.disturb_turf(src)
 
 		//mbc : fix bug where lighting persists after rock destroyd
-		RL_Cleanup() //Cleans up/mostly removes the lighting.
 		RL_Init()
-		if (RL_Started) RL_UPDATE_LIGHT(src) //Then applies the proper lighting.
 #endif
 
 		if(weather)
-			src.UpdateOverlays(weather, "weather")
+			src.AddOverlays(weather, "weather")
 		if(ambient)
-			src.UpdateOverlays(ambient, "ambient")
+			src.AddOverlays(ambient, "ambient")
 		return src
 
 	proc/set_event(var/datum/ore/event/E)

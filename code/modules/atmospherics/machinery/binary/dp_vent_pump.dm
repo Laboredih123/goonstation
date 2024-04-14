@@ -37,7 +37,7 @@
 /obj/machinery/atmospherics/binary/dp_vent_pump/New()
 	..()
 	if(src.frequency)
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NO_NETID(null, frequency)
 		src.net_id = generate_net_id(src)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_icon()

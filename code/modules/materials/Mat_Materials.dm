@@ -281,7 +281,7 @@ ABSTRACT_TYPE(/datum/material)
 	//material procs
 
 	proc/getProperty(var/property, var/type = VALUE_CURRENT)
-		for(var/datum/material_property/P in properties)
+		for(var/datum/material_property/P as anything in properties)
 			if(P.id == property)
 				switch(type)
 					if(VALUE_CURRENT)
@@ -295,7 +295,7 @@ ABSTRACT_TYPE(/datum/material)
 	proc/removeProperty(var/property)
 		if(!src.mutable)
 			CRASH("Attempted to mutate an immutable material!")
-		for(var/datum/material_property/P in properties)
+		for(var/datum/material_property/P as anything in properties)
 			if(P.id == property)
 				P.onRemoved(src)
 				properties.Remove(P)
@@ -305,17 +305,16 @@ ABSTRACT_TYPE(/datum/material)
 	proc/adjustProperty(var/property, var/value)
 		if(!src.mutable)
 			CRASH("Attempted to mutate an immutable material!")
-		for(var/datum/material_property/P in properties)
+		for(var/datum/material_property/P as anything in properties)
 			if(P.id == property)
 				src.properties[P] = clamp(properties[P]+value, P.min_value, P.max_value)
 				P.onValueChanged(src, properties[P])
 				return
-		return
 
 	proc/setProperty(var/property, var/value)
 		if(!src.mutable)
 			CRASH("Attempted to mutate an immutable material!")
-		for(var/datum/material_property/P in properties)
+		for(var/datum/material_property/P as anything in properties)
 			if(P.id == property)
 				src.properties[P] = clamp(value, P.min_value, P.max_value)
 				P.onValueChanged(src, src.properties[P])
@@ -334,7 +333,7 @@ ABSTRACT_TYPE(/datum/material)
 		return
 
 	proc/hasProperty(var/property)
-		for(var/datum/material_property/P in properties)
+		for(var/datum/material_property/P as anything in properties)
 			if(P.id == property)
 				return 1
 		return 0
@@ -387,79 +386,64 @@ ABSTRACT_TYPE(/datum/material)
 		. = target.name
 
 	proc/triggerOnEntered(var/atom/owner, var/atom/entering)
-		for(var/datum/materialProc/X in triggersOnEntered)
+		for(var/datum/materialProc/X as anything in triggersOnEntered)
 			X.execute(owner, entering)
-		return
 
 	proc/triggerOnAttacked(var/atom/owner, var/mob/attacker, var/mob/attacked, var/atom/weapon)
-		for(var/datum/materialProc/X in triggersOnAttacked)
+		for(var/datum/materialProc/X as anything in triggersOnAttacked)
 			X.execute(owner, attacker, attacked, weapon)
-		return
 
 	proc/triggerOnBullet(var/atom/owner, var/atom/attacked, var/obj/projectile/projectile)
-		for(var/datum/materialProc/X in triggersOnBullet)
+		for(var/datum/materialProc/X as anything in triggersOnBullet)
 			X.execute(owner, attacked, projectile)
-		return
 
 	proc/triggerOnAttack(var/atom/owner, var/mob/attacker, var/atom/attacked)
-		for(var/datum/materialProc/X in triggersOnAttack)
+		for(var/datum/materialProc/X as anything in triggersOnAttack)
 			X.execute(owner, attacker, attacked)
-		return
 
 	proc/triggerOnLife(var/mob/M, var/obj/item/I, mult)
-		for(var/datum/materialProc/X in triggersOnLife)
+		for(var/datum/materialProc/X as anything in triggersOnLife)
 			X.execute(M, I, mult)
-		return
 
 	proc/triggerOnAdd(var/location)
-		for(var/datum/materialProc/X in triggersOnAdd)
+		for(var/datum/materialProc/X as anything in triggersOnAdd)
 			X.execute(location)
-		return
 
 	proc/triggerOnRemove(var/location)
-		for(var/datum/materialProc/X in triggersOnRemove)
+		for(var/datum/materialProc/X as anything in triggersOnRemove)
 			X.execute(location)
-		return
 
 	proc/triggerChem(var/location, var/chem, var/amount)
-		for(var/datum/materialProc/X in triggersChem)
+		for(var/datum/materialProc/X as anything in triggersChem)
 			X.execute(location, chem, amount)
-		return
 
 	proc/triggerPickup(var/mob/M, var/obj/item/I)
-		for(var/datum/materialProc/X in triggersPickup)
+		for(var/datum/materialProc/X as anything in triggersPickup)
 			X.execute(M, I)
-		return
 
 	proc/triggerDrop(var/mob/M, var/obj/item/I)
-		for(var/datum/materialProc/X in triggersDrop)
+		for(var/datum/materialProc/X as anything in triggersDrop)
 			X.execute(M, I)
-		return
 
 	proc/triggerTemp(var/location, var/temp)
-		for(var/datum/materialProc/X in triggersTemp)
+		for(var/datum/materialProc/X as anything in triggersTemp)
 			X.execute(location, temp)
-		return
 
 	proc/triggerExp(var/location, var/sev)
-		for(var/datum/materialProc/X in triggersExp)
+		for(var/datum/materialProc/X as anything in triggersExp)
 			X.execute(location, sev)
-		return
 
 	proc/triggerEat(var/mob/M, var/obj/item/I)
-		for(var/datum/materialProc/X in triggersOnEat)
+		for(var/datum/materialProc/X as anything in triggersOnEat)
 			X.execute(M, I)
-		return
 
 	proc/triggerOnBlobHit(var/atom/owner, var/blobPower)
-		for(var/datum/materialProc/X in triggersOnBlobHit)
+		for(var/datum/materialProc/X as anything in triggersOnBlobHit)
 			X.execute(owner, blobPower)
-		return
 
 	proc/triggerOnHit(var/atom/owner, var/atom/attackatom, var/mob/attacker, var/meleeorthrow)
-		for(var/datum/materialProc/X in triggersOnHit)
+		for(var/datum/materialProc/X as anything in triggersOnHit)
 			X.execute(owner, attackatom, attacker, meleeorthrow)
-		return
 
 //Material definitions
 /datum/material/interpolated

@@ -131,29 +131,31 @@
 
 				var/list/sort1 = list()
 				sort1 = splittext(string,"/")
-				if (sort1.len && !sort1[sort1.len])
+				if (length(sort1) && !sort1[length(sort1)])
 					sort1.len--
 
 				while(current)
 
-					if(!sort1.len)
+					if(!length(sort1))
 						return current
 
-					if(sort1[1] == "..")
-						if (current == origin)
-							return null
-						current = current.holding_folder
-						sort1 -= sort1[1]
-						continue
-					else if (sort1[1] == ".")
-						sort1 -= sort1[1]
-						continue
+					switch(sort1[1])
+						if("..")
+							if (current == origin)
+								return null
+							current = current.holding_folder
+							sort1 -= sort1[1]
+							continue
+						if (".")
+							sort1 -= sort1[1]
+							continue
 
-					else if (!sort1[1] && !create_if_missing)
-						return current
+						if (null)
+							if (!create_if_missing)
+								return current
 
 					var/new_current = 0
-					for(var/datum/computer/folder/F in current.contents)
+					for(var/datum/computer/folder/F as anything in current.contents)
 						if(ckey(F.name) == ckey(sort1[1]) && (!user || check_read_permission(F, user)))
 							sort1 -= sort1[1]
 							current = F
@@ -433,7 +435,7 @@
 				return null
 
 			var/datum/computer/taken = null
-			for(var/datum/computer/file/F in check_folder.contents)
+			for(var/datum/computer/file/F as anything in check_folder.contents)
 				if(ckey(string) == ckey(F.name) && (!user || check_read_permission(F, user)))
 					taken = F
 					break
@@ -446,7 +448,7 @@
 				return null
 
 			var/datum/computer/taken = null
-			for(var/datum/computer/C in check_folder.contents)
+			for(var/datum/computer/C as anything in check_folder.contents)
 				if(ckey(string) == ckey(C.name) && (!user || check_read_permission(C, user)))
 					taken = C
 					break

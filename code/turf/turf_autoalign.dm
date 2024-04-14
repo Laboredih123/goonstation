@@ -48,7 +48,9 @@ TYPEINFO_NEW(/turf/simulated/wall/auto)
 		src.UpdateIcon()
 
 	Del()
-		src.RL_SetSprite(null)
+		src.RL_OverlayState = null
+		src.RL_MulOverlay?.icon_state = null
+		src.RL_MulOverlay?.icon_state = null
 		..()
 
 	update_icon()
@@ -56,10 +58,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto)
 
 		var/connectdir = get_connected_directions_bitflag(typinfo.connects_to, typinfo.connects_to_exceptions, typinfo.connect_across_areas, typinfo.connect_diagonal)
 
-		var/the_state = "[mod][connectdir]"
-		if ( !(istype(src, /turf/simulated/wall/auto/jen)) && !(istype(src, /turf/simulated/wall/auto/reinforced/jen)) ) //please no more sprite, i drained my brain doing this
-			src.icon_state += "[src.d_state ? "C" : null]"
-		icon_state = the_state
+		src.icon_state = "[mod][connectdir]"
 
 		if (light_mod)
 			src.RL_SetSprite("[light_mod][connectdir]")
@@ -73,7 +72,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto)
 					src.connect_image.icon_state = "connect[overlaydir]"
 				src.UpdateOverlays(src.connect_image, "connect")
 			else
-				src.UpdateOverlays(null, "connect")
+				src.ClearSpecificOverlays("connect")
 
 	proc/update_neighbors()
 		for (var/turf/simulated/wall/auto/T in orange(1,src))

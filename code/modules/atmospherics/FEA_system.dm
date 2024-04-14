@@ -89,8 +89,8 @@ var/global/total_gas_mixtures = 0
 	set waitfor = 0
 	var/list/turf/simulated/members = list(base) // Confirmed group members
 	var/list/turf/simulated/possible_members = list(base) // Possible places for group expansion
-	var/list/turf/simulated/possible_borders
-	var/list/turf/simulated/possible_space_borders
+	var/list/turf/simulated/possible_borders = list()
+	var/list/turf/simulated/possible_space_borders = list()
 	var/possible_space_length = 0
 
 	while(length(possible_members)) //Keep expanding, looking for new members
@@ -98,16 +98,14 @@ var/global/total_gas_mixtures = 0
 			test.length_space_border = 0
 			for(var/direction in cardinal)
 				var/turf/T = get_step(test,direction)
-				if(T && !(T in members) && test.gas_cross(T))
+				if(!(T in members) && test.gas_cross(T))
 					if(issimulatedturf(T))
-						if(!T:parent)
+						if(T:parent)
+							possible_borders |= test
+						else
 							possible_members += T
 							members += T
-						else
-							LAZYLISTINIT(possible_borders)
-							possible_borders |= test
 					else if(istype(T, /turf/space) && !istype(T, /turf/space/fluid))
-						LAZYLISTINIT(possible_space_borders)
 						possible_space_borders |= test
 						test.length_space_border++
 
@@ -117,11 +115,9 @@ var/global/total_gas_mixtures = 0
 
 	if(length(members) > 1)
 		var/datum/air_group/group = new
-		if(possible_borders && length(possible_borders))
-			group.borders = possible_borders
-		if(possible_space_borders && length(possible_space_borders))
-			group.space_borders = possible_space_borders
-			group.length_space_border = possible_space_length
+		group.borders = possible_borders
+		group.space_borders = possible_space_borders
+		group.length_space_border = possible_space_length
 
 		// Allow groups to determine if group processing is applicable after FEA setup
 		if(current_cycle)
@@ -132,19 +128,18 @@ var/global/total_gas_mixtures = 0
 
 		group.update_group_from_tiles() //Initialize air group variables
 		. = group
-
+		var/dist
 		for(var/turf/simulated/test as anything in members)
 			test.parent = group
 			test.processing = FALSE
 			active_singletons -= test
 
 			test.dist_to_space = 0
-			var/dist
 			for(var/turf/simulated/possible as anything in possible_space_borders)
 				if (possible == test)
 					test.dist_to_space = 1
 					break
-				dist = GET_DIST(possible, test)
+				dist = FAST_GET_DIST(possible, test)
 				if (!test.dist_to_space || (dist < test.dist_to_space))
 					test.dist_to_space = dist
 	else

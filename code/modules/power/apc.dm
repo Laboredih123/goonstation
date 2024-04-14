@@ -1451,18 +1451,13 @@ ADMIN_INTERACT_PROCS(/obj/machinery/power/apc, proc/toggle_operating, proc/zapSt
 	theLink.post_signal(src, signal)
 
 /obj/machinery/power/apc/receive_signal(datum/signal/signal)
-	if((status & BROKEN) || !src.setup_networkapc || src.aidisabled)
-		return
-	if(!signal || !src.net_id || signal.encryption)
-		return
-
-	if(signal.transmission_method != TRANSMISSION_WIRE) //We should only receive signals relayed from our terminal.
+	if(!signal || (status & BROKEN) || !src.net_id || signal.transmission_method != TRANSMISSION_WIRE || !src.setup_networkapc || src.aidisabled || signal.encryption)
 		return
 
 	var/target = signal.data["sender"]
 
 	if(signal.data["address_1"] != src.net_id)
-		if((signal.data["address_1"] == "ping") && signal.data["sender"])
+		if(signal.data["sender"] && (signal.data["address_1"] == "ping"))
 			SPAWN(0.5 SECONDS)
 				src.post_status(target, "command", "ping_reply", "device", "PNET_PWR_CNTRL", "netid", src.net_id)
 

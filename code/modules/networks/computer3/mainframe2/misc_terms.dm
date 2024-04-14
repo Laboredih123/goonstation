@@ -1051,7 +1051,7 @@ TYPEINFO(/obj/machinery/networked/nuclear_charge)
 	New()
 		..()
 		src.net_id = generate_net_id(src)
-		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, status_display_freq)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NETID(null, status_display_freq)
 		SPAWN(0.5 SECONDS)
 			if(!src.link)
 				var/turf/T = get_turf(src)
@@ -1400,7 +1400,7 @@ TYPEINFO(/obj/machinery/networked/radio)
 					src.link.master = src
 
 	proc/add_frequency(newFreq)
-		frequencies["[newFreq]"] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT("f[newFreq]", newFreq)
+		frequencies["[newFreq]"] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NETID("f[newFreq]", newFreq)
 
 	attack_hand(mob/user)
 		if(..() || (status & (NOPOWER|BROKEN)))
@@ -1526,7 +1526,7 @@ TYPEINFO(/obj/machinery/networked/radio)
 
 		//We care very deeply about address_1.
 		if(!cmptext(signal.data["address_1"], src.net_id))
-			if((signal.data["address_1"] == "ping") && ((signal.data["net"] == null) || ("[signal.data["net"]]" == "[src.net_number]")))
+			if((signal.data["address_1"] == "ping") && ((signal.data["net"] == null) || (signal.data["net"] == src.net_number)))
 				SPAWN(0.5 SECONDS) //Send a reply for those curious jerks
 					if (signal.transmission_method == TRANSMISSION_RADIO)
 						var/datum/signal/rsignal = get_free_signal()

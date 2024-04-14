@@ -57,7 +57,7 @@
 
 	var/image/overlay = src.GetOverlayImage("foreground_parallax_occlusion_overlay") || new /image/foreground_parallax_occlusion_overlay
 	overlay.icon_state = "overlay-[connected_directions]"
-	src.UpdateOverlays(overlay, "foreground_parallax_occlusion_overlay")
+	src.AddOverlays(overlay, "foreground_parallax_occlusion_overlay")
 
 // Repugnant edge case handling, as some turfs will call `ClearAllOverlays()`, removing parallax occlusion overlays.
 /turf/ClearAllOverlays()

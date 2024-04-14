@@ -551,7 +551,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 
 		for(var/datum/bioEffect/BE in effectPool)
 			qdel(BE)
-		effectPool.Cut()
+		effectPool.len = 0
 
 		if (!bioEffectList || !length(bioEffectList))
 			logTheThing(LOG_DEBUG, null, {"<b>Genetics:</b> Tried to build effect pool for
@@ -579,7 +579,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 			  filteredBad.len = [filteredBad.len])"})
 			return
 
-		for(var/g=0, g<5, g++)
+		for(var/g in 0 to 4)
 			var/datum/bioEffect/selectedG = weighted_pick(filteredGood)
 			if(selectedG)
 				var/datum/bioEffect/selectedNew = selectedG.GetCopy()

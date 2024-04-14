@@ -68,7 +68,7 @@ var/list/headset_channel_lookup
 		world.log << "[src] ([src.type]) has a frequency of [src.frequency], sanitizing."
 		src.frequency = sanitize_frequency(src.frequency)
 
-	MAKE_DEFAULT_RADIO_PACKET_COMPONENT("main", frequency)
+	MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NO_NETID("main", frequency)
 
 	if(src.secure_frequencies)
 		set_secure_frequencies()
@@ -90,16 +90,15 @@ var/list/headset_channel_lookup
 	get_radio_connection_by_id(src, "main").update_frequency(frequency)
 
 /obj/item/device/radio/proc/set_secure_frequencies()
-	if(istype(src.secure_frequencies))
-		if (!istype(src.secure_connections))
-			src.secure_connections = list()
-		for (var/sayToken in src.secure_frequencies)
-			var/frequency_id = src.secure_frequencies["[sayToken]"]
-			if (frequency_id)
-				if (!src.secure_connections["[sayToken]"])
-					src.secure_connections["[sayToken]"] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT("f[frequency_id]", frequency_id)
-			else
-				src.secure_frequencies -= "[sayToken]"
+	if (isnull(src.secure_connections))
+		src.secure_connections = list()
+	for (var/sayToken in src.secure_frequencies)
+		var/frequency_id = src.secure_frequencies[sayToken]
+		if (frequency_id)
+			if (!src.secure_connections[sayToken])
+				src.secure_connections[sayToken] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NO_NETID("f[frequency_id]", frequency_id)
+		else
+			src.secure_frequencies -= sayToken
 
 /obj/item/device/radio/proc/set_secure_frequency(frequencyToken, newFrequency)
 	if (!frequencyToken || !newFrequency)
@@ -115,7 +114,7 @@ var/list/headset_channel_lookup
 	if (oldConnection)
 		qdel(oldConnection)
 
-	src.secure_connections["[frequencyToken]"] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT("f[newFrequency]", newFrequency)
+	src.secure_connections["[frequencyToken]"] = MAKE_DEFAULT_RADIO_PACKET_COMPONENT_NO_NETID("f[newFrequency]", newFrequency)
 	src.secure_frequencies["[frequencyToken]"] = newFrequency
 	return
 
