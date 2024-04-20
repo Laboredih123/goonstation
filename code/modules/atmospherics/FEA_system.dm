@@ -139,7 +139,7 @@ var/global/total_gas_mixtures = 0
 				if (possible == test)
 					test.dist_to_space = 1
 					break
-				dist = FAST_GET_DIST(possible, test)
+				dist = get_dist(possible, test) //these turfs will never be across z levels and they cant be inside something else
 				if (!test.dist_to_space || (dist < test.dist_to_space))
 					test.dist_to_space = dist
 	else

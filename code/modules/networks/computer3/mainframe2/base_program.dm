@@ -139,20 +139,18 @@
 					if(!length(sort1))
 						return current
 
-					switch(sort1[1])
-						if("..")
-							if (current == origin)
-								return null
-							current = current.holding_folder
-							sort1 -= sort1[1]
-							continue
-						if (".")
-							sort1 -= sort1[1]
-							continue
+					if(sort1[1] == "..")
+						if (current == origin)
+							return null
+						current = current.holding_folder
+						sort1 -= sort1[1]
+						continue
+					else if (sort1[1] == ".")
+						sort1 -= sort1[1]
+						continue
 
-						if (null)
-							if (!create_if_missing)
-								return current
+					else if (!sort1[1] && !create_if_missing)
+						return current
 
 					var/new_current = 0
 					for(var/datum/computer/folder/F as anything in current.contents)

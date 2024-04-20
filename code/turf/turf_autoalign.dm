@@ -70,7 +70,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto)
 					src.connect_image = image(src.icon, "connect[overlaydir]")
 				else
 					src.connect_image.icon_state = "connect[overlaydir]"
-				src.UpdateOverlays(src.connect_image, "connect")
+				src.AddOverlays(src.connect_image, "connect")
 			else
 				src.ClearSpecificOverlays("connect")
 
@@ -728,8 +728,7 @@ TYPEINFO_NEW(/turf/unsimulated/wall/auto)
 		var/typeinfo/turf/unsimulated/wall/auto/typinfo = get_typeinfo()
 
 		var/connectdir = get_connected_directions_bitflag(typinfo.connects_to, typinfo.connects_to_exceptions, TRUE, typinfo.connect_diagonal)
-		var/the_state = "[mod][connectdir]"
-		icon_state = the_state
+		icon_state = "[mod][connectdir]"
 
 		if (light_mod)
 			src.RL_SetSprite("[light_mod][connectdir]")
@@ -741,9 +740,9 @@ TYPEINFO_NEW(/turf/unsimulated/wall/auto)
 					src.connect_image = image(src.icon, "connect[overlaydir]")
 				else
 					src.connect_image.icon_state = "connect[overlaydir]"
-				src.UpdateOverlays(src.connect_image, "connect")
+				src.AddOverlays(src.connect_image, "connect")
 			else
-				src.UpdateOverlays(null, "connect")
+				src.ClearSpecificOverlays("connect")
 
 	proc/update_neighbors()
 		for (var/turf/unsimulated/wall/auto/T in orange(1,src))

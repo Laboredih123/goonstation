@@ -462,14 +462,14 @@
 			for (var/dir in cardinal)
 				var/turf/T = get_step(src, dir)
 				var/connectable_turf = FALSE
-				for (var/i in 1 to length(connects_to_turf))
-					if (istype(T, connects_to_turf[i]))
+				for (var/type in connects_to_turf)
+					if (istype(T, type))
 						builtdir |= dir
 						connectable_turf = TRUE
 						break
 				if (!connectable_turf) //no turfs to connect to, check for obj's
-					for (var/i in 1 to length(connects_to_obj))
-						var/atom/movable/AM = locate(connects_to_obj[i]) in T
+					for (var/type in connects_to_obj)
+						var/atom/movable/AM = locate(type) in T
 						if (AM?.anchored)
 							builtdir |= dir
 							break

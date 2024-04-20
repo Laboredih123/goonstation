@@ -5,7 +5,7 @@
 	var/turf/_N = get_step(src, NORTH) || src; \
 	var/turf/_E = get_step(src, EAST) || src; \
 	var/turf/_NE = get_step(src, NORTHEAST) || src; \
-	src.RL_MulOverlay?.color = list( \
+	src.RL_MulOverlay.color = list( \
 		src.RL_LumR, src.RL_LumG, src.RL_LumB, 0, \
 		_E.RL_LumR, _E.RL_LumG, _E.RL_LumB, 0, \
 		_N.RL_LumR, _N.RL_LumG, _N.RL_LumB, 0, \
@@ -36,9 +36,9 @@
 	src.RL_LumR += r*atten ; \
 	src.RL_LumG += g*atten ; \
 	src.RL_LumB += b*atten ; \
-	src.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
-	src.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
+	src.RL_AddLumR = min((src.RL_LumR - 1) * 0.5, 0.3) ; \
+	src.RL_AddLumG = min((src.RL_LumG - 1) * 0.5, 0.3) ; \
+	src.RL_AddLumB = min((src.RL_LumB - 1) * 0.5, 0.3) ; \
 	src.RL_NeedsAdditive = src.RL_AddLumR + src.RL_AddLumG + src.RL_AddLumB ; \
 	} while(FALSE)
 
@@ -49,7 +49,7 @@
 
 #define RL_APPLY_LIGHT_LINE(src, lx, ly, dir, radius, brightness, height2, r, g, b) do { \
 	if (src.loc?:force_fullbright) { break } \
-	var/atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)*(src.x - lx) + (src.y - ly)*(src.y - ly) + height2) + RL_Atten_Constant ; \
+	var/atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)**2 + (src.y - ly)**2 + height2) + RL_Atten_Constant ; \
 	var/exponent = 3.5 ;\
 	atten *= (max( abs(ly-src.y),abs(lx-src.x),0.85 )/radius)**exponent ;\
 	if (radius <= 1) { atten *= 0.1 }\

@@ -346,7 +346,7 @@
 		name = "void"
 		desc = "Yep, this is fine."
 	#ifndef CI_RUNTIME_CHECKING
-	if(isnull(buzztile) && src.z == Z_LEVEL_STATION && prob(0.01)) //Dumb shit to trick nerds.
+	else if(isnull(buzztile) && src.z == Z_LEVEL_STATION && prob(0.01)) //Dumb shit to trick nerds.
 		buzztile = src
 		icon_state = "wiggle"
 		src.desc = "There appears to be a spatial disturbance in this area of space."

@@ -112,7 +112,7 @@ Contents:
 
 	New()
 		..()
-		icon_state = "[pick("snow_cliff1","snow_cliff2","snow_cliff3","snow_cliff4")]"
+		icon_state = pick("snow_cliff1","snow_cliff2","snow_cliff3","snow_cliff4")
 
 /turf/unsimulated/floor/arctic/cliff_outsidecorner
 	name = "icy cliff"

@@ -364,8 +364,9 @@ What are the archived variables for?
 
 	var/heat_capacity_self_to_sharer = 0
 	var/heat_capacity_sharer_to_self = 0
-
+	var/temperatureconsidered = FALSE
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		temperatureconsidered = TRUE
 		#define _SHARE_GAS_HEAT(GAS, SPECIFIC_HEAT, ...) \
 			if(delta_##GAS > 0) { heat_capacity_self_to_sharer += SPECIFIC_HEAT * delta_##GAS } \
 			else { heat_capacity_sharer_to_self -= SPECIFIC_HEAT * delta_##GAS }
@@ -378,13 +379,14 @@ What are the archived variables for?
 	var/moved_moles = 0 MOLES
 
 	#define _SHARE_GAS(GAS, ...) \
-		src.GAS -= delta_##GAS / src.group_multiplier; \
-		sharer.GAS += delta_##GAS / sharer.group_multiplier; \
-		moved_moles += delta_##GAS;
+		if(delta_##GAS) {\
+			src.GAS -= delta_##GAS / src.group_multiplier; \
+			sharer.GAS += delta_##GAS / sharer.group_multiplier; \
+			moved_moles += delta_##GAS; }
 	APPLY_TO_GASES(_SHARE_GAS)
 	#undef _SHARE_GAS
 
-	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+	if(temperatureconsidered)
 		var/new_self_heat_capacity = old_self_heat_capacity + heat_capacity_sharer_to_self - heat_capacity_self_to_sharer
 		var/new_sharer_heat_capacity = old_sharer_heat_capacity + heat_capacity_self_to_sharer - heat_capacity_sharer_to_self
 

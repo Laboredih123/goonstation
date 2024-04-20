@@ -716,15 +716,15 @@ proc/get_moving_lights_stats()
 	//for fucks sake tobba - ZeWaka
 
 /turf/proc/RL_Init()
-	if (!fullbright && !loc:force_fullbright)
+	if (fullbright || loc:force_fullbright)
+		src.RL_MulOverlay?.dispose()
+		src.RL_AddOverlay?.dispose()
+	else
 		if(!src.RL_MulOverlay)
 			src.RL_MulOverlay = new /obj/overlay/tile_effect/lighting/mul(src)
 			src.RL_MulOverlay.icon = src.RL_OverlayIcon
 			src.RL_MulOverlay.icon_state = src.RL_OverlayState
 		if (RL_Started) RL_UPDATE_LIGHT(src)
-	else
-		src.RL_MulOverlay?.dispose()
-		src.RL_AddOverlay?.dispose()
 
 /atom
 	var/RL_Attached = null

@@ -177,16 +177,17 @@ ClearSpecificOverlays(1, "key0", "key1", "key2") 	//Same as above but retains ca
 /atom/proc/AddOverlays(var/image/I, var/key, var/force=0)
 	if(!key)
 		CRASH("AddOverlays called without a key.")
-	ASSERT(I)
 	LAZYLISTINIT(src.overlay_refs)
 
 	var/list/prev_data
 	//List to store info about the last state of the icon
 	prev_data = overlay_refs[key]
-	if(!prev_data) //Ok, we don't have previous data, but we will add an overlay
+	if(!prev_data && I) //Ok, we don't have previous data, but we will add an overlay
 		prev_data = new /list(P_ILEN)
+	else
+		return 0 // no image to add and no prev data
 
-	var/hash = "\ref[I.appearance]"
+	var/hash = ref(I.appearance)
 	var/image/prev_overlay = prev_data[P_IMAGE] //overlay_refs[key]
 	if(!force && (prev_overlay == I) && hash == prev_data[P_ISTATE] ) //If it's the same image as the other one and the appearances match then do not update
 		return 0
@@ -196,7 +197,7 @@ ClearSpecificOverlays(1, "key0", "key1", "key2") 	//Same as above but retains ca
 	#warn "remove the below"
 	#endif
 	for(var/ikey in overlay_refs)
-		if(ikey != key && overlay_refs[ikey][P_INDEX] > 0 && overlay_refs[ikey][P_ISTATE] == hash)
+		if(ikey != key && overlay_refs[ikey][P_INDEX] && overlay_refs[ikey][P_ISTATE] == hash)
 			// logTheThing(LOG_DEBUG, null, "Attempt to add duplicate overlay appearances on [identify_object(src)] with keys [key] and [ikey].")
 			I.layer += 0.0000001 * rand()
 
@@ -239,15 +240,13 @@ ClearSpecificOverlays(1, "key0", "key1", "key2") 	//Same as above but retains ca
 		return 1
 
 /atom/proc/ClearSpecificOverlays(var/retain_cache=0)
+	LAZYLISTINIT(src.overlay_refs)
 	var/keep_cache = isnum(retain_cache) && retain_cache //Maybe someone forgets to include this argument and goes straight for the list, let's handle that case
 	for(var/key in args)
 		if(istext(key)) //The retain_cache value will be here as well, so skip it
-			LAZYLISTINIT(src.overlay_refs)
-
-			var/list/prev_data
 			//List to store info about the last state of the icon
-			prev_data = overlay_refs[key]
-			if(!prev_data) //We don't have data and we won't add an overlay
+			var/list/prev_data = overlay_refs[key]
+			if(!prev_data) //We don't have data
 				continue
 
 			var/image/prev_overlay = prev_data[P_IMAGE] //overlay_refs[key]

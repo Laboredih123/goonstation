@@ -1062,8 +1062,8 @@
 		var/customization_first_r = null
 		var/customization_second_r = null
 		var/customization_third_r = null
-
-		src.preview_icon = new /icon(src.mutantrace.icon, src.mutantrace.icon_state) //todo: #14465
+		var/typeinfo/datum/mutantrace/typeinfo = src.mutantrace.get_typeinfo()
+		src.preview_icon = new /icon(typeinfo.icon, src.mutantrace.icon_state) //todo: #14465
 
 		if(!src.mutantrace?.override_skintone)
 			// Skin tone

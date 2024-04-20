@@ -184,7 +184,7 @@ TYPEINFO(/atom)
 
 	disposing()
 		material = null
-		if (!isnull(reagents))
+		if (reagents)
 			qdel(reagents)
 			reagents = null
 		if (temp_flags & (HAS_PARTICLESYSTEM | HAS_PARTICLESYSTEM_TARGET))
@@ -201,7 +201,7 @@ TYPEINFO(/atom)
 			src.statusEffects = null
 		ClearAllParticles()
 
-		if (!isnull(chat_text))
+		if (chat_text)
 			qdel(chat_text)
 			chat_text = null
 
@@ -526,7 +526,7 @@ TYPEINFO(/atom/movable)
 	if (src.last_turf)
 		if (src.event_handler_flags & USE_PROXIMITY)
 			src.last_turf.checkinghasproximity++
-			for (var/turf/T2 in range(1, src.last_turf))
+			for (var/turf/T2 as anything in block(locate(src.loc.x-1, src.loc.y-1, src.loc.z), locate(src.loc.x+1, src.loc.y+1, src.loc.z)))
 				T2.neighcheckinghasproximity++
 		if(src.opacity)
 			src.last_turf.opaque_atom_count++
@@ -1273,7 +1273,7 @@ TYPEINFO(/atom/movable)
 
 // auto-connecting sprites
 /// Check a turf and its contents to see if they're a valid auto-connection target
-/atom/proc/should_auto_connect(turf/T, connect_to = list(), list/exceptions = list(), cross_areas = TRUE)
+/atom/proc/should_auto_connect(turf/T, list/connect_to, list/exceptions = list(), cross_areas = TRUE)
 	if (!T || (!cross_areas && (get_area(T) != get_area(src)))) // nothing to connect to and don't connect across areas
 		return FALSE
 
@@ -1301,10 +1301,9 @@ TYPEINFO(/atom/movable)
  *
  * connect_diagonals 0 = no diagonal sprites, 1 = diagonal only if both adjacent cardinals are present, 2 = always allow diagonals
  */
-/atom/proc/get_connected_directions_bitflag(list/valid_atoms = list(), list/exceptions = list(), cross_areas = TRUE, connect_diagonal = 0)
-	var/ordir = null
+/atom/proc/get_connected_directions_bitflag(list/valid_atoms, list/exceptions, cross_areas = TRUE, connect_diagonal = 0)
 	var/connected_directions = 0
-	if (!valid_atoms || !islist(valid_atoms))
+	if (!islist(valid_atoms))
 		return
 
 	// cardinals first
@@ -1313,15 +1312,26 @@ TYPEINFO(/atom/movable)
 		if (should_auto_connect(CT, valid_atoms, exceptions, cross_areas))
 			connected_directions |= dir
 
-	if (connect_diagonal)
-		for (var/i = 1 to 4)  // needed for bitshift
-			ordir = ordinal[i]
-			if (connect_diagonal < 2 && (ordir & connected_directions) != ordir)
-				continue
-			var/turf/OT = get_step(src, ordir)
+	if (connect_diagonal < 2)
+		if ((NORTHEAST & connected_directions) == NORTHEAST)
+			var/turf/OT = get_step(src, NORTHEAST)
 			if (should_auto_connect(OT, valid_atoms, exceptions, cross_areas))
-				connected_directions |= 8 << i
+				connected_directions |= 16
+		if ((SOUTHEAST & connected_directions) == SOUTHEAST)
+			var/turf/OT = get_step(src, SOUTHEAST)
+			if (should_auto_connect(OT, valid_atoms, exceptions, cross_areas))
+				connected_directions |= 32
+		if ((SOUTHWEST & connected_directions) == SOUTHWEST)
+			var/turf/OT = get_step(src, SOUTHWEST)
+			if (should_auto_connect(OT, valid_atoms, exceptions, cross_areas))
+				connected_directions |= 64
+		if ((NORTHWEST & connected_directions) == NORTHWEST)
+			var/turf/OT = get_step(src, NORTHWEST)
+			if (should_auto_connect(OT, valid_atoms, exceptions, cross_areas))
+				connected_directions |= 128
+
 	return connected_directions
+
 
 /proc/scaleatomall()
 	var/scalex = input(usr,"X Scale","1 normal, 2 double etc","1") as num
