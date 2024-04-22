@@ -40,8 +40,8 @@
 
 	doWork()
 		var/c
-		for(var/datum/i in global.processing_items)
-			if (!i || i:disposed || i:qdeled) //if the object was pooled or qdeled we have to remove it from this list... otherwise the lagchecks cause this loop to hold refs and block GC!!!
+		for(var/datum/i as anything in global.processing_items)
+			if (QDELETED(i)) //if the object was pooled or qdeled we have to remove it from this list... otherwise the lagchecks cause this loop to hold refs and block GC!!!
 				global.processing_items -= i
 				continue
 			SEND_SIGNAL(i, COMSIG_ITEM_PROCESS)

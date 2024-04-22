@@ -47,9 +47,8 @@
 					scheck()
 		if (ticker % 4 == 1)
 			src.pipe_networks = global.pipe_networks
-			for(var/X in src.pipe_networks)
-				if(!X) continue
-				var/datum/pipe_network/network = X
+			for(var/datum/pipe_network/network in src.pipe_networks)
+				if(!network) continue
 	#ifdef MACHINE_PROCESSING_DEBUG
 				var/t = world.time
 	#endif
@@ -63,9 +62,8 @@
 
 		if (ticker % 8 == 2)
 			src.powernets = global.powernets
-			for(var/X in src.powernets)
-				if(!X) continue
-				var/datum/powernet/PN = X
+			for(var/datum/powernet/PN in src.powernets)
+				if(!PN) continue
 	#ifdef MACHINE_PROCESSING_DEBUG
 				var/t = world.time
 	#endif

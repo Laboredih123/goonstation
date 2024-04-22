@@ -55,7 +55,7 @@ var/list/globalPropList = null
 			src.properties = list()
 
 		if(globalPropList[propId] != null)
-			for(var/datum/objectProperty/X in src.properties)
+			for(var/datum/objectProperty/X as anything in src.properties)
 				if(X.id == propId)
 					X.onChange(src, src.properties[X], ((propVal != null) ? propVal : X.defaultValue))
 					src.properties[X] = propVal
@@ -72,7 +72,7 @@ var/list/globalPropList = null
 
 	proc/getProperty(var/propId) //Gets property value.
 		.= null
-		if(src.properties && length(src.properties))
+		if(length(src.properties))
 			var/datum/objectProperty/X = globalPropList[propId]
 			return src.properties[X]
 		/*
@@ -83,8 +83,8 @@ var/list/globalPropList = null
 		*/
 
 	proc/delProperty(var/propId) //Removes property.
-		if(src.properties && length(src.properties))
-			for(var/datum/objectProperty/X in src.properties)
+		if(length(src.properties))
+			for(var/datum/objectProperty/X as anything in src.properties)
 				if(X.id == propId)
 					. = X
 					X.onRemove(src, src.properties[X])
@@ -92,8 +92,8 @@ var/list/globalPropList = null
 
 	proc/hasProperty(var/propId) //Checks if property is on object.
 		.= 0
-		if(src.properties && length(src.properties))
-			for(var/datum/objectProperty/X in src.properties)
+		if(length(src.properties))
+			for(var/datum/objectProperty/X as anything in src.properties)
 				if(X.id == propId)
 					.= 1
 

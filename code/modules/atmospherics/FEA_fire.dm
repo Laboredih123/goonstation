@@ -254,11 +254,11 @@
 		return FALSE
 
 	var/turf/simulated/floor/location = src.loc
-	if (!issimulatedturf(location) || (locate(/obj/fire_foam) in location))
+	if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (locate(/obj/fire_foam) in location) || (src.volume <= 1))
 		qdel(src)
 		return FALSE
 
-	if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (src.volume <= 1))
+	if (!issimulatedturf(location))
 		qdel(src)
 		return FALSE
 
@@ -287,9 +287,9 @@
 			hue_shift[16] = -1
 			hue_shift[20] = base_alpha
 			catalyst_overlay.color = hue_shift
-			UpdateOverlays(catalyst_overlay,"catalyst")
+			AddOverlays(catalyst_overlay,"catalyst")
 	else
-		UpdateOverlays(null,"catalyst")
+		ClearSpecificOverlays("catalyst")
 
 
 	src.catalyst_active = FALSE

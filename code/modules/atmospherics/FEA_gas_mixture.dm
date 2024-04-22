@@ -410,22 +410,21 @@ What are the archived variables for?
 /// * Similar to [/datum/gas_mixture/proc/share], except the model is not modified.
 /// * Return: Moles of gas exchanged.
 /datum/gas_mixture/proc/mimic(turf/model, border_multiplier = 1)
-	#define _DELTA_GAS(GAS, ...) var/delta_##GAS = QUANTIZE(((src.ARCHIVED(GAS) - model.GAS)/5)*border_multiplier/src.group_multiplier);
+	#define _DELTA_GAS(GAS, ...) var/delta_##GAS = QUANTIZE(((src.ARCHIVED(GAS) - model.GAS))*border_multiplier/(src.group_multiplier * 5));
 	APPLY_TO_GASES(_DELTA_GAS)
 	#undef _DELTA_GAS
 
 	var/delta_temperature = (src.ARCHIVED(temperature) - model.temperature)
 
-	var/heat_transferred = 0
 	var/old_self_heat_capacity = 0
 	var/heat_capacity_transferred = 0
+	var/temperatureconsidered = FALSE
 
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		temperatureconsidered = TRUE
 		#define _MIMIC_GAS_HEAT(GAS, SPECIFIC_HEAT, ...) \
 			if(delta_##GAS) { \
-			var/GAS##_heat_capacity = SPECIFIC_HEAT * delta_##GAS; \
-			heat_transferred -= GAS##_heat_capacity * model.temperature; \
-				heat_capacity_transferred -= GAS##_heat_capacity; \
+				heat_capacity_transferred -= SPECIFIC_HEAT * delta_##GAS; \
 			}
 		APPLY_TO_GASES(_MIMIC_GAS_HEAT)
 		#undef _MIMIC_GAS_HEAT
@@ -435,12 +434,14 @@ What are the archived variables for?
 	var/moved_moles = 0 MOLES
 
 	#define _MIMIC_GAS(GAS, ...) \
-		src.GAS = QUANTIZE(src.GAS - delta_##GAS); \
-		moved_moles += delta_##GAS;
+		if(delta_##GAS) { \
+			src.GAS = QUANTIZE(src.GAS - delta_##GAS); \
+			moved_moles += delta_##GAS; \
+		}
 	APPLY_TO_GASES(_MIMIC_GAS)
 	#undef _MIMIC_GAS
 
-	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+	if(temperatureconsidered)
 		var/new_self_heat_capacity = old_self_heat_capacity - heat_capacity_transferred
 		if(new_self_heat_capacity > MINIMUM_HEAT_CAPACITY)
 			src.temperature = (old_self_heat_capacity*src.temperature - heat_capacity_transferred*border_multiplier*src.ARCHIVED(temperature))/new_self_heat_capacity

@@ -77,8 +77,10 @@ var/global/total_gas_mixtures = 0
 	var/start_time = world.timeofday
 
 	for(var/turf/simulated/S in world)
-		if(!S.gas_impermeable && !S.parent)
-			assemble_group_turf(S)
+		if(S.gas_impermeable || S.parent)
+			S.update_air_properties()
+			continue
+		assemble_group_turf(S)
 		S.update_air_properties()
 
 	boutput(world, SPAN_ALERT("Geometry processed in [(world.timeofday-start_time)/10] seconds!"))
@@ -175,7 +177,6 @@ var/global/total_gas_mixtures = 0
 	LAGCHECK(LAG_REALTIME)
 
 	src.process_high_pressure_delta()
-	LAGCHECK(LAG_REALTIME)
 
 	if(current_cycle % 7 == 0) //Check for groups of tiles to resume group processing every 7 cycles
 		for(var/datum/air_group/AG as anything in air_groups)
@@ -266,6 +267,6 @@ var/global/total_gas_mixtures = 0
 	PROTECTED_PROC(TRUE)
 	for(var/turf/simulated/pressurized as anything in high_pressure_delta)
 		pressurized.high_pressure_movements()
-		LAGCHECK(LAG_REALTIME)
+		// LAGCHECK(LAG_REALTIME) //pretty cheap
 
 	high_pressure_delta.len = 0

@@ -30,16 +30,16 @@
 
 // requires atten to be defined outside
 #define RL_APPLY_LIGHT_EXPOSED_ATTEN(src, lx, ly, brightness, height2, r, g, b) do { \
-	if (src.fullbright || src.loc:force_fullbright) { break } \
+	if (src.loc:force_fullbright) { break } \
 	atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)**2 + (src.y - ly)**2 + height2) + RL_Atten_Constant ; \
 	if (atten < RL_Atten_Threshold) { break } \
 	src.RL_LumR += r*atten ; \
 	src.RL_LumG += g*atten ; \
 	src.RL_LumB += b*atten ; \
-	src.RL_AddLumR = min((src.RL_LumR - 1) * 0.5, 0.3) ; \
-	src.RL_AddLumG = min((src.RL_LumG - 1) * 0.5, 0.3) ; \
-	src.RL_AddLumB = min((src.RL_LumB - 1) * 0.5, 0.3) ; \
-	src.RL_NeedsAdditive = src.RL_AddLumR + src.RL_AddLumG + src.RL_AddLumB ; \
+	src.RL_AddLumR = clamp((src.RL_LumR - 1) * 0.5, 0, 0.3) ; \
+	src.RL_AddLumG = clamp((src.RL_LumG - 1) * 0.5, 0, 0.3) ; \
+	src.RL_AddLumB = clamp((src.RL_LumB - 1) * 0.5, 0, 0.3) ; \
+	src.RL_NeedsAdditive = src.RL_AddLumR || src.RL_AddLumG || src.RL_AddLumB ; \
 	} while(FALSE)
 
 #define RL_APPLY_LIGHT(src, lx, ly, brightness, height2, r, g, b) do { \

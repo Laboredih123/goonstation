@@ -121,10 +121,10 @@ ADMIN_INTERACT_PROCS(/obj/airbridge_controller, proc/toggle_bridge, proc/pressur
 		maintaining_bridge = 1
 
 		SPAWN(0)
-			path.Cut()
+			path.len = 0
 
 			var/turf/current = src.loc
-			path.Add(current)
+			path += current
 			var/direction = get_dir(current, get_step(current,get_dir(current, linked.loc)))
 			path[current] = direction
 
@@ -138,7 +138,7 @@ ADMIN_INTERACT_PROCS(/obj/airbridge_controller, proc/toggle_bridge, proc/pressur
 			var/turf/curr
 			var/j = 1
 			var/light_index = 1
-			for(var/turf/T in path)
+			for(var/turf/T as anything in path)
 				if(j % 3 == 2 && floor_light_type)
 					var/obj/light = null
 					if(light_index <= length(my_lights))
@@ -153,9 +153,9 @@ ADMIN_INTERACT_PROCS(/obj/airbridge_controller, proc/toggle_bridge, proc/pressur
 					light_index++
 				j++
 
-			for(var/turf/T in path)
+			for(var/turf/T as anything in path)
 				var/dir = path[T]
-				for(var/i = -tunnel_width, i <= tunnel_width, i++)
+				for(var/i = -tunnel_width to tunnel_width)
 					if(abs(i) == tunnel_width) // wall
 						curr = get_steps(T, turn(dir, 90),i)
 						animate_turf_slideout(curr, src.wall_turf, dir, slide_delay)
@@ -163,10 +163,10 @@ ADMIN_INTERACT_PROCS(/obj/airbridge_controller, proc/toggle_bridge, proc/pressur
 						curr = get_steps(T, turn(dir, 90),i)
 						animate_turf_slideout(curr, src.floor_turf, dir, slide_delay)
 					curr.set_dir(dir)
-					maintaining_turfs.Add(curr)
+					maintaining_turfs += curr
 				playsound(T, 'sound/effects/airbridge_dpl.ogg', 50, TRUE)
 				sleep(slide_delay)
-				for(var/i = -tunnel_width, i <= tunnel_width, i++)
+				for(var/i = -tunnel_width to tunnel_width)
 					curr = get_steps(T, turn(dir, 90), i)
 					animate_turf_slideout_cleanup(curr)
 
@@ -214,22 +214,22 @@ ADMIN_INTERACT_PROCS(/obj/airbridge_controller, proc/toggle_bridge, proc/pressur
 				light.alpha = 0
 
 			var/turf/curr
-			for(var/turf/T in path_reverse)
+			for(var/turf/T as anything in path_reverse)
 				var/dir = path[T]
 				var/opdir = turn(dir, 180)
-				for(var/i = -tunnel_width, i <= tunnel_width, i++)
+				for(var/i = -tunnel_width to tunnel_width)
 					curr = get_steps(T, turn(dir, 90), i)
 					animate_turf_slidein(curr, src.original_turf, opdir, slide_delay)
 				playsound(T, 'sound/effects/airbridge_dpl.ogg', 50, TRUE)
 				sleep(slide_delay)
-				for(var/i = -tunnel_width, i <= tunnel_width, i++)
+				for(var/i = -tunnel_width to tunnel_width)
 					curr = get_steps(T, turn(dir, 90), i)
 					animate_turf_slidein_cleanup(curr)
 
 			for(var/obj/light in src.my_lights)
 				light.set_loc(src)
 
-			maintaining_turfs.Cut()
+			maintaining_turfs.len = 0
 			working = 0
 			updateComps()
 

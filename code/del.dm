@@ -20,7 +20,7 @@ proc/qdel(var/datum/D)
 	if (istype(D))
 		D.dispose(qdel_instead = FALSE)
 
-		if (ismovable(D) && length(D:contents) > 0)
+		if (ismovable(D) && length(D:contents))
 			for (var/C in D:contents)
 				qdel(C)
 
@@ -51,8 +51,7 @@ proc/qdel(var/datum/D)
 		//	D.qdeltime = world.time
 
 		// delete_queue.enqueue("\ref[O]")
-		var/refD = "\ref[D]"
-		delete_queue_2[((delqueue_pos + DELQUEUE_WAIT) % DELQUEUE_SIZE) + 1] += ADDR_TO_NUM(refD)
+		delete_queue_2[((delqueue_pos + DELQUEUE_WAIT) % DELQUEUE_SIZE) + 1] += ADDR_TO_NUM(ref(D))
 	else
 		if(islist(D))
 			D:len = 0

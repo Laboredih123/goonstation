@@ -177,9 +177,8 @@ var/global/list/turf/hotly_processed_turfs = list()
 			UPDATE_TILE_GAS_OVERLAY(visuals_state, gas_icon_overlay, GAS_IMG_RAD)
 			src.gas_icon_overlay.dir = pick(cardinal)
 	else
-		if (src.gas_icon_overlay)
-			gas_icon_overlay.dispose()
-			src.gas_icon_overlay = null
+		gas_icon_overlay?.dispose()
+		src.gas_icon_overlay = null
 
 /turf/simulated/New()
 	. = ..()
@@ -303,22 +302,21 @@ var/global/list/turf/hotly_processed_turfs = list()
 /turf/simulated/proc/update_air_properties() //OPTIMIZE - yes this proc right here sir
 	src.air_check_directions = 0
 
+	if(src.parent)
+		src.parent?.borders -= src
+		if(src.length_space_border)
+			src.parent.length_space_border -= length_space_border
+			src.length_space_border = 0
+
+		src.group_border = 0
+
 	for(var/direction in cardinal)
 		LAGCHECK(LAG_REALTIME)
 		if(src.gas_cross(get_step(src,direction)))
 			src.air_check_directions |= direction
 
-	if(src.parent)
-		if(src.parent.borders)
-			src.parent.borders -= src
-		if(src.length_space_border > 0)
-			src.parent.length_space_border -= length_space_border
-			src.length_space_border = 0
-
-		src.group_border = 0
-		for(var/direction in cardinal)
-			LAGCHECK(LAG_REALTIME)
-			if(src.air_check_directions & direction)
+			if(src.parent)
+				src.group_border = 0
 				var/turf/simulated/T = get_step(src,direction)
 
 				//See if actually a border
@@ -339,7 +337,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 							src.parent.borders = list(src)
 						src.group_border |= direction
 
-		src.parent.length_space_border += src.length_space_border
+				src.parent.length_space_border += src.length_space_border
 
 	if(src.air_check_directions || src.active_hotspot)
 		src.processing = TRUE
@@ -396,18 +394,15 @@ var/global/list/turf/hotly_processed_turfs = list()
 					if(connection_difference > 0)
 						src.consider_pressure_difference(connection_difference, direction)
 					else
-						enemy_tile.consider_pressure_difference(connection_difference, direction)
+						if(istype(enemy_tile))
+							enemy_tile.consider_pressure_difference(connection_difference, direction)
 	else
 		air_master.active_singletons -= src //not active if not processing!
 		return
 
-	if(src.air.react() & CATALYST_ACTIVE)
-		src.active_hotspot?.catalyst_active = TRUE
-	else
-		src.active_hotspot?.catalyst_active = FALSE
+	src.active_hotspot?.catalyst_active = (src.air.react() & CATALYST_ACTIVE) ? TRUE : FALSE
 
-	if(src.active_hotspot)
-		src.active_hotspot.process(possible_fire_spreads)
+	src.active_hotspot?.process(possible_fire_spreads)
 
 	if(src.air.temperature > MINIMUM_TEMPERATURE_START_SUPERCONDUCTION)
 		src.consider_superconductivity(starting = 1)
@@ -549,15 +544,14 @@ var/global/list/turf/hotly_processed_turfs = list()
 		else
 			src.air.temperature_turf_share(src, src.thermal_conductivity)
 
-	//Make sure still hot enough to continue conducting heat
-	if(src.air)
+		//Make sure still hot enough to continue conducting heat
 		if(src.air.temperature < MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION)
 			src.being_superconductive = FALSE
 			air_master.active_super_conductivity -= src
 			return FALSE
 
 	else
-		if(temperature < MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION)
+		if(temperature < MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION) //Make sure still hot enough to continue conducting heat
 			src.being_superconductive = FALSE
 			air_master.active_super_conductivity -= src
 			return FALSE
