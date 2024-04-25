@@ -199,7 +199,7 @@ var/global/total_gas_mixtures = 0
 /// Do not call. Used by [/datum/controller/air_system/proc/process].
 /datum/controller/air_system/proc/process_update_tiles()
 	PROTECTED_PROC(TRUE)
-	for(var/turf/simulated/T in tiles_to_update) // ZEWAKA-ATMOS SPACE + SPACE FLUID LEAKAGE
+	for(var/turf/simulated/T as anything in tiles_to_update) // ZEWAKA-ATMOS SPACE + SPACE FLUID LEAKAGE
 		T.update_air_properties()
 	tiles_to_update.len = 0
 
@@ -209,7 +209,7 @@ var/global/total_gas_mixtures = 0
 	PROTECTED_PROC(TRUE)
 	var/list/turf/turf_list = list()
 
-	for(var/datum/air_group/turf_AG in groups_to_rebuild) // Deconstruct groups, gathering their old members
+	for(var/datum/air_group/turf_AG as anything in groups_to_rebuild) // Deconstruct groups, gathering their old members
 		if(turf_AG.group_processing)	// Ensure correct air is used for reconstruction, otherwise parent is destroyed
 			turf_AG.suspend_group_processing()
 		for(var/turf/simulated/T as anything in turf_AG.members)
@@ -217,14 +217,13 @@ var/global/total_gas_mixtures = 0
 			turf_list += T
 		air_master.air_groups -= turf_AG
 		turf_AG.members.len = 0
-	LAGCHECK(LAG_REALTIME)
 
 	for(var/turf/simulated/S as anything in turf_list) // Have old members try to form new groups
 		if(!S.parent)
 			src.assemble_group_turf(S)
 	LAGCHECK(LAG_REALTIME)
 
-	for(var/turf/simulated/S in tiles_to_rebuild) // update the singletons
+	for(var/turf/simulated/S as anything in tiles_to_rebuild) // update the singletons
 		if(!S.parent)
 			src.assemble_group_turf(S)
 		turf_list += S
@@ -242,7 +241,7 @@ var/global/total_gas_mixtures = 0
 /datum/controller/air_system/proc/process_groups()
 	PROTECTED_PROC(TRUE)
 	for(var/datum/air_group/AG as anything in air_groups)
-		AG?.process_group(parent_controller)
+		AG.process_group(parent_controller)
 		LAGCHECK(LAG_REALTIME)
 
 /// Process any singletons queued for processing.

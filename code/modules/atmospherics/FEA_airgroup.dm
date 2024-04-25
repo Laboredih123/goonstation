@@ -157,7 +157,7 @@
 					// Tiles can get added to these lists more than once, but that is OK,
 					// because groups sharing more than one edge should transfer more air.
 
-					if(issimulatedturf(enemy_tile) && enemy_tile.parent && enemy_tile.parent.group_processing) //blahh danger
+					if(issimulatedturf(enemy_tile) && enemy_tile.parent?.group_processing) //blahh danger
 						// Tile is a border with another group, and the other group is in group processing mode.
 
 						// Build enemies list
@@ -269,7 +269,7 @@
 				if(map_currently_underwater)
 					var/turf/space/sample = air_master.update_space_sample()
 
-					if(src.air && sample && src.air.check_turf(sample))
+					if(sample && src.air?.check_turf(sample))
 						connection_difference = src.air.mimic(sample, length_space_border)
 					else
 						abort_group = TRUE

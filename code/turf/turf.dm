@@ -411,7 +411,7 @@ proc/generate_space_color()
 
 /turf/space/update_icon(starlight_alpha=255, starlight_color_override=null)
 	..()
-	if(!isnull(space_color) && !istype(src, /turf/space/fluid))
+	if(space_color && !istype(src, /turf/space/fluid))
 		src.color = space_color
 
 	// underlays are chacked in CI for duplicate turfs on a dmm tile

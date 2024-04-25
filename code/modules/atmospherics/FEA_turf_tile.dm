@@ -62,9 +62,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 /// Checks if gas can pass between two turfs. If anything within the turf does not allow passage, the check fails.
 /// Returns: TRUE if gas can pass, FALSE if not.
 /turf/gas_cross(turf/target)
-	if(!target)
-		return FALSE
-	if(target.gas_impermeable || src.gas_impermeable)
+	if(!target || target.gas_impermeable || src.gas_impermeable)
 		return FALSE
 	for(var/atom/movable/AM as anything in src)
 		if(!AM.gas_cross(target))
@@ -261,8 +259,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 
 #ifdef ATMOS_ARCHIVING
 /turf/simulated/proc/archive()
-	if(src.air) //For open space like floors
-		src.air.archive()
+	src.air?.archive()//For open space like floors
 
 	src.ARCHIVED(temperature) = src.temperature
 	src.archived_cycle = air_master.current_cycle
@@ -272,7 +269,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 /turf/simulated/return_air()
 	if(src.parent?.group_processing)
 		return src.parent.air
-	else if(!isnull(src.air))
+	else if(src.air)
 		return src.air
 	else
 		return ..()
@@ -300,10 +297,11 @@ var/global/list/turf/hotly_processed_turfs = list()
 
 /// Updates parent, processing, air checking directions, and space borders.
 /turf/simulated/proc/update_air_properties() //OPTIMIZE - yes this proc right here sir
+	LAGCHECK(LAG_REALTIME)
 	src.air_check_directions = 0
 
 	if(src.parent)
-		src.parent?.borders -= src
+		src.parent.borders -= src
 		if(src.length_space_border)
 			src.parent.length_space_border -= length_space_border
 			src.length_space_border = 0
@@ -311,33 +309,29 @@ var/global/list/turf/hotly_processed_turfs = list()
 		src.group_border = 0
 
 	for(var/direction in cardinal)
-		LAGCHECK(LAG_REALTIME)
 		if(src.gas_cross(get_step(src,direction)))
 			src.air_check_directions |= direction
 
 			if(src.parent)
-				src.group_border = 0
 				var/turf/simulated/T = get_step(src,direction)
 
-				//See if actually a border
-				if(!issimulatedturf(T) || (T.parent != src.parent))
-					//See what kind of border it is
-					if(istype(T,/turf/space) && !istype(T,/turf/space/fluid))
-						if(src.parent.space_borders)
-							src.parent.space_borders |= src
-						else
-							src.parent.space_borders = list(src)
-						src.length_space_border++
-						src.group_border |= direction
+				//See what kind of border it is
+				if(issimulatedturf(T) && (T.parent != src.parent))
+					if(src.parent.borders)
+						src.parent.borders |= src
+					else
+						src.parent.borders = list(src)
+					src.group_border |= direction
 
-					else if(issimulatedturf(T))
-						if(src.parent.borders)
-							src.parent.borders |= src
-						else
-							src.parent.borders = list(src)
-						src.group_border |= direction
+				else if(istype(T,/turf/space) && !istype(T,/turf/space/fluid))
+					if(src.parent.space_borders)
+						src.parent.space_borders |= src
+					else
+						src.parent.space_borders = list(src)
+					src.length_space_border++
+					src.group_border |= direction
 
-				src.parent.length_space_border += src.length_space_border
+	src.parent?.length_space_border += src.length_space_border
 
 	if(src.air_check_directions || src.active_hotspot)
 		src.processing = TRUE
@@ -466,7 +460,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 
 					if(modeled_neighbor.air)
 						if(src.air) //Both tiles are open
-							if(modeled_neighbor.parent && modeled_neighbor.parent.group_processing)
+							if(modeled_neighbor.parent?.group_processing)
 								if(src.parent?.group_processing)
 									//both are acting as a group
 									//modified using construct developed in datum/air_group/share_air_with_group(...)
@@ -498,7 +492,7 @@ var/global/list/turf/hotly_processed_turfs = list()
 									src.air.temperature_share(modeled_neighbor.air, WINDOW_HEAT_TRANSFER_COEFFICIENT)
 
 						else //Solid but neighbor is open
-							if(modeled_neighbor.parent && modeled_neighbor.parent.group_processing)
+							if(modeled_neighbor.parent?.group_processing)
 								if(!modeled_neighbor.parent.air.check_me_then_temperature_turf_share(src, modeled_neighbor.thermal_conductivity))
 									modeled_neighbor.parent.suspend_group_processing()
 									modeled_neighbor.air.temperature_turf_share(src, modeled_neighbor.thermal_conductivity)
@@ -655,10 +649,10 @@ var/global/list/turf/hotly_processed_turfs = list()
 			air_master.tiles_to_update |= west
 
 	if (map_currently_underwater)
-		var/turf/space/fluid/n = get_step(src,NORTH)
-		var/turf/space/fluid/s = get_step(src,SOUTH)
-		var/turf/space/fluid/e = get_step(src,EAST)
-		var/turf/space/fluid/w = get_step(src,WEST)
+		var/turf/space/fluid/n = north
+		var/turf/space/fluid/s = south
+		var/turf/space/fluid/e = east
+		var/turf/space/fluid/w = west
 		if(istype(n))
 			n.tilenotify(src)
 		if(istype(s))
