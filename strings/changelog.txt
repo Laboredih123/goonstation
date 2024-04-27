@@ -1,6 +1,12 @@
 
+(t)sat apr 27 24
+(u)FlameArrow57
+(p)18569
+(e)🪲💅🔨|C-Bug, C-QoL, A-Player-Actions
+(+)Added a visible action bar for hand staunching wounds.
 (t)fri apr 26 24
 (u)LeahTheTech
+(*)Item grabs now throw the person being grabbed rather than the item. No more throwing your gun in a hostage situation!
 (p)18621
 (e)⚖📦|C-Balance, A-Game-Objects
 (*)Gas pipes can now be reinforced with metal sheets to increase their pressure tolerance based on the material's density.
