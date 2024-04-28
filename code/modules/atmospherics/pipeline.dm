@@ -79,8 +79,7 @@
 	base.parent = src
 
 	if(base.air_temporary)
-		if(src.air)
-			qdel(src.air)
+		src.air.dispose()
 		src.air = base.air_temporary
 		base.air_temporary = null
 	else
@@ -124,7 +123,7 @@
 
 	for(var/obj/machinery/atmospherics/pipe/edge as anything in src.edges)
 		for(var/obj/machinery/atmospherics/result as anything in edge.pipeline_expansion())
-			if(!isnull(result) && !istype(result,/obj/machinery/atmospherics/pipe) && (result!=reference))
+			if(!istype(result,/obj/machinery/atmospherics/pipe) && (result!=reference))
 				result.network_expand(new_network, edge)
 
 	return TRUE
@@ -146,7 +145,7 @@
 	var/datum/gas_mixture/air_sample = src.air.remove_ratio(mingle_volume/src.air.volume)
 	air_sample.volume = mingle_volume
 
-	if(istype(target) && target.parent && target.parent.group_processing)
+	if(istype(target) && target.parent?.group_processing)
 		//Have to consider preservation of group statuses
 		var/datum/gas_mixture/turf_copy = new /datum/gas_mixture
 
@@ -168,7 +167,7 @@
 
 			target.parent.suspend_group_processing()
 			target.air.copy_from(turf_copy)
-			qdel(turf_copy) // done with this
+			turf_copy.dispose() // done with this
 
 	else
 		var/datum/gas_mixture/turf_air = target.return_air()
@@ -179,12 +178,10 @@
 		//turf_air already modified by equalize_gases()
 
 	if(istype(target) && !target.processing)
-		if(target.air)
-			if(target.air.check_tile_graphic())
-				target.update_visuals(target.air)
+		if(target.air?.check_tile_graphic())
+			target.update_visuals(target.air)
 
-	if(!isnull(src.network))
-		src.network.update = TRUE
+	src.network?.update = TRUE
 
 /// Exchanges the heat between the turf and some volume of our air.
 /// Thermal_conductivity is used as a factor with 0 meaning no heat transfer and 1 meaning perfect equalisation.

@@ -16,7 +16,7 @@
 	//stolen from mingle_with_turf WOOHOOH
 	var/turf/simulated/ourturf = get_turf(src)
 
-	if(istype(ourturf) && ourturf.parent && ourturf.parent.group_processing)
+	if(istype(ourturf) && ourturf.parent?.group_processing)
 		//Have to consider preservation of group statuses
 		var/datum/gas_mixture/turf_copy = new /datum/gas_mixture
 
@@ -37,7 +37,7 @@
 
 			ourturf.parent.suspend_group_processing()
 			ourturf.air.copy_from(turf_copy)
-			qdel(turf_copy) // done with this
+			turf_copy.dispose() // done with this
 
 	else
 		var/datum/gas_mixture/turf_air = ourturf.return_air()
@@ -47,12 +47,10 @@
 		//turf_air already modified by equalize_gases()
 
 	if(istype(ourturf) && !ourturf.processing)
-		if(ourturf.air)
-			if(ourturf.air.check_tile_graphic())
-				ourturf.update_visuals(ourturf.air)
+		if(ourturf.air?.check_tile_graphic())
+			ourturf.update_visuals(ourturf.air)
 
-	if(!isnull(src.network))
-		src.network.update = TRUE
+	src.network?.update = TRUE
 
 /obj/machinery/atmospherics/unary/vent/update_icon()
 	var/turf/T = get_turf(src)

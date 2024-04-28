@@ -70,17 +70,14 @@
 /datum/air_group/proc/update_group_from_tiles()
 	// Single sample? Seems like not very many...
 	// Local var, direct access to gas_mixture, no need to pool
-	var/sample_member
 
-	if(!members || !length(members)) //I guess all the areas were BADSPACE!!! OH NO! (Spyguy fix for pick() from empty list)
+	if(!length(members)) //I guess all the areas were BADSPACE!!! OH NO! (Spyguy fix for pick() from empty list)
 		qdel(src)
 		return FALSE
 
-	sample_member = pick(members)
-	if (sample_member:air)
-		var/datum/gas_mixture/sample_air = sample_member:air
-
-		src.air.copy_from(sample_air)
+	var/turf/simulated/sample_member = pick(members)
+	if (sample_member.air)
+		src.air.copy_from(sample_member.air)
 		src.air.group_multiplier = length(members)
 
 	return TRUE
@@ -96,8 +93,7 @@
 
 #ifdef ATMOS_ARCHIVING
 /datum/air_group/proc/archive()
-	if (air)
-		air.archive()
+	air?.archive()
 	archived_cycle = air_master.current_cycle
 #endif
 
@@ -107,7 +103,7 @@
 /datum/air_group/proc/check_regroup()
 	if(group_processing) return TRUE
 
-	if(!members || !length(members)) //I guess all the areas were BADSPACE!!! OH NO! (Spyguy fix for pick() from empty list)
+	if(!length(members)) //I guess all the areas were BADSPACE!!! OH NO! (Spyguy fix for pick() from empty list)
 		qdel(src)
 		return FALSE
 
@@ -115,7 +111,7 @@
 	for(var/turf/simulated/member as anything in members)
 		if(member.active_hotspot)
 			return FALSE
-		if(member.air && member.air.compare(sample.air))
+		if(member.air?.compare(sample.air))
 			continue
 		else
 			return FALSE

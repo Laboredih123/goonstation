@@ -102,6 +102,8 @@
 		..()
 		src.dir = dir
 		switch(dir)
+			if(0)
+				icon_state = "medium_center"
 			if(NORTH)
 				pixel_y += 32
 			if(SOUTH)
@@ -110,8 +112,6 @@
 				pixel_x += 32
 			if(WEST)
 				pixel_x -= 32
-			if(0)
-				icon_state = "medium_center"
 
 /atom/var/list/medium_light_rgbas = null
 /atom/var/list/obj/overlay/simple_light/medium/medium_lights
@@ -128,13 +128,15 @@
 	show_medium_light()
 
 	if (length(medium_light_rgbas) == 1) //dont loop/average if list only contains 1 thing
+		var/alpha = rgba[4]
+		var/alpha_scaled = min(255, alpha / 2)
 		for(var/obj/overlay/simple_light/medium/medium_light as anything in src.medium_lights)
-			if(medium_light.icon_state == "medium_center")
-				rgba[4] = min(255, rgba[4])
+			if(medium_light.dir)
+				// divided by two because the directional sprites are brighter
+				rgba[4] = alpha_scaled
 				medium_light.color = rgba
 			else
-				// divided by two because the directional sprites are brighter
-				rgba[4] = min(255, rgba[4] / 2)
+				rgba[4] = min(255, alpha)
 				medium_light.color = rgba
 	else
 		update_medium_light_color()
@@ -171,13 +173,15 @@
 	avg_r /= length(medium_light_rgbas)
 	avg_g /= length(medium_light_rgbas)
 	avg_b /= length(medium_light_rgbas)
+	var/colour = rgb(avg_r, avg_g, avg_b, min(255, sum_a))
+	var/color_scaled = rgb(avg_r, avg_g, avg_b, min(255, sum_a / 2))
 
-	for(var/obj/overlay/simple_light/medium/medium_light in src.medium_lights)
-		if(medium_light.icon_state == "medium_center")
-			medium_light.color = rgb(avg_r, avg_g, avg_b, min(255, sum_a))
-		else
+	for(var/obj/overlay/simple_light/medium/medium_light as anything in src.medium_lights)
+		if(medium_light.dir)
 			// divided by two because the directional sprites are brighter
-			medium_light.color = rgb(avg_r, avg_g, avg_b, min(255, sum_a / 2))
+			medium_light.color = color_scaled
+		else
+			medium_light.color = colour
 
 /atom/proc/show_medium_light()
 	if(!length(medium_light_rgbas))
@@ -218,14 +222,16 @@
 			src:vis_contents -= light
 		return
 	for (var/obj/overlay/simple_light/medium/light as anything in src.medium_lights)
-		if(light.icon_state == "medium_center")
-			src:vis_contents += light
-			continue
-		var/turf/T = get_step(get_turf(src), light.dir)
-		if(T?.opacity || T?.opaque_atom_count)
-			src:vis_contents -= light
+		if(light.dir)
+			var/turf/T = get_step(get_turf(src), light.dir)
+			if(T?.opacity || T?.opaque_atom_count)
+				src:vis_contents -= light
+			else
+				src:vis_contents += light
 		else
 			src:vis_contents += light
+
+
 
 
 

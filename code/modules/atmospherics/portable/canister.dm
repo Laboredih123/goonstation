@@ -129,21 +129,21 @@ ADMIN_INTERACT_PROCS(/obj/machinery/portable_atmospherics/canister, proc/toggle_
 			if (src.det && src.det.part_fs.timing && !src.det.safety && !src.det.defused)
 				if (src.det.part_fs.time > 5 SECONDS)
 					bomb_dmi.icon_state = "overlay_ticking"
-					UpdateOverlays(bomb_dmi, "canbomb")
+					AddOverlays(bomb_dmi, "canbomb")
 				else
 					bomb_dmi.icon_state = "overlay_exploding"
-					UpdateOverlays(bomb_dmi, "canbomb")
+					AddOverlays(bomb_dmi, "canbomb")
 			else
 				bomb_dmi.icon_state = overlay_state
-				UpdateOverlays(bomb_dmi, "canbomb")
+				AddOverlays(bomb_dmi, "canbomb")
 		else
-			UpdateOverlays(null, "canbomb")
+			ClearSpecificOverlays("canbomb")
 
 		if(holding)
 			atmos_dmi.icon_state = "can-oT"
-			UpdateOverlays(atmos_dmi, "holding")
+			AddOverlays(atmos_dmi, "holding")
 		else
-			UpdateOverlays(null, "holding")
+			ClearSpecificOverlays("holding")
 		var/tank_pressure = MIXTURE_PRESSURE(air_contents)
 
 		if (tank_pressure < 10)
@@ -155,7 +155,7 @@ ADMIN_INTERACT_PROCS(/obj/machinery/portable_atmospherics/canister, proc/toggle_
 		else
 			atmos_dmi.icon_state = "can-o3"
 
-		UpdateOverlays(atmos_dmi, "pressure")
+		AddOverlays(atmos_dmi, "pressure")
 	return
 
 /obj/machinery/portable_atmospherics/canister/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume, cannot_be_cooled = FALSE)

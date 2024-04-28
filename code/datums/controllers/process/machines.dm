@@ -33,7 +33,7 @@
 		if (ticker % 4 == 0)
 			src.atmos_machines = by_cat[TR_CAT_ATMOS_MACHINES]
 			for (var/obj/machinery/machine as anything in atmos_machines)
-				if( !machine || machine.z == 4 && !Z4_ACTIVE || istype(machine.loc, /obj/item/electronics/frame) ) continue
+				if(machine.z == 4 && !Z4_ACTIVE || istype(machine.loc, /obj/item/electronics/frame)) continue
 	#ifdef MACHINE_PROCESSING_DEBUG
 				var/t = world.time
 	#endif

@@ -246,9 +246,7 @@
 
 /obj/machinery/proc/get_direct_powernet()
 	var/obj/cable/C = get_power_wire()
-	if (C)
-		return C.get_powernet()
-	return null
+	return C?.get_powernet()
 
 /obj/machinery/proc/powered(var/chan = EQUIP)
 	// returns true if the area has power on given channel (or doesn't require power).
@@ -293,15 +291,13 @@
 			return
 
 	var/area/A = get_area(src)		// make sure it's in an area
-	if(!A || !isarea(A))
-		return
 
 #ifdef MACHINE_PROCESSING_DEBUG
 	if(!detailed_power_data) detailed_power_data = new
 	detailed_power_data.log_machine(src, -amount)
 #endif
 
-	A.use_power(amount, chan)
+	A?.use_power(amount, chan)
 
 
 /obj/machinery/proc/power_change()		// called whenever the power settings of the containing area change

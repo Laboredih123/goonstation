@@ -389,14 +389,14 @@ What are the archived variables for?
 	if(temperatureconsidered)
 		var/new_self_heat_capacity = old_self_heat_capacity + heat_capacity_sharer_to_self - heat_capacity_self_to_sharer
 		var/new_sharer_heat_capacity = old_sharer_heat_capacity + heat_capacity_self_to_sharer - heat_capacity_sharer_to_self
-
+		var/adjustedsharertoself = heat_capacity_sharer_to_self*sharer.ARCHIVED(temperature)
 		if(new_self_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			src.temperature = (old_self_heat_capacity*src.temperature - heat_capacity_self_to_sharer*ARCHIVED(temperature) + heat_capacity_sharer_to_self*sharer.ARCHIVED(temperature))/new_self_heat_capacity
+			src.temperature = (old_self_heat_capacity*src.temperature - heat_capacity_self_to_sharer*ARCHIVED(temperature) + adjustedsharertoself)/new_self_heat_capacity
 
 		if(new_sharer_heat_capacity > MINIMUM_HEAT_CAPACITY)
-			sharer.temperature = (old_sharer_heat_capacity*sharer.temperature-heat_capacity_sharer_to_self*sharer.ARCHIVED(temperature) + heat_capacity_self_to_sharer*ARCHIVED(temperature))/new_sharer_heat_capacity
+			sharer.temperature = (old_sharer_heat_capacity*sharer.temperature-adjustedsharertoself + heat_capacity_self_to_sharer*ARCHIVED(temperature))/new_sharer_heat_capacity
 
-			if(abs(old_sharer_heat_capacity) > MINIMUM_HEAT_CAPACITY)
+			if(old_sharer_heat_capacity > MINIMUM_HEAT_CAPACITY)
 				if(abs(new_sharer_heat_capacity/old_sharer_heat_capacity - 1) < 0.1) // <10% change in sharer heat capacity
 					src.temperature_share(sharer, OPEN_HEAT_TRANSFER_COEFFICIENT)
 
