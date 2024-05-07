@@ -396,66 +396,57 @@ proc/debug_map_apc_count(delim,zlim)
 					img.app.color = debug_color_of(group)
 					img.app.desc = "Group \ref[group]<br>[MOLES_REPORT(group.air)]Temperature=[group.air.temperature]<br/>Spaced=[group.spaced]"
 					if (group.spaced) img.app.overlays += image('icons/misc/debug.dmi', icon_state = "spaced")
-					/*
-					var/list/borders_space = list()
-					for(var/turf/spaceses in group.space_borders)
-						if(GET_DIST(spaceses, theTurf) == 1)
-							var/dir = get_dir(theTurf, spaceses)
-							if((dir & (dir-1)) == 0)
-								if(dir & NORTH) borders_space[++borders_space.len] = "NORTH"
-								if(dir & SOUTH) borders_space[++borders_space.len] = "SOUTH"
-								if(dir & EAST) borders_space[++borders_space.len] = "EAST"
-								if(dir & WEST) borders_space[++borders_space.len] = "WEST"
-								var/image/airrowe = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
-								airrowe.appearance_flags = RESET_COLOR
-								img.app.overlays += airrowe
-					if(borders_space.len)
-						img.app.desc += "<br/>(borders space to the [borders_space.Join(" ")])"
-					*/
-					var/list/borders_individual = list()
-					for(var/turf/ind in group.border_individual)
-						if(GET_DIST(ind, theTurf) == 1)
-							var/dir = get_dir(theTurf, ind)
-							if((dir & (dir-1)) == 0)
-								if(dir & NORTH) borders_individual[++borders_individual.len] = "NORTH"
-								if(dir & SOUTH) borders_individual[++borders_individual.len] = "SOUTH"
-								if(dir & EAST) borders_individual[++borders_individual.len] = "EAST"
-								if(dir & WEST) borders_individual[++borders_individual.len] = "WEST"
-								var/image/airrowe = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
-								airrowe.appearance_flags = RESET_COLOR
-								img.app.overlays += airrowe
-					if(borders_individual.len)
-						img.app.desc += "<br/>(borders individual to the [borders_individual.Join(" ")])"
-					var/list/borders_group = list()
-					for(var/turf/simulated/T in group.enemies)
-						if(GET_DIST(T, theTurf) == 1)
-							var/dir = get_dir(theTurf, T)
-							if((dir & (dir-1)) == 0)
-								if(dir & NORTH) borders_group[++borders_group.len] = "NORTH"
-								if(dir & SOUTH) borders_group[++borders_group.len] = "SOUTH"
-								if(dir & EAST) borders_group[++borders_group.len] = "EAST"
-								if(dir & WEST) borders_group[++borders_group.len] = "WEST"
-								var/image/airrowe = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
-								airrowe.appearance_flags = RESET_COLOR
-								if(T.parent)
-									airrowe.color = debug_color_of(T.parent)
-								img.app.overlays += airrowe
-					if(borders_group.len)
-						img.app.desc += "<br/>(borders groups to the [borders_group.Join(" ")])"
-					if(theTurf in group.borders)
+
+					if (theTurf in group.borders)
 						var/image/mark = image('icons/misc/debug.dmi', icon_state = "border")
 						mark.appearance_flags = RESET_COLOR
 						img.app.overlays += mark
+
+						var/list/borders_individual = list()
+						for(var/turf/ind as anything in group.border_individual)
+							if(get_dist(ind, theTurf) == 1)
+								var/dir = get_dir(theTurf, ind)
+								if(is_cardinal(dir))
+									switch(dir)
+										if(NORTH) borders_individual += "NORTH"
+										if(SOUTH) borders_individual += "SOUTH"
+										if(EAST) borders_individual += "EAST"
+										if(WEST) borders_individual += "WEST"
+									var/image/airrowe = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
+									airrowe.appearance_flags = RESET_COLOR
+									img.app.overlays += airrowe
+						if(length(borders_individual))
+							img.app.desc += "<br/>(borders individual to the [borders_individual.Join(" ")])"
+
+						var/list/borders_group = list()
+						for(var/turf/simulated/T as anything in group.enemies)
+							if(get_dist(T, theTurf) == 1)
+								var/dir = get_dir(theTurf, T)
+								if(is_cardinal(dir))
+									switch(dir)
+										if(NORTH) borders_group += "NORTH"
+										if(SOUTH) borders_group += "SOUTH"
+										if(EAST) borders_group += "EAST"
+										if(WEST) borders_group += "WEST"
+									var/image/airrowe = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
+									airrowe.appearance_flags = RESET_COLOR
+									if(T.parent)
+										airrowe.color = debug_color_of(T.parent)
+									img.app.overlays += airrowe
+						if(length(borders_group))
+							img.app.desc += "<br/>(borders groups to the [borders_group.Join(" ")])"
+
+						if(theTurf in group.self_tile_borders)
+							mark = image('icons/misc/debug.dmi', icon_state = "individual_border")
+							mark.appearance_flags = RESET_COLOR
+							img.app.overlays += mark
+						if(theTurf in group.self_group_borders)
+							mark = image('icons/misc/debug.dmi', icon_state = "group_border")
+							mark.appearance_flags = RESET_COLOR
+							img.app.overlays += mark
+
 					if(theTurf in group.space_borders)
 						var/image/mark = image('icons/misc/debug.dmi', icon_state = "space_border")
-						mark.appearance_flags = RESET_COLOR
-						img.app.overlays += mark
-					if(theTurf in group.self_tile_borders)
-						var/image/mark = image('icons/misc/debug.dmi', icon_state = "individual_border")
-						mark.appearance_flags = RESET_COLOR
-						img.app.overlays += mark
-					if(theTurf in group.self_group_borders)
-						var/image/mark = image('icons/misc/debug.dmi', icon_state = "group_border")
 						mark.appearance_flags = RESET_COLOR
 						img.app.overlays += mark
 				else
@@ -1585,7 +1576,7 @@ proc/debug_map_apc_count(delim,zlim)
 	var/turf/center = get_turf(eye)
 	activeOverlay.OnStartRendering(src)
 
-	var/list/turflist = block(locate(max(center.x - width/2 + 1, 1), max(center.y - height/2 + 1, 1), center.z), locate(center.x + width/2, center.y + height/2, center.z))
+	var/list/turflist = block(locate(center.x - width/2 + 1, center.y - height/2 + 1, center.z), locate(center.x + width/2, center.y + height/2, center.z))
 	var/i = 1
 	for(var/turf/T as anything in turflist)
 		var/image/debugoverlay/overlay = infoOverlayImages[i++]
@@ -1655,8 +1646,9 @@ proc/info_overlay_choices()
 		activeOverlay = null
 	else
 		var/type = available_overlays[name]
+		var/updatespeed = input(src, "Select an update speed in deciseconds.", "Be careful making it too small!", 1 SECOND) as num
 		activeOverlay = new type()
-		boutput( src, SPAN_NOTICE("[activeOverlay.help]") )
+		boutput(src, SPAN_NOTICE("[activeOverlay.help]"))
 		GenerateOverlay()
 		activeOverlay.OnEnabled(src)
 		RenderOverlay()
@@ -1665,7 +1657,7 @@ proc/info_overlay_choices()
 			while (X?.activeOverlay)
 				// its a debug overlay so f u
 				X.RenderOverlay()
-				sleep(5 DECI SECONDS)
+				sleep(updatespeed)
 /turf
 	MouseEntered(location, control, params)
 		if(usr.client.activeOverlay)
@@ -1675,12 +1667,10 @@ proc/info_overlay_choices()
 			var/x = text2num(splittext(offs[1], ":")[1])
 			var/y = text2num(splittext(offs[2], ":")[1])
 			var/width = usr.client.view
-			var/height = usr.client.view
 
 			if(istext(usr.client.view))
 				var/split = splittext(usr.client.view, "x")
 				width = text2num(split[1])
-				height = text2num(split[2])
 			var/image/im = usr.client.infoOverlayImages[x + (y-1)*width]
 			if(im?.desc)
 				usr.client.tooltipHolder.transient.show(src, list(
