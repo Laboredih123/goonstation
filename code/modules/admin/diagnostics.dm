@@ -1575,47 +1575,45 @@ proc/debug_map_apc_count(delim,zlim)
 /client/proc/RenderOverlay()
 	var/width
 	var/height
-	if(istext( view ))
+	if(istext(src.view))
 		var/split = splittext(view, "x")
-		width = text2num(split[1])+1
-		height = text2num(split[2])+1
+		width = text2num(split[1])
+		height = text2num(split[2])
 	else
-		width = view*2
-		height = view*2
+		width = view
+		height = view
 	var/turf/center = get_turf(eye)
 	activeOverlay.OnStartRendering(src)
-	for(var/x = 1, x<=width , x++)
-		for(var/y = 1, y<=height, y++)
-			var/turf/t = locate( center.x + x - width/2, center.y + y - height/2, center.z )
-			var/image/debugoverlay/overlay = infoOverlayImages[ "[x]-[y]" ]
-			if(!overlay)
-				continue
-			overlay.loc = t
-			overlay.reset()
-			if(!t)
-				overlay.app.icon_state = "notwhite"
-				overlay.app.alpha = 0
-			else
-				overlay.app.icon_state = ""
-				activeOverlay.GetInfo( t, overlay )
-			overlay.apply()
+
+	var/list/turflist = block(locate(max(center.x - width/2 + 1, 1), max(center.y - height/2 + 1, 1), center.z), locate(center.x + width/2, center.y + height/2, center.z))
+	var/i = 1
+	for(var/turf/T as anything in turflist)
+		var/image/debugoverlay/overlay = infoOverlayImages[i++]
+		overlay.loc = T
+		overlay.reset()
+		overlay.app.icon_state = ""
+		activeOverlay.GetInfo(T, overlay)
+		overlay.apply()
 	activeOverlay.OnFinishRendering(src)
 
 /client/proc/GenerateOverlay()
-	var/width = view
-	var/height = view
+	if(!length(infoOverlayImages))
 
-	if(istext( view ))
-		var/split = splittext(view, "x")
-		width = text2num(split[1])/2
-		height = text2num(split[2])/2
-	if( !infoOverlayImages ) infoOverlayImages = list()
-	for(var/x = 1, x<=width*2+1, x++)
-		for(var/y = 1, y<=height*2+1, y++)
-			if(!infoOverlayImages[ "[x]-[y]" ])
-				var/image/debugoverlay/overlay = new
-				infoOverlayImages[ "[x]-[y]" ] = overlay
-				src.images += overlay
+		var/width = view
+		var/height = view
+
+		if(istext(src.view))
+			var/split = splittext(view, "x")
+			width = text2num(split[1])
+			height = text2num(split[2])
+
+		var/length = width*height
+		infoOverlayImages = new/list(length)
+
+		for(var/i in 1 to length)
+			var/image/debugoverlay/overlay = new
+			infoOverlayImages[i] = overlay
+			src.images += overlay
 
 proc/info_overlay_choices()
 	var/static/list/cached = null
@@ -1667,7 +1665,7 @@ proc/info_overlay_choices()
 			while (X?.activeOverlay)
 				// its a debug overlay so f u
 				X.RenderOverlay()
-				sleep(1 SECOND)
+				sleep(5 DECI SECONDS)
 /turf
 	MouseEntered(location, control, params)
 		if(usr.client.activeOverlay)
@@ -1676,7 +1674,14 @@ proc/info_overlay_choices()
 
 			var/x = text2num(splittext(offs[1], ":")[1])
 			var/y = text2num(splittext(offs[2], ":")[1])
-			var/image/im = usr.client.infoOverlayImages["[x]-[y]"]
+			var/width = usr.client.view
+			var/height = usr.client.view
+
+			if(istext(usr.client.view))
+				var/split = splittext(usr.client.view, "x")
+				width = text2num(split[1])
+				height = text2num(split[2])
+			var/image/im = usr.client.infoOverlayImages[x + (y-1)*width]
 			if(im?.desc)
 				usr.client.tooltipHolder.transient.show(src, list(
 					"params" = params,
