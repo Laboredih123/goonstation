@@ -451,16 +451,29 @@ proc/debug_map_apc_count(delim,zlim)
 						img.app.overlays += mark
 				else
 					img.app.color = "#ffffff"
-					img.app.desc = "No Atmos Group<br/>[MOLES_REPORT(sim)]Temperature=[sim.temperature]"
+					img.app.desc = "Singleton<br/>[MOLES_REPORT(sim)]Temperature=[sim.temperature]"
 			else
-				img.app.desc = "-unsimulated-"
+				var/datum/gas_mixture/air = theTurf.return_air()
+				img.app.desc = "-unsimulated-<br>[MOLES_REPORT(air)]Temperature=[air.temperature]<br/>"
 				img.app.color = "#202020"
 
 
 
 	atmos_status
 		name = "atmos status"
-		help = "turf color: black (no air), gray (less than normal), white (normal pressure), red (over normal)<br>top number: o2 pp%. white = breathable, orange = breathable w/ cyberlung, otherwise no good<br>middle number: atmos pressure (kPa)<br>bottom number: air temp (&deg;C)<br>colored square in bottom left:<br>color indicates group membership<br>solid: group mode on<br>outline: group mode off<br>no square: not in a group"
+		help = "turf color: black (no air), gray (less than normal), white (normal pressure), red (over normal)<br>top number: o2 pp%. \
+			white = breathable, orange = breathable w/ cyberlung, otherwise no good<br>middle number: atmos pressure (kPa)<br> \
+			bottom number: air temp (&deg;C)<br>colored square in bottom left:<br>color indicates group membership<br>solid: group mode on<br> \
+			outline: group mode off<br>no square: not in a group"
+		var/icon/group_on
+		var/icon/group_off
+		var/image/spaced
+		OnEnabled(client/C)
+			src.group_on = icon('icons/Testing/atmos_testing.dmi', "group")
+			src.group_off = icon('icons/Testing/atmos_testing.dmi', "group-paused")
+			src.spaced = image('icons/misc/debug.dmi', "spaced")
+
+
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			var/turf/simulated/sim = theTurf
 			img.app.desc = ""
@@ -476,14 +489,14 @@ proc/debug_map_apc_count(delim,zlim)
 				if (group)
 					is_group = debug_color_of(group)
 					if (sim.parent.group_processing)
-						is_group_active = 1
+						is_group_active = TRUE
 						air = sim.parent.air
 					else
 						air = sim.air
-				else if (sim?.air)
+				else
 					air = sim.air
 
-				if (!air)
+				if (isnull(air))
 					img.app.color = "#6666FF"
 					img.app.desc = "no air mix"
 				else
@@ -528,12 +541,12 @@ proc/debug_map_apc_count(delim,zlim)
 					img.app.overlays = null
 
 					if (is_group)
-						var/image/gt = image('icons/Testing/atmos_testing.dmi', "group[is_group_active ? "" : "-paused"]")
+						var/image/gt = mutable_appearance(is_group_active ? src.group_on : src.group_off)
 						gt.appearance_flags = RESET_COLOR
 						gt.color = is_group
 						img.app.overlays += gt
 
-					if (group?.spaced) img.app.overlays += image('icons/misc/debug.dmi', icon_state = "spaced")
+						if (group.spaced) img.app.overlays += spaced
 
 					img.app.overlays += src.makeText("<span style='color: [O2_color];'>[round(O2_pp, 0.01)]</span>\n[round(pressure, 0.1)]\n<span style='color: [T_color];'>[round(TO_CELSIUS(air.temperature), 1)]</span>")
 
@@ -548,7 +561,8 @@ proc/debug_map_apc_count(delim,zlim)
 
 
 			else
-				img.app.desc = "" //"unsim"
+				var/datum/gas_mixture/air = theTurf.return_air()
+				img.app.desc = "-unsimulated-<br>[MOLES_REPORT(air)]Temperature=[air.temperature]<br/>"
 				img.app.color = "#0000ff"
 
 
@@ -809,13 +823,13 @@ proc/debug_map_apc_count(delim,zlim)
 				img.app.alpha = 128
 				lines += "[theTurf] - [theTurf.interesting]"
 				img.app.color = "#ff0000"
-			for(var/atom/A in theTurf)
-				if(A.interesting)
+			for(var/atom/movable/AM as anything in theTurf)
+				if(AM.interesting)
 					img.app.alpha = 128
-					lines += "[A] - [A.interesting]"
+					lines += "[AM] - [AM.interesting]"
 					img.app.color = "#0000ff"
-			if(lines.len)
-				img.app.overlays = list(src.makeText(lines.len))
+			if(length(lines))
+				img.app.overlays = list(src.makeText(length(lines)))
 				img.app.desc = lines.Join("<br>")
 			else
 				img.app.desc = ""
@@ -828,9 +842,8 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			img.app.alpha = 0
 			var/num_fluids = 0
-			for(var/atom/X in theTurf)
-				var/obj/fluid/F = X
-				if(X.type != type_to_process)
+			for(var/obj/fluid/F as anything in theTurf)
+				if(F.type != type_to_process)
 					continue
 				img.app.alpha = initial(img.app.alpha)
 				if(num_fluids) // more than one
@@ -862,9 +875,9 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			// I should probably also count overlays on overlays but I'm lazy
 			img.app.alpha = 0
-			var/num = 1 + theTurf.overlays.len + length(theTurf.underlays)
+			var/num = 1 + length(theTurf.overlays) + length(theTurf.underlays)
 			for (var/atom/A as anything in theTurf)
-				num += 1 + A.overlays.len + length(A.underlays)
+				num += 1 + length(A.overlays) + length(A.underlays)
 			img.app.overlays = list(src.makeText(num, RESET_ALPHA))
 
 	count_atoms_plus_overlays_rec
@@ -873,9 +886,9 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.alpha = 0
 			var/num = 0
 			for (var/atom/A as anything in theTurf.contents + theTurf)
-				num += 1 + A.overlays.len + length(A.underlays)
+				num += 1 + length(A.overlays) + length(A.underlays)
 				for (var/atom/A2 as anything in A.overlays + A.underlays)
-					num += A2.overlays.len + length(A2.underlays)
+					num += length(A2.overlays) + length(A2.underlays)
 			img.app.overlays = list(src.makeText(num, RESET_ALPHA))
 
 	count_atoms
@@ -917,7 +930,7 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			var/list/lines = list()
 			var/toucher = null
-			for(var/atom/A in list(theTurf) + theTurf.contents)
+			for(var/atom/A as anything in list(theTurf) + theTurf.contents)
 				if(is_ok(A) && A.fingerprintslast)
 					if(isnull(toucher))
 						toucher = A.fingerprintslast
@@ -947,7 +960,7 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			var/list/lines = list()
 			var/toucher = null
-			for(var/atom/A in list(theTurf) + theTurf.contents)
+			for(var/atom/A as anything in list(theTurf) + theTurf.contents)
 				if(is_ok(A) && A.blood_DNA)
 					var/who = (A.blood_DNA in bioUids) ? bioUids[A.blood_DNA] : A.blood_DNA
 					if(isnull(toucher))
@@ -1011,8 +1024,8 @@ proc/debug_map_apc_count(delim,zlim)
 				var/turf/simulated/sim = theTurf
 				if (sim.parent?.group_processing)
 					temp = sim.parent.air.temperature
-				else if(sim.air)
-					temp = sim.air.temperature
+				else
+					temp = sim.air?.temperature
 			if(isnull(temp))
 				temp = theTurf.temperature
 			img.app.overlays = list(src.makeText("[temp]", RESET_ALPHA | RESET_COLOR))
@@ -1185,7 +1198,7 @@ proc/debug_map_apc_count(delim,zlim)
 			turf_to_landmark = list()
 			for(var/list/landmark_list in list(global.job_start_locations, global.landmarks))
 				for(var/name in landmark_list)
-					for(var/turf/T in landmark_list[name])
+					for(var/turf/T as anything in landmark_list[name])
 						if(turf_to_landmark[T])
 							turf_to_landmark[T] += name
 						else
@@ -1211,7 +1224,7 @@ proc/debug_map_apc_count(delim,zlim)
 				return
 			img.app.alpha = 100
 			img.app.overlays = list(src.makeText(theTurf.opaque_atom_count, RESET_ALPHA | RESET_COLOR))
-			if(theTurf.opaque_atom_count > 0)
+			if(theTurf.opaque_atom_count)
 				img.app.color = "#55aa55"
 			else
 				img.app.color = "#aa5555"
@@ -1349,11 +1362,9 @@ proc/debug_map_apc_count(delim,zlim)
 		name = "jps passable turfs"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			img.app.alpha = 0
-			for(var/dir in alldirs)
-				var/turf/neigh = get_step(theTurf, dir)
-				if(!neigh || neigh == theTurf) continue
+			for(var/turf/neigh in block(locate(theTurf.x-1, theTurf.y-1, theTurf.z), locate(theTurf.x+1, theTurf.y+1, theTurf.z))-theTurf)
 				if(jpsTurfPassable(neigh, theTurf, usr))
-					var/image/I = image('icons/misc/debug.dmi', icon_state = "arrow", dir = dir)
+					var/image/I = image('icons/misc/debug.dmi', icon_state = "arrow", dir = get_dir(theTurf, neigh))
 					I.alpha = 100
 					I.appearance_flags |= RESET_ALPHA
 					img.app.overlays += I
@@ -1381,7 +1392,7 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			var/list/spots = list()
 			var/list/fish = list()
-			for(var/atom/movable/AM in theTurf)
+			for(var/atom/movable/AM as anything in theTurf)
 				if(global.fishing_spots[AM.type])
 					spots += AM.name
 					var/datum/fishing_spot/spot = global.fishing_spots[AM.type]
@@ -1410,7 +1421,7 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			var/list/materials = list()
 			var/list/detailed_materials = list()
-			for(var/atom/movable/AM in theTurf)
+			for(var/atom/movable/AM as anything in theTurf)
 				if(AM.material)
 					materials |= AM.material.getName()
 					detailed_materials += "[AM.name] - [AM.material.getName()]"
