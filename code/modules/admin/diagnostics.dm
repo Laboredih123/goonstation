@@ -67,17 +67,15 @@ proc/debug_map_apc_count(delim,zlim)
 		if(!processScheduler)
 			usr << alert("Process Scheduler not found.")
 
-		var/mobs = length(global.mobs)
-
 
 		var/output = {"<B>GENERAL SYSTEMS REPORT</B><HR>
-<B>General Processing Data</B><BR>
-<B># of Machines:</B> [length(all_processing_machines()) + by_cat[TR_CAT_ATMOS_MACHINES].len]<BR>
-<B># of Pipe Networks:</B> [pipe_networks.len]<BR>
-<B># of Processing Items:</B> [processing_items.len]<BR>
-<B># of Power Nets:</B> [powernets.len]<BR>
-<B># of Mobs:</B> [mobs]<BR>
-"}
+			<B>General Processing Data</B><BR>
+			<B># of Machines:</B> [length(all_processing_machines()) + length(by_cat[TR_CAT_ATMOS_MACHINES])]<BR>
+			<B># of Pipe Networks:</B> [length(pipe_networks)]<BR>
+			<B># of Processing Items:</B> [length(processing_items)]<BR>
+			<B># of Power Nets:</B> [length(powernets)]<BR>
+			<B># of Mobs:</B> [length(global.mobs)]<BR>
+			"}
 
 		usr.Browse(output,"window=generalreport")
 
@@ -93,7 +91,7 @@ proc/debug_map_apc_count(delim,zlim)
 		var/active_groups = 0
 		var/inactive_groups = 0
 		var/active_tiles = 0
-		for(var/datum/air_group/group in air_master.air_groups)
+		for(var/datum/air_group/group as anything in air_master.air_groups)
 			if(group.group_processing)
 				active_groups++
 			else
@@ -106,55 +104,55 @@ proc/debug_map_apc_count(delim,zlim)
 			LAGCHECK(LAG_LOW)
 
 		var/output = {"<B>AIR SYSTEMS REPORT</B><HR>
-<B>General Processing Data</B><BR>
-<B># of Groups:</B> [air_master.air_groups.len]<BR>
----- <I>Active:</I> [active_groups]<BR>
----- <I>Inactive:</I> [inactive_groups]<BR>
--------- <I>Tiles:</I> [active_tiles]<BR>
-<B># of Active Singletons:</B> [air_master.active_singletons.len]<BR>
-<BR>
-<B>Total # of Gas Mixtures In Existence: </B>[total_gas_mixtures]<BR>
-<B>Special Processing Data</B><BR>
-<B>Hotspot Processing:</B> [hotspots]<BR>
-<B>High Temperature Processing:</B> [air_master.active_super_conductivity.len]<BR>
-<B>High Pressure Processing:</B> [air_master.high_pressure_delta.len] (not yet implemented)<BR>
-<BR>
-<B>Geometry Processing Data</B><BR>
-<B>Group Rebuild:</B> [air_master.groups_to_rebuild.len]<BR>
-<B>Tile Update:</B> [air_master.tiles_to_update.len]<BR>
-[air_histogram()]
-"}
+			<B>General Processing Data</B><BR>
+			<B># of Groups:</B> [length(air_master.air_groups)]<BR>
+			---- <I>Active:</I> [active_groups]<BR>
+			---- <I>Inactive:</I> [inactive_groups]<BR>
+			-------- <I>Tiles:</I> [active_tiles]<BR>
+			<B># of Active Singletons:</B> [length(air_master.active_singletons)]<BR>
+			<BR>
+			<B>Total # of Gas Mixtures In Existence: </B>[total_gas_mixtures]<BR>
+			<B>Special Processing Data</B><BR>
+			<B>Hotspot Processing:</B> [hotspots]<BR>
+			<B>High Temperature Processing:</B> [length(air_master.active_super_conductivity)]<BR>
+			<B>High Pressure Processing:</B> [length(air_master.high_pressure_delta)]<BR>
+			<BR>
+			<B>Geometry Processing Data</B><BR>
+			<B>Group Rebuild:</B> [length(air_master.groups_to_rebuild)]<BR>
+			<B>Tile Update:</B> [length(air_master.tiles_to_update)]<BR>
+			[air_histogram()]
+			"}
 
 		usr.Browse(output,"window=airreport")
 
 	air_histogram()
 
-		var/html = "<pre>"
+		var/list/html = list("<pre>")
 		var/list/ghistogram = new
 		var/list/ughistogram = new
 		var/p
 
-		for(var/datum/air_group/g in air_master.air_groups)
+		for(var/datum/air_group/g as anything in air_master.air_groups)
 			if (g.group_processing)
-				for(var/turf/simulated/member in g.members)
+				for(var/turf/simulated/member as anything in g.members)
 					p = round(max(-1, MIXTURE_PRESSURE(member.air)), 10)/10 + 1
-					if (p > ghistogram.len)
+					if (p > length(ghistogram))
 						ghistogram.len = p
 					ghistogram[p]++
 			else
-				for(var/turf/simulated/member in g.members)
+				for(var/turf/simulated/member as anything in g.members)
 					p = round(max(-1, MIXTURE_PRESSURE(member.air)), 10)/10 + 1
-					if (p > ughistogram.len)
+					if (p > length(ughistogram))
 						ughistogram.len = p
 					ughistogram[p]++
 
 		html += "Group processing tiles pressure histogram data:\n"
-		for(var/i=1,i<=ghistogram.len,i++)
+		for(var/i in 1 to length(ghistogram))
 			html += "[10*(i-1)]\t\t[ghistogram[i]]\n"
 		html += "Non-group processing tiles pressure histogram data:\n"
-		for(var/i=1,i<=ughistogram.len,i++)
+		for(var/i in 1 to length(ughistogram))
 			html += "[10*(i-1)]\t\t[ughistogram[i]]\n"
-		return html
+		return html.Join()
 
 	air_status(turf/target as turf)
 		SET_ADMIN_CAT(ADMIN_CAT_UNUSED)
