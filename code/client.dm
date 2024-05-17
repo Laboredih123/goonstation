@@ -15,7 +15,6 @@
 	var/stealth_hide_fakekey = 0
 	var/alt_key = 0
 	var/flourish = 0
-	var/pray_l = 0
 	var/fakekey = null
 	var/observing = 0
 	var/warned = 0
@@ -42,6 +41,13 @@
 
 	var/djmode = 0
 	var/non_admin_dj = 0
+
+	/// Context permissions of this client
+	var/ctx_flags = null
+	/// Last value of ping sent by the chat panel
+	var/last_ping
+
+	var/datum/tgui_panel/tgui_panel
 
 	var/last_soundgroup = null
 
@@ -89,7 +95,6 @@
 	// comment out the line below when debugging locally to enable the options & messages menu
 	control_freak = 1
 
-	var/datum/chatOutput/chatOutput = null
 	var/resourcesLoaded = 0 //Has this client done the mass resource downloading yet?
 	var/datum/tooltipHolder/tooltipHolder = null
 
@@ -192,6 +197,7 @@
 
 /client/New()
 	Z_LOG_DEBUG("Client/New", "New connection from [src.ckey] from [src.address] via [src.connection]")
+	logTheThing(LOG_ADMIN, null, "Login attempt: [src.ckey] from [src.address] via [src.connection], compid [src.computer_id]")
 	logTheThing(LOG_DIARY, null, "Login attempt: [src.ckey] from [src.address] via [src.connection], compid [src.computer_id]", "access")
 
 	login_success = 0
@@ -222,10 +228,8 @@
 	if (!preferences)
 		preferences = new
 
-
-	//Assign custom interface datums
-	src.chatOutput = new /datum/chatOutput(src)
-	//src.chui = new /datum/chui(src)
+	// Create new tgui panel
+	src.tgui_panel = new(src)
 
 	if (!isnewplayer(src.mob))
 		src.loadResources()
@@ -235,6 +239,11 @@
 	Z_LOG_DEBUG("Client/New", "[src.ckey] - Running parent new")
 
 	..()
+
+	// Init tgui panel
+	src.tgui_panel.initialize()
+	SPAWN(3) //see no evil
+		src.nuke_chat()
 
 	if (join_motd)
 		boutput(src, "<div class='motd'>[join_motd]</div>")
@@ -303,6 +312,7 @@
 
 	if (checkBan)
 		Z_LOG_DEBUG("Client/New", "[src.ckey] - Banned!!")
+		logTheThing(LOG_ADMIN, null, "Failed Login: [constructTarget(src,"diary")] - Banned")
 		logTheThing(LOG_DIARY, null, "Failed Login: [constructTarget(src,"diary")] - Banned", "access")
 		if (announce_banlogin) message_admins(SPAN_INTERNAL("Failed Login: <a href='?src=%admin_ref%;action=notes;target=[src.ckey]'>[src]</a> - Banned (IP: [src.address], ID: [src.computer_id])"))
 		var/banstring = {"
@@ -332,11 +342,6 @@
 		return
 
 	Z_LOG_DEBUG("Client/New", "[src.ckey] - Ban check complete")
-
-	if (!src.chatOutput.loaded)
-		//Load custom chat
-		SPAWN(-1)
-			src.chatOutput.start()
 
 	// Record a login, sets player.id, which is used by almost every future API call for a player
 	// So we need to do this early, and outside of a spawn
@@ -435,13 +440,13 @@
 
 #ifdef LIVE_SERVER
 		// check client version validity
-		if (src.byond_version < 514 || src.byond_build < 1584)
+		if (src.byond_version < 515 || src.byond_build < 1633)
 			logTheThing(LOG_ADMIN, src, "connected with outdated client version [byond_version].[byond_build]. Request to update client sent to user.")
-			if (tgui_alert(src, "Please update BYOND to the latest version! Would you like to be taken to the download page now? Make sure to download the stable release.", "ALERT", list("Yes", "No"), 30 SECONDS) == "Yes")
+			if (tgui_alert(src, "Consider updating BYOND to the latest version! Would you like to be taken to the download page now? Make sure to download the stable release.", "ALERT", list("Yes", "No"), 30 SECONDS) == "Yes")
 				src << link("https://www.byond.com/download/")
-	#if (BUILD_TIME_UNIX < 1682899200) //cut off may 1st, 2023
+	#if (BUILD_TIME_UNIX < 1719817200) //cut off sept 1st, 2024 (for forced 515)
 			else
-				tgui_alert(src, "Version enforcement will be enabled May 1st, 2023. To avoid interruption to gameplay please be sure to update as soon as you can.", "ALERT", timeout = 30 SECONDS)
+				tgui_alert(src, "Version enforcement will be enabled September 1st, 2024. To avoid interruption to gameplay please be sure to update as soon as you can.", "ALERT", timeout = 30 SECONDS)
 	#else
 			// kick out of date clients
 			tgui_alert(src, "Version enforcement is enabled, you will now be forcibly booted. Please be sure to update your client before attempting to rejoin", "ALERT", timeout = 30 SECONDS)
@@ -525,6 +530,7 @@
 		plane_parent.color = list(255, 0, 0, 0, 255, 0, 0, 0, 255, -spooky_light_mode, -spooky_light_mode - 1, -spooky_light_mode - 2)
 		src.set_color(normalize_color_to_matrix("#AAAAAA"))
 
+	logTheThing(LOG_ADMIN, null, "Login: [constructTarget(src.mob,"diary")] from [src.address]")
 	logTheThing(LOG_DIARY, null, "Login: [constructTarget(src.mob,"diary")] from [src.address]", "access")
 
 	if (config.log_access)
@@ -532,7 +538,7 @@
 
 	if(src.holder)
 		// when an admin logs in check all clients again per Mordent's request
-		for(var/client/C)
+		for(var/client/C as anything in global.clients)
 			C.ip_cid_conflict_check(log_it=FALSE, alert_them=FALSE, only_if_first=TRUE, message_who=src)
 	winset(src, null, "rpanewindow.left=infowindow")
 	Z_LOG_DEBUG("Client/New", "[src.ckey] - new() finished.")
@@ -567,8 +573,6 @@
 
 	//End widescreen stuff
 
-	src.sync_dark_mode()
-
 	//blendmode stuff
 
 	var/distort_checked = winget( src, "menu.zoom_distort", "is-checked" ) == "true"
@@ -582,8 +586,6 @@
 
 	if(winget(src, "menu.hide_menu", "is-checked") == "true")
 		winset(src, null, "mainwindow.menu='';menub.is-visible = true")
-
-	// cursed darkmode end
 
 	//tg controls end
 
@@ -958,6 +960,9 @@ var/global/curr_day = null
 	if(tgui_Topic(href_list))
 		return
 
+	if(href_list["reload_tguipanel"])
+		nuke_chat()
+
 	var/mob/M
 	if (href_list["target"])
 		var/targetCkey = href_list["target"]
@@ -998,7 +1003,7 @@ var/global/curr_day = null
 					if (C.player_mode && !C.player_mode_ahelp)
 						continue
 					else
-						boutput(K, SPAN_AHELP("<b>PM: [src_keyname][(src.mob.real_name ? "/"+src.mob.real_name : "")] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[src.ckey]' class='popt'><i class='icon-info-sign'></i></A> <i class='icon-arrow-right'></i> [target] (Discord)</b>: [t]"))
+						boutput(K, SPAN_AHELP("<b>PM: [src_keyname][(src.mob.real_name ? "/"+src.mob.real_name : "")] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[src.ckey]' class='popt'><i class='fas fa-circle-info'></i></A> <i class='fas fa-arrow-right'></i> [target] (Discord)</b>: [t]"))
 
 		if ("priv_msg")
 			do_admin_pm(href_list["target"], usr, previous_msgid=href_list["msgid"]) // See \admin\adminhelp.dm, changed to work off of ckeys instead of mobs.
@@ -1030,14 +1035,14 @@ var/global/curr_day = null
 			var/src_keyname = key_name(src.mob, 0, 0, 1, additional_url_data="&msgid=[unique_message_id]")
 
 			//we don't use message_admins here because the sender/receiver might get it too
-			var/mentormsg = SPAN_MHELP("<b>MENTOR PM: [src_keyname] <i class='icon-arrow-right'></i> [target] (Discord)</b>: [SPAN_MESSAGE("[t]")]")
+			var/mentormsg = SPAN_MHELP("<b>MENTOR PM: [src_keyname] <i class='fas fa-arrow-right'></i> [target] (Discord)</b>: [SPAN_MESSAGE("[t]")]")
 			for (var/client/C)
 				if (C.can_see_mentor_pms() && C.key != usr.key)
 					if (C.holder)
 						if (C.player_mode && !C.player_mode_mhelp)
 							continue
 						else //Message admins
-							boutput(C, SPAN_MHELP("<b>MENTOR PM: [src_keyname][(src.mob.real_name ? "/"+src.mob.real_name : "")] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[src.ckey]' class='popt'><i class='icon-info-sign'></i></A> <i class='icon-arrow-right'></i> [target] (Discord)</b>: [SPAN_MESSAGE("[t]")]"))
+							boutput(C, SPAN_MHELP("<b>MENTOR PM: [src_keyname][(src.mob.real_name ? "/"+src.mob.real_name : "")] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[src.ckey]' class='popt'><i class='fas fa-circle-info'></i></A> <i class='fas fa-arrow-right'></i> [target] (Discord)</b>: [SPAN_MESSAGE("[t]")]"))
 					else //Message mentors
 						boutput(C, mentormsg)
 
@@ -1088,14 +1093,14 @@ var/global/curr_day = null
 				logTheThing(LOG_MHELP, src.mob, "Mentor PM'd [constructTarget(M,"mentor_help")]: [t]")
 				logTheThing(LOG_DIARY, src.mob, "Mentor PM'd [constructTarget(M,"diary")]: [t]", "admin")
 
-				var/mentormsg = SPAN_MHELP("<b>MENTOR PM: [src_keyname] <i class='icon-arrow-right'></i> [target_keyname]</b>: [SPAN_MESSAGE("[t]")]")
+				var/mentormsg = SPAN_MHELP("<b>MENTOR PM: [src_keyname] <i class='fas fa-arrow-right'></i> [target_keyname]</b>: [SPAN_MESSAGE("[t]")]")
 				for (var/client/C)
 					if (C.can_see_mentor_pms() && C.key != usr.key && (M && C.key != M.key))
 						if (C.holder)
 							if (C.player_mode && !C.player_mode_mhelp)
 								continue
 							else
-								boutput(C, SPAN_MHELP("<b>MENTOR PM: [src_keyname][(src.mob.real_name ? "/"+src.mob.real_name : "")] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[src.ckey]' class='popt'><i class='icon-info-sign'></i></A> <i class='icon-arrow-right'></i> [target_keyname]/[M.real_name] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [SPAN_MESSAGE("[t]")]"))
+								boutput(C, SPAN_MHELP("<b>MENTOR PM: [src_keyname][(src.mob.real_name ? "/"+src.mob.real_name : "")] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[src.ckey]' class='popt'><i class='fas fa-circle-info'></i></A> <i class='fas fa-arrow-right'></i> [target_keyname]/[M.real_name] <A HREF='?src=\ref[C.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='fas fa-circle-info'></i></A></b>: [SPAN_MESSAGE("[t]")]"))
 						else
 							boutput(C, mentormsg)
 
@@ -1493,76 +1498,3 @@ if([removeOnFinish])
 /world/proc/showCinematic(var/name, var/removeOnFinish = 0)
 	for(var/client/C)
 		C.showCinematic(name, removeOnFinish)
-
-#define SKIN_TEMPLATE "\
-rpane.background-color=[_SKIN_BG];\
-rpane.text-color=[_SKIN_TEXT];\
-rpanewindow.background-color=[_SKIN_BG];\
-rpanewindow.text-color=[_SKIN_TEXT];\
-textb.background-color=[_SKIN_BG];\
-textb.text-color=[_SKIN_TEXT];\
-browseb.background-color=[_SKIN_BG];\
-browseb.text-color=[_SKIN_TEXT];\
-infob.background-color=[_SKIN_BG];\
-infob.text-color=[_SKIN_TEXT];\
-menub.background-color=[_SKIN_BG];\
-menub.text-color=[_SKIN_TEXT];\
-bugreportb.background-color=[_SKIN_BG];\
-bugreportb.text-color=[_SKIN_TEXT];\
-githubb.background-color=[_SKIN_BG];\
-githubb.text-color=[_SKIN_TEXT];\
-wikib.background-color=[_SKIN_BG];\
-wikib.text-color=[_SKIN_TEXT];\
-mapb.background-color=[_SKIN_BG];\
-mapb.text-color=[_SKIN_TEXT];\
-forumb.background-color=[_SKIN_BG];\
-forumb.text-color=[_SKIN_TEXT];\
-infowindow.background-color=[_SKIN_BG];\
-infowindow.text-color=[_SKIN_TEXT];\
-info.background-color=[_SKIN_INFO_BG];\
-info.text-color=[_SKIN_TEXT];\
-mainwindow.background-color=[_SKIN_BG];\
-mainwindow.text-color=[_SKIN_TEXT];\
-mainvsplit.background-color=[_SKIN_BG];\
-falsepadding.background-color=[_SKIN_COMMAND_BG];\
-input.background-color=[_SKIN_COMMAND_BG];\
-input.text-color=[_SKIN_TEXT];\
-saybutton.background-color=[_SKIN_COMMAND_BG];\
-saybutton.text-color=[_SKIN_TEXT];\
-info.tab-background-color=[_SKIN_INFO_TAB_BG];\
-info.tab-text-color=[_SKIN_TEXT];\
-mainwindow.hovertooltip.background-color=[_SKIN_BG];\
-mainwindow.hovertooltip.text-color=[_SKIN_TEXT];\
-"
-
-/client/verb/sync_dark_mode()
-	set hidden=1
-	if(winget(src, "menu.dark_mode", "is-checked") == "true")
-#define _SKIN_BG "#28292c"
-#define _SKIN_INFO_TAB_BG "#28292c"
-#define _SKIN_INFO_BG "#28292c"
-#define _SKIN_TEXT "#d3d4d5"
-#define _SKIN_COMMAND_BG "#28294c"
-		winset(src, null, SKIN_TEMPLATE)
-		chatOutput.changeTheme("theme-dark")
-		src.darkmode = TRUE
-#undef _SKIN_BG
-#undef _SKIN_INFO_TAB_BG
-#undef _SKIN_INFO_BG
-#undef _SKIN_TEXT
-#undef _SKIN_COMMAND_BG
-#define _SKIN_BG "none"
-#define _SKIN_INFO_TAB_BG "#f0f0f0"
-#define _SKIN_INFO_BG "#ffffff"
-#define _SKIN_TEXT "none"
-#define _SKIN_COMMAND_BG "#d3b5b5"
-	else
-		winset(src, null, SKIN_TEMPLATE)
-		chatOutput.changeTheme("theme-default")
-		src.darkmode = FALSE
-#undef _SKIN_BG
-#undef _SKIN_INFO_TAB_BG
-#undef _SKIN_INFO_BG
-#undef _SKIN_TEXT
-#undef _SKIN_COMMAND_BG
-#undef SKIN_TEMPLATE
