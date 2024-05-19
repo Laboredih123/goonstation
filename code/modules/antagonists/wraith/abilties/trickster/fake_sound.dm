@@ -37,15 +37,15 @@
 				sound_choice = "sound/weapons/Gunshot.ogg"
 			if("AK477")
 				sound_choice = "sound/weapons/ak47shot.ogg"
-				playsound(target, sound_choice, 70, 0)
+				playsound(target, sound_choice, 70, FALSE)
 				sleep(2 DECI SECONDS)
-				playsound(target, sound_choice, 70, 0)
+				playsound(target, sound_choice, 70, FALSE)
 				sleep(2 DECI SECONDS)
-				playsound(target, sound_choice, 70, 0)
+				playsound(target, sound_choice, 70, FALSE)
 				boutput(holder.owner, "You use your powers to create a sound.")
 				return 0
 			if("Csaber unsheathe")
-				sound_choice = "sound/weapons/male_cswordstart.ogg"
+				sound_choice = "sound/weapons/male_cswordturnon.ogg"
 			if("Csaber attack")
 				sound_choice = "sound/weapons/male_cswordattack[rand(1, 2)].ogg"
 			if("Shotgun")
@@ -71,6 +71,6 @@
 			if("Gibs")
 				sound_choice = "sound/impact_sounds/Flesh_Break_2.ogg"
 
-		playsound(target, sound_choice, 70, 0)
+		playsound(target, sound_choice, 70, FALSE)
 		boutput(holder.owner, "You use your powers to create a sound.")
 		return 0

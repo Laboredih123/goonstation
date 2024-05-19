@@ -62,6 +62,8 @@ datum
 		var/threshold = null
 		/// Has this chem been in the person's bloodstream for at least one cycle?
 		var/initial_metabolized = FALSE
+		///Is it banned from various fluid types, see _std/defines/reagents.dm
+		var/fluid_flags = 0
 
 		New()
 			..()
@@ -158,32 +160,49 @@ datum
 						if(M.reagents)
 							M.reagents.add_reagent(self.id,volume*touch_modifier,self.data)
 							did_not_react = 0
-					if (ishuman(M) && hygiene_value && method == TOUCH)
+					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
+						if (H.mutantrace?.aquaphobic && istype(src, /datum/reagent/water))
+							animate_shake(H)
+							if (prob(50))
+								H.emote("scream")
+							else
+								boutput(H, "<span class='alert'><b>The water! It[pick(" burns"," hurts","'s so terrible","'s ruining your skin"," is your true mortal enemy!")]!</b></span>", group = "aquaphobia")
+							if (!ON_COOLDOWN(H, "bingus_damage", 3 SECONDS))
+								random_burn_damage(H, clamp(0.3 * volume, 4, 20))
 						if (H.sims)
 							if ((hygiene_value > 0 && !(H.wear_suit || H.w_uniform)) || hygiene_value < 0)
-								H.sims.affectMotive("Hygiene", volume * hygiene_value)
+								var/hygiene_restore = hygiene_value
+								if (H.mutantrace.aquaphobic)
+									if (istype(src, /datum/reagent/oil))
+										hygiene_restore = 3
+									else if (istype(src, /datum/reagent/water))
+										hygiene_restore = -3
+								H.sims.affectMotive("Hygiene", volume * hygiene_restore)
 
 				if(INGEST)
 					var/datum/ailment_data/addiction/AD = M.addicted_to_reagent(src)
 					if (AD)
-						boutput(M, "<span class='notice'><b>You feel slightly better, but for how long?</b></span>")
 						M.make_jittery(-5)
 						AD.last_reagent_dose = world.timeofday
-						AD.stage = 1
+						if (AD.stage != 1)
+							boutput(M, SPAN_NOTICE("<b>You feel slightly better, but for how long?</b>"))
+							AD.stage = 1
 
-			M.material?.triggerChem(M, src, volume)
+			M.material_trigger_on_chems(src, volume)
 			for(var/atom/A in M)
-				if(A.material) A.material.triggerChem(A, src, volume)
+				A.material_trigger_on_chems(src, volume)
+			for(var/atom/equipped_stuff in M.equipped())
+				equipped_stuff.material_trigger_on_chems(src, volume)
 			return did_not_react
 
 		proc/reaction_obj(var/obj/O, var/volume) //By default we transfer a small part of the reagent to the object
 								//if it can hold reagents. nope!
-			O.material?.triggerChem(O, src, volume)
+			O.material_trigger_on_chems(src, volume)
 			return 1
 
 		proc/reaction_turf(var/turf/T, var/volume)
-			T.material?.triggerChem(T, src, volume)
+			T.material_trigger_on_chems(src, volume)
 			return 1 // returns 1 to spawn fluid. Checked in 'reaction()' proc of Chemistry-Holder.dm
 
 
@@ -195,7 +214,7 @@ datum
 				var/mob/living/carbon/human/H = M
 				if (H.traitHolder.hasTrait("slowmetabolism")) //fuck
 					deplRate /= 2
-				if (H.organHolder)
+				if (H.organHolder && !ischangeling(H))
 					if (!H.organHolder.liver || H.organHolder.liver.broken)	//if no liver or liver is dead, deplete slower
 						deplRate /= 2
 					if (H.organHolder.get_working_kidney_amt() == 0)	//same with kidneys
@@ -218,7 +237,7 @@ datum
 				var/mob/living/carbon/human/H = M
 				if (H.traitHolder.hasTrait("slowmetabolism"))
 					deplRate /= 2
-				if (H.organHolder)
+				if (H.organHolder && !ischangeling(H))
 					if (!H.organHolder.liver || H.organHolder.liver.broken)	//if no liver or liver is dead, deplete slower
 						deplRate /= 2
 					if (H.organHolder.get_working_kidney_amt() == 0)	//same with kidneys
@@ -310,7 +329,7 @@ datum
 			var/current_tally = holder.addiction_tally[src.id]
 			//DEBUG_MESSAGE("current_tally [current_tally], min [addiction_min]")
 			if (addiction_min < current_tally && isliving(M) && prob(addProb) && prob(addiction_prob2))
-				boutput(M, "<span class='alert'><b>You suddenly feel invigorated and guilty...</b></span>")
+				boutput(M, SPAN_ALERT("<b>You suddenly feel invigorated and guilty...</b>"))
 				AD = new
 				AD.associated_reagent = src.name
 				AD.last_reagent_dose = world.timeofday
@@ -353,8 +372,10 @@ datum
 				if (recipe.hidden && !allow_secret)
 					. += "<br>&emsp;<b>\[RECIPE REDACTED\]</br>"
 				else
-					if (recipe.required_temperature != -1)
-						. += "<br>&emsp;Required temperature: [T0C + recipe.required_temperature]°C"
+					if (recipe.max_temperature != INFINITY)
+						. += "<br>&emsp;Maximum reaction temperature: [T0C + recipe.max_temperature]°C"
+					if (recipe.min_temperature != -INFINITY)
+						. += "<br>&emsp;Minimum reaction temperature: [T0C + recipe.min_temperature]°C"
 					for (var/id in recipe.required_reagents)
 						. += "<br>&emsp;[reagents_cache[id]] - [recipe.required_reagents[id]] unit[recipe.required_reagents[id] > 1 ? "s" : ""]" // English name - Required amount
 				. += "<br><br>"
@@ -378,7 +399,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				if(volume >= 5)
 					if(!locate(/turf/unsimulated/floor/void) in T)
-						playsound(T, 'sound/impact_sounds/Slimy_Splat_1.ogg', 50, 1)
+						playsound(T, 'sound/impact_sounds/Slimy_Splat_1.ogg', 50, TRUE)
 						new /turf/unsimulated/floor/void(T)
 
 		//	When finished, exposure to or consumption of this drug should basically duplicate the

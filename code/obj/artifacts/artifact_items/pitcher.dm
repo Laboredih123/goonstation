@@ -116,8 +116,10 @@
 			reagents.add_reagent("bee", 10)
 		if(prob(15))
 			reagents.add_reagent("port", 30)
+		#ifdef SECRETS_ENABLED
 		if(prob(7))
 			reagents.add_reagent("bombini", 15)
+		#endif
 		if(prob(3))
 			reagents.add_reagent("medusa", 10)
 
@@ -134,10 +136,10 @@
 		if (src.Artifact_attackby(W,user))
 			..()
 
-	attack(mob/M, mob/user, def_zone)
+	attack(mob/target, mob/user, def_zone, is_special = FALSE, params = null)
 		. = ..()
 		if(.) // successfully made person drink
-			src.ArtifactFaultUsed(M)
+			src.ArtifactFaultUsed(target)
 
 	examine()
 		return list(desc)

@@ -103,9 +103,9 @@
 		. = ..()
 
 		if(weather)
-			src.UpdateOverlays(weather, "weather")
+			src.AddOverlays(weather, "weather")
 		if(ambient)
-			src.UpdateOverlays(ambient, "ambient")
+			src.AddOverlays(ambient, "ambient")
 
 		if(air) // force reverting air to floor turf as this is post replace
 #define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
@@ -124,11 +124,4 @@
 	temperature = T20C
 	fullbright = 0
 
-	update_icon()
-		var/image/ambient_light = src.GetOverlayImage("ambient")
-		var/image/weather = src.GetOverlayImage("weather")
-		..()
-		if(length(overlays) != length(overlay_refs)) //hack until #5872 is resolved
-			overlay_refs.len = 0
-		src.UpdateOverlays(ambient_light, "ambient")
-		src.UpdateOverlays(weather, "weather")
+#undef BIOME_RANDOM_SQUARE_DRIFT

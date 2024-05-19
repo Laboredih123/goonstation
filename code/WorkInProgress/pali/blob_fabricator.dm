@@ -68,6 +68,9 @@
 	supplemental_desc = "This one is for producing blobs. What?"
 	icon_state = "fab-hangar"
 	icon_base = "hangar"
+	default_material = "blob"
+	uses_default_material_appearance = TRUE
+	mat_changename = FALSE
 	available = list(
 		/datum/manufacture/mechanics/blob/base,
 		/datum/manufacture/mechanics/blob/wall,
@@ -85,10 +88,6 @@
 	hidden = list(
 		/datum/manufacture/mechanics/blob_overmind
 	)
-
-	New()
-		..()
-		src.setMaterial(getMaterial("blob"), setname=FALSE)
 
 /obj/machinery/manufacturer/blob/filled
 	free_resource_amt = 10

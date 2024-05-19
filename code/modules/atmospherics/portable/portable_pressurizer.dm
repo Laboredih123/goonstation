@@ -146,7 +146,7 @@ TYPEINFO(/obj/machinery/portable_atmospherics/pressurizer)
 			material_progress = 0
 			if(length(src.contents))
 				target_material = pick(src.contents)
-				if((target_material.amount > 1) && (target_material.material?.name in src.whitelist))
+				if((target_material.amount > 1) && (target_material.material?.getName() in src.whitelist))
 					var/atom/movable/splitStack = target_material.split_stack(target_material.amount-1)
 					splitStack.set_loc(src)
 				target_material.set_loc(null)
@@ -162,8 +162,8 @@ TYPEINFO(/obj/machinery/portable_atmospherics/pressurizer)
 			var/progress = min(src.process_rate * 5,100-material_progress)
 			var/datum/gas_mixture/GM = new /datum/gas_mixture
 			GM.temperature = T20C
-			if(target_material.material?.name in src.whitelist)
-				switch(target_material.material.name)
+			if(target_material.material?.getName() in src.whitelist)
+				switch(target_material.material.getName())
 					if("molitz")
 						GM.oxygen += 1500 * progress / 100
 					if("viscerite")
@@ -189,7 +189,7 @@ TYPEINFO(/obj/machinery/portable_atmospherics/pressurizer)
 		if (!src.emagged)
 			if (user)
 				user.show_text("You short out the material processor on [src].", "red")
-			src.audible_message("<span class='combat'><B>[src] buzzes oddly!</B></span>")
+			src.audible_message(SPAN_COMBAT("<B>[src] buzzes oddly!</B>"))
 			playsound(src.loc, "sparks", 50, 1, -1)
 			whitelist += blacklist
 			src.emagged = TRUE
@@ -214,32 +214,31 @@ TYPEINFO(/obj/machinery/portable_atmospherics/pressurizer)
 			..()
 			return
 		if(istype(I,/obj/item/electronics/scanner) || istype(I,/obj/item/deconstructor) || (istype(I,/obj/item/device/pda2)))
-			user.visible_message("<span class='alert'><B>[user] hits [src] with [I]!</B></span>")
+			user.visible_message(SPAN_ALERT("<B>[user] hits [src] with [I]!</B>"))
 			return
 		if (istype(I,/obj/item/satchel/) && I.contents.len)
 			var/obj/item/satchel/S = I
 			for(var/obj/item/O in S.contents) O.set_loc(src)
 			S.UpdateIcon()
+			S.tooltip_rebuild = 1
 			user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
 			return
-		if (istype(I,/obj/item/storage/) && I.contents.len)
-			var/obj/item/storage/S = I
-			for(var/obj/item/O in S)
-				O.set_loc(src)
-				S.hud.remove_object(O)
-			user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
+		if (length(I.storage?.get_contents()))
+			for(var/obj/item/O in I.storage.get_contents())
+				I.storage.transfer_stored_item(O, src, user = user)
+				user.visible_message("<b>[user.name]</b> dumps out [I] into [src].")
 			return
 
 		var/obj/item/grab/G = I
 		if(istype(G))	// handle grabbed mob
 			if(ismob(G.affecting))
-				boutput(user, "<span class='alert'>That won't fit!</span>")
+				boutput(user, SPAN_ALERT("That won't fit!"))
 				return
 		else
 			if(!user.drop_item())
 				return
 			else if(I.w_class > W_CLASS_NORMAL)
-				boutput(user, "<span class='alert'>That won't fit!</span>")
+				boutput(user, SPAN_ALERT("That won't fit!"))
 				return
 			I.set_loc(src)
 			user.visible_message("[user.name] places \the [I] into \the [src].",\

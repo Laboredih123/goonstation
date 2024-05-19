@@ -7,6 +7,10 @@
 	var/possession_points = 0
 	/// number of souls required to evolve into a specialized wraith subclass
 	var/absorbs_to_evolve = 3
+#ifdef BONUS_POINTS
+	corpsecount = 9999
+	possession_points = 9999
+#endif
 	onAbilityStat()
 		..()
 		.= list()
@@ -59,15 +63,16 @@
 	cast(atom/target)
 		if (!holder || !holder.owner)
 			return 1
+		. = ..()
 		if (ispoltergeist(holder.owner))
 			var/mob/living/intangible/wraith/poltergeist/P = holder.owner
 			if (src.min_req_dist <= P.power_well_dist)
-				boutput(holder.owner, "<span class='alert'>You must be within [min_req_dist] tiles from a well of power to perform this task.</span>")
+				boutput(holder.owner, SPAN_ALERT("You must be within [min_req_dist] tiles from a well of power to perform this task."))
 				return 1
 		if (istype(holder.owner, /mob/living/intangible/wraith))
 			var/mob/living/intangible/wraith/W = holder.owner
 			if (W.forced_manifest == TRUE)
-				boutput(W, "<span class='alert'>You have been forced to manifest! You can't use any abilities for now!</span>")
+				boutput(W, SPAN_ALERT("You have been forced to manifest! You can't use any abilities for now!"))
 				return 1
 		return 0
 
@@ -105,13 +110,13 @@
 			return 1
 		if (holder.help_mode)
 			holder.help_mode = 0
-			boutput(holder.owner, "<span class='notice'><strong>Help Mode has been deactivated.</strong></span>")
+			boutput(holder.owner, SPAN_NOTICE("<strong>Help Mode has been deactivated.</strong>"))
 		else
 			holder.help_mode = 1
-			boutput(holder.owner, "<span class='notice'><strong>Help Mode has been activated. To disable it, click on this button again.</strong></span>")
-			boutput(holder.owner, "<span class='notice'>Hold down Shift, Ctrl or Alt while clicking the button to set it to that key.</span>")
-			boutput(holder.owner, "<span class='notice'>You will then be able to use it freely by holding that button and left-clicking a tile.</span>")
-			boutput(holder.owner, "<span class='notice'>Alternatively, you can click with your middle mouse button to use the ability on your current tile.</span>")
+			boutput(holder.owner, SPAN_NOTICE("<strong>Help Mode has been activated. To disable it, click on this button again.</strong>"))
+			boutput(holder.owner, SPAN_NOTICE("Hold down Shift, Ctrl or Alt while clicking the button to set it to that key."))
+			boutput(holder.owner, SPAN_NOTICE("You will then be able to use it freely by holding that button and left-clicking a tile."))
+			boutput(holder.owner, SPAN_NOTICE("Alternatively, you can click with your middle mouse button to use the ability on your current tile."))
 		src.object.icon_state = "help[holder.help_mode]"
 		holder.updateButtons()
 
@@ -122,6 +127,8 @@
 	targeted = 0
 	cooldown = 0
 	pointCost = 0
+	do_logs = FALSE
+	interrupt_action_bars = FALSE
 
 	cast(mob/target)
 		if (!holder)
@@ -132,19 +139,20 @@
 		if (!W)
 			return TRUE
 
+		. = ..()
 		//hearghosts is checked in deadsay.dm and chatprocs.dm
 		W.hearghosts = !W.hearghosts
 		if (W.hearghosts)
 			src.icon_state = "hide_chat"
-			boutput(W, "<span class='notice'>Now listening to the dead again.</span>")
+			boutput(W, SPAN_NOTICE("Now listening to the dead again."))
 		else
 			src.icon_state = "show_chat"
-			boutput(W, "<span class='notice'>No longer listening to the dead.</span>")
+			boutput(W, SPAN_NOTICE("No longer listening to the dead."))
 		return FALSE
 
 /obj/spookMarker
 	name = "Spooky Marker"
-	desc = "What is this? You feel like you shouldn't be able to see it, but it has an ominous and slightly mischevious aura."
+	desc = "What is this? You feel like you shouldn't be able to see it, but it has an ominous and slightly mischievous aura."
 	icon = 'icons/effects/wraitheffects.dmi'
 	icon_state = "acursed"
 	// invisibility = INVIS_ALWAYS

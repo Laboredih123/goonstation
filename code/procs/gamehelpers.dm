@@ -85,17 +85,17 @@ var/list/stinkThingies = list("ass","armpit","excretions","leftovers","administr
 		return TRUE
 	if(BOUNDS_DIST(source, user) == 0 || (IN_RANGE(source, user, 1))) // IN_RANGE is for general stuff, bounds_dist is for large sprites, presumably
 		return TRUE
-	else if (source in bible_contents && locate(/obj/item/storage/bible) in range(1, user)) // whoever added the global bibles, fuck you
+	else if ((source in bible_contents) && locate(/obj/item/bible) in range(1, user)) // whoever added the global bibles, fuck you
 		return TRUE
 	else
 		if (iscarbon(user))
 			var/mob/living/carbon/C = user
-			if (C.bioHolder.HasEffect("telekinesis") && GET_DIST(source, user) <= 7) //You can only reach stuff within your screen.
+			if (C.bioHolder?.HasEffect("telekinesis") && GET_DIST(source, user) <= 7) //You can only reach stuff within your screen.
 				var/X = source:x
 				var/Y = source:y
 				var/Z = source:z
 				if (isrestrictedz(Z) || isrestrictedz(user:z))
-					boutput(user, "<span class='alert'>Your telekinetic powers don't seem to work here.</span>")
+					boutput(user, SPAN_ALERT("Your telekinetic powers don't seem to work here."))
 					return 0
 				SPAWN(0)
 					//I really shouldnt put this here but i dont have a better idea
@@ -125,27 +125,49 @@ var/list/stinkThingies = list("ass","armpit","excretions","leftovers","administr
 				return TRUE
 
 
-/proc/test_click(turf/from, turf/target)
+/proc/test_click(turf/from, turf/target, actually_test_entering=FALSE)
 	var/obj/item/dummy/click_dummy = get_singleton(/obj/item/dummy)
 	click_dummy.set_loc(from)
 	for (var/atom/A in from)
-		if (A.flags & ON_BORDER)
+		if ((A.flags & ON_BORDER) || actually_test_entering)
 			if (!A.CheckExit(click_dummy, target))
 				click_dummy.set_loc(null)
 				return FALSE
 	for (var/atom/A in target)
-		if ((A.flags & ON_BORDER))
+		if ((A.flags & ON_BORDER) || actually_test_entering)
 			if (!A.Cross(click_dummy))
 				click_dummy.set_loc(null)
 				return FALSE
+	if(actually_test_entering && !target.Enter(click_dummy) && !from.Exit(click_dummy))
+		click_dummy.set_loc(null)
+		return FALSE
 	click_dummy.set_loc(null)
 	return TRUE
+
+proc/reachable_in_n_steps(turf/from, turf/target, n_steps, use_gas_cross=FALSE)
+	if(!isturf(from) || !isturf(target))
+		CRASH("invalid argument types [from] or [target]")
+	if(!IN_RANGE(from, target, n_steps))
+		return FALSE
+	var/turf/T = from
+	while(n_steps-- && T != target)
+		var/turf/next_T = get_step_towards(T, target)
+		if(use_gas_cross)
+			if(!T.gas_cross(next_T))
+				return FALSE
+		else
+			if(!test_click(T, next_T, actually_test_entering=TRUE))
+				return FALSE
+		if(isnull(T))
+			return FALSE
+		T = next_T
+	return T == target
 
 /proc/can_reach(mob/user, atom/target)
 	if(user.client?.holder?.ghost_interaction)
 		return TRUE
 	if (target in bible_contents)
-		target = locate(/obj/item/storage/bible) in range(1, user) // fuck bibles
+		target = locate(/obj/item/bible) in range(1, user) // fuck bibles
 		if (!target)
 			return 0
 	var/turf/UT = get_turf(user)
@@ -196,7 +218,7 @@ var/list/stinkThingies = list("ass","armpit","excretions","leftovers","administr
 	else if (isobj(target) || ismob(target))
 		var/atom/L = target.loc
 		while (L && !isturf(L))
-			if (L == user)
+			if (L == user || L == user.loc)
 				return 1
 			L = L.loc
 	return 0
@@ -267,11 +289,11 @@ var/list/stinkThingies = list("ass","armpit","excretions","leftovers","administr
 	if (!H || !istext(message))
 		return
 
-	if (H.bioHolder && !H.speech_void)
+	if (H.bioHolder)
 		var/datum/bioEffect/speech/S = null
 		for(var/X in H.bioHolder.effects)
 			S = H.bioHolder.GetEffect(X)
-			if (istype(S,/datum/bioEffect/speech/))
+			if (istype(S,/datum/bioEffect/speech/) && !(H.speech_void && !istype(S,/datum/bioEffect/speech/void)))
 				message = S.OnSpeak(message)
 				messageEffects += S
 
@@ -324,7 +346,7 @@ var/list/stinkThingies = list("ass","armpit","excretions","leftovers","administr
 			message = say_gurgle(message)
 			messageEffects += "Gurgle"
 
-	if(H.mutantrace && !isdead(H))
+	if(!isdead(H))
 		message = H.mutantrace.say_filter(message)
 		messageEffects += "[H.mutantrace] say_filter()"
 
@@ -606,7 +628,7 @@ var/list/stinkThingies = list("ass","armpit","excretions","leftovers","administr
 		var/turf/T = locate(S.x - src_min_x + trg_min_x, S.y - src_min_y + trg_min_y, trg_z)
 		for (var/atom/movable/AM as anything in S)
 			if (istype(AM, /obj/effects/precipitation)) continue
-			if (istype(AM, /obj/forcefield) || istype(AM, /obj/overlay/tile_effect)) continue
+			if (istype(AM, /obj/overlay/tile_effect)) continue
 			if (!ignore_fluid && istype(AM, /obj/fluid)) continue
 			if (istype(AM, /obj/decal/tile_edge) && istypes(S, turf_to_skip)) continue
 			AM.set_loc(T)
@@ -700,7 +722,7 @@ proc/GetRandomPerimeterTurf(var/atom/A, var/dist = 10, var/dir)
 	if(isturf(T))
 		return T
 
-proc/ThrowRandom(var/atom/movable/A, var/dist = 10, var/speed = 1, var/list/params, var/thrown_from, var/throw_type, var/allow_anchored, var/bonus_throwforce, var/end_throw_callback)
+proc/ThrowRandom(atom/movable/A, dist = 10, speed = 1, list/params, thrown_from, throw_type, allow_anchored, bonus_throwforce, datum/callback/end_throw_callback)
 	if(istype(A))
 		var/turf/Y = GetRandomPerimeterTurf(A, dist)
 		A.throw_at(Y, dist, speed, params, thrown_from, throw_type, allow_anchored, bonus_throwforce, end_throw_callback)
@@ -740,7 +762,7 @@ proc/get_ouija_word_list(atom/movable/source = null, words_min = 5, words_max = 
 				// any actual antag
 				var/list/player_pool = list()
 				for (var/mob/M in mobs)
-					if (!M.client || istype(M, /mob/new_player) || !checktraitor(M))
+					if (!M.client || istype(M, /mob/new_player) || !M.mind?.is_antagonist())
 						continue
 					player_pool += M
 				if (length(player_pool))
@@ -790,3 +812,17 @@ proc/get_ouija_word_list(atom/movable/source = null, words_min = 5, words_max = 
 				return weight_class + 1
 			else
 				return weight_class + 2
+
+/// checks an item for an id card
+/proc/get_id_card(obj/item/I)
+	if (istype(I, /obj/item/card/id))
+		return I
+	if (istype(I, /obj/item/device/pda2))
+		var/obj/item/device/pda2/pda = I
+		return pda.ID_card
+	if (istype(I, /obj/item/clothing/lanyard))
+		var/obj/item/clothing/lanyard/lanyard = I
+		return lanyard.get_stored_id()
+	if (istype(I, /obj/item/magtractor))
+		var/obj/item/magtractor/mag = I
+		return get_id_card(mag.holding)

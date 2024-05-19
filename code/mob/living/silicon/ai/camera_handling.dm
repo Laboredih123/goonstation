@@ -56,7 +56,6 @@
 	var/target_name = tgui_input_list(usr, "Which creature should you track?", "Track", creatures)
 
 	if (!target_name)
-		//usr:cameraFollow = null
 		src.tracker.cease_track()
 		return
 
@@ -75,7 +74,7 @@
 
 	for(var/C in creatures)
 		var/name = creatures[C].name
-		if (name == heard_name)
+		if (name == heard_name || C == heard_name)
 			candidates += C
 			candidates[C] = creatures[C]
 
@@ -262,6 +261,6 @@
 				&& ((issilicon(target) && istype(target.loc, /turf) ) \
 				|| (ismobcritter(target) && istype(target.loc, /turf) ) \
 				|| !((ishuman(target) \
-				&& istype(target:wear_id, /obj/item/card/id/syndicate)) \
-				|| (hasvar(target, "wear_id") && istype(target:wear_id, /obj/item/device/pda2) && target:wear_id:ID_card && istype(target:wear_id:ID_card, /obj/item/card/id/syndicate)) \
+				&& istype(get_id_card(target:wear_id), /obj/item/card/id/syndicate)) \
+				|| (hasvar(target, "wear_id") && istype(get_id_card(target:wear_id), /obj/item/card/id/syndicate)) \
 				||  !istype(target.loc, /turf)))

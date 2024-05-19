@@ -7,11 +7,7 @@
 //close only counts in horseshoes and byond
 #define EXTRA_TICK_SPACE 2
 
-#if DM_VERSION >= 514
 #define APPROX_TICK_USE (world.tick_usage + world.map_cpu + EXTRA_TICK_SPACE)
-#else
-#define APPROX_TICK_USE (world.tick_usage + EXTRA_TICK_SPACE)
-#endif
 
 //lagcheck stuff
 #ifndef SPACEMAN_DMM
@@ -37,7 +33,7 @@
 //ticklag stuff. code lives in gameticker's process() in datums/gameticker.dm
 #define TIME_DILATION_ENABLED 1
 /// min value ticklag can be
-#define MIN_TICKLAG 0.4
+#define MIN_TICKLAG 0.2
 /// max value ticklag can be
 #define OVERLOADED_WORLD_TICKLAG 1.4
 /// where to start ticklag if many players present
@@ -58,13 +54,13 @@
 #define TICKLAG_DILATE_INTERVAL 20
 
 /// whether we want to profile in advance of a lagspike every tick to catch relevant lagspike info
-// #define PRE_PROFILING_ENABLED
+#define PRE_PROFILING_ENABLED
 /// what value must world.cpu cross upwards to trigger automatic profiling
-#define CPU_START_PROFILING_THRESHOLD 150
+#define CPU_START_PROFILING_THRESHOLD 100
 /// what value must world.cpu cross upwards to trigger automatic profiling but this one ignores CPU_START_PROFILING_COUNT
 #define CPU_START_PROFILING_IMMEDIATELY_THRESHOLD 400
 /// what value must world.cpu cross downwards to stop automatic profiling
-#define CPU_STOP_PROFILING_THRESHOLD 100
+#define CPU_STOP_PROFILING_THRESHOLD 95
 /// how many ticks in a row does world.cpu needs to be above the threshold to start profiling
 #define CPU_START_PROFILING_COUNT 40
 /// how many ticks in a row does world.cpu needs to be below the threshold to stop profiling
