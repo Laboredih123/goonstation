@@ -135,6 +135,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_managebioeffect,
 		/client/proc/toggle_cloning_with_records,
 		/client/proc/toggle_random_job_selection,
+		/client/proc/toggle_tracy_profiling,
 
 		/client/proc/debug_deletions,
 
@@ -424,7 +425,8 @@ var/list/admin_verbs = list(
 #endif
 		/client/proc/distribute_tokens,
 		/client/proc/spawn_all_type,
-		/client/proc/region_allocator_panel
+		/client/proc/region_allocator_panel,
+		/datum/admins/proc/toggle_pcap_kick_messages,
 		),
 
 	7 = list(
@@ -1160,7 +1162,7 @@ var/list/fun_images = list()
 		ticker.minds += mymob.mind
 	mymob.mind.transfer_to(H)
 	if(new_mob)
-		H.Equip_Rank(jobstring, 2) //ZeWaka: joined_late is 2 so you don't get announced.
+		H.Equip_Rank(jobstring, 2, skip_manifest = src.holder.skip_manifest) //ZeWaka: joined_late is 2 so you don't get announced.
 		H.update_colorful_parts()
 	qdel(mymob)
 	if (flourish)
