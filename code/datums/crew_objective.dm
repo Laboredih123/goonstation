@@ -71,6 +71,7 @@
 
 ABSTRACT_TYPE(/datum/objective/crew)
 /datum/objective/crew
+	var/XPreward = 50
 
 /datum/objective/crew/custom
 
@@ -265,7 +266,8 @@ ABSTRACT_TYPE(/datum/objective/crew/quartermaster)
 	check_completion()
 		return length(shippingmarket.complete_orders)
 
-/datum/objective/crew/quartermaster/maildelivery
+ABSTRACT_TYPE(/datum/objective/crew/mailcourier)
+/datum/objective/crew/mailcourier/maildelivery
 	explanation_text = "Ensure 30 pieces of mail are opened by their addressees."
 	check_completion()
 		return game_stats.GetStat("mail_opened") >= 30
@@ -482,7 +484,7 @@ ABSTRACT_TYPE(/datum/objective/crew/chef)
 				i--
 			current_rolls++
 			if (current_rolls > max_rolls)
-				stack_trace("Failed to generate a foodlist objective for chef. Aborting.")
+				stack_trace("Failed to generate a cake objective for chef. Aborting.")
 				return
 		explanation_text = "Create a custom, three-tier cake with layers of "
 		for (var/ingredient in names)
@@ -502,14 +504,20 @@ ABSTRACT_TYPE(/datum/objective/crew/chef)
 	set_up()
 		..()
 		var/list/names[PIZZA_OBJ_COUNT]
+		var/current_rolls = 0
+		var/max_rolls = 30
 		for(var/i = 1, i <= PIZZA_OBJ_COUNT, i++)
 			choices[i] = pick(allowed_favorite_ingredients)
 			var/choiceType = choices[i]
 			var/obj/item/reagent_containers/food/snacks/instance =  new choiceType
-			if(!instance.custom_food || !instance.name)
+			if(instance.custom_food && instance.w_class <= W_CLASS_SMALL)
+				names[i] = instance.name
+			else
 				i--
-				continue
-			names[i] = instance.name
+			current_rolls++
+			if (current_rolls > max_rolls)
+				stack_trace("Failed to generate a pizza objective for chef. Aborting.")
+				return
 		explanation_text = "Create a custom pizza with "
 		for (var/ingredient in names)
 			if (ingredient != names[PIZZA_OBJ_COUNT])
@@ -620,7 +628,7 @@ ABSTRACT_TYPE(/datum/objective/crew/miner)
 		var/list/materials = list()
 		if(isnull(check_result))
 			for_by_tcl(S, /obj/machinery/ore_cloud_storage_container)
-				if(S.broken)
+				if(S.is_disabled())
 					continue
 				var/list/ores = S.ores
 				for(var/ore in ores)

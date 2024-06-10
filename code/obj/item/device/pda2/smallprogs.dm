@@ -859,6 +859,11 @@ Code:
 		signal.data["command"] = "text_message"
 		signal.data["sender_name"] = src.master.owner
 		signal.data["group"] = list(mailgroup, MGA_CRISIS)
+		// prevent message spam for same-department alert ACKs
+		if (mailgroup in src.master.mailgroups)
+			signal.data["noreply"] = TRUE
+		else
+			signal.data["noreply"] = FALSE
 		var/area/an_area = get_area(src.master)
 
 		if (isAIeye(usr))
@@ -866,7 +871,8 @@ Code:
 			if (length(eye_loc.camera_coverage_emitters))
 				an_area = get_area(eye_loc)
 
-		signal.data["message"] = SPAN_ALERT("<b>***CRISIS ALERT*** Location: [an_area ? an_area.name : "nowhere"]!</b>")
+		signal.data["message"] = "***CRISIS ALERT*** Location: [an_area ? an_area.name : "nowhere"]!"
+		signal.data["is_alert"] = TRUE
 
 		src.post_signal(signal)
 
@@ -1080,10 +1086,10 @@ Using electronic "Detomatix" SELF-DESTRUCT program is perhaps less simple!<br>
 			var/PDAowner = src.master.owner
 			var/PDAownerjob = data_core.general.find_record("name", PDAowner)?["rank"] || "Unknown Job"
 
-			var/ticket_target = input(usr, "Ticket recipient:",src.name) as text
+			var/ticket_target = input(usr, "Ticket recipient:",src.name) as text | null
 			if(!ticket_target) return
 			ticket_target = copytext(sanitize(html_encode(ticket_target)), 1, MAX_MESSAGE_LEN)
-			var/ticket_reason = input(usr, "Ticket reason:",src.name) as text
+			var/ticket_reason = input(usr, "Ticket reason:",src.name) as text | null
 			if(!ticket_reason) return
 			ticket_reason = copytext(sanitize(html_encode(ticket_reason)), 1, MAX_MESSAGE_LEN)
 
@@ -1103,7 +1109,7 @@ Using electronic "Detomatix" SELF-DESTRUCT program is perhaps less simple!<br>
 			playsound(src.master, 'sound/machines/printer_thermal.ogg', 50, 1)
 			SPAWN(3 SECONDS)
 				var/obj/item/paper/p = new /obj/item/paper
-				p.set_loc(get_turf(src.master))
+				usr.put_in_hand_or_drop(p)
 				p.name = "Official Caution - [ticket_target]"
 				p.info = ticket_text
 				p.icon_state = "paper_caution"
@@ -1120,7 +1126,7 @@ Using electronic "Detomatix" SELF-DESTRUCT program is perhaps less simple!<br>
 			var/PDAowner = src.master.owner
 			var/PDAownerjob = data_core.general.find_record("name", PDAowner)?["rank"] || "Unknown Job"
 
-			var/ticket_target = input(usr, "Fine recipient:",src.name) as text
+			var/ticket_target = input(usr, "Fine recipient:",src.name) as text | null
 			if(!ticket_target) return
 			ticket_target = copytext(strip_html(ticket_target),	 1, MAX_MESSAGE_LEN)
 			var/has_bank_record = !!data_core.bank.find_record("name", ticket_target)
@@ -1128,10 +1134,10 @@ Using electronic "Detomatix" SELF-DESTRUCT program is perhaps less simple!<br>
 				message = "Error: No bank records found for [ticket_target]."
 				src.master.updateSelfDialog()
 				return
-			var/ticket_reason = input(usr, "Fine reason:",src.name) as text
+			var/ticket_reason = input(usr, "Fine reason:",src.name) as text | null
 			if(!ticket_reason) return
 			ticket_reason = copytext(strip_html(ticket_reason), 1, MAX_MESSAGE_LEN)
-			var/fine_amount = input(usr, "Fine amount (1-10000):",src.name, 0) as num
+			var/fine_amount = input(usr, "Fine amount (1-10000):",src.name, 0) as num | null
 			if(!isnum_safe(fine_amount)) return
 			fine_amount = min(fine_amount,10000)
 			fine_amount = max(fine_amount,1)
@@ -1153,7 +1159,7 @@ Using electronic "Detomatix" SELF-DESTRUCT program is perhaps less simple!<br>
 				SPAWN(3 SECONDS)
 					F.approve(PDAowner,PDAownerjob)
 					var/obj/item/paper/p = new /obj/item/paper
-					p.set_loc(get_turf(src.master))
+					usr.put_in_hand_or_drop(p)
 					p.name = "Official Fine Notification - [ticket_target]"
 					p.info = ticket_text
 					p.icon_state = "paper_caution"
@@ -1174,7 +1180,7 @@ Using electronic "Detomatix" SELF-DESTRUCT program is perhaps less simple!<br>
 				F.approve(PDAowner,PDAownerjob)
 				var/ticket_text = "[F.target] has been fined [F.amount] credits by Nanotrasen Corporate Security for [F.reason] on [time2text(world.realtime, "DD/MM/53")].<br>Requested by: [F.issuer] - [F.issuer_job]<br>Approved by: [PDAowner] - [PDAownerjob]<br>"
 				var/obj/item/paper/p = new /obj/item/paper
-				p.set_loc(get_turf(src.master))
+				usr.put_in_hand_or_drop(p)
 				p.name = "Official Fine Notification - [F.target]"
 				p.info = ticket_text
 				p.icon_state = "paper_caution"
@@ -1737,7 +1743,7 @@ Using electronic "Detomatix" SELF-DESTRUCT program is perhaps less simple!<br>
 
 		for_by_tcl(S, /obj/machinery/ore_cloud_storage_container)
 			. += "<b>Location: [get_area(S)]</b><br>"
-			if(S.broken)
+			if(S.is_disabled())
 				.= "No response from Rockbox™ Ore Cloud Storage Container!<br><br>"
 				continue
 			if (!length(S.ores))

@@ -122,7 +122,7 @@ ABSTRACT_TYPE(/datum/supply_packs)
 /datum/supply_packs/paint
 	name = "Artistic Supplies Crate"
 	desc = "A selection of random paints, and an artistic toolbox. Get arty!"
-	contains = list(/obj/item/paint_can/random = 4, /obj/item/storage/toolbox/artistic)
+	contains = list(/obj/item/paint_can/totally_random = 5, /obj/item/storage/toolbox/artistic)
 	cost = PAY_TRADESMAN*3
 	containertype = /obj/storage/crate/packing
 	containername = "Artistic Crate"
@@ -435,8 +435,8 @@ ABSTRACT_TYPE(/datum/supply_packs)
 	name = "Mining Equipment"
 	desc = "x1 Powered Pickaxe, x1 Power Hammer, x1 Optical Meson Scanner, x1 Geological Scanner, x2 Mining Satchel, x3 Mining Explosives"
 	category = "Engineering Department"
-	contains = list(/obj/item/mining_tool/power_pick,
-					/obj/item/mining_tool/powerhammer,
+	contains = list(/obj/item/mining_tool/powered/pickaxe,
+					/obj/item/mining_tool/powered/hammer,
 					/obj/item/clothing/glasses/toggleable/meson,
 					/obj/item/oreprospector,
 					/obj/item/satchel/mining = 2,
@@ -636,10 +636,9 @@ ABSTRACT_TYPE(/datum/supply_packs)
 
 /datum/supply_packs/robot
 	name = "Robotics Crate"
-	desc = "x1 Securitron, x1 Floorbot, x1 Cleanbot, x1 Medibot, x1 Firebot"
+	desc = "x1 Floorbot, x1 Cleanbot, x1 Medibot, x1 Firebot"
 	category = "Medical Department"
-	contains = list(/obj/machinery/bot/secbot,
-					/obj/machinery/bot/floorbot,
+	contains = list(/obj/machinery/bot/floorbot,
 					/obj/machinery/bot/cleanbot,
 					/obj/machinery/bot/medbot,
 					/obj/machinery/bot/firebot)
@@ -1011,7 +1010,8 @@ ABSTRACT_TYPE(/datum/supply_packs)
 	name = "Blood Bank"
 	desc = "An emergency supply of blood."
 	category = "Medical Department"
-	contains = list (/obj/item/reagent_containers/iv_drip/blood = 4)
+	contains = list (/obj/item/reagent_containers/iv_drip/blood = 2,
+					/obj/item/reagent_containers/iv_drip/saline = 2)
 	cost = PAY_DOCTORATE*2
 	containertype = /obj/storage/crate/medical
 	containername = "Blood Bank"
@@ -1245,6 +1245,15 @@ ABSTRACT_TYPE(/datum/supply_packs)
 	cost = PAY_IMPORTANT*2
 	containertype = /obj/storage/crate/packing
 	containername = "Shoe Crate"
+
+/datum/supply_packs/ballroom
+	name = "Ballroom Supplies"
+	desc = "Host your very own HR approved ball."
+	contains = list(/obj/random_item_spawner/formalclothes,
+					/obj/item/clothing/shoes/dress_shoes/dance = 4)
+	cost = PAY_IMPORTANT*2
+	containertype = /obj/storage/crate
+	containername = "Ballroom Supplies"
 
 /datum/supply_packs/kendo
 	name = "Kendo Crate"

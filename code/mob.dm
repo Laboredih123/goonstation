@@ -93,7 +93,6 @@
 	var/nutrition = 100
 	var/losebreath = 0
 	var/intent = null
-	var/shakecamera = 0
 	var/a_intent = "help"
 	var/m_intent = "run"
 	var/lastKnownIP = null
@@ -133,7 +132,7 @@
 	var/job = null
 
 	/// For assigning mobs various factions, see factions.dm for definitions
-	var/faction = 0
+	var/faction = list()
 
 	var/nodamage = 0
 
@@ -179,6 +178,7 @@
 
 	var/tmp/client/last_client // actually the current client, used by Logout due to BYOND
 	var/last_ckey
+	var/logout_at = null
 	var/joined_date = null
 	mat_changename = 0
 	mat_changedesc = 0
@@ -457,8 +457,10 @@
 	alert(src, message, "OpenDream WIP Notice", "I understand")
 
 /mob/Login()
-	if (!src.client)
-		stack_trace("mob/Login called without a client for mob [identify_object(src)]. What?")
+	if (isnull(src.client))
+		return
+		// Guests that get deleted, is how
+		// stack_trace("mob/Login called without a client for mob [identify_object(src)]. What?")
 	else if (!src.client.opendream_alerted)
 		src.client.opendream_alert()
 	if(isnull(src.client.tg_layout))
@@ -534,11 +536,15 @@
 	src.client?.set_color(length(src.active_color_matrix) ? src.active_color_matrix : COLOR_MATRIX_IDENTITY, src.respect_view_tint_settings)
 
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
+	if (src.client)
+		SEND_SIGNAL(src.client, COMSIG_CLIENT_LOGIN, src)
 
 /mob/Logout()
 
 	//logTheThing(LOG_DIARY, src, "logged out", "access") <- sometimes shits itself and has been known to out traitors. Disabling for now.
 	SEND_SIGNAL(src, COMSIG_MOB_LOGOUT)
+	if (src.last_client)
+		SEND_SIGNAL(src.last_client, COMSIG_CLIENT_LOGOUT, src)
 
 	tgui_process?.on_logout(src)
 
@@ -621,7 +627,12 @@
 					tmob.throw_at(get_edge_cheap(source, get_dir(src, tmob)),  20, 3)
 					src.throw_at(get_edge_cheap(source, get_dir(tmob, src)),  20, 3)
 					return
-			if((tmob.reagents?.get_reagent_amount("flubber") + src.reagents?.get_reagent_amount("flubber") > 0) || src.hasStatus("sugar_rush") || tmob.hasStatus("sugar_rush"))
+			var/flubber = FALSE
+			if(tmob.reagents?.get_reagent_amount("flubber") + src.reagents?.get_reagent_amount("flubber") > 0)
+				flubber = TRUE
+			if((flubber || src.hasStatus("sugar_rush") || tmob.hasStatus("sugar_rush")))
+
+
 				src.now_pushing = 0
 				if(ON_COOLDOWN(src, "flubber_bounce", 0.1 SECONDS) || ON_COOLDOWN(tmob, "flubber_bounce", 0.1 SECONDS))
 					return
@@ -633,7 +644,9 @@
 				var/src_dir = get_dir(tmob, src)
 				tmob.throw_at(get_edge_cheap(source, target_dir),  20, 3)
 				src.throw_at(get_edge_cheap(source, src_dir),  20, 3)
-
+				if((!ON_COOLDOWN(src, "flubber_damage", 2 SECONDS) || !ON_COOLDOWN(tmob, "flubber_damage", 2 SECONDS)) && flubber)
+					random_brute_damage(tmob, 7, TRUE)
+					random_brute_damage(src, 7, TRUE)
 				logTheThing(LOG_COMBAT, src, "with reagents [log_reagents(src.reagents)] is flubber bounced [dir2text(src_dir)] due to impact with mob [log_object(tmob)] [log_reagents(tmob.reagents)] at [log_loc(src)].")
 				logTheThing(LOG_COMBAT, tmob, "with reagents [log_reagents(tmob.reagents)] is flubber bounced [dir2text(target_dir)] due to impact with mob [log_object(src)] [log_reagents(src.reagents)] at [log_loc(tmob)].")
 
@@ -692,7 +705,32 @@
 							tmob.now_pushing = 0
 
 		if (!issilicon(AM) && !issilicon(src))
-			if (tmob.a_intent == "help" && src.a_intent == "help" \
+			var/flubber = FALSE
+			if(tmob.reagents?.get_reagent_amount("flubber") + src.reagents?.get_reagent_amount("flubber") > 0)
+				flubber = TRUE
+			if((flubber || src.hasStatus("sugar_rush") || tmob.hasStatus("sugar_rush")))
+
+
+				src.now_pushing = 0
+				if(ON_COOLDOWN(src, "flubber_bounce", 0.1 SECONDS) || ON_COOLDOWN(tmob, "flubber_bounce", 0.1 SECONDS))
+					return
+
+				var/atom/source = get_turf(tmob)
+				src.visible_message(SPAN_ALERT("<B>[src]</B> and <B>[tmob]</B> bounce off each other!"))
+				playsound(source, 'sound/misc/boing/6.ogg', 100, TRUE)
+				var/target_dir = get_dir(src, tmob)
+				var/src_dir = get_dir(tmob, src)
+				tmob.throw_at(get_edge_cheap(source, target_dir),  20, 3)
+				src.throw_at(get_edge_cheap(source, src_dir),  20, 3)
+				if((!ON_COOLDOWN(src, "flubber_damage", 2 SECONDS) || !ON_COOLDOWN(tmob, "flubber_damage", 2 SECONDS)) && flubber)
+					random_brute_damage(tmob, 7, TRUE)
+					random_brute_damage(src, 7, TRUE)
+				logTheThing(LOG_COMBAT, src, "with reagents [log_reagents(src.reagents)] is flubber bounced [dir2text(src_dir)] due to impact with mob [log_object(tmob)] [log_reagents(tmob.reagents)] at [log_loc(src)].")
+				logTheThing(LOG_COMBAT, tmob, "with reagents [log_reagents(tmob.reagents)] is flubber bounced [dir2text(target_dir)] due to impact with mob [log_object(src)] [log_reagents(src.reagents)] at [log_loc(tmob)].")
+
+				return
+
+			else if (tmob.a_intent == "help" && src.a_intent == "help" \
 				&& tmob.canmove && src.canmove \
 				&& !tmob.buckled && !src.buckled \
 				&& !src.throwing && !tmob.throwing \
@@ -1375,25 +1413,33 @@
 
 	W.dropped(src)
 
+/// shortcut for the Notes - View verb
+/mob/verb/notes_alias()
+	set name = "Notes"
+	set hidden = TRUE
+
+	src.memory()
 
 /mob/verb/memory()
-	set name = "Notes"
+	set name = "Notes - View"
 	// drsingh for cannot execute null.show_memory
 	if (isnull(mind))
 		return
 
 	mind.show_memory(src)
 
-/mob/verb/add_memory(msg as message)
-	set name = "Add Note"
+/mob/verb/add_memory()
+	set name = "Notes - Modify"
+
+	if (!src.mind)
+		return
 
 	if (mind.last_memory_time + 10 <= world.time)
 		mind.last_memory_time = world.time
 
-		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-		msg = sanitize(msg)
-
-		mind.store_memory(msg)
+	var/notes = tgui_input_text(src, "Set your notes:", "Change notes", src.mind.cust_notes, MAX_MESSAGE_LEN, TRUE, allowEmpty = TRUE)
+	if (!isnull(notes))
+		src.mind.cust_notes = notes
 
 // please note that this store_memory() vvv
 // does not store memories in the notes
@@ -1474,11 +1520,11 @@
 	set hidden = 1
 
 	if (src.health < 0)
+		logTheThing(LOG_COMBAT, src, "succumbs to death.")
 		boutput(src, SPAN_NOTICE("You have given up life and succumbed to death."))
 		src.death()
 		if (!src.suiciding)
 			src.unlock_medal("Yield", 1)
-		logTheThing(LOG_COMBAT, src, "succumbs")
 
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
@@ -1486,6 +1532,10 @@
 	src.remove_dialogs()
 	if (!isliving(src))
 		src.sight = SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF | SEE_BLACKNESS
+	for (var/obj/ability_button/reset_view/console/ability in src.item_abilities)
+		src.item_abilities -= ability
+	src.need_update_item_abilities = 1
+	src.update_item_abilities()
 
 /mob/proc/show_credits()
 	set name = "Show Credits"
@@ -1510,6 +1560,13 @@
 		return (!mover.density || !src.density || src.lying)
 	else
 		return (!mover.density || !src.density || src.lying)
+
+/mob/Crossed(atom/movable/AM)
+	. = ..()
+	if(ishuman(AM) && src.lying)
+		var/mob/living/carbon/human/H = AM
+		if(H.a_intent == "harm" && can_act(H, FALSE) && !H.lying && !ON_COOLDOWN(H, "free_kick_on_\ref[src]", H.trample_cooldown))
+			H.melee_attack_normal(src, 0, 0, DAMAGE_BLUNT)
 
 /mob/proc/update_inhands()
 
@@ -1543,11 +1600,11 @@
 		if (D_ENERGY)
 			TakeDamage("All", 0, damage)
 			if (prob(stun))
-				src.changeStatus("paralysis", stun*1.5 SECONDS)
+				src.changeStatus("unconscious", stun*1.5 SECONDS)
 			else if (prob(90))
 				src.changeStatus("stunned", stun*1.5 SECONDS)
 			else
-				src.changeStatus("weakened", (stun/2)*1.5 SECONDS)
+				src.changeStatus("knockdown", (stun/2)*1.5 SECONDS)
 			src.set_clothing_icon_dirty()
 		if (D_BURNING)
 			TakeDamage("All", 0, damage)
@@ -1558,7 +1615,7 @@
 		if (D_TOXIC)
 			src.take_toxin_damage(damage)
 	if (!P || !P.proj_data || !P.proj_data.silentshot)
-		src.visible_message(SPAN_ALERT("[src] is hit by the [P]!"))
+		boutput(src, SPAN_ALERT("You are hit by the [P]!"))
 
 	actions.interrupt(src, INTERRUPT_ATTACKED)
 	return
@@ -1576,11 +1633,11 @@
 	switch(P.proj_data.damage_type)
 		if (D_ENERGY)
 			if (prob(stun))
-				src.changeStatus("paralysis", stun*1.5 SECONDS)
+				src.changeStatus("unconscious", stun*1.5 SECONDS)
 			else if (prob(90))
 				src.changeStatus("stunned", stun*1.5 SECONDS)
 			else
-				src.changeStatus("weakened", (stun/2)*1.5 SECONDS)
+				src.changeStatus("knockdown", (stun/2)*1.5 SECONDS)
 			src.set_clothing_icon_dirty()
 			src.show_text(SPAN_ALERT("You are shocked by the impact of [P]!"))
 		if (D_RADIOACTIVE)
@@ -2416,8 +2473,9 @@
 		if (thr?.get_throw_travelled() <= 410)
 			if (!((thr.throw_type & THROW_CHAIRFLIP) && ismob(hit)))
 				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
-				if (!src.hasStatus("weakened"))
-					src.changeStatus("weakened", 2 SECONDS)
+				if (!src.hasStatus("knockdown"))
+					src.lastgasp()
+					src.changeStatus("knockdown", 2 SECONDS)
 					src.force_laydown_standup()
 		else
 			src.gib()
@@ -2448,9 +2506,7 @@
 	src.stuttering = 0
 	src.losebreath = 0
 	src.delStatus("drowsy")
-	src.delStatus("paralysis")
-	src.delStatus("stunned")
-	src.delStatus("weakened")
+	src.remove_stuns()
 	src.delStatus("slowed")
 	src.delStatus("burning")
 	src.delStatus("radiation")
@@ -2910,9 +2966,19 @@
 		APPLY_MOVEMENT_MODIFIER(src, equipment_proxy, /obj/item)
 
 	// reset the modifiers to defaults
+	var/modifier = 1-GET_ATOM_PROPERTY(src, PROP_MOB_MOVESPEED_ASSIST)
+
 	equipment_proxy.additive_slowdown = GET_ATOM_PROPERTY(src, PROP_MOB_EQUIPMENT_MOVESPEED)
+	if(equipment_proxy.additive_slowdown > 0)
+		equipment_proxy.additive_slowdown *= modifier
 	equipment_proxy.space_movement = GET_ATOM_PROPERTY(src, PROP_MOB_EQUIPMENT_MOVESPEED_SPACE)
+	if(equipment_proxy.space_movement > 0)
+		equipment_proxy.space_movement *= modifier
 	equipment_proxy.aquatic_movement = GET_ATOM_PROPERTY(src, PROP_MOB_EQUIPMENT_MOVESPEED_FLUID)
+	if(equipment_proxy.aquatic_movement > 0)
+		equipment_proxy.aquatic_movement *= modifier
+
+
 
 // alright this is copy pasted a million times across the code, time for SOME unification - cirr
 /mob/proc/vomit(var/nutrition=0, var/specialType=null, var/flavorMessage="[src] vomits!")
@@ -2931,6 +2997,9 @@
 			vomit.blood_DNA = src.bioHolder.Uid
 
 	src.nutrition -= nutrition
+
+/mob/proc/accept_forcefeed(obj/item/item, mob/user, edibility_override) //just.. don't ask
+	item.forcefeed(src, user, edibility_override)
 
 /mob/proc/get_hand_pixel_x()
 	.= 0
@@ -3321,3 +3390,19 @@
 
 /mob/proc/add_antagonist(role_id, do_equip = TRUE, do_objectives = TRUE, do_relocate = TRUE, silent = FALSE, source = ANTAGONIST_SOURCE_OTHER, respect_mutual_exclusives = TRUE, do_pseudo = FALSE, do_vr = FALSE, late_setup = FALSE)
 	src.mind?.add_antagonist(role_id, do_equip, do_objectives, do_relocate, silent, source, respect_mutual_exclusives, do_pseudo, do_vr, late_setup)
+
+/mob/proc/inhale_ampoule(obj/item/reagent_containers/ampoule/amp, mob/user)
+	if(user != src)
+		user.visible_message(SPAN_ALERT("[user] forces [src] to inhale [amp]!"), SPAN_ALERT("You force [src] to inhale [amp]!"))
+	logTheThing(LOG_COMBAT, user, "[user == src ? "inhales" : "makes [constructTarget(src,"combat")] inhale"] an ampoule [log_reagents(amp)] at [log_loc(user)].")
+	amp.reagents.reaction(src, INGEST, 5, paramslist = list("inhaled"))
+	amp.reagents.trans_to(src, 5)
+	amp.expended = TRUE
+	amp.icon_state = "amp-broken"
+	playsound(user.loc, 'sound/impact_sounds/Generic_Snap_1.ogg', 50, TRUE)
+
+/mob/proc/remove_stuns()
+	src.delStatus("stunned")
+	src.delStatus("knockdown")
+	src.delStatus("unconscious")
+	src.delStatus("paralysis")

@@ -59,7 +59,7 @@
 
 	var/datum/movement_controller/movement_controller
 
-	faction = FACTION_WRAITH
+	faction = list(FACTION_WRAITH)
 
 	//////////////
 	// Wraith Overrides
@@ -334,7 +334,7 @@
 				src.TakeDamage(null, 0, damage)
 
 		if(!P.proj_data.silentshot)
-			src.visible_message(SPAN_ALERT("[src] is hit by the [P]!"))
+			boutput(src, SPAN_ALERT("You are hit by the [P]!"))
 
 	ex_act(severity)
 		if (!src.density) return
@@ -441,7 +441,7 @@
 
 
 	say(var/message)
-		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+		message = trimtext(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 		if (!message)
 			return
 
