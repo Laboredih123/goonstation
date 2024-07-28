@@ -28,8 +28,6 @@
 	var/max_range = PROJ_INFINITE_RANGE
 	/// What kind of implant this projectile leaves in impacted mobs
 	var/implanted = null
-	/// Forensic ID of the gun, etc that shot this projectile, used for forensics on implanted projectiles
-	var/forensic_ID = null
 	/// The mob/thing that fired this projectile
 	var/atom/shooter = null
 	/// Mob-typed copy of `shooter` var to save time on casts later
@@ -294,7 +292,8 @@
 			if (!proj_data) return //ZeWaka: Fix for null.override_color
 			if (!proj_data.override_color)
 				src.color = "#ffffff"
-
+	proc/get_len()
+		return sqrt(src.xo**2 + src.yo**2)
 	// Awful var names. TODO rename pretty much everything here, or at least document the functions
 	proc/setup()
 		if(QDELETED(src))
@@ -309,14 +308,12 @@
 		goes_through_mobs = src.proj_data.goes_through_mobs
 		set_icon()
 
-		var/len = sqrt(src.xo**2 + src.yo**2)
-
+		var/len = src.get_len()
 		if (len == 0 || proj_data.projectile_speed == 0)
 			return //will die on next step before moving
 
 		src.xo = src.xo / len
 		src.yo = src.yo / len
-
 		if (src.yo == 0)
 			if (src.xo < 0)
 				src.angle = -90
@@ -354,8 +351,8 @@
 				ys = -1
 				y32 = -y32
 		var/max_t = src.max_range * (32/speed)
-		var/next_x = x32 / 2
-		var/next_y = y32 / 2
+		var/next_x = x32 * (16-wx*xs)/32
+		var/next_y = y32 * (16-wy*ys)/32
 		var/ct = 0
 		var/turf/T = get_turf(src)
 		var/cx = T.x
@@ -568,7 +565,7 @@ ABSTRACT_TYPE(/datum/projectile)
 	var/hit_ground_chance = 0    // With what % do we hit mobs laying down
 	var/window_pass = 0          // Can we pass windows
 	var/obj/projectile/master = null // The projectile obj that we're associated with
-	var/silentshot = 0           // Standard visible message upon bullet_act.
+	var/silentshot = 0           // Standard hit message upon bullet_act.
 	var/implanted                // Path of "bullet" left behind in the mob on successful hit
 	var/disruption = 0           // planned thing to deal with pod electronics / etc
 	var/zone = null              // todo: if fired from a handheld gun, check the targeted zone --- this should be in the goddamn obj
@@ -693,6 +690,49 @@ ABSTRACT_TYPE(/datum/projectile)
 
 		post_setup(obj/projectile/P)
 			return
+
+		/// returns projectile stats that can be displayed in a tooltip
+		get_tooltip_content()
+			. = ""
+			var/stam
+			var/b_force = "Bullet damage: [src.damage]"
+			var/disrupt
+			if (src.stun)
+				stam += "Stamina: [clamp(src.stun * 4, src.stun * 2, src.stun + 80)] dmg"
+			if (src.armor_ignored)
+				b_force += " - [round(src.armor_ignored * 100, 1)]% armor piercing"
+			if (src.disruption)
+				disrupt = "Pod disruption: [round(src.disruption, 1)]% chance"
+
+			if (stam)
+				. += "<br><img style=\"display:inline;margin:0\" src=\"[resource("images/tooltips/stamina.png")]\" width=\"10\" height=\"10\" /> [stam]"
+			. += "<br><img style=\"display:inline;margin:0\" src=\"[resource("images/tooltips/ranged.png")]\" width=\"10\" height=\"10\" /> [b_force]"
+			if (disrupt)
+				. += "<br><img style=\"display:inline;margin:0\" src=\"[resource("images/tooltips/stun.png")]\" width=\"10\" height=\"10\" /> [disrupt]"
+
+		///copies the name, visuals, and sfx of another projectile datum - for varedit shenanigans
+		copy_appearance_of(datum/projectile/P)
+			src.name = P.name
+			src.sname = P.sname
+
+			src.icon = P.icon
+			src.icon_state = P.icon_state
+
+			src.invisibility = P.invisibility
+			src.brightness = P.brightness
+
+			src.color_red = P.color_red
+			src.color_green = P.color_green
+			src.color_blue = P.color_blue
+			src.color_icon = P.color_icon
+			src.override_color = P.override_color
+
+			src.shot_sound = P.shot_sound
+			src.shot_sound_extrarange = P.shot_sound_extrarange
+			src.shot_volume = P.shot_volume
+
+			src.ie_type = P.ie_type
+			src.impact_image_state = P.impact_image_state
 
 // THIS IS INTENDED FOR POINTBLANKING.
 /proc/hit_with_projectile(var/S, var/datum/projectile/DATA, var/atom/T)

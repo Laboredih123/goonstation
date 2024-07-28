@@ -4,7 +4,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts)
 	icon = 'icons/obj/robot_parts.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	item_state = "buildpipe"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = TABLEPASS | CONDUCT
 	c_flags = ONBELT
 	streak_decal = /obj/decal/cleanable/oil
 	streak_descriptor = "oily"
@@ -563,6 +563,9 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/arm)
 		attach(H,user)
 
 		return
+
+	can_arm_attach()
+		return ..() && !(src.appearanceString == "sturdy" || src.appearanceString == "heavy")
 
 	on_holder_examine()
 		if (!isrobot(src.holder)) // probably a human, probably  :p

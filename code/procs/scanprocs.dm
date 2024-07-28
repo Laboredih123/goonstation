@@ -66,7 +66,6 @@
 	var/brain_data = null
 	// var/heart_data = null		//Moving this to organ_data for now. -kyle
 	var/reagent_data = null
-	var/pathogen_data = null
 	var/disease_data = null
 	var/implant_data = null
 	var/organ_data = null
@@ -148,13 +147,6 @@
 
 		if (ishuman)
 			var/mob/living/carbon/human/H = M
-			if (H.pathogens.len)
-				pathogen_data = SPAN_ALERT("Scans indicate the presence of [length(H.pathogens) > 1 ? "[H.pathogens.len] " : null]pathogenic bodies.")
-				for (var/uid in H.pathogens)
-					var/datum/pathogen/P = H.pathogens[uid]
-					pathogen_data += "<br>&emsp;[SPAN_ALERT("Strain [P.name] seems to be in stage [P.stage]. Suggested suppressant: [P.suppressant.therapy].")]."
-					if (P.in_remission)
-						pathogen_data += "<br>&emsp;&emsp;[SPAN_ALERT("It appears to be in remission.")]."
 
 			if (H.get_organ("brain"))
 				if (H.get_brain_damage() >= 100)
@@ -248,7 +240,6 @@
 	[implant_data ? "<br>[implant_data]" : null]\
 	[organ_data ? "<br>[organ_data]" : null]\
 	[reagent_data ? "<br>[reagent_data]" : null]\
-	[pathogen_data ? "<br>[pathogen_data]" : null]\
 	[disease_data ? "[disease_data]" : null]\
 	[interesting_data ? "<br><i>Historical analysis:</i>[SPAN_NOTICE(" [interesting_data]")]" : null]\
 	"
@@ -341,7 +332,7 @@
 		return "<b class='alert'>ERROR: NO SUBJECT DETECTED</b>"
 	if (visible)
 		animate_scanning(M, "#9eee80")
-	if (!ishuman(M))
+	if (!M.has_genetics())
 		return "<b class='alert'>ERROR: UNABLE TO ANALYZE GENETIC STRUCTURE</b>"
 	var/mob/living/carbon/human/H = M
 	var/list/data = list()
@@ -372,11 +363,12 @@
 	else if (!length(GP.activeDnaKnown))
 		data += "-- None --"
 
-	if (length(H.cloner_defects.active_cloner_defects))
-		data += "<b class='alert'>Detected Cloning-Related Defects:</b>"
-		for(var/datum/cloner_defect/defect as anything in H.cloner_defects.active_cloner_defects)
-			data += "<b class='alert'>[defect.name]</b>"
-			data += "<i class='alert'>[defect.desc]</i>"
+	if(istype(H))
+		if (length(H.cloner_defects.active_cloner_defects))
+			data += "<b class='alert'>Detected Cloning-Related Defects:</b>"
+			for(var/datum/cloner_defect/defect as anything in H.cloner_defects.active_cloner_defects)
+				data += "<b class='alert'>[defect.name]</b>"
+				data += "<i class='alert'>[defect.desc]</i>"
 	return data.Join("<br>")
 
 /// Returns the datacore general record, or null if none found
@@ -679,20 +671,10 @@
 			if (G.glove_ID)
 				glove_data += "[G.glove_ID] [G.material_prints ? "([G.material_prints])" : null]"
 
-		if (istype(A, /obj/item/casing/))
-			var/obj/item/casing/C = A
-			if(C.forensic_ID)
-				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [C]:")] [C.forensic_ID]"
-
-		if (istype(A, /obj/item/implant/projectile))
-			var/obj/item/implant/projectile/P = A
-			if(P.forensic_ID)
-				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [P]:")] [P.forensic_ID]"
-
-		if (istype(A, /obj/item/gun))
-			var/obj/item/gun/G = A
-			if(G.forensic_ID)
-				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [G]:")] [G.forensic_ID]"
+		if (istype(A, /obj))
+			var/obj/O = A
+			if(O.forensic_ID)
+				forensic_data += "<br>[SPAN_NOTICE("Forensic profile of [O]:")] [O.forensic_ID]"
 
 		if (istype(A, /turf/simulated/wall))
 			var/turf/simulated/wall/W = A
@@ -807,8 +789,7 @@
 	if (istype(A, /obj/machinery/plantpot))
 		var/obj/machinery/plantpot/PP = A
 		if (!PP.current || PP.dead)
-			boutput(user, SPAN_ALERT("Cannot scan."))
-			return
+			return SPAN_ALERT("Cannot scan.")
 
 		P = PP.current
 		DNA = PP.plantgenes
@@ -816,8 +797,7 @@
 	else if (istype(A, /obj/item/seed/))
 		var/obj/item/seed/S = A
 		if (S.isstrange || !S.planttype)
-			boutput(user, SPAN_ALERT("This seed has non-standard DNA and thus cannot be scanned."))
-			return
+			return SPAN_ALERT("This seed has non-standard DNA and thus cannot be scanned.")
 
 		P = S.planttype
 		DNA = S.plantgenes
@@ -848,10 +828,10 @@
 		animate_scanning(A, "#70e800")
 
 	if (!P || !istype(P, /datum/plant/) || !DNA || !istype(DNA, /datum/plantgenes/))
-		boutput(user, SPAN_ALERT("Cannot scan."))
-		return
+		return SPAN_ALERT("Cannot scan.")
 
 	HYPgeneticanalysis(user, A, P, DNA) // Just use the existing proc.
+	return
 
 /proc/scan_secrecord(var/obj/item/device/pda2/pda, var/mob/M as mob, var/visible = 0)
 	if (!M)

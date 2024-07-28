@@ -224,8 +224,9 @@ TYPEINFO(/obj/item/remote/porter)
 
 // I suppose this device would be sorta useless with tele-block checks?
 TYPEINFO(/obj/item/remote/porter/port_a_sci)
-	mats = list("MET-1" = 5, "CON-1" = 5, "telecrystal" = 10)
-
+	mats = list("metal" = 5,
+				"conductive" = 5,
+				"telecrystal" = 10)
 /obj/item/remote/porter/port_a_sci
 	name = "Port-A-Sci Remote"
 	icon = 'icons/obj/porters.dmi'
@@ -371,7 +372,9 @@ TYPEINFO(/obj/machinery/port_a_brig)
 
 	mob_flip_inside(var/mob/user)
 		..(user)
-
+		if (!src.locked)
+			src.go_out()
+			return
 		if (!processing)
 			SubscribeToProcess()
 
@@ -390,7 +393,7 @@ TYPEINFO(/obj/machinery/port_a_brig)
 			return
 		if (usr == src.occupant || !isturf(usr.loc))
 			return
-		if (usr.stat || usr.getStatusDuration("stunned") || usr.getStatusDuration("knockdown"))
+		if (is_incapacitated(usr))
 			return
 		if (BOUNDS_DIST(src, usr) > 0)
 			usr.show_text("You are too far away to do this!", "red")
@@ -413,7 +416,7 @@ TYPEINFO(/obj/machinery/port_a_brig)
 		return 0
 
 	relaymove(mob/user as mob)
-		if(!user || !isalive(user) || user.getStatusDuration("stunned") != 0)
+		if(!user || !isalive(user) || is_incapacitated(user))
 			return
 		src.go_out()
 		return
@@ -703,6 +706,7 @@ TYPEINFO(/obj/machinery/port_a_medbay)
 	density = 1
 	anchored = UNANCHORED
 	p_class = 6
+	can_leghole = FALSE
 	//mats = 30 // Nope! We don't need multiple personal teleporters without any z-level restrictions (Convair880).
 	var/homeloc = null
 

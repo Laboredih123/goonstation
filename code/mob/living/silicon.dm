@@ -271,13 +271,13 @@ ADMIN_INTERACT_PROCS(/mob/living/silicon, proc/pick_law_rack)
 
 	var/message_a = src.say_quote(message)
 	var/rendered = SPAN_ROBOTICSAY("Robotic Talk, <span class='name' data-ctx='\ref[src.mind]'>[src.name]</span> [SPAN_MESSAGE("[message_a]")]")
-	for (var/mob/living/S in global.mobs)
+	for (var/mob/living/S in mobs)
 		if(!S.stat)
 			if(S.robot_talk_understand)
 				if(S.robot_talk_understand == src.robot_talk_understand)
 					var/thisR = rendered
 					if (S.client && S.client.holder && src.mind)
-						thisR = "<span class='adminHearing' data-ctx='[S.client.set_context_flags()]'>[rendered]</span>"
+						thisR = "<span class='adminHearing' data-ctx='[S.client.chatOutput.getContextFlags()]'>[rendered]</span>"
 					S.show_message(thisR, 2)
 			else if(istype(S, /mob/living/intangible/flock) || istype(S, /mob/living/critter/flock/drone))
 				var/flockrendered = SPAN_ROBOTICSAY("[radioGarbleText("Robotic Talk", FLOCK_RADIO_GARBLE_CHANCE / 2)], <span class='name' data-ctx='\ref[src.mind]'>[radioGarbleText(src.name, FLOCK_RADIO_GARBLE_CHANCE / 2)]</span> [SPAN_MESSAGE("[radioGarbleText(message_a, FLOCK_RADIO_GARBLE_CHANCE / 2)]")]")
@@ -304,7 +304,7 @@ ADMIN_INTERACT_PROCS(/mob/living/silicon, proc/pick_law_rack)
 		for (var/mob/M in heard)
 			var/thisR = rendered
 			if (M.client && (istype(M, /mob/dead/observer)||M.client.holder) && src.mind)
-				thisR = "<span class='adminHearing' data-ctx='[M.client.set_context_flags()]'>[rendered]</span>"
+				thisR = "<span class='adminHearing' data-ctx='[M.client.chatOutput.getContextFlags()]'>[rendered]</span>"
 			M.show_message(thisR, 2)
 
 	message = src.say_quote(message)
@@ -317,7 +317,7 @@ ADMIN_INTERACT_PROCS(/mob/living/silicon, proc/pick_law_rack)
 		if (isdead(M) && !istype(M, /mob/dead/target_observer))
 			var/thisR = rendered
 			if (M.client && M.client.holder && src.mind)
-				thisR = "<span class='adminHearing' data-ctx='[M.client.set_context_flags()]'>[rendered]</span>"
+				thisR = "<span class='adminHearing' data-ctx='[M.client.chatOutput.getContextFlags()]'>[rendered]</span>"
 			M.show_message(thisR, 2)
 
 /mob/living/silicon/lastgasp(allow_dead=FALSE)
@@ -563,6 +563,7 @@ var/global/list/module_editors = list()
 
 	if (src.syndicate || src.syndicate_possible)
 		if (src.mind.add_antagonist(ROLE_SYNDICATE_ROBOT, respect_mutual_exclusives = FALSE, source = ANTAGONIST_SOURCE_CONVERTED))
+			src.botcard.access += access_syndicate_shuttle
 			logTheThing(LOG_STATION, src, "[src] was made a Syndicate robot at [log_loc(src)]. [cause ? " Source: [constructTarget(cause,"combat")]" : ""]")
 			logTheThing(LOG_STATION, src, "[src.name] is connected to the default Syndicate rack [constructName(src.law_rack_connection)] [cause ? " Source: [constructTarget(cause,"combat")]" : ""]")
 			return TRUE
@@ -692,3 +693,6 @@ var/global/list/module_editors = list()
 		// decode the symbols, because they will be encoded again when the law is spoken, and otherwise we'd double-dip
 		src.say(html_decode(a_law))
 		logTheThing(LOG_SAY, usr, "states a fake law: \"[a_law]\"")
+
+/mob/living/silicon/get_unequippable()
+	return

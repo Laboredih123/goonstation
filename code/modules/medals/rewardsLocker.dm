@@ -380,9 +380,18 @@
 			skin_target.original_icon_state = "large_flask"
 			skin_target.fluid_overlay_states = 11
 			skin_target.container_style = "large_flask"
-			skin_target.fluid_overlay_scaling = RC_FLUID_OVERLAY_SCALING_SPHERICAL
-			skin_target.UpdateIcon()
+			skin_target.fluid_overlay_scaling = RC_REAGENT_OVERLAY_SCALING_SPHERICAL
 			activator.set_clothing_icon_dirty()
+
+			var/datum/component/C = skin_target.GetComponent(/datum/component/reagent_overlay)
+			C?.RemoveComponent()
+			skin_target.AddComponent( \
+				/datum/component/reagent_overlay, \
+				reagent_overlay_icon = skin_target.container_icon, \
+				reagent_overlay_icon_state = skin_target.container_style, \
+				reagent_overlay_states = skin_target.fluid_overlay_states, \
+				reagent_overlay_scaling = skin_target.fluid_overlay_scaling, \
+			)
 			return 1
 		else
 			boutput(activator, SPAN_ALERT("Unable to redeem... you need to have a large beaker in your hands."))
@@ -740,6 +749,7 @@
 			if (H.head)
 				var/obj/item/clothing/M = H.head
 				var/obj/item/clothing/head/det_hat/gadget/G = H.head
+				var/obj/item/clothing/head/det_hat/folded_scuttlebot/S = H.head
 				if (istype(G))
 					var/prev = M.name
 					G.icon_state = "inspector"
@@ -748,6 +758,18 @@
 					G.inspector = TRUE
 					H.set_clothing_icon_dirty()
 					succ = TRUE
+
+				else if (istype(S))
+					var/prev = M.name
+					S.icon_state = "inspector"
+					S.item_state = "inspector"
+					S.name = "inspector's hat"
+					S.real_name = "inspector's hat"
+					S.desc = "A hat for the modern detective. It looks a bit heavier than it should. (Base Item: [prev])"
+					S.inspector = TRUE
+					H.set_clothing_icon_dirty()
+					succ = TRUE
+
 				else if (istype(M, /obj/item/clothing/head/det_hat))
 					var/prev = M.name
 					M.icon_state = "inspector"
@@ -1253,6 +1275,37 @@
 			H.update_inhands()
 			return 1
 
+/datum/achievementReward/goldenCarrier
+	title = "Golden Carrier"
+	desc = "Gold plates a pet carrier."
+	required_medal = "Noah's Shuttle"
+
+	rewardActivate(var/mob/activator)
+		if (ishuman(activator))
+			var/mob/living/carbon/human/H = activator
+			var/obj/item/pet_carrier/carrier
+			if (istype(H.l_hand, /obj/item/pet_carrier))
+				carrier = H.l_hand
+			else if (istype(H.r_hand, /obj/item/pet_carrier))
+				carrier = H.r_hand
+			if (!carrier)
+				boutput(activator, SPAN_ALERT("You attempt to plate your non-existant pet carrier to no avail."))
+				return
+			if (carrier.gilded)
+				boutput(activator, SPAN_ALERT("That's enough gold plating for now."))
+				return
+
+			carrier.name = "Golden [carrier.name]"
+			carrier.empty_carrier_icon_state = "[initial(carrier.empty_carrier_icon_state)]-golden"
+			carrier.icon_state = carrier.empty_carrier_icon_state
+			carrier.carrier_open_item_state = "[initial(carrier.carrier_open_item_state)]-golden"
+			carrier.carrier_closed_item_state = "[initial(carrier.carrier_closed_item_state)]-golden"
+			carrier.trap_mob_icon_state = "[carrier.trap_mob_icon_state]-golden"
+			carrier.release_mob_icon_state = "[carrier.release_mob_icon_state]-golden"
+			carrier.gilded = TRUE
+			carrier.UpdateIcon()
+			H.update_inhands()
+			return 1
 
 /datum/achievementReward/smug
 	title = "(Emote) Smug"
@@ -1477,7 +1530,9 @@
 	proc/sillyscream(mob/M)
 		var/mob/living/living = M
 		if(istype( living ))
-			living.sound_scream = pick('sound/voice/screams/sillyscream1.ogg','sound/voice/screams/sillyscream2.ogg')
+			M.bioHolder.mobAppearance.screamsounds["sillyscream"] = pick('sound/voice/screams/sillyscream1.ogg', 'sound/voice/screams/sillyscream2.ogg')
+			M.bioHolder.mobAppearance.screamsound = "sillyscream"
+			M.bioHolder.mobAppearance.UpdateMob()
 			M.playsound_local_not_inworld(living.sound_scream, 100)
 			return 1
 		else

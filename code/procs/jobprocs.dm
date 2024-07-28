@@ -278,7 +278,7 @@ else if (istype(JOB, /datum/job/security/security_officer))\
 	//#endif
 
 //hey i changed this from a /human/proc to a /living/proc so that critters (from the job creator) would latejoin properly	-- MBC
-/mob/living/proc/Equip_Rank(rank, joined_late, no_special_spawn)
+/mob/living/proc/Equip_Rank(rank, joined_late, no_special_spawn, skip_manifest = FALSE)
 	var/datum/job/JOB = find_job_in_controller_by_string(rank)
 	if (!JOB)
 		boutput(src, SPAN_ALERT("<b>Something went wrong setting up your rank and equipment! Report this to a coder.</b>"))
@@ -329,7 +329,7 @@ else if (istype(JOB, /datum/job/security/security_officer))\
 		src = possible_new_mob // let's hope this breaks nothing
 
 
-	if (ishuman(src) && JOB.add_to_manifest && !src.traitHolder.hasTrait("stowaway"))
+	if (!skip_manifest && ishuman(src) && JOB.add_to_manifest)
 		// Manifest stuff
 		var/sec_note = ""
 		var/med_note = ""
@@ -343,16 +343,7 @@ else if (istype(JOB, /datum/job/security/security_officer))\
 
 	if (ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if (src.traitHolder && !src.traitHolder.hasTrait("stowaway"))
-			H.spawnId(JOB)
-		if (src.traitHolder && src.traitHolder.hasTrait("stowaway"))
-			//Has the stowaway trait - they're hiding in a random locker
-			var/list/obj/storage/SL = get_random_station_storage_list(closed=TRUE, breathable=TRUE)
-
-			if(length(SL) > 0)
-				src.set_loc(pick(SL))
-				logTheThing(LOG_STATION, src, "has the Stowaway trait and spawns in storage at [log_loc(src)]")
-
+		H.spawnId(JOB)
 		if (src.traitHolder && src.traitHolder.hasTrait("pilot"))		//Has the Pilot trait - they're drifting off-station in a pod. Note that environmental checks are not needed here.
 			SPAWN(0) //pod creation sleeps for... reasons
 				#define MAX_ALLOWED_ITERATIONS 300
@@ -429,7 +420,7 @@ else if (istype(JOB, /datum/job/security/security_officer))\
 
 			logTheThing(LOG_STATION, src, "has the Party Animal trait and has finished iterating through spots.")
 
-			if(!joined_late) // We got special late-join handling
+			if(!joined_late && length(valid_stools) > 0) // We got special late-join handling
 				var/obj/stool/stool = pick(valid_stools)
 				if (stool)
 					var/list/spawn_range = orange(1, get_turf(stool)) // Skip the actual stool
@@ -576,7 +567,7 @@ else if (istype(JOB, /datum/job/security/security_officer))\
 				B.badge_owner_name = src.real_name
 				B.badge_owner_job = src.job
 
-	if (src.traitHolder && src.traitHolder.hasTrait("pilot"))
+	if (src.traitHolder?.hasTrait("pilot"))
 		var/obj/item/tank/mini_oxygen/E = new /obj/item/tank/mini_oxygen(src.loc)
 		src.force_equip(E, SLOT_IN_BACKPACK, TRUE)
 		#ifdef UNDERWATER_MAP
@@ -593,8 +584,6 @@ else if (istype(JOB, /datum/job/security/security_officer))\
 		src.equip_new_if_possible(/obj/item/clothing/mask/breath, SLOT_WEAR_MASK)
 		var/obj/item/device/gps/GPSDEVICE = new /obj/item/device/gps(src.loc)
 		src.force_equip(GPSDEVICE, SLOT_IN_BACKPACK, TRUE)
-
-	if (src.traitHolder?.hasTrait("stowaway") || src.traitHolder?.hasTrait("pilot"))
 		var/obj/item/device/pda2/pda = locate() in src
 		src.u_equip(pda)
 		qdel(pda)
@@ -847,6 +836,7 @@ var/list/trinket_safelist = list(
 	/obj/item/instrument/vuvuzela,
 	/obj/item/wrench,
 	/obj/item/device/light/zippo,
+	/obj/item/device/speech_pro,
 	/obj/item/reagent_containers/food/drinks/bottle/beer,
 	/obj/item/reagent_containers/food/drinks/bottle/vintage,
 	/obj/item/reagent_containers/food/drinks/bottle/vodka,

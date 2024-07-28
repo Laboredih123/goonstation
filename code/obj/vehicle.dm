@@ -186,7 +186,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	relaymove(mob/user as mob, dir)
 		// we reset the overlays to null in case the relaymove() call was initiated by a
 		// passenger rather than the driver (we shouldn't have a rider overlay if there is no rider!)
-		src.overlays = null
+		src.ClearSpecificOverlays("rider")
 
 		if(!src.rider || user != src.rider)
 			return
@@ -194,12 +194,13 @@ ABSTRACT_TYPE(/obj/vehicle)
 		var/td = max(src.delay, MINIMUM_EFFECTIVE_DELAY)
 
 		if(src.rider_visible)
-			src.overlays += src.rider
+			src.UpdateOverlays(src.rider, "rider")
 
 		// You can't move in space without the booster upgrade
 		if (src.booster_upgrade)
-			src.overlays += booster_image
+			src.UpdateOverlays(booster_image, "booster_image")
 		else
+			src.ClearSpecificOverlays("booster_image")
 			var/turf/T = get_turf(src)
 
 			if(T.throw_unlimited && istype(T, /turf/space))
@@ -535,12 +536,15 @@ TYPEINFO(/obj/vehicle/segway)
 	if (rider || !istype(target) || target.buckled || !can_act(user) || !in_interact_range(src, user) || !in_interact_range(user, target) || isAI(user) || isintangible(user) || isintangible(target))
 		return
 
-	if (target == user && can_act(user))	// if drop self, then climbed in
-		src.visible_message(SPAN_NOTICE("[user.name] climbs onto the [src]."))
+	var/msg
+	if(target == user && can_act(user))	// if drop self, then climbed in
+		msg = "[user.name] climbs onto the [src]."
 		boutput(user, SPAN_NOTICE("You climb onto \the [src]."))
-	else if (target != user && !user.restrained())
-		src.visible_message(SPAN_NOTICE("[user.name] helps [target.name] onto \the [src]!"))
+	else if(target != user && !user.restrained())
+		msg = "[user.name] helps [target.name] onto \the [src]!"
 		boutput(user, SPAN_NOTICE("You help [target.name] onto \the [src]!"))
+	else
+		return
 	target.set_loc(src)
 	rider = target
 	if (rider.client)
@@ -549,7 +553,13 @@ TYPEINFO(/obj/vehicle/segway)
 	rider.pixel_y = 5
 	src.UpdateOverlays(rider, "rider")
 
+	for (var/mob/C in AIviewers(src))
+		if(C == user)
+			continue
+		C.show_message(msg, 3)
+
 	update()
+	return
 
 /obj/vehicle/segway/Click()
 	if(usr != rider)
@@ -846,24 +856,34 @@ TYPEINFO(/obj/vehicle/floorbuffer)
 	if (rider || !istype(target) || target.buckled || !can_act(user) || !in_interact_range(src, user) || !in_interact_range(user, target) || isAI(user) || isintangible(user) || isintangible(target))
 		return
 
-	if (target == user && can_act(user))	// if drop self, then climbed in
-		src.visible_message(SPAN_NOTICE("[user.name] climbs onto the [src]."))
+	var/msg
+
+	if(target == user && can_act(user))	// if drop self, then climbed in
+		msg = "[user.name] climbs onto the [src]."
 		boutput(user, SPAN_NOTICE("You climb onto \the [src]."))
 		src.log_rider(user, 0)
 	else if(target != user && !user.restrained())
-		src.visible_message(SPAN_NOTICE("[user.name] helps [target.name] onto \the [src]!"))
+		msg = "[user.name] helps [target.name] onto \the [src]!"
 		boutput(user, SPAN_NOTICE("You help [target.name] onto \the [src]!"))
 		src.log_rider(target, 0)
+	else
+		return
 
 	target.set_loc(src)
 	rider = target
 	if (target.client)
 		handle_button_addition()
 	rider.pixel_x = 0
-	rider.pixel_y = 10
+	rider.pixel_y = 5
 	src.UpdateOverlays(rider, "rider")
 
+	for (var/mob/C in AIviewers(src))
+		if(C == user)
+			continue
+		C.show_message(msg, 3)
+
 	update()
+	return
 
 /obj/vehicle/floorbuffer/Click()
 	if(usr != rider)
@@ -1058,26 +1078,34 @@ TYPEINFO(/obj/vehicle/clowncar)
 	if (!istype(mob_target) || mob_target.buckled)
 		return
 
+	var/msg
+
 	var/clown_tally = 0
-	if (ishuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		clown_tally = human.clown_tally()
-	if (clown_tally < 2 && !IS_LIVING_OBJECT_USING_SELF(user))
+	if(clown_tally < 2 && !IS_LIVING_OBJECT_USING_SELF(user))
 		boutput(user, SPAN_NOTICE("You don't feel funny enough to use the [src]."))
 		return
 
-	if (mob_target == user && can_act(user))	// if drop self, then climb in
-		if (rider)
+	if(mob_target == user && can_act(user))	// if drop self, then climbed in
+		if(rider)
 			return
 		mob_target.set_loc(src)
 		rider = mob_target
 		handle_button_addition()
 		src.log_me(src.rider, null, "rider_enter")
-		src.visible_message(SPAN_NOTICE("[user.name] climbs into the driver's seat of the [src]."))
+		msg = "[user.name] climbs into the driver's seat of the [src]."
 		boutput(user, SPAN_NOTICE("You climb into the driver's seat of the [src]."))
-
 	else if(mob_target != user && !user.restrained() && is_incapacitated(mob_target))
 		src.stuff_inside(user, mob_target)
+	else
+		return
+	if(msg)
+		for (var/mob/C in AIviewers(src))
+			if(C == user)
+				continue
+			C.show_message(msg, 3)
 
 /obj/vehicle/clowncar/bump(atom/AM as mob|obj|turf)
 	if(in_bump)
@@ -1315,18 +1343,29 @@ TYPEINFO(/obj/vehicle/clowncar)
 	if (!istype(target) || target.buckled || !can_act(user) || !in_interact_range(src, user) || !in_interact_range(user, target) || isAI(user) || isintangible(user) || isghostcritter(user) || isintangible(target))
 		return
 
-	if (!user.mind || !iscluwne(user))
+	var/msg
+
+	if(!user.mind || !iscluwne(user))
 		boutput(user, SPAN_ALERT("You think it's a REALLY bad idea to use the [src]."))
 		return
 
-	if (target == user && can_act(user))	// if drop self, then climb in
-		if (rider)
+	if(target == user && can_act(user))	// if drop self, then climbed in
+		if(rider)
 			return
 		rider = target
 		actions.interrupt(target, INTERRUPT_ACT)
 		src.log_me(src.rider, null, "rider_enter")
-		src.visible_message(SPAN_NOTICE("[user.name] climbs into the driver's seat of the [src]."))
+		msg = "[user.name] climbs into the driver's seat of the [src]."
 		boutput(user, SPAN_NOTICE("You climb into the driver's seat of the [src]."))
+	else
+		return
+
+	target.set_loc(src)
+	for (var/mob/C in AIviewers(src))
+		if(C == user)
+			continue
+		C.show_message(msg, 3)
+	return
 
 /obj/vehicle/clowncar/surplus
 	name = "Clown Car"
@@ -1463,12 +1502,16 @@ TYPEINFO(/obj/vehicle/clowncar)
 	if (rider || !istype(target) || target.buckled || !can_act(user) || !in_interact_range(src, user) || !in_interact_range(user, target) || isAI(user) || isintangible(user) || isintangible(target))
 		return
 
+	var/msg
+
 	if(target == user && can_act(user))	// if drop self, then climbed in
-		src.visible_message(SPAN_NOTICE("[user.name] climbs onto the [src]."))
+		msg = "[user.name] climbs onto the [src]."
 		boutput(user, SPAN_NOTICE("You climb onto the [src]."))
 	else if(target != user && !user.restrained())
-		src.visible_message(SPAN_NOTICE("[user.name] helps [target.name] onto the [src]!"))
+		msg = "[user.name] helps [target.name] onto the [src]!"
 		boutput(user, SPAN_NOTICE("You help [target.name] onto the [src]!"))
+	else
+		return
 
 	target.set_loc(src)
 	rider = target
@@ -1476,6 +1519,13 @@ TYPEINFO(/obj/vehicle/clowncar)
 	rider.pixel_y = 5
 	src.UpdateOverlays(rider, "rider")
 	src.icon_state = "[src.icon_state]1"
+
+	for (var/mob/C in AIviewers(src))
+		if(C == user)
+			continue
+		C.show_message(msg, 3)
+
+	return
 
 /obj/vehicle/cat/Click()
 	if(usr != rider)
@@ -1748,26 +1798,35 @@ TYPEINFO(/obj/vehicle/adminbus)
 	if (!istype(target) || target.buckled || !can_act(user) || !in_interact_range(src, user) || !in_interact_range(user, target) || isAI(user) || isintangible(user) || isintangible(target))
 		return
 
-	if (!(user.client && user.client.holder))
+	var/msg
+
+	if(!(user.client && user.client.holder))
 		boutput(user, SPAN_NOTICE("You don't feel cool enough to use the [src]."))
 		return
 
-	if (target == user && can_act(usr))	// if drop self, then climbed in
+	if(target == user && can_act(usr))	// if drop self, then climbed in
 		target.set_loc(src)
 		if(rider)
-			src.visible_message(SPAN_NOTICE("[user.name] climbs into the front of the [src]."))
+			msg = "[user.name] climbs into the front of the [src]."
 			boutput(user, SPAN_NOTICE("You climb into the front of the [src]."))
 		else
 			rider = target
-			src.visible_message(SPAN_NOTICE("[user.name] climbs into the driver's seat of the [src]."))
+			msg = "[user.name] climbs into the driver's seat of the [src]."
 			boutput(user, SPAN_NOTICE("You climb into the driver's seat of the [src]."))
 			rider.add_adminbus_powers()
 			sleep(1 SECOND)
 			handle_button_addition()
-	else if (target != user && !user.restrained())
+	else if(target != user && !user.restrained())
 		target.set_loc(src)
-		src.visible_message(SPAN_NOTICE("[user.name] stuffs [target.name] into the back of the [src]!"))
+		msg = "[user.name] stuffs [target.name] into the back of the [src]!"
 		boutput(user, SPAN_NOTICE("You stuff [target.name] into the back of the [src]!"))
+	else
+		return
+	for (var/mob/C in AIviewers(src))
+		if(C == user)
+			continue
+		C.show_message(msg, 3)
+	return
 
 /obj/vehicle/adminbus/bump(atom/AM as mob|obj|turf)
 	if(in_bump)
@@ -2324,7 +2383,7 @@ TYPEINFO(/obj/vehicle/forklift)
 		return
 
 	//pick up crates with forklift
-	if((istype(A, /obj/storage/crate) || istype(A, /obj/storage/cart) || istype(A, /obj/storage/secure/crate)) && BOUNDS_DIST(A, src) == 0 && src.rider == user && helditems.len != helditems_maximum && !broken)
+	if((istype(A, /obj/storage/crate) || istype(A, /obj/storage/cart) || istype(A, /obj/storage/secure/crate)) && BOUNDS_DIST(A, src) == 0 && src.rider == user && helditems.len < (user.traitHolder?.hasTrait("training_quartermaster") ? 2 : 1) * helditems_maximum && !broken)
 		A.set_loc(src)
 		helditems.Add(A)
 		update_overlays()
