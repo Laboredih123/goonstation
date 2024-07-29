@@ -331,7 +331,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/walp)
 #else
 	icon_state = "mapwall"
 #endif
-	flags = ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
+	flags = FLUID_DENSE | IS_PERSPECTIVE_FLUID
 
 	update_neighbors()
 		..()
@@ -386,7 +386,7 @@ TYPEINFO_NEW(/turf/simulated/wall/auto/reinforced/walp)
 #else
 	icon_state = "mapwall_r"
 #endif
-	flags = ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
+	flags = FLUID_DENSE | IS_PERSPECTIVE_FLUID
 
 	update_neighbors()
 		..()

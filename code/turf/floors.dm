@@ -992,6 +992,7 @@ DEFINE_FLOORS(minitiles,
 	icon = 'icons/turf/floors.dmi';\
 	icon_state = "minitiles_grey";\
 	step_material = "step_plating";\
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8);\
 	step_priority = STEP_PRIORITY_MED)
 
 DEFINE_FLOORS(minitiles/white,
