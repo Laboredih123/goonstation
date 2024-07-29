@@ -4235,7 +4235,7 @@
 /obj/item/pen,
 /obj/machinery/light{
 	dir = 1;
-	pixel_y = 21
+	pixel_y = 3
 	},
 /turf/simulated/floor/wood,
 /area/station/crew_quarters/fitness)
@@ -10330,8 +10330,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/computer/announcement{
-	announces_arrivals = 1;
+/obj/machinery/computer/announcement/station/bridge{
 	dir = 8
 	},
 /turf/simulated/floor/circuit,
@@ -13523,7 +13522,8 @@
 	name = "Detective's Office persistent notice board";
 	persistent_id = "detectives office";
 	pixel_x = 32;
-	pixel_y = 2
+	pixel_y = 2;
+	dir = 4
 	},
 /turf/simulated/floor/carpet/grime,
 /area/station/security/detectives_office)
@@ -14559,7 +14559,6 @@
 /turf/simulated/floor/carpet/grime,
 /area/station/security/detectives_office)
 "aXB" = (
-/obj/storage/cart/forensic,
 /obj/disposalpipe/segment/morgue{
 	dir = 2;
 	icon_state = "pipe-c";
@@ -14568,6 +14567,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/storage/cart/forensic/detective,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/detectives_office)
 "aXC" = (
@@ -14866,17 +14866,11 @@
 /obj/item/audio_tape{
 	pixel_y = 5
 	},
-/obj/item/device/audio_log,
 /obj/item/device/detective_scanner,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/detectives_office)
 "aYF" = (
 /obj/table/wood/auto,
-/obj/item/device/detective_scanner,
-/obj/item/hand_labeler,
-/obj/item/spraybottle/detective,
-/obj/item/storage/box/evidence,
-/obj/item/storage/box/evidence,
 /obj/item/storage/secure/ssafe{
 	pixel_y = -30
 	},
@@ -14887,7 +14881,7 @@
 /area/station/security/detectives_office)
 "aYG" = (
 /obj/machinery/portableowl/attached{
-	name = "The Sexiest Owl"
+	name = "The Coolest Owl"
 	},
 /turf/simulated/floor/grass/leafy,
 /area/station/garden/owlery)
@@ -15341,6 +15335,9 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/computer/ATM,
+/obj/decal/poster/wallsign/framed_award/firstbill{
+	pixel_y = 27
+	},
 /turf/simulated/floor/black,
 /area/station/crew_quarters/heads)
 "aZU" = (
@@ -16928,7 +16925,8 @@
 	name = "Customs persistent notice board";
 	persistent_id = "customs";
 	pixel_x = -32;
-	pixel_y = 2
+	pixel_y = 2;
+	dir = 8
 	},
 /turf/simulated/floor/black,
 /area/station/security/checkpoint)
@@ -23531,6 +23529,7 @@
 /area/station/quartermaster/office)
 "bGX" = (
 /obj/grille/steel,
+/obj/machinery/light/small/floor,
 /turf/simulated/floor/plating,
 /area/station/hangar/qm)
 "bGY" = (
@@ -23933,7 +23932,7 @@
 /obj/decal/floatingtiles{
 	icon_state = "floattiles2"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/misc/hstation.dmi';
 	icon_state = "bloodydoor";
@@ -24110,11 +24109,8 @@
 	dir = 0;
 	name = "autoname - SS13"
 	},
-/obj/machinery/computer/announcement{
-	name = "QM Announcement Computer";
-	req_access_txt = "31"
-	},
 /obj/decal/stripe_delivery,
+/obj/machinery/computer/announcement/station/cargo,
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "bJN" = (
@@ -24613,6 +24609,9 @@
 /obj/shrub,
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/decal/poster/wallsign/framed_award/rddiploma{
+	pixel_y = 27
 	},
 /turf/simulated/floor/black,
 /area/station/crew_quarters/hor)
@@ -25839,38 +25838,16 @@
 	dir = 4
 	},
 /obj/item/device/analyzer/atmospheric{
-	pixel_x = -9;
-	pixel_y = 12
-	},
-/obj/item/device/analyzer/atmospheric{
-	pixel_x = -9;
-	pixel_y = 6
-	},
-/obj/item/device/analyzer/atmospheric{
-	pixel_x = -9
-	},
-/obj/item/device/timer{
 	pixel_x = -2;
 	pixel_y = 12
 	},
-/obj/item/device/timer{
+/obj/item/device/analyzer/atmospheric{
 	pixel_x = -2;
 	pixel_y = 7
 	},
-/obj/item/device/timer{
+/obj/item/device/analyzer/atmospheric{
 	pixel_x = -2;
 	pixel_y = 2
-	},
-/obj/item/device/igniter{
-	pixel_x = 9;
-	pixel_y = 14
-	},
-/obj/item/device/igniter{
-	pixel_x = 9;
-	pixel_y = 7
-	},
-/obj/item/device/igniter{
-	pixel_x = 9
 	},
 /turf/simulated/floor/grime,
 /area/station/science/lab)
@@ -27800,7 +27777,7 @@
 /turf/simulated/floor/grime,
 /area/station/science/lab)
 "bWt" = (
-/obj/machinery/vending/standard,
+/obj/machinery/vending/standard/toxins,
 /turf/simulated/floor/white,
 /area/station/science/lab)
 "bWw" = (
@@ -31743,6 +31720,9 @@
 	},
 /obj/item/matchbook,
 /obj/item/cigpacket/propuffs,
+/obj/decal/poster/wallsign/framed_award/mdlicense{
+	pixel_y = 27
+	},
 /turf/simulated/floor/specialroom/medbay,
 /area/station/medical/head)
 "cjy" = (
@@ -36431,8 +36411,7 @@
 /turf/simulated/floor/black,
 /area/listeningpost)
 "czS" = (
-/obj/table/wood/auto,
-/obj/item/storage/toolbox/mechanical,
+/obj/machinery/computer/announcement/syndicate,
 /turf/simulated/floor/black,
 /area/listeningpost)
 "czT" = (
@@ -36448,8 +36427,8 @@
 /turf/simulated/floor/plating/airless,
 /area/space)
 "czW" = (
-/obj/storage/closet/syndicate/personal,
 /obj/decal/stripe_caution,
+/obj/machinery/vending/jobclothing/syndicate,
 /turf/simulated/floor,
 /area/listeningpost)
 "czX" = (
@@ -36559,8 +36538,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/clothing/under/misc/syndicate,
-/obj/item/clothing/under/misc/syndicate,
 /obj/storage/crate,
 /obj/item/shipcomponent/secondary_system/crash,
 /turf/simulated/floor/carpet/grime,
@@ -36999,7 +36976,7 @@
 /obj/decal/floatingtiles{
 	icon_state = "floattiles3"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/misc/hstation.dmi';
 	icon_state = "bloodydoor";
@@ -37027,7 +37004,7 @@
 /turf/simulated/floor/airless/plating/scorched,
 /area/abandonedship)
 "cBL" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/misc/hstation.dmi';
 	icon_state = "bloodydoor";
@@ -43954,8 +43931,9 @@
 	},
 /area/station/hallway/primary/south)
 "huq" = (
-/obj/machinery/atmospherics/unary/portables_connector{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	can_rupture = 0;
+	dir = 10
 	},
 /turf/simulated/floor/plating,
 /area/station/science/storage)
@@ -45965,6 +45943,12 @@
 /obj/mapping_helper/firedoor_spawn,
 /turf/simulated/floor/green,
 /area/station/hydroponics/lobby)
+"iZh" = (
+/obj/machinery/atmospherics/unary/portables_connector{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/station/science/storage)
 "iZA" = (
 /obj/machinery/computer/stockexchange{
 	dir = 4
@@ -47043,20 +47027,11 @@
 	},
 /area/station/solar/south)
 "jSU" = (
-/obj/storage/cart/mechcart,
-/obj/item/electronics/scanner,
-/obj/item/deconstructor,
-/obj/item/storage/toolbox/electrical,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/device/multitool,
-/obj/item/electronics/soldering{
-	pixel_x = -4;
-	pixel_y = -2
-	},
 /obj/cable{
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
+/obj/storage/cart/mechcart/tools,
 /turf/simulated/floor/plating/jen,
 /area/station/engine/elect)
 "jTk" = (
@@ -48802,9 +48777,6 @@
 	dir = 6
 	},
 /obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/light{
 	dir = 4;
 	pixel_x = 10
 	},
@@ -50154,7 +50126,7 @@
 /area/station/ranch)
 "mxm" = (
 /obj/machinery/door/airlock/pyro/medical,
-/obj/mapping_helper/access/pathology,
+/obj/mapping_helper/access/medical,
 /obj/mapping_helper/firedoor_spawn,
 /turf/simulated/floor/darkblue,
 /area/station/medical/medbay/psychiatrist)
@@ -50336,6 +50308,7 @@
 	icon_state = "0-4"
 	},
 /obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/status_display/market,
 /turf/simulated/floor/plating,
 /area/station/crew_quarters/supplylobby)
 "mDt" = (
@@ -51911,28 +51884,6 @@
 /area/station/engine/coldloop)
 "nPn" = (
 /obj/table/auto,
-/obj/item/assembly/time_ignite{
-	pixel_x = 13;
-	pixel_y = 13
-	},
-/obj/item/assembly/time_ignite{
-	pixel_x = 1;
-	pixel_y = 14
-	},
-/obj/item/assembly/time_ignite{
-	pixel_x = -11;
-	pixel_y = 15
-	},
-/obj/item/device/prox_sensor{
-	pixel_x = -12
-	},
-/obj/item/device/prox_sensor{
-	pixel_y = -1
-	},
-/obj/item/device/prox_sensor{
-	pixel_x = 12;
-	pixel_y = -2
-	},
 /turf/simulated/floor/white,
 /area/station/science/lab)
 "nPp" = (
@@ -52473,7 +52424,7 @@
 	dir = 4;
 	name = "Psychiatrist's Office"
 	},
-/obj/mapping_helper/access/pathology,
+/obj/mapping_helper/access/medical,
 /obj/mapping_helper/firedoor_spawn,
 /turf/simulated/floor/darkblue,
 /area/station/medical/medbay/psychiatrist)
@@ -57208,7 +57159,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
 	icon = 'icons/obj/junk.dmi';
@@ -57832,10 +57783,8 @@
 	dir = 8;
 	tag = ""
 	},
-/obj/machinery/computer/announcement{
-	dir = 4;
-	name = "Security Announcement Computer";
-	req_access_txt = "19"
+/obj/machinery/computer/announcement/station/security{
+	dir = 4
 	},
 /turf/simulated/floor/carpet/grime,
 /area/station/security/hos)
@@ -58553,7 +58502,7 @@
 	dir = 4;
 	name = "Monkey Pen"
 	},
-/obj/mapping_helper/access/pathology,
+/obj/mapping_helper/access/medical,
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -61549,6 +61498,10 @@
 	dir = 4
 	},
 /area/station/mining/staff_room)
+"uXz" = (
+/obj/machinery/status_display/market,
+/turf/simulated/wall/auto/reinforced/supernorn,
+/area/station/quartermaster/cargooffice)
 "uYN" = (
 /obj/stool/chair{
 	dir = 4
@@ -65207,6 +65160,7 @@
 	pixel_x = -2;
 	pixel_y = 10
 	},
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/black,
 /area/listeningpost)
 "xZQ" = (
@@ -91749,7 +91703,7 @@ bOd
 bHW
 bYT
 huq
-cak
+iZh
 ite
 ced
 cfl
@@ -123138,7 +123092,7 @@ adC
 iWf
 mSG
 mwn
-smf
+uXz
 fRt
 bGX
 pNt

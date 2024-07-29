@@ -469,7 +469,7 @@
 /area/station/bridge/captain)
 "abW" = (
 /obj/machinery/portableowl/attached{
-	name = "The Sexiest Owl"
+	name = "The Coolest Owl"
 	},
 /turf/simulated/floor/grass/random/alt,
 /area/station/garden/aviary)
@@ -15383,6 +15383,10 @@
 	},
 /turf/simulated/floor,
 /area/station/science/lab)
+"bML" = (
+/obj/machinery/status_display,
+/turf/simulated/wall/auto/reinforced/supernorn,
+/area/station/hallway/secondary/construction)
 "bMM" = (
 /turf/simulated/floor/black,
 /area/station/hallway/primary/southeast)
@@ -19012,6 +19016,10 @@
 	},
 /turf/simulated/floor/plating/random,
 /area/station/maintenance/disposal)
+"drD" = (
+/obj/machinery/status_display/market,
+/turf/simulated/wall/auto/supernorn,
+/area/station/engine/elect)
 "dsA" = (
 /obj/disposalpipe/segment/mail{
 	dir = 4
@@ -23149,7 +23157,6 @@
 	},
 /area/station/chapel/sanctuary)
 "fdn" = (
-/obj/storage/cart/forensic,
 /obj/disposalpipe/segment,
 /obj/cable{
 	icon_state = "1-2"
@@ -23157,6 +23164,7 @@
 /obj/machinery/light_switch/west{
 	dir = 4
 	},
+/obj/storage/cart/forensic/detective,
 /turf/simulated/floor/carpet/grime,
 /area/station/security/detectives_office)
 "fdA" = (
@@ -29950,7 +29958,7 @@
 /obj/item/device/radio/intercom/medical{
 	dir = 4
 	},
-/obj/machinery/synthomatic,
+/obj/fakeobject/synthomatic,
 /turf/simulated/floor/greenwhite/other{
 	dir = 4
 	},
@@ -39195,7 +39203,7 @@
 /turf/simulated/floor,
 /area/station/quartermaster/cargobay)
 "nnQ" = (
-/obj/machinery/centrifuge,
+/obj/fakeobject/centrifuge,
 /obj/decal/tile_edge/line/green{
 	dir = 1;
 	icon_state = "line3"
@@ -39861,7 +39869,7 @@
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/maintenance/central)
 "nCG" = (
-/obj/machinery/computer/pathology{
+/obj/fakeobject/pathogen_computer{
 	dir = 4
 	},
 /obj/machinery/power/data_terminal,
@@ -39999,15 +40007,6 @@
 	dir = 10
 	},
 /area/station/hallway/secondary/exit)
-"nGm" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/disposalpipe/segment/mail,
-/obj/mapping_helper/wingrille_spawn/auto,
-/obj/mapping_helper/wingrille_spawn/auto,
-/turf/simulated/floor/plating/random,
-/area/station/hallway/primary/central)
 "nGz" = (
 /obj/disposalpipe/segment/ejection{
 	dir = 4
@@ -41349,7 +41348,7 @@
 /obj/decal/tile_edge/line/green{
 	icon_state = "line3"
 	},
-/obj/machinery/vending/pathology,
+/obj/fakeobject/pathology_vendor,
 /obj/machinery/light/incandescent/netural{
 	dir = 1;
 	nostick = 1;
@@ -44048,16 +44047,6 @@
 	},
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/engine/core)
-"pOY" = (
-/obj/decal/cleanable/dirt/jen,
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/turf/simulated/floor/yellow,
-/area/station/hallway/secondary/construction)
 "pPB" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 1
@@ -44209,7 +44198,7 @@
 	dir = 1;
 	icon_state = "line3"
 	},
-/obj/machinery/incubator{
+/obj/fakeobject/incubator{
 	dir = 1
 	},
 /turf/simulated/floor/greenwhite/other{
@@ -44381,7 +44370,7 @@
 /turf/simulated/floor/black,
 /area/station/hallway/primary/west)
 "pYK" = (
-/obj/machinery/pathogen_manipulator,
+/obj/fakeobject/pathogen_manipulator,
 /obj/decal/tile_edge/line/green{
 	dir = 9;
 	icon_state = "line4"
@@ -47600,7 +47589,7 @@
 /turf/simulated/floor/plating/random,
 /area/station/bridge)
 "rHk" = (
-/obj/machinery/pathogen_manipulator,
+/obj/fakeobject/pathogen_manipulator,
 /obj/machinery/light/incandescent/netural{
 	dir = 8;
 	nostick = 1
@@ -49126,7 +49115,7 @@
 	nostick = 1;
 	pixel_y = 21
 	},
-/obj/machinery/microscope{
+/obj/fakeobject/microscope{
 	pixel_w = -1
 	},
 /turf/simulated/floor/greenwhite/other,
@@ -49551,7 +49540,7 @@
 /turf/simulated/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "sMG" = (
-/obj/machinery/computer/pathology{
+/obj/fakeobject/pathogen_computer{
 	dir = 4
 	},
 /obj/machinery/power/data_terminal,
@@ -53626,6 +53615,10 @@
 /area/station/maintenance/inner/east{
 	name = "East Central Maintenance"
 	})
+"uMg" = (
+/obj/machinery/status_display/market,
+/turf/simulated/wall/auto/reinforced/supernorn,
+/area/station/science/artifact)
 "uMk" = (
 /obj/machinery/disposal/small{
 	dir = 1;
@@ -54579,6 +54572,7 @@
 /turf/simulated/floor/plating/random,
 /area/station/storage/tech)
 "vgU" = (
+/obj/machinery/status_display/market,
 /turf/simulated/wall/auto/supernorn,
 /area/station/maintenance/southeast)
 "vgX" = (
@@ -56986,9 +56980,6 @@
 /obj/item/device/radio/intercom/cargo{
 	dir = 8
 	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
 /turf/simulated/floor/orangeblack,
 /area/station/hallway/primary/east)
 "wsZ" = (
@@ -58816,7 +58807,7 @@
 	name = "autoname - SS13";
 	pixel_x = 11
 	},
-/obj/machinery/autoclave,
+/obj/fakeobject/autoclave,
 /obj/decal/tile_edge/line/green{
 	dir = 1;
 	icon_state = "line3"
@@ -106502,7 +106493,7 @@ xSt
 aGN
 abH
 byZ
-nGm
+bin
 aKw
 ajS
 kek
@@ -113225,7 +113216,7 @@ dsA
 mub
 sPw
 nOV
-nYu
+drD
 wsT
 psH
 tDL
@@ -115957,8 +115948,8 @@ kmN
 bil
 xQd
 uCi
-qPl
-pOY
+bML
+pMQ
 pBg
 pMQ
 qPl
@@ -117458,7 +117449,7 @@ mAZ
 wXo
 wXo
 wXo
-wXo
+uMg
 gvb
 brW
 xQd

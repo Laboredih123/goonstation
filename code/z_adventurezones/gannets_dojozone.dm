@@ -360,14 +360,14 @@ Contents:
 * It's a pretty horrible mistranslation, so I'm 100% keeping it.
 */
 
-/obj/fakeobject/kanji_1
+/obj/decal/fakeobjects/kanji_1
 	plane = PLANE_FLOOR
 	name = "symbol"
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "kanji_1"
 	anchored = ANCHORED_ALWAYS
 
-/obj/fakeobject/kanji_2
+/obj/decal/fakeobjects/kanji_2
 	plane = PLANE_FLOOR
 	name = "symbol"
 	icon = 'icons/effects/96x96.dmi'
@@ -551,15 +551,6 @@ Contents:
 	desc = "A little wooden tool for raking sand in to patterns."
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "rake"
-
-/obj/fakeobject/sealed_door
-	name = "laboratory door"
-	desc = "It appears to be sealed."
-	icon = 'icons/obj/dojo.dmi'
-	icon_state = "sealed_door"
-	density = 1
-	anchored = ANCHORED_ALWAYS
-	opacity = 1
 
 /obj/fakeobject/katana_fake
 	name = "katana sheath"

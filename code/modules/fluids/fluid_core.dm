@@ -329,7 +329,7 @@ ADMIN_INTERACT_PROCS(/obj/fluid, proc/admin_clear_fluid)
 						push_thing = thing
 
 					if (found)
-						if( thing.density || (thing.flags & FLUID_DENSE) )
+						if( thing.density || (thing.flags & FLUID_DENSE_ALWAYS) )
 							suc=0
 							blocked_dirs++
 							if (IS_PERSPECTIVE_BLOCK(thing))
@@ -561,30 +561,17 @@ ADMIN_INTERACT_PROCS(/obj/fluid, proc/admin_clear_fluid)
 		if (icon_state != "15") return
 		var/blocked = 0
 		for( var/dir in cardinal )
-			if (dir == SOUTH) //No south perspective
+			if (dir == SOUTH || dir == EAST) //No south perspective or east
 				continue
 
 			if (blocked_perspective_objects["[dir]"])
 				blocked = 1
-				if (dir == NORTH)
-					display_overlay("[dir]",0,32)
-				else
-					display_overlay("[dir]",(dir == EAST) ? 32 : -32,0)
+				display_overlay("[dir]",0,0)
 			else
 				clear_overlay("[dir]")
 
 		if (!blocked) //Nothing adjacent!
 			clear_overlay()
-
-		if (src.overlay_refs && length(src.overlay_refs))
-			if (src.overlay_refs["1"] && src.overlay_refs["8"]) //north, east
-				display_overlay("9",-32,32) //northeast
-			else
-				clear_overlay("9")  //northeast
-			if (src.overlay_refs["1"] && src.overlay_refs["4"]) //north, west
-				display_overlay("5",32,32) //northwest
-			else
-				clear_overlay("5") //northwest
 
 	//perspective overlays
 	proc/display_overlay(var/overlay_key, var/pox, var/poy)
@@ -787,7 +774,8 @@ ADMIN_INTERACT_PROCS(/obj/fluid, proc/admin_clear_fluid)
 	if (F.my_depth_level == 1)
 		if(!src.lying && src.shoes && src.shoes.hasProperty ("chemprot") && (src.shoes.getProperty("chemprot") >= 5)) //sandals do not help
 			do_reagent_reaction = 0
-			F.group.reagents.reaction(src.shoes, TOUCH, F.group.amt_per_tile, can_spawn_fluid = FALSE)
+			if (!src.wear_suit || !(src.wear_suit.c_flags & SPACEWEAR)) // suits can go over shoes
+				F.group.reagents.reaction(src.shoes, TOUCH, F.group.amt_per_tile, can_spawn_fluid = FALSE)
 
 	if (entered_group) //if entered_group == 1, it may not have been set yet
 		if (isturf(oldloc))

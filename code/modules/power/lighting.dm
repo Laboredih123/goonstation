@@ -175,7 +175,6 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 	desc = "A lighting fixture."
 	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
-	plane = PLANE_NOSHADOW_ABOVE
 	text = ""
 	flags = FLUID_SUBMERGE | USEDELAY
 	material_amt = 0.2
@@ -191,7 +190,7 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 
 	var/fitting = "tube"
 	var/wallmounted = 1
-	var/nostick = 1 //If set to true, overrides the autopositioning.
+	var/nostick = 0 //If set to true, overrides the autopositioning.
 	var/candismantle = 1
 
 	power_usage = 0
@@ -199,6 +198,8 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 	var/removable_bulb = 1
 	var/datum/light/point/light
 	var/install_type = INSTALL_WALL
+
+	var/obj/dummy/light_overlay // Light overlay object to place in `src.vis_contents`
 
 	New()
 		..()
@@ -211,6 +212,7 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 		if (A)
 			UnsubscribeProcess()
 			A.add_light(src)
+		autoposition()
 
 	disposing()
 		if (src in stationLights)
@@ -225,6 +227,9 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 			A.remove_light(src)
 		if (light)
 			light.dispose()
+
+		qdel(src.light_overlay)
+		src.light_overlay = null
 		..()
 
 	proc/autoposition(setdir = null, instant = FALSE)
@@ -240,25 +245,17 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 				for (var/dir in directions)
 					T = get_step(src,dir)
 					if (istype(T,/turf/simulated/wall) || istype(T,/turf/unsimulated/wall) || (locate(/obj/mapping_helper/wingrille_spawn) in T) || (locate(/obj/window) in T))
-						var/is_jen_wall = 0 // jen walls' ceilings are narrower, so let's move the lights a bit further inward!
-						if (istype(T, /turf/simulated/wall/auto/jen) || istype(T, /turf/simulated/wall/auto/reinforced/jen))
-							is_jen_wall = 1
 						src.set_dir(dir)
-						if (dir == EAST)
-							if (is_jen_wall)
-								src.pixel_x = 12
-							else
-								src.pixel_x = 10
-						else if (dir == WEST)
-							if (is_jen_wall)
-								src.pixel_x = -12
-							else
-								src.pixel_x = -10
-						else if (dir == NORTH)
-							if (is_jen_wall)
-								src.pixel_y = 24
-							else
-								src.pixel_y = 21
+						switch(dir)
+							if (EAST)
+								src.pixel_x = 32
+							if (WEST)
+								src.pixel_x = -32
+							if (NORTH)
+								src.pixel_y = 32
+							if (SOUTH)
+								src.pixel_y = -32
+
 						break
 				T = null
 
@@ -338,10 +335,6 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 	//The only difference between these small lights and others are that these automatically stick to walls! Wow!!
 	sticky
 		nostick = 0
-
-		New()
-			..()
-			autoposition()
 
 		netural
 			name = "incandescent light bulb"
@@ -817,6 +810,12 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 	light.set_color(initial(src.light_type.color_r), initial(src.light_type.color_g), initial(src.light_type.color_b))
 	light.set_height(2.4)
 	light.attach(src)
+	if (is_valid_icon_state("[src.base_state]-overlay", src.icon))
+		light_overlay = new()
+		light_overlay.mouse_opacity = 0
+		light_overlay.icon = src.icon
+		light_overlay.icon_state = "[src.base_state]-overlay"
+		light_overlay.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE
 	SPAWN(1 DECI SECOND)
 		update()
 
@@ -862,13 +861,18 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 			if(LIGHT_BROKEN)
 				icon_state = "[base_state]-broken"
 				on = 0
+	if (!on)
+		vis_contents -= light_overlay
+		return
+	if (!(light_overlay in vis_contents))
+		vis_contents += light_overlay
 
 /obj/machinery/light/proc/do_break()
 	current_lamp.light_status = LIGHT_BROKEN
 	current_lamp.update()
-	icon_state = "[base_state]-broken"
 	on = 0
 	light.disable()
+	src.update_icon_state()
 	elecflash(src, radius = 1, power = 2, exclude_center = 0)
 	logTheThing(LOG_STATION, null, "Light '[name]' broke itself (breakprob: [current_lamp.breakprob]) at ([log_loc(src)])")
 
@@ -879,10 +883,10 @@ ADMIN_INTERACT_PROCS(/obj/machinery/light, proc/broken, proc/admin_toggle, proc/
 	logTheThing(LOG_STATION, null, "Light '[name]' burned out (burnprob: [current_lamp.burnprob]) at ([log_loc(src)])")
 	SPAWN(0.2 SECONDS)
 		src.light.set_brightness(original_brightness)
-		src.icon_state = "[base_state]-burned"
 		src.current_lamp.breakprob = WORN_LIGHT_BREAKPROB
 		src.current_lamp.light_status = LIGHT_BURNED
 		src.current_lamp.update()
+		src.update_icon_state()
 		playsound(src, 'sound/effects/sparks4.ogg', 40, TRUE)
 		src.on = FALSE
 		src.light.disable()
@@ -1460,6 +1464,14 @@ TYPEINFO(/obj/item/light)
 		color_r = 0.95
 		color_g = 0.2
 		color_b = 0.2
+	reddish //apparently y'all didn't have reddish bulbs?
+		name = "reddish light bulb"
+		desc = "Fancy."
+		icon_state = "bulb-red"
+		base_state = "bulb-red"
+		color_r = 0.98
+		color_g = 0.75
+		color_b = 0.5
 	yellow
 		name = "yellow light bulb"
 		desc = "Fancy."

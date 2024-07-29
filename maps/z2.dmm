@@ -339,7 +339,7 @@
 	},
 /area/hospital)
 "adk" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This window is broken.  Impressively broken, as the surrounding bulkhead is all torn up too.  Maybe there was a....space....quake.";
 	icon = 'icons/misc/hospital.dmi';
 	icon_state = "brokenup";
@@ -540,7 +540,7 @@
 /turf/unsimulated/floor/white/grime,
 /area/hospital)
 "adR" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate compartments.";
 	icon = 'icons/obj/doors/blastdoor.dmi';
 	icon_state = "bdoorright0";
@@ -575,7 +575,7 @@
 /area/hospital)
 "adX" = (
 /obj/table/auto,
-/obj/machinery/microscope,
+/obj/fakeobject/microscope,
 /turf/unsimulated/floor/white,
 /area/hospital)
 "adY" = (
@@ -614,7 +614,7 @@
 	},
 /area/hospital/samostrel)
 "aec" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate compartments.";
 	icon = 'icons/obj/doors/blastdoor.dmi';
 	icon_state = "bdoorleft0";
@@ -630,7 +630,7 @@
 /area/hospital)
 "aee" = (
 /obj/chaser/hospital_trigger,
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -683,7 +683,7 @@
 /turf/unsimulated/floor/white,
 /area/hospital)
 "aep" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -827,7 +827,7 @@
 	},
 /area/hospital/samostrel)
 "aeV" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -837,7 +837,7 @@
 /turf/unsimulated/floor/white,
 /area/hospital)
 "aeW" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -1079,7 +1079,7 @@
 /turf/unsimulated/wall/auto/lead/gray,
 /area/crypt/sigma/mainhall)
 "afX" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -2673,7 +2673,7 @@
 /turf/unsimulated/floor,
 /area/moon/museum)
 "ans" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -2951,7 +2951,7 @@
 /turf/unsimulated/floor/carpet/red/decal/innercross,
 /area/syndicate_station/battlecruiser)
 "aoE" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A pod door.  One that might be stuck, who knows.";
 	dir = 4;
 	icon = 'icons/obj/doors/sovblastdoor.dmi';
@@ -3396,7 +3396,7 @@
 /turf/unsimulated/floor/engine,
 /area/hospital/samostrel)
 "aqy" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A pod door.  One that is definitely stuck.";
 	dir = 8;
 	icon = 'icons/obj/doors/sovblastdoor.dmi';
@@ -4134,7 +4134,7 @@
 /turf/unsimulated/floor/white/grime,
 /area/hospital)
 "atI" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate compartments.";
 	icon = 'icons/obj/doors/blastdoor.dmi';
 	icon_state = "bdoorright0";
@@ -4148,7 +4148,7 @@
 	},
 /area/hospital)
 "atK" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0";
@@ -4238,7 +4238,7 @@
 /turf/unsimulated/floor/white/grime,
 /area/hospital)
 "auo" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate compartments.";
 	icon = 'icons/obj/doors/blastdoor.dmi';
 	icon_state = "bdoorleft0";
@@ -4831,7 +4831,7 @@
 /turf/unsimulated/floor/black,
 /area/hospital/samostrel)
 "axL" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate museum compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -4843,7 +4843,7 @@
 	},
 /area/moon/museum/west)
 "axM" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate museum compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -4853,7 +4853,7 @@
 /turf/unsimulated/floor,
 /area/moon/museum/west)
 "axN" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate museum compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -4884,7 +4884,7 @@
 /turf/unsimulated/floor,
 /area/moon/museum)
 "axR" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate museum compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -4894,7 +4894,7 @@
 /turf/unsimulated/floor,
 /area/moon/museum)
 "axS" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate museum compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -5336,7 +5336,7 @@
 /area/moon/museum/west)
 "aAk" = (
 /obj/table/auto,
-/obj/machinery/microscope,
+/obj/fakeobject/microscope,
 /turf/unsimulated/floor/grey/side{
 	dir = 1
 	},
@@ -5775,7 +5775,7 @@
 /turf/unsimulated/floor,
 /area/moon/museum)
 "aCo" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -5901,7 +5901,7 @@
 /turf/unsimulated/floor/grey/checker,
 /area/moon/museum/giftshop)
 "aCR" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate museum compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -5912,7 +5912,7 @@
 /turf/unsimulated/floor,
 /area/moon/museum)
 "aCS" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate museum compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -6247,6 +6247,11 @@
 	},
 /turf/unsimulated/floor,
 /area/moon/museum)
+"aEM" = (
+/obj/decal/nav_danger,
+/obj/grille/catwalk,
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "aEN" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
@@ -6476,7 +6481,7 @@
 	},
 /area/hospital/underground)
 "aFU" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "A security door used to separate museum compartments.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -7335,6 +7340,9 @@
 /obj/map/light/cyan,
 /turf/unsimulated/floor/arctic/snow/lake,
 /area/lower_arctic/lower)
+"aKG" = (
+/turf/unsimulated/floor/scorched,
+/area/watchful_eye_sensor)
 "aKH" = (
 /obj/stone{
 	dir = 1
@@ -7988,7 +7996,7 @@
 	},
 /area/marsoutpost)
 "aMS" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -7996,7 +8004,7 @@
 	name = "rusted airlock";
 	opacity = 1
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor1";
@@ -8439,7 +8447,7 @@
 	},
 /area/marsoutpost)
 "aOp" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
@@ -8999,7 +9007,7 @@
 	},
 /area/marsoutpost)
 "aPV" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "door_open";
@@ -9205,7 +9213,7 @@
 /turf/unsimulated/floor/cave,
 /area/crater/cave)
 "aQJ" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
@@ -9214,7 +9222,7 @@
 	name = "rusted airlock";
 	opacity = 1
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -9535,7 +9543,7 @@
 	},
 /area/upper_arctic/exterior/surface)
 "aRM" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "door_open";
@@ -9705,7 +9713,7 @@
 	},
 /area/marsoutpost)
 "aSy" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -11359,7 +11367,7 @@
 	},
 /area/marsoutpost/duststorm)
 "aXT" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This blast door looks rusted over.  Junk.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -11369,7 +11377,7 @@
 /turf/unsimulated/floor/engine,
 /area/marsoutpost)
 "aXU" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This blast door looks rusted over.  Junk.";
 	dir = 6;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -13689,7 +13697,7 @@
 	layer = 2.5;
 	name = "power conduit"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -13698,7 +13706,7 @@
 	},
 /area/marsoutpost)
 "bfw" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -13715,7 +13723,7 @@
 	name = "mysterious computer";
 	pixel_x = 32
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -13869,7 +13877,7 @@
 	},
 /area/marsoutpost)
 "bga" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -13997,7 +14005,7 @@
 	},
 /area/marsoutpost)
 "bgy" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "door_open";
@@ -14006,7 +14014,7 @@
 /turf/unsimulated/floor/grime,
 /area/marsoutpost)
 "bgz" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -14383,7 +14391,7 @@
 /turf/unsimulated/floor/arctic/snow/ice,
 /area/lower_arctic/lower)
 "bia" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -15538,7 +15546,7 @@
 /turf/unsimulated/floor/cave,
 /area/crater/cave/lower)
 "bkZ" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 1;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -15548,7 +15556,7 @@
 	},
 /area/marsoutpost)
 "bla" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 1;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -15767,7 +15775,7 @@
 /turf/unsimulated/floor/grime,
 /area/marsoutpost)
 "blE" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -15980,7 +15988,7 @@
 /turf/unsimulated/floor/grime,
 /area/marsoutpost)
 "bmm" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -16117,7 +16125,7 @@
 /turf/unsimulated/wall/solidcolor/white,
 /area/afterlife/heaven)
 "bmM" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -17055,6 +17063,26 @@
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon)
+"bpV" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "bpY" = (
 /turf/unsimulated/floor/key_floor,
 /area/drone/assembly)
@@ -18542,7 +18570,7 @@
 /turf/unsimulated/floor/lava,
 /area/iomoon)
 "bvR" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -19109,8 +19137,8 @@
 /turf/unsimulated/floor/lava,
 /area/iomoon)
 "bzm" = (
-/obj/fakeobject/firelock_broken,
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock,
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -19526,7 +19554,7 @@
 /turf/space,
 /area/space)
 "bBp" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -19536,11 +19564,11 @@
 /turf/unsimulated/floor,
 /area/iomoon/base)
 "bBs" = (
-/obj/fakeobject/firelock_broken,
+/obj/fakeobject/airlock_broken/firelock,
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -19600,6 +19628,17 @@
 	icon_state = "fred1"
 	},
 /area/iomoon/base)
+"bBz" = (
+/obj/grille/catwalk,
+/obj/machinery/communications_dish,
+/obj/cable/green{
+	icon_state = "0-9"
+	},
+/obj/cable/green{
+	icon_state = "0-10"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "bBA" = (
 /turf/unsimulated/floor/caution/south{
 	dir = 1
@@ -20219,6 +20258,13 @@
 	icon_state = "fred1"
 	},
 /area/iomoon/base)
+"bDM" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "bDQ" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -20921,6 +20967,23 @@
 /obj/item/paper/alchemy/southwest,
 /turf/unsimulated/dirt,
 /area/catacombs)
+"bGK" = (
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk,
+/obj/fakeobject/airlock_broken/firelock{
+	density = 1;
+	desc = "This airlock seems to be badly damaged.";
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "airlock_locked";
+	name = "broken airlock"
+	},
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "bGL" = (
 /obj/storage/closet/coffin,
 /obj/item/alchemy/symbol/earth,
@@ -21219,6 +21282,19 @@
 	tag = ""
 	},
 /area/iomoon/robot_ruins/boss_chamber)
+"bHS" = (
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 8
+	},
+/obj/decal/cleanable/vomit,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "bHU" = (
 /obj/lattice,
 /turf/space/no_replace,
@@ -21570,6 +21646,10 @@
 "bIY" = (
 /turf/unsimulated/wall/void,
 /area/crunch)
+"bIZ" = (
+/obj/grille/catwalk,
+/turf/space,
+/area/watchful_eye_sensor)
 "bJc" = (
 /turf/unsimulated/floor/specialroom/chapel{
 	dir = 8
@@ -22319,7 +22399,7 @@
 /turf/unsimulated/floor/specialroom/cafeteria,
 /area/crunch)
 "bLD" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -22433,7 +22513,7 @@
 	},
 /area/crunch)
 "bLV" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -22672,6 +22752,13 @@
 	icon_state = "fred2"
 	},
 /area/crypt/sigma/crew)
+"bMQ" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "1-6"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "bMR" = (
 /obj/storage/secure/closet/animal,
 /turf/unsimulated/floor/caution/corner/sw{
@@ -24350,7 +24437,7 @@
 /area/gauntlet)
 "bSz" = (
 /obj/creepy_sound_trigger,
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -24819,6 +24906,16 @@
 	dir = 1
 	},
 /area/crypt/sigma)
+"bUD" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "4-10"
+	},
+/obj/lattice/directional_icons{
+	dir = 6
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "bUE" = (
 /obj/decal/stage_edge{
 	layer = 2.8;
@@ -26915,7 +27012,7 @@
 	},
 /area/meat_derelict/main)
 "ccJ" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "com2_open";
@@ -26924,7 +27021,7 @@
 /turf/unsimulated/floor,
 /area/meat_derelict/guts)
 "ccK" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -27390,7 +27487,7 @@
 /turf/simulated/wall/auto/reinforced/old,
 /area/crunch)
 "ceP" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -27429,7 +27526,7 @@
 /turf/unsimulated/floor/setpieces/gauntlet,
 /area/afterlife/heaven)
 "ceZ" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -27687,13 +27784,8 @@
 	},
 /area/afterlife/heaven)
 "cgj" = (
-/obj/table/wood/auto,
-/obj/machinery/computer/announcement{
-	dir = 4;
-	icon_state = "datasec";
-	name = "Commander's Announcement Computer";
-	req_access_txt = "76";
-	theme = "syndicate"
+/obj/machinery/computer/announcement/syndicate/commander{
+	dir = 4
 	},
 /turf/unsimulated/floor/carpet/red/fancy/edge/sw,
 /area/syndicate_station/battlecruiser)
@@ -28355,7 +28447,7 @@
 /turf/unsimulated/floor/grime,
 /area/meat_derelict/entry)
 "ciq" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -29952,7 +30044,7 @@
 /area/owlery/staffhall)
 "cnr" = (
 /obj/decal/cleanable/blood/tracks,
-/obj/fakeobject/sealed_door/owlery,
+/obj/fakeobject/airlock_broken/sealed/owlery,
 /turf/unsimulated/floor/orangeblack,
 /area/owlery/staffhall)
 "cns" = (
@@ -31029,7 +31121,7 @@
 /turf/unsimulated/floor/black,
 /area/dojo)
 "crq" = (
-/obj/fakeobject/sealed_door,
+/obj/fakeobject/airlock_broken/sealed,
 /turf/unsimulated/floor/black,
 /area/dojo)
 "crr" = (
@@ -34661,7 +34753,7 @@
 /area/owlery/lab)
 "cCJ" = (
 /obj/table/reinforced/chemistry/auto,
-/obj/machinery/microscope,
+/obj/fakeobject/microscope,
 /turf/unsimulated/floor/black,
 /area/owlery/lab)
 "cCK" = (
@@ -35249,7 +35341,7 @@
 /area/owlery/lab)
 "cEv" = (
 /obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/synthomatic,
+/obj/fakeobject/synthomatic,
 /turf/unsimulated/floor/white,
 /area/owlery/lab)
 "cEw" = (
@@ -40596,6 +40688,10 @@
 	dir = 1
 	},
 /area/owlery/gangzone)
+"cTM" = (
+/obj/item/casing/shotgun,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "cTN" = (
 /obj/window{
 	desc = "A window.  For a museum exhibit.";
@@ -41970,7 +42066,7 @@
 	},
 /area/owlery/owleryhall)
 "cXn" = (
-/obj/fakeobject/sealed_door{
+/obj/fakeobject/airlock_broken/sealed{
 	name = "office door"
 	},
 /turf/unsimulated/wall/auto/reinforced/gannets,
@@ -42765,6 +42861,12 @@
 	dir = 6
 	},
 /area/owlery/owleryhall)
+"cZv" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "cZx" = (
 /obj/item/cigbutt,
 /turf/unsimulated/floor/plating,
@@ -46504,8 +46606,8 @@
 	},
 /area/centcom)
 "dnj" = (
-/obj/fakeobject/firelock_broken,
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock,
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -46617,7 +46719,7 @@
 /turf/unsimulated/iomoon/floor,
 /area/iomoon)
 "doL" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This blast door looks rusted over.  Junk.";
 	dir = 6;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -46797,6 +46899,18 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital/underground)
+"dqn" = (
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 1
+	},
+/obj/table/nanotrasen/auto,
+/obj/item/kitchen/utensil/knife/bread{
+	pixel_y = -14;
+	pixel_x = -8
+	},
+/obj/item/radio_tape,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "dqv" = (
 /turf/unsimulated/floor/grey/side{
 	dir = 5
@@ -47079,7 +47193,7 @@
 	},
 /area/shuttle/merchant_shuttle/right_centcom/donut2)
 "dtA" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "This airlock seems to be badly damaged.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -47424,7 +47538,7 @@
 	},
 /area/shuttle/merchant_shuttle/right_centcom/cogmap2)
 "dvf" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -47442,7 +47556,7 @@
 	},
 /area/shuttle/merchant_shuttle/left_centcom/cogmap2)
 "dvj" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -49321,6 +49435,19 @@
 /obj/map/light/green,
 /turf/unsimulated/floor/setpieces/swampgrass,
 /area/centcom/offices/tterc)
+"dBO" = (
+/obj/fakeobject/airlock_broken/firelock{
+	density = 1;
+	desc = "This airlock seems to be badly damaged.";
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "airlock_locked";
+	name = "broken airlock"
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "dBS" = (
 /obj/stool/chair/comfy/throne_gold{
 	dir = 8
@@ -54645,6 +54772,17 @@
 	icon_state = "iocrust_corner"
 	},
 /area/iomoon/caves)
+"dVJ" = (
+/obj/grille/catwalk,
+/obj/machinery/communications_dish,
+/obj/cable/green{
+	icon_state = "0-6"
+	},
+/obj/cable/green{
+	icon_state = "0-10"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "dWx" = (
 /obj/fakeobject/apc_broken,
 /turf/unsimulated/wall/auto/lead/gray,
@@ -54709,6 +54847,19 @@
 /obj/spacevine,
 /turf/unsimulated/wall/auto/lead/blue,
 /area/crater/biodome/south)
+"dYY" = (
+/obj/decal/residual_energy,
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/fakeobject{
+	icon = 'icons/obj/window.dmi';
+	icon_state = "rwindow";
+	name = "window"
+	},
+/obj/lattice/directional_icons{
+	dir = 4
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "dZt" = (
 /obj/machinery/light,
 /turf/unsimulated/floor,
@@ -54845,6 +54996,21 @@
 	icon_state = "floor3"
 	},
 /area/meat_derelict/main)
+"ecz" = (
+/obj/cable/green{
+	icon_state = "2-8"
+	},
+/obj/cable/green{
+	icon_state = "2-4"
+	},
+/obj/cable/green{
+	icon_state = "1-4"
+	},
+/obj/cable/green{
+	icon_state = "1-8"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "ede" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -54920,6 +55086,14 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"efx" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "egw" = (
 /obj/tree,
 /obj/map/light/graveyard,
@@ -55081,6 +55255,19 @@
 	opacity = 0
 	},
 /area/centcom/lobby)
+"emO" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "2-9"
+	},
+/obj/decal/cleanable/blood{
+	icon_state = "handblood_c"
+	},
+/obj/lattice/directional_icons{
+	dir = 8
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "emZ" = (
 /obj/decal/tile_edge/line/black{
 	dir = 8;
@@ -55199,7 +55386,7 @@
 	},
 /area/crunch/wtc)
 "esa" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
@@ -55247,6 +55434,10 @@
 	},
 /turf/unsimulated/floor/setpieces/rootfloor,
 /area/centcom/offices/marknstein)
+"etH" = (
+/obj/machinery/light/small/broken,
+/turf/unsimulated/floor/scorched,
+/area/watchful_eye_sensor)
 "etS" = (
 /obj/storage/closet/coffin,
 /mob/living/critter/skeleton,
@@ -55296,6 +55487,21 @@
 "ewv" = (
 /turf/unsimulated/floor/plating,
 /area/sim/tdome/tdome2)
+"ewy" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow,
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "ewC" = (
 /obj/fakeobject/pipe{
 	desc = "It seems to have been damaged somehow.";
@@ -55341,6 +55547,26 @@
 "eyo" = (
 /turf/unsimulated/wall/auto/lead/white,
 /area/moon/museum/giftshop)
+"eyH" = (
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "6-10"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "eyM" = (
 /turf/unsimulated/wall/auto/lead/gray,
 /area/crypt/sigma/morgue)
@@ -55379,10 +55605,31 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/owlery/Owlmait2)
+"eBS" = (
+/obj/decoration/junctionbox/junctionbox3{
+	pixel_y = 32
+	},
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/item/casing/shotgun/pipe,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "eCA" = (
 /obj/mapping_helper/wingrille_spawn/auto,
 /turf/unsimulated/floor/plating,
 /area/marsoutpost)
+"eDm" = (
+/obj/grille/catwalk,
+/obj/machinery/communications_dish,
+/obj/cable/green{
+	icon_state = "0-5"
+	},
+/obj/cable/green{
+	icon_state = "0-6"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "eEh" = (
 /obj/table/reinforced/auto,
 /obj/machinery/door/window{
@@ -55452,6 +55699,15 @@
 /obj/adventurepuzzle/triggerable/light/gauntlet,
 /turf/unsimulated/floor/plating,
 /area/sim/tdome/tdome1)
+"eHr" = (
+/obj/cable{
+	icon_state = "2-9"
+	},
+/obj/cable{
+	icon_state = "2-6"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "eHC" = (
 /obj/machinery/light{
 	dir = 4
@@ -55564,6 +55820,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"ePz" = (
+/obj/lattice/directional_icons{
+	dir = 9
+	},
+/obj/machinery/light/small/floor/harsh/very,
+/turf/space,
+/area/watchful_eye_sensor)
 "ePA" = (
 /obj/decal/stripe_delivery,
 /turf/unsimulated/floor/plating,
@@ -55672,6 +55935,16 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"eTD" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "1-10"
+	},
+/obj/lattice/directional_icons{
+	dir = 10
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "eTR" = (
 /obj/stool/chair/comfy,
 /obj/npc/trader/random,
@@ -55735,6 +56008,13 @@
 	},
 /turf/unsimulated/floor/black,
 /area/owlery/gangzone)
+"eVe" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "eVB" = (
 /obj/disposalpipe/segment{
 	dir = 2;
@@ -55818,6 +56098,20 @@
 /obj/item/storage/box/lightbox/tubes/red,
 /turf/unsimulated/floor/carpet/grime,
 /area/afterlife/bar/sanctuary)
+"eZR" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/green{
+	icon_state = "4-10"
+	},
+/obj/mapping_helper/mob_spawn/corpse/human/skeleton,
+/obj/decal/cleanable/blood{
+	icon_state = "floor5"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "eZW" = (
 /obj/fakeobject/dreambeach/sticks,
 /turf/unsimulated/floor/dream/beach,
@@ -55871,6 +56165,20 @@
 /obj/decal/stripe_delivery,
 /turf/unsimulated/floor/plating,
 /area/crypt/sigma/rd)
+"feN" = (
+/obj/grille/catwalk,
+/obj/decal/nav_danger,
+/obj/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 8
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "ffj" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -56020,7 +56328,7 @@
 /turf/unsimulated/wall/auto/adventure/shuttle/dark,
 /area/shuttle/merchant_shuttle/left_centcom/donut2)
 "fjj" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0";
@@ -56050,6 +56358,20 @@
 /obj/decal/stripe_delivery,
 /turf/unsimulated/floor/plating,
 /area/shuttle/biodome_elevator/upper)
+"fkR" = (
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "fle" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -56129,6 +56451,12 @@
 	},
 /turf/unsimulated/floor,
 /area/centcom/lounge)
+"fom" = (
+/obj/grille/catwalk,
+/obj/grille/catwalk,
+/obj/machinery/light/runway_light,
+/turf/space,
+/area/watchful_eye_sensor)
 "fov" = (
 /obj/table/wood/auto/desk,
 /obj/item/paper{
@@ -56183,6 +56511,26 @@
 	dir = 4
 	},
 /area/iomoon/base)
+"frv" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/green{
+	icon_state = "5-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
+"frw" = (
+/obj/lattice/directional_icons,
+/obj/item/weldingtool,
+/obj/item/clothing/head/helmet/welding{
+	pixel_y = -14;
+	pixel_x = 9
+	},
+/obj/decal/cleanable/oil,
+/turf/space,
+/area/watchful_eye_sensor)
 "fsA" = (
 /obj/item/brick,
 /obj/decal/cleanable/dirt/dirt4,
@@ -56221,7 +56569,7 @@
 /turf/space,
 /area/syndicate_station_space)
 "fvA" = (
-/obj/fakeobjects{
+/obj/fakeobject{
 	icon = 'icons/misc/critter.dmi';
 	icon_state = "roach-dead";
 	name = "squashed bug"
@@ -56250,6 +56598,23 @@
 	},
 /turf/unsimulated/floor/blackwhite/whitegrime,
 /area/observatory)
+"fwi" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/decal/cleanable/generic{
+	name = "rubbish"
+	},
+/obj/mapping_helper/mob_spawn/corpse/human/engineer{
+	armless = 1;
+	randomise_decomp_stage = 1
+	},
+/obj/decal/cleanable/blood{
+	icon_state = "handblood_c"
+	},
+/obj/decal/cleanable/blood,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "fxo" = (
 /obj/lattice,
 /obj/cable{
@@ -56344,6 +56709,9 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital)
+"fAP" = (
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "fBC" = (
 /turf/unsimulated/floor/logo_xg{
 	icon_state = "logo_xg7"
@@ -56393,6 +56761,11 @@
 	},
 /turf/unsimulated/floor/carpet/grime,
 /area/centcom/offices/flaborized)
+"fCX" = (
+/obj/fakeobject/tallsmes,
+/obj/cable/yellow,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "fDe" = (
 /obj/table/wood/round/auto,
 /obj/item/kitchen/food_box/lollipop{
@@ -56416,7 +56789,7 @@
 	},
 /area/owlery/staffhall)
 "fDB" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -56554,7 +56927,7 @@
 /turf/unsimulated/floor/plating,
 /area/upper_arctic/hall)
 "fLm" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "This airlock is jammed.";
 	dir = 4;
@@ -56686,6 +57059,16 @@
 	icon_state = "shore-18"
 	},
 /area/titlescreen)
+"fTn" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "fTo" = (
 /obj/indestructible/shuttle_corner{
 	icon_state = "wall3_trans"
@@ -56760,6 +57143,13 @@
 	name = "virtual lead wall"
 	},
 /area/sim/gunsim/maintenance)
+"fVu" = (
+/obj/decoration/ntcrate,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "fVA" = (
 /obj/fakeobject/pipe{
 	density = 1;
@@ -56804,6 +57194,15 @@
 /mob/living/critter/skeleton,
 /turf/unsimulated/floor/setpieces/rootfloor,
 /area/catacombs)
+"fXQ" = (
+/obj/lattice/directional_icons{
+	dir = 8
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "fZr" = (
 /obj/machinery/vending/snack,
 /turf/unsimulated/floor,
@@ -56886,6 +57285,15 @@
 	dir = 6
 	},
 /area/crypt/graveyard)
+"gci" = (
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/cable/green{
+	icon_state = "4-9"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "gcn" = (
 /turf/unsimulated/wall/auto/lead/blue,
 /area/centcom)
@@ -56898,6 +57306,17 @@
 	},
 /turf/simulated/floor/white/grime,
 /area/observatory)
+"gdD" = (
+/obj/machinery/door/airlock/pyro/external,
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "gdS" = (
 /obj/fakeobject{
 	anchored = 1;
@@ -56912,6 +57331,11 @@
 "gec" = (
 /turf/unsimulated/wall/auto/adventure/fake_window,
 /area/owlery/staffhall)
+"gey" = (
+/obj/grille/catwalk,
+/obj/machinery/light/runway_light,
+/turf/space,
+/area/watchful_eye_sensor)
 "geI" = (
 /obj/table/auto,
 /obj/item/remote/syndicate_teleporter,
@@ -57101,6 +57525,30 @@
 /obj/machinery/lawrack/syndicate,
 /turf/unsimulated/floor/darkblue,
 /area/syndicate_station/battlecruiser)
+"gnc" = (
+/obj/decoration/ntcrate/ntcrate2,
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 1
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
+"gnl" = (
+/obj/grille/catwalk,
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 9;
+	pixel_x = 10;
+	network = "Eye"
+	},
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 10;
+	network = "Eye"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "gny" = (
 /turf/unsimulated/floor/grey/corner{
 	dir = 1
@@ -57183,6 +57631,15 @@
 /mob/living/critter/zombie,
 /turf/unsimulated/floor/sanitary,
 /area/crypt/sigma/morgue)
+"gpG" = (
+/obj/cable{
+	icon_state = "1-10"
+	},
+/obj/cable{
+	icon_state = "1-5"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "gpM" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -57192,6 +57649,14 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/moon/museum)
+"gpY" = (
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/decal/residual_energy,
+/obj/lattice/directional_icons{
+	dir = 4
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "gqy" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -57654,6 +58119,13 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/iomoon/base/underground)
+"gJc" = (
+/obj/decoration/ntcratesmall,
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "gJi" = (
 /turf/unsimulated/wall/generic{
 	desc = "A double black security door. Looks pretty tough. I wouldn't take this door on in a fight.";
@@ -57768,6 +58240,16 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/meat_derelict/main)
+"gOT" = (
+/obj/fakeobject/broadcastcomputer,
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/obj/cable/green{
+	icon_state = "0-2"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "gOW" = (
 /obj/table/regal/auto,
 /obj/item/cigarbox/gold{
@@ -58110,6 +58592,26 @@
 /obj/machinery/light/runway_light/delay5,
 /turf/space,
 /area/syndicate_station_space)
+"hiM" = (
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "hjf" = (
 /obj/indestructible/shuttle_corner{
 	dir = 4;
@@ -58292,6 +58794,10 @@
 	},
 /turf/unsimulated/floor/terrazzo/black,
 /area/centcom/offices/walpvrgis)
+"hrR" = (
+/obj/lattice/directional_icons,
+/turf/space,
+/area/watchful_eye_sensor)
 "hrW" = (
 /obj/item/clothing/under/gimmick/sailor,
 /obj/item/clothing/mask/anime,
@@ -58391,7 +58897,7 @@
 /turf/unsimulated/wall/auto/lead/blue,
 /area/upper_arctic/pod2)
 "huI" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 1;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -58464,6 +58970,14 @@
 /obj/decal/poster/wallsign/stencil/left/six,
 /turf/unsimulated/floor/setpieces/gauntlet,
 /area/sim/racing_track)
+"hzn" = (
+/obj/decal/nav_danger,
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "2-9"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "hzM" = (
 /obj/tree,
 /turf/unsimulated/floor/grass/leafy,
@@ -58625,7 +59139,7 @@
 	},
 /area/centcom)
 "hIZ" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "It's jammed, apparently.  Or just really locked.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -58682,6 +59196,15 @@
 	icon_state = "red2"
 	},
 /area/void_diner)
+"hMe" = (
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "hMo" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -58780,6 +59303,15 @@
 /obj/item/staff/monkey_staff,
 /turf/unsimulated/floor/industrial,
 /area/centcom/offices/sovexe)
+"hQd" = (
+/obj/cable{
+	icon_state = "1-6"
+	},
+/obj/cable{
+	icon_state = "1-9"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "hQs" = (
 /obj/machinery/computer/elevator/icebase,
 /turf/unsimulated/floor/grime,
@@ -58804,6 +59336,17 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/sim/gunsim/lobby)
+"hRp" = (
+/obj/grille/catwalk,
+/obj/decal/nav_danger,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "hRy" = (
 /obj/table/auto,
 /obj/item/stimpack,
@@ -58988,6 +59531,14 @@
 	dir = 4
 	},
 /area/iomoon/base/underground)
+"ics" = (
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 4
+	},
+/obj/table/nanotrasen/auto,
+/obj/item/pen/pencil,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "icJ" = (
 /obj/burning_barrel,
 /turf/unsimulated/floor/setpieces/rootfloor,
@@ -59183,6 +59734,24 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital/underground)
+"inq" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/cable/yellow,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "inE" = (
 /obj/fakeobject{
 	anchored = 1;
@@ -59264,6 +59833,23 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/wire)
+"irk" = (
+/obj/grille/catwalk,
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 10;
+	network = "Eye"
+	},
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 1;
+	network = "Eye"
+	},
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "irq" = (
 /obj/decoration/decorativeplant/plant6,
 /obj/railing/velvet,
@@ -59535,6 +60121,13 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/questx)
+"iCe" = (
+/obj/lattice/directional_icons{
+	dir = 5
+	},
+/obj/machinery/light/small/floor/harsh/very,
+/turf/space,
+/area/watchful_eye_sensor)
 "iCq" = (
 /obj/machinery/door/airlock/pyro,
 /obj/decal/stripe_delivery,
@@ -59633,6 +60226,13 @@
 	},
 /turf/space,
 /area/syndicate_station_space)
+"iEN" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "5-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "iEP" = (
 /obj/machinery/power/data_terminal,
 /obj/cable,
@@ -59643,6 +60243,20 @@
 /obj/decal/stripe_caution,
 /turf/unsimulated/floor/plating,
 /area/iomoon/base)
+"iFE" = (
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "iGD" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -59814,6 +60428,23 @@
 	},
 /turf/unsimulated/floor/marble/black,
 /area/centcom/gallery)
+"iON" = (
+/obj/grille/catwalk,
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 1;
+	network = "Eye"
+	},
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 10;
+	network = "Eye"
+	},
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "iOQ" = (
 /obj/machinery/door/unpowered/wood{
 	dir = 4;
@@ -59968,6 +60599,38 @@
 	},
 /turf/simulated/floor/plating,
 /area/sim/gunsim/lobby)
+"iWY" = (
+/obj/decal/nav_danger,
+/obj/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/decal/cleanable/blood{
+	icon_state = "floor6"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
+"iXC" = (
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/obj/cable/green{
+	icon_state = "1-4"
+	},
+/obj/cable/green{
+	icon_state = "1-8"
+	},
+/obj/mapping_helper/mob_spawn/corpse/human/security_officer{
+	headless = 1;
+	randomise_decomp_stage = 1
+	},
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "floor2"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "iXR" = (
 /obj/spacevine{
 	icon_state = "vine-light2"
@@ -60048,7 +60711,7 @@
 /turf/unsimulated/floor/blackwhite/whitegrime/other,
 /area/observatory)
 "jaS" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
@@ -60075,6 +60738,14 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital/underground)
+"jbn" = (
+/obj/decal/nav_danger,
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "1-6"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "jbA" = (
 /obj/storage/secure/closet/civilian/hydro{
 	desc = "The only PDAs you'll find in this locker are Plant Data Analyzers. Heh.";
@@ -60281,7 +60952,7 @@
 /turf/unsimulated/floor/wood/six,
 /area/centcom/offices/janantilles)
 "jir" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -60371,7 +61042,7 @@
 /turf/unsimulated/floor/plating,
 /area/iomoon/base/underground)
 "jle" = (
-/obj/fakeobject/firelock_broken,
+/obj/fakeobject/airlock_broken/firelock,
 /obj/machinery/door/airlock/pyro/maintenance,
 /turf/unsimulated/floor/plating,
 /area/iomoon/base)
@@ -60439,6 +61110,18 @@
 	temperature = 313.15
 	},
 /area/iomoon/caves)
+"jnH" = (
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/obj/cable/green{
+	icon_state = "0-10"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "jog" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/unsimulated/floor/wood/eight{
@@ -60491,6 +61174,26 @@
 /mob/living/critter/small_animal/cockroach/weak,
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/hufflaw)
+"jre" = (
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "5-9"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "jrg" = (
 /obj/fakeobject/pipe{
 	desc = "It is not working.";
@@ -60532,6 +61235,11 @@
 /obj/mapping_helper/access/owlmaint,
 /turf/unsimulated/floor/green,
 /area/owlery/owleryhall)
+"jtF" = (
+/obj/lattice,
+/obj/grille/steel,
+/turf/space,
+/area/watchful_eye_sensor)
 "jtH" = (
 /obj/stool/chair/office/syndie{
 	dir = 1
@@ -60643,7 +61351,7 @@
 /turf/unsimulated/floor/caution/east,
 /area/iomoon/base/underground)
 "jxy" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "maint_open";
@@ -60746,6 +61454,18 @@
 	icon_state = "shore-32"
 	},
 /area/titlescreen)
+"jBv" = (
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/obj/cable/green{
+	icon_state = "1-4"
+	},
+/obj/cable/green{
+	icon_state = "1-8"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "jBP" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4"
@@ -60776,6 +61496,18 @@
 "jEp" = (
 /turf/unsimulated/floor/stairs,
 /area/void_diner)
+"jEQ" = (
+/obj/fakeobject/junction_box{
+	desc = "A large, wall-mounted metal box with several burly cables moving from it to the floor.  The front panel is locked. "
+	},
+/obj/decal/cleanable/blood/splatter,
+/obj/decal/cleanable/blood,
+/obj/fluid_spawner{
+	reagent_id = "blood";
+	amount = 300
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "jEZ" = (
 /obj/decal/poster/wallsign/dont_panic{
 	pixel_y = -31;
@@ -60899,7 +61631,7 @@
 	},
 /area/owlery/gangzone)
 "jNF" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
@@ -60908,7 +61640,7 @@
 	name = "rusted airlock";
 	opacity = 1
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -60949,6 +61681,16 @@
 "jOW" = (
 /turf/unsimulated/floor/caution/north,
 /area/observatory)
+"jPr" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "2-5"
+	},
+/obj/lattice/directional_icons{
+	dir = 8
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "jPv" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "shore-2"
@@ -60965,6 +61707,13 @@
 	},
 /turf/unsimulated/floor/carpet/purple/fancy/narrow/T_north,
 /area/centcom/offices/rodney)
+"jPH" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "4-9"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "jPL" = (
 /obj/machinery/light/runway_light{
 	name = "landing light"
@@ -60983,6 +61732,26 @@
 /obj/machinery/light/runway_light/delay2,
 /turf/space,
 /area/syndicate_station_space)
+"jQX" = (
+/obj/grille/catwalk,
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/green{
+	icon_state = "5-9"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "jRh" = (
 /turf/unsimulated/wall/auto/adventure/fake_window,
 /area/owlery/owleryhall)
@@ -61016,12 +61785,47 @@
 	},
 /turf/unsimulated/floor/engine/caution/east,
 /area/hospital/samostrel)
+"jSA" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "jSD" = (
 /obj/stool,
 /turf/unsimulated/floor/carpet{
 	icon_state = "fpurple2"
 	},
 /area/centcom/lounge)
+"jTc" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/cable/yellow,
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "jUe" = (
 /obj/storage/closet,
 /obj/machinery/light/small/iomoon{
@@ -61034,7 +61838,7 @@
 /turf/unsimulated/floor/plating,
 /area/meat_derelict/guts)
 "jUW" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This blast door looks rusted over.  Junk.";
 	dir = 1;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -61170,6 +61974,11 @@
 	dir = 9
 	},
 /area/centcom/gallery)
+"kbr" = (
+/obj/machinery/light/small/broken,
+/obj/decal/cleanable/oil,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "kbz" = (
 /obj/indestructible/shuttle_corner{
 	dir = 9;
@@ -61598,6 +62407,23 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/moon/museum)
+"kra" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "krl" = (
 /obj/indestructible/shuttle_corner{
 	dir = 6;
@@ -61606,6 +62432,11 @@
 	},
 /turf/unsimulated/floor/martian,
 /area/crunch)
+"krr" = (
+/obj/machinery/light/small/broken,
+/obj/decal/cleanable/ash,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "krS" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -61655,13 +62486,31 @@
 	},
 /turf/unsimulated/wall/auto/adventure/iomoon/interior,
 /area/iomoon/robot_ruins)
+"kvl" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow,
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "kvr" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "beach-0"
 	},
 /area/titlescreen)
 "kvy" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -61883,6 +62732,13 @@
 	name = "v-space"
 	},
 /area/sim/area2)
+"kEL" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "2-9"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "kGs" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -61978,6 +62834,13 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"kJS" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "6-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "kKt" = (
 /obj/table/wood/auto/desk,
 /obj/item/reagent_containers/food/drinks/cola/efrem{
@@ -62013,6 +62876,9 @@
 /obj/mapping_helper/wingrille_spawn/auto/crystal,
 /turf/unsimulated/floor/plating/scorched,
 /area/crater/biodome/south)
+"kLm" = (
+/turf/unsimulated/wall/auto/lead/white,
+/area/watchful_eye_sensor)
 "kLI" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -62200,6 +63066,19 @@
 	},
 /turf/unsimulated/floor/caution/west,
 /area/hospital/samostrel)
+"kSd" = (
+/obj/decal/residual_energy,
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/fakeobject{
+	icon = 'icons/obj/window.dmi';
+	icon_state = "rwindow";
+	name = "window"
+	},
+/obj/lattice/directional_icons{
+	dir = 10
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "kSk" = (
 /obj/fakeobject{
 	anchored = 1;
@@ -62372,6 +63251,11 @@
 	icon_state = "shore-41"
 	},
 /area/titlescreen)
+"laE" = (
+/obj/decal/residual_energy,
+/mob/living/critter/small_animal/floateye/watchful,
+/turf/space,
+/area/watchful_eye_sensor)
 "lbm" = (
 /obj/lattice{
 	dir = 9;
@@ -62444,6 +63328,15 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital/underground)
+"lfy" = (
+/obj/lattice/directional_icons{
+	dir = 6
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "lfB" = (
 /obj/table/reinforced/auto,
 /obj/item/currency/spacecash/million,
@@ -62453,6 +63346,14 @@
 	dir = 9
 	},
 /area/crunch/wtc)
+"lfM" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/obj/mapping_helper/mob_spawn/corpse/human/skeleton,
+/turf/space,
+/area/watchful_eye_sensor)
 "lfQ" = (
 /obj/decal/cleanable/sakura,
 /obj/stool/chair/office/syndie{
@@ -62531,6 +63432,20 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/centcom/lobby)
+"lkh" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "5-8"
+	},
+/obj/lattice/directional_icons{
+	dir = 1
+	},
+/obj/mapping_helper/mob_spawn/corpse/human/engineer{
+	armless = 1;
+	randomise_decomp_stage = 1
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "lkO" = (
 /obj/machinery/door/airlock/pyro/maintenance,
 /turf/unsimulated/floor/plating,
@@ -62666,7 +63581,7 @@
 	layer = 6;
 	name = "broken door"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -62887,6 +63802,16 @@
 	dir = 8
 	},
 /area/crunch/wtc)
+"lAK" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/green{
+	icon_state = "4-9"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "lAN" = (
 /obj/cable,
 /obj/cable{
@@ -63137,6 +64062,10 @@
 	opacity = 0
 	},
 /area/centcom/lobby)
+"lQy" = (
+/obj/decal/cleanable/blood,
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "lQP" = (
 /obj/item/gun/energy/dazzler,
 /obj/table/reinforced/industrial/auto,
@@ -63449,8 +64378,17 @@
 	icon_state = "bloodfloor_3"
 	},
 /area/meat_derelict/guts)
+"mfx" = (
+/obj/decoration/junctionbox{
+	pixel_y = 30
+	},
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "mgq" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "It's jammed, apparently.  Or just really locked.";
 	dir = 4;
@@ -63534,6 +64472,14 @@
 	},
 /turf/unsimulated/floor/blackwhite/whitegrime,
 /area/observatory)
+"miV" = (
+/obj/decal/nav_danger,
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "1-10"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "mje" = (
 /obj/item/instrument/large/piano{
 	name = "old piano"
@@ -63643,6 +64589,12 @@
 /obj/map/light/brightwhite,
 /turf/unsimulated/floor/carpet/grime,
 /area/afterlife/bar/sanctuary)
+"mph" = (
+/obj/lattice/directional_icons{
+	dir = 4
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "mpq" = (
 /obj/decal/cleanable/blood/gibs{
 	icon_state = "gibmid1"
@@ -63697,7 +64649,7 @@
 /turf/unsimulated/floor/sanitary/white,
 /area/owlery/owleryhall)
 "msq" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -63750,6 +64702,16 @@
 /obj/machinery/light/runway_light/delay3,
 /turf/space,
 /area/syndicate_station_space)
+"mvq" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/obj/decal/cleanable/blood{
+	icon_state = "drip2b"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "mvP" = (
 /obj/tree,
 /obj/spacevine,
@@ -63818,7 +64780,7 @@
 /turf/unsimulated/floor/black,
 /area/centcom/offices/kyle)
 "mwF" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -63925,6 +64887,11 @@
 /obj/decal/stripe_delivery,
 /turf/unsimulated/floor/plating,
 /area/crater/biodome/research)
+"mFt" = (
+/obj/grille/catwalk,
+/obj/grille/catwalk,
+/turf/space,
+/area/watchful_eye_sensor)
 "mFv" = (
 /obj/decal/cleanable/dirt/dirt5,
 /obj/stool/bench/blue/auto,
@@ -64056,6 +65023,18 @@
 	},
 /turf/space,
 /area/diner/tug)
+"mKk" = (
+/obj/fakeobject{
+	icon = 'icons/obj/window.dmi';
+	icon_state = "rwindow";
+	name = "window";
+	dir = 4
+	},
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/decal/residual_energy,
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "mKt" = (
 /turf/unsimulated/floor/wood/seven,
 /area/sim/gunsim/lobby)
@@ -64075,6 +65054,17 @@
 	dir = 1
 	},
 /area/iomoon/base)
+"mLs" = (
+/obj/grille/catwalk,
+/obj/decal/nav_danger,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "mLK" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -64104,6 +65094,29 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/leah)
+"mNd" = (
+/obj/cable/green{
+	icon_state = "2-8"
+	},
+/obj/cable/green{
+	icon_state = "2-4"
+	},
+/obj/cable/green{
+	icon_state = "1-4"
+	},
+/obj/cable/green{
+	icon_state = "1-8"
+	},
+/obj/mapping_helper/mob_spawn/corpse/human/scientist{
+	randomise_decomp_stage = 1
+	},
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "floor5"
+	},
+/obj/decal/cleanable/blood/splatter,
+/obj/decal/cleanable/blood,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "mNW" = (
 /turf/unsimulated/wall/setpieces/stranger{
 	icon = 'icons/turf/walls/ancient.dmi';
@@ -64210,6 +65223,11 @@
 	},
 /turf/unsimulated/wall/auto/adventure/shuttle/dark,
 /area/shuttle/merchant_shuttle/diner_centcom)
+"mVB" = (
+/obj/item/paper/watchful_eye,
+/obj/table/nanotrasen/auto,
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "mVD" = (
 /obj/fakeobject{
 	anchored = 1;
@@ -64348,6 +65366,12 @@
 /obj/decoration/floralarrangement,
 /turf/unsimulated/floor/marble/black,
 /area/centcom/gallery)
+"mZD" = (
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "mZE" = (
 /obj/fakeobject{
 	anchored = 1;
@@ -64397,6 +65421,16 @@
 	},
 /turf/space,
 /area/syndicate_station_space)
+"nbL" = (
+/obj/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/grille/catwalk,
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "ncT" = (
 /obj/landmark{
 	name = "Nuclear-Closet"
@@ -64537,6 +65571,11 @@
 /obj/mapping_helper/access/admin_override,
 /turf/unsimulated/floor/wood/two,
 /area/centcom/lobby)
+"njh" = (
+/obj/grille/catwalk,
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "njo" = (
 /turf/unsimulated/floor/stairs/dark,
 /area/centcom/offices/enakai)
@@ -64618,6 +65657,11 @@
 	icon_state = "shore-40"
 	},
 /area/titlescreen)
+"nov" = (
+/obj/decal/cleanable/dirt/dirt5,
+/obj/item/casing,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "noM" = (
 /obj/machinery/door/airlock/pyro/command/centcom{
 	dir = 4
@@ -64676,6 +65720,17 @@
 	icon_state = "fred1"
 	},
 /area/iomoon/base)
+"nrc" = (
+/obj/cable/green{
+	icon_state = "0-2"
+	},
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/obj/fakeobject/teleport_pad,
+/obj/landmark/lrt/watchfuleye,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "nrk" = (
 /obj/admin_plaque{
 	name = "Enakai's Office"
@@ -64998,6 +66053,20 @@
 	name = "broken door"
 	},
 /area/meat_derelict/soviet)
+"nzH" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "nAf" = (
 /turf/unsimulated/floor/dojo/stonestair,
 /area/titlescreen)
@@ -65082,6 +66151,24 @@
 	},
 /turf/unsimulated/iomoon/floor,
 /area/iomoon)
+"nGc" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow,
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "nGf" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -65261,6 +66348,18 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/iomoon/base/underground)
+"nMO" = (
+/obj/fakeobject{
+	icon = 'icons/obj/window.dmi';
+	icon_state = "rwindow";
+	name = "window";
+	dir = 4
+	},
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/decal/residual_energy,
+/obj/lattice/directional_icons,
+/turf/space,
+/area/watchful_eye_sensor)
 "nMS" = (
 /obj/admin_plaque{
 	name = "UrsulaMajor's Office"
@@ -65293,6 +66392,18 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/syndicate/minerva5/command)
+"nNQ" = (
+/obj/fakeobject{
+	icon = 'icons/obj/window.dmi';
+	icon_state = "rwindow";
+	name = "window";
+	dir = 1
+	},
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/decal/residual_energy,
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "nOc" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -65790,6 +66901,23 @@
 /obj/decal/stripe_delivery,
 /turf/unsimulated/floor/plating,
 /area/crater/biodome/crew)
+"ofE" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/fakeobject/airlock_broken/firelock{
+	density = 1;
+	desc = "This airlock seems to be badly damaged.";
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "airlock_locked";
+	name = "broken airlock"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "ogt" = (
 /obj/window{
 	desc = "A window.  For a museum exhibit.";
@@ -65906,6 +67034,14 @@
 	},
 /turf/unsimulated/iomoon/plating,
 /area/iomoon)
+"olP" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/table/nanotrasen/auto,
+/obj/item/extinguisher,
+/turf/unsimulated/floor/damaged1,
+/area/watchful_eye_sensor)
 "omB" = (
 /turf/unsimulated/wall/generic{
 	desc = "They're sealed shut.";
@@ -66049,6 +67185,24 @@
 "ouA" = (
 /turf/unsimulated/floor/plating/damaged2,
 /area/void_diner)
+"ouD" = (
+/obj/grille/catwalk,
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	pixel_y = 20;
+	dir = 6;
+	network = "Eye"
+	},
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 8;
+	pixel_x = 10;
+	network = "Eye"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "ouH" = (
 /obj/machinery/conveyor/SN{
 	id = "owlery_trash"
@@ -66120,6 +67274,12 @@
 	temperature = 313.15
 	},
 /area/iomoon/caves)
+"oxM" = (
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "oyo" = (
 /obj/stool/chair/office/red{
 	dir = 8
@@ -66159,6 +67319,10 @@
 	},
 /turf/unsimulated/floor/darkpurple,
 /area/syndicate_station/battlecruiser)
+"oAn" = (
+/obj/machinery/light/small/broken,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "oAH" = (
 /obj/stove{
 	density = 0;
@@ -66174,11 +67338,45 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/void_diner)
+"oBe" = (
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 4
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "oBf" = (
 /obj/item/device/key/generic/coldsteel,
 /mob/living/critter/spider/ice/queen,
 /turf/unsimulated/floor/arctic/snow/ice,
 /area/lower_arctic/lower)
+"oCb" = (
+/obj/fakeobject/airlock_broken/firelock{
+	density = 1;
+	desc = "This airlock seems to be badly damaged.";
+	dir = 4;
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "airlock_locked";
+	name = "broken airlock"
+	},
+/obj/grille/catwalk,
+/obj/decal/nav_danger,
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/cable/green{
+	icon_state = "5-9"
+	},
+/obj/cable/green{
+	icon_state = "6-10"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "oCe" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -66209,6 +67407,13 @@
 /mob/living/critter/skeleton,
 /turf/unsimulated/dirt,
 /area/catacombs)
+"oGj" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "1-10"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "oGk" = (
 /obj/decal/cleanable/sakura{
 	real_name = "sakura petals"
@@ -66239,6 +67444,15 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/iomoon/base/underground)
+"oGG" = (
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/decal/cleanable/blood{
+	icon_state = "floor6"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "oHc" = (
 /obj/machinery/chem_master,
 /obj/decal/stripe_delivery,
@@ -66259,6 +67473,12 @@
 	dir = 5
 	},
 /area/centcom/offices/varshie)
+"oIm" = (
+/obj/decal/cleanable/blood{
+	icon_state = "smear1"
+	},
+/turf/unsimulated/wall/auto/lead/white,
+/area/watchful_eye_sensor)
 "oIH" = (
 /obj/decal/cleanable/dirt/dirt2,
 /obj/item/cigbutt{
@@ -66349,6 +67569,13 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital)
+"oOZ" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "4-10"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "oPY" = (
 /obj/item/mechanics/trigger/button{
 	anchored = 1;
@@ -66657,6 +67884,13 @@
 	name = "security cordon"
 	},
 /area/sim/gunsim/maintenance)
+"pbZ" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced/crystal,
+/obj/cable/green{
+	icon_state = "1-2"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "pcE" = (
 /obj/machinery/door/airlock/pyro/external{
 	aiControlDisabled = 1;
@@ -66807,7 +68041,7 @@
 /turf/unsimulated/floor/plating,
 /area/owlery/Owlopen)
 "phv" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -66829,6 +68063,23 @@
 	temperature = 313.15
 	},
 /area/iomoon/caves)
+"piS" = (
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "pjb" = (
 /obj/lattice,
 /obj/cable{
@@ -67034,7 +68285,7 @@
 /turf/unsimulated/floor/pool/no_animate,
 /area/centcom/garden)
 "por" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "It's jammed, apparently.  Or just really locked.";
 	dir = 4;
@@ -67070,6 +68321,35 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/studenterhue)
+"ppd" = (
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/decal/cleanable/blood{
+	icon_state = "footprints1"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
+"pqP" = (
+/obj/grille/catwalk,
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	pixel_y = 20;
+	network = "Eye"
+	},
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 4;
+	pixel_x = -10;
+	network = "Eye"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "psc" = (
 /obj/stool/chair/comfy/shuttle/red,
 /obj/machinery/light{
@@ -67099,6 +68379,16 @@
 	dir = 1
 	},
 /area/iomoon/base)
+"psO" = (
+/obj/fakeobject/vacuumtape,
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "ptp" = (
 /obj/table/wood/auto,
 /obj/machinery/light/lamp/black{
@@ -67201,7 +68491,7 @@
 /turf/unsimulated/floor/plating,
 /area/iomoon/base/underground)
 "pxZ" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -67283,6 +68573,26 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/iomoon/base)
+"pzc" = (
+/obj/decal/residual_energy,
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/fakeobject{
+	icon = 'icons/obj/window.dmi';
+	icon_state = "rwindow";
+	name = "window";
+	dir = 1
+	},
+/obj/lattice/directional_icons{
+	dir = 4
+	},
+/turf/space,
+/area/watchful_eye_sensor)
+"pzo" = (
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "pAj" = (
 /obj/machinery/door/unpowered/wood{
 	dir = 8;
@@ -67374,7 +68684,7 @@
 /turf/unsimulated/floor/black,
 /area/owlery/Owlmait2)
 "pDK" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This shuttle door is really jammed.  It might as well not even be a door.  What a lousy door.  Fuck this door, man, just... just...  FUCK YOU, DOOR.";
 	dir = 8;
 	icon = 'icons/obj/doors/shuttle.dmi';
@@ -67494,7 +68804,7 @@
 	name = "grimy pipe";
 	pixel_y = -6
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "It's jammed, apparently.  Or just really locked.";
 	dir = 4;
@@ -68025,6 +69335,10 @@
 	icon_state = "fblue2"
 	},
 /area/centcom/gallery)
+"qeH" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced/crystal,
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "qeL" = (
 /obj/map/light/lava,
 /obj/fakeobject/pipe{
@@ -68182,6 +69496,27 @@
 /obj/decal/poster/wallsign/stencil/left/h,
 /turf/unsimulated/floor/setpieces/gauntlet,
 /area/sim/racing_track)
+"qnJ" = (
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/cable/green{
+	icon_state = "5-9"
+	},
+/obj/cable/green{
+	icon_state = "6-10"
+	},
+/obj/machinery/door/airlock/pyro/external{
+	dir = 4
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "qnW" = (
 /obj/grille/catwalk{
 	dir = 6;
@@ -68258,6 +69593,9 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/moon/museum/west)
+"qqI" = (
+/turf/space/dense,
+/area/watchful_eye_sensor)
 "qrj" = (
 /obj/table/auto,
 /obj/item/stimpack,
@@ -68360,7 +69698,7 @@
 /turf/unsimulated/floor/void,
 /area/void_diner)
 "qvf" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -68398,6 +69736,13 @@
 /obj/landmark/lrt/luna_museum,
 /turf/unsimulated/floor,
 /area/moon/museum)
+"qvs" = (
+/obj/fakeobject/robot,
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "floor4"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "qvU" = (
 /obj/decal/cleanable/blood{
 	icon_state = "left_bloodygloves_c"
@@ -68413,6 +69758,9 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/moon/museum)
+"qwV" = (
+/turf/unsimulated/floor/scorched2,
+/area/watchful_eye_sensor)
 "qwW" = (
 /obj/table/reinforced/auto,
 /obj/item/reagent_containers/food/snacks/burger/plague/fishstick{
@@ -68469,6 +69817,12 @@
 	},
 /turf/unsimulated/floor/caution/east,
 /area/drone/assembly)
+"qAr" = (
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/decal/residual_energy,
+/obj/lattice/directional_icons,
+/turf/space,
+/area/watchful_eye_sensor)
 "qAT" = (
 /obj/decal/lightshaft,
 /turf/unsimulated/floor/carpet/darkcarpet,
@@ -68637,6 +69991,13 @@
 	},
 /turf/simulated/floor/sanitary,
 /area/centcom/lobby)
+"qHF" = (
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/decal/cleanable/dirt/dirt2,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "qHT" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -68668,6 +70029,19 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/sim/tdome/tdome1)
+"qIj" = (
+/obj/fakeobject/vacuumtape,
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/obj/cable/green{
+	icon_state = "0-6"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "qII" = (
 /obj/machinery/light{
 	dir = 1;
@@ -69001,6 +70375,15 @@
 	},
 /turf/unsimulated/wall/auto/adventure/shuttle/dark,
 /area/drone)
+"qUE" = (
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 4
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "qUR" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -69012,6 +70395,14 @@
 	},
 /turf/unsimulated/floor/shuttlebay,
 /area/diner/tug)
+"qVH" = (
+/obj/decal/nav_danger,
+/obj/grille/catwalk,
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 8
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "qWF" = (
 /obj/item/raw_material/shard/glass,
 /obj/grille/steel,
@@ -69360,6 +70751,16 @@
 /obj/map/light/brighterwhite,
 /turf/unsimulated/floor/wood/two,
 /area/afterlife/bar)
+"rml" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "4-9"
+	},
+/obj/lattice/directional_icons{
+	dir = 6
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "rnA" = (
 /obj/indestructible/shuttle_corner{
 	dir = 6;
@@ -69381,6 +70782,16 @@
 	},
 /turf/unsimulated/floor/lava,
 /area/iomoon)
+"rob" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "rol" = (
 /obj/fakeobject/pipe{
 	desc = "It is not working.";
@@ -69443,7 +70854,7 @@
 /area/centcom/offices/pali)
 "rrt" = (
 /obj/machinery/door/airlock/pyro/glass,
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -69611,6 +71022,15 @@
 	dir = 10
 	},
 /area/centcom/offices/aloe)
+"rvS" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 8
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "rwg" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -69699,6 +71119,21 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital/samostrel)
+"rzG" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow,
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "rzJ" = (
 /obj/table/wood/round,
 /obj/item/gun/kinetic/makarov{
@@ -69900,6 +71335,13 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital)
+"rGJ" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/decal/cleanable/paper,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "rHl" = (
 /obj/machinery/light/small/iomoon,
 /turf/unsimulated/floor/plating,
@@ -70024,6 +71466,16 @@
 /obj/stool,
 /turf/unsimulated/floor/carpet/grime,
 /area/iomoon/base/underground)
+"rLl" = (
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/blood/gibs{
+	icon_state = "gibmid1"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "rLv" = (
 /obj/strip_door,
 /obj/river{
@@ -70064,6 +71516,18 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/moon/museum/west)
+"rMH" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/decal/cleanable/blood{
+	icon_state = "footprints1"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "rMQ" = (
 /obj/decal/cleanable/dirt,
 /obj/fakeobject/pipe{
@@ -70094,6 +71558,15 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/void_diner)
+"rOO" = (
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "rPG" = (
 /obj/grille/catwalk{
 	dir = 9;
@@ -70154,6 +71627,18 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/hospital/samostrel)
+"rTs" = (
+/obj/fakeobject/safehouse/mechcomp_cabinet{
+	desc = "A pair of cabinets containing mechanical components."
+	},
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/obj/cable/green{
+	icon_state = "0-2"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "rTv" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -70296,7 +71781,7 @@
 /turf/unsimulated/floor/lava,
 /area/iomoon/caves)
 "sad" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This blast door looks rusted over.  Junk.";
 	dir = 8;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -70334,6 +71819,10 @@
 	},
 /turf/space,
 /area/space)
+"saT" = (
+/obj/decal/cleanable/dirt,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "sbi" = (
 /obj/fakeobject{
 	anchored = 1;
@@ -70675,7 +72164,7 @@
 	name = "power conduit";
 	tag = "icon-conduit (EAST)"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0";
@@ -70724,6 +72213,13 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
+"sqI" = (
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/decal/cleanable/dirt/dirt5,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "sqJ" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -70885,6 +72381,16 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/drone/office)
+"szn" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "1-6"
+	},
+/obj/lattice/directional_icons{
+	dir = 10
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "szA" = (
 /turf/unsimulated/floor/carpet/clowncarpet/border{
 	dir = 6
@@ -70960,6 +72466,14 @@
 /obj/machinery/computer/elevator/biodome,
 /turf/unsimulated/floor/caution/corner/ne,
 /area/crypt/sigma)
+"sDQ" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/table/nanotrasen/auto,
+/obj/item/device/radio,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "sDR" = (
 /obj/machinery/shuttle/engine/propulsion{
 	dir = 1;
@@ -71049,7 +72563,7 @@
 	name = "broken door";
 	opacity = 1
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -71104,6 +72618,10 @@
 	dir = 10
 	},
 /area/crunch/wtc)
+"sLu" = (
+/obj/decal/cleanable/dirt/dirt2,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "sLB" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -71144,6 +72662,13 @@
 "sNn" = (
 /turf/unsimulated/floor/carpet/grime,
 /area/centcom/offices/flaborized)
+"sNy" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "2-5"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "sOt" = (
 /obj/item/cable_coil,
 /obj/decal/tile_edge/stripe/extra_big,
@@ -71158,6 +72683,12 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/iomoon/base)
+"sOz" = (
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 8
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "sOG" = (
 /obj/machinery/light,
 /turf/unsimulated/floor/orangeblack/side{
@@ -71209,6 +72740,19 @@
 	name = "sand"
 	},
 /area/sim/area2)
+"sQI" = (
+/obj/lattice/directional_icons{
+	dir = 1
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
+"sQK" = (
+/obj/decal/cleanable/fungus,
+/turf/unsimulated/wall/auto/lead/white,
+/area/watchful_eye_sensor)
 "sQP" = (
 /obj/fakeobject{
 	anchored = 1;
@@ -71224,7 +72768,7 @@
 	},
 /area/iomoon/base)
 "sQU" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This shuttle door is really jammed.  What's the point of it then?  WHAT IS THE POINT";
 	dir = 8;
 	icon = 'icons/obj/doors/shuttle.dmi';
@@ -71402,7 +72946,7 @@
 /turf/unsimulated/wall/auto/reinforced/supernorn,
 /area/owlery/gangzone)
 "tfF" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 1;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -71426,6 +72970,13 @@
 	icon_state = "iocrust_edge"
 	},
 /area/iomoon/caves)
+"tgF" = (
+/obj/cable{
+	icon_state = "6-9"
+	},
+/obj/grille/catwalk,
+/turf/space,
+/area/watchful_eye_sensor)
 "tgO" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -71564,6 +73115,16 @@
 	},
 /turf/unsimulated/floor/orange,
 /area/iomoon/base)
+"tlP" = (
+/obj/fakeobject/operatorconsole,
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "tma" = (
 /obj/storage/crate/bin{
 	dir = 8
@@ -71574,6 +73135,16 @@
 /obj/decal/poster/wallsign/stencil/right/one,
 /turf/unsimulated/floor/setpieces/gauntlet,
 /area/sim/racing_track)
+"tmO" = (
+/obj/grille/catwalk,
+/obj/cable{
+	icon_state = "6-8"
+	},
+/obj/lattice/directional_icons{
+	dir = 1
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "tnk" = (
 /obj/machinery/chem_dispenser/chemical,
 /obj/decal/stripe_delivery,
@@ -71596,6 +73167,12 @@
 	},
 /turf/space,
 /area/diner/tug)
+"tpl" = (
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "tpK" = (
 /obj/mapping_helper/wingrille_spawn/auto,
 /turf/unsimulated/floor/plating,
@@ -71629,7 +73206,7 @@
 /turf/unsimulated/wall/auto/adventure/mars,
 /area/marsoutpost)
 "trc" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 8;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
@@ -71681,6 +73258,18 @@
 	},
 /turf/unsimulated/wall/auto/lead/blue,
 /area/upper_arctic/mining)
+"tsw" = (
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "tsB" = (
 /obj/machinery/door/airlock/pyro/maintenance{
 	name = "Compartment Access";
@@ -71723,6 +73312,17 @@
 	},
 /turf/unsimulated/wall/auto/reinforced/supernorn,
 /area/owlery/gangzone)
+"tvD" = (
+/obj/fakeobject/airlock_broken/firelock{
+	density = 1;
+	desc = "This airlock seems to be badly damaged.";
+	dir = 4;
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "airlock_locked";
+	name = "broken airlock"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "tvE" = (
 /obj/table/reinforced/auto,
 /turf/unsimulated/floor/shuttle{
@@ -71834,11 +73434,37 @@
 "tDJ" = (
 /turf/unsimulated/floor/blackwhite/whitegrime/other,
 /area/observatory)
+"tEC" = (
+/obj/cable/green{
+	icon_state = "5-8"
+	},
+/obj/item/casing,
+/obj/decal/cleanable/blood/splatter{
+	icon_state = "floor4"
+	},
+/obj/decal/cleanable/blood/splatter,
+/obj/decal/cleanable/blood,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "tED" = (
 /obj/stool/bee_bed,
 /obj/dialogueobj/dreambee,
 /turf/unsimulated/floor/carpet/red/fancy/narrow/eastwest,
 /area/titlescreen)
+"tES" = (
+/obj/decal/residual_energy,
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/fakeobject{
+	icon = 'icons/obj/window.dmi';
+	icon_state = "rwindow";
+	name = "window";
+	dir = 8
+	},
+/obj/lattice/directional_icons{
+	dir = 6
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "tFx" = (
 /obj/fitness/speedbag/wizard,
 /turf/unsimulated/floor/wood/eight{
@@ -71857,6 +73483,18 @@
 "tGB" = (
 /turf/unsimulated/floor/grey/side,
 /area/centcom/offices/cogwerks)
+"tGD" = (
+/obj/fakeobject/pipe{
+	desc = "The air from it smells faintly of mildew.";
+	dir = 8;
+	icon = 'icons/obj/atmospherics/pipe_vent.dmi';
+	icon_state = "hvent";
+	name = "grimy vent";
+	tag = ""
+	},
+/obj/decal/cleanable/blood/splatter/extra,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "tGW" = (
 /obj/machinery/r_door_control/podbay/wizard,
 /turf/unsimulated/wall/auto/supernorn/wood,
@@ -71964,6 +73602,16 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/centcom/lobby)
+"tKd" = (
+/obj/decal/nav_danger,
+/obj/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "tKt" = (
 /turf/unsimulated/outdoors/grass,
 /area/void_diner)
@@ -71993,6 +73641,15 @@
 "tMB" = (
 /turf/unsimulated/wall/auto/adventure/fake_window,
 /area/sim/racing_entry)
+"tMD" = (
+/obj/cable{
+	icon_state = "2-5"
+	},
+/obj/cable{
+	icon_state = "2-10"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "tMW" = (
 /obj/fakeobject/pipe{
 	density = 1;
@@ -72273,6 +73930,12 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"tZQ" = (
+/obj/machinery/light/small/broken{
+	dir = 4
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "uaH" = (
 /obj/table/reinforced/auto,
 /obj/traitorifier/virtual/wrestler,
@@ -72315,6 +73978,24 @@
 	icon_state = "cairngorm3"
 	},
 /area/syndicate_station/battlecruiser)
+"ubX" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow,
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "uca" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -72411,7 +74092,7 @@
 /turf/unsimulated/floor/plating,
 /area/moon/museum)
 "ueV" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
@@ -72420,7 +74101,7 @@
 	name = "rusted airlock";
 	opacity = 1
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -72445,7 +74126,7 @@
 /turf/unsimulated/floor,
 /area/crunch)
 "ugt" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -72453,6 +74134,13 @@
 /obj/decal/stripe_delivery,
 /turf/unsimulated/floor/plating,
 /area/crypt/sigma/mainhall)
+"ugD" = (
+/obj/fakeobject/tallsmes,
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "ugE" = (
 /obj/fakeobject{
 	anchored = 1;
@@ -72563,6 +74251,23 @@
 /area/centcom/offices{
 	icon_state = "blue"
 	})
+"unf" = (
+/obj/grille/catwalk,
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 5;
+	pixel_x = -10;
+	network = "Eye"
+	},
+/obj/machinery/camera{
+	name = "sensor";
+	desc = "A small, high quality camera, monitoring the eyes for traces of activity.";
+	dir = 1;
+	network = "Eye"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "ung" = (
 /obj/landmark/fall/ice/elevator,
 /obj/decal/stripe_delivery,
@@ -72853,6 +74558,17 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/efrem)
+"uBh" = (
+/obj/grille/catwalk,
+/obj/decal/nav_danger,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "uBH" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4"
@@ -72863,6 +74579,15 @@
 /mob/living/critter/zombie/scientist,
 /turf/unsimulated/floor/white/grime,
 /area/crypt/sigma/lab)
+"uCj" = (
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/obj/cable/green{
+	icon_state = "1-6"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "uCm" = (
 /turf/unsimulated/wall/setpieces/leadwindow/white{
 	dir = 8;
@@ -72992,6 +74717,13 @@
 /obj/item/gun/russianrevolver/fake357,
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/hufflaw)
+"uGi" = (
+/obj/lattice/directional_icons_alt{
+	dir = 1
+	},
+/obj/machinery/light/small/floor/harsh/very,
+/turf/space,
+/area/watchful_eye_sensor)
 "uGo" = (
 /obj/tree{
 	dir = 1
@@ -73001,6 +74733,13 @@
 	dir = 8
 	},
 /area/crypt/graveyard)
+"uGu" = (
+/obj/lattice,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "uHq" = (
 /obj/lattice{
 	dir = 9;
@@ -73067,6 +74806,9 @@
 	},
 /turf/unsimulated/floor/orangeblack,
 /area/crunch)
+"uJz" = (
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "uJK" = (
 /obj/map/light/lava,
 /obj/indestructible/shuttle_corner{
@@ -73095,6 +74837,17 @@
 	},
 /turf/unsimulated/floor/martian,
 /area/crunch)
+"uKp" = (
+/obj/item/casing{
+	pixel_y = -5;
+	pixel_x = 6
+	},
+/obj/item/casing{
+	pixel_y = 13;
+	pixel_x = -18
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "uKx" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -73197,7 +74950,7 @@
 	},
 /area/titlescreen)
 "uOZ" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This blast door looks rusted over.  Junk.";
 	dir = 4;
 	icon = 'icons/obj/doors/blastdoor.dmi';
@@ -73311,6 +75064,18 @@
 	dir = 8
 	},
 /area/owlery/gangzone)
+"uTM" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
+"uUN" = (
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "uUO" = (
 /obj/machinery/door/airlock/pyro{
 	name = "Bedroom"
@@ -73422,6 +75187,13 @@
 /obj/mapping_helper/wingrille_spawn/auto,
 /turf/unsimulated/floor/plating,
 /area/owlery/Owlmait)
+"vbG" = (
+/obj/decoration/ntcratesmall,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "vbL" = (
 /turf/unsimulated/floor{
 	icon = 'icons/turf/adventure_gannets.dmi';
@@ -73639,6 +75411,18 @@
 /obj/traitorifier/virtual,
 /turf/unsimulated/floor/grime,
 /area/sim/gunsim/lobby)
+"vlo" = (
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/obj/decal/cleanable/robot_debris{
+	icon_state = "gib7";
+	pixel_x = 10;
+	pixel_y = -9;
+	random_icon_states = list("gib7")
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "vlp" = (
 /obj/machinery/light{
 	dir = 1
@@ -73760,6 +75544,16 @@
 "vol" = (
 /turf/unsimulated/iomoon/floor,
 /area/iomoon/base)
+"voz" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/green{
+	icon_state = "6-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "voO" = (
 /obj/table/wood/auto/desk,
 /obj/decoration/decorativeplant{
@@ -73793,6 +75587,9 @@
 	},
 /turf/unsimulated/wall/auto/lead/blue,
 /area/centcom/lobby)
+"vpn" = (
+/turf/space,
+/area/watchful_eye_sensor)
 "vpy" = (
 /obj/decal/cleanable/dirt,
 /obj/fakeobject/pipe{
@@ -73968,6 +75765,14 @@
 	},
 /turf/unsimulated/iomoon/floor,
 /area/iomoon)
+"vwu" = (
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/obj/decal/cleanable/blood/splatter,
+/obj/decal/cleanable/blood,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "vwP" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -74000,6 +75805,11 @@
 	dir = 4
 	},
 /area/iomoon/base)
+"vyb" = (
+/obj/lattice/directional_icons_alt,
+/obj/machinery/light/small/floor/harsh/very,
+/turf/space,
+/area/watchful_eye_sensor)
 "vzL" = (
 /obj/lattice{
 	dir = 5;
@@ -74108,7 +75918,7 @@
 /turf/unsimulated/floor/plating/scorched,
 /area/hospital/underground)
 "vGz" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
@@ -74117,7 +75927,7 @@
 	name = "rusted airlock";
 	opacity = 1
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -74381,6 +76191,11 @@
 	dir = 8
 	},
 /area/void_diner)
+"vPU" = (
+/obj/table/auto,
+/obj/item/paper/businesscard/mabinogi,
+/turf/unsimulated/floor/darkblue,
+/area/syndicate_station/firing_range)
 "vRa" = (
 /obj/machinery/door/poddoor/blast/single{
 	desc = "A security blast door.  Labeling indicates that it was installed 'in case the teleportation experiment starts bringing in Draculas.' There's probably a control for it somewhere.";
@@ -74498,6 +76313,28 @@
 /obj/item/device/audio_log/hospital_02,
 /turf/unsimulated/floor/plating,
 /area/hospital/underground)
+"vUh" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/fakeobject/airlock_broken/firelock{
+	density = 1;
+	desc = "This airlock seems to be badly damaged.";
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "airlock_locked";
+	name = "broken airlock"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
+"vUn" = (
+/obj/lattice/directional_icons{
+	dir = 10
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "vUu" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -74521,6 +76358,18 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/iomoon/base)
+"vUK" = (
+/obj/fakeobject{
+	icon = 'icons/obj/window.dmi';
+	icon_state = "rwindow";
+	name = "window";
+	dir = 8
+	},
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/decal/residual_energy,
+/obj/lattice/directional_icons,
+/turf/space,
+/area/watchful_eye_sensor)
 "vVC" = (
 /obj/fakeobject/pipe{
 	desc = "It seems to have been damaged somehow.";
@@ -74561,11 +76410,29 @@
 	dir = 4
 	},
 /area/owlery/gangzone)
+"vWP" = (
+/obj/cable{
+	icon_state = "5-10"
+	},
+/obj/grille/catwalk,
+/turf/space,
+/area/watchful_eye_sensor)
 "vWW" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "shore-35"
 	},
 /area/titlescreen)
+"vXd" = (
+/obj/grille/catwalk,
+/obj/cable/green{
+	icon_state = "0-5"
+	},
+/obj/cable/green{
+	icon_state = "0-9"
+	},
+/obj/machinery/communications_dish,
+/turf/space,
+/area/watchful_eye_sensor)
 "vXm" = (
 /obj/decal/cleanable/glitter/harmless,
 /turf/unsimulated/floor/carpet/darkcarpet/border,
@@ -74581,6 +76448,24 @@
 "vXw" = (
 /turf/unsimulated/wall/auto/adventure/fake_window,
 /area/owlery/office)
+"vYn" = (
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow,
+/turf/space,
+/area/watchful_eye_sensor)
 "vYK" = (
 /obj/machinery/vending/medical_public,
 /turf/unsimulated/floor,
@@ -74605,6 +76490,19 @@
 /obj/item/plant/herb/cannabis/white/spawnable,
 /turf/unsimulated/floor/dojo/sand,
 /area/centcom/offices/zamujasa)
+"vZs" = (
+/obj/fakeobject/console_lever,
+/obj/cable/green{
+	icon_state = "0-4"
+	},
+/obj/cable/green{
+	icon_state = "0-8"
+	},
+/obj/cable/green{
+	icon_state = "0-2"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "vZx" = (
 /obj/decal/cleanable/oil/streak,
 /turf/unsimulated/floor/plating,
@@ -74722,7 +76620,7 @@
 /turf/unsimulated/floor/black,
 /area/owlery/Owlmait2)
 "wfP" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -74821,6 +76719,9 @@
 	},
 /turf/unsimulated/outdoors/grass,
 /area/void_diner)
+"wlx" = (
+/turf/unsimulated/floor/damaged1,
+/area/watchful_eye_sensor)
 "wlN" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -74985,6 +76886,14 @@
 	},
 /turf/unsimulated/floor/wood,
 /area/centcom/offices/urs)
+"woY" = (
+/obj/item/casing,
+/obj/mapping_helper/mob_spawn/corpse/human/scientist{
+	randomise_decomp_stage = 1
+	},
+/obj/decal/cleanable/blood/splatter,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "wpw" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -75018,6 +76927,13 @@
 /mob/living/critter/spider/ice,
 /turf/unsimulated/floor/arctic/snow/ice,
 /area/lower_arctic/lower)
+"wrl" = (
+/obj/decoration/ntcratesmall,
+/obj/machinery/light/small/sticky/warm/very{
+	dir = 8
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "wrp" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -75034,6 +76950,17 @@
 	},
 /turf/unsimulated/floor/plating,
 /area/iomoon/base/underground)
+"wrV" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow,
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "wsk" = (
 /obj/storage/closet/dresser,
 /obj/item/clothing/under/gimmick/sailormoon,
@@ -75042,6 +76969,26 @@
 /obj/item/clothing/gloves/sailormoon,
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/katzen)
+"wsq" = (
+/obj/grille/catwalk,
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/green{
+	icon_state = "6-10"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "wsB" = (
 /obj/map/light/graveyard,
 /mob/living/critter/zombie/scientist,
@@ -75174,7 +77121,7 @@
 	},
 /area/sim/gunsim/lobby)
 "wya" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	dir = 4;
@@ -75210,6 +77157,23 @@
 	dir = 6
 	},
 /area/owlery/gangzone)
+"wzJ" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/fakeobject{
+	desc = "It's probably broken.";
+	dir = 6;
+	icon = 'icons/obj/power.dmi';
+	icon_state = "solar_panel";
+	name = "solar panel"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "wAJ" = (
 /obj/fakeobject/pipe{
 	color = "b4b4b4";
@@ -75221,6 +77185,11 @@
 	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
+"wAS" = (
+/obj/grille/catwalk,
+/obj/decal/nav_danger,
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "wAT" = (
 /obj/decal/stage_edge{
 	layer = 2.8;
@@ -75256,6 +77225,12 @@
 	opacity = 0
 	},
 /area/titlescreen)
+"wCS" = (
+/obj/cable/green{
+	icon_state = "6-9"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "wDg" = (
 /obj/item/storage/toilet/random{
 	dir = 4;
@@ -75277,7 +77252,7 @@
 /turf/simulated/floor/sanitary,
 /area/shuttle/centcom_elevator/lower)
 "wDz" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
@@ -75285,16 +77260,16 @@
 /turf/unsimulated/floor/plating,
 /area/meat_derelict/entry)
 "wDM" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 4
 	},
 /obj/map/light/graveyard,
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "This airlock seems to be badly damaged.";
 	dir = 4;
@@ -75326,6 +77301,23 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/left_centcom/cogmap2)
+"wED" = (
+/obj/cable{
+	icon_state = "6-8"
+	},
+/obj/cable{
+	icon_state = "5-8"
+	},
+/obj/fakeobject/airlock_broken/firelock{
+	density = 1;
+	desc = "This airlock seems to be badly damaged.";
+	dir = 4;
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "airlock_locked";
+	name = "broken airlock"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "wEW" = (
 /obj/storage/closet/iomoon,
 /turf/unsimulated/floor/industrial,
@@ -75563,6 +77555,10 @@
 /obj/table/syndicate/auto,
 /turf/unsimulated/floor/carpet/red/decal/outercross,
 /area/syndicate_station/battlecruiser)
+"wNV" = (
+/obj/decal/cleanable/dirt/dirt3,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "wNY" = (
 /obj/death_button/create_dummy,
 /turf/unsimulated/wall/auto/lead/white{
@@ -75625,13 +77621,24 @@
 	dir = 4;
 	name = "Surface Airlock"
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	dir = 4;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor0"
 	},
 /turf/unsimulated/iomoon/plating,
 /area/iomoon/base)
+"wQA" = (
+/obj/grille/catwalk,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/fakeobject/bustedpod,
+/obj/decal/cleanable/blood{
+	icon_state = "tracksL"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "wQX" = (
 /obj/decal/poster/wallsign/stencil/left/d,
 /turf/unsimulated/floor/setpieces/gauntlet,
@@ -75706,10 +77713,22 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/centcom/offices/leah)
+"wVq" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "wVC" = (
 /obj/machinery/navbeacon/lunar/tour8,
 /turf/unsimulated/floor/plating,
 /area/moon/museum/west)
+"wVQ" = (
+/obj/cable/green{
+	icon_state = "4-9"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "wWb" = (
 /obj/decal/poster/wallsign/hazard_caution,
 /turf/unsimulated/wall/auto/lead/blue,
@@ -75773,6 +77792,12 @@
 /obj/decal/stripe_delivery,
 /turf/unsimulated/floor/plating,
 /area/moon/museum)
+"wZN" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/turf/unsimulated/floor/plating,
+/area/watchful_eye_sensor)
 "xaw" = (
 /obj/window_blinds/cog2/left,
 /turf/unsimulated/wall/generic{
@@ -75810,6 +77835,13 @@
 /obj/machinery/light/runway_light/delay5,
 /turf/space,
 /area/syndicate_station_space)
+"xbM" = (
+/obj/decoration/ntcrate/ntcrate2,
+/obj/machinery/light/small/broken{
+	dir = 8
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "xcj" = (
 /obj/machinery/door/airlock/pyro/external{
 	dir = 4
@@ -75863,6 +77895,12 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/right_centcom/cogmap)
+"xeE" = (
+/obj/decal/residual_energy,
+/mob/living/critter/small_animal/floateye/watchful,
+/obj/lattice,
+/turf/space,
+/area/watchful_eye_sensor)
 "xeX" = (
 /obj/item/storage/toilet/random{
 	dir = 8;
@@ -75951,7 +77989,7 @@
 /turf/unsimulated/wall/auto/lead/blue,
 /area/upper_arctic/pod1)
 "xkk" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	desc = "This shuttle door is really jammed.  What's the point of it then?  WHAT IS THE POINT";
 	icon = 'icons/obj/doors/shuttle.dmi';
 	name = "rusted hatch"
@@ -76551,6 +78589,20 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/merchant_shuttle/diner_centcom)
+"xCg" = (
+/obj/cable/green{
+	icon_state = "4-8"
+	},
+/obj/cable/green{
+	icon_state = "1-4"
+	},
+/obj/cable/green{
+	icon_state = "1-8"
+	},
+/obj/machinery/light/small/sticky/warm/very,
+/obj/decal/cleanable/blood,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "xCw" = (
 /obj/table/reinforced/bar/auto,
 /obj/machinery/computer/security/wooden_tv/small{
@@ -76570,7 +78622,7 @@
 /turf/unsimulated/floor/white,
 /area/centcom/garden)
 "xDP" = (
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	desc = "Rust has rendered this airlock useless.";
 	icon = 'icons/obj/doors/SL_doors.dmi';
@@ -76578,7 +78630,7 @@
 	name = "rusted airlock";
 	opacity = 1
 	},
-/obj/fakeobject/firelock_broken{
+/obj/fakeobject/airlock_broken/firelock{
 	density = 1;
 	icon = 'icons/obj/doors/SL_doors.dmi';
 	icon_state = "fdoor1";
@@ -76673,6 +78725,14 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/owlery/owleryhall)
+"xIb" = (
+/obj/machinery/light/small/broken,
+/obj/decal/cleanable/dirt/dirt2,
+/obj/decal/cleanable/robot_debris{
+	icon_state = "gib7"
+	},
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "xIj" = (
 /obj/item/currency/spacecash/tourist,
 /obj/item/currency/spacecash/tourist,
@@ -77059,6 +79119,14 @@
 	icon_state = "rootfloor_2"
 	},
 /area/centcom/offices/marknstein)
+"xYx" = (
+/obj/cable/green{
+	icon_state = "5-10"
+	},
+/obj/table/nanotrasen/auto,
+/obj/item/paper/watchful_eye/rev,
+/turf/unsimulated/floor,
+/area/watchful_eye_sensor)
 "xYJ" = (
 /turf/unsimulated/floor/dream/beach{
 	icon_state = "beach-3"
@@ -77324,6 +79392,20 @@
 "ykL" = (
 /turf/unsimulated/floor/marble/black,
 /area/centcom/gallery)
+"ykR" = (
+/obj/grille/catwalk,
+/obj/decal/nav_danger,
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/decal/cleanable/blood{
+	icon_state = "tracksL"
+	},
+/turf/space,
+/area/watchful_eye_sensor)
 "ylC" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -109680,7 +111762,7 @@ cIe
 cIe
 cIe
 dep
-dex
+vPU
 deG
 btf
 btf
@@ -120476,11 +122558,11 @@ nuo
 bSp
 nuo
 aaa
-dTe
-dTe
-dTe
-dTe
-dTe
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -120778,19 +122860,19 @@ bUC
 bUT
 nuo
 aaa
+bOB
+bOB
+bOB
+bXs
+bXs
 dTe
 dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
+bXs
+bXs
+bXs
+bXs
+bXs
+bXs
 bXs
 bOB
 bOB
@@ -121080,19 +123162,19 @@ nuo
 mIm
 nuo
 aaa
+bOB
 dTe
+bOB
 dTe
 bXg
 bOB
-bOB
+bQX
+bXs
+bXs
+bXg
 bOB
 bQX
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
+bXs
 bXs
 bOB
 bOB
@@ -121382,18 +123464,18 @@ nuo
 aaa
 aaa
 aaa
-bQX
 bOB
+dTe
 bOB
-chC
+dTe
+bOB
+bXs
+bOB
 dTe
 dTe
 bOB
 dTe
-bQX
 bOB
-bOB
-chC
 bXs
 bXs
 bOB
@@ -121669,33 +123751,33 @@ bNq
 dFY
 phv
 aaa
-bQX
+cnw
+cnw
+cnw
+cnw
+cnw
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 bOB
-chC
-dTe
-dTe
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bOB
+bOB
+bXs
+bOB
+bXg
+bOB
+bXs
 bXg
 bOB
 bOB
-bOB
-bQX
 cgw
-bOB
-bOB
-bOB
-bOB
-bOB
-chC
-dTe
-dTe
-bOB
+bXs
+bXg
 bXg
 bOC
 bXg
@@ -121971,34 +124053,34 @@ bNq
 bQe
 aDY
 aaa
-bOB
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+aaa
+dTe
+dTe
+dTe
 dTe
 bOB
 dTe
 dTe
-bQX
-bOB
-bOB
-bOB
-chC
 dTe
-bXg
+dTe
+bUm
 cgw
-bQX
+bUm
+bUm
+dTe
+dTe
+bUm
+bUm
+bUm
 bOB
-chC
-bXg
-bOB
-bOB
-bOB
-bXg
-bOB
-bOB
-bXg
-bOB
-bOB
-bOB
-cgw
 bUm
 bUm
 bUm
@@ -122273,33 +124355,33 @@ lWU
 aDY
 aDY
 aaa
-bXg
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+aaa
+dTe
+dTe
+dTe
+dTe
 bOB
-bOB
-bXg
-bOB
-bOB
-bOB
-bOB
-bXg
-bOB
-bOB
-cgw
+dTe
+dTe
+bUm
 bQX
 bOB
 bOB
 bOB
-chC
-dTe
-cgw
+bOB
 bOB
 bOB
 chC
-dTe
-dTe
-dTe
-dTe
-cgw
+bOB
+chC
 bOB
 bOB
 bOB
@@ -122575,32 +124657,32 @@ aaa
 aaa
 aaa
 aaa
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+cnw
+aaa
+aaa
+aaa
 dTe
-dTe
-cgw
+bUm
+bOB
+bOB
 bOB
 bOB
 chC
+bUm
 dTe
-dTe
-dTe
-cgw
 bOB
+bXf
 bOB
-chC
-bXg
-bOB
-bOB
-cgw
 dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
-dTe
+bUm
+bUm
 bUm
 bUm
 bUm
@@ -134723,34 +136805,34 @@ aaa
 "}
 (191,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -135025,34 +137107,34 @@ aaa
 "}
 (192,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -135327,34 +137409,34 @@ aaa
 "}
 (193,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -135629,34 +137711,34 @@ aaa
 "}
 (194,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+gey
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -135931,34 +138013,34 @@ aaa
 "}
 (195,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+eDm
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -136233,34 +138315,34 @@ aaa
 "}
 (196,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+oOZ
+fkR
+jPH
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -136535,34 +138617,34 @@ aaa
 "}
 (197,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+bDM
+piS
+bDM
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 aGx
@@ -136837,34 +138919,34 @@ aaa
 "}
 (198,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+fkR
+bDM
+piS
+bDM
+fkR
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 aGx
@@ -137139,34 +139221,34 @@ aaa
 "}
 (199,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 aGx
@@ -137441,34 +139523,34 @@ aaa
 "}
 (200,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 aGx
@@ -137743,34 +139825,34 @@ aaa
 "}
 (201,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 aGx
@@ -138045,34 +140127,34 @@ aaa
 "}
 (202,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+fkR
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+fkR
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 aGx
@@ -138347,34 +140429,34 @@ aaa
 "}
 (203,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+piS
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+piS
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 aGx
@@ -138649,34 +140731,34 @@ aaa
 "}
 (204,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+bIZ
+piS
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+piS
+bIZ
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -138951,34 +141033,34 @@ aaa
 "}
 (205,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+bIZ
+fkR
+bIZ
+piS
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+piS
+bIZ
+fkR
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -139253,34 +141335,34 @@ aaa
 "}
 (206,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+bIZ
+piS
+bIZ
+piS
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+piS
+bIZ
+piS
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -139555,34 +141637,34 @@ aaa
 "}
 (207,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+bIZ
+piS
+bIZ
+piS
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+piS
+bIZ
+piS
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -139857,34 +141939,34 @@ aaa
 "}
 (208,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+bIZ
+bIZ
+piS
+bIZ
+piS
+bIZ
+bpV
+frv
+jTc
+voz
+kvl
+bIZ
+piS
+bIZ
+piS
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -140159,34 +142241,34 @@ aaa
 "}
 (209,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+bIZ
+bIZ
+piS
+bIZ
+jSA
+bIZ
+eyH
+kLm
+kLm
+kLm
+jre
+bIZ
+piS
+bIZ
+piS
+bIZ
+bIZ
+vpn
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -140461,34 +142543,34 @@ aaa
 "}
 (210,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+fkR
+bIZ
+bpV
+eVe
+nGc
+eVe
+uBh
+bGK
+feN
+ofE
+mLs
+eVe
+nGc
+eVe
+kvl
+bIZ
+bIZ
+bIZ
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -140763,34 +142845,34 @@ aaa
 "}
 (211,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+piS
+bIZ
+piS
+bIZ
+kLm
+qeH
+qeH
+kLm
+qnJ
+kLm
+qeH
+qeH
+kLm
+bIZ
+piS
+bIZ
+fkR
+bIZ
+vpn
+vpn
+qqI
+aaa
+aaa
+aaa
 aaa
 duq
 duq
@@ -141065,31 +143147,31 @@ aaa
 "}
 (212,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+bpV
+eVe
+ewy
+qeH
+kLm
+ugD
+oxM
+bHS
+tKd
+tsw
+sqI
+fCX
+kLm
+qeH
+wzJ
+eVe
+kvl
+bIZ
+vpn
+vpn
+qqI
 aaa
 aaa
 aaa
@@ -141367,31 +143449,31 @@ aaa
 "}
 (213,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+piS
+bIZ
+qeH
+qeH
+tpl
+aKG
+wZN
+fAP
+uJz
+qwV
+qUE
+wNV
+xbM
+qeH
+qeH
+bIZ
+piS
+bIZ
+vpn
+vpn
+qqI
 aaa
 dFc
 dFc
@@ -141669,31 +143751,31 @@ aaa
 "}
 (214,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+bIZ
+iFE
+qeH
+kLm
+fAP
+fAP
+uTM
+kLm
+qeH
+qeH
+qeH
+kLm
+eBS
+uJz
+fAP
+kLm
+qeH
+nzH
+bIZ
+bIZ
+vpn
+qqI
 aaa
 dFc
 duS
@@ -141971,31 +144053,31 @@ aaa
 "}
 (215,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+bIZ
+qeH
+qeH
+sOz
+tGD
+tMD
+wVq
+dBO
+jbn
+qVH
+aEM
+dBO
+cZv
+hQd
+fAP
+wrl
+qeH
+qeH
+bIZ
+bIZ
+vpn
+qqI
 aaa
 dFc
 duU
@@ -142273,31 +144355,31 @@ aaa
 "}
 (216,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+kLm
+kLm
+vlo
+fAP
+uTM
+fAP
+kLm
+kLm
+qeH
+tvD
+qeH
+kLm
+kLm
+fAP
+gci
+uJz
+fAP
+kLm
+kLm
+bIZ
+vpn
+qqI
 aaa
 dFc
 duU
@@ -142575,31 +144657,31 @@ aaa
 "}
 (217,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+qeH
+tlP
+uJz
+sDQ
+mVB
+qeH
+kLm
+njh
+njh
+efx
+njh
+njh
+kLm
+qeH
+nrc
+uCj
+fAP
+wrl
+qeH
+bIZ
+vpn
+qqI
 aaa
 dFc
 duU
@@ -142877,31 +144959,31 @@ aaa
 "}
 (218,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+qeH
+hMe
+rGJ
+ics
+qeH
+qeH
+pqP
+jPr
+sQI
+fTn
+sQI
+szn
+unf
+qeH
+qeH
+oBe
+mZD
+wNV
+qeH
+bIZ
+vpn
+qqI
 aaa
 dFc
 duU
@@ -143179,31 +145261,31 @@ aaa
 "}
 (219,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+qeH
+jnH
+etH
+kLm
+kLm
+pqP
+vWP
+mph
+vpn
+iCe
+vpn
+mph
+tgF
+unf
+kLm
+kLm
+cTM
+wVQ
+qeH
+bIZ
+vpn
+qqI
 aaa
 dFc
 duU
@@ -143481,31 +145563,31 @@ aaa
 "}
 (220,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+bIZ
+bIZ
+qeH
+psO
+uJz
+qeH
+njh
+bUD
+hrR
+jtF
+vUK
+tES
+vUK
+jtF
+hrR
+rml
+irk
+qeH
+uJz
+pzo
+qeH
+bIZ
+bIZ
+qqI
 aaa
 dFc
 duU
@@ -143783,31 +145865,31 @@ aaa
 "}
 (221,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+bIZ
+sNy
+pbZ
+iXC
+fAP
+qeH
+njh
+vUn
+vpn
+pzc
+laE
+gpY
+laE
+dYY
+vpn
+fXQ
+iON
+qeH
+gOT
+ecz
+pbZ
+bMQ
+bIZ
+qqI
 aaa
 dFc
 duU
@@ -144085,31 +146167,31 @@ aaa
 "}
 (222,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+dVJ
+gey
+kLm
+mfx
+qvs
+qeH
+njh
+uGu
+uGi
+nNQ
+qAr
+xeE
+qAr
+kSd
+vyb
+uGu
+iON
+qeH
+vZs
+xCg
+kLm
+gey
+vXd
+qqI
 aaa
 dFc
 duU
@@ -144387,31 +146469,31 @@ aaa
 "}
 (223,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+bIZ
+kEL
+pbZ
+jBv
+uKp
+qeH
+njh
+vUn
+vpn
+pzc
+laE
+gpY
+laE
+dYY
+vpn
+fXQ
+iON
+qeH
+rTs
+mNd
+pbZ
+oGj
+bIZ
+qqI
 aaa
 dFc
 duU
@@ -144689,31 +146771,31 @@ aaa
 "}
 (224,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+bIZ
+bIZ
+qeH
+psO
+aKG
+qeH
+njh
+tmO
+hrR
+jtF
+nMO
+mKk
+nMO
+jtF
+frw
+lkh
+iON
+qeH
+woY
+vwu
+qeH
+bIZ
+bIZ
+qqI
 aaa
 dFc
 duU
@@ -144991,31 +147073,31 @@ bZd
 "}
 (225,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+qeH
+qIj
+oAn
+kLm
+kLm
+ouD
+tgF
+mph
+vpn
+ePz
+vpn
+mph
+vWP
+gnl
+kLm
+kLm
+jEQ
+tEC
+qeH
+bIZ
+vpn
+qqI
 aaa
 dFc
 duU
@@ -145293,31 +147375,31 @@ bZd
 "}
 (226,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+qeH
+rOO
+mZD
+kbr
+qeH
+qeH
+ouD
+emO
+lfy
+rob
+lfy
+eTD
+gnl
+qeH
+qeH
+lQy
+fwi
+lQy
+qeH
+bIZ
+vpn
+qqI
 aaa
 dFc
 duU
@@ -145595,31 +147677,31 @@ bZd
 "}
 (227,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+qeH
+uUN
+nov
+wCS
+saT
+qeH
+kLm
+njh
+njh
+efx
+njh
+njh
+kLm
+qeH
+fAP
+olP
+uJz
+rLl
+qeH
+bIZ
+vpn
+qqI
 aaa
 dFc
 duV
@@ -145897,31 +147979,31 @@ bZd
 "}
 (228,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+kLm
+kLm
+vbG
+uJz
+oGG
+xIb
+kLm
+kLm
+qeH
+wED
+qeH
+kLm
+sQK
+dqn
+xYx
+fAP
+oAn
+kLm
+kLm
+bIZ
+vpn
+qqI
 aaa
 dFc
 aES
@@ -146199,31 +148281,31 @@ bZd
 "}
 (229,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+bIZ
+qeH
+qeH
+fVu
+fAP
+eHr
+cZv
+vUh
+miV
+wAS
+hzn
+dBO
+cZv
+gpG
+fAP
+tZQ
+qeH
+qeH
+bIZ
+bIZ
+vpn
+qqI
 aaa
 dFc
 aES
@@ -146501,31 +148583,31 @@ bZd
 "}
 (230,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+bIZ
+bIZ
+fkR
+qeH
+kLm
+gnc
+fAP
+mZD
+kLm
+qeH
+qeH
+qeH
+kLm
+uTM
+uJz
+krr
+kLm
+qeH
+fkR
+bIZ
+bIZ
+vpn
+qqI
 aaa
 dFc
 aES
@@ -146803,31 +148885,31 @@ bZd
 "}
 (231,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+piS
+bIZ
+qeH
+qeH
+gJc
+sLu
+wCS
+uJz
+uJz
+wlx
+rvS
+uJz
+qHF
+qeH
+qeH
+bIZ
+piS
+bIZ
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -147105,31 +149187,31 @@ bZd
 "}
 (232,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+hiM
+eVe
+rzG
+qeH
+kLm
+ugD
+oxM
+ppd
+iWY
+rMH
+oxM
+fCX
+kLm
+qeH
+kra
+eVe
+vYn
+bIZ
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -147407,31 +149489,31 @@ bZd
 "}
 (233,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+iFE
+bIZ
+piS
+bIZ
+kLm
+qeH
+qeH
+kLm
+oCb
+kLm
+qeH
+qeH
+oIm
+bIZ
+piS
+bIZ
+iFE
+bIZ
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -147709,31 +149791,31 @@ bZd
 "}
 (234,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+bIZ
+bIZ
+bIZ
+hiM
+eVe
+ubX
+eVe
+hRp
+gdD
+nbL
+bGK
+ykR
+wQA
+inq
+eVe
+vYn
+bIZ
+bIZ
+bIZ
+vpn
+vpn
+qqI
 aaa
 dFc
 wLo
@@ -148011,31 +150093,31 @@ bZd
 "}
 (235,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+bIZ
+bIZ
+piS
+bIZ
+piS
+bIZ
+wsq
+kLm
+kLm
+kLm
+jQX
+bIZ
+piS
+bIZ
+piS
+bIZ
+bIZ
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 wLo
@@ -148313,31 +150395,31 @@ bZd
 "}
 (236,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+bIZ
+piS
+bIZ
+piS
+bIZ
+hiM
+lAK
+wrV
+eZR
+vYn
+bIZ
+piS
+bIZ
+piS
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 wLo
@@ -148615,31 +150697,31 @@ bZd
 "}
 (237,1,1) = {"
 aaa
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+bIZ
+piS
+bIZ
+piS
+bIZ
+piS
+bDM
+piS
+mvq
+piS
+bIZ
+piS
+bIZ
+piS
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -148917,31 +150999,31 @@ bZd
 "}
 (238,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+bIZ
+iFE
+bIZ
+piS
+bIZ
+piS
+bDM
+piS
+mvq
+piS
+bIZ
+piS
+bIZ
+iFE
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -149219,31 +151301,31 @@ bZd
 "}
 (239,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+bIZ
+piS
+bIZ
+piS
+lfM
+piS
+bDM
+piS
+bIZ
+piS
+bIZ
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -149521,31 +151603,31 @@ bZd
 "}
 (240,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+piS
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+piS
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -149823,31 +151905,31 @@ bZd
 "}
 (241,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+iFE
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+iFE
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -150125,31 +152207,31 @@ bZd
 "}
 (242,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -150427,31 +152509,31 @@ bZd
 "}
 (243,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -150729,31 +152811,31 @@ bZd
 "}
 (244,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+piS
+bDM
+piS
+bDM
+piS
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -151031,31 +153113,31 @@ bZd
 "}
 (245,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+iFE
+bDM
+piS
+bDM
+iFE
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -151333,31 +153415,31 @@ bZd
 "}
 (246,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bIZ
+bDM
+piS
+bDM
+bIZ
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -151635,31 +153717,31 @@ bZd
 "}
 (247,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+bIZ
+bDM
+iFE
+bDM
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -151937,31 +154019,31 @@ bZd
 "}
 (248,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+kJS
+bIZ
+iEN
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -152239,31 +154321,31 @@ bZd
 "}
 (249,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+mFt
+bBz
+bIZ
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -152541,31 +154623,31 @@ bZd
 "}
 (250,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+fom
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -152843,31 +154925,31 @@ bZd
 "}
 (251,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+vpn
+qqI
 aaa
 dFc
 aES
@@ -153145,31 +155227,31 @@ aaa
 "}
 (252,1,1) = {"
 aaa
-aab
-aab
-aab
-aab
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
-cnw
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
+qqI
 aaa
 dFc
 dFc

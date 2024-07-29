@@ -808,6 +808,7 @@ TYPEINFO(/turf/unsimulated/floor/wood)
 
 /turf/unsimulated/floor/stairs/wide/green
 	icon_state = "Stairs_wide_green"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/stairs/wide/middle
 	icon_state = "stairs_middle"
@@ -818,6 +819,7 @@ TYPEINFO(/turf/unsimulated/floor/wood)
 
 /turf/unsimulated/floor/stairs/medical/wide
 	icon_state = "medstairs_wide"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/stairs/medical/wide/other
 	icon_state = "medstairs2_wide"
@@ -828,6 +830,7 @@ TYPEINFO(/turf/unsimulated/floor/wood)
 
 /turf/unsimulated/floor/stairs/quilty
 	icon_state = "quiltystair"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/stairs/quilty/wide
 	icon_state = "quiltystair2"
@@ -835,6 +838,7 @@ TYPEINFO(/turf/unsimulated/floor/wood)
 
 /turf/unsimulated/floor/stairs/wood
 	icon_state = "wood_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/stairs/wood/wide
 	icon_state = "wood_stairs2"
@@ -842,6 +846,7 @@ TYPEINFO(/turf/unsimulated/floor/wood)
 
 /turf/unsimulated/floor/stairs/wood2
 	icon_state = "wood2_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/stairs/wood2/wide
 	icon_state = "wood2_stairs2"
@@ -849,6 +854,7 @@ TYPEINFO(/turf/unsimulated/floor/wood)
 
 /turf/unsimulated/floor/stairs/wood3
 	icon_state = "wood3_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/stairs/wood3/wide
 	icon_state = "wood3_stairs2"
@@ -856,6 +862,7 @@ TYPEINFO(/turf/unsimulated/floor/wood)
 
 /turf/unsimulated/floor/stairs/dark
 	icon_state = "dark_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/stairs/dark/wide
 	icon_state = "dark_stairs2"
@@ -1029,21 +1036,26 @@ TYPEINFO(/turf/unsimulated/floor/grass)
 
 /turf/unsimulated/floor/glassblock/large
 	icon_state = "glass_large"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/glassblock/transparent_cyan
 	icon_state = "glasstr_cyan"
 
 /turf/unsimulated/floor/glassblock/transparent_indigo
 	icon_state = "glasstr_indigo"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/glassblock/transparent_red
 	icon_state = "glasstr_red"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/glassblock/transparent_grey
 	icon_state = "glasstr_grey"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/glassblock/transparent_purple
 	icon_state = "glasstr_purple"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /////////////////////////////////////////
 

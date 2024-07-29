@@ -173,7 +173,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	//get all bendy
 
-	var/image/lense = image(icon='icons/effects/overlays/lensing.dmi', icon_state="lensing_med_hole", pixel_x = -208, pixel_y = -208)
+	var/image/lense = image(icon='icons/effects/overlays/lensing.dmi', icon_state="lensing_med_hole", pixel_x = 0, pixel_y = -416)
 	lense.plane = PLANE_DISTORTION
 	lense.blend_mode = BLEND_OVERLAY
 	lense.appearance_flags = RESET_ALPHA | RESET_COLOR
@@ -1653,7 +1653,7 @@ TYPEINFO(/obj/machinery/power/collector_control)
 			power_a = power_p*power_s*50
 			src.lastpower = power_a
 			add_avail(power_a)
-			SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "power=[power_a]&powerfmt=[engineering_notation(power_a)]W")
+			SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "power=[num2text(round(power_a), 50)]&powerfmt=[engineering_notation(power_a)]W")
 			..()
 	else
 		var/power_a = 0

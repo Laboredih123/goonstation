@@ -1029,7 +1029,8 @@ TYPEINFO(/obj/shrub/syndicateplant)
 	opacity = 0
 	anchored = ANCHORED_ALWAYS
 	density = 0
-	plane = PLANE_SPACE
+	plane = PLANE_BETWEENSPACE
+
 
 	x3
 		icon_state = "moon-green"

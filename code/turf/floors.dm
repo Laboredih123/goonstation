@@ -396,12 +396,15 @@
 
 /turf/simulated/floor/blackwhite
 	icon_state = "darkwhite"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/blackwhite/corner
 	icon_state = "darkwhitecorner"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/blackwhite/side
 	icon_state = "whiteblack"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/blackwhite/whitegrime
 	icon_state = "floorgrime_bw1"
@@ -914,12 +917,14 @@ TYPEINFO(/turf/simulated/floor/glassblock)
 
 /turf/simulated/floor/glassblock/large
 	icon_state = "glass_large"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/glassblock/transparent
 	icon_state = "glasstr_cyan"
 	default_material = "glass"
 
 	New()
+		..()
 		var/image/I
 		#ifdef UNDERWATER_MAP
 		var/sand_icon
@@ -936,26 +941,49 @@ TYPEINFO(/turf/simulated/floor/glassblock)
 				direction = pick(cardinal)
 		I = image('icons/turf/outdoors.dmi', sand_icon, dir = direction)
 		#else
-		I = image('icons/turf/space.dmi', "[rand(1, 25)]")
+		src.underlays += /turf/space::starlight
+		I = mutable_appearance('icons/turf/space.dmi', "[rand(1, 25)]")
+		I.color = /turf/space::space_color
 		#endif
 		I.plane = PLANE_SPACE
 		src.underlays += I
-		..()
 
 /turf/simulated/floor/glassblock/transparent/cyan
 	icon_state = "glasstr_cyan"
 
 /turf/simulated/floor/glassblock/transparent/indigo
 	icon_state = "glasstr_indigo"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/glassblock/transparent/red
 	icon_state = "glasstr_red"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/glassblock/transparent/grey
 	icon_state = "glasstr_grey"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/glassblock/transparent/purple
 	icon_state = "glasstr_purple"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
+
+/turf/simulated/floor/glassblock/transparent/large
+	icon_state = "glasstr_large_cyan"
+
+/turf/simulated/floor/glassblock/transparent/large/cyan
+	icon_state = "glasstr_large_cyan"
+
+/turf/simulated/floor/glassblock/transparent/large/indigo
+	icon_state = "glasstr_large_indigo"
+
+/turf/simulated/floor/glassblock/transparent/large/red
+	icon_state = "glasstr_large_red"
+
+/turf/simulated/floor/glassblock/transparent/large/grey
+	icon_state = "glasstr_large_grey"
+
+/turf/simulated/floor/glassblock/transparent/large/purple
+	icon_state = "glasstr_large_purple"
 
 /////////////////////////////////////////
 
@@ -1221,6 +1249,7 @@ TYPEINFO(/turf/simulated/floor/wood)
 
 /turf/simulated/floor/stairs/wide/green
 	icon_state = "Stairs_wide_green"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/stairs/wide/green/other
 	icon_state = "Stairs_wide_green_other"
@@ -1234,6 +1263,7 @@ TYPEINFO(/turf/simulated/floor/wood)
 
 /turf/simulated/floor/stairs/medical/wide
 	icon_state = "medstairs_wide"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/stairs/medical/wide/other
 	icon_state = "medstairs2_wide"
@@ -1244,6 +1274,7 @@ TYPEINFO(/turf/simulated/floor/wood)
 
 /turf/simulated/floor/stairs/quilty
 	icon_state = "quiltystair"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/stairs/quilty/wide
 	icon_state = "quiltystair2"
@@ -1254,6 +1285,7 @@ TYPEINFO(/turf/simulated/floor/stairs/wood)
 /turf/simulated/floor/stairs/wood
 	default_material = "wood"
 	icon_state = "wood_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/stairs/wood/wide
 	default_material = "wood"
@@ -1265,6 +1297,7 @@ TYPEINFO(/turf/simulated/floor/stairs/wood2)
 /turf/simulated/floor/stairs/wood2
 	default_material = "wood"
 	icon_state = "wood2_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/stairs/wood2/wide
 	default_material = "wood"
@@ -1279,6 +1312,7 @@ TYPEINFO(/turf/simulated/floor/stairs/wood3)
 /turf/simulated/floor/stairs/wood3
 	default_material = "wood"
 	icon_state = "wood3_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/stairs/wood3/wide
 	default_material = "wood"
@@ -1287,6 +1321,7 @@ TYPEINFO(/turf/simulated/floor/stairs/wood3)
 
 /turf/simulated/floor/stairs/dark
 	icon_state = "dark_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/stairs/dark/wide
 	icon_state = "dark_stairs2"
@@ -1407,11 +1442,13 @@ DEFINE_FLOORS(snowrough/border,
 	icon_state = "diamondtile"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/unsimulated/floor/industrial
 	icon_state = "diamondtile"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /////////////////////////////////////////
 
@@ -2101,6 +2138,7 @@ DEFINE_FLOORS(solidcolor/black/fullbright,
 				"readster's very own girder",
 				"just a girder",
 				"a gourder",//60
+				"an owl?",
 				"a herd of girders",
 				"an A.D.G.S",
 				"the... thing",
@@ -2111,7 +2149,7 @@ DEFINE_FLOORS(solidcolor/black/fullbright,
 				"nice",
 				"the girder egg")
 				msg = insert_girder[min(count+1, insert_girder.len)]
-				if(count >= 69) //nice
+				if(count >= 70) //nice
 					girder_egg = 1
 					actions.start(new /datum/action/bar/icon/build(/obj/item/reagent_containers/food/snacks/ingredient/egg/critter/townguard/passive, src, 1, 3 SECONDS, S, 2, null, null, S.material, 'icons/obj/structures.dmi', "girder egg", name = msg), user)
 				else
@@ -2679,6 +2717,109 @@ TYPEINFO(/turf/simulated/floor/auto/water/ice)
 		. = ..()
 		if(prob(10))
 			src.icon_state = "snow_rough[rand(1,3)]"
+
+TYPEINFO(/turf/simulated/floor/auto/glassblock)
+	mat_appearances_to_ignore = list("steel","synthrubber","glass")
+	connect_diagonal = 1
+
+//dont use please
+/turf/simulated/floor/auto/glassblock
+	name = "glass block tiling"
+	step_material = "step_wood"
+	step_priority = STEP_PRIORITY_MED
+	mat_changename = FALSE
+	can_burn = FALSE
+	can_break = FALSE
+	icon_state = "glass-0"
+	mod = "glass-"
+	default_material = "glass"
+	var/static/image/starlight
+
+	New()
+		..()
+		var/image/I
+		#ifdef UNDERWATER_MAP
+		var/sand_icon
+		var/direction
+		switch(rand(1, 3))
+			if(1)
+				sand_icon = "sand_other_texture"
+				direction = pick(alldirs)
+			if(2)
+				sand_icon = "sand_other_texture2"
+				direction = pick(alldirs)
+			if(3)
+				sand_icon = "sand_other_texture3"
+				direction = pick(cardinal)
+		I = image('icons/turf/outdoors.dmi', sand_icon, dir = direction)
+		#else
+		src.underlays += /turf/space::starlight
+		I = mutable_appearance('icons/turf/space.dmi', "[rand(1, 25)]")
+		I.color = /turf/space::space_color
+		#endif
+		I.plane = PLANE_SPACE
+		src.underlays += I
+
+	pry_tile(obj/item/C as obj, mob/user as mob, params)
+		boutput(user, SPAN_ALERT("This is glass flooring, you can't pry this up!"))
+
+	to_plating()
+		return
+
+	break_tile_to_plating()
+		return
+
+	break_tile()
+		return
+
+	// unburnable, otherwise floorbots use steel sheets for repair which doesn't make sense
+	burn_tile()
+		return
+
+	attackby(obj/item/C, mob/user, params)
+		if (istype(C, /obj/item/rods))
+			boutput(user, SPAN_ALERT("You can't reinforce this tile."))
+			return
+		if(istype(C, /obj/item/cable_coil))
+			boutput(user, SPAN_ALERT("You can't put cable over this tile, it would be too exposed."))
+			return
+		..()
+
+TYPEINFO(/turf/simulated/floor/auto/glassblock/grey)
+TYPEINFO_NEW(/turf/simulated/floor/auto/glassblock/grey)
+	. = ..()
+	connects_to = typecacheof(/turf/simulated/floor/auto/glassblock/grey)
+/turf/simulated/floor/auto/glassblock/grey
+	icon = 'icons/turf/glass_floors/grey_glass_floor_auto.dmi'
+
+TYPEINFO(/turf/simulated/floor/auto/glassblock/cyan)
+TYPEINFO_NEW(/turf/simulated/floor/auto/glassblock/cyan)
+	. = ..()
+	connects_to = typecacheof(/turf/simulated/floor/auto/glassblock/cyan)
+/turf/simulated/floor/auto/glassblock/cyan
+	icon = 'icons/turf/glass_floors/cyan_glass_floor_auto.dmi'
+
+TYPEINFO(/turf/simulated/floor/auto/glassblock/indigo)
+TYPEINFO_NEW(/turf/simulated/floor/auto/glassblock/indigo)
+	. = ..()
+	connects_to = typecacheof(/turf/simulated/floor/auto/glassblock/indigo)
+/turf/simulated/floor/auto/glassblock/indigo
+	icon = 'icons/turf/glass_floors/indigo_glass_floor_auto.dmi'
+
+TYPEINFO(/turf/simulated/floor/auto/glassblock/red)
+TYPEINFO_NEW(/turf/simulated/floor/auto/glassblock/red)
+	. = ..()
+	connects_to = typecacheof(/turf/simulated/floor/auto/glassblock/red)
+/turf/simulated/floor/auto/glassblock/red
+	icon = 'icons/turf/glass_floors/red_glass_floor_auto.dmi'
+
+TYPEINFO(/turf/simulated/floor/auto/glassblock/purple)
+TYPEINFO_NEW(/turf/simulated/floor/auto/glassblock/purple)
+	. = ..()
+	connects_to = typecacheof(/turf/simulated/floor/auto/glassblock/purple)
+/turf/simulated/floor/auto/glassblock/purple
+	icon = 'icons/turf/glass_floors/purple_glass_floor_auto.dmi'
+
 
 /turf/unsimulated/floor/pool
 	mat_changename = FALSE

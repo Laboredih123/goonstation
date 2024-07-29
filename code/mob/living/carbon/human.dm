@@ -142,9 +142,6 @@
 	var/list/sound_list_laugh = null
 	var/list/sound_list_flap = null
 
-	var/list/pathogens = list()
-	var/list/immunities = list()
-
 	var/datum/simsHolder/sims = null
 
 	/// forces the mob to wear underpants, even if their flags tell them not to
@@ -171,6 +168,22 @@
 	var/datum/humanInventory/inventory = null
 
 	var/default_mutantrace = /datum/mutantrace/human
+
+
+	//really dont like this but kinda prefer being able to click stuff under turfs
+	var/hideturfs = TRUE
+
+	var/turf/SWTurf = null
+	var/turf/STurf = null
+	var/turf/SETurf = null
+	var/turf/ETurf = null
+	var/turf/NETurf = null
+
+	var/SWAlpha = 255
+	var/SAlpha = 255
+	var/SEAlpha = 255
+	var/EAlpha = 255
+	var/NEAlpha = 255
 
 /mob/living/carbon/human/New(loc, datum/appearanceHolder/AH_passthru, datum/preferences/init_preferences, ignore_randomizer=FALSE)
 	. = ..()
@@ -560,6 +573,10 @@
 
 	src.juggle_dummy = null
 
+
+	src.hideturfs = FALSE
+	src.calc_hidden_turfs()
+
 	..()
 
 	//blah, this might not be effective for ref clearing but ghost observers inside me NEED this list to be populated in base mob/disposing
@@ -618,10 +635,6 @@
 
 	for (var/obj/item/implant/H in src.implant)
 		H.on_death()
-
-	for (var/uid in src.pathogens)
-		var/datum/pathogen/P = src.pathogens[uid]
-		P.ondeath()
 
 	src.drop_juggle()
 
@@ -754,13 +767,28 @@
 	src.set_clothing_icon_dirty()
 	src.hand = h
 
+	src.SWTurf?.alpha = src.SWAlpha
+	src.STurf?.alpha = src.SAlpha
+	src.SETurf?.alpha = src.SEAlpha
+	src.ETurf?.alpha = src.EAlpha
+	src.NETurf?.alpha = src.NEAlpha
+	src.SWTurf?.mouse_opacity = 1
+	src.STurf?.mouse_opacity = 1
+	src.SETurf?.mouse_opacity = 1
+	src.ETurf?.mouse_opacity = 1
+	src.NETurf?.mouse_opacity = 1
+	src.SWTurf = null
+	src.STurf = null
+	src.SETurf = null
+	src.ETurf = null
+	src.NETurf = null
+
 	if (istype(src.wear_suit, /obj/item/clothing/suit/armor/suicide_bomb))
 		var/obj/item/clothing/suit/armor/suicide_bomb/A = src.wear_suit
 		INVOKE_ASYNC(A, TYPE_PROC_REF(/obj/item/clothing/suit/armor/suicide_bomb, trigger), src)
 
 	src.time_until_decomposition = rand(4 MINUTES, 10 MINUTES)
 	add_lifeprocess(/datum/lifeprocess/decomposition)
-	remove_lifeprocess(/datum/lifeprocess/blood)
 
 	if (src.mind) // I think this is kinda important (Convair880).
 		if (src.mind.ckey && !inafterlife(src))
@@ -1392,6 +1420,9 @@
 	if (!ai_active && is_npc)
 		ai_set_active(1)
 
+	src.hideturfs = FALSE //dont want stuck walls
+	src.calc_hidden_turfs()
+
 /mob/living/carbon/human/get_heard_name(just_name_itself=FALSE)
 	var/alt_name = ""
 	if (src.name != src.real_name)
@@ -1472,10 +1503,6 @@
 				return
 
 	message = process_accents(src,message)
-
-	for (var/uid in src.pathogens)
-		var/datum/pathogen/P = src.pathogens[uid]
-		message = P.onsay(message)
 
 	..(message, unique_maptext_style = unique_maptext_style, maptext_animation_colors = maptext_animation_colors)
 
@@ -2448,79 +2475,6 @@
 	else
 		return null
 
-/mob/living/carbon/human/infected(var/datum/pathogen/P)
-	if (isdead(src))
-		return
-	if (ischangeling(src) || isvampire(src)) // Vampires were missing here. They're immune to old-style diseases too (Convair880).
-		return 0
-	if (P.pathogen_uid in src.immunities)
-		return 0
-	if (!(P.pathogen_uid in src.pathogens))
-		var/maxTierExisting = 0
-		for (var/uid in src.pathogens)
-			var/datum/pathogen/PA = src.pathogens[uid]
-			maxTierExisting = max(maxTierExisting, PA.getHighestTier())
-		var/maxTierNew = P.getHighestTier()
-
-		// thanks, we already got strong pathogen, go away
-		if(maxTierNew <= maxTierExisting)
-			return 0
-
-		// wow, strong pathogen, let's kick out all the other ones
-		for (var/uid in src.pathogens)
-			var/datum/pathogen/PA = src.pathogens[uid]
-			src.cured(PA)
-
-		// and get the new one instead
-		var/datum/pathogen/Q = new /datum/pathogen
-		Q.setup(0, P, 1)
-		pathogen_controller.mob_infected(Q, src)
-		src.pathogens += Q.pathogen_uid
-		src.pathogens[Q.pathogen_uid] = Q
-		Q.infected = src
-		logTheThing(LOG_PATHOLOGY, src, "is infected by [Q].")
-		return 1
-	else
-		var/datum/pathogen/C = src.pathogens[P.pathogen_uid]
-		if (C.generation < P.generation)
-			var/datum/pathogen/Q = new /datum/pathogen
-			Q.setup(0, P, 1)
-			logTheThing(LOG_PATHOLOGY, src, "'s pathogen mutation [C] is replaced by mutation [Q] due to a higher generation number.")
-			pathogen_controller.mob_infected(Q, src)
-			Q.stage = min(C.stage, Q.stages)
-			qdel(C)
-			src.pathogens[Q.pathogen_uid] = Q
-			Q.infected = src
-			return 1
-	return 0
-
-/mob/living/carbon/human/cured(var/datum/pathogen/P)
-	if (P.pathogen_uid in src.pathogens)
-		pathogen_controller.mob_cured(src.pathogens[P.pathogen_uid], src)
-		var/datum/pathogen/Q = src.pathogens[P.pathogen_uid]
-		var/pname = Q.name
-		src.pathogens -= P.pathogen_uid
-		var/datum/microbody/M = P.body_type
-		if (M.auto_immunize)
-			immunity(P)
-		qdel(Q)
-		logTheThing(LOG_PATHOLOGY, src, "is cured of [pname].")
-
-/mob/living/carbon/human/remission(var/datum/pathogen/P)
-	if (isdead(src))
-		return
-	if (P.pathogen_uid in src.pathogens)
-		var/datum/pathogen/Q = src.pathogens[P.pathogen_uid]
-		Q.remission()
-		logTheThing(LOG_PATHOLOGY, src, "'s pathogen [Q] enters remission.")
-
-/mob/living/carbon/human/immunity(var/datum/pathogen/P)
-	if (isdead(src))
-		return
-	if (!(P.pathogen_uid in src.immunities))
-		src.immunities += P.pathogen_uid
-		logTheThing(LOG_PATHOLOGY, src, "gains immunity to pathogen [P].")
-
 /mob/living/carbon/human/emag_act(mob/user, obj/item/card/emag/E)
 
 	if (prob(1)) //Magnet healing!
@@ -2672,7 +2626,7 @@
 	SPAWN(1.5 SECONDS)
 		qdel(src)
 
-/mob/living/carbon/human/get_equipped_items()
+/mob/living/carbon/human/get_equipped_items(include_pockets = FALSE)
 	. = ..()
 	if (src.belt) . += src.belt
 	if (src.glasses) . += src.glasses
@@ -2682,6 +2636,10 @@
 	if (src.wear_id) . += src.wear_id
 	if (src.wear_suit) . += src.wear_suit
 	if (src.w_uniform) . += src.w_uniform
+	if(include_pockets)
+		if (src.l_store) . += src.l_store
+		if (src.r_store) . += src.r_store
+
 
 /mob/living/carbon/human/protected_from_space()
 	var/space_suit = 0
@@ -2857,7 +2815,6 @@
 	else if(limb == "r_arm" && src.limbs.r_arm) src.limbs.r_arm.sever()
 	else if(limb == "l_leg" && src.limbs.l_leg) src.limbs.l_leg.sever()
 	else if(limb == "r_leg" && src.limbs.r_leg) src.limbs.r_leg.sever()
-	else if(limb == "all") src.limbs.sever("all")
 
 /mob/living/carbon/human/proc/has_limb(var/limb)
 	if (!src.limbs)
@@ -3367,9 +3324,58 @@
 				S.layer = initial(S.layer)
 				if (prob(20)) boutput(src, "You run right the fuck out of your shoes. [SPAN_ALERT("Shit!")]")
 
+	src.calc_hidden_turfs()
+
 	..()
 #undef can_step_sfx
 
+
+/mob/living/carbon/human/proc/calc_hidden_turfs() //turf hider ew ew ew
+	//gotta clean up our previous shit regardless
+	src.SWTurf?.alpha = src.SWAlpha
+	src.STurf?.alpha = src.SAlpha
+	src.SETurf?.alpha = src.SEAlpha
+	src.ETurf?.alpha = src.EAlpha
+	src.NETurf?.alpha = src.NEAlpha
+	src.SWTurf?.mouse_opacity = 1
+	src.STurf?.mouse_opacity = 1
+	src.SETurf?.mouse_opacity = 1
+	src.ETurf?.mouse_opacity = 1
+	src.NETurf?.mouse_opacity = 1
+	src.SWTurf = null
+	src.STurf = null
+	src.SETurf = null
+	src.ETurf = null
+	src.NETurf = null
+
+	if(src.client && src.hideturfs) //so like, we dont hide anything if we cant or dont wanna do it
+		var/turf/temp1 = get_step(src, SOUTHWEST)
+		var/turf/temp2 = get_step(src, SOUTH)
+		var/turf/temp3 = get_step(src, SOUTHEAST)
+		var/turf/temp4 = get_step(src, EAST)
+		var/turf/temp5 = get_step(src, NORTHEAST)
+
+		src.SWTurf = (istype(temp1, /turf/simulated/wall) || istype(temp1, /turf/unsimulated/wall)) ? temp1 : null
+		src.STurf = (istype(temp2, /turf/simulated/wall) || istype(temp1, /turf/unsimulated/wall)) ? temp2 : null
+		src.SETurf = (istype(temp3, /turf/simulated/wall) || istype(temp2, /turf/unsimulated/wall)) ? temp3 : null
+		src.ETurf = (istype(temp4, /turf/simulated/wall) || istype(temp3, /turf/unsimulated/wall)) ? temp4 : null
+		src.NETurf = (istype(temp5, /turf/simulated/wall) || istype(temp1, /turf/unsimulated/wall)) ? temp5 : null
+
+		src.SWAlpha = src.SWTurf?.alpha
+		src.SAlpha = src.STurf?.alpha
+		src.SEAlpha = src.SETurf?.alpha
+		src.EAlpha = src.ETurf?.alpha
+		src.NEAlpha = src.NETurf?.alpha
+		src.SWTurf?.alpha = 96 // arbritrary value that looks good enough
+		src.STurf?.alpha = 96
+		src.SETurf?.alpha = 96
+		src.ETurf?.alpha = 96
+		src.NETurf?.alpha = 96
+		src.SWTurf?.mouse_opacity = 0
+		src.STurf?.mouse_opacity = 0
+		src.SETurf?.mouse_opacity = 0
+		src.ETurf?.mouse_opacity = 0
+		src.NETurf?.mouse_opacity = 0
 
 /mob/living/carbon/human/set_loc(var/newloc as turf|mob|obj in world)
 	if (abilityHolder)
@@ -3420,7 +3426,7 @@
 	else if (src.shoes && src.shoes.chained)
 		missing_legs = 2
 
-	if (missing_legs == 2)
+	if (missing_legs == 2 && !(locate(/datum/movement_modifier/slither) in src.movement_modifiers))
 		. += 14 - ((2-missing_arms) * 2) // each missing leg adds 7 of movement delay. Each functional arm reduces this by 2.
 	else
 		. += 7*missing_legs
@@ -3561,6 +3567,16 @@
 	if(istype(src.wear_mask, /obj/item/clothing/mask/clown_hat))
 		. += 1
 
+/mob/living/carbon/human/get_chem_depletion_multiplier()
+	. = ..()
+	if (src.traitHolder.hasTrait("slowmetabolism"))
+		. /= 2
+	if (src.organHolder && !ischangeling(src))
+		if (!src.organHolder.liver || src.organHolder.liver.broken)	//if no liver or liver is dead, deplete slower
+			. /= 2
+		if (src.organHolder.get_working_kidney_amt() == 0)	//same with kidneys
+			. /= 2
+
 /mob/living/carbon/human/get_blood_absorption_rate()
 	. = ..()
 	var/blood_metabolism_multiplier = 1
@@ -3695,3 +3711,9 @@
 			if ((!has_contraband_permit && GET_ATOM_PROPERTY(src,PROP_MOVABLE_VISIBLE_CONTRABAND) > 0) || (!has_carry_permit && GET_ATOM_PROPERTY(src,PROP_MOVABLE_VISIBLE_GUNS) > 0))
 				arrestState = ARREST_STATE_CONTRABAND
 	src.arrestIcon.icon_state = arrestState
+
+/mob/living/carbon/human/get_genetic_traits()
+	return list(5,5,1)
+
+mob/living/carbon/human/has_genetics()
+	return TRUE

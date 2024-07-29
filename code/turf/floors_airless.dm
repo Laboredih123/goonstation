@@ -836,6 +836,7 @@ TYPEINFO(/turf/simulated/floor/airless/wood)
 
 /turf/simulated/floor/airless/stairs/wide/green
 	icon_state = "Stairs_wide_green"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/airless/stairs/wide/middle
 	icon_state = "stairs_middle"
@@ -846,6 +847,7 @@ TYPEINFO(/turf/simulated/floor/airless/wood)
 
 /turf/simulated/floor/airless/stairs/medical/wide
 	icon_state = "medstairs_wide"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/airless/stairs/medical/wide/other
 	icon_state = "medstairs2_wide"
@@ -856,6 +858,7 @@ TYPEINFO(/turf/simulated/floor/airless/wood)
 
 /turf/simulated/floor/airless/stairs/quilty
 	icon_state = "quiltystair"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/airless/stairs/quilty/wide
 	icon_state = "quiltystair2"
@@ -863,6 +866,7 @@ TYPEINFO(/turf/simulated/floor/airless/wood)
 
 /turf/simulated/floor/airless/stairs/wood
 	icon_state = "wood_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/airless/stairs/wood/wide
 	icon_state = "wood_stairs2"
@@ -870,6 +874,7 @@ TYPEINFO(/turf/simulated/floor/airless/wood)
 
 /turf/simulated/floor/airless/stairs/wood2
 	icon_state = "wood2_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/airless/stairs/wood2/wide
 	icon_state = "wood2_stairs2"
@@ -877,6 +882,7 @@ TYPEINFO(/turf/simulated/floor/airless/wood)
 
 /turf/simulated/floor/airless/stairs/wood3
 	icon_state = "wood3_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/airless/stairs/wood3/wide
 	icon_state = "wood3_stairs2"
@@ -884,6 +890,7 @@ TYPEINFO(/turf/simulated/floor/airless/wood)
 
 /turf/simulated/floor/airless/stairs/dark
 	icon_state = "dark_stairs"
+	transform = matrix(0.5,0.5,0,-0.25,0.25,-8)
 
 /turf/simulated/floor/airless/stairs/dark/wide
 	icon_state = "dark_stairs2"

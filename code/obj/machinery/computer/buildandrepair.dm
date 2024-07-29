@@ -170,7 +170,6 @@ TYPEINFO(/obj/item/circuitboard)
 /obj/item/circuitboard/chem_request_receiver
 	name = "circuit board (chemical request receiver)"
 	computertype = /obj/machinery/computer/chem_request_receiver
-
 /obj/item/circuitboard/sea_elevator
 	name = "circuit board (sea elevator control)"
 	computertype = /obj/machinery/computer/elevator/sea
