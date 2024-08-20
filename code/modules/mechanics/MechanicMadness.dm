@@ -779,7 +779,7 @@
 		H.vent_gas(loc)
 		qdel(H)
 
-	return_air()
+	return_air(direct = FALSE)
 		return air_contents
 
 /obj/item/mechanics/thprint
@@ -1287,7 +1287,7 @@
 		return
 
 /obj/item/mechanics/wifisplit
-	name = "Wifi Signal Splitter Component"
+	name = "Signal Splitter Component"
 	desc = ""
 	icon_state = "comp_split"
 	var/triggerSignal = "1"

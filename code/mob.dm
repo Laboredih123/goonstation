@@ -8,7 +8,7 @@
 
 	appearance_flags = KEEP_TOGETHER | PIXEL_SCALE | LONG_GLIDE
 
-	var/datum/mind/mind
+	var/tmp/datum/mind/mind
 	var/mob/boutput_relay_mob = null
 
 	var/datacore_id = null
@@ -3391,3 +3391,8 @@
 
 /mob/proc/get_genetic_traits()
 	return list(0,0,0)
+
+/mob/proc/get_fingertip_color()
+	if (src.bioHolder?.mobAppearance)
+		return src.bioHolder.mobAppearance.s_tone
+	return "#042069"

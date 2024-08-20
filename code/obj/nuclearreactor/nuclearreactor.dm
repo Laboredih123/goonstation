@@ -684,7 +684,7 @@
 			return
 		. = ..()
 
-	return_air()
+	return_air(direct = FALSE)
 		return air_contents
 
 /datum/neutron //this is literally just a tuple
