@@ -338,7 +338,7 @@
 		if (the_item.temp_flags & IS_LIMB_ITEM)
 			boutput(usr, SPAN_ALERT("The saw is already attached as an arm."))
 			return
-		switch (alert(usr, "Which arm would you like to replace with [the_item]?",,"Left","Right","Cancel"))
+		switch (tgui_alert(usr, "Which arm would you like to replace with [the_item]?", "Replace Arm", list("Left", "Right", "Cancel"), theme = "syndicate"))
 			if ("Cancel")
 				return
 			if ("Right")
@@ -464,7 +464,7 @@
 
 /obj/ability_button/jetpack2_toggle
 	name = "Toggle jetpack MKII"
-	icon_state = "jetoff"
+	icon_state = "jet2off"
 	requires_equip = TRUE
 
 	execute_ability()
@@ -534,7 +534,7 @@
 	requires_equip = TRUE
 
 	ability_allowed()
-		if (!the_mob || !the_mob.canmove || the_mob.stat || the_mob.getStatusDuration("paralysis"))
+		if (!the_mob || !the_mob.canmove || the_mob.stat || the_mob.getStatusDuration("unconscious"))
 			boutput(the_mob, SPAN_ALERT("You need to be ready on your feet to use this ability."))
 			return 0
 
@@ -676,14 +676,17 @@
 
 //cancel-camera-view, but as a button
 /obj/ability_button/reset_view
-	name = "Reset view"
-	icon_state = "jeton"
+	name = "Exit camera view"
+	icon_state = "cancel_camera"
 
 	execute_ability()
-		//var/mob/M = holder.owner
-		usr.set_eye(null)
-		usr.client.view = world.view
+		usr.cancel_camera()
 		..()
+
+	ability_allowed()
+		return TRUE //yea
+
+/obj/ability_button/reset_view/console //just.. don't ask
 
 //////////////////////////////////////////////////////////////////////////////
 /mob/var/list/item_abilities = new/list()
@@ -806,6 +809,7 @@
 			the_mob.item_abilities |= AB
 			the_mob.need_update_item_abilities = 1
 			the_mob.update_item_abilities()
+		AB.post_attach()
 
 
 
@@ -944,6 +948,9 @@
 			src.last_use_time = TIME
 			sleep(src.cooldown)
 			src.on_cooldown()
+
+	proc/post_attach()
+		return
 
 /obj/ability_button/toggle_bandana
 	name = "Toggle bandana"

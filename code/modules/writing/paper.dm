@@ -61,6 +61,8 @@
 	var/list/stamps = null
 	var/list/form_fields = list()
 	var/field_counter = 1
+	///Some subtypes might want to hide the scrollbar
+	var/scrollbar = TRUE
 
 /obj/item/paper/New()
 	..()
@@ -175,6 +177,9 @@
 			var/stamp_y = text2num_safe(params["y"])
 			var/stamp_r = text2num_safe(params["r"])	// rotation in degrees
 			var/obj/item/stamp/stamp = ui.user.equipped()
+			if(!istype(stamp))
+				boutput(usr, "What stamp? Where stamp?")
+				return
 
 			if(length(stamps) < PAPER_MAX_STAMPS)
 				stamp(stamp_x, stamp_y, stamp_r, stamp.current_state, stamp.icon_state)
@@ -220,6 +225,7 @@
 		"stamps" = src.stamps,
 		"stampable" = src.stampable,
 		"sealed" = src.sealed,
+		"scrollbar" = src.scrollbar,
 	)
 
 /obj/item/paper/ui_data(mob/user)
@@ -509,15 +515,14 @@
 	desc = "Fancy."
 	var/print_icon = 'icons/effects/sstv.dmi'
 	var/print_icon_state = "sstv_1"
+	sizex = 640 + 0
+	sizey = 480 + 32
+	scrollbar = FALSE
 
 	New()
 		..()
-		src.info = {"<IMG SRC="sstv_cachedimage.png">"}
+		src.info = "<img style='width: 100%; position: absolute; top: 0; left: 0' src='data:image/png;base64,[icon2base64(icon(print_icon,print_icon_state))]'>"
 		return
-
-	examine()
-		usr << browse_rsc(icon(print_icon,print_icon_state), "sstv_cachedimage.png")
-		. = ..()
 
 	satellite
 		print_icon_state = "sstv_2"
@@ -660,7 +665,7 @@
 			return
 
 		boutput(user, "You remove a piece of paper from the [src].")
-		return attack_hand(user)
+		return src.Attackhand(user)
 
 /obj/item/stamp
 	name = "rubber stamp"
@@ -668,7 +673,6 @@
 	icon = 'icons/obj/writing.dmi'
 	icon_state = "stamp"
 	item_state = "stamp"
-	flags = FPRINT | TABLEPASS
 	throwforce = 0
 	w_class = W_CLASS_TINY
 	throw_speed = 7
@@ -947,6 +951,7 @@
 	sealed = TRUE
 	two_handed = TRUE
 	info = ""
+	hitsound = 'sound/impact_sounds/Generic_Stab_1.ogg'
 	var/headline = ""
 	var/publisher = ""
 
@@ -959,10 +964,13 @@
 /obj/item/paper/newspaper/New()
 	. = ..()
 	// it picks a random set of info at new, then the printing press overrides it
-	src.publisher = pick_smart_string("newspaper.txt", "publisher")
+	if (!length(src.publisher))
+		src.publisher = pick_smart_string("newspaper.txt", "publisher")
 	src.name = "[src.publisher]"
-	src.generate_headline()
-	src.generate_article()
+	if (!length(src.headline))
+		src.generate_headline()
+	if (!length(src.info))
+		src.generate_article()
 	src.update_desc()
 
 /obj/item/paper/newspaper/pickup(mob/user)
@@ -1050,3 +1058,12 @@
 			if (9)
 				temporary += "<br><br>When [name1] [event1], there was some mild [emotion1] visible from [name2]."
 	src.info += temporary
+
+/obj/item/paper/newspaper/rolled/centcom_plasma
+	publisher = "Seneca Journal"
+	headline = "Nanotrasen denies responsibility for Seneca Lake plasma contamination"
+	info = {"
+		In a rare personal appearance, Nanotrasen CEO John Nanotrasen today categorically denied his company's involvement in the recent Seneca Lake plasma contamination scare.<br>
+		Levels of FAAE (commonly known as "plasma") in the lakewater have reached 500μg per liter according to an EPA source, prompting the agency to declare a substantial threat to public health.<br>
+		Nanotrasen is the only company in the Seneca area licensed to transport plasma, hundreds of kilograms of which are used in the fuelling of their inter-channel shuttle services every month.
+	"}

@@ -39,8 +39,8 @@
 
 	#ifdef UNDERWATER_MAP
 	var/list/map_colors = list(
-		empty = rgb(0, 0, 50),
-		solid = rgb(0, 0, 255),
+		empty = rgb(0, 0, 255),
+		solid = rgb(0, 0, 50),
 		station = rgb(255, 153, 58),
 		other = rgb(120, 200, 120))
 	#else
@@ -56,25 +56,28 @@
 			Z_LOG_DEBUG("Mining Map", "Generating map ...")
 			map = icon('icons/misc/trenchMapEmpty.dmi', "template")
 			var/turf_color = null
+			var/size_mult = 2
 			for (var/x in 1 to world.maxx)
 				for (var/y in 1 to world.maxy)
 					var/turf/T = locate(x,y,MINING_Z)
 					if (istype(T, /turf/simulated/wall/auto/asteroid) || istype(T, /turf/simulated/floor/plating/airless/asteroid))
 						turf_color = "solid"
 					else if (istype(T, /turf/space))
-						turf_color = "empty"
+						continue
 					else
 						if (T.loc && istype(T.loc, /area/shuttle/sea_elevator) || istype(T.loc, /area/mining) || istype(T.loc, /area/prefab/sea_mining) || istype(T.loc, /area/station/solar/small_backup3))
 							turf_color = "station"
 						else
 							turf_color = "other"
 
-					map.DrawBox(map_colors[turf_color], x * 2, y * 2, x * 2 + 1, y * 2 + 1)
+					var/mx = x * size_mult - 1
+					var/my = y * size_mult - 1
+					map.DrawBox(map_colors[turf_color], mx, my, mx + 1, my + 1)
 
 			for (var/beacon in by_type[/obj/warp_beacon])
 				if (istype(beacon, /obj/warp_beacon/miningasteroidbelt))
 					var/turf/T = get_turf(beacon)
-					map.DrawBox(map_colors["station"], T.x * 2 - 2, T.y * 2 - 2, T.x * 2 + 2, T.y * 2 + 2)
+					map.DrawBox(map_colors["station"], T.x * size_mult - 3, T.y * size_mult - 3, T.x * size_mult + 2, T.y * size_mult + 2)
 
 			Z_LOG_DEBUG("Mining Map", "Map generation complete")
 			generate_map_html()
@@ -116,6 +119,7 @@
 			width: 600px;
 			overflow: hidden;
 			margin: 0 auto;
+			background-color: [map_colors["empty"]]
 		}
 		#map img {
 			position: absolute;
@@ -374,7 +378,7 @@
 			if (phenomena_flags & PH_QUAKE)
 				shake_camera(M, 5, 16)
 				random_brute_damage(M, 3)
-				M.changeStatus("weakened", 1 SECOND)
+				M.changeStatus("knockdown", 1 SECOND)
 				M.show_text(SPAN_ALERT("<b>The ground quakes and rumbles violently!</b>"))
 
 		if (phenomena_flags & PH_FIRE_WEAK)
@@ -582,9 +586,9 @@
 
 
 				speech_bubble.icon_state = "[val]"
-				UpdateOverlays(speech_bubble, "speech_bubble")
+				AddOverlays(speech_bubble, "speech_bubble")
 				SPAWN(1.5 SECONDS)
-					UpdateOverlays(null, "speech_bubble")
+					ClearSpecificOverlays("speech_bubble")
 
 	attackby(var/obj/item/I, var/mob/M)
 		if (ispryingtool(I))
@@ -643,9 +647,9 @@
 		if (istype(W,/obj/item/shovel) || istype(W,/obj/item/slag_shovel))
 			actions.start(new/datum/action/bar/icon/dig_sea_hole(src), user)
 			return
-		else if (istype(W,/obj/item/mining_tool/power_shovel))
-			var/obj/item/mining_tool/power_shovel/PS = W
-			if (PS.status)
+		else if (istype(W,/obj/item/mining_tool/powered/shovel))
+			var/obj/item/mining_tool/powered/shovel/PS = W
+			if (PS.is_on)
 				actions.start(new/datum/action/bar/icon/dig_sea_hole/fast(src), user)
 			else
 				actions.start(new/datum/action/bar/icon/dig_sea_hole(src), user)
@@ -687,9 +691,9 @@
 			return
 		if (istype(W,/obj/item/shovel) || istype(W,/obj/item/slag_shovel))
 			actions.start(new/datum/action/bar/icon/dig_sea_hole(src.loc), user)
-		else if (istype(W,/obj/item/mining_tool/power_shovel))
-			var/obj/item/mining_tool/power_shovel/PS = W
-			if (PS.status)
+		else if (istype(W,/obj/item/mining_tool/powered/shovel))
+			var/obj/item/mining_tool/powered/shovel/PS = W
+			if (PS.is_on)
 				actions.start(new/datum/action/bar/icon/dig_sea_hole/fast(src.loc), user)
 			else
 				actions.start(new/datum/action/bar/icon/dig_sea_hole(src.loc), user)
@@ -828,7 +832,7 @@ TYPEINFO(/obj/item/vent_capture_unbuilt)
 			add_avail(sgen)
 			total_gen += sgen
 		last_gen = sgen
-		SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "power=[last_gen]&powerfmt=[engineering_notation(last_gen)]W&total=[total_gen]&totalfmt=[engineering_notation(total_gen)]J")
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "power=[num2text(round(last_gen), 50)]&powerfmt=[engineering_notation(last_gen)]W&total=[total_gen]&totalfmt=[engineering_notation(total_gen)]J")
 
 	get_desc(dist)
 		if (!built)
@@ -873,7 +877,7 @@ TYPEINFO(/obj/machinery/power/stomper)
 	var/powerdownsfx = 'sound/machines/engine_alert3.ogg'
 
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_DESTRUCT
-	flags = FPRINT
+	flags = 0 // override FLUID_SUBMERGE and TGUI_INTERACTIVE
 
 	var/mode_toggle = 0
 	var/set_anchor = 1
@@ -1002,9 +1006,9 @@ TYPEINFO(/obj/machinery/power/stomper)
 		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Lowfi_1.ogg', 99, 1, 0.1, 0.7)
 
 		for (var/mob/M in src.loc)
-			if (isliving(M))
+			if (isliving(M) && !isintangible(M))
 				random_brute_damage(M, 55, 1)
-				M.changeStatus("weakened", 1 SECOND)
+				M.changeStatus("knockdown", 1 SECOND)
 				INVOKE_ASYNC(M, TYPE_PROC_REF(/mob, emote), "scream")
 				playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 70, 1)
 
@@ -1100,14 +1104,14 @@ TYPEINFO(/obj/item/clothing/shoes/stomp_boots)
 						O.show_message(SPAN_SUBTLE(SPAN_SAY("[SPAN_NAME("[src]")] beeps, \"Hotspot pinned.\"")), 2)
 
 			for (var/mob/M in get_turf(src))
-				if (isliving(M) && M != jumper)
+				if (isliving(M) && !isintangible(M) && M != jumper)
 					random_brute_damage(M, src.stomp_damage, TRUE)
-					M.changeStatus("weakened", 1 SECOND)
+					M.changeStatus("knockdown", 1 SECOND)
 					playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 70, 1)
 		else
 			// took them off mid air
 			random_brute_damage(jumper, 25, FALSE)
-			jumper.changeStatus("weakened", 3 SECONDS)
+			jumper.changeStatus("knockdown", 3 SECONDS)
 			playsound(jumper.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 90, 1)
 
 	execute_ability()
@@ -1126,8 +1130,8 @@ TYPEINFO(/obj/item/clothing/shoes/stomp_boots)
 			else if (istype(the_mob.loc, /obj/))
 				var/obj/container = the_mob.loc
 				boutput(the_mob, SPAN_ALERT("You leap and slam your head against the inside of [container]! Ouch!"))
-				the_mob.changeStatus("paralysis", 5 SECONDS)
-				the_mob.changeStatus("weakened", 5 SECONDS)
+				the_mob.changeStatus("unconscious", 5 SECONDS)
+				the_mob.changeStatus("knockdown", 5 SECONDS)
 				container.visible_message(SPAN_ALERT("<b>[the_mob.loc]</b> emits a loud thump and rattles a bit."))
 				playsound(container, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, TRUE)
 				animate_storage_thump(container)

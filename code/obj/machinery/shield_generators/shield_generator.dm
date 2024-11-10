@@ -9,6 +9,7 @@ TYPEINFO(/area/station/shield_zone)
 	do_not_irradiate = TRUE
 	requires_power = FALSE
 	minimaps_to_render_on = null
+	occlude_foreground_parallax_layers = FALSE
 
 /* ==================== Generator ==================== */
 
@@ -29,7 +30,7 @@ TYPEINFO(/area/station/shield_zone)
 	var/image/image_shower_dir = null
 	var/sound_startup = 'sound/machines/shieldgen_startup.ogg' // 40
 	var/sound_shutoff = 'sound/machines/shieldgen_shutoff.ogg' // 35
-	var/lastuse = 0
+	var/cooldown = 150 SECONDS
 
 	New()
 		..()
@@ -47,32 +48,25 @@ TYPEINFO(/area/station/shield_zone)
 
 		if (status & (NOPOWER|BROKEN))
 			src.icon_state = "shieldgen0"
-			src.UpdateOverlays(null, "top_lights")
-			src.UpdateOverlays(null, "meteor_dir1")
-			src.UpdateOverlays(null, "meteor_dir2")
-			src.UpdateOverlays(null, "meteor_dir3")
-			src.UpdateOverlays(null, "meteor_dir4")
+			src.ClearSpecificOverlays("top_lights", "meteor_dir1", "meteor_dir2", "meteor_dir3", "meteor_dir4")
 			return
 
 		if (src.active)
 			src.icon_state = "shieldgen-anim"
 			if (!src.image_active)
 				src.image_active = image(src.icon, "shield-top_anim")
-			src.UpdateOverlays(src.image_active, "top_lights")
+			src.AddOverlays(src.image_active, "top_lights")
 		else
 			src.icon_state = "shieldgen1"
-			src.UpdateOverlays(null, "top_lights")
+			src.ClearSpecificOverlays("top_lights")
 
 		if (meteor_shower_active)
 			if (!src.image_shower_dir)
 				src.image_shower_dir = image(src.icon, "shield-D[meteor_shower_active]")
 			src.image_shower_dir.icon_state = "shield-D[meteor_shower_active]"
-			src.UpdateOverlays(src.image_shower_dir, "meteor_dir[meteor_shower_active]")
+			src.AddOverlays(src.image_shower_dir, "meteor_dir[meteor_shower_active]")
 		else
-			src.UpdateOverlays(null, "meteor_dir1")
-			src.UpdateOverlays(null, "meteor_dir2")
-			src.UpdateOverlays(null, "meteor_dir3")
-			src.UpdateOverlays(null, "meteor_dir4")
+			src.ClearSpecificOverlays("meteor_dir1", "meteor_dir2", "meteor_dir3", "meteor_dir4")
 
 	process()
 		if (status & BROKEN)
@@ -137,11 +131,7 @@ TYPEINFO(/area/station/shield_zone)
 			user.show_text("[src] seems inoperable, as pressing the button does nothing.")
 			return
 
-		var/diff = world.timeofday - lastuse
-		if(diff < 0) diff += 864000 //Wrapping protection.
-
-		if(diff > 1500)
-			lastuse = world.timeofday
+		if(!ON_COOLDOWN(src, "toggle_shields", src.cooldown))
 			visible_message("[src] beeps loudly.","You hear a loud beep.")
 			if (src.active)
 				src.deactivate()
@@ -213,7 +203,7 @@ TYPEINFO(/area/station/shield_zone)
 /obj/machinery/shield_generator/console_upper
 	icon = 'icons/obj/computerpanel.dmi'
 	icon_state = "engine1"
-
+	bound_height = 32
 	update_icon()
 
 		return
@@ -221,7 +211,7 @@ TYPEINFO(/area/station/shield_zone)
 /obj/machinery/shield_generator/console_lower
 	icon = 'icons/obj/computerpanel.dmi'
 	icon_state = "engine2"
-
+	bound_height = 32
 	update_icon()
 
 		return

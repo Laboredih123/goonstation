@@ -4,7 +4,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts)
 	icon = 'icons/obj/robot_parts.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	item_state = "buildpipe"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = TABLEPASS | CONDUCT
 	c_flags = ONBELT
 	streak_decal = /obj/decal/cleanable/oil
 	streak_descriptor = "oily"
@@ -15,6 +15,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts)
 	/// Robot limbs shouldn't get replaced through mutant race changes
 	limb_is_unnatural = TRUE
 	kind_of_limb = (LIMB_ROBOT)
+	fingertip_color = "#4e5263"
 
 	decomp_affected = FALSE
 	var/robot_movement_modifier
@@ -34,6 +35,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts)
 	stamina_damage = 40
 	stamina_cost = 23
 	stamina_crit_chance = 5
+	breaks_cuffs = TRUE
 
 	New()
 		..()
@@ -388,7 +390,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/head)
 			src.UpdateOverlays(null, "smashed")
 
 	ropart_take_damage(var/bluntdmg = 0,var/burnsdmg = 0)
-		..() //parent calls del if we get destroyed so no need to handle not doing this
+		. = ..() //parent calls del if we get destroyed so no need to handle not doing this
 		if (!src.smashed && (bluntdmg > 10 || bluntdmg > 3 && prob(20)))
 			src.smashed = TRUE
 			src.UpdateIcon()
@@ -564,6 +566,9 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/arm)
 
 		return
 
+	can_arm_attach()
+		return ..() && !(src.appearanceString == "sturdy" || src.appearanceString == "heavy")
+
 	on_holder_examine()
 		if (!isrobot(src.holder)) // probably a human, probably  :p
 			return "has [bicon(src)] \an [initial(src.name)] attached as a"
@@ -681,6 +686,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/arm/left)
 	handlistPart = "armL-light"
 	robot_movement_modifier = /datum/movement_modifier/robot_part/light_arm_left
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	breaks_cuffs = FALSE
 
 ABSTRACT_TYPE(/obj/item/parts/robot_parts/arm/right)
 /obj/item/parts/robot_parts/arm/right
@@ -735,6 +741,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/arm/right)
 	handlistPart = "armR-light"
 	robot_movement_modifier = /datum/movement_modifier/robot_part/light_arm_right
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	breaks_cuffs = FALSE
 
 ABSTRACT_TYPE(/obj/item/parts/robot_parts/leg)
 /obj/item/parts/robot_parts/leg
@@ -844,6 +851,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/leg/left)
 	max_health = 25
 	robot_movement_modifier = /datum/movement_modifier/robot_part/light_leg_left
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	breaks_cuffs = FALSE
 
 /obj/item/parts/robot_parts/leg/left/treads
 	name = "left cyborg tread"
@@ -881,6 +889,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/leg/right)
 	max_health = 25
 	robot_movement_modifier = /datum/movement_modifier/robot_part/light_leg_right
 	kind_of_limb = (LIMB_ROBOT | LIMB_LIGHT)
+	breaks_cuffs = FALSE
 
 /obj/item/parts/robot_parts/leg/right/treads
 	name = "right cyborg tread"
@@ -909,7 +918,8 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/leg/right)
 
 	on_life()
 		var/turf/T = get_turf(src.holder)
-		T?.hotspot_expose(700, 50)
+		if(src.holder && (src.holder.loc == T))
+			T?.hotspot_expose(700, 50)
 
 /obj/item/parts/robot_parts/leg/right/thruster
 	name = "right thruster assembly"
@@ -925,7 +935,7 @@ ABSTRACT_TYPE(/obj/item/parts/robot_parts/leg/right)
 
 	on_life()
 		var/turf/T = get_turf(src.holder)
-		if(src.holder.loc == T)
+		if(src.holder && (src.holder.loc == T))
 			T?.hotspot_expose(700, 50)
 
 /obj/item/parts/robot_parts/robot_frame

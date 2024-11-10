@@ -3,6 +3,8 @@
 	display_name = "\improper Pirate"
 	antagonist_icon = "pirate"
 	antagonist_panel_tab_type = /datum/antagonist_panel_tab/bundled/pirate
+	has_info_popup = FALSE
+
 
 	is_compatible_with(datum/mind/mind)
 		return isliving(mind.current)
@@ -102,7 +104,7 @@ TYPEINFO(/obj/gold_bee)
 	desc = "The artist has painstakingly sculpted every individual strand of bee wool to achieve this breath-taking result. You could almost swear this bee is about to spontaneously take flight."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "gold_bee"
-	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE
+	flags = FLUID_SUBMERGE | TGUI_INTERACTIVE
 	object_flags = NO_GHOSTCRITTER
 	density = 1
 	anchored = UNANCHORED
@@ -194,8 +196,10 @@ TYPEINFO(/obj/gold_bee)
 	access_type = list(POD_ACCESS_PIRATE)
 
 TYPEINFO(/obj/item/salvager_hand_tele)
-	mats = list("MET-1" = 5, "POW-1"=5, "CON-2" = 5, "telecrystal" = 30)
-
+	mats = list("metal" = 5,
+				"energy" = 5,
+				"conductive_high" = 5,
+				"telecrystal" = 30)
 /obj/item/pirate_hand_tele
 	name = "makeshift teleporter"
 	icon = 'icons/obj/items/device.dmi'

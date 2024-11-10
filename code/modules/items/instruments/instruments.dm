@@ -510,6 +510,7 @@
 			..()
 			return
 		else
+			logTheThing(LOG_STATION, user, "builds an amusing duck at [log_loc(src)]")
 			var/obj/machinery/bot/duckbot/D = new /obj/machinery/bot/duckbot
 			D.eggs = rand(2,5) // LAY EGG IS TRUE!!!
 			boutput(user, SPAN_NOTICE("You add [W] to [src]."))
@@ -522,7 +523,7 @@
 		//bad, but eh clowns...
 		if (prob(30))
 			for (var/mob/living/carbon/human/H in view(2, user))
-				if (H.hasStatus("weakened"))
+				if (H.hasStatus("knockdown"))
 					JOB_XP(user, "Clown", 2)
 					break
 
@@ -677,9 +678,27 @@ TYPEINFO(/obj/item/instrument/bikehorn/dramatic)
 			break
 
 		if (length(bots))
-			user.AddComponent(/datum/component/secbot_command, bots, 3 SECONDS)
+			user.AddComponent(/datum/component/bot_command/security, bots, 3 SECONDS)
 
+/obj/item/instrument/whistle/janitor
+	name = "janitor whistle"
+	desc = "A whistle with a purple stripe. Good for getting the attention of nearby cleanbots."
+	icon_state = "whistle-jani"
+	var/commandtime = 5 SECONDS
+	HELP_MESSAGE_OVERRIDE("Blow this to briefly command nearby cleanbots to mop a tile. Point at the cleanbot to shut it off.")
 
+	post_play_effect(mob/user)
+		var/list/bots = list()
+		for (var/obj/machinery/bot/cleanbot/cleanbot in view(user.client.view, user))
+			if (cleanbot.emagged || !cleanbot.on)
+				continue
+			cleanbot.KillPathAndGiveUp(1, TRUE)
+			cleanbot.speak("Awaiting command...")
+			bots += cleanbot
+			break
+
+		if (length(bots))
+			user.AddComponent(/datum/component/bot_command/janitor, bots, src.commandtime)
 /* -------------------- Vuvuzela -------------------- */
 
 /obj/item/instrument/vuvuzela
@@ -856,7 +875,7 @@ TYPEINFO(/obj/item/instrument/bikehorn/dramatic)
 				ghost_to_toss.set_loc(soul_stuff.loc)
 
 		some_poor_fucker.throw_at(T, 1, 1)
-		some_poor_fucker.changeStatus("weakened", 2 SECONDS)
+		some_poor_fucker.changeStatus("knockdown", 2 SECONDS)
 
 
 

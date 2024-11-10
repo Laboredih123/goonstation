@@ -116,7 +116,7 @@ proc/is_music_playing()
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ music_sound.channel ][1] = 1
+			C.sound_playing[ music_sound.channel ][1] = 100
 			C.sound_playing[ music_sound.channel ][2] = VOLUME_CHANNEL_RADIO
 
 			music_sound.volume = client_vol
@@ -132,7 +132,7 @@ proc/is_music_playing()
 	EXTEND_COOLDOWN(global, "music", max(2 MINUTES, music_sound.len))
 	return 1
 
-/proc/play_music_remote(data)
+/proc/play_music_remote(data, from_topic = FALSE, silent = null)
 	if (!config.allow_admin_sounds)
 		alert("Admin sounds disabled")
 		return 0
@@ -151,7 +151,7 @@ proc/is_music_playing()
 			var/ismuted
 			if (!vol) ismuted = 1
 
-			if (adminC && (adminC.djmode || adminC.non_admin_dj))
+			if (adminC && (adminC.djmode || !isadmin(adminC) || adminC.non_admin_dj))
 				var/show_other_key = 0
 				if (adminC.stealth || adminC.alt_key)
 					show_other_key = 1
@@ -160,11 +160,14 @@ proc/is_music_playing()
 			if (ismuted) //bullshit BYOND 0 is not null fuck you
 				continue
 
-			C.chatOutput.playMusic(data["file"], vol)
-			if (!adminC || !(adminC.stealth && !adminC.fakekey))
-				// Stealthed admins won't show the "now playing music" message,
-				// for added ability to be spooky.
-				boutput(C, "Now playing music. <a href='byond://winset?command=Stop-the-Music!'>Stop music</a>")
+			C.chatOutput.playMusic(data["file"], vol, fromTopic = from_topic)
+			if (silent != TRUE)
+				if (!adminC || !(adminC.stealth && !adminC.fakekey))
+					// Stealthed admins won't show the "now playing music" message,
+					// for added ability to be spooky.
+					if (remote_music_announcements)
+						boutput(C, "Playing <b>[data["title"]]</b> ([data["duration_human"]]).")
+					boutput(C, "Now playing music. <a href='byond://winset?command=Stop-the-Music!'>Stop music</a>")
 
 
 	if (adminC)
@@ -181,7 +184,10 @@ proc/is_music_playing()
 	var/channel_id = audio_channel_name_to_id[channel_name]
 	if(isnull(channel_id))
 		alert(usr, "Invalid channel.")
-	var/vol = input("Goes from 0-200. Default is [getDefaultVolume(channel_id) * 100]\n[src.getVolumeChannelDescription(channel_id)]", \
+	var/max = 200
+	if (channel_name == "admin")
+		max = 100
+	var/vol = input("Goes from 0-[max]. Default is [getDefaultVolume(channel_id) * 100]\n[src.getVolumeChannelDescription(channel_id)]", \
 	 "[capitalize(channel_name)] Volume", src.getRealVolume(channel_id) * 100) as num
 	vol = clamp(vol, 0, 200)
 	src.setVolume(channel_id, vol/100 )
@@ -253,18 +259,49 @@ proc/is_music_playing()
 	var/video = input("Input the Youtube video information\nEither the full URL e.g. https://www.youtube.com/watch?v=145RCdUwAxM\nOr just the video ID e.g. 145RCdUwAxM", "Play Youtube Audio") as null|text
 	if (!video)
 		return
+	play_youtube_remote_url(src.mob, video)
 
+
+/proc/play_youtube_remote_url(mob/M, video_url)
+	var/static/datum/cobalt_tools/cobalt_tools
+	if (!cobalt_tools)
+		cobalt_tools = new
+	message_admins(SPAN_NOTICE("[key_name(M)] started loading remote music: [video_url]"))
+	try
+		var/list/filename_and_url = cobalt_tools.request_tunnel(video_url)
+		var/filename = filename_and_url[1]
+		var/url = filename_and_url[2]
+		// Check if the first character is a !, which means the request failed
+		if (url[1] == "!")
+			message_admins(SPAN_ALERT("Error returned from cobalt tools remote music thing: [url]."))
+			return
+		var/mock_data = list()
+		mock_data["admin_ckey"] = M.ckey
+		mock_data["key"] = M.ckey
+		mock_data["file"] = url
+		mock_data["title"] = filename
+		mock_data["filesize"] = "?"
+		mock_data["duration_human"] = "?"
+		play_music_remote(mock_data)
+	catch (var/exception/e)
+		message_admins(SPAN_ALERT("Error returned from cobalt tools remote music thing: [json_encode(e)]."))
+		return
+
+
+/* rip yt-dlg
 	try
 		var/datum/apiRoute/remoteMusic/playRemoteMusic = new
-		playRemoteMusic.buildBody(video, roundId, src.ckey)
+		playRemoteMusic.buildBody(video_url, roundId, M.ckey)
 		apiHandler.queryAPI(playRemoteMusic)
 	catch (var/exception/e)
 		var/datum/apiModel/Error/error = e.name
-		boutput(src, "<span class='bold' class='notice'>Error returned from youtube server thing: [error.message].</span>")
+		message_admins(SPAN_NOTICE("Error returned from youtube server thing: [error.message]."))
+		boutput(M, "<span class='bold' class='notice'>Error returned from youtube server thing: [error.message].</span>")
 		return
+*/
 
 	// prevent radio station from interrupting us
 	// Wire note: This essentially means "extend the duration by the time we think it will take the API to download the song and get back to us"
-	EXTEND_COOLDOWN(global, "music", 30 SECONDS)
+	EXTEND_COOLDOWN(global, "music", 60 SECONDS)
 
-	boutput(src, "<span class='bold' class='notice'>Youtube audio loading started. This may take some time to play and a second message will be displayed when it finishes.</span>")
+	boutput(M, "<span class='bold' class='notice'>Youtube audio loading started. This may take some time to play and a second message will be displayed when it finishes.</span>")

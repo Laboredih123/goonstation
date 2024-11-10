@@ -139,6 +139,36 @@ ABSTRACT_TYPE(/datum/plant)
 			special_proc = 0
 		return lasterr
 
+
+	proc/HYPget_growth_stage(var/datum/plantgenes/passed_plantgenes, var/growth)
+		//! This proc returns the theoretical growth stage of the plant with (optional) passed_plantgenes and a given growth
+		if (!growth)
+			return
+		if(growth >= src.HYPget_growth_to_harvestable(passed_plantgenes))
+			return HYP_GROWTH_HARVESTABLE
+		else if(growth >= src.HYPget_growth_to_matured(passed_plantgenes))
+			return HYP_GROWTH_MATURED
+		else if(growth >= src.HYPget_growth_to_growing(passed_plantgenes))
+			return HYP_GROWTH_GROWING
+		else if(growth <= 0)
+			return HYP_GROWTH_DEAD
+		else
+			return HYP_GROWTH_PLANTED
+
+	proc/HYPget_growth_to_growing(var/datum/plantgenes/passed_plantgenes)
+		//! this proc returns the time needed for the plant with (optional) passed_plantgenes to reach the "growing"-stage
+		return (src.growtime - passed_plantgenes?.get_effective_value("growtime")) / 2
+
+	proc/HYPget_growth_to_matured(var/datum/plantgenes/passed_plantgenes)
+		//! this proc returns the time needed for the plant with (optional) passed_plantgenes to reach the "matured"-stage
+		return src.growtime - passed_plantgenes?.get_effective_value("growtime")
+
+	proc/HYPget_growth_to_harvestable(var/datum/plantgenes/passed_plantgenes)
+		//! this proc returns the time needed for the plant with (optional) passed_plantgenes to reach the "harvestable"-stage
+		return src.harvtime - passed_plantgenes?.get_effective_value("harvtime")
+
+
+
 	proc/HYPattacked_proc(var/obj/machinery/plantpot/POT,var/mob/user)
 		// If it returns 0, it should halt the proc that called it also
 		lasterr = 0
@@ -168,19 +198,25 @@ ABSTRACT_TYPE(/datum/plant)
 		switch (reagent)
 			if ("phlogiston","infernite","pyrosium","sorium")
 				damage_amt = rand(80,100)
+				S.charges = 1
 			if ("pacid")
 				damage_amt = rand(75,80)
+				S.charges = 1
 			if ("acid")
 				damage_amt = rand(40,50)
+				S.charges = 1
 			if ("weedkiller")
 				if (!HYPCheckCommut(DNA,/datum/plant_gene_strain/immunity_toxin) && src.growthmode == "weed")
 					damage_amt = rand(50,60)
+					S.charges = 1
 			if ("toxin","mercury","chlorine","fluorine","fuel","oil","cleaner")
 				if (!HYPCheckCommut(DNA,/datum/plant_gene_strain/immunity_toxin))
 					damage_amt = rand(15,30)
+					S.charges--
 			if ("plasma")
 				if (!HYPCheckCommut(DNA,/datum/plant_gene_strain/immunity_toxin))
 					damage_amt = rand(15,30)
+					S.charges--
 			if ("blood","bloodc")
 				if (src.growthmode == "carnivore")
 					DNA.growtime += rand(4,6)
@@ -212,6 +248,7 @@ ABSTRACT_TYPE(/datum/plant)
 					HYPaddCommut(DNA,/datum/plant_gene_strain/unstable)
 			if ("ammonia")
 				damage_amt = rand(10,20)
+				S.charges -= 2
 				DNA.growtime += rand(5,10)
 				DNA.harvtime += rand(2,5)
 				if (prob(5))
@@ -239,6 +276,12 @@ ABSTRACT_TYPE(/datum/plant)
 					DNA.potency++
 				if (DNA.endurance < 0)
 					DNA.endurance++
+		for (var/datum/plantmutation/mutation in src.mutations)
+			if (reagent in mutation.infusion_reagents)
+				if (HYPmutationcheck_full(DNA, mutation) && prob(mutation.infusion_chance))
+					DNA.mutation = mutation
+					S.charges = 1
+					break
 
 		if (damage_amt)
 			if (prob(damage_prob))

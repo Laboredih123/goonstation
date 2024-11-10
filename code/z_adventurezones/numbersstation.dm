@@ -5,6 +5,7 @@ var/global/shut_up_about_the_fucking_numbers_station = 1
 	set desc = "I DON'T CARE WHEN SPACE NUMBERS STATION LINCOLNSHIRE IS BROADCASTING SO SHUT UP ABOUT IT"
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
 	ADMIN_ONLY
+	SHOW_VERB_DESC
 
 	shut_up_about_the_fucking_numbers_station = !(shut_up_about_the_fucking_numbers_station)
 	logTheThing(LOG_ADMIN, usr, "toggled numbers station alerts [shut_up_about_the_fucking_numbers_station ? "off" : "on"].")
@@ -232,7 +233,7 @@ Nanotrasen, Inc.<br>
 	/obj/item/reagent_containers/emergency_injector/random,/obj/item/reagent_containers/emergency_injector/random,
 	/obj/item/reagent_containers/food/drinks/bottle/hobo_wine)
 
-
+var/global/datum/numbers_station/lincolnshire = null
 
 /datum/numbers_station // This is not a physical entity!
 	var/name = "Space Lincolnshire"
@@ -254,13 +255,12 @@ Nanotrasen, Inc.<br>
 		else
 			next_play = play_interval
 		next_warning = next_play - 300
-		SPAWN(20 SECONDS)
-			try
-				var/datum/apiRoute/numbersstation/get/getNumbers = new
-				var/datum/apiModel/NumbersStationPasswordResource/numbersStationPassword = apiHandler.queryAPI(getNumbers)
-				lincolnshire_numbers(numbersStationPassword.numbers)
-			catch
-				// pass
+		try
+			var/datum/apiRoute/numbersstation/get/getNumbers = new
+			var/datum/apiModel/NumbersStationPasswordResource/numbersStationPassword = apiHandler.queryAPI(getNumbers)
+			lincolnshire_numbers(numbersStationPassword.numbers)
+		catch
+			// pass
 
 	proc/gather_listeners()
 		listeners = list()
@@ -406,8 +406,6 @@ Nanotrasen, Inc.<br>
 		ogg = get_vox_by_string(sones)
 		if (ogg)
 			broadcast_sound(ogg)
-
-var/global/datum/numbers_station/lincolnshire = new
 
 /proc/debug_lincolnshire()
 	lincolnshire.next_warning = 0

@@ -11,7 +11,7 @@
 
 	var/welding = FALSE
 	var/status = 0 // flamethrower construction :shobon:
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = TABLEPASS | CONDUCT
 	c_flags = ONBELT
 	tool_flags = TOOL_WELDING
 	force = 3
@@ -57,7 +57,7 @@
 				if (!src.cautery_surgery(H, user, 15, src.welding))
 					return ..()
 			else if (user.zone_sel.selecting != "chest" && user.zone_sel.selecting != "head" && H.limbs.vars[user.zone_sel.selecting])
-				if (!(locate(/obj/machinery/optable, target.loc) && target.lying) && !(locate(/obj/table, target.loc) && (target.getStatusDuration("paralysis") || target.stat)) && !(target.reagents && target.reagents.get_reagent_amount("ethanol") > 10 && target == user))
+				if (!(locate(/obj/machinery/optable, target.loc) && target.lying) && !(locate(/obj/table, target.loc) && (target.getStatusDuration("unconscious") || target.stat)) && !(target.reagents && target.reagents.get_reagent_amount("ethanol") > 10 && target == user))
 					return ..()
 				switch (user.zone_sel.selecting)
 					if ("l_arm")
@@ -140,8 +140,11 @@
 			var/turf/location = user.loc
 			if (istype(location, /turf))
 				location.hotspot_expose(700, 50, 1)
+			if (istype(O, /turf))
+				var/turf/target_turf = O
+				target_turf.hotspot_expose(700, 50, 1)
 			if (O && !ismob(O) && O.reagents)
-				boutput(user, SPAN_NOTICE("You heat \the [O.name]"))
+				boutput(user, SPAN_NOTICE("You heat \the [O.name]."))
 				O.reagents.temperature_reagents(4000,50, 100, 100, 1)
 
 	attack_self(mob/user as mob)
@@ -154,7 +157,7 @@
 		if (prob(power * 0.5))
 			qdel(src)
 
-	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume, cannot_be_cooled = FALSE)
 		if (exposed_temperature > 1000)
 			return ..()
 
