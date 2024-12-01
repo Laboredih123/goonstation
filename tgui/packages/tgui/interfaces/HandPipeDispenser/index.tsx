@@ -12,7 +12,8 @@ import {
   Image,
   Section,
   Stack,
-  Tabs } from 'tgui-core/components';
+  Tabs,
+} from 'tgui-core/components';
 
 import { useBackend, useSharedState } from '../../backend';
 import { Icon } from '../../components';
@@ -21,25 +22,43 @@ import { ByondDir, HandPipeDispenserData, PipeData, Tab } from './type';
 
 export const HandPipeDispenser = () => {
   const { act, data } = useBackend<HandPipeDispenserData>();
-  const { atmospipes, atmosmachines, selectedimage, selectedcost, resources } = data;
+  const { atmospipes, atmosmachines, selectedimage, selectedcost, resources } =
+    data;
   const [tab, setTab] = useSharedState('tab', Tab.AtmosPipes);
   return (
     <Window width={450} height={350}>
       <Flex height="100%">
         <Flex.Item fill>
-          <Section fill title={<>Resources: {resources} <Icon name="boxes-stacked" /></>}>
+          <Section
+            fill
+            title={
+              <>
+                Resources: {resources} <Icon name="boxes-stacked" />
+              </>
+            }
+          >
             {/* Stack hell zone aka the preview with buttons */}
             <Stack vertical>
-              <Box position="absolute" right="7px">{selectedcost} <Icon name="boxes-stacked" /></Box>
+              <Box position="absolute" right="7px">
+                {selectedcost} <Icon name="boxes-stacked" />
+              </Box>
               <Stack.Item>
                 <Box textAlign="center">
-                  <Button icon="arrow-up" onClick={() => act('changedir', { newdir: ByondDir.North })} />
+                  <Button
+                    icon="arrow-up"
+                    onClick={() => act('changedir', { newdir: ByondDir.North })}
+                  />
                 </Box>
               </Stack.Item>
               <Stack.Item>
                 <Flex align="center" justify="space-around">
                   <Flex.Item>
-                    <Button icon="arrow-left" onClick={() => act('changedir', { newdir: ByondDir.West })} />
+                    <Button
+                      icon="arrow-left"
+                      onClick={() =>
+                        act('changedir', { newdir: ByondDir.West })
+                      }
+                    />
                   </Flex.Item>
                   <Flex.Item>
                     <Box
@@ -54,22 +73,46 @@ export const HandPipeDispenser = () => {
                     </Box>
                   </Flex.Item>
                   <Flex.Item>
-                    <Button icon="arrow-right" onClick={() => act('changedir', { newdir: ByondDir.East })} />
+                    <Button
+                      icon="arrow-right"
+                      onClick={() =>
+                        act('changedir', { newdir: ByondDir.East })
+                      }
+                    />
                   </Flex.Item>
                 </Flex>
               </Stack.Item>
               <Stack.Item>
                 <Box textAlign="center">
-                  <Button icon="arrow-down" onClick={() => act('changedir', { newdir: ByondDir.South })} />
+                  <Button
+                    icon="arrow-down"
+                    onClick={() => act('changedir', { newdir: ByondDir.South })}
+                  />
                 </Box>
               </Stack.Item>
               <Stack.Item>
                 {/* Mode switch button */}
-                { !!data.destroying && (
-                  <Button textAlign="center" width="100%" color="red" icon="xmark" onClick={() => act('toggle-destroying')}>Removing</Button>
+                {!!data.destroying && (
+                  <Button
+                    textAlign="center"
+                    width="100%"
+                    color="red"
+                    icon="xmark"
+                    onClick={() => act('toggle-destroying')}
+                  >
+                    Removing
+                  </Button>
                 )}
-                { !data.destroying && (
-                  <Button textAlign="center" width="100%" color="green" icon="plus" onClick={() => act('toggle-destroying')}>Placing</Button>
+                {!data.destroying && (
+                  <Button
+                    textAlign="center"
+                    width="100%"
+                    color="green"
+                    icon="plus"
+                    onClick={() => act('toggle-destroying')}
+                  >
+                    Placing
+                  </Button>
                 )}
               </Stack.Item>
             </Stack>
@@ -94,15 +137,17 @@ export const HandPipeDispenser = () => {
               </Tabs>
               {tab === Tab.AtmosPipes && (
                 <Section>
-                  {atmospipes.map((atmospipe : PipeData) => {
+                  {atmospipes.map((atmospipe: PipeData) => {
                     return <ItemRow {...atmospipe} key={atmospipe.type} />;
                   })}
                 </Section>
               )}
               {tab === Tab.AtmosMachines && (
                 <Section>
-                  {atmosmachines.map((atmosmachine : PipeData) => {
-                    return <Box key={atmosmachine.type}><ItemRow {...atmosmachine} /></Box>;
+                  {atmosmachines.map((atmosmachine: PipeData) => {
+                    return (
+                      <ItemRow key={atmosmachine.type} {...atmosmachine} />
+                    );
                   })}
                 </Section>
               )}
