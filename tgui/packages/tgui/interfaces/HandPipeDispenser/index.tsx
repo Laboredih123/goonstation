@@ -95,7 +95,7 @@ export const HandPipeDispenser = () => {
               {tab === Tab.AtmosPipes && (
                 <Section>
                   {atmospipes.map((atmospipe : PipeData) => {
-                    return <Box key={atmospipe.type}><ItemRow {...atmospipe} /></Box>;
+                    return <ItemRow {...atmospipe} key={atmospipe.type} />;
                   })}
                 </Section>
               )}
