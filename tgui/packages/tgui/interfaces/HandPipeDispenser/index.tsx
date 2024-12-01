@@ -18,26 +18,7 @@ import {
 import { useBackend, useSharedState } from '../backend';
 import { Icon } from '../components';
 import { Window } from '../layouts';
-
-interface HandPipeDispenserData {
-  atmospipes;
-  atmosmachines;
-  selectedimage: string; // base64 image
-  destroying : boolean;
-}
-
-// I feel like this should be common somewhere but :iiam:
-enum ByondDir {
-  North = 1,
-  South = 2,
-  East = 4,
-  West = 8,
-}
-
-enum Tab {
-  AtmosPipes = 'atmospipes',
-  AtmosMachines = 'atmosmachines',
-}
+import { ByondDir, HandPipeDispenserData, PipeData, Tab } from './type';
 
 export const HandPipeDispenser = () => {
   const { act, data } = useBackend<HandPipeDispenserData>();
@@ -118,15 +99,15 @@ export const HandPipeDispenser = () => {
               </Tabs>
               {tab === Tab.AtmosPipes && (
                 <Section>
-                  {atmospipes.map((atmospipe) => {
-                    return <ItemRow key={atmospipe} item={atmospipe} />;
+                  {atmospipes.map((atmospipe : PipeData) => {
+                    return <ItemRow key={atmospipe.type} item={atmospipe} />;
                   })}
                 </Section>
               )}
               {tab === Tab.AtmosMachines && (
                 <Section>
-                  {atmosmachines.map((atmosmachine) => {
-                    return <ItemRow key={atmosmachine} item={atmosmachine} />;
+                  {atmosmachines.map((atmosmachine : PipeData) => {
+                    return <ItemRow key={atmosmachine.type} item={atmosmachine} />;
                   })}
                 </Section>
               )}
@@ -138,9 +119,8 @@ export const HandPipeDispenser = () => {
   );
 };
 
-export const ItemRow = (props) => {
+export const ItemRow = (item: PipeData) => {
   const { act } = useBackend();
-  const { item } = props;
 
   return (
     <Stack style={{ borderBottom: '1px #555 solid' }}>
