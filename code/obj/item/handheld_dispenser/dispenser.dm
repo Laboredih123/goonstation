@@ -31,6 +31,7 @@
 	var/selectedimage
 	var/direction = EAST
 	var/destroying = FALSE
+	var/resources = 20
 
 /obj/item/handheld_dispenser/attack_self(mob/user )
 	src.ui_interact(user)
@@ -51,7 +52,9 @@
 /obj/item/handheld_dispenser/ui_data(mob/user)
 	. = list(
 		"selectedimage" = (src.selectedimage || getBase64Img(selection, src.direction)),
-		"destroying" = src.destroying
+		"selectedcost" = 3, //TODO when datumized
+		"resources" = src.resources,
+		"destroying" = src.destroying,
 	)
 
 /obj/item/handheld_dispenser/ui_static_data(mob/user)
@@ -61,7 +64,7 @@
 		.["atmospipes"] += list(list(
 			"type" = itemtype,
 			"image" = getBase64Img(atmospipesforcreation[itemtype]),
-			"cost" = 4,
+			"cost" = 4, //TODO when datumized
 			))
 	for (var/itemtype in atmosmachinesforcreation)
 		.["atmosmachines"] += list(list(

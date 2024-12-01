@@ -12,8 +12,7 @@ import {
   Image,
   Section,
   Stack,
-  Tabs,
-} from 'tgui-core/components';
+  Tabs } from 'tgui-core/components';
 
 import { useBackend, useSharedState } from '../../backend';
 import { Icon } from '../../components';
@@ -22,20 +21,16 @@ import { ByondDir, HandPipeDispenserData, PipeData, Tab } from './type';
 
 export const HandPipeDispenser = () => {
   const { act, data } = useBackend<HandPipeDispenserData>();
-  const { atmospipes, atmosmachines, selectedimage } = data;
+  const { atmospipes, atmosmachines, selectedimage, selectedcost, resources } = data;
   const [tab, setTab] = useSharedState('tab', Tab.AtmosPipes);
   return (
     <Window width={450} height={350}>
       <Flex height="100%">
         <Flex.Item fill>
-          <Section fill title={<>Resources: 28 <Icon name="boxes-stacked" /></>}>
-            {/* <LabeledList>
-              <LabeledList.Item label="Cost">
-                3 <Icon name="boxes-stacked" />
-              </LabeledList.Item>
-            </LabeledList> */}
+          <Section fill title={<>Resources: {resources} <Icon name="boxes-stacked" /></>}>
             {/* Stack hell zone aka the preview with buttons */}
             <Stack vertical>
+              <Box position="absolute" right="7px">{selectedcost} <Icon name="boxes-stacked" /></Box>
               <Stack.Item>
                 <Box textAlign="center">
                   <Button icon="arrow-up" onClick={() => act('changedir', { newdir: ByondDir.North })} />

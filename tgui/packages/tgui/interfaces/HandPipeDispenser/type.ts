@@ -10,6 +10,8 @@ export type HandPipeDispenserData = {
   atmosmachines: PipeData[];
   selectedimage: string; // base64 image
   destroying : boolean;
+  selectedcost: number;
+  resources: number;
 }
 
 // I feel like this should be common somewhere but :iiam:
