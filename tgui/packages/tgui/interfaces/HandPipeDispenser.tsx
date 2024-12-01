@@ -16,42 +16,87 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend, useSharedState } from '../backend';
+import { Icon } from '../components';
 import { Window } from '../layouts';
 
 interface HandPipeDispenserData {
   atmospipes;
   atmosmachines;
-  selectedimage;
+  selectedimage: string; // base64 image
+  destroying : boolean;
 }
 
-const Tab = {
-  AtmosPipes: 'atmospipes',
-  AtmosMachines: 'atmosmachines',
-};
+// I feel like this should be common somewhere but :iiam:
+enum ByondDir {
+  North = 1,
+  South = 2,
+  East = 4,
+  West = 8,
+}
+
+enum Tab {
+  AtmosPipes = 'atmospipes',
+  AtmosMachines = 'atmosmachines',
+}
 
 export const HandPipeDispenser = () => {
-  const { data } = useBackend<HandPipeDispenserData>();
+  const { act, data } = useBackend<HandPipeDispenserData>();
   const { atmospipes, atmosmachines, selectedimage } = data;
   const [tab, setTab] = useSharedState('tab', Tab.AtmosPipes);
   return (
-    <Window width={400} height={350}>
+    <Window width={450} height={350}>
       <Flex height="100%">
         <Flex.Item fill>
-          <Section fill>
-            <Button color="green">Create</Button>
-            <br />
-            <Button color="red">Remove</Button>
-            <br />
-            <Box
-              style={{
-                border: '1px solid grey',
-              }}
-            >
-              <Image
-                style={{ width: 64, height: 64 }}
-                src={`data:image/png;base64,${selectedimage}`}
-              />
-            </Box>
+          <Section fill title={<>Resources: 28 <Icon name="boxes-stacked" /></>}>
+            {/* <LabeledList>
+              <LabeledList.Item label="Cost">
+                3 <Icon name="boxes-stacked" />
+              </LabeledList.Item>
+            </LabeledList> */}
+            {/* Stack hell zone aka the preview with buttons */}
+            <Stack vertical>
+              <Stack.Item>
+                <Box textAlign="center">
+                  <Button icon="arrow-up" onClick={() => act('changedir', { newdir: ByondDir.North })} />
+                </Box>
+              </Stack.Item>
+              <Stack.Item>
+                <Flex align="center" justify="space-around">
+                  <Flex.Item>
+                    <Button icon="arrow-left" onClick={() => act('changedir', { newdir: ByondDir.West })} />
+                  </Flex.Item>
+                  <Flex.Item>
+                    <Box
+                      style={{
+                        border: '1px solid grey',
+                      }}
+                    >
+                      <Image
+                        style={{ width: 64, height: 64 }}
+                        src={`data:image/png;base64,${selectedimage}`}
+                      />
+                    </Box>
+                  </Flex.Item>
+                  <Flex.Item>
+                    <Button icon="arrow-right" onClick={() => act('changedir', { newdir: ByondDir.East })} />
+                  </Flex.Item>
+                </Flex>
+              </Stack.Item>
+              <Stack.Item>
+                <Box textAlign="center">
+                  <Button icon="arrow-down" onClick={() => act('changedir', { newdir: ByondDir.South })} />
+                </Box>
+              </Stack.Item>
+              <Stack.Item>
+                {/* Mode switch button */}
+                { data.destroying && (
+                  <Button textAlign="center" width="100%" color="red" icon="xmark" onClick={() => act('toggle-destroying')}>Removing</Button>
+                )}
+                { !data.destroying && (
+                  <Button textAlign="center" width="100%" color="green" icon="plus" onClick={() => act('toggle-destroying')}>Placing</Button>
+                )}
+              </Stack.Item>
+            </Stack>
           </Section>
         </Flex.Item>
         <Flex.Item position="relative" ml={1} grow fill>
@@ -106,7 +151,12 @@ export const ItemRow = (props) => {
           </Box>
         </Stack.Item>
       )}
-      <Stack.Item grow>{item.type}</Stack.Item>
+      <Stack.Item grow>
+        {item.type}
+        <br />
+        {item.cost}
+        <Icon name="boxes-stacked" />
+      </Stack.Item>
       <Stack.Item
         style={{
           marginLeft: '5px',
