@@ -15,9 +15,9 @@ import {
   Tabs,
 } from 'tgui-core/components';
 
-import { useBackend, useSharedState } from '../backend';
-import { Icon } from '../components';
-import { Window } from '../layouts';
+import { useBackend, useSharedState } from '../../backend';
+import { Icon } from '../../components';
+import { Window } from '../../layouts';
 import { ByondDir, HandPipeDispenserData, PipeData, Tab } from './type';
 
 export const HandPipeDispenser = () => {
@@ -70,7 +70,7 @@ export const HandPipeDispenser = () => {
               </Stack.Item>
               <Stack.Item>
                 {/* Mode switch button */}
-                { data.destroying && (
+                { !!data.destroying && (
                   <Button textAlign="center" width="100%" color="red" icon="xmark" onClick={() => act('toggle-destroying')}>Removing</Button>
                 )}
                 { !data.destroying && (
@@ -100,14 +100,14 @@ export const HandPipeDispenser = () => {
               {tab === Tab.AtmosPipes && (
                 <Section>
                   {atmospipes.map((atmospipe : PipeData) => {
-                    return <ItemRow key={atmospipe.type} item={atmospipe} />;
+                    return <Box key={atmospipe.type}><ItemRow {...atmospipe} /></Box>;
                   })}
                 </Section>
               )}
               {tab === Tab.AtmosMachines && (
                 <Section>
                   {atmosmachines.map((atmosmachine : PipeData) => {
-                    return <ItemRow key={atmosmachine.type} item={atmosmachine} />;
+                    return <Box key={atmosmachine.type}><ItemRow {...atmosmachine} /></Box>;
                   })}
                 </Section>
               )}
@@ -134,8 +134,7 @@ export const ItemRow = (item: PipeData) => {
       <Stack.Item grow>
         {item.type}
         <br />
-        {item.cost}
-        <Icon name="boxes-stacked" />
+        {item.cost} <Icon name="boxes-stacked" />
       </Stack.Item>
       <Stack.Item
         style={{
