@@ -366,7 +366,8 @@
 			else if (href_list["unloco"])
 				if (istype(src,/obj/machinery/vehicle/tank))
 					logTheThing(LOG_VEHICLE, usr, "ejects the locomotion system from [src] at [log_loc(src)]")
-					src:remove_locomotion()
+					var/obj/machinery/vehicle/tank/tank = src
+					tank.remove_locomotion()
 					src.updateDialog()
 
 			else if (href_list["unsec_system"])
@@ -1325,9 +1326,10 @@
 		else
 			dat += "None Installed"
 	if(istype(src,/obj/machinery/vehicle/tank))
+		var/obj/machinery/vehicle/tank/tank = src
 		dat += "<HR><B>Locomotion</B>: "
-		if(src:locomotion)
-			dat += "<A href='?src=\ref[src];unloco=1'>[src:locomotion]</A>"
+		if(tank.locomotion)
+			dat += "<A href='?src=\ref[src];unloco=1'>[tank.locomotion]</A>"
 		else
 			dat += "None Installed"
 	////Sensors

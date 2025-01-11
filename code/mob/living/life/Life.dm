@@ -409,7 +409,7 @@
 			death()
 	else
 		tracker.cease_track()
-		src:current = null
+		src.current = null
 		if (src.health >= 0)
 			// sure keep trying to use power i guess.
 			use_power()

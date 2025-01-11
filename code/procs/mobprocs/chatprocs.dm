@@ -204,9 +204,10 @@
 		return
 
 	if (ishuman(src) && src.name != src.real_name)
-		if (src:wear_id && src:wear_id:registered && src:wear_id:registered != src.real_name)
-			alt_name = " (as [src:wear_id:registered])"
-		else if (!src:wear_id)
+		var/mob/living/carbon/human/H = src
+		if (H.wear_id && H.wear_id:registered && H.wear_id:registered != src.real_name)
+			alt_name = " (as [H.wear_id:registered])"
+		else if (!H.wear_id)
 			alt_name = " (as Unknown)"
 
 	else if (isobserver(src))
@@ -969,7 +970,7 @@
 		if (prob(20))
 			boutput(src, "<I>... You can almost hear something ...</I>")
 			if (isliving(src))
-				for (var/mob/dead/target_observer/observer in src:observers)
+				for (var/mob/dead/target_observer/observer in src.observers)
 					boutput(observer, "<I>... You can almost hear something ...</I>")
 	else
 		if(!just_maptext)

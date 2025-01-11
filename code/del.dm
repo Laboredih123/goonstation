@@ -145,7 +145,8 @@ proc/qdel(var/datum/D)
 		disposed = TRUE
 		SEND_SIGNAL(src, COMSIG_PARENT_PRE_DISPOSING)
 		disposing()
-	else if (isatom(src))
+	else if (ismovable(src))
+		var/atom/movable/AM = src
 		// Uh oh, we tried to delete something which is already deleted. Just send it to null if it's an atom so it doesn't hang around and fuck anything up.
-		src:set_loc(null)
+		AM.set_loc(null)
 	// If it isn't an atom we don't care

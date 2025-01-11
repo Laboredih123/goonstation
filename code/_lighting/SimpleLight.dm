@@ -75,7 +75,10 @@
 		// I can either duplicate all this code, or add type checks with runtime overhead
 		// or use :
 		// if anyone tries to add a simple light to an area it will crash but WHY WOULD YOU EVER DO THAT
-		src:vis_contents += simple_light
+
+		//what if we just typecasted lol instead of using :
+		var/atom/movable/AM = src
+		AM.vis_contents += simple_light
 	src.simple_light.invisibility = INVIS_NONE
 
 /atom/proc/hide_simple_light()
@@ -85,7 +88,8 @@
 /atom/proc/destroy_simple_light()
 	if (length(simple_light_rgbas))
 		hide_simple_light()
-	src:vis_contents -= simple_light
+	var/atom/movable/AM = src
+	AM.vis_contents -= simple_light
 	simple_light_rgbas = null
 	qdel(simple_light)
 	simple_light = null
@@ -182,9 +186,10 @@
 		return
 	if (!medium_lights)
 		medium_lights = list()
+		var/atom/movable/AM = src
 		for(var/light_dir in src.medium_light_dirs)
 			var/obj/overlay/simple_light/medium/light = new(null, light_dir)
-			src:vis_contents += light
+			AM.vis_contents += light
 			src.medium_lights += light
 	for(var/obj/overlay/simple_light/medium/light in src.medium_lights)
 		light.invisibility = INVIS_NONE
@@ -197,8 +202,9 @@
 /atom/proc/destroy_medium_light()
 	if (length(medium_light_rgbas))
 		hide_medium_light()
+	var/atom/movable/AM = src
 	for(var/obj/overlay/simple_light/medium/light in src.medium_lights)
-		src:vis_contents -= light
+		AM.vis_contents -= light
 		qdel(light)
 	medium_light_rgbas = null
 	src.medium_lights = null
@@ -211,19 +217,20 @@
 /atom/proc/update_medium_light_visibility()
 	if(src.medium_lights[1].invisibility == 101) // toggled off
 		return
+	var/atom/movable/AM = src
 	if(!isturf(src.loc) && !isturf(src))
 		for (var/obj/overlay/simple_light/medium/light as anything in src.medium_lights)
-			src:vis_contents -= light
+			AM.vis_contents -= light
 		return
 	for (var/obj/overlay/simple_light/medium/light as anything in src.medium_lights)
 		if(light.icon_state == "medium_center")
-			src:vis_contents += light
+			AM.vis_contents += light
 			continue
 		var/turf/T = get_step(get_turf(src), light.dir)
 		if(T?.opacity || T?.opaque_atom_count)
-			src:vis_contents -= light
+			AM.vis_contents -= light
 		else
-			src:vis_contents += light
+			AM.vis_contents += light
 
 
 
@@ -303,10 +310,11 @@
 		return
 	if (!mdir_lights)
 		mdir_lights = list()
+		var/atom/movable/AM = src
 		for(var/light_dist in src.mdir_light_dists)
 			var/obj/overlay/simple_light/medium/directional/light = new(null, null)
 			light.dist = light_dist
-			src:vis_contents += light
+			AM.vis_contents += light
 			src.mdir_lights += light
 	for(var/obj/overlay/simple_light/medium/directional/light in src.mdir_lights)
 		light.invisibility = INVIS_NONE
@@ -319,8 +327,9 @@
 /atom/proc/destroy_mdir_light()
 	if (length(mdir_light_rgbas))
 		hide_mdir_light()
+	var/atom/movable/AM = src
 	for(var/obj/overlay/simple_light/medium/directional/light in src.mdir_lights)
-		src:vis_contents -= light
+		AM.vis_contents -= light
 		qdel(light)
 	mdir_light_rgbas = null
 	src.mdir_lights = null
@@ -333,9 +342,10 @@
 /atom/proc/update_mdir_light_visibility(direct)
 	if(!length(src.mdir_lights) || src.mdir_lights[1].invisibility == 101) // toggled off
 		return
+	var/atom/movable/AM = src
 	if(!isturf(src.loc))
 		for (var/obj/overlay/simple_light/medium/directional/light as anything in src.mdir_lights)
-			src:vis_contents -= light
+			AM.vis_contents -= light
 		return
 	if (!direct)
 		return
@@ -374,10 +384,9 @@
 		return
 	var/turf/TT = getlineopaqueblocked(src,T)
 	var/dist = GET_DIST(src,TT)-1
-
 	for (var/obj/overlay/simple_light/medium/directional/light as anything in src.mdir_lights)
 		if(light.icon_state == "medium_center" && light.dist == 0)
-			src:vis_contents += light
+			AM.vis_contents += light
 			continue
 
 		////light.pixel_x = (vx * min(dist,light.dist) * 32) - 32
@@ -385,7 +394,7 @@
 
 		animate(light,pixel_x = ((vx * min(dist,light.dist) * 32) - 32), pixel_y = ((vy * min(dist,light.dist) * 32) - 32), time = 1, easing = EASE_IN)
 
-		src:vis_contents += light
+		AM.vis_contents += light
 
 
 /atom/proc/add_sm_light(id, list/rgba, medium=null, directional=null)

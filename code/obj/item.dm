@@ -976,7 +976,8 @@ ADMIN_INTERACT_PROCS(/obj/item, proc/admin_set_stack_amount)
 
 
 			if (istype(src,/obj/item/parts/human_parts))
-				src:holder = null
+				var/obj/item/parts/human_parts/parts = src
+				parts.holder = null
 
 			src.combust_ended()
 

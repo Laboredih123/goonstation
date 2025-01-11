@@ -132,7 +132,7 @@
 	//returns success/failure
 	proc/enter_master()
 		if (!isnull(master) && src.loc != master)
-			src:following_master = 1
+			src.following_master = 1
 			src.set_loc(master)
 			orbit_master_animation()
 
@@ -174,7 +174,7 @@
 	//returns success/failure
 	proc/exit_master(var/turf/destination = null)
 		if (src.loc == master)
-			src:following_master = 0
+			src.following_master = 0
 			if (!isturf(destination))
 				src.set_loc(get_turf(master))
 			else

@@ -1318,8 +1318,9 @@
 	RETURN_TYPE(/obj/item)
 	if (issilicon(src))
 		if (ishivebot(src)||isrobot(src))
-			if (src:module_active)
-				return src:module_active
+			var/mob/living/silicon/robot/M = src
+			if (M.module_active)
+				return M.module_active
 	else
 		if (src.hand)
 			return src.l_hand
@@ -1375,8 +1376,9 @@
 /mob/living/silicon/equipped_list(check_for_magtractor = 1) //lool copy paste fix later
 	.= 0
 	if (ishivebot(src)||isrobot(src))
-		if (src:module_active)
-			.= list(src:module_active)
+		var/mob/living/silicon/robot/M = src
+		if (M.module_active)
+			.= list(M.module_active)
 	else if (isghostdrone(src))
 		var/mob/living/silicon/ghostdrone/D = src
 		if (D.active_tool)
@@ -3155,9 +3157,11 @@
 	if (isdiabolical(src))
 		boutput(src, SPAN_NOTICE("You collect souls, why would you want to sell yours?"))
 		return 0
-	if(istype(src, /mob/living/carbon/human) && src:unkillable) //shield of souls interaction
-		boutput(src,SPAN_ALERT("<b>Your soul is shielded and cannot be sold!</b>"))
-		return 0
+	if(ishuman(src)) //shield of souls interaction
+		var/mob/living/carbon/human/H = src
+		if(H.unkillable)
+			boutput(src,SPAN_ALERT("<b>Your soul is shielded and cannot be sold!</b>"))
+			return 0
 	if(amount > src.mind.soul)
 		boutput(src, SPAN_ALERT("<b>You don't have enough of a soul to sell!</b>"))
 		return 0

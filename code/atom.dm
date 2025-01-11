@@ -1068,8 +1068,9 @@ TYPEINFO(/atom/movable)
 		return src
 
 	if (ismob(src)) // fuck haxploits
-		if(src:client && src:client:player && src:client:player:shamecubed)
-			loc = src:client:player:shamecubed
+		var/mob/M = src
+		if(M.client?.player?.shamecubed)
+			loc = M.client.player.shamecubed
 			return
 
 	var/area/my_area = get_area(src)

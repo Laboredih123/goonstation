@@ -95,7 +95,7 @@
 		if (src.stat!=0)
 			//src:cameraFollow = null
 			src.tracker.cease_track()
-			src:current = null
+			src.current = null
 
 		health_update_queue |= src
 
@@ -132,8 +132,8 @@
 					src.see_invisible = INVIS_NONE
 
 					if ((!loc.power_equip) || istype(T, /turf/space))
-						if (src:aiRestorePowerRoutine==0)
-							src:aiRestorePowerRoutine = 1
+						if (src.aiRestorePowerRoutine==0)
+							src.aiRestorePowerRoutine = 1
 							boutput(src, "You've lost power!")
 							/*
 							// this shit is probably broken now but w/e mobile ais dont exist

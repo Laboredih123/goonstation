@@ -246,7 +246,7 @@
 
 		for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
-			M.show_message(SPAN_ALERT("[user:name] was shocked by the [src:name]!"), 3, SPAN_ALERT("You hear an electrical crack"), 2)
+			M.show_message(SPAN_ALERT("[user.name] was shocked by the [src.name]!"), 3, SPAN_ALERT("You hear an electrical crack"), 2)
 		return 1
 
 /obj/item/cell/ex_act(severity)

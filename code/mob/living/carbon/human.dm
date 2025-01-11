@@ -1563,10 +1563,10 @@
 		return
 
 	var/alt_name = ""
-	if (ishuman(src) && src.name != src.real_name)
-		if (src:wear_id && src:wear_id:registered && src:wear_id:registered != src.real_name)
-			alt_name = " (as [src:wear_id:registered])"
-		else if (!src:wear_id)
+	if (src.name != src.real_name)
+		if (src.wear_id && src.wear_id:registered && src.wear_id:registered != src.real_name)
+			alt_name = " (as [src.wear_id:registered])"
+		else if (!src.wear_id)
 			alt_name = " (as Unknown)"
 
 	// Mute disability

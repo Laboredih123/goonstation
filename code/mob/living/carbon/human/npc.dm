@@ -790,7 +790,7 @@
 			else if(!src.r_hand && pickup && G.force > 3)
 				if(G.force > pickup.force) pickup = G
 			else if(src.r_hand && !pickup && G.force > 3)
-				if(src:r_hand:force < G.force) pickup = G
+				if(src.r_hand.force < G.force) pickup = G
 			else if(src.r_hand && pickup && G.force > 3)
 				if(pickup.force < G.force) pickup = G
 			else if(istype(G, /obj/item/sword))

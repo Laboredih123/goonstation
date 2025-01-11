@@ -184,7 +184,8 @@
 								spacemove = 0
 								src.inertia_dir = 0
 					else if (isrobot(src) || isghostdrone(src) || isshell(src))
-						if (src:jetpack)
+						var/mob/living/silicon/robot/M = src
+						if (M.jetpack)
 							spacemove = 0
 							src.inertia_dir = 0
 
