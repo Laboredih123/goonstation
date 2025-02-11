@@ -25,15 +25,6 @@
 	icon_state = "engine_caution_corners"
 	},
 /area/station/devzone)
-"aM" = (
-/obj/cable{
-	icon_state = "2-4"
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "aS" = (
 /obj/machinery/dispenser,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -69,6 +60,12 @@
 /obj/machinery/neosmelter,
 /turf/simulated/floor/orangeblack,
 /area/station/devzone)
+"cb" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/station/devzone)
 "cj" = (
 /obj/machinery/printing_press,
 /turf/simulated/floor,
@@ -88,10 +85,6 @@
 	dir = 4
 	},
 /obj/decal/tile_edge/stripe/extra_big,
-/turf/simulated/floor,
-/area/station/devzone)
-"cD" = (
-/obj/landmark/start/job/assistant,
 /turf/simulated/floor,
 /area/station/devzone)
 "cK" = (
@@ -146,18 +139,6 @@
 /obj/map/light/brighterwhite,
 /turf/simulated/floor,
 /area/station/turret_protected/ai)
-"dx" = (
-/obj/machinery/door/poddoor/buff{
-	dir = 1;
-	explosion_resistance = 1000000;
-	name = "INCREDIBLY buff blast door";
-	opacity = 0
-	},
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor,
-/area/station/devzone)
 "dA" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
@@ -216,11 +197,6 @@
 /obj/railing/red{
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/station/devzone)
-"er" = (
-/obj/table/reinforced/auto,
-/obj/traitorifier/virtual/arcfiend,
 /turf/simulated/floor,
 /area/station/devzone)
 "eu" = (
@@ -297,15 +273,6 @@
 	pixel_x = 4
 	},
 /turf/simulated/floor/blue/checker,
-/area/station/devzone)
-"gz" = (
-/obj/machinery/door/poddoor/buff{
-	dir = 6;
-	explosion_resistance = 1000000;
-	name = "INCREDIBLY buff blast door";
-	opacity = 0
-	},
-/turf/simulated/floor,
 /area/station/devzone)
 "gF" = (
 /obj/machinery/teleport/portal_ring,
@@ -422,18 +389,6 @@
 /obj/mapping_helper/firedoor_spawn,
 /turf/simulated/floor,
 /area/station/devzone)
-"ib" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	name = "autoname  - SS13";
-	pixel_y = 18;
-	tag = ""
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "ic" = (
 /obj/machinery/atmospherics/binary/valve{
 	dir = 4
@@ -520,15 +475,6 @@
 	},
 /turf/simulated/floor,
 /area/station/devzone)
-"jK" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/engine/glow/blue,
-/area/space)
 "jP" = (
 /obj/machinery/plantpot,
 /turf/simulated/floor/grass/random,
@@ -571,30 +517,8 @@
 	},
 /turf/simulated/floor/engine/glow/blue,
 /area/station/devzone)
-"kQ" = (
-/obj/machinery/door/airlock/pyro/reinforced/arrivals{
-	name = "INCREDIBLY buff regular door";
-	explosion_resistance = 1000000
-	},
-/turf/simulated/floor,
-/area/station/devzone)
 "kR" = (
 /obj/machinery/vehicle/miniputt/syndiputt,
-/turf/simulated/floor/engine/glow/blue,
-/area/space)
-"kS" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
-	icon_state = "1-4"
-	},
-/obj/cable{
-	icon_state = "1-8"
-	},
 /turf/simulated/floor/engine/glow/blue,
 /area/space)
 "kV" = (
@@ -653,12 +577,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor,
 /area/station/devzone)
-"mi" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/engine/glow/blue,
-/area/space)
 "mt" = (
 /obj/machinery/vehicle/tank/car/whiteyellow,
 /turf/simulated/floor/orangeblack,
@@ -778,6 +696,10 @@
 /obj/submachine/seed_vendor,
 /turf/simulated/floor/grass/random,
 /area/station/devzone)
+"oZ" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/turf/simulated/floor/orangeblack,
+/area/station/devzone)
 "pc" = (
 /obj/machinery/manufacturer/medical,
 /turf/simulated/floor/bluewhite{
@@ -788,15 +710,6 @@
 /obj/machinery/chem_dispenser/alcohol/ultra,
 /obj/item/reagent_containers/food/drinks/drinkingglass/pitcher,
 /turf/simulated/floor/white,
-/area/station/devzone)
-"pl" = (
-/obj/machinery/door/poddoor/buff{
-	dir = 10;
-	explosion_resistance = 1000000;
-	name = "INCREDIBLY buff blast door";
-	opacity = 0
-	},
-/turf/simulated/floor,
 /area/station/devzone)
 "po" = (
 /obj/machinery/vehicle/pod,
@@ -902,12 +815,6 @@
 	icon_state = "engine_caution_west"
 	},
 /area/station/devzone)
-"rx" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "rz" = (
 /turf/simulated/floor/engine/glow/blue,
 /area/space)
@@ -917,21 +824,15 @@
 	},
 /turf/simulated/floor,
 /area/station/devzone)
-"rN" = (
-/obj/cable{
-	icon_state = "4-8"
+"rP" = (
+/obj/forcefield/energyshield/perma{
+	dir = 4
 	},
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/cable{
-	icon_state = "1-4"
-	},
-/obj/cable{
-	icon_state = "1-8"
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
 	},
 /turf/simulated/floor/engine/glow/blue,
-/area/space)
+/area/station/devzone)
 "rS" = (
 /turf/space,
 /area/space)
@@ -1013,10 +914,6 @@
 	dir = 9
 	},
 /area/station/devzone)
-"ux" = (
-/obj/machinery/light,
-/turf/simulated/floor/engine/glow,
-/area/space)
 "uE" = (
 /obj/item/device/radio/beacon,
 /turf/simulated/floor,
@@ -1051,19 +948,6 @@
 "vd" = (
 /turf/simulated/floor/blue/checker,
 /area/station/devzone)
-"vf" = (
-/obj/securearea{
-	desc = "It looks pretty dangerous in there.";
-	name = "HAZARDOUS AREA"
-	},
-/obj/machinery/door/poddoor/buff{
-	dir = 9;
-	explosion_resistance = 1000000;
-	name = "INCREDIBLY buff blast door";
-	opacity = 0
-	},
-/turf/simulated/floor,
-/area/station/devzone)
 "vr" = (
 /obj/machinery/computer3/terminal/zeta{
 	dir = 4;
@@ -1073,9 +957,6 @@
 /obj/machinery/power/data_terminal,
 /turf/simulated/floor,
 /area/station/devzone)
-"vu" = (
-/turf/simulated/floor/engine/glow,
-/area/space)
 "vG" = (
 /obj/machinery/atmospherics/unary/portables_connector{
 	dir = 4
@@ -1113,19 +994,6 @@
 /obj/machinery/deep_fryer,
 /turf/simulated/floor/white,
 /area/station/devzone)
-"wt" = (
-/obj/decal/tile_edge/check/orange,
-/obj/item/device/radio/beacon,
-/obj/machinery/light{
-	dir = 1;
-	layer = 9.1;
-	pixel_y = 21
-	},
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "wy" = (
 /obj/machinery/clonepod,
 /turf/simulated/floor/blue/checker,
@@ -1197,14 +1065,6 @@
 /obj/window/crystal/reinforced/west,
 /turf/unsimulated/floor/engine,
 /area/station/devzone)
-"xR" = (
-/obj/machinery/light{
-	dir = 8;
-	layer = 9.1;
-	pixel_x = -10
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "yc" = (
 /obj/window/crystal/reinforced/west,
 /turf/unsimulated/floor/engine,
@@ -1384,26 +1244,6 @@
 /obj/machinery/computer3/generic/personal,
 /obj/table/auto,
 /turf/simulated/floor/plating/jen,
-/area/station/devzone)
-"AF" = (
-/obj/machinery/light{
-	dir = 1;
-	layer = 9.1;
-	pixel_y = 21
-	},
-/obj/cable{
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
-"AI" = (
-/obj/machinery/door/poddoor/buff{
-	dir = 4;
-	explosion_resistance = 1000000;
-	name = "INCREDIBLY buff blast door";
-	opacity = 0
-	},
-/turf/simulated/floor,
 /area/station/devzone)
 "AL" = (
 /obj/machinery/teleport/portal_generator,
@@ -1624,26 +1464,6 @@
 /obj/machinery/chem_master,
 /turf/simulated/floor,
 /area/station/devzone)
-"Fi" = (
-/obj/machinery/light{
-	dir = 1;
-	layer = 9.1;
-	pixel_y = 21
-	},
-/obj/cable{
-	icon_state = "1-2"
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
-	icon_state = "1-8"
-	},
-/obj/cable{
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "Fl" = (
 /obj/submachine/chem_extractor{
 	dir = 4;
@@ -1775,14 +1595,11 @@
 	},
 /turf/simulated/floor/engine/vacuum,
 /area/station/devzone)
-"HW" = (
-/obj/machinery/door/poddoor/buff{
-	dir = 1;
-	explosion_resistance = 1000000;
-	name = "INCREDIBLY buff blast door";
-	opacity = 0
+"HQ" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/orangeblack,
 /area/station/devzone)
 "HZ" = (
 /obj/machinery/conveyor_switch{
@@ -1838,15 +1655,6 @@
 	},
 /turf/simulated/floor,
 /area/station/devzone)
-"Js" = (
-/obj/machinery/door/poddoor/buff{
-	dir = 5;
-	explosion_resistance = 1000000;
-	name = "INCREDIBLY buff blast door";
-	opacity = 0
-	},
-/turf/simulated/floor,
-/area/station/devzone)
 "Jt" = (
 /obj/forcefield/energyshield/perma{
 	dir = 9
@@ -1857,12 +1665,6 @@
 	name = "ACTIVE MAGNET AREA"
 	},
 /obj/landmark/magnet_shield,
-/turf/simulated/floor,
-/area/station/devzone)
-"JE" = (
-/obj/machinery/light_switch/east{
-	otherarea = "space"
-	},
 /turf/simulated/floor,
 /area/station/devzone)
 "JJ" = (
@@ -1964,15 +1766,6 @@
 	},
 /turf/simulated/floor/grass/random,
 /area/station/devzone)
-"Lj" = (
-/obj/machinery/light{
-	dir = 4;
-	layer = 9.1;
-	light_type = /obj/item/light/tube/blueish;
-	pixel_x = 10
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "Lk" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/simulated/floor,
@@ -1987,11 +1780,6 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/engine/vacuum,
-/area/station/devzone)
-"Lp" = (
-/obj/table/reinforced/auto,
-/obj/traitorifier/virtual/wrestler,
-/turf/simulated/floor,
 /area/station/devzone)
 "Lq" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
@@ -2139,15 +1927,6 @@
 	},
 /turf/simulated/floor,
 /area/station/devzone)
-"Oz" = (
-/obj/machinery/power/debug_generator{
-	generating = 10
-	},
-/obj/cable{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor,
-/area/station/devzone)
 "OM" = (
 /obj/machinery/portable_reclaimer,
 /turf/simulated/floor,
@@ -2251,10 +2030,12 @@
 /obj/cable,
 /turf/simulated/floor,
 /area/station/devzone)
-"PC" = (
-/obj/table/reinforced/auto,
-/obj/traitorifier/virtual/wizard,
-/turf/simulated/floor,
+"PA" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/devtesttestregionselector,
+/turf/simulated/floor/orangeblack,
 /area/station/devzone)
 "PH" = (
 /mob/living/critter/small_animal/ranch_base/sheep/white/dolly/ai_controlled,
@@ -2275,25 +2056,10 @@
 	},
 /turf/simulated/floor/blue/checker,
 /area/station/devzone)
-"Qb" = (
-/obj/table/reinforced/auto,
-/obj/traitorifier/virtual/werewolf,
-/obj/traitorifier/virtual/nuclear,
-/turf/simulated/floor,
-/area/station/devzone)
 "Qg" = (
 /obj/machinery/nanofab/nuclear,
 /turf/simulated/floor/orangeblack,
 /area/station/devzone)
-"Qh" = (
-/obj/cable{
-	icon_state = "2-8"
-	},
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "Qy" = (
 /obj/decal/tile_edge/line/red{
 	dir = 8;
@@ -2372,16 +2138,6 @@
 /area/station/devzone)
 "Si" = (
 /obj/machinery/chem_dispenser/chemical,
-/turf/simulated/floor,
-/area/station/devzone)
-"Sk" = (
-/obj/machinery/door/poddoor/buff{
-	dir = 4;
-	explosion_resistance = 1000000;
-	name = "INCREDIBLY buff blast door";
-	opacity = 0
-	},
-/obj/death_button/create_dummy,
 /turf/simulated/floor,
 /area/station/devzone)
 "Sl" = (
@@ -2478,13 +2234,6 @@
 /obj/item/kitchen/utensil/knife,
 /turf/simulated/floor/white,
 /area/station/devzone)
-"UA" = (
-/obj/table/reinforced/auto,
-/obj/item/uplink/syndicate/omni{
-	uses = 100000
-	},
-/turf/simulated/floor,
-/area/station/devzone)
 "UD" = (
 /turf/simulated/floor/engine,
 /area/station/devzone)
@@ -2510,10 +2259,6 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
-/turf/simulated/floor,
-/area/station/devzone)
-"Vd" = (
-/obj/submachine/weapon_vendor/syndicate,
 /turf/simulated/floor,
 /area/station/devzone)
 "Vg" = (
@@ -2586,17 +2331,6 @@
 /obj/machinery/hydro_mister,
 /turf/simulated/floor/grass/random,
 /area/station/devzone)
-"Wv" = (
-/obj/machinery/light{
-	dir = 1;
-	layer = 9.1;
-	pixel_y = 21
-	},
-/obj/cable{
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "Wy" = (
 /obj/machinery/vehicle/recon,
 /turf/simulated/floor/engine/glow/blue,
@@ -2755,12 +2489,6 @@
 	icon_state = "engine_caution_corners"
 	},
 /area/station/devzone)
-"YG" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/engine/glow,
-/area/space)
 "YM" = (
 /obj/machinery/door/poddoor/pyro/shutters{
 	dir = 4;
@@ -2808,6 +2536,10 @@
 	id = "cargosell"
 	},
 /turf/simulated/floor,
+/area/station/devzone)
+"ZE" = (
+/obj/landmark/start/job/assistant,
+/turf/simulated/floor/orangeblack,
 /area/station/devzone)
 "ZZ" = (
 /obj/machinery/atmospherics/unary/portables_connector{
@@ -4533,7 +4265,7 @@ Yf
 ng
 ng
 ng
-ng
+ZE
 ng
 Yx
 "}
@@ -4561,23 +4293,23 @@ Yx
 Yx
 Yx
 ng
-ng
-ng
-ng
-ng
-ng
-ng
-ng
-ng
-ng
-ng
-ng
-ng
-ng
-Yx
-Yx
-Yx
-ng
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
+PA
 Yx
 "}
 (42,1,1) = {"
@@ -4603,9 +4335,7 @@ qH
 qH
 Ap
 Yx
-ng
-Yx
-cD
+oZ
 Yx
 Yx
 Yx
@@ -4620,8 +4350,10 @@ Yx
 Yx
 Yx
 Yx
-ng
 Yx
+Yx
+Yx
+cb
 "}
 (43,1,1) = {"
 rz
@@ -4646,25 +4378,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
 Yx
 Yx
 Yx
 Yx
-JE
-Lp
-er
-PC
-UA
-Qb
-Vd
 Yx
 Yx
 Yx
-ng
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (44,1,1) = {"
 rz
@@ -4689,25 +4421,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-vf
-AI
-AI
-AI
-AI
-AI
-AI
-Sk
-AI
-AI
-AI
-AI
-AI
-AI
-pl
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (45,1,1) = {"
 rz
@@ -4732,25 +4464,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-kQ
-vu
-rz
-xR
-rz
-vu
-rz
-xR
-rz
-vu
-rz
-xR
-rz
-vu
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (46,1,1) = {"
 rz
@@ -4775,25 +4507,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (47,1,1) = {"
 rz
@@ -4818,25 +4550,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-Wv
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-ux
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (48,1,1) = {"
 rz
@@ -4861,25 +4593,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-mi
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (49,1,1) = {"
 rz
@@ -4904,25 +4636,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-aM
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-vu
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (50,1,1) = {"
 rz
@@ -4947,25 +4679,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-mi
-rx
-rz
-rx
-rz
-ib
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (51,1,1) = {"
 rz
@@ -4990,25 +4722,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
-Oz
-dx
-Fi
-kS
-YG
-kS
-YG
-kS
-wt
-rN
-YG
-rN
-YG
-rN
-ux
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (52,1,1) = {"
 rz
@@ -5033,25 +4765,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-mi
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (53,1,1) = {"
 rz
@@ -5076,25 +4808,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-Qh
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-vu
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (54,1,1) = {"
 rz
@@ -5119,25 +4851,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-mi
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (55,1,1) = {"
 rz
@@ -5162,25 +4894,25 @@ hR
 hR
 qg
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-AF
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-YG
-jK
-ux
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (56,1,1) = {"
 rz
@@ -5205,25 +4937,25 @@ qH
 qH
 Xx
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-rx
-rz
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (57,1,1) = {"
 rz
@@ -5248,25 +4980,25 @@ Yx
 Yx
 Yx
 Yx
-ng
+oZ
 Yx
 Yx
-HW
-vu
-rz
-Lj
-rz
-vu
-rz
-Lj
-rz
-vu
-rz
-Lj
-rz
-rz
-HW
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (58,1,1) = {"
 rz
@@ -5291,25 +5023,25 @@ ng
 ng
 ng
 ng
-ng
-ng
-ng
-Js
-AI
-AI
-AI
-AI
-AI
-AI
-AI
-AI
-AI
-AI
-AI
-AI
-AI
-gz
+oZ
 Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+Yx
+cb
 "}
 (59,1,1) = {"
 rz
@@ -5335,23 +5067,23 @@ cK
 cK
 NZ
 cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
+rP
 cK
 "}
 (60,1,1) = {"

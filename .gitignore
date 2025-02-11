@@ -77,6 +77,7 @@ Desktop.ini
 # Local define usage
 /_std/__build.local.dm
 /code/WorkInProgress/__development.local.dm
+/assets/maps/loadabledevtest/__development.local.dmm
 
 # OpenDream compiled bytecode
 goonstation.json

@@ -1,0 +1,1527 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ae" = (
+/obj/storage/crate,
+/obj/item/hand_labeler,
+/turf/simulated/floor/carpet{
+	dir = 4;
+	icon_state = "fred4"
+	},
+/area/station/crew_quarters/market)
+"ai" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	dir = 6;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/cable,
+/turf/simulated/floor/plating,
+/area/station/security/checkpoint/cargo)
+"aj" = (
+/obj/table/reinforced/auto,
+/obj/machinery/cashreg,
+/obj/mapping_helper/firedoor_spawn,
+/turf/simulated/floor/carpet{
+	icon_state = "fred1"
+	},
+/area/station/quartermaster/office)
+"as" = (
+/obj/disposalpipe/segment/mineral,
+/obj/machinery/computer/announcement/station/cargo,
+/turf/simulated/floor/orangeblack,
+/area/station/quartermaster/office)
+"az" = (
+/obj/machinery/computer/stockexchange,
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"br" = (
+/obj/machinery/drainage,
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"bE" = (
+/obj/table/reinforced/auto,
+/obj/item/cargotele,
+/obj/item/cargotele,
+/turf/simulated/floor/orangeblack,
+/area/station/quartermaster/office)
+"bP" = (
+/obj/machinery/light/emergency{
+	dir = 1
+	},
+/obj/disposalpipe/trunk/mail/east,
+/obj/machinery/disposal/mail/qm,
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"ck" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/machinery/door_control{
+	desc = "A remote control switch for the cargo bay door.";
+	id = "qm_tohall_shutter";
+	name = "Cargo Outlet Door Control";
+	pixel_x = -23;
+	dir = 8;
+	pixel_y = 0
+	},
+/obj/disposalpipe/segment,
+/turf/simulated/floor/yellow/side{
+	dir = 9
+	},
+/area/station/quartermaster/office)
+"cu" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/mapping_helper/wingrille_spawn/auto,
+/turf/simulated/floor/plating,
+/area/station/crew_quarters/market)
+"cv" = (
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"cI" = (
+/obj/stool,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"cO" = (
+/obj/machinery/firealarm/west,
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"cR" = (
+/turf/simulated/wall/auto/supernorn,
+/area/station/quartermaster/office)
+"dq" = (
+/obj/disposalpipe/segment/mineral,
+/obj/storage/crate,
+/obj/item/hand_labeler,
+/turf/simulated/floor/carpet{
+	dir = 8;
+	icon_state = "fred4"
+	},
+/area/station/crew_quarters/market)
+"dW" = (
+/obj/disposalpipe/segment/mineral,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"fC" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/submachine/poster_creator,
+/obj/machinery/recharger/wall/sticky{
+	dir = 1
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"gO" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"hb" = (
+/obj/stool/chair,
+/obj/landmark/start/job/mail_courier,
+/turf/simulated/floor/carpet{
+	dir = 1;
+	icon_state = "red2"
+	},
+/area/station/crew_quarters/market)
+"hc" = (
+/obj/disposalpipe/segment/transport{
+	dir = 4
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"hW" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/yellow/corner{
+	dir = 4
+	},
+/area/station/quartermaster/office)
+"if" = (
+/obj/machinery/flasher/portable,
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"in" = (
+/obj/machinery/light/emergency,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 10;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"iw" = (
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"iJ" = (
+/obj/machinery/computer/ordercomp{
+	dir = 4
+	},
+/turf/simulated/floor/orangeblack,
+/area/station/crew_quarters/market)
+"jo" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"jv" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/obj/disposalpipe/segment,
+/turf/simulated/floor/yellow/side{
+	dir = 8
+	},
+/area/station/quartermaster/office)
+"jx" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"jD" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"jV" = (
+/obj/landmark/halloween,
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"jW" = (
+/obj/machinery/light/emergency{
+	dir = 1
+	},
+/obj/storage/secure/closet/engineering/cargo,
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"kV" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	dir = 10;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/cable,
+/turf/simulated/floor/plating,
+/area/station/security/checkpoint/cargo)
+"kY" = (
+/obj/disposalpipe/segment/mineral,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"kZ" = (
+/obj/decal/poster/wallsign/medbay_left,
+/turf/simulated/wall/auto/supernorn,
+/area/station/crew_quarters/market)
+"ll" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/quartermaster/office)
+"lJ" = (
+/obj/stool,
+/turf/simulated/floor/carpet{
+	dir = 8;
+	icon_state = "fred4"
+	},
+/area/station/crew_quarters/market)
+"lW" = (
+/turf/simulated/floor/carpet{
+	icon_state = "red2"
+	},
+/area/station/quartermaster/office)
+"mb" = (
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"mf" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 5
+	},
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"mj" = (
+/obj/machinery/disposal/brig{
+	name = "security lobby chute"
+	},
+/obj/item/storage/wall/medical{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/disposalpipe/trunk/transport,
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"mt" = (
+/obj/machinery/manufacturer/robotics,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"nd" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/bent/west,
+/turf/simulated/floor/yellow/corner{
+	dir = 1
+	},
+/area/station/quartermaster/office)
+"nx" = (
+/obj/disposalpipe/switch_junction/right/west{
+	mail_tag = "QM";
+	name = "mail junction (QM)"
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"nC" = (
+/obj/mapping_helper/firedoor_spawn,
+/obj/machinery/door/airlock/pyro/glass/security/alt,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/secscanner{
+	pixel_y = 10
+	},
+/obj/mapping_helper/access/security,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/security/checkpoint/cargo)
+"nI" = (
+/obj/disposalpipe/switch_junction/left/west{
+	mail_tag = "cargo checkpoint";
+	name = "mail junction (cargo checkpoint)"
+	},
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"nY" = (
+/obj/disposalpipe/segment/mail/bent/north,
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"ow" = (
+/obj/table/reinforced/auto,
+/obj/mapping_helper/firedoor_spawn,
+/turf/simulated/floor/carpet{
+	dir = 4;
+	icon_state = "red2"
+	},
+/area/station/quartermaster/office)
+"ph" = (
+/turf/simulated/wall/auto/supernorn,
+/area/station/crew_quarters/market)
+"pl" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/station/security/checkpoint/cargo)
+"pr" = (
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "market_2";
+	name = "Public Market";
+	opacity = 0
+	},
+/obj/mapping_helper/firedoor_spawn,
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"py" = (
+/turf/simulated/floor/carpet{
+	dir = 10;
+	icon_state = "red2"
+	},
+/area/station/quartermaster/office)
+"pI" = (
+/obj/machinery/light/emergency,
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"qw" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/disposalpipe/segment/transport{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"qx" = (
+/obj/machinery/power/data_terminal,
+/obj/table/reinforced/auto,
+/obj/machinery/networked/printer{
+	name = "Printer - Checkpoint";
+	pixel_y = 5;
+	print_id = "CheckpointS"
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"qF" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"qS" = (
+/obj/disposalpipe/segment/mail/vertical,
+/turf/simulated/floor/orangeblack,
+/area/station/crew_quarters/market)
+"rD" = (
+/obj/table/reinforced/auto,
+/obj/machinery/phone,
+/obj/noticeboard/persistent{
+	name = "Cargo persistent notice board";
+	persistent_id = "cargo"
+	},
+/turf/simulated/floor/orangeblack,
+/area/station/quartermaster/office)
+"sk" = (
+/obj/mapping_helper/firedoor_spawn,
+/obj/machinery/door/airlock/pyro/glass{
+	name = "Cargo Bay"
+	},
+/obj/mapping_helper/access/cargo,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"sm" = (
+/obj/stool/chair/yellow{
+	dir = 4
+	},
+/obj/landmark/start/job/quartermaster,
+/turf/simulated/floor/carpet{
+	icon_state = "fred1"
+	},
+/area/station/quartermaster/office)
+"st" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/station/security/checkpoint/cargo)
+"tK" = (
+/obj/machinery/computer/supplycomp{
+	dir = 8
+	},
+/obj/item/device/radio/intercom/cargo,
+/turf/simulated/floor/carpet{
+	dir = 4;
+	icon_state = "red2"
+	},
+/area/station/quartermaster/office)
+"ud" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"uz" = (
+/obj/machinery/status_display/market,
+/turf/simulated/wall/auto/supernorn,
+/area/station/crew_quarters/market)
+"uA" = (
+/obj/machinery/conveyor/EW{
+	name = "cargo belt - west";
+	operating = 1
+	},
+/obj/strip_door,
+/obj/machinery/door/poddoor/pyro/shutters{
+	dir = 8;
+	id = "qm_tohall_shutter";
+	layer = 4;
+	name = "QM Shutter"
+	},
+/turf/simulated/floor/plating,
+/area/station/quartermaster/office)
+"vn" = (
+/obj/machinery/light{
+	dir = 8;
+	layer = 9.1;
+	pixel_x = -10
+	},
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"vv" = (
+/obj/disposalpipe/segment/mineral,
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"vQ" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/atmospherics/unary/vent_pump,
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"vS" = (
+/obj/machinery/door_control{
+	id = "cargodock_in";
+	pixel_x = -24;
+	pixel_y = 28
+	},
+/obj/machinery/door_control{
+	id = "cargodock_out";
+	pixel_x = 24;
+	pixel_y = 28
+	},
+/obj/machinery/manufacturer/qm,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"wd" = (
+/obj/table/reinforced/auto,
+/obj/mapping_helper/firedoor_spawn,
+/obj/item/device/matanalyzer,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"wn" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"xd" = (
+/obj/machinery/power/data_terminal,
+/obj/table/reinforced/auto,
+/obj/machinery/networked/printer{
+	name = "Printer - Quartermasters";
+	pixel_y = 5;
+	print_id = "Quartermasters"
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"xN" = (
+/turf/simulated/floor/carpet{
+	dir = 9;
+	icon_state = "red2"
+	},
+/area/station/crew_quarters/market)
+"yk" = (
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"yw" = (
+/turf/simulated/floor/yellow/side{
+	dir = 5
+	},
+/area/station/quartermaster/office)
+"yG" = (
+/obj/stool,
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1;
+	pixel_x = 10
+	},
+/turf/simulated/floor/orangeblack,
+/area/station/crew_quarters/market)
+"yV" = (
+/obj/disposalpipe/segment/mail/vertical,
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"zh" = (
+/obj/machinery/manufacturer/mining,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"zn" = (
+/obj/disposalpipe/segment/mail/vertical,
+/turf/simulated/wall/auto/reinforced/supernorn,
+/area/station/crew_quarters/market)
+"zz" = (
+/obj/disposalpipe/segment/transport{
+	dir = 4
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"Af" = (
+/obj/machinery/vending/security,
+/obj/machinery/door_control{
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown";
+	pixel_x = -23;
+	pixel_y = -6;
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "N APC";
+	pixel_y = 24
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/light{
+	dir = 1;
+	layer = 9.1;
+	pixel_y = 21
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"Al" = (
+/turf/simulated/floor/yellow/side{
+	dir = 4
+	},
+/area/station/quartermaster/office)
+"An" = (
+/obj/machinery/disposal,
+/obj/machinery/light{
+	dir = 8;
+	layer = 9.1;
+	pixel_x = -10
+	},
+/obj/disposalpipe/trunk{
+	dir = 2;
+	name = "factory pipe"
+	},
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"AD" = (
+/obj/machinery/manufacturer/gas,
+/obj/disposalpipe/segment/mineral,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Cc" = (
+/obj/item/storage/wall/emergency{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Cm" = (
+/obj/machinery/manufacturer/hangar,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"CS" = (
+/obj/disposalpipe/segment/mineral,
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"DF" = (
+/obj/machinery/computer/barcode/qm,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Ea" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable,
+/turf/simulated/floor/plating,
+/area/station/security/checkpoint/cargo)
+"Fc" = (
+/obj/disposalpipe/segment/mail/vertical,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"Fu" = (
+/obj/table/reinforced/auto,
+/obj/machinery/cashreg,
+/obj/mapping_helper/firedoor_spawn,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"FJ" = (
+/obj/disposalpipe/segment/mail/bent/west,
+/turf/simulated/floor/orangeblack,
+/area/station/quartermaster/office)
+"FT" = (
+/obj/reagent_dispensers/watertank/fountain,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/quartermaster/office)
+"FV" = (
+/obj/machinery/computer3/generic/secure_data{
+	dir = 4
+	},
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"GB" = (
+/obj/machinery/light{
+	dir = 1;
+	layer = 9.1;
+	pixel_y = 21
+	},
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"GE" = (
+/obj/disposalpipe/segment/mineral,
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"GF" = (
+/obj/landmark/gps_waypoint,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"GG" = (
+/turf/simulated/wall/auto/reinforced/supernorn/the_tuff_stuff{
+	explosion_resistance = 10000000000000;
+	density = 0;
+	opacity = 0
+	},
+/area/station/devzone)
+"GI" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/status_display/market,
+/turf/simulated/floor/plating,
+/area/station/quartermaster/office)
+"Hm" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/grime,
+/area/station/quartermaster/office)
+"HA" = (
+/obj/stool/chair/office/red,
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/landmark/start/job/security_officer,
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"HH" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"HO" = (
+/obj/table/reinforced/auto,
+/obj/mapping_helper/firedoor_spawn,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/security/checkpoint/cargo)
+"HP" = (
+/obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"Id" = (
+/obj/disposalpipe/segment/mineral,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"IH" = (
+/obj/disposalpipe/segment/mineral,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/quartermaster/office)
+"Jm" = (
+/obj/machinery/door_control{
+	id = "market_2";
+	pixel_y = 24
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"JA" = (
+/obj/table/reinforced/auto,
+/obj/item/device/light/flashlight,
+/obj/item/device/multitool{
+	pixel_x = -7;
+	pixel_y = 1
+	},
+/obj/item/paper/book/from_file/pharmacopia,
+/obj/machinery/light{
+	dir = 8;
+	layer = 9.1;
+	pixel_x = -10
+	},
+/turf/simulated/floor/orangeblack,
+/area/station/crew_quarters/market)
+"JJ" = (
+/obj/table/reinforced/auto,
+/obj/machinery/recharger,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/quartermaster/office)
+"JK" = (
+/obj/disposalpipe/segment/mineral,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"Kn" = (
+/obj/machinery/door_control{
+	id = "market_3";
+	pixel_y = 24
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"Ko" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/disposalpipe/segment,
+/turf/simulated/floor/yellow/side{
+	dir = 8
+	},
+/area/station/quartermaster/office)
+"Kz" = (
+/turf/simulated/floor/orangeblack,
+/area/station/quartermaster/office)
+"KN" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/simulated/floor{
+	icon_state = "nt_logo"
+	},
+/area/station/crew_quarters/market)
+"Lm" = (
+/turf/simulated/floor/carpet{
+	dir = 5;
+	icon_state = "red2"
+	},
+/area/station/crew_quarters/market)
+"LG" = (
+/obj/submachine/weapon_vendor/security,
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"LQ" = (
+/turf/simulated/wall/auto/reinforced/supernorn,
+/area/station/security/checkpoint/cargo)
+"MB" = (
+/obj/landmark/halloween,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"MK" = (
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/quartermaster/office)
+"Na" = (
+/obj/disposalpipe/segment,
+/turf/simulated/floor/yellow/side{
+	dir = 8
+	},
+/area/station/quartermaster/office)
+"OG" = (
+/obj/machinery/light{
+	dir = 1;
+	layer = 9.1;
+	pixel_y = 21
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/stool/bench/auto,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"OW" = (
+/obj/table/reinforced/auto,
+/obj/disposalpipe/segment/mineral,
+/obj/mapping_helper/firedoor_spawn,
+/obj/item/wrapping_paper,
+/obj/item/wrapping_paper,
+/obj/item/wrapping_paper,
+/obj/item/scissors,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/crew_quarters/market)
+"Pb" = (
+/obj/machinery/light/emergency,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Pv" = (
+/obj/machinery/manufacturer/medical,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"PH" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Qd" = (
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"Qk" = (
+/obj/machinery/light,
+/turf/simulated/floor/orangeblack,
+/area/station/crew_quarters/market)
+"Qp" = (
+/obj/machinery/light{
+	dir = 4;
+	layer = 9.1;
+	pixel_x = 10
+	},
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Qw" = (
+/obj/disposalpipe/trunk/mail/south,
+/obj/machinery/disposal/mail/small/autoname/checkpoint/cargo/west,
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"QC" = (
+/obj/table/reinforced/auto,
+/obj/mapping_helper/firedoor_spawn,
+/turf/simulated/floor/carpet{
+	dir = 8;
+	icon_state = "red2"
+	},
+/area/station/quartermaster/office)
+"QR" = (
+/obj/decal/poster/wallsign/escape_right,
+/turf/simulated/wall/auto/supernorn,
+/area/station/crew_quarters/market)
+"QX" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"Rs" = (
+/obj/disposalpipe/segment/transport{
+	dir = 4
+	},
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/machinery/door/poddoor/pyro/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "lockdown_checkpoint2";
+	name = "Checkpoint Lockdown Doors";
+	opacity = 0
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/plating,
+/area/station/security/checkpoint/cargo)
+"Sh" = (
+/obj/storage/secure/closet/engineering/cargo,
+/obj/decal/stripe_caution,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Sz" = (
+/obj/machinery/door/airlock/pyro/glass{
+	name = "Cargo Bay"
+	},
+/obj/mapping_helper/firedoor_spawn,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/mapping_helper/access/cargo,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"SB" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/obj/disposalpipe/segment/mineral,
+/turf/simulated/floor/plating,
+/area/station/quartermaster/office)
+"SU" = (
+/obj/machinery/light/emergency{
+	dir = 1;
+	pixel_y = 16
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/landmark/halloween,
+/obj/disposalpipe/segment/mail/vertical,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"TJ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/obj/machinery/navbeacon/tour/cog2/tour7,
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"Uq" = (
+/obj/machinery/computer/bank_data{
+	dir = 8
+	},
+/turf/simulated/floor/carpet{
+	dir = 6;
+	icon_state = "red2"
+	},
+/area/station/quartermaster/office)
+"US" = (
+/obj/machinery/light,
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"UX" = (
+/obj/decal/poster/wallsign/poster_nt{
+	pixel_y = 28
+	},
+/obj/table/reinforced/auto,
+/obj/random_item_spawner/tools,
+/obj/item/reagent_containers/food/drinks/mug/random_color,
+/turf/simulated/floor/orangeblack,
+/area/station/quartermaster/office)
+"Wk" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
+/obj/item/device/radio/intercom/security,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"Wx" = (
+/turf/simulated/floor/orangeblack,
+/area/station/crew_quarters/market)
+"WO" = (
+/obj/stool,
+/turf/simulated/floor/carpet{
+	dir = 4;
+	icon_state = "fred4"
+	},
+/area/station/crew_quarters/market)
+"WX" = (
+/turf/simulated/wall/auto/reinforced/supernorn,
+/area/station/quartermaster/office)
+"WY" = (
+/obj/disposalpipe/segment/mineral,
+/turf/simulated/floor/orangeblack,
+/area/station/crew_quarters/market)
+"Xj" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/quartermaster/office)
+"Xr" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"Xt" = (
+/obj/machinery/manufacturer/general,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Xw" = (
+/obj/disposalpipe/segment/transport{
+	dir = 4
+	},
+/obj/disposalpipe/segment/mineral,
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+"Xy" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/stool/bench/auto,
+/turf/simulated/floor/yellow/side{
+	dir = 1
+	},
+/area/station/crew_quarters/market)
+"XJ" = (
+/obj/mapping_helper/wingrille_spawn/auto/reinforced,
+/turf/simulated/floor/plating,
+/area/station/quartermaster/office)
+"XW" = (
+/obj/machinery/disposal,
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/firealarm/east,
+/obj/machinery/light{
+	dir = 1;
+	layer = 9.1;
+	pixel_y = 21
+	},
+/obj/machinery/light_switch/north,
+/turf/simulated/floor/specialroom/bar,
+/area/station/security/checkpoint/cargo)
+"Yv" = (
+/obj/machinery/computer/chem_requester/science{
+	area_name = "Quartermaster's office";
+	dir = 4
+	},
+/turf/simulated/floor/carpet{
+	dir = 8;
+	icon_state = "red2"
+	},
+/area/station/quartermaster/office)
+"Zf" = (
+/obj/machinery/computer/supplycomp,
+/obj/decal/stripe_delivery,
+/turf/simulated/floor,
+/area/station/quartermaster/office)
+"Zr" = (
+/obj/machinery/light/emergency,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 4
+	},
+/turf/simulated/floor/yellow/side,
+/area/station/crew_quarters/market)
+"ZC" = (
+/obj/shrub{
+	dir = 1;
+	icon = 'icons/obj/stationobjs.dmi';
+	icon_state = "plant"
+	},
+/obj/item/storage/wall/random,
+/obj/landmark/kudzu,
+/turf/simulated/floor/black,
+/area/station/crew_quarters/market)
+
+(1,1,1) = {"
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+"}
+(2,1,1) = {"
+GG
+cu
+cu
+zn
+zn
+SU
+nY
+pI
+uz
+cR
+cR
+cR
+uA
+cR
+Cc
+Xj
+GG
+"}
+(3,1,1) = {"
+GG
+az
+yk
+cO
+pr
+gO
+jx
+br
+iJ
+XJ
+An
+ck
+jv
+Ko
+Na
+nd
+GG
+"}
+(4,1,1) = {"
+GG
+ZC
+yk
+US
+kZ
+gO
+jx
+Qd
+yG
+XJ
+xd
+ll
+HH
+HH
+HH
+PH
+GG
+"}
+(5,1,1) = {"
+GG
+Jm
+yk
+lJ
+Fu
+gO
+HP
+pI
+ph
+cR
+bP
+MK
+mb
+mb
+mb
+Hm
+GG
+"}
+(6,1,1) = {"
+GG
+Xr
+ud
+ae
+wd
+gO
+nx
+yV
+qS
+Sz
+FJ
+MK
+mb
+cv
+Pv
+Hm
+GG
+"}
+(7,1,1) = {"
+GG
+LQ
+pl
+Ea
+kV
+OG
+jx
+jV
+Wx
+sk
+Kz
+MK
+mb
+cv
+mt
+jD
+GG
+"}
+(8,1,1) = {"
+GG
+Af
+qx
+FV
+st
+Xy
+jx
+Qd
+Qk
+cR
+rD
+JJ
+mb
+Qp
+Cm
+jD
+GG
+"}
+(9,1,1) = {"
+GG
+fC
+QX
+qF
+jo
+Xy
+vQ
+mf
+xN
+QC
+Yv
+py
+in
+WX
+Zf
+jD
+GG
+"}
+(10,1,1) = {"
+GG
+mj
+qw
+HA
+HO
+Wk
+KN
+TJ
+hb
+aj
+sm
+lW
+GF
+GI
+vS
+cI
+GG
+"}
+(11,1,1) = {"
+GG
+LG
+zz
+if
+jo
+iw
+jx
+wn
+Lm
+ow
+tK
+Uq
+Pb
+WX
+DF
+jD
+GG
+"}
+(12,1,1) = {"
+GG
+XW
+zz
+Qw
+nC
+Fc
+nI
+wn
+Qk
+cR
+UX
+FT
+mb
+vn
+zh
+jD
+GG
+"}
+(13,1,1) = {"
+GG
+LQ
+Rs
+Ea
+ai
+GB
+jx
+MB
+Wx
+XJ
+bE
+MK
+mb
+cv
+Xt
+jD
+GG
+"}
+(14,1,1) = {"
+GG
+CS
+Xw
+dq
+OW
+dW
+GE
+JK
+WY
+SB
+as
+IH
+kY
+vv
+AD
+Id
+GG
+"}
+(15,1,1) = {"
+GG
+Kn
+hc
+WO
+Fu
+iw
+jx
+Zr
+ph
+cR
+jW
+MK
+mb
+mb
+mb
+jD
+GG
+"}
+(16,1,1) = {"
+GG
+ZC
+hc
+US
+QR
+iw
+jx
+wn
+JA
+XJ
+Sh
+yw
+Al
+Al
+Al
+hW
+GG
+"}
+(17,1,1) = {"
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+GG
+"}

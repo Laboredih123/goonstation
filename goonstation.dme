@@ -1840,6 +1840,7 @@
 #include "code\modules\worldgen\mapgen\biomes\_biome.dm"
 #include "code\modules\worldgen\mapgen\biomes\VoidGenerator.dm"
 #include "code\modules\worldgen\prefab\allocated.dm"
+#include "code\modules\worldgen\prefab\devtestloader.dm"
 #include "code\modules\worldgen\prefab\engines.dm"
 #include "code\modules\worldgen\prefab\mapPrefab.dm"
 #include "code\modules\worldgen\prefab\random_rooms.dm"
