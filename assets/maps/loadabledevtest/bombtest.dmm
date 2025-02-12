@@ -135,7 +135,6 @@
 /area/station/crew_quarters/market)
 "hb" = (
 /obj/stool/chair,
-/obj/landmark/start/job/mail_courier,
 /turf/simulated/floor/carpet{
 	dir = 1;
 	icon_state = "red2"
@@ -217,10 +216,6 @@
 	},
 /turf/simulated/floor,
 /area/station/quartermaster/office)
-"jV" = (
-/obj/landmark/halloween,
-/turf/simulated/floor/yellow/side,
-/area/station/crew_quarters/market)
 "jW" = (
 /obj/machinery/light/emergency{
 	dir = 1
@@ -454,7 +449,6 @@
 /obj/stool/chair/yellow{
 	dir = 4
 	},
-/obj/landmark/start/job/quartermaster,
 /turf/simulated/floor/carpet{
 	icon_state = "fred1"
 	},
@@ -572,6 +566,16 @@
 /turf/simulated/floor,
 /area/station/quartermaster/office)
 "xN" = (
+/obj/item/pressure_crystal,
+/obj/item/device/pressure_sensor{
+	pixel_x = -12
+	},
+/obj/decal/tile_edge/stripe/xmas{
+	dir = 6
+	},
+/obj/decal/tile_edge/stripe/xmas{
+	dir = 9
+	},
 /turf/simulated/floor/carpet{
 	dir = 9;
 	icon_state = "red2"
@@ -778,7 +782,6 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
-/obj/landmark/start/job/security_officer,
 /turf/simulated/floor/specialroom/bar,
 /area/station/security/checkpoint/cargo)
 "HH" = (
@@ -903,13 +906,6 @@
 "LQ" = (
 /turf/simulated/wall/auto/reinforced/supernorn,
 /area/station/security/checkpoint/cargo)
-"MB" = (
-/obj/landmark/halloween,
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 4
-	},
-/turf/simulated/floor/yellow/side,
-/area/station/crew_quarters/market)
 "MK" = (
 /turf/simulated/floor/yellow/side{
 	dir = 1
@@ -1052,7 +1048,6 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/landmark/halloween,
 /obj/disposalpipe/segment/mail/vertical,
 /turf/simulated/floor/yellow/side{
 	dir = 1
@@ -1198,7 +1193,6 @@
 	icon_state = "plant"
 	},
 /obj/item/storage/wall/random,
-/obj/landmark/kudzu,
 /turf/simulated/floor/black,
 /area/station/crew_quarters/market)
 
@@ -1324,7 +1318,7 @@ Ea
 kV
 OG
 jx
-jV
+Qd
 Wx
 sk
 Kz
@@ -1438,7 +1432,7 @@ Ea
 ai
 GB
 jx
-MB
+wn
 Wx
 XJ
 bE
