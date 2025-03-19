@@ -218,7 +218,7 @@ ABSTRACT_TYPE(/obj/item/plant/herb)
 	name = "steelwheat"
 	desc = "Never eat iron filings."
 	icon_state = "metalwheat"
-	brew_result = list("beer"=20, "iron"=20)
+	brew_result = list("ironbrew"=20)
 
 	make_reagents()
 		..()
@@ -401,6 +401,11 @@ ABSTRACT_TYPE(/obj/item/plant/herb)
 	crop_suffix	= ""
 	desc = "A distinctive red flower."
 	icon_state = "poppy"
+
+/obj/item/plant/herb/poppy/spawnable
+	make_reagents()
+		src.create_reagents(85)
+		reagents.add_reagent("morphine", 40)
 
 /obj/item/plant/herb/tea
 	name = "tea leaves"

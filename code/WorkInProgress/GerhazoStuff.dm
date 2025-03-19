@@ -37,12 +37,12 @@
 		abilityHolder.updateButtons()
 
 	initializeBioholder()
-		bioHolder.mobAppearance.customization_first = new /datum/customization_style/hair/short/short
-		bioHolder.mobAppearance.customization_second = new /datum/customization_style/beard/fullbeard
-		bioHolder.mobAppearance.customization_third = new /datum/customization_style/eyebrows/eyebrows
-		bioHolder.mobAppearance.customization_first_color = "#555555"
-		bioHolder.mobAppearance.customization_second_color = "#555555"
-		bioHolder.mobAppearance.customization_third_color = "#555555"
+		bioHolder.mobAppearance.customizations["hair_bottom"].style =  new /datum/customization_style/hair/short/short
+		bioHolder.mobAppearance.customizations["hair_middle"].style =  new /datum/customization_style/beard/fullbeard
+		bioHolder.mobAppearance.customizations["hair_top"].style =  new /datum/customization_style/eyebrows/eyebrows
+		bioHolder.mobAppearance.customizations["hair_bottom"].color = "#555555"
+		bioHolder.mobAppearance.customizations["hair_middle"].color = "#555555"
+		bioHolder.mobAppearance.customizations["hair_top"].color = "#555555"
 		. = ..()
 
 	bullet_act(obj/projectile/P, mob/meatshield) // deflect energy projectiles, cut bullets
@@ -592,6 +592,7 @@
 			M.take_toxin_damage(-15)
 			M.take_oxygen_deprivation(-15)
 			M.losebreath = max(0, M.losebreath - 10)
+			repair_bleeding_damage(M, 100, rand(1,2))
 			M.visible_message(SPAN_ALERT("Some of [M]'s wounds slowly fade away!"), SPAN_ALERT("Your wounds begin to fade away."))
 			playsound(M, 'sound/items/mender.ogg', 50, TRUE)
 		else

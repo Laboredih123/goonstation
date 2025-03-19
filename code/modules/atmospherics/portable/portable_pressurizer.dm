@@ -110,7 +110,7 @@ TYPEINFO(/obj/machinery/portable_atmospherics/pressurizer)
 		else
 			UpdateOverlays(null, "armed")
 
-	return_air()
+	return_air(direct = FALSE)
 		return air_contents
 
 	proc/process_fan()
@@ -215,7 +215,7 @@ TYPEINFO(/obj/machinery/portable_atmospherics/pressurizer)
 		if(iswrenchingtool(I) || istype(I,/obj/item/device/analyzer/atmospheric) || istype(I,/obj/item/card/emag))
 			..()
 			return
-		if(istype(I,/obj/item/electronics/scanner) || istype(I,/obj/item/deconstructor) || (istype(I,/obj/item/device/pda2)))
+		if(istype(I,/obj/item/device/pda2))
 			user.visible_message(SPAN_ALERT("<B>[user] hits [src] with [I]!</B>"))
 			return
 		if (istype(I,/obj/item/satchel/) && I.contents.len)
