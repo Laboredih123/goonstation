@@ -5,7 +5,7 @@
 	name = "V-Space B-Ball Court"
 	icon_state="vr"
 
-ABSTRACT_TYPE(area)
+ABSTRACT_TYPE(/area/sim/tdome)
 /area/sim/tdome
 	name = "Thunderdome"
 	icon_state = "medbay"
