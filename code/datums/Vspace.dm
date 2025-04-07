@@ -1,52 +1,3 @@
-/*
-/mob/proc/jack_in()
-	set category = "Local"
-	set name="Enter V-space"
-
-	if (!ismob(usr)) return
-	if (!usr.client) return
-	if (!usr.network_device) return
-
-	if (!isalive(usr) || usr.getStatusDuration("stunned") !=0)
-		return
-
-	var/mob/living/user = usr
-	if (user.network_device)
-		var/datum/v_space/V
-		V.Enter_Vspace(user, user.network_device)
-	return
-
-/mob/proc/jack_out()
-	set category = "Local"
-	set name="Exit V-space"
-
-	if (!ismob(usr)) return
-	if (!usr.client) return
-	if (!istype(usr, /mob/living/carbon/human/virtual/)) return
-
-	var/datum/v_space/V
-	V.Leave_Vspace(usr)
-	return*/
-
-// Logout buttons were discontinued because...?? Well, here they are again (Convair880).
-/obj/death_button/VR_logout_button
-	name = "Leave VR"
-	desc = "Press this button to log out of virtual reality."
-	icon = 'icons/obj/monitors.dmi'
-	icon_state = "party"
-
-	attack_hand(mob/user)
-		if (!ismob(user) || !user.client || !istype(user, /mob/living/carbon/human/virtual/))
-			return
-		src.add_fingerprint(user)
-
-		// Won't delete the VR character otherwise, which can be confusing (detective's goggles sending you to the existing body in the bomb VR etc).
-		setdead(user)
-		user.death(FALSE)
-
-		Station_VNet.Leave_Vspace(user)
-		return
-
 var/global/datum/v_space/v_space_network/Station_VNet
 
 datum/v_space
@@ -167,13 +118,6 @@ datum/v_space
 			return 0
 */
 		return 1
-
-
-	proc/In_Network(var/mob/user, var/networkdevice)
-		for(var/obj/machinery/sim/transmitter/T in orange(10,networkdevice))
-			if(T.active == 1)
-				return 1
-		return 0
 
 
 	proc/create_Vcharacter(var/mob/user, var/network_device, var/network, turf/B)

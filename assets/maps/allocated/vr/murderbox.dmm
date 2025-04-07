@@ -1,0 +1,1141 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"as" = (
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"bl" = (
+/obj/item/cigbutt{
+	pixel_x = 6
+	},
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"bV" = (
+/obj/decal/cleanable/dirt/dirt3,
+/obj/item/cigbutt{
+	pixel_x = 6
+	},
+/obj/stool/bench/blue/auto,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"eF" = (
+/obj/item/cigbutt{
+	pixel_x = -5;
+	pixel_y = -7
+	},
+/obj/stool/bench/blue/auto,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"eZ" = (
+/obj/table/wood/auto/desk,
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"fc" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/snacks/ingredient/sugar{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/drinks/milk{
+	canberandom = 0;
+	pixel_x = 8;
+	pixel_y = 15
+	},
+/obj/item/kitchen/utensil/spoon{
+	pixel_x = -3;
+	pixel_y = 18;
+	transform = list(0,1,0,-1,0,0)
+	},
+/obj/item/reagent_containers/food/drinks/creamer{
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"fw" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"fC" = (
+/obj/stool/chair/dining/wood{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"fF" = (
+/obj/machinery/light/small/sticky/frostedred{
+	dir = 1;
+	pixel_y = 10
+	},
+/obj/fakeobject{
+	desc = "It's moving a ton of air! Those blades sure do look sharp...";
+	icon = 'icons/obj/shuttle.dmi';
+	icon_state = "sea_propulsion";
+	name = "fan"
+	},
+/turf/unsimulated/floor/plating/random,
+/area/sim/gunsim/maintenance)
+"hB" = (
+/obj/decal/cleanable/dirt/dirt2,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"hQ" = (
+/obj/table/wood/round,
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_x = -3;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/flute{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/flute{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"ia" = (
+/obj/decoration/decorativeplant/plant7,
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"in" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/fitness/speedbag,
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"iD" = (
+/obj/table/reinforced/auto,
+/obj/traitorifier/virtual,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"iS" = (
+/obj/machinery/vending/coffee,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"iZ" = (
+/obj/item/cigbutt{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/obj/item/cigbutt{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"jH" = (
+/turf/cordon,
+/area/cordon)
+"jK" = (
+/obj/table/reinforced/auto,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"kX" = (
+/turf/unsimulated/wall/generic{
+	desc = "It's sealed shut.";
+	dir = 4;
+	icon = 'icons/obj/doors/blastdoor.dmi';
+	icon_state = "bdoormid1";
+	name = "security cordon"
+	},
+/area/sim/gunsim/maintenance)
+"ma" = (
+/obj/item/cigbutt{
+	pixel_x = -5;
+	pixel_y = -7
+	},
+/obj/item/cigbutt{
+	pixel_x = 6
+	},
+/turf/simulated/floor/plating,
+/area/sim/gunsim/lobby)
+"mj" = (
+/obj/decal/cleanable/dirt/dirt5,
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"mF" = (
+/obj/fitness/weightlifter,
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"nn" = (
+/obj/decal/cleanable/machine_debris,
+/obj/item/cigbutt{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"nB" = (
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet{
+	desc = "This place is going to be a fucking mess.";
+	name = "\proper the murderbox"
+	},
+/area/sim/gunsim/arena)
+"ou" = (
+/obj/stool/chair/dining/wood{
+	dir = 4
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"pM" = (
+/obj/decal/cleanable/dirt/dirt5,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"pV" = (
+/turf/unsimulated/wall/auto/lead/white{
+	name = "virtual lead wall"
+	},
+/area/sim/gunsim/lobby)
+"qG" = (
+/obj/decoration/collapsedwall,
+/obj/structure/woodwall,
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"rg" = (
+/obj/table/wood/auto/desk,
+/obj/decoration/decorativeplant{
+	pixel_y = 10
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"rw" = (
+/obj/item/cigbutt{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/obj/stool/bench/blue/auto,
+/obj/item/device/radio/intercom/virtual{
+	dir = 1
+	},
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"rX" = (
+/turf/unsimulated/floor/setpieces/gauntlet{
+	desc = "This place is going to be a fucking mess.";
+	name = "\proper the murderbox"
+	},
+/area/sim/gunsim/arena)
+"sd" = (
+/obj/machinery/vending/snack{
+	status = 1
+	},
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"st" = (
+/obj/table/wood/auto/desk,
+/obj/item/cigarbox/gold,
+/obj/item/device/light/zippo/gold,
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"tt" = (
+/obj/table/reinforced/auto,
+/obj/traitorifier/virtual/werewolf,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"tT" = (
+/obj/item/cigbutt{
+	pixel_x = 6
+	},
+/obj/item/cigbutt{
+	pixel_x = -4;
+	pixel_y = -5
+	},
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/machine_debris,
+/obj/item/cable_coil/cut/small{
+	pixel_y = 4
+	},
+/obj/item/brick,
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"uK" = (
+/obj/table/reinforced/auto,
+/obj/traitorifier/virtual/nuclear,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"vC" = (
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"vE" = (
+/obj/decal/cleanable/oil,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"vO" = (
+/obj/item/cigbutt{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/obj/item/cigbutt{
+	pixel_x = 6
+	},
+/obj/item/cigbutt{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/obj/decal/cleanable/dirt/dirt4,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"wj" = (
+/obj/reagent_dispensers/watertank/fountain,
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"wl" = (
+/obj/invisible_teleporter/receive_only{
+	id = "murderentry"
+	},
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"wu" = (
+/obj/mesh/grille/steel/broken,
+/turf/unsimulated/floor/plating/random,
+/area/sim/gunsim/maintenance)
+"wR" = (
+/obj/death_button/clean_gunsim{
+	pixel_x = 32
+	},
+/turf/unsimulated/floor/setpieces/gauntlet{
+	desc = "This place is going to be a fucking mess.";
+	name = "\proper the murderbox"
+	},
+/area/sim/gunsim/arena)
+"wZ" = (
+/obj/item/device/radio/intercom/virtual{
+	dir = 1
+	},
+/turf/unsimulated/floor/setpieces/gauntlet{
+	desc = "This place is going to be a fucking mess.";
+	name = "\proper the murderbox"
+	},
+/area/sim/gunsim/arena)
+"yv" = (
+/turf/unsimulated/floor/plating/random,
+/area/sim/gunsim/maintenance)
+"yG" = (
+/obj/machinery/coffeemaker/research,
+/obj/table/wood/auto,
+/obj/drink_rack/mug{
+	pixel_y = 31
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"zw" = (
+/obj/mesh/grille/steel,
+/obj/machinery/light/small/sticky/frostedred{
+	dir = 4;
+	pixel_x = 10
+	},
+/turf/unsimulated/floor/plating/random,
+/area/sim/gunsim/maintenance)
+"zy" = (
+/obj/fitness/speedbag/captain,
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"Az" = (
+/obj/item/device/radio/intercom/virtual,
+/turf/unsimulated/floor/setpieces/gauntlet{
+	desc = "This place is going to be a fucking mess.";
+	name = "\proper the murderbox"
+	},
+/area/sim/gunsim/arena)
+"AQ" = (
+/turf/unsimulated/wall/generic{
+	desc = "A double black security door. Looks pretty tough. I wouldn't take this door on in a fight.";
+	icon = 'icons/obj/doors/destiny.dmi';
+	icon_state = "fmorg_closed";
+	name = "airlock";
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"Bc" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/obj/fitness/speedbag/syndie,
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"Bf" = (
+/obj/death_button/create_dummy,
+/turf/unsimulated/wall/auto/lead/white{
+	name = "virtual lead wall"
+	},
+/area/sim/gunsim/arena)
+"BZ" = (
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"Cg" = (
+/obj/decal/cleanable/dirt/dirt3,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"CA" = (
+/turf/unsimulated/wall/auto/lead/white{
+	name = "virtual lead wall"
+	},
+/area/sim/gunsim/maintenance)
+"CY" = (
+/obj/machinery/light/small/sticky/frostedred{
+	dir = 1;
+	pixel_y = 10
+	},
+/turf/unsimulated/floor/plating/random,
+/area/sim/gunsim/maintenance)
+"Dq" = (
+/obj/fitness/speedbag/wizard,
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"ED" = (
+/obj/decal/cleanable/dirt/dirt2,
+/obj/item/cigbutt{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"EM" = (
+/obj/decal/cleanable/dirt/dirt2,
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"FS" = (
+/obj/submachine/weapon_vendor/syndicate,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"GN" = (
+/obj/item/cigbutt{
+	pixel_x = 6
+	},
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"HR" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"IO" = (
+/obj/decal/cleanable/dirt/dirt5,
+/obj/decal/residual_energy,
+/obj/decal/swirlthing,
+/obj/invisible_teleporter{
+	id = "murderbox"
+	},
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"JL" = (
+/obj/decal/cleanable/dirt/dirt4,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"LE" = (
+/obj/item/reagent_containers/food/drinks/drinkingglass/flute{
+	pixel_x = 7;
+	pixel_y = 18
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/flute{
+	pixel_x = 7;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/flute{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/champagne/cristal_champagne{
+	pixel_x = -4;
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/bottle/champagne/cristal_champagne{
+	pixel_x = -1;
+	pixel_y = 10
+	},
+/obj/table/wood/auto/desk,
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"LG" = (
+/obj/item/cigbutt{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/obj/item/cigbutt{
+	pixel_x = 6
+	},
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"Mj" = (
+/obj/stool/chair/comfy/blue,
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"Mx" = (
+/turf/unsimulated/floor/wood/seven,
+/area/sim/gunsim/lobby)
+"Ne" = (
+/obj/decal/cleanable/dirt/dirt4,
+/obj/machinery/vending/murderbox_gang,
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"Pq" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	invisibility = 101;
+	invuln = 1;
+	name = "autoname - Entertainment";
+	network = "Zeta";
+	tag = ""
+	},
+/obj/invisible_teleporter/receive_only{
+	id = "murderbox"
+	},
+/turf/unsimulated/floor/setpieces/gauntlet{
+	desc = "Today is a good day to die.";
+	icon_state = "gauntfloorSkulls";
+	name = "\proper THE MURDERBOX"
+	},
+/area/sim/gunsim/arena)
+"Rf" = (
+/obj/decal/cleanable/dirt/dirt2,
+/obj/item/cigbutt{
+	pixel_x = 6
+	},
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"Si" = (
+/obj/table/reinforced/auto,
+/obj/traitorifier/virtual/arcfiend,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"SP" = (
+/obj/table/reinforced/auto,
+/obj/traitorifier/virtual/wrestler,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"Ue" = (
+/obj/mesh/grille/steel,
+/turf/unsimulated/floor/plating/random,
+/area/sim/gunsim/maintenance)
+"Uk" = (
+/turf/unsimulated/wall/auto/lead/white{
+	name = "virtual lead wall"
+	},
+/area/sim/gunsim/arena)
+"UM" = (
+/obj/table/reinforced/auto,
+/obj/traitorifier/virtual/wizard,
+/turf/unsimulated/floor/grime,
+/area/sim/gunsim/lobby)
+"Wg" = (
+/turf/unsimulated/wall/setpieces/leadwindow/white{
+	dir = 8
+	},
+/area/sim/gunsim/arena)
+"XF" = (
+/obj/decal/cleanable/dirt/dirt5,
+/obj/stool/bench/blue/auto,
+/turf/unsimulated/floor/plating,
+/area/sim/gunsim/lobby)
+"Yy" = (
+/obj/fitness/stacklifter,
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+"Zs" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
+	},
+/turf/unsimulated/floor/wood/eight{
+	dir = 4
+	},
+/area/sim/gunsim/lobby)
+
+(1,1,1) = {"
+jH
+jH
+jH
+jH
+jH
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Bf
+Uk
+Uk
+Uk
+Uk
+Uk
+"}
+(2,1,1) = {"
+jH
+jH
+jH
+jH
+jH
+Uk
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(3,1,1) = {"
+jH
+jH
+jH
+jH
+jH
+Uk
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(4,1,1) = {"
+jH
+jH
+jH
+jH
+jH
+Uk
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(5,1,1) = {"
+pV
+pV
+pV
+AQ
+Uk
+Uk
+Az
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(6,1,1) = {"
+pV
+ou
+Mx
+Mx
+ia
+Wg
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(7,1,1) = {"
+pV
+hQ
+Mx
+Mx
+rg
+Wg
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(8,1,1) = {"
+pV
+fC
+Mx
+Mj
+LE
+Wg
+rX
+rX
+rX
+rX
+rX
+rX
+Pq
+rX
+rX
+rX
+rX
+rX
+wZ
+Uk
+"}
+(9,1,1) = {"
+pV
+fc
+Mx
+Mj
+eZ
+Wg
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+nB
+Uk
+"}
+(10,1,1) = {"
+pV
+yG
+Mx
+Mx
+st
+Wg
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(11,1,1) = {"
+pV
+wj
+Mx
+Mx
+Mx
+Wg
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(12,1,1) = {"
+pV
+pV
+qG
+pV
+Uk
+Uk
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(13,1,1) = {"
+jH
+CA
+wu
+CA
+jH
+Uk
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(14,1,1) = {"
+jH
+CA
+CY
+CA
+jH
+Uk
+rX
+rX
+rX
+rX
+rX
+rX
+rX
+wR
+rX
+rX
+rX
+rX
+rX
+Uk
+"}
+(15,1,1) = {"
+jH
+CA
+yv
+CA
+jH
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+Uk
+"}
+(16,1,1) = {"
+jH
+CA
+yv
+CA
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+"}
+(17,1,1) = {"
+jH
+kX
+yv
+CA
+CA
+CA
+CA
+CA
+CA
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+"}
+(18,1,1) = {"
+jH
+CA
+yv
+yv
+yv
+yv
+yv
+Ue
+CA
+pV
+sd
+tT
+Ne
+Si
+UM
+iD
+tt
+vC
+IO
+pV
+"}
+(19,1,1) = {"
+jH
+CA
+CA
+CA
+zw
+Ue
+yv
+yv
+CA
+pV
+Bc
+Zs
+bl
+vC
+BZ
+pM
+mj
+iZ
+JL
+pV
+"}
+(20,1,1) = {"
+jH
+jH
+jH
+CA
+CA
+CA
+CA
+yv
+CA
+pV
+Yy
+HR
+pM
+BZ
+nn
+vC
+GN
+LG
+eF
+pV
+"}
+(21,1,1) = {"
+jH
+jH
+jH
+jH
+CA
+fF
+Ue
+yv
+CA
+pV
+Dq
+HR
+hB
+EM
+hB
+BZ
+Cg
+pM
+XF
+pV
+"}
+(22,1,1) = {"
+jH
+jH
+jH
+jH
+CA
+CA
+CA
+yv
+CA
+pV
+zy
+HR
+vC
+GN
+ma
+vC
+ED
+vC
+bV
+pV
+"}
+(23,1,1) = {"
+jH
+jH
+jH
+jH
+CA
+fF
+Ue
+yv
+CA
+pV
+mF
+HR
+BZ
+hB
+vC
+BZ
+BZ
+mj
+rw
+pV
+"}
+(24,1,1) = {"
+jH
+jH
+jH
+jH
+CA
+CA
+CA
+yv
+CA
+pV
+in
+fw
+vC
+vC
+vO
+vC
+Rf
+vC
+as
+pV
+"}
+(25,1,1) = {"
+jH
+jH
+jH
+jH
+CA
+fF
+Ue
+yv
+yv
+qG
+iS
+vE
+EM
+jK
+FS
+uK
+SP
+BZ
+wl
+pV
+"}
+(26,1,1) = {"
+jH
+jH
+jH
+jH
+CA
+CA
+CA
+CA
+CA
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+"}

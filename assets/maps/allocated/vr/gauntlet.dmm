@@ -1,0 +1,766 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/unsimulated/wall/generic{
+	icon = 'icons/obj/singularity.dmi';
+	icon_state = "TheSingMain";
+	name = "v-space"
+	},
+/area/gauntlet/viewing)
+"f" = (
+/obj/table/virtual{
+	dir = 10;
+	icon_state = "tabledir"
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/viewing)
+"g" = (
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/viewing)
+"i" = (
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/viewing)
+"j" = (
+/obj/table/virtual{
+	dir = 6;
+	icon_state = "tabledir"
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/viewing)
+"k" = (
+/obj/machinery/door/poddoor/buff/gauntlet,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/staging)
+"l" = (
+/turf/unsimulated/wall/auto/adventure/fake_window,
+/area/gauntlet/viewing)
+"m" = (
+/obj/item/device/radio/intercom/virtual,
+/turf/unsimulated/wall/generic{
+	icon = 'icons/obj/singularity.dmi';
+	icon_state = "TheSingMain";
+	name = "v-space"
+	},
+/area/gauntlet/viewing)
+"o" = (
+/obj/table/virtual{
+	icon_state = "tabledir"
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/staging)
+"p" = (
+/obj/observable/gauntlet,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet)
+"r" = (
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet)
+"s" = (
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/staging)
+"t" = (
+/obj/stagebutton,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/staging)
+"u" = (
+/obj/rack{
+	icon = 'icons/effects/VR.dmi'
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/staging)
+"z" = (
+/obj/machinery/door/poddoor/buff/staging,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/staging)
+"B" = (
+/turf/unsimulated/wall/auto/virtual,
+/area/gauntlet/viewing)
+"E" = (
+/obj/table/virtual{
+	dir = 10;
+	icon_state = "tabledir"
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/staging)
+"G" = (
+/turf/unsimulated/floor/setpieces/gauntlet{
+	icon_state = "gauntfloorSkulls"
+	},
+/area/gauntlet/staging)
+"I" = (
+/obj/death_button/VR_logout_button{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet)
+"J" = (
+/obj/adventurepuzzle/triggerable/light/gauntlet,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet)
+"Q" = (
+/obj/table/virtual{
+	dir = 6;
+	icon_state = "tabledir"
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/staging)
+"T" = (
+/obj/death_button/VR_logout_button{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/viewing)
+"Y" = (
+/obj/ladder{
+	icon_state = "ladder_wall";
+	id = "gauntlet1";
+	name = "ladder which goes back to the other part of vr i guess";
+	pixel_y = 20
+	},
+/turf/unsimulated/floor/setpieces/gauntlet{
+	icon_state = "gauntfloorHearts"
+	},
+/area/gauntlet/viewing)
+"Z" = (
+/obj/table/virtual{
+	icon_state = "tabledir"
+	},
+/obj/machinery/computer/security/wooden_tv/small/virtual,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/gauntlet/viewing)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+a
+"}
+(3,1,1) = {"
+a
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+a
+"}
+(4,1,1) = {"
+m
+i
+i
+B
+B
+B
+l
+l
+l
+l
+l
+l
+l
+l
+l
+B
+B
+B
+f
+i
+i
+i
+i
+i
+i
+i
+i
+a
+"}
+(5,1,1) = {"
+a
+i
+i
+B
+J
+r
+r
+r
+J
+r
+r
+r
+J
+r
+r
+r
+J
+B
+Z
+i
+i
+i
+i
+T
+i
+i
+i
+a
+"}
+(6,1,1) = {"
+a
+i
+i
+B
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+B
+B
+l
+l
+l
+B
+B
+i
+i
+i
+a
+"}
+(7,1,1) = {"
+a
+i
+i
+B
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+B
+o
+u
+u
+o
+u
+B
+i
+i
+i
+a
+"}
+(8,1,1) = {"
+a
+i
+i
+B
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+B
+o
+s
+s
+o
+s
+B
+Y
+i
+i
+a
+"}
+(9,1,1) = {"
+a
+i
+i
+B
+J
+r
+r
+r
+J
+r
+r
+r
+J
+r
+r
+r
+J
+B
+Q
+s
+s
+Q
+s
+B
+i
+i
+i
+a
+"}
+(10,1,1) = {"
+a
+i
+i
+B
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+k
+s
+s
+s
+s
+s
+z
+i
+i
+i
+a
+"}
+(11,1,1) = {"
+a
+i
+g
+B
+r
+r
+r
+r
+r
+r
+p
+r
+r
+r
+r
+r
+r
+k
+t
+G
+s
+s
+s
+z
+i
+i
+i
+a
+"}
+(12,1,1) = {"
+a
+i
+i
+B
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+k
+s
+s
+s
+s
+s
+z
+i
+i
+i
+a
+"}
+(13,1,1) = {"
+a
+i
+i
+B
+J
+r
+r
+r
+J
+r
+r
+r
+J
+r
+r
+r
+J
+B
+E
+s
+s
+E
+s
+B
+i
+i
+i
+a
+"}
+(14,1,1) = {"
+a
+i
+i
+B
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+B
+o
+s
+s
+o
+s
+B
+i
+i
+i
+a
+"}
+(15,1,1) = {"
+a
+i
+i
+B
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+B
+o
+u
+u
+o
+u
+B
+i
+i
+i
+a
+"}
+(16,1,1) = {"
+a
+i
+i
+B
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+r
+B
+B
+l
+l
+l
+B
+B
+i
+i
+i
+a
+"}
+(17,1,1) = {"
+a
+i
+i
+B
+J
+r
+r
+r
+J
+r
+r
+r
+J
+r
+r
+I
+J
+B
+Z
+i
+i
+i
+i
+i
+i
+i
+i
+a
+"}
+(18,1,1) = {"
+m
+i
+i
+B
+B
+B
+l
+l
+l
+l
+l
+l
+l
+l
+l
+B
+B
+B
+j
+i
+i
+i
+i
+i
+i
+i
+i
+a
+"}
+(19,1,1) = {"
+a
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+a
+"}
+(20,1,1) = {"
+a
+i
+T
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+i
+T
+i
+a
+"}
+(21,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

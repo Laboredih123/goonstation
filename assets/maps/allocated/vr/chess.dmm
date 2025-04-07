@@ -1,0 +1,854 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bN" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 1;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"eK" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "floorgrime-w"
+	},
+/area/sim/racing_track)
+"fl" = (
+/obj/death_button/VR_logout_button{
+	pixel_y = 24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"hK" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 4;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "queen"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"ib" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 4;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 1;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "rook"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"im" = (
+/turf/unsimulated/wall/generic{
+	icon = 'icons/obj/singularity.dmi';
+	icon_state = "TheSingMain";
+	name = "v-space"
+	},
+/area/sim/racing_track)
+"jl" = (
+/turf/unsimulated/floor/chess{
+	icon_state = "floorgrime-w"
+	},
+/area/sim/racing_track)
+"jr" = (
+/obj/landmark/chess{
+	name = "pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"kf" = (
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"kF" = (
+/obj/decal/poster/wallsign/stencil/right/two,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"lb" = (
+/obj/decal/poster/wallsign/stencil/left/c,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"ns" = (
+/obj/decal/poster/wallsign/stencil/left/a,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"oX" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"qP" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 1;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"rO" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 4;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "rook"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"sR" = (
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"tx" = (
+/obj/chessbutton{
+	pixel_x = 12
+	},
+/turf/unsimulated/wall/generic{
+	icon = 'icons/obj/singularity.dmi';
+	icon_state = "TheSingMain";
+	name = "v-space"
+	},
+/area/sim/racing_track)
+"vn" = (
+/obj/decal/poster/wallsign/stencil/right/four,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"ys" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 8;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_bishop"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"yL" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 8;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_queen"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"zL" = (
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"zR" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"Bm" = (
+/obj/landmark/chess{
+	name = "b_pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"Br" = (
+/obj/decal/poster/wallsign/stencil/right/three,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"Bv" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 1;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 8;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_rook"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"Em" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 4;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "king"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"EO" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 4;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "knight"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"ER" = (
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"FB" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 8;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_king"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"FN" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 8;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_knight"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"GA" = (
+/obj/decal/poster/wallsign/stencil/right/one,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"GH" = (
+/obj/landmark/chess{
+	name = "b_pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "floorgrime-w"
+	},
+/area/sim/racing_track)
+"HT" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 1;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"Jh" = (
+/obj/decal/poster/wallsign/stencil/left/e,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"Jk" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 4;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "knight"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"JY" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 4;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "bishop"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"Kp" = (
+/obj/decal/poster/wallsign/stencil/left/seven,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"Li" = (
+/obj/decal/poster/wallsign/stencil/left/b,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"Lm" = (
+/obj/decal/poster/wallsign/stencil/left/h,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"Lu" = (
+/obj/decal/poster/wallsign/stencil/left/f,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"LM" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 8;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_knight"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"Ma" = (
+/obj/landmark/chess{
+	name = "b_pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"Ne" = (
+/obj/decal/poster/wallsign/stencil/left/five,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"NC" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"PX" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 4;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "bishop"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"PZ" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "fullblack"
+	},
+/area/sim/racing_track)
+"RH" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 8;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_rook"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"SQ" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 8;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_bishop"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"UE" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "It's brown for some strange reason.";
+	dir = 1;
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "mars_window";
+	layer = 8;
+	name = "window"
+	},
+/obj/landmark/chess{
+	name = "b_pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "floorgrime-w"
+	},
+/area/sim/racing_track)
+"UJ" = (
+/obj/landmark/chess{
+	name = "pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "floorgrime-w"
+	},
+/area/sim/racing_track)
+"UZ" = (
+/obj/decal/poster/wallsign/stencil/left/g,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"Vv" = (
+/obj/decal/poster/wallsign/stencil/left/eight,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"Vy" = (
+/obj/decal/poster/wallsign/stencil/left/six,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+"WJ" = (
+/obj/landmark/chess{
+	name = "pawn"
+	},
+/turf/unsimulated/floor/chess{
+	icon_state = "white"
+	},
+/area/sim/racing_track)
+"WY" = (
+/obj/decal/poster/wallsign/stencil/left/d,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/racing_track)
+
+(1,1,1) = {"
+im
+im
+im
+im
+tx
+im
+im
+im
+im
+im
+im
+im
+im
+im
+"}
+(2,1,1) = {"
+im
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+im
+"}
+(3,1,1) = {"
+im
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+im
+"}
+(4,1,1) = {"
+im
+kf
+kf
+Bv
+LM
+ys
+FB
+yL
+SQ
+FN
+RH
+Vv
+kf
+im
+"}
+(5,1,1) = {"
+im
+kf
+kf
+UE
+Ma
+Bm
+Ma
+Bm
+Ma
+GH
+oX
+Kp
+kf
+im
+"}
+(6,1,1) = {"
+im
+kf
+kf
+HT
+sR
+zL
+sR
+zL
+sR
+zL
+NC
+Vy
+kf
+im
+"}
+(7,1,1) = {"
+im
+kf
+kf
+qP
+zL
+sR
+zL
+sR
+zL
+sR
+PZ
+Ne
+kf
+im
+"}
+(8,1,1) = {"
+im
+fl
+kf
+HT
+sR
+zL
+jl
+zL
+sR
+zL
+eK
+vn
+ER
+im
+"}
+(9,1,1) = {"
+im
+kf
+kf
+qP
+zL
+sR
+zL
+sR
+zL
+sR
+PZ
+Br
+kf
+im
+"}
+(10,1,1) = {"
+im
+kf
+kf
+bN
+UJ
+jr
+WJ
+jr
+UJ
+jr
+zR
+kF
+kf
+im
+"}
+(11,1,1) = {"
+im
+kf
+kf
+ib
+Jk
+JY
+Em
+hK
+PX
+EO
+rO
+GA
+kf
+im
+"}
+(12,1,1) = {"
+im
+kf
+kf
+Lm
+UZ
+Lu
+Jh
+WY
+lb
+Li
+ns
+kf
+kf
+im
+"}
+(13,1,1) = {"
+im
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+kf
+im
+"}
+(14,1,1) = {"
+im
+im
+im
+im
+im
+im
+im
+im
+im
+im
+im
+im
+im
+im
+"}

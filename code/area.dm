@@ -1761,88 +1761,10 @@ TYPEINFO(/area/station/turret_protected/sea_crashed)
 	name = "Bee Sanctuary"
 	icon_state = "purple"
 
-area/prefab/torpedo_deposit
+/area/prefab/torpedo_deposit
 	name = "Torpedo Deposit"
 	icon_state = "purple"
 
-// zewaka - vspace areas //
-ABSTRACT_TYPE(/area/sim)
-/area/sim
-	name = "Sim"
-	icon_state = "purple"
-	luminosity = 1
-	force_fullbright = 1
-	requires_power = 0
-	teleport_blocked = 1
-	virtual = 1
-	skip_sims = 1
-	sims_score = 100
-	sound_group = "vr"
-	dont_log_combat = TRUE
-
-
-
-/area/sim/area1
-	name = "Vspace area 1"
-	icon_state = "simA1"
-
-/area/sim/area2
-	name = "Vspace area 2"
-	icon_state = "simA2"
-
-/area/sim/bball
-	name = "B-Ball Court"
-	icon_state="vr"
-
-ABSTRACT_TYPE(/area/sim/gunsim)
-/area/sim/gunsim
-	name = "Gun Sim"
-	icon_state = "gunsim"
-
-	arena
-		name = "Gun Sim Arena"
-
-	lobby
-		name = "Gun Sim Lobby"
-		icon_state = "gunsim-lobby"
-		sanctuary = TRUE
-	maintenance
-		name = "Gun Sim Maintenance"
-		force_fullbright = FALSE
-		icon_state = "gunsim-maint"
-		sanctuary = TRUE
-
-/area/sim/test_area
-	name = "Toxin Test Area"
-	icon_state = "toxtest"
-	virtual = 1
-	sound_group = "toxtest"
-	force_fullbright = 1
-
-/area/sim/tdome
-	name = "Thunderdome"
-	icon_state = "medbay"
-	sound_environment = 9
-
-/area/sim/tdome/tdome1
-	name = "Thunderdome (Team 1)"
-	icon_state = "green"
-	sound_environment = 9
-
-/area/sim/tdome/tdome2
-	name = "Thunderdome (Team 2)"
-	icon_state = "yellow"
-	sound_environment = 9
-
-/area/sim/tdome/tdomea
-	name = "Thunderdome (Admin.)"
-	icon_state = "purple"
-	sound_environment = 9
-
-/area/sim/tdome/tdomes
-	name = "Thunderdome (Spectator)"
-	icon_state = "purple"
-	sound_environment = 9
 
 // zewaka-station areas //
 

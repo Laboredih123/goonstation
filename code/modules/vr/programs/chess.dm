@@ -1,3 +1,9 @@
+/obj/item/disk/data/floppy/vr/chess
+	name = "VR Program - Chess"
+
+/area/sim/chess
+	name = "V-Space Chess Zone"
+
 /****************************************************************************************************************************************************************************************
 ________  ___  ___  _______   ________   ________  _____ ______   ________  ________  _________  _______   ________      ________   ________    _____  ________                      	*
 |\   ____\|\  \|\  \|\  ___ \ |\   ____\ |\   ____\|\   _ \  _   \|\   __  \|\   ____\|\___   ___\\  ___ \ |\   __  \    |\   ____\ |\   ____\  / __  \|\_____  \                     	*
@@ -23,7 +29,7 @@ var/list/chessboard = list()
 var/chess_enpassant = 0
 var/chess_in_progress = 0
 
-turf/unsimulated/floor/chess
+/turf/unsimulated/floor/chess
 
 	var/obj/item/chesspiece/enpassant = null
 
@@ -35,7 +41,7 @@ turf/unsimulated/floor/chess
 		chessboard -= src
 		..()
 
-obj/chessbutton
+/obj/chessbutton
 	name = "Chess Reset Button"
 	desc = "A button that clears the chessboard, then re-sets the pieces. Don't press it while you're playing"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -62,7 +68,7 @@ obj/chessbutton
 			confirm = 0
 
 
-obj/landmark/chess
+/obj/landmark/chess
 	add_to_landmarks = FALSE
 	deleted_on_start = FALSE
 
@@ -93,7 +99,7 @@ obj/landmark/chess
 			if("b_knight")
 				new /obj/item/chesspiece/knight/black(src.loc)
 
-obj/item/chesspiece
+/obj/item/chesspiece
 
 	name = "chess piece"
 	desc = "a generic chess piece parent that you really shouldnt be seeing"
@@ -159,7 +165,7 @@ so for real uhhhh some of these things are still being attrocious, not announcin
 
 */
 
-obj/item/chesspiece/pawn
+/obj/item/chesspiece/pawn
 	name = "chess assistant"
 	desc = "A pawn- peon. pon? pone. A chess greyshirt."
 	var/movdir = 0
@@ -216,7 +222,7 @@ obj/item/chesspiece/pawn
 			chess_enpassant = 1
 			EP = null
 
-obj/item/chesspiece/king
+/obj/item/chesspiece/king
 	name = "king"
 	desc = "A vital target, fittingly useless in combat."
 	isking = 1
@@ -265,7 +271,7 @@ obj/item/chesspiece/king
 					chess_enpassant = 0
 
 
-obj/item/chesspiece/rook
+/obj/item/chesspiece/rook
 	name = "rook"
 	desc = "Somewhat rigid, linear, but totally ready to start fires"
 	var/opened = 0
@@ -302,7 +308,7 @@ obj/item/chesspiece/rook
 		opened = 1
 		..()
 
-obj/item/chesspiece/queen
+/obj/item/chesspiece/queen
 	name = "queen"
 	desc = "Subordinate in name only."
 
@@ -348,7 +354,7 @@ obj/item/chesspiece/queen
 			return 1
 		else return 0 // none of the 4 directions? too bad okay. Im annotating code that doesnt need notes just because I gotta look busy at work.
 
-obj/item/chesspiece/bishop
+/obj/item/chesspiece/bishop
 	name = "bishop"
 	desc = "Boneless queen"
 
@@ -381,7 +387,7 @@ obj/item/chesspiece/bishop
 		else return 0 // pee pee poo poo
 
 
-obj/item/chesspiece/knight
+/obj/item/chesspiece/knight
 	name = "knight"
 	desc = "Does anyone actually know why they move like that?"
 

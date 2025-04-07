@@ -1,0 +1,1710 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"an" = (
+/obj/disposaloutlet{
+	dir = 1;
+	name = "thunderdome outlet"
+	},
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdome1)
+"ax" = (
+/obj/stool/chair,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdomes)
+"az" = (
+/obj/securearea{
+	desc = "It looks pretty dangerous in there.";
+	name = "HAZARDOUS AREA"
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/bball)
+"be" = (
+/turf/unsimulated/floor{
+	icon_state = "c16"
+	},
+/area/sim/bball)
+"bn" = (
+/obj/machinery/door_control{
+	id = "thunderdome";
+	name = "TEAM ROOMS";
+	pixel_y = 24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome1)
+"bx" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/unsimulated/floor/carpet{
+	dir = 9;
+	icon_state = "fred2";
+	tag = "icon-fred2 (NORTHWEST)"
+	},
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"bD" = (
+/obj/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/bball)
+"bO" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"cE" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/unsimulated/floor/carpet/red/fancy,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"cN" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/west,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"dc" = (
+/turf/unsimulated/floor{
+	icon_state = "1,4"
+	},
+/area/sim/bball)
+"dj" = (
+/obj/reagent_dispensers/beerkeg,
+/turf/unsimulated/floor/carpet/red/fancy/edge/south,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"eo" = (
+/obj/decal/stripe_delivery,
+/obj/machinery/computer/security/wooden_tv/small/virtual{
+	pixel_y = 8
+	},
+/obj/table/virtual,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"eE" = (
+/turf/unsimulated/floor{
+	icon_state = "2,5"
+	},
+/area/sim/bball)
+"eG" = (
+/obj/machinery/door_control{
+	id = "thunderdome";
+	name = "TEAM ROOMS";
+	pixel_y = 24
+	},
+/obj/item/device/radio/intercom{
+	layer = 7;
+	name = "Thunderdome Intercom"
+	},
+/obj/decal/stripe_delivery,
+/obj/table/virtual,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"eK" = (
+/turf/unsimulated/floor{
+	icon_state = "c2"
+	},
+/area/sim/bball)
+"fU" = (
+/obj/table/virtual,
+/turf/unsimulated/floor/carpet/red/fancy/edge/nw,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"gP" = (
+/obj/item/bballbasket{
+	anchored = 1;
+	dir = 4;
+	pixel_x = 20
+	},
+/turf/unsimulated/floor{
+	icon_state = "c13"
+	},
+/area/sim/bball)
+"hp" = (
+/turf/unsimulated/floor/carpet/red/fancy/innercorner/ne,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"ia" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/west,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"ib" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/ne,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"iI" = (
+/turf/unsimulated/floor{
+	icon_state = "0,6"
+	},
+/area/sim/bball)
+"iS" = (
+/turf/unsimulated/floor{
+	icon_state = "1,3"
+	},
+/area/sim/bball)
+"jI" = (
+/turf/unsimulated/floor/carpet/red/fancy/innercorner/nw,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"ll" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/north,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"ln" = (
+/obj/landmark{
+	name = "tdome1"
+	},
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome1)
+"lw" = (
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/south,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"lO" = (
+/obj/table/virtual,
+/obj/machinery/computer/security/wooden_tv/small/virtual{
+	pixel_y = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/east,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"lW" = (
+/turf/unsimulated/floor{
+	icon_state = "c18"
+	},
+/area/sim/bball)
+"mg" = (
+/obj/adventurepuzzle/triggerable/light/gauntlet,
+/turf/unsimulated/floor{
+	icon_state = "2,1"
+	},
+/area/sim/bball)
+"mk" = (
+/obj/disposaloutlet{
+	dir = 1;
+	name = "thunderdome outlet"
+	},
+/obj/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdome2)
+"mo" = (
+/obj/storage/closet/thunderdome/red,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome2)
+"mq" = (
+/turf/unsimulated/floor{
+	icon_state = "2,0"
+	},
+/area/sim/bball)
+"ms" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/nw,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"nk" = (
+/turf/unsimulated/wall/generic{
+	icon = 'icons/obj/singularity.dmi';
+	icon_state = "TheSingMain";
+	name = "v-space"
+	},
+/area/sim/tdome/tdomes)
+"pB" = (
+/obj/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"rv" = (
+/turf/unsimulated/floor{
+	icon_state = "2,2"
+	},
+/area/sim/bball)
+"si" = (
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome2)
+"sy" = (
+/turf/unsimulated/floor{
+	icon_state = "0,4"
+	},
+/area/sim/bball)
+"sB" = (
+/turf/unsimulated/wall/setpieces/leadwindow/gray{
+	dir = 4;
+	icon_state = "leadwindow_gray_2"
+	},
+/area/sim/bball)
+"sI" = (
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor{
+	icon_state = "c3"
+	},
+/area/sim/bball)
+"sR" = (
+/obj/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal{
+	name = "GREEN TEAM CHUTE"
+	},
+/obj/decal/stripe_delivery,
+/turf/unsimulated/floor/plating,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"ua" = (
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"uw" = (
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdomes)
+"uD" = (
+/obj/reagent_dispensers/beerkeg/rum,
+/turf/unsimulated/floor/carpet/red/fancy/edge/se,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"vk" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/south,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"vO" = (
+/turf/unsimulated/floor{
+	icon_state = "c20"
+	},
+/area/sim/bball)
+"vT" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	invisibility = 101;
+	invuln = 1;
+	name = "autoname - Entertainment";
+	network = "Zeta";
+	tag = ""
+	},
+/turf/unsimulated/floor{
+	icon_state = "0,6"
+	},
+/area/sim/bball)
+"vY" = (
+/turf/unsimulated/wall/setpieces/leadwindow/gray{
+	dir = 4;
+	icon_state = "leadwindow_gray_2"
+	},
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"wi" = (
+/obj/disposalpipe/segment,
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/bball)
+"wu" = (
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor{
+	icon_state = "0,0"
+	},
+/area/sim/bball)
+"wO" = (
+/turf/unsimulated/floor/carpet{
+	dir = 5;
+	icon_state = "fred2";
+	tag = "icon-fred2 (NORTHEAST)"
+	},
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"xr" = (
+/obj/adventurepuzzle/triggerable/light/gauntlet,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome1)
+"xs" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdome2)
+"xG" = (
+/turf/unsimulated/floor{
+	icon_state = "c11"
+	},
+/area/sim/bball)
+"xR" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/se,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"xU" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/nw,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"yx" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/north,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"yH" = (
+/obj/item/bballbasket{
+	anchored = 1;
+	dir = 8;
+	pixel_x = -20
+	},
+/turf/unsimulated/floor{
+	icon_state = "0,3"
+	},
+/area/sim/bball)
+"yL" = (
+/turf/unsimulated/floor{
+	icon_state = "c19"
+	},
+/area/sim/bball)
+"yW" = (
+/turf/unsimulated/floor{
+	icon_state = "3,3"
+	},
+/area/sim/bball)
+"ze" = (
+/turf/unsimulated/wall/setpieces/leadwindow/gray{
+	dir = 4
+	},
+/area/sim/tdome/tdome1)
+"zi" = (
+/turf/unsimulated/floor{
+	icon_state = "3,2"
+	},
+/area/sim/bball)
+"zr" = (
+/obj/landmark{
+	name = "tdome2"
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome2)
+"zF" = (
+/turf/unsimulated/floor{
+	icon_state = "3,5"
+	},
+/area/sim/bball)
+"AE" = (
+/obj/landmark{
+	name = "tdome2"
+	},
+/obj/death_button/VR_logout_button{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome2)
+"AO" = (
+/turf/unsimulated/floor{
+	icon_state = "c12"
+	},
+/area/sim/bball)
+"Bs" = (
+/turf/unsimulated/floor{
+	icon_state = "1,7"
+	},
+/area/sim/bball)
+"Cx" = (
+/obj/adventurepuzzle/triggerable/light/gauntlet,
+/turf/unsimulated/floor{
+	icon_state = "c21"
+	},
+/area/sim/bball)
+"DJ" = (
+/obj/disposalpipe/segment,
+/turf/unsimulated/wall/setpieces/leadwindow/gray,
+/area/sim/bball)
+"DL" = (
+/turf/unsimulated/floor/carpet/red/fancy,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"DW" = (
+/turf/unsimulated/floor{
+	icon_state = "c5"
+	},
+/area/sim/bball)
+"Em" = (
+/turf/unsimulated/floor{
+	icon_state = "c6"
+	},
+/area/sim/bball)
+"EC" = (
+/turf/unsimulated/floor{
+	icon_state = "2,3"
+	},
+/area/sim/bball)
+"ES" = (
+/turf/unsimulated/floor{
+	icon_state = "1,0"
+	},
+/area/sim/bball)
+"Ff" = (
+/turf/unsimulated/floor{
+	icon_state = "2,4"
+	},
+/area/sim/bball)
+"FB" = (
+/obj/death_button/VR_logout_button{
+	pixel_y = 24
+	},
+/turf/unsimulated/floor{
+	icon_state = "c23"
+	},
+/area/sim/bball)
+"FI" = (
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "c15"
+	},
+/area/sim/bball)
+"FY" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet{
+	dir = 5;
+	icon_state = "fred2";
+	tag = "icon-fred2 (NORTHEAST)"
+	},
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Gh" = (
+/obj/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"HC" = (
+/obj/machinery/door/poddoor{
+	autoclose = 1;
+	id = "thunderdome";
+	name = "Thunderdome"
+	},
+/turf/unsimulated/floor/plating,
+/area/sim/bball)
+"HI" = (
+/turf/unsimulated/wall/setpieces/leadwindow/gray{
+	dir = 4
+	},
+/area/sim/tdome/tdome2)
+"It" = (
+/turf/unsimulated/floor{
+	icon_state = "c9"
+	},
+/area/sim/bball)
+"IM" = (
+/obj/machinery/door/unpowered/wood/pyro,
+/turf/unsimulated/floor/carpet/red/fancy/narrow/south,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"IY" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/north,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Jn" = (
+/obj/securearea{
+	desc = "It looks pretty dangerous in there.";
+	name = "HAZARDOUS AREA"
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Jy" = (
+/obj/death_button/VR_logout_button{
+	pixel_y = 24
+	},
+/turf/unsimulated/floor{
+	icon_state = "0,7"
+	},
+/area/sim/bball)
+"Kl" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/east,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"KB" = (
+/turf/unsimulated/floor{
+	icon_state = "3,4"
+	},
+/area/sim/bball)
+"LD" = (
+/turf/unsimulated/wall/setpieces/leadwindow/gray,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"LG" = (
+/obj/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/bball)
+"Mj" = (
+/obj/death_button/VR_logout_button{
+	pixel_y = 24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdomes)
+"Mr" = (
+/turf/unsimulated/floor{
+	icon_state = "1,2"
+	},
+/area/sim/bball)
+"Mt" = (
+/obj/adventurepuzzle/triggerable/light/gauntlet,
+/turf/unsimulated/floor/carpet/red/fancy,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Mv" = (
+/obj/landmark{
+	name = "tdome1"
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome1)
+"MS" = (
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome1)
+"Np" = (
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/sw,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"NE" = (
+/turf/unsimulated/floor{
+	icon_state = "c14"
+	},
+/area/sim/bball)
+"NY" = (
+/obj/table/auto,
+/obj/item/gun/kinetic/flaregun,
+/obj/item/gun/kinetic/flaregun,
+/obj/item/sword,
+/obj/item/sword,
+/turf/unsimulated/floor/plating,
+/area/sim/tdome/tdome2)
+"Ob" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdome1)
+"OD" = (
+/obj/table/virtual,
+/obj/machinery/computer/security/wooden_tv/small/virtual{
+	pixel_y = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/west,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"OR" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/south,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Pq" = (
+/obj/storage/closet/thunderdome/green,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome1)
+"Qx" = (
+/obj/table/auto,
+/obj/item/stimpack,
+/obj/item/stimpack,
+/obj/item/stimpack,
+/obj/item/stimpack,
+/obj/item/stimpack,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome1)
+"Sb" = (
+/turf/unsimulated/floor{
+	icon_state = "c8"
+	},
+/area/sim/bball)
+"Sc" = (
+/obj/adventurepuzzle/triggerable/light/gauntlet,
+/turf/unsimulated/floor{
+	icon_state = "0,6"
+	},
+/area/sim/bball)
+"Sk" = (
+/obj/table/virtual,
+/turf/unsimulated/floor/carpet/red/fancy/edge/ne,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"SC" = (
+/obj/table/virtual,
+/obj/item/reagent_containers/food/drinks/drinkingglass/pint{
+	pixel_y = 13;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/pint{
+	pixel_y = 15;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/pint{
+	pixel_y = 7;
+	pixel_x = 3
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/se,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"SE" = (
+/obj/reagent_dispensers/beerkeg,
+/mob/living/critter/small_animal/boogiebot,
+/turf/unsimulated/floor/carpet/red/fancy/edge/south,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Tf" = (
+/obj/machinery/door_control{
+	id = "thunderdome";
+	name = "TEAM ROOMS";
+	pixel_y = 24
+	},
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome2)
+"Tj" = (
+/obj/decal/poster/wallsign/cdnp,
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Uo" = (
+/obj/adventurepuzzle/triggerable/light/gauntlet,
+/turf/unsimulated/floor{
+	icon_state = "2,6"
+	},
+/area/sim/bball)
+"UA" = (
+/obj/machinery/computer/security/wooden_tv/small/virtual{
+	pixel_y = 8
+	},
+/obj/table/virtual,
+/turf/unsimulated/floor/carpet/red/fancy/edge/south,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"UC" = (
+/obj/item/basketball,
+/turf/unsimulated/floor{
+	icon_state = "0,6"
+	},
+/area/sim/bball)
+"UM" = (
+/turf/unsimulated/floor{
+	icon_state = "1,6"
+	},
+/area/sim/bball)
+"Vb" = (
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/bball)
+"Vg" = (
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdome2)
+"Vn" = (
+/obj/storage/closet/thunderdome/green,
+/turf/unsimulated/floor/plating,
+/area/sim/tdome/tdome1)
+"VZ" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/south,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Wb" = (
+/turf/unsimulated/floor/carpet/red/fancy/innercorner/omni,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Wt" = (
+/turf/unsimulated/floor{
+	icon_state = "c4"
+	},
+/area/sim/bball)
+"WB" = (
+/obj/table/virtual,
+/obj/item/reagent_containers/food/drinks/drinkingglass/pint{
+	pixel_y = 15;
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/pint{
+	pixel_y = 13;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/pint{
+	pixel_y = 7;
+	pixel_x = 3
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/sw,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"WC" = (
+/obj/table/auto,
+/obj/item/stimpack,
+/obj/item/stimpack,
+/obj/item/stimpack,
+/obj/item/stimpack,
+/obj/item/stimpack,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome2)
+"WG" = (
+/turf/unsimulated/floor{
+	icon_state = "0,2"
+	},
+/area/sim/bball)
+"WN" = (
+/obj/table/auto,
+/obj/item/gun/kinetic/flaregun,
+/obj/item/gun/kinetic/flaregun,
+/obj/item/sword,
+/obj/item/sword,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome1)
+"XJ" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/east,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"XM" = (
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal{
+	name = "RED TEAM CHUTE"
+	},
+/obj/decal/stripe_delivery,
+/turf/unsimulated/floor/plating,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+"Yc" = (
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/tdome/tdome1)
+"YI" = (
+/obj/adventurepuzzle/triggerable/light/gauntlet,
+/turf/unsimulated/floor/setpieces/gauntlet,
+/area/sim/tdome/tdome2)
+"YR" = (
+/turf/unsimulated/floor{
+	icon_state = "c1"
+	},
+/area/sim/bball)
+"Zz" = (
+/turf/unsimulated/floor{
+	icon_state = "c22"
+	},
+/area/sim/bball)
+"ZG" = (
+/turf/unsimulated/floor{
+	icon_state = "c17"
+	},
+/area/sim/bball)
+"ZL" = (
+/obj/reagent_dispensers/beerkeg/rum,
+/turf/unsimulated/floor/carpet/red/fancy/edge/sw,
+/area/sim/tdome/tdomea{
+	name = "Thunderdome Lounge"
+	})
+
+(1,1,1) = {"
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+"}
+(2,1,1) = {"
+nk
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(3,1,1) = {"
+nk
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(4,1,1) = {"
+nk
+uw
+uw
+uw
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+ua
+ua
+ua
+ua
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(5,1,1) = {"
+nk
+uw
+uw
+uw
+Yc
+Vn
+Pq
+Pq
+Pq
+Pq
+Yc
+fU
+OD
+cN
+ZL
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(6,1,1) = {"
+nk
+uw
+uw
+uw
+Yc
+Mv
+Mv
+Mv
+Mv
+ln
+Yc
+IY
+bO
+DL
+OR
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(7,1,1) = {"
+nk
+uw
+uw
+uw
+ze
+MS
+MS
+MS
+MS
+MS
+an
+yx
+DL
+DL
+Wb
+IM
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(8,1,1) = {"
+nk
+uw
+uw
+uw
+ze
+Qx
+MS
+xr
+MS
+WN
+Ob
+yx
+DL
+DL
+OR
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(9,1,1) = {"
+nk
+uw
+uw
+uw
+Yc
+Yc
+bn
+MS
+MS
+Yc
+Ob
+ib
+Kl
+XJ
+SC
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(10,1,1) = {"
+nk
+uw
+uw
+uw
+Vb
+Vb
+HC
+HC
+Vb
+Vb
+LG
+DJ
+DJ
+wi
+Gh
+ua
+LD
+LD
+ua
+uw
+uw
+nk
+"}
+(11,1,1) = {"
+nk
+uw
+uw
+uw
+Vb
+Jy
+iI
+iI
+sy
+yH
+WG
+iI
+wu
+Vb
+sR
+ms
+cN
+Np
+ua
+uw
+uw
+nk
+"}
+(12,1,1) = {"
+nk
+uw
+uw
+uw
+az
+Bs
+UM
+iI
+dc
+iS
+Mr
+iI
+ES
+Jn
+ms
+jI
+Mt
+lw
+ua
+uw
+uw
+nk
+"}
+(13,1,1) = {"
+nk
+ax
+uw
+ax
+sB
+iI
+Uo
+eE
+Ff
+EC
+rv
+mg
+mq
+vY
+yx
+Wb
+DL
+Wb
+IM
+uw
+uw
+nk
+"}
+(14,1,1) = {"
+nk
+ax
+uw
+ax
+sB
+iI
+iI
+zF
+KB
+yW
+zi
+iI
+iI
+vY
+ll
+DL
+DL
+UA
+Tj
+uw
+uw
+nk
+"}
+(15,1,1) = {"
+nk
+uw
+uw
+uw
+sB
+iI
+iI
+iI
+iI
+iI
+iI
+iI
+iI
+vY
+yx
+Mt
+DL
+VZ
+ua
+Mj
+uw
+nk
+"}
+(16,1,1) = {"
+nk
+ax
+uw
+ax
+sB
+iI
+iI
+iI
+iI
+iI
+iI
+iI
+iI
+vY
+FY
+Wb
+DL
+Wb
+IM
+uw
+uw
+nk
+"}
+(17,1,1) = {"
+nk
+ax
+uw
+ax
+sB
+iI
+iI
+iI
+vT
+iI
+iI
+iI
+iI
+vY
+eo
+yx
+DL
+SE
+ua
+uw
+uw
+nk
+"}
+(18,1,1) = {"
+nk
+ax
+uw
+ax
+sB
+iI
+Sc
+iI
+UC
+iI
+iI
+Sc
+iI
+vY
+eG
+yx
+DL
+dj
+ua
+uw
+uw
+nk
+"}
+(19,1,1) = {"
+nk
+ax
+uw
+ax
+sB
+iI
+iI
+iI
+iI
+iI
+iI
+iI
+iI
+vY
+bx
+Wb
+DL
+Wb
+IM
+uw
+uw
+nk
+"}
+(20,1,1) = {"
+nk
+uw
+uw
+uw
+sB
+iI
+iI
+iI
+iI
+iI
+iI
+iI
+iI
+vY
+yx
+DL
+DL
+vk
+ua
+Mj
+uw
+nk
+"}
+(21,1,1) = {"
+nk
+ax
+uw
+ax
+sB
+iI
+iI
+lW
+NE
+It
+DW
+iI
+iI
+vY
+IY
+Mt
+DL
+UA
+Tj
+uw
+uw
+nk
+"}
+(22,1,1) = {"
+nk
+ax
+uw
+ax
+sB
+iI
+vO
+yL
+FI
+xG
+Em
+Wt
+YR
+vY
+yx
+Wb
+DL
+Wb
+IM
+uw
+uw
+nk
+"}
+(23,1,1) = {"
+nk
+uw
+uw
+uw
+az
+Zz
+Cx
+iI
+be
+AO
+Sb
+Sc
+eK
+Jn
+wO
+hp
+Mt
+lw
+ua
+uw
+uw
+nk
+"}
+(24,1,1) = {"
+nk
+uw
+uw
+uw
+Vb
+FB
+iI
+iI
+ZG
+gP
+Sb
+iI
+sI
+Vb
+XM
+wO
+XJ
+xR
+ua
+uw
+uw
+nk
+"}
+(25,1,1) = {"
+nk
+uw
+uw
+uw
+Vb
+Vb
+HC
+HC
+Vb
+Vb
+bD
+DJ
+DJ
+wi
+pB
+ua
+LD
+LD
+ua
+uw
+uw
+nk
+"}
+(26,1,1) = {"
+nk
+uw
+uw
+uw
+Vg
+Vg
+Tf
+si
+si
+Vg
+xs
+xU
+ia
+cN
+WB
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(27,1,1) = {"
+nk
+uw
+uw
+uw
+HI
+WC
+si
+YI
+si
+NY
+xs
+yx
+DL
+DL
+OR
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(28,1,1) = {"
+nk
+uw
+uw
+uw
+HI
+si
+si
+si
+si
+si
+mk
+yx
+DL
+DL
+Wb
+IM
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(29,1,1) = {"
+nk
+uw
+uw
+uw
+Vg
+zr
+zr
+zr
+zr
+AE
+Vg
+ll
+cE
+DL
+OR
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(30,1,1) = {"
+nk
+uw
+uw
+uw
+Vg
+mo
+mo
+mo
+mo
+mo
+Vg
+Sk
+lO
+XJ
+uD
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(31,1,1) = {"
+nk
+uw
+uw
+uw
+Vg
+Vg
+Vg
+Vg
+Vg
+Vg
+Vg
+ua
+ua
+ua
+ua
+ua
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(32,1,1) = {"
+nk
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(33,1,1) = {"
+nk
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+uw
+nk
+"}
+(34,1,1) = {"
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+nk
+"}

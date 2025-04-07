@@ -1,12 +1,15 @@
+/obj/item/disk/data/floppy/vr/racetrack
+	name = "VR Program - Racing"
+
 /area/sim/racing_entry
-	name = "Clowncar Race track - Entry"
+	name = "V-Space Race track - Entry"
 	icon_state = "green"
 	luminosity = 1
 	force_fullbright = 1
 	requires_power = 0
 
 /area/sim/racing_track
-	name = "Clowncar Race track"
+	name = "V-Space Race track"
 	icon_state = "yellow"
 	luminosity = 1
 	force_fullbright = 1
