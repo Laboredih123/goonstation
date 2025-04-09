@@ -1,21 +1,3 @@
-/obj/death_button/VR_logout_button
-	name = "Leave VR"
-	desc = "Press this button to log out of virtual reality."
-	icon = 'icons/obj/monitors.dmi'
-	icon_state = "party"
-
-	attack_hand(mob/user)
-		if (!ismob(user) || !user.client || !istype(user, /mob/living/carbon/human/virtual/))
-			return
-		src.add_fingerprint(user)
-
-		// Won't delete the VR character otherwise, which can be confusing (detective's goggles sending you to the existing body in the bomb VR etc).
-		setdead(user)
-		user.death(FALSE)
-
-		Station_VNet.Leave_Vspace(user)
-		return
-
 ABSTRACT_TYPE(/area/sim)
 /area/sim
 	name = "Sim"
@@ -38,7 +20,66 @@ ABSTRACT_TYPE(/area/sim)
 	name = "Vspace area 2"
 	icon_state = "simA2"
 
+/turf/unsimulated/floor/vr
+	name = "virtual floor"
 
-/turf/unsimulated/wall/generic/vr
+/turf/unsimulated/floor/vr/reinforced
+	icon = 'icons/effects/VR.dmi'
+	icon_state = "gauntfloorPod"
+
+/turf/unsimulated/floor/vr/checker
+	icon = 'icons/effects/VR.dmi'
+	icon_state = "gauntfloorDefault"
+
+/turf/simulated/floor/Vspace
+	name = "Vspace"
+	icon_state = "flashyblue"
+	var/network = "none"
+	var/network_ID = "none"
+	fullbright = 1
+
+/turf/simulated/floor/Vspace/brig
+	name = "Brig"
+	icon_state = "floor"
+	network = "prison"
+
+/turf/unsimulated/floor/vr
+	icon_state = "vrfloor"
+
+/turf/unsimulated/floor/vr/plating
+	icon_state = "vrplating"
+
+/turf/unsimulated/floor/vr/space
+	icon_state = "vrspace"
+
+/turf/unsimulated/floor/vr/white
+	icon_state = "vrwhitehall"
+
+/turf/unsimulated/wall/blackwall
+	name = "V-Space Edge"
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "TheSingMain"
+
+TYPEINFO(/turf/unsimulated/wall/auto/virtual)
+TYPEINFO_NEW(/turf/unsimulated/wall/auto/virtual)
+	. = ..()
+	connects_to = typecacheof(/turf/unsimulated/wall/auto/virtual)
+
+/turf/unsimulated/wall/auto/virtual
+	icon = 'icons/turf/walls/destiny.dmi'
+	icon_state = "mapwall"
+	name = "virtual wall"
+	desc = "that sure is a wall, yep."
+
+/turf/unsimulated/floor/setpieces/gauntlet
+	name = "Gauntlet Floor"
+	desc = "Artist needs effort badly."
+	icon = 'icons/effects/VR.dmi'
+	icon_state = "gauntfloorDefault"
+
+/turf/unsimulated/wall/setpieces/gauntlet
+	name = "Gauntlet Wall"
+	desc = "Is this retro? Thank god it's not team ninja."
+	icon = 'icons/effects/VR.dmi'
+	icon_state = "gauntwall"
+

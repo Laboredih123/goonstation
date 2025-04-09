@@ -211,6 +211,7 @@ var/global/datum/mob_stat_thinker/mobStat = new
 
 		stat(null, " ")
 
+	// TODO: replace with gauntlet area check?
 	if (is_near_gauntlet())
 		gauntlet_controller.Stat()
 

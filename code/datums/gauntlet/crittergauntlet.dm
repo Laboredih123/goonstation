@@ -1,35 +1,4 @@
-/area/gauntlet
-	name = "The Gauntlet"
-	icon_state = "dk_yellow"
-	virtual = 1
-	dont_log_combat = TRUE
-
-	Entered(var/atom/A)
-		..()
-		if (!ismob(A))
-			return
-		if (gauntlet_controller.state == 1)
-			for (var/mob/living/L in gauntlet_controller.staging)
-				return
-			gauntlet_controller.finishStaging()
-
-/area/gauntlet/staging
-	name = "Gauntlet Staging Area"
-	icon_state = "purple"
-	virtual = 1
-	ambient_light = "#bfbfbf"
-
-	Entered(var/atom/movable/A)
-		..()
-		if (isliving(A))
-			if (gauntlet_controller.state >= 2)
-				A:gib()
-
-/area/gauntlet/viewing
-	name = "Gauntlet Spectator's Area"
-	icon_state = "green"
-	virtual = 1
-	ambient_light = "#bfbfbf"
+var/global/datum/arena/gauntletController/gauntlet_controller = new()
 
 /mob/proc/is_near_gauntlet()
 	var/area/A = get_area(src)
@@ -42,32 +11,6 @@
 	else if (istype(eye, /obj/observable/gauntlet))
 		return 1
 	return 0
-
-/mob/proc/is_in_gauntlet()
-	var/area/A = get_area(src)
-	if (A?.type == /area/gauntlet)
-		return 1
-	return 0
-
-/obj/stagebutton
-	name = "Gauntlet Staging Button"
-	desc = "By pressing this button, you begin the staging process. No more new attendees will be accepted."
-	anchored = ANCHORED
-	density = 0
-	opacity = 0
-	icon = 'icons/effects/VR.dmi'
-	icon_state = "doorctrl0"
-
-	attack_hand(var/mob/M)
-		if (gauntlet_controller.state != 0)
-			return
-		if (ticker.round_elapsed_ticks < 3000)
-			boutput(usr, SPAN_ALERT("You may not initiate the Gauntlet before 5 minutes into the round."))
-			return
-		if (alert("Start the Gauntlet? No more players will be given admittance to the staging area!",, "Yes", "No") == "Yes")
-			if (gauntlet_controller.state != 0)
-				return
-			gauntlet_controller.beginStaging()
 
 /obj/adventurepuzzle/triggerable/light/gauntlet
 	on_brig = 7
@@ -545,7 +488,6 @@
 		stat(null, "")
 
 
-var/global/datum/arena/gauntletController/gauntlet_controller = new()
 
 /obj/observable
 	invisibility = INVIS_ALWAYS

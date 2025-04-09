@@ -1,4 +1,4 @@
-
+// TODO: Rename wtf is this shit
 /// Handles the gauntlet
 /datum/controller/process/arena
 	var/list/arenas = list()

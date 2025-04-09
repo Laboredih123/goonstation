@@ -848,19 +848,6 @@ TYPEINFO_NEW(/turf/unsimulated/wall/auto/reinforced/gannets)
 /turf/unsimulated/wall/auto/reinforced/gannets
 	icon = 'icons/turf/walls/destiny.dmi'
 
-
-TYPEINFO(/turf/unsimulated/wall/auto/virtual)
-TYPEINFO_NEW(/turf/unsimulated/wall/auto/virtual)
-	. = ..()
-	connects_to = typecacheof(/turf/unsimulated/wall/auto/virtual)
-
-/turf/unsimulated/wall/auto/virtual
-	icon = 'icons/turf/walls/destiny.dmi'
-	icon_state = "mapwall"
-	name = "virtual wall"
-	desc = "that sure is a wall, yep."
-
-
 /turf/unsimulated/wall/auto/coral
 	default_material = "coral"
 	mat_changename = TRUE

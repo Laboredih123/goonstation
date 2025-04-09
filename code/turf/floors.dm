@@ -1351,32 +1351,6 @@ TYPEINFO(/turf/simulated/floor/stairs/wood3)
 /turf/simulated/floor/stairs/dark/wide
 	icon_state = "dark_stairs2"
 
-/////////////////////////////////////////
-
-/turf/simulated/floor/Vspace
-	name = "Vspace"
-	icon_state = "flashyblue"
-	var/network = "none"
-	var/network_ID = "none"
-	fullbright = 1
-
-/turf/simulated/floor/Vspace/brig
-	name = "Brig"
-	icon_state = "floor"
-	network = "prison"
-
-/turf/unsimulated/floor/vr
-	icon_state = "vrfloor"
-
-/turf/unsimulated/floor/vr/plating
-	icon_state = "vrplating"
-
-/turf/unsimulated/floor/vr/space
-	icon_state = "vrspace"
-
-/turf/unsimulated/floor/vr/white
-	icon_state = "vrwhitehall"
-
 // simulated setpieces
 
 /turf/simulated/floor/setpieces
@@ -2501,19 +2475,6 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		icon = 'icons/turf/walls.dmi'
 		icon_state = "ancient"
 
-
-// -------------------- VR --------------------
-/turf/unsimulated/floor/setpieces/gauntlet
-	name = "Gauntlet Floor"
-	desc = "Artist needs effort badly."
-	icon = 'icons/effects/VR.dmi'
-	icon_state = "gauntfloorDefault"
-
-/turf/unsimulated/wall/setpieces/gauntlet
-	name = "Gauntlet Wall"
-	desc = "Is this retro? Thank god it's not team ninja."
-	icon = 'icons/effects/VR.dmi'
-	icon_state = "gauntwall"
 // --------------------------------------------
 
 /turf/unsimulated/floor/setpieces

@@ -1836,6 +1836,7 @@
 #include "code\modules\vspace\virtual_reality.dm"
 #include "code\modules\vspace\objects\cabinet.dm"
 #include "code\modules\vspace\objects\goggles.dm"
+#include "code\modules\vspace\objects\virtual_buttons.dm"
 #include "code\modules\vspace\objects\vr_bed.dm"
 #include "code\modules\vspace\programs\bombtest.dm"
 #include "code\modules\vspace\programs\chess.dm"

@@ -1,4 +1,4 @@
-/datum/arena
+/datum/arena // TODO: replace with controller
 	var/allow_processing = 0
 
 	proc/process()
@@ -7,7 +7,7 @@
 		if (allow_processing)
 			process()
 
-/obj/literal_firewall
+/obj/literal_firewall // TODO: remove
 	name = "firewall"
 	desc = "Man, your port doesn't feel like it's allowed through there! If only there was a way to open it."
 	icon = 'icons/effects/fire.dmi'

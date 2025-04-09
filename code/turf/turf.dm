@@ -1179,20 +1179,11 @@ TYPEINFO(/turf/simulated)
 /turf/unsimulated/wall/other
 	icon_state = "r_wall"
 
-/turf/unsimulated/bombvr
-	name = "Virtual Floor"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "vrfloor"
-
 /turf/unsimulated/floor/carpet
 	name = "carpet"
 	icon = 'icons/turf/carpet.dmi'
 	icon_state = "red1"
 
-/turf/unsimulated/wall/bombvr
-	name = "Virtual Wall"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "vrwall"
 
 /turf/unsimulated/attack_hand(var/mob/user)
 	if (src.density == 1)

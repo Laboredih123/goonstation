@@ -7,3 +7,13 @@
 
 /area/sim/test_area
 	name = "V-Space Toxin Test Zone"
+
+/turf/unsimulated/bombvr
+	name = "Virtual Floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "vrfloor"
+
+/turf/unsimulated/wall/bombvr
+	name = "Virtual Wall"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "vrwall"
