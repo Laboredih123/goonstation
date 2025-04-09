@@ -139,7 +139,7 @@
 	return src.loc.remove_air(amount)
 
 /obj/machinery/sim/vr_bed/attack_hand(var/mob/user)
-	if(..())
+	if(..()) // TODO: TGUI
 		return
 	var/dat = "<HTML><BODY><TT><B>VR pod timer</B>"
 	src.add_dialog(user)
@@ -160,7 +160,6 @@
 /obj/machinery/sim/vr_bed/proc/go_out()
 	for(var/obj/O in src)
 		O.set_loc(get_turf(src.loc))
-//	src.verbs -= /mob/proc/jack_in
 	src.occupant?.set_loc(get_turf(src.loc))
 	src.occupant?.changeStatus("knockdown", 2 SECONDS)
 	src.occupant?.network_device = null

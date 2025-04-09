@@ -1,8 +1,8 @@
 /obj/item/clothing/glasses/vr
-	name = "\improper VR goggles"
-	desc = "A pair of VR goggles running a personal simulation."
-	icon_state = "vr_detective"
-	item_state = "vr_detective"
+	name = "\improper V-Space goggles"
+	desc = "A pair of V-Space goggles running a simulation."
+	icon_state = "vr"
+	item_state = "vr"
 	var/network = null
 
 	setupProperties()
@@ -33,11 +33,14 @@
 
 
 /obj/item/clothing/glasses/vr/detnet
+	icon_state = "vr-detective"
+	item_state = "vr-detective"
 	network = LANDMARK_VR_DET_NET
 
+// is this even used?
 /obj/item/clothing/glasses/vr_fake //Only exist IN THE MATRIX.  Used to log out.
-	name = "\improper VR goggles"
-	desc = "A pair of VR goggles running a personal simulation.  You should know this, being IN the simulation and all."
+	name = "\improper V-Space goggles"
+	desc = "A pair of V-Space goggles running a personal simulation.  You should know this, being IN the simulation and all."
 	icon_state = "vr"
 	item_state = "vr"
 

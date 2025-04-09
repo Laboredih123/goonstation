@@ -1,5 +1,6 @@
-/obj/item/disk/data/floppy/vr/detnet
-	name = "VR Program - DetNet"
+/obj/item/disk/data/floppy/vspace/detnet
+	name = "V-Space Program - DetNet"
+	icon_state = "arcade-disk0"
 
 /area/sim/detnet
 	name = "V-Space DetNet Zone"

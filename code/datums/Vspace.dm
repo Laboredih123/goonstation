@@ -110,13 +110,6 @@ datum/v_space
 					O.name = O.real_name
 					O.set_loc(arrival_loc)
 
-/*
-		if(!user.client)
-			inactive_bodies += user
-			user.body = null
-			user.set_loc(null)
-			return 0
-*/
 		return 1
 
 

@@ -1,5 +1,6 @@
-/obj/item/disk/data/floppy/vr/murderbox
-	name = "VR Program - Murderbox"
+/obj/item/disk/data/floppy/vspace/murderbox
+	name = "V-Space Program - Gun Sim"
+	icon_state = "arcade-disk1"
 
 ABSTRACT_TYPE(/area/sim/gunsim)
 /area/sim/gunsim

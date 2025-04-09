@@ -1,5 +1,6 @@
-/obj/item/disk/data/floppy/vr/racetrack
-	name = "VR Program - Racing"
+/obj/item/disk/data/floppy/vspace/racetrack
+	name = "V-Space Program - Racing"
+	icon_state = "arcade-disk6"
 
 /area/sim/racing_entry
 	name = "V-Space Race track - Entry"
