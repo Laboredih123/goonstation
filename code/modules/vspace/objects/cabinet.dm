@@ -25,6 +25,9 @@
 	for (var/obj/item/disk/data/floppy/vspace/disk as anything in src.preload_disks)
 		src.load_disk(user=null, disk=disk, slot_num=null, secured=DISK_SECURITY_PERMANENT)
 
+/obj/machinery/sim/disposing() // TODO: unload all programs, drop disks?
+	. = ..()
+
 /obj/machinery/sim/cabinet/attackby(obj/item/I, mob/user)
 	if (istype(I, /obj/item/disk/data/floppy/vspace))
 		if (length(crrent_disks) >= src.MAX_DISKS)
