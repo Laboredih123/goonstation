@@ -1,5 +1,5 @@
 /obj/item/disk/data/floppy/vspace
-	name = "V-Space Program Disk"
+	name = "\improper V-Space Program Disk"
 	icon_state = "arcade-disk0"
 	var/allocated_zone_file = null
 

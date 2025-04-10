@@ -1,5 +1,5 @@
 /obj/item/disk/data/floppy/vspace/chess
-	name = "V-Space Program - Chess"
+	name = "\improper V-Space Program - Chess"
 	icon_state = "arcade-disk3"
 
 /area/sim/chess

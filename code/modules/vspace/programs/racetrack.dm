@@ -1,5 +1,5 @@
 /obj/item/disk/data/floppy/vspace/racetrack
-	name = "V-Space Program - Racing"
+	name = "\improper V-Space Program - Racing"
 	icon_state = "arcade-disk6"
 
 /area/sim/racing_entry

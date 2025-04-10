@@ -1,5 +1,5 @@
 /obj/item/disk/data/floppy/vspace/thunderdome
-	name = "V-Space Program - Thunderdome"
+	name = "\improper V-Space Program - Thunderdome"
 	icon_state = "arcade-disk7"
 
 /area/sim/bball

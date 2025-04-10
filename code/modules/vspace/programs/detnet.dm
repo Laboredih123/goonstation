@@ -1,5 +1,5 @@
 /obj/item/disk/data/floppy/vspace/detnet
-	name = "V-Space Program - DetNet"
+	name = "\improper V-Space Program - DetNet"
 	icon_state = "arcade-disk0"
 
 /area/sim/detnet

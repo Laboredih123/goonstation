@@ -23464,10 +23464,10 @@
 "bPf" = (
 /obj/adventurepuzzle/triggerable/light/gauntlet,
 /turf/unsimulated/floor/setpieces/gauntlet,
-/area/gauntlet)
+/area/gauntlet/arena)
 "bPg" = (
 /turf/unsimulated/floor/setpieces/gauntlet,
-/area/gauntlet)
+/area/gauntlet/arena)
 "bPh" = (
 /obj/table/auto,
 /obj/item/paper{
@@ -24468,7 +24468,7 @@
 	pixel_x = 24
 	},
 /turf/unsimulated/floor/setpieces/gauntlet,
-/area/gauntlet)
+/area/gauntlet/arena)
 "bSz" = (
 /obj/creepy_sound_trigger,
 /obj/fakeobject/airlock_broken/firelock{
@@ -43385,7 +43385,7 @@
 "dbe" = (
 /obj/observable/gauntlet,
 /turf/unsimulated/floor/setpieces/gauntlet,
-/area/gauntlet)
+/area/gauntlet/arena)
 "dbf" = (
 /obj/fakeobject/pipe/heat{
 	dir = 4
