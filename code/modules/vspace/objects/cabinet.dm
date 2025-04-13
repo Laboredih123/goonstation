@@ -123,12 +123,13 @@
 	// TODO: Apple II esq sprite
 
 	anchored = ANCHORED
+
+/obj/item/storage/vspace_disk_bin/arcade
 	spawn_contents = list(
 		/obj/item/disk/data/floppy/vspace/chess,
 		/obj/item/disk/data/floppy/vspace/gauntlet,
 		/obj/item/disk/data/floppy/vspace/racetrack,
 	)
-
 #undef DISK_SECURITY_UNSECURED
 #undef DISK_SECURITY_SECURED
 #undef DISK_SECURITY_PERMANENT
