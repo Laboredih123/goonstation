@@ -30,7 +30,7 @@
 
 /obj/machinery/sim/cabinet/attackby(obj/item/I, mob/user)
 	if (istype(I, /obj/item/disk/data/floppy/vspace))
-		if (length(crrent_disks) >= src.MAX_DISKS)
+		if (length(current_disks) >= src.MAX_DISKS)
 			boutput(user, "\The [src] has no open slots for [I]!")
 			return
 		user.drop_item(I)
@@ -49,8 +49,8 @@
 	var/inserted = FALSE
 	var/slot_to_insert = slot_num
 	if(isnull(slot_num))
-		while (!inserted && slot_to_insert <= MAX_CIRCUITS)
-			if (!src.current_disks[count])
+		while (!inserted && slot_to_insert <= MAX_DISKS)
+			if (!src.current_disks[slot_to_insert])
 				inserted = TRUE
 			else
 				slot_to_insert++
@@ -84,22 +84,23 @@
 				else
 					disk.set_loc(get_turf(src))
 				src.current_disks[slot_num] = null
-				src.visible_message(SPAN_ALERT("[user] removes \the [disk] from \the [src]!"))
+				src.visible_message(SPAN_ALERT("[user] removes \the [src.secured_disks[slot_num]] from \the [src]!"))
 				return
 		if (DISK_SECURITY_SECURED)
 			if (user)
-				boutput(user, SPAN_ALERT("You can't remove \the [disk] while it's still secured!"))
+				boutput(user, SPAN_ALERT("You can't remove \the [src.secured_disks[slot_num]] while it's still secured!"))
 		if (DISK_SECURITY_PERMANENT)
 			if (user)
-				boutput(user, SPAN_ALERT("You can't remove \the [disk] as it's permanently locked into \the [src]!"))
+				boutput(user, SPAN_ALERT("You can't remove \the [src.secured_disks[slot_num]] as it's permanently locked into \the [src]!"))
 		if (DISK_SECURITY_IN_USE)
 			if (user)
-				boutput(user, SPAN_ALERT("You can't remove \the [disk] while it's still being used!"))
+				boutput(user, SPAN_ALERT("You can't remove \the [src.secured_disks[slot_num]] while it's still being used!"))
 
 /obj/machinery/sim/cabinet/proc/secure_disk(slot_num)
 	src.secured_disks[slot_num] = DISK_SECURITY_SECURED
 
-/obj/machinery/sim/cabinet/proc/unsecure_disk
+/obj/machinery/sim/cabinet/proc/unsecure_disk(slot_num)
+	src.secured_disks[slot_num] = DISK_SECURITY_UNSECURED
 
 /obj/machinery/sim/cabinet/arcade
 	network = LANDMARK_VR_ARCADE
