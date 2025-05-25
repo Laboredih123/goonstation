@@ -82,7 +82,7 @@
 	var/proc_logging = 0
 #endif
 
-	// authenticate = 0
+	authenticate = 0
 	// comment out the line below when debugging locally to enable the options & messages menu
 	control_freak = 1
 
@@ -250,32 +250,6 @@
 	if (length(active_polls))
 		boutput(src, "<h2 style='color: red'>There are polls running!</h2>")
 		boutput(src, SPAN_BOLD("🗳️Active polls: [english_list(active_polls)] - <a href='byond://winset?command=Player-Polls'>Click here to vote!</a>🗳️"))
-
-	if (IsGuestKey(src.key))
-		if(!(!src.address || src.address == world.host || src.address == "127.0.0.1")) // If you're a host or a developer locally, ignore this check.
-			var/gueststring = {"
-							<!doctype html>
-							<html>
-								<head>
-									<title>No guest logins allowed!</title>
-									<style>
-										h1, .banreason {
-											font-color:#F00;
-										}
-
-									</style>
-								</head>
-								<body>
-									<h1>Guest Login Denied</h1>
-									Don't forget to log in to your byond account prior to connecting to this server.
-								</body>
-							</html>
-						"}
-			src.mob.Browse(gueststring, "window=getout")
-			sleep(10)
-			if (src)
-				del(src)
-			return
 
 	if (world.time < 7 SECONDS)
 		if (config.whitelistEnabled && !(admins.Find(src.ckey) && admins[src.ckey] != "Inactive"))
