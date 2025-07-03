@@ -1,0 +1,13559 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_9"
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"ah" = (
+/obj/map/light/lava,
+/obj/racing_boosterstrip{
+	dir = 4
+	},
+/obj/mesh/catwalk,
+/turf/unsimulated/floor/airless/plating/catwalk/auto/iomoon,
+/area/sim/iomoon)
+"aj" = (
+/obj/sea_plant/tubesponge/small,
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"aB" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_11"
+	},
+/obj/fakeobject/lotus{
+	icon_state = "lotus_2"
+	},
+/turf/unsimulated/wall/water,
+/area/sim/dojo)
+"aF" = (
+/obj/mapping_helper/turf/floor/darkener{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_entry)
+"aI" = (
+/obj/sea_plant{
+	icon_state = "shell_1"
+	},
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"aJ" = (
+/obj/tree/sakura_tree/tree_2{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/dojo/sakura)
+"aM" = (
+/turf/unsimulated/floor/auto/dirt,
+/area/sim/racing_track)
+"aO" = (
+/turf/simulated/floor/plating,
+/area/sim/void)
+"aU" = (
+/turf/unsimulated/floor/dojo/stonestair/middle,
+/area/sim/dojo)
+"aW" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"bc" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 6
+	},
+/area/sim/racing_track)
+"bf" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart{
+	dir = 8;
+	icon_state = "kart_blue_u";
+	returnpoint = "kart3"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"bg" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/iomoon/plating,
+/area/sim/iomoon)
+"bj" = (
+/turf/simulated/floor/sanitary,
+/area/sim/racing_entry)
+"bk" = (
+/obj/decal/nothing{
+	dir = 4;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"bs" = (
+/obj/machinery/conveyor/NS{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t3";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"bx" = (
+/obj/machinery/conveyor/SW{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"bJ" = (
+/obj/river{
+	icon_state = "river";
+	dir = 10
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"bN" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart/red{
+	dir = 8;
+	icon_state = "kart_red_u";
+	returnpoint = "kart1"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 8
+	},
+/area/sim/racing_track)
+"bR" = (
+/obj/racing_powerup_spawner,
+/obj/map/light/graveyard,
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"bW" = (
+/obj/racing_boosterstrip,
+/obj/map/light/graveyard,
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"ch" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 10;
+	tag = "icon-intact (SOUTHWEST)"
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/iomoon)
+"ck" = (
+/turf/unsimulated/floor{
+	icon_state = "floor";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"cr" = (
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"cx" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 8;
+	icon_state = "iocrust_edge";
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"cE" = (
+/obj/fakeobject/pipe{
+	desc = "It won't budge.";
+	icon = 'icons/obj/pipe-item.dmi';
+	icon_state = "valve";
+	name = "rusted valve"
+	},
+/turf/unsimulated/floor{
+	icon_state = "floor"
+	},
+/area/sim/iomoon)
+"cF" = (
+/obj/racing_boosterstrip{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"cJ" = (
+/turf/unsimulated/floor/setpieces/rootfloor{
+	icon_state = "rootfloor_3"
+	},
+/area/space)
+"cN" = (
+/obj/tree/sakura_tree/tree_2{
+	pixel_x = 1;
+	pixel_y = -3
+	},
+/turf/unsimulated/wall/water,
+/area/sim/dojo)
+"cQ" = (
+/obj/decal/tile_edge/line{
+	icon_state = "line2";
+	dir = 1
+	},
+/obj/death_button/VR_logout_button{
+	icon = 'icons/obj/machines/8dirvehicles.dmi';
+	icon_state = "car_yellow"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_entry)
+"cU" = (
+/obj/map/light/graveyard,
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"cW" = (
+/obj/forcefield{
+	opacity = 1
+	},
+/turf/space,
+/area/sim/space)
+"di" = (
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/floor/stairs{
+	dir = 6;
+	icon_state = "wood_stairs2"
+	},
+/area/sim/dojo)
+"do" = (
+/obj/machinery/conveyor/WE{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"dp" = (
+/obj/racing_boosterstrip{
+	dir = 1
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"dq" = (
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/mars/sets/tarmac{
+	icon_state = "marshighw2";
+	dir = 8
+	},
+/area/sim/mars)
+"dC" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 4
+	},
+/area/sim/space)
+"dI" = (
+/obj/decal/nothing{
+	dir = 4;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
+"dP" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/obj/switches_the_conveyors,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"dT" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "corner_neast"
+	},
+/area/sim/iomoon)
+"dW" = (
+/obj/decal/poster/wallsign/stencil/left/i,
+/obj/decal/poster/wallsign/stencil/right/n,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"ef" = (
+/obj/forcefield,
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/space,
+/area/sim/space)
+"eh" = (
+/obj/map/light/lava,
+/obj/racing_boosterstrip,
+/obj/mesh/catwalk,
+/turf/unsimulated/floor/airless/plating/catwalk/auto/iomoon,
+/area/sim/iomoon)
+"ep" = (
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"eF" = (
+/obj/decal/nothing{
+	dir = 4;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 8
+	},
+/area/sim/racing_track)
+"eK" = (
+/obj/storage/closet/wardrobe/pink,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"eN" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_8"
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"eQ" = (
+/obj/machinery/crusher/instant,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"fc" = (
+/obj/fakeobject/pipe/heat,
+/obj/lattice{
+	icon_state = "lattice-dir";
+	dir = 6
+	},
+/obj/map/light/lava,
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"ff" = (
+/turf/unsimulated/floor{
+	icon_state = "caution_west";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"fk" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"fr" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart/red{
+	dir = 8;
+	icon_state = "kart_red_u";
+	returnpoint = "kart1"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"fJ" = (
+/obj/decal/cleanable/oil,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"fY" = (
+/obj/fakeobject/pipe/heat{
+	dir = 6
+	},
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir-b"
+	},
+/obj/map/light/lava,
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"gi" = (
+/obj/decal/poster/wallsign/stencil/left/k,
+/obj/decal/poster/wallsign/stencil/right/a,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"gp" = (
+/obj/map/light/lava,
+/obj/fakeobject/pipe/heat{
+	dir = 4
+	},
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"gv" = (
+/obj/decal/tile_edge/line/red{
+	icon_state = "line1";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 9
+	},
+/area/sim/racing_entry)
+"gx" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 5
+	},
+/area/sim/racing_track)
+"gz" = (
+/turf/unsimulated/wall/other{
+	name = "barrier";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "barrier_green";
+	opacity = 0
+	},
+/area/sim/racing_track)
+"gD" = (
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/turf/unsimulated/iomoon/floor{
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"gE" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "A segment of a broken gas turbine.  Well, it's old and dirty so it can be assumed to be broken.";
+	icon = 'icons/obj/atmospherics/pipes.dmi';
+	icon_state = "circ2-broken";
+	name = "old gas turbine"
+	},
+/turf/unsimulated/floor,
+/area/sim/iomoon)
+"gF" = (
+/obj/decal/poster/wallsign/read_me,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_entry)
+"gG" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "caution_south"
+	},
+/area/sim/iomoon)
+"gL" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 4;
+	icon_state = "iocrust_corner"
+	},
+/area/sim/iomoon)
+"gM" = (
+/obj/machinery/conveyor/EW{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"gS" = (
+/obj/decal/tile_edge/line/blue{
+	icon_state = "line2";
+	dir = 1
+	},
+/obj/death_button/VR_logout_button{
+	icon = 'icons/obj/machines/8dirvehicles.dmi';
+	icon_state = "car_rusty"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_entry)
+"gV" = (
+/obj/lattice,
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"gX" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/iomoon)
+"gZ" = (
+/obj/map/light/lava,
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"hg" = (
+/obj/map/light/graveyard,
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"hi" = (
+/obj/machinery/conveyor/NS{
+	id = "vrmars";
+	operating = 1
+	},
+/obj/mapping_helper/turf/floor/darkener{
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"hp" = (
+/obj/storage/closet/wardrobe/blue,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"ht" = (
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "caution_south"
+	},
+/area/sim/iomoon)
+"hD" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "A segment of a broken gas turbine.  Well, it's old and dirty so it can be assumed to be broken.";
+	icon = 'icons/obj/atmospherics/pipes.dmi';
+	icon_state = "circ2-broken";
+	name = "old gas turbine"
+	},
+/turf/unsimulated/floor{
+	icon_state = "floor"
+	},
+/area/sim/iomoon)
+"hJ" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_9"
+	},
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_11"
+	},
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 4
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"hW" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/obj/switches_the_conveyors,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"hY" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"if" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/iomoon/plating,
+/area/sim/iomoon)
+"ii" = (
+/obj/tombstone{
+	desc = "Here lies Richie Mcmullin, eaten by ghosts."
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"ik" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 2
+	},
+/area/sim/space)
+"im" = (
+/obj/submachine/chef_sink/chem_sink{
+	dir = 1
+	},
+/turf/simulated/floor/sanitary,
+/area/sim/racing_entry)
+"iq" = (
+/obj/decal/nothing{
+	dir = 4;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 6
+	},
+/area/sim/racing_track)
+"ir" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/space/dense,
+/area/sim/space)
+"it" = (
+/obj/mapping_helper/turf/floor/darkener,
+/obj/machinery/conveyor/SN{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"iw" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 4
+	},
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"iG" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"iN" = (
+/obj/overlay{
+	anchored = 0;
+	desc = "Oh.  So THAT'S where he went off to.";
+	icon = 'icons/misc/hstation.dmi';
+	icon_state = "clowncorpse";
+	layer = 4;
+	name = "skeleton"
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"iS" = (
+/obj/stool/chair/comfy{
+	dir = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"iY" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"jh" = (
+/obj/fakeobject/lotus,
+/turf/unsimulated/wall/water{
+	opacity = 1
+	},
+/area/sim/dojo)
+"jj" = (
+/obj/fakeobject/airlock_broken/firelock{
+	dir = 8;
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "fdoor0"
+	},
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 4
+	},
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"jn" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 1;
+	icon_state = "iocrust_corner"
+	},
+/area/sim/iomoon)
+"jp" = (
+/obj/map/light/brightwhite,
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/floor/stairs{
+	dir = 6;
+	icon_state = "wood_stairs"
+	},
+/area/sim/dojo)
+"jq" = (
+/obj/railing/orange/reinforced,
+/obj/decal/poster/wallsign/fire{
+	pixel_y = 29
+	},
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"jw" = (
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"jD" = (
+/obj/decal/poster/wallsign/stencil/left/five,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"jH" = (
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"jN" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/space,
+/area/sim/space)
+"jV" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_9"
+	},
+/obj/racing_powerupbox,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"ke" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"kh" = (
+/obj/tree/sakura_tree/tree_2,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/dojo/sakura)
+"kt" = (
+/turf/unsimulated/wall/void,
+/area/sim/void)
+"ky" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_entry)
+"kA" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "floor"
+	},
+/area/sim/iomoon)
+"kE" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart{
+	dir = 8;
+	icon_state = "kart_blue_u";
+	returnpoint = "kart2"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"kI" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 9;
+	icon_state = "iocrust_edge";
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"kM" = (
+/obj/indestructible/shuttle_corner{
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"kR" = (
+/obj/mapping_helper/turf/floor/darkener{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_entry)
+"kT" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1;
+	pixel_x = 6
+	},
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1;
+	pixel_x = -12
+	},
+/turf/unsimulated/wall/auto/lead/gray{
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"kV" = (
+/obj/tombstone{
+	desc = "Here lies Tango N. Vectif, killed by dat fukken pig."
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"li" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/obj/invisible_teleporter/receive_only{
+	id = "vrioreset"
+	},
+/turf/unsimulated/floor{
+	icon_state = "caution_west"
+	},
+/area/sim/iomoon)
+"lo" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced,
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 10;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"lx" = (
+/obj/indestructible/shuttle_corner{
+	dir = 4;
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"lH" = (
+/obj/decal/cleanable/blood,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
+"lK" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"lM" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"lP" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 8;
+	icon_state = "iocrust_corner"
+	},
+/area/sim/iomoon)
+"mi" = (
+/turf/simulated/floor,
+/area/sim/void)
+"mk" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart/red{
+	dir = 8;
+	icon_state = "kart_red_u";
+	returnpoint = "kart1"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"mq" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 6;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"ms" = (
+/turf/simulated/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/sim/void)
+"mx" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 1
+	},
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"mB" = (
+/obj/decal/nothing{
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon_state = "caution_north";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"mD" = (
+/obj/stone,
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"mS" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"na" = (
+/obj/machinery/conveyor/NE{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"nj" = (
+/obj/lantern,
+/turf/unsimulated/wall/auto/sengoku,
+/area/sim/dojo)
+"no" = (
+/obj/fakeobject/pipe/heat,
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/obj/map/light/lava,
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"nr" = (
+/obj/fakeobject/lotus{
+	icon_state = "lotus_2"
+	},
+/turf/unsimulated/wall/water,
+/area/sim/dojo)
+"nu" = (
+/obj/fakeobject/plantpot,
+/obj/shrub{
+	dir = 10;
+	pixel_y = 10
+	},
+/turf/unsimulated/floor/wood/two,
+/area/sim/dojo)
+"nw" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
+"nH" = (
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
+"nR" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 10;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"nX" = (
+/obj/machinery/conveyor/NS{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"nY" = (
+/turf/unsimulated/wall/auto/sengoku,
+/area/sim/dojo)
+"oi" = (
+/turf/cordon,
+/area/cordon)
+"ou" = (
+/obj/fakeobject/plantpot,
+/obj/shrub{
+	dir = 8;
+	pixel_y = 10
+	},
+/turf/unsimulated/floor/wood/two,
+/area/sim/dojo)
+"oM" = (
+/obj/map/light/graveyard,
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"oP" = (
+/obj/decal/tile_edge/line/blue{
+	icon_state = "line2"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_entry)
+"oR" = (
+/obj/map/light/lava,
+/obj/invisible_teleporter{
+	id = "vrioreset"
+	},
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"oX" = (
+/obj/river{
+	icon_state = "river";
+	dir = 5
+	},
+/obj/map/light/graveyard,
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"oY" = (
+/obj/decal/hfire,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"pc" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_8"
+	},
+/obj/racing_boosterstrip,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"pg" = (
+/obj/indestructible/shuttle_corner{
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"pk" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "finishline_strip";
+	name = "finish line"
+	},
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "finishline_strip";
+	name = "finish line";
+	pixel_x = 6
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"pl" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 8;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"po" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 8
+	},
+/area/sim/racing_track)
+"ps" = (
+/obj/machinery/conveyor/SN{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"pt" = (
+/turf/unsimulated/wall/auto/lead/gray{
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"pw" = (
+/obj/racing_powerup_spawner,
+/obj/decal/nothing{
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"pC" = (
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"pE" = (
+/obj/decal/stalagmite{
+	desc = "It's a rock.  A big old silicate-y one.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "iostone";
+	name = "rock"
+	},
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"pK" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles3";
+	dir = 8
+	},
+/obj/lattice,
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"pX" = (
+/turf/unsimulated/wall/auto/adventure/fake_window,
+/area/sim/racing_track)
+"qh" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles3";
+	dir = 8
+	},
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"ql" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 4
+	},
+/area/sim/space)
+"qm" = (
+/obj/machinery/door/airlock/pyro/engineering{
+	dir = 4
+	},
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"qq" = (
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_entry)
+"qw" = (
+/obj/sea_plant{
+	icon_state = "shell_4"
+	},
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"qG" = (
+/obj/decal/tile_edge/line/red{
+	icon_state = "line1";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 8
+	},
+/area/sim/racing_entry)
+"qH" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"qI" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor/dojo/stone,
+/area/sim/dojo)
+"qK" = (
+/obj/stool/chair,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_entry)
+"qQ" = (
+/obj/racing_boosterstrip,
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"qR" = (
+/obj/securearea{
+	desc = "A warning sign which reads 'Fire Hazard'";
+	icon_state = "fire";
+	layer = 2.5;
+	name = "FIRE HAZARD"
+	},
+/turf/unsimulated/wall/auto/lead/gray{
+	occlude_foreground_parallax_layers = 1
+	},
+/area/sim/iomoon)
+"qV" = (
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/obj/map/light/lava,
+/obj/invisible_teleporter{
+	id = "vrioreset"
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 1;
+	icon_state = "iocrust_edge";
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"qW" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 10
+	},
+/area/sim/racing_track)
+"qZ" = (
+/obj/decal/floatingtiles,
+/obj/lattice,
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"rl" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "finishline_strip";
+	name = "finish line"
+	},
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "finishline_strip";
+	name = "finish line";
+	pixel_x = 6
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"rp" = (
+/obj/fakeobject{
+	desc = "Geocities, is that you?";
+	dir = 1;
+	icon = 'icons/obj/junk.dmi';
+	icon_state = "construction";
+	name = "construction zone"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"rB" = (
+/obj/machinery/conveyor/ES{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"rF" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_entry)
+"rH" = (
+/turf/simulated/floor{
+	icon_state = "floorscorched1"
+	},
+/area/sim/void)
+"rI" = (
+/obj/fakeobject/pipe/heat{
+	dir = 4
+	},
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 4;
+	icon_state = "iocrust_corner"
+	},
+/area/sim/iomoon)
+"rK" = (
+/turf/unsimulated/floor/stairs/wood{
+	dir = 5
+	},
+/area/sim/racing_entry)
+"rL" = (
+/obj/racing_powerupbox,
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_10"
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"rQ" = (
+/turf/unsimulated/floor{
+	icon_state = "corner_neast";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"rR" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon_state = "caution_west"
+	},
+/area/sim/iomoon)
+"se" = (
+/obj/sea_plant/branching,
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"sh" = (
+/obj/decal/tile_edge/line{
+	icon_state = "line2"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_entry)
+"sj" = (
+/turf/unsimulated/wall/auto/adventure/overgrown1,
+/area/sim/graveyard)
+"sk" = (
+/obj/mapping_helper/turf/floor/darkener{
+	dir = 1
+	},
+/turf/unsimulated/mars/sets/tarmac,
+/area/sim/mars)
+"sl" = (
+/obj/decal/nothing,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
+"sr" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart/red{
+	dir = 8;
+	icon_state = "kart_red_u";
+	returnpoint = "kart1"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
+"sF" = (
+/obj/machinery/door/unpowered/wood/pyro{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"sO" = (
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/obj/map/light/lava,
+/obj/railing/orange/reinforced,
+/turf/unsimulated/iomoon/floor{
+	dir = 10;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"sQ" = (
+/turf/cordon,
+/area/space)
+"sR" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "corner_nwest"
+	},
+/area/sim/iomoon)
+"sT" = (
+/obj/machinery/conveyor/WN{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"sU" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor/auto/dirt,
+/area/sim/racing_track)
+"th" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
+"ti" = (
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/iomoon)
+"tk" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"tp" = (
+/obj/invisible_teleporter{
+	id = "vrabzureset"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/turf/outdoors.dmi';
+	icon_state = "pit";
+	color = "#afd4ff"
+	},
+/area/sim/abzu)
+"tw" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 4
+	},
+/area/sim/space)
+"tx" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t3";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"tF" = (
+/obj/decal/poster/wallsign/escape_sign,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_entry)
+"tG" = (
+/obj/indestructible/shuttle_corner{
+	dir = 4;
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/turf/unsimulated/iomoon/floor{
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"tO" = (
+/obj/decal/poster/wallsign/escape_right,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_entry)
+"tS" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced,
+/turf/unsimulated/iomoon/floor{
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"ud" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 5;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"ue" = (
+/obj/decoration/toiletholder{
+	pixel_y = 31
+	},
+/obj/item/storage/toilet{
+	dir = 8
+	},
+/turf/simulated/floor/sanitary,
+/area/sim/racing_entry)
+"ui" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 4;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"uj" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"ut" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 1
+	},
+/area/sim/space)
+"uJ" = (
+/obj/decal/cliff{
+	dir = 1
+	},
+/turf/unsimulated/floor/solidcolor/black{
+	density = 1;
+	desc = "Wow, that looks really deep. Better not get near it!"
+	},
+/area/sim/racing_track)
+"uM" = (
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"uR" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_9"
+	},
+/obj/racing_boosterstrip,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"uU" = (
+/obj/machinery/door/unpowered/wood{
+	dir = 8;
+	locked = 1
+	},
+/turf/unsimulated/floor/setpieces/rootfloor{
+	icon_state = "rootfloor_3"
+	},
+/area/space)
+"uZ" = (
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/dojo/sakura)
+"va" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 10
+	},
+/area/sim/space)
+"vg" = (
+/obj/sea_plant{
+	icon_state = "algae"
+	},
+/turf/unsimulated/wall/trench/side,
+/area/sim/abzu)
+"vh" = (
+/obj/fakeobject/mule_xl,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"vL" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_9"
+	},
+/obj/racing_trap_banana,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"vW" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"vZ" = (
+/obj/decal/nothing{
+	dir = 4;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"wp" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles6"
+	},
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"wt" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"wx" = (
+/turf/unsimulated/wall/water/border,
+/area/sim/dojo)
+"wy" = (
+/obj/tree/sakura_tree/tree_2{
+	pixel_x = 0
+	},
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/dojo/sakura)
+"wW" = (
+/obj/overlay{
+	anchored = 1;
+	density = 1;
+	desc = "You have no idea what this does.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "lavamachine_12";
+	name = "huge machine"
+	},
+/turf/unsimulated/floor{
+	icon_state = "caution_east";
+	dir = 2
+	},
+/area/sim/iomoon)
+"xa" = (
+/turf/unsimulated/wall/solidcolor/black{
+	density = 0
+	},
+/area/area_that_kills_you_if_you_enter_it)
+"xc" = (
+/turf/unsimulated/wall/auto/adventure/old/reinforced,
+/area/sim/void)
+"xg" = (
+/obj/machinery/door/unpowered/wood/pyro{
+	dir = 1;
+	locked = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"xi" = (
+/turf/unsimulated/wall/other{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "barrier_red";
+	name = "barrier";
+	opacity = 0
+	},
+/area/sim/racing_track)
+"xp" = (
+/turf/unsimulated/floor/wood/two,
+/area/sim/dojo)
+"xv" = (
+/obj/racing_boosterstrip{
+	dir = 1
+	},
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"xx" = (
+/turf/unsimulated/iomoon/plating,
+/area/sim/iomoon)
+"xy" = (
+/obj/tree/sakura_tree,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/dojo/sakura)
+"xI" = (
+/obj/machinery/conveyor/NS{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"yb" = (
+/obj/map/light/lava,
+/obj/fakeobject/pipe/heat,
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"yh" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/obj/invisible_teleporter/receive_only{
+	id = "vrabzureset"
+	},
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"yr" = (
+/obj/decal/floatingtiles{
+	dir = 8;
+	icon_state = "floattiles3"
+	},
+/obj/racing_boosterstrip,
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"ys" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"yC" = (
+/obj/item/reagent_containers/food/snacks/spaghetti/sauce/skeletal,
+/turf/unsimulated/floor/black,
+/area/sim/racing_track)
+"yN" = (
+/obj/racing_boosterstrip{
+	dir = 4
+	},
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"zl" = (
+/obj/fakeobject/plantpot,
+/obj/shrub{
+	dir = 4;
+	pixel_y = 10
+	},
+/turf/unsimulated/floor/wood/two,
+/area/sim/dojo)
+"zq" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/wall/water,
+/area/sim/dojo)
+"zD" = (
+/obj/decal/nothing{
+	dir = 4;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"zP" = (
+/obj/table/wood/auto,
+/obj/item/device/radio/intercom/virtual,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"zQ" = (
+/obj/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"zW" = (
+/obj/fakeobject/pipe/heat{
+	dir = 4
+	},
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir"
+	},
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 1;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"zX" = (
+/turf/unsimulated/floor{
+	icon_state = "floor"
+	},
+/area/sim/iomoon)
+"Ab" = (
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"An" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles4";
+	dir = 8
+	},
+/turf/unsimulated/wall/solidcolor/white,
+/area/sim/void)
+"Aq" = (
+/obj/mapping_helper/turf/floor/darkener{
+	dir = 1
+	},
+/turf/unsimulated/mars/sets/tarmac{
+	icon_state = "marshighw2";
+	dir = 8
+	},
+/area/sim/mars)
+"Av" = (
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/racing_track)
+"Aw" = (
+/obj/fakeobject/pipe/heat{
+	dir = 10
+	},
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir-b"
+	},
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 1;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"AB" = (
+/obj/overlay{
+	anchored = 1;
+	density = 1;
+	desc = "You have no idea what this does.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "lavamachine_00";
+	name = "huge machine"
+	},
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "caution_south";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"AR" = (
+/obj/sea_plant/anemone/lit,
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"AS" = (
+/obj/forcefield,
+/turf/space,
+/area/sim/space)
+"AX" = (
+/obj/table/auto,
+/obj/machinery/computer/security/wooden_tv/small{
+	pixel_y = 8;
+	network = "VR"
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Bf" = (
+/obj/decal/cleanable/rust/jen,
+/turf/unsimulated/floor/plating,
+/area/sim/racing_entry)
+"Bh" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor/wood/two,
+/area/sim/dojo)
+"Br" = (
+/obj/decal/poster/wallsign/stencil/left/r,
+/obj/decal/poster/wallsign/stencil/right/t,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"Bt" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 6
+	},
+/turf/unsimulated/wall/auto/lead/gray,
+/area/sim/iomoon)
+"Bv" = (
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 8;
+	icon_state = "iocrust_edge";
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"By" = (
+/obj/racing_boosterstrip,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"BE" = (
+/obj/decal/poster/wallsign/stencil/left/e,
+/obj/decal/poster/wallsign/stencil/right/s,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"BL" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_10"
+	},
+/obj/racing_boosterstrip,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"BQ" = (
+/obj/machinery/camera/television{
+	dir = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"BR" = (
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "caution_south";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"Ck" = (
+/obj/machinery/crusher/instant,
+/turf/unsimulated/floor/black,
+/area/sim/racing_track)
+"Cn" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "A thermoelectric generator that appears to have fallen into disrepair.";
+	icon = 'icons/obj/power.dmi';
+	icon_state = "teg-broken";
+	name = "broken generator"
+	},
+/turf/unsimulated/floor,
+/area/sim/iomoon)
+"Cz" = (
+/turf/unsimulated/wall/other{
+	name = "barrier";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "barrier_yellow";
+	opacity = 0
+	},
+/area/sim/racing_track)
+"CI" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1;
+	pixel_x = 8
+	},
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1;
+	pixel_x = -9
+	},
+/turf/unsimulated/wall/auto/lead/gray{
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"CZ" = (
+/obj/decal/poster/wallsign/stencil/left/s,
+/obj/decal/poster/wallsign/stencil/right/p,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"Dd" = (
+/obj/machinery/conveyor/WE{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t3";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Dm" = (
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"Do" = (
+/turf/unsimulated/floor/stairs/wood/wide{
+	dir = 5
+	},
+/area/sim/racing_entry)
+"Dt" = (
+/turf/unsimulated/wall/trench/side,
+/area/sim/abzu)
+"DC" = (
+/obj/decal/tile_edge/line/red{
+	icon_state = "line1";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 6
+	},
+/area/sim/racing_entry)
+"DE" = (
+/obj/racing_boosterstrip,
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"DL" = (
+/obj/machinery/door/unpowered/wood/pyro{
+	dir = 4
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"DP" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_11"
+	},
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"Ek" = (
+/turf/unsimulated/wall/other{
+	name = "barrier";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "barrier_blue";
+	opacity = 0
+	},
+/area/sim/racing_track)
+"Ex" = (
+/turf/unsimulated/grass{
+	density = 1;
+	icon_state = "grass";
+	name = "grass.";
+	opacity = 1
+	},
+/area/sim/graveyard)
+"EL" = (
+/obj/machinery/conveyor/SN{
+	id = "vrmars";
+	operating = 1
+	},
+/obj/mapping_helper/turf/floor/darkener{
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"ER" = (
+/turf/unsimulated/wall/auto/adventure/mars,
+/area/sim/mars)
+"EY" = (
+/obj/indestructible/shuttle_corner{
+	dir = 4;
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/obj/map/light/lava,
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"Fd" = (
+/obj/stool/chair/comfy{
+	dir = 1
+	},
+/obj/item/device/radio/intercom/virtual,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Fg" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 4;
+	pixel_y = -6
+	},
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 4;
+	pixel_y = 6
+	},
+/obj/fakeobject/pipe{
+	desc = "It won't budge.";
+	dir = 4;
+	icon = 'icons/obj/pipe-item.dmi';
+	icon_state = "valve";
+	name = "rusted valve"
+	},
+/turf/unsimulated/floor,
+/area/sim/iomoon)
+"Fi" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/obj/railing/orange/reinforced,
+/turf/unsimulated/iomoon/floor{
+	dir = 6;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"Fn" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_10"
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"Fp" = (
+/obj/sea_plant{
+	icon_state = "shell_10"
+	},
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"Fv" = (
+/obj/river{
+	icon_state = "river";
+	dir = 10
+	},
+/obj/map/light/graveyard,
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"FB" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
+"FK" = (
+/obj/sea_plant{
+	icon_state = "shell_11"
+	},
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"FU" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 9;
+	icon_state = "iocrust_edge";
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"FW" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced,
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 6;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"Ge" = (
+/turf/space/asteroid,
+/area/sim/space)
+"Gg" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 5;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"Gs" = (
+/turf/unsimulated/wall/water,
+/area/sim/dojo)
+"Gw" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 9
+	},
+/area/sim/racing_track)
+"Gx" = (
+/turf/unsimulated/floor/dojo/stone,
+/area/sim/dojo)
+"GC" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles1";
+	dir = 1
+	},
+/obj/lattice,
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"GG" = (
+/obj/machinery/door/unpowered/wood/pyro,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"GH" = (
+/obj/machinery/shitty_grill,
+/obj/item/reagent_containers/food/snacks/ingredient/meat,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_entry)
+"GJ" = (
+/obj/river,
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"GT" = (
+/turf/unsimulated/wall/solidcolor/white,
+/area/sim/abzu)
+"GV" = (
+/obj/structure/woodwall{
+	opacity = 0
+	},
+/turf/unsimulated/grass{
+	density = 1;
+	icon_state = "grass";
+	name = "grass.";
+	opacity = 1
+	},
+/area/sim/graveyard)
+"Hj" = (
+/turf/unsimulated/wall/trench,
+/area/sim/abzu)
+"Hk" = (
+/obj/decal/cliff,
+/turf/unsimulated/floor/solidcolor/black{
+	density = 1;
+	desc = "Wow, that looks really deep. Better not get near it!"
+	},
+/area/sim/racing_track)
+"Hm" = (
+/obj/tree/sakura_tree/tree_2{
+	pixel_x = 0;
+	pixel_y = -3
+	},
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/dojo/sakura)
+"Hs" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"Hu" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/obj/switches_the_conveyors,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
+"Hv" = (
+/obj/lattice,
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"Hx" = (
+/obj/map/light/lava,
+/obj/fakeobject/pipe/heat{
+	dir = 10
+	},
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"HA" = (
+/obj/ladder,
+/obj/railing/orange/reinforced,
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"HD" = (
+/obj/decal/nothing,
+/turf/unsimulated/floor/auto/dirt,
+/area/sim/racing_track)
+"HE" = (
+/obj/decal/tile_edge/line{
+	icon_state = "line2"
+	},
+/obj/death_button/VR_logout_button{
+	icon = 'icons/obj/machines/8dirvehicles.dmi';
+	icon_state = "whitecar1_full"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_entry)
+"HF" = (
+/obj/stone{
+	icon_state = "stone";
+	dir = 8
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"HN" = (
+/obj/structure/woodwall{
+	opacity = 0
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"HQ" = (
+/turf/unsimulated/floor/dojo/stonestair/right,
+/area/sim/dojo)
+"HS" = (
+/obj/mapping_helper/turf/floor/darkener{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_entry)
+"HW" = (
+/turf/unsimulated/mars/sets/tarmac{
+	icon_state = "marshighw2";
+	dir = 4
+	},
+/area/sim/mars)
+"HY" = (
+/obj/fakeobject/airlock_broken/firelock{
+	dir = 8;
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "fdoor0"
+	},
+/turf/unsimulated/floor{
+	icon_state = "floor"
+	},
+/area/sim/iomoon)
+"Ia" = (
+/obj/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_track)
+"Ic" = (
+/obj/shrub/random,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Ih" = (
+/obj/racing_boosterstrip{
+	dir = 1
+	},
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Il" = (
+/obj/decal/tile_edge/line{
+	icon_state = "line2"
+	},
+/obj/death_button/VR_logout_button{
+	icon = 'icons/obj/machines/8dirvehicles.dmi';
+	icon_state = "car_blue"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_entry)
+"IE" = (
+/obj/storage/closet/wardrobe/green,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"IL" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_4"
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"IP" = (
+/obj/decal/cleanable/blood/gibs/core,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
+"IU" = (
+/obj/machinery/conveyor/EW{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t3";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"IX" = (
+/obj/racing_boosterstrip{
+	dir = 4
+	},
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"Jf" = (
+/obj/decal/nothing{
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor/dojo/stone,
+/area/sim/dojo)
+"Jm" = (
+/obj/sea_plant/tubesponge,
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"Jw" = (
+/obj/decal/poster/wallsign/escape_left,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_entry)
+"JD" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_entry)
+"JF" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/obj/invisible_teleporter{
+	id = "vrioreset"
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 1;
+	icon_state = "iocrust_edge";
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"JJ" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_11"
+	},
+/turf/unsimulated/wall/water,
+/area/sim/dojo)
+"JP" = (
+/turf/unsimulated/floor{
+	icon_state = "caution_east";
+	dir = 2
+	},
+/area/sim/iomoon)
+"JS" = (
+/obj/fakeobject{
+	desc = "Geocities, is that you?";
+	dir = 1;
+	icon = 'icons/obj/junk.dmi';
+	icon_state = "construction";
+	name = "construction zone"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 4
+	},
+/area/sim/racing_track)
+"JT" = (
+/turf/unsimulated/wall/solidcolor/white,
+/area/sim/void)
+"JV" = (
+/obj/decal/nothing{
+	dir = 4;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 9
+	},
+/area/sim/racing_track)
+"Kk" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Kn" = (
+/turf/unsimulated/mars/sets/tarmac,
+/area/sim/mars)
+"Kp" = (
+/obj/river{
+	icon_state = "river";
+	dir = 5
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"Kt" = (
+/obj/overlay{
+	anchored = 1;
+	density = 1;
+	desc = "You have no idea what this does.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "lavamachine_02";
+	name = "huge machine"
+	},
+/turf/unsimulated/floor{
+	icon_state = "corner_east";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"Kx" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"Ky" = (
+/turf/unsimulated/wall/solidcolor/white,
+/area/sim/mars)
+"KL" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 1;
+	icon_state = "iocrust_edge";
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"KM" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/obj/invisible_teleporter{
+	id = "vrioreset"
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 4;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"KN" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart{
+	dir = 8;
+	icon_state = "kart_blue_u";
+	returnpoint = "kart3"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
+"KU" = (
+/turf/unsimulated/wall/auto/lead/gray{
+	occlude_foreground_parallax_layers = 1
+	},
+/area/sim/iomoon)
+"KV" = (
+/turf/unsimulated/floor/black,
+/area/sim/racing_track)
+"KW" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 1
+	},
+/area/sim/space)
+"Lc" = (
+/obj/racing_boosterstrip,
+/turf/simulated/floor/plating,
+/area/sim/void)
+"Li" = (
+/obj/machinery/door/unpowered/wood/pyro,
+/obj/racing_boosterstrip{
+	dir = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Ma" = (
+/turf/simulated/floor{
+	icon_state = "floorgrime"
+	},
+/area/sim/void)
+"Mw" = (
+/obj/mapping_helper/turf/floor/darkener,
+/obj/machinery/conveyor/NS{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t3";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Mx" = (
+/turf/unsimulated/wall/solidcolor/white,
+/area/sim/racing_track)
+"MM" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 4
+	},
+/area/sim/racing_track)
+"MQ" = (
+/obj/tombstone,
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"MW" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"MX" = (
+/obj/racing_boosterstrip{
+	dir = 1
+	},
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"Nb" = (
+/obj/racing_boosterstrip{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"Nn" = (
+/obj/machinery/conveyor/WE{
+	id = "vrmars";
+	operating = 1
+	},
+/obj/machinery/conveyor/WE{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Ny" = (
+/obj/decal/cleanable/rust,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_entry)
+"NE" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "caution_east";
+	dir = 2
+	},
+/area/sim/iomoon)
+"NN" = (
+/obj/racing_boosterstrip,
+/turf/simulated/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/sim/void)
+"NP" = (
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/racing_track)
+"NT" = (
+/obj/decal/cleanable/blood/gibs/body,
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
+"Oe" = (
+/obj/table/wood/auto,
+/obj/machinery/light/lamp/green{
+	pixel_y = 12
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Os" = (
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/mars/sets/tarmac{
+	icon_state = "marshighw1";
+	dir = 4
+	},
+/area/sim/mars)
+"Oz" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
+"OB" = (
+/obj/landmark/arcadevr,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_entry)
+"OC" = (
+/obj/indestructible/shuttle_corner{
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/obj/map/light/lava,
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"OE" = (
+/obj/fakeobject{
+	desc = "Geocities, is that you?";
+	dir = 1;
+	icon = 'icons/obj/junk.dmi';
+	icon_state = "construction";
+	name = "construction zone"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 8
+	},
+/area/sim/racing_track)
+"OF" = (
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/mars/sets/tarmac{
+	icon_state = "marshighw2";
+	dir = 4
+	},
+/area/sim/mars)
+"OK" = (
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_entry)
+"OL" = (
+/turf/unsimulated/wall/auto/adventure/fake_window,
+/area/sim/racing_entry)
+"OV" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 4
+	},
+/area/sim/space)
+"Pa" = (
+/turf/space/dense,
+/area/sim/space)
+"Pd" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Pe" = (
+/obj/decal/nothing{
+	dir = 4;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"Pf" = (
+/turf/simulated/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/sim/void)
+"Ph" = (
+/turf/unsimulated/floor{
+	icon_state = "caution_north"
+	},
+/area/sim/iomoon)
+"Pm" = (
+/obj/overlay{
+	anchored = 1;
+	density = 1;
+	desc = "You have no idea what this does.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "lavamachine_01";
+	name = "huge machine"
+	},
+/obj/map/light/lava,
+/turf/unsimulated/floor/lava{
+	deadly = 0;
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"Pq" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	icon_state = "iocrust_corner"
+	},
+/area/sim/iomoon)
+"Pt" = (
+/obj/map/light/lava,
+/obj/mesh/catwalk,
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor/airless/plating/catwalk/auto/iomoon,
+/area/sim/iomoon)
+"Px" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "A segment of a broken gas turbine.  Well, it's old and dirty so it can be assumed to be broken.";
+	icon = 'icons/obj/atmospherics/pipes.dmi';
+	icon_state = "circ1-broken";
+	name = "old gas turbine"
+	},
+/turf/unsimulated/floor,
+/area/sim/iomoon)
+"PF" = (
+/obj/decal/cleanable/oil,
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "corner_east"
+	},
+/area/sim/iomoon)
+"PI" = (
+/obj/stool/chair/office/blue,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"PL" = (
+/obj/table/wood/auto,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"PR" = (
+/turf/space,
+/area/sim/space)
+"PX" = (
+/turf/unsimulated/wall/setpieces/leadwindow/gray{
+	occlude_foreground_parallax_layers = 1
+	},
+/area/sim/iomoon)
+"Qa" = (
+/obj/fakeobject/lotus,
+/turf/unsimulated/wall/water,
+/area/sim/dojo)
+"Qd" = (
+/turf/unsimulated/floor{
+	icon = 'icons/turf/outdoors.dmi';
+	icon_state = "pit";
+	color = "#afd4ff"
+	},
+/area/sim/abzu)
+"Qg" = (
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "corner_nwest";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"Qp" = (
+/obj/storage/closet/wardrobe/white,
+/obj/storage/closet/wardrobe/blue,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Qx" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 1
+	},
+/obj/map/light/graveyard,
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"Qz" = (
+/turf/unsimulated/wall/generic{
+	icon = 'icons/obj/singularity.dmi';
+	icon_state = "TheSingMain";
+	name = "v-space"
+	},
+/area/sim/racing_track)
+"QC" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 4
+	},
+/obj/map/light/graveyard,
+/turf/unsimulated/dirt,
+/area/sim/graveyard)
+"QG" = (
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+"QS" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_4"
+	},
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"QU" = (
+/obj/decal/tile_edge/line/blue{
+	icon_state = "line2"
+	},
+/obj/death_button/VR_logout_button{
+	icon = 'icons/obj/machines/8dirvehicles.dmi';
+	icon_state = "car_purple"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 1
+	},
+/area/sim/racing_entry)
+"Ra" = (
+/obj/machinery/camera/auto/virtual,
+/turf/simulated/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/sim/void)
+"Rb" = (
+/obj/machinery/conveyor/NE{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t3";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Rl" = (
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "corner_west";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"Ru" = (
+/obj/fakeobject{
+	anchored = 1;
+	density = 1;
+	desc = "A broken gas circulator from a generator.";
+	icon = 'icons/obj/atmospherics/pipes.dmi';
+	icon_state = "circ1-broken";
+	name = "old gas circulator"
+	},
+/turf/unsimulated/floor,
+/area/sim/iomoon)
+"Rv" = (
+/obj/decal/tile_edge/line{
+	icon_state = "line2";
+	dir = 1
+	},
+/obj/death_button/VR_logout_button{
+	icon = 'icons/obj/machines/8dirvehicles.dmi';
+	icon_state = "car_red"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_entry)
+"RC" = (
+/obj/overlay{
+	anchored = 1;
+	density = 1;
+	desc = "You have no idea what this does.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "lavamachine_10";
+	name = "huge machine"
+	},
+/turf/unsimulated/floor{
+	icon_state = "floor";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"RE" = (
+/obj/racing_boosterstrip,
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_10"
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"Sk" = (
+/obj/sea_plant/bulbous,
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"Sq" = (
+/mob/living/critter/small_animal/crab/lava,
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"Sr" = (
+/turf/unsimulated/mars/sets/tarmac{
+	icon_state = "marshighw2";
+	dir = 8
+	},
+/area/sim/mars)
+"Su" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 4;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"Sv" = (
+/turf/unsimulated/iomoon/floor{
+	name = "silicate cave floor";
+	temperature = 313.15
+	},
+/area/sim/iomoon)
+"SJ" = (
+/obj/machinery/door/unpowered/wood/pyro{
+	dir = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Td" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 2
+	},
+/area/sim/space)
+"Te" = (
+/obj/decal/poster/wallsign/stencil/left/g,
+/turf/unsimulated/wall/auto/reinforced/supernorn,
+/area/sim/racing_track)
+"Tm" = (
+/obj/item/instrument/large/jukebox,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Tz" = (
+/turf/unsimulated/wall{
+	icon = 'icons/obj/singularity.dmi';
+	icon_state = "TheSingMain";
+	name = "v-space"
+	},
+/area/sim/racing_track)
+"TA" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_11"
+	},
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 4
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"TB" = (
+/obj/stone{
+	icon_state = "stone";
+	dir = 9
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"TC" = (
+/turf/unsimulated/wall/solidcolor/white,
+/area/sim/iomoon)
+"TD" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart{
+	dir = 8;
+	icon_state = "kart_blue_u";
+	returnpoint = "kart3"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2";
+	dir = 8
+	},
+/area/sim/racing_track)
+"TH" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	dir = 1;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"TP" = (
+/turf/space,
+/area/space)
+"TU" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_7"
+	},
+/turf/unsimulated/wall/water,
+/area/sim/dojo)
+"TX" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 4
+	},
+/area/sim/space)
+"Un" = (
+/obj/mapping_helper/turf/floor/darkener{
+	dir = 1
+	},
+/turf/unsimulated/mars/sets/tarmac{
+	icon_state = "marshighw2";
+	dir = 4
+	},
+/area/sim/mars)
+"Uo" = (
+/obj/decal/nothing{
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 2
+	},
+/area/sim/space)
+"Uy" = (
+/turf/unsimulated/floor/dojo/stonestair/left,
+/area/sim/dojo)
+"UC" = (
+/turf/unsimulated/wall/solidcolor/white,
+/area/sim/space)
+"UO" = (
+/turf/unsimulated/wall/solidcolor/black,
+/area/sim/mars)
+"UY" = (
+/obj/decal/nothing{
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/unsimulated/floor/stairs{
+	icon_state = "wood_stairs2"
+	},
+/area/sim/dojo)
+"Vd" = (
+/obj/invisible_teleporter{
+	id = "vrabzureset"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/turf/outdoors.dmi';
+	icon_state = "pit_wall";
+	color = "#afd4ff"
+	},
+/area/sim/abzu)
+"Vh" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"Vi" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/obj/racing_clowncar/kart{
+	dir = 8;
+	icon_state = "kart_blue_u";
+	returnpoint = "kart3"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"Vo" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 4
+	},
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/racing_track)
+"Vp" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "corner_west";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"Vw" = (
+/obj/machinery/conveyor/WE{
+	id = "vrmars";
+	operating = 1
+	},
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Vx" = (
+/obj/machinery/conveyor/SN{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t2";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"VE" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "caution_north"
+	},
+/area/sim/iomoon)
+"VH" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "finishline_strip";
+	name = "finish line"
+	},
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "finishline_strip";
+	name = "finish line";
+	pixel_x = 6
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_track)
+"VL" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 4;
+	pixel_y = 6
+	},
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 4;
+	pixel_y = -6
+	},
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 4
+	},
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "floor"
+	},
+/area/sim/iomoon)
+"VM" = (
+/obj/map/light/lava,
+/obj/railing/orange/reinforced{
+	dir = 1
+	},
+/turf/unsimulated/iomoon/floor{
+	dir = 1;
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"VW" = (
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon = 'icons/turf/walls/silicate.dmi';
+	name = "silicate crust"
+	},
+/turf/unsimulated/floor/lava{
+	deadly = 0
+	},
+/area/sim/iomoon)
+"We" = (
+/turf/unsimulated/wall/water{
+	opacity = 1
+	},
+/area/sim/dojo)
+"Wf" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 10
+	},
+/area/sim/space)
+"Wk" = (
+/obj/machinery/camera/auto/virtual,
+/turf/unsimulated/floor/sand{
+	icon_state = "sand_other"
+	},
+/area/sim/abzu)
+"Wl" = (
+/obj/decal/tile_edge/line{
+	icon_state = "line2";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_entry)
+"Ww" = (
+/obj/map/light/lava,
+/obj/mesh/catwalk,
+/turf/unsimulated/floor/airless/plating/catwalk/auto/iomoon,
+/area/sim/iomoon)
+"Wy" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"WX" = (
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 6
+	},
+/area/sim/space)
+"Xf" = (
+/turf/unsimulated/floor/stairs/wood/wide{
+	dir = 4
+	},
+/area/sim/racing_entry)
+"Xg" = (
+/obj/machinery/door/unpowered/wood/pyro{
+	dir = 1
+	},
+/obj/racing_boosterstrip,
+/turf/unsimulated/floor/wood,
+/area/sim/racing_entry)
+"Xk" = (
+/obj/overlay{
+	anchored = 1;
+	desc = "";
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "car_mark";
+	name = "car marker"
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_1"
+	},
+/area/sim/racing_track)
+"Xo" = (
+/obj/map/light/lava,
+/obj/racing_powerup_spawner,
+/obj/mesh/catwalk,
+/turf/unsimulated/floor/airless/plating/catwalk/auto/iomoon,
+/area/sim/iomoon)
+"Xs" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_10"
+	},
+/obj/racing_trap_banana,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"Xy" = (
+/obj/machinery/conveyor/SN{
+	id = "vrmars";
+	operating = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t3";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"XD" = (
+/obj/decal/nothing{
+	dir = 8;
+	mouse_opacity = 0
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 4
+	},
+/area/sim/space)
+"XU" = (
+/turf/unsimulated/mars/sets/tarmac{
+	icon_state = "marshighw1";
+	dir = 4
+	},
+/area/sim/mars)
+"XV" = (
+/obj/fakeobject/airlock_broken/firelock{
+	dir = 8;
+	icon = 'icons/obj/doors/SL_doors.dmi';
+	icon_state = "fdoor0"
+	},
+/turf/unsimulated/floor/industrial{
+	occlude_foreground_parallax_layers = 1
+	},
+/area/sim/iomoon)
+"Ye" = (
+/obj/fakeobject/mars_billboard,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/mars_outpost.dmi';
+	icon_state = "t1";
+	name = "Mars";
+	desc = "Get your ass there."
+	},
+/area/sim/mars)
+"Yg" = (
+/turf/unsimulated/wall/auto/adventure/iomoon,
+/area/sim/iomoon)
+"Ym" = (
+/obj/racing_boosterstrip{
+	icon_state = "boosterstrip";
+	dir = 8
+	},
+/turf/unsimulated/wall/solidcolor/white{
+	density = 0
+	},
+/area/sim/space)
+"Yq" = (
+/obj/overlay{
+	anchored = 1;
+	density = 1;
+	desc = "You have no idea what this does.";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "lavamachine_11";
+	name = "huge machine"
+	},
+/turf/unsimulated/floor{
+	icon_state = "floor";
+	fulltile_foreground_parallax_occlusion_overlay = 1
+	},
+/area/sim/iomoon)
+"Yt" = (
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"Yu" = (
+/obj/tombstone{
+	desc = "Here lies Kira Taggart, tragically killed as a result of somebody else's mistakes."
+	},
+/turf/unsimulated/grass,
+/area/sim/graveyard)
+"YC" = (
+/obj/decal/tile_edge/line/blue{
+	icon_state = "line2";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "track_2"
+	},
+/area/sim/racing_entry)
+"YD" = (
+/obj/fakeobject/pipe{
+	color = "b4b4b4";
+	dir = 1
+	},
+/obj/fakeobject/pipe{
+	desc = "It seems to be broken.";
+	dir = 4;
+	icon = 'icons/obj/pipe-item.dmi';
+	icon_state = "meter";
+	name = "meter"
+	},
+/turf/unsimulated/floor{
+	dir = 1;
+	icon_state = "caution_south"
+	},
+/area/sim/iomoon)
+"YR" = (
+/obj/map/light/lava,
+/turf/unsimulated/iomoon/floor{
+	icon_state = "iocrust_edge"
+	},
+/area/sim/iomoon)
+"YV" = (
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_11"
+	},
+/obj/fakeobject/bridge_rail{
+	icon_state = "rail_9"
+	},
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"YX" = (
+/obj/racing_boosterstrip,
+/turf/simulated/floor{
+	icon_state = "damaged2"
+	},
+/area/sim/void)
+"Zh" = (
+/obj/item/light/bulb{
+	pixel_y = -1
+	},
+/turf/unsimulated/floor/grass/leafy,
+/area/sim/dojo)
+"Zn" = (
+/obj/decal/stone_lamp,
+/turf/unsimulated/floor/wood/two,
+/area/sim/dojo)
+"ZE" = (
+/obj/racing_trap_banana,
+/turf/unsimulated/floor/dojo/bridge/vertical,
+/area/sim/dojo)
+"ZF" = (
+/obj/machinery/camera/auto/virtual,
+/turf/space,
+/area/sim/space)
+"ZI" = (
+/obj/racing_powerup_spawner,
+/turf/unsimulated/floor{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "rainbow_road";
+	dir = 4
+	},
+/area/sim/space)
+"ZZ" = (
+/obj/decal/floatingtiles{
+	icon_state = "floattiles4";
+	dir = 8
+	},
+/turf/unsimulated/floor/auto/void,
+/area/sim/void)
+
+(1,1,1) = {"
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(2,1,1) = {"
+oi
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+Mx
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(3,1,1) = {"
+oi
+ER
+ER
+wt
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+aW
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+Ih
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+jw
+xv
+sl
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+cr
+cr
+cr
+cr
+cr
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(4,1,1) = {"
+oi
+UO
+Aq
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+Sr
+dq
+xv
+HD
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+nH
+nH
+nH
+cr
+KV
+KV
+KV
+yC
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(5,1,1) = {"
+oi
+UO
+sk
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+XU
+Kn
+Os
+xv
+HD
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+nH
+nH
+cr
+KV
+cr
+cr
+Ck
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(6,1,1) = {"
+oi
+UO
+Un
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+HW
+OF
+xv
+HD
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+aM
+nH
+nH
+cr
+KV
+cr
+cr
+cr
+cr
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(7,1,1) = {"
+oi
+ER
+ER
+iG
+iG
+iG
+iG
+Kk
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+Ih
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+jw
+xv
+sl
+nH
+nH
+nH
+nH
+nH
+nH
+aM
+aM
+aM
+aM
+aM
+nH
+gz
+gz
+nH
+nH
+nH
+nH
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(8,1,1) = {"
+oi
+ER
+wt
+iG
+Ye
+wt
+iG
+iG
+iG
+Kk
+iG
+wt
+wt
+wt
+wt
+wt
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+ER
+Mx
+cr
+Ek
+Ek
+gz
+gz
+gz
+gz
+xi
+xi
+aM
+aM
+sU
+nH
+nH
+gz
+gz
+Ek
+Ek
+Ek
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(9,1,1) = {"
+oi
+ER
+tx
+iG
+wt
+iG
+iG
+iG
+iG
+iG
+iG
+wt
+wt
+tx
+tx
+ER
+ER
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+GT
+cr
+Ek
+nH
+nH
+FB
+nH
+nH
+xi
+xi
+aM
+aM
+aM
+aM
+nH
+nH
+nH
+nH
+nH
+Ek
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(10,1,1) = {"
+oi
+ER
+ER
+iG
+iG
+iG
+iG
+iG
+iG
+iG
+uj
+wt
+ER
+ER
+ER
+ER
+Hj
+Hj
+Dt
+se
+jH
+Hj
+Hj
+Hj
+Hj
+Dt
+Sk
+jH
+jH
+Hj
+Hj
+vg
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+Ab
+qQ
+HD
+aM
+qW
+MM
+MM
+MM
+JS
+uJ
+Hk
+JS
+MM
+MM
+MM
+MM
+MM
+MM
+gx
+nH
+Cz
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(11,1,1) = {"
+oi
+UO
+hi
+nX
+nX
+na
+iG
+rB
+nX
+xI
+nX
+bs
+Mw
+UO
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+Hj
+Hj
+vg
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Ab
+qQ
+HD
+aM
+nw
+fk
+fk
+fk
+rp
+uJ
+Hk
+rp
+fk
+fk
+fk
+fk
+fk
+fk
+mS
+nH
+Cz
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(12,1,1) = {"
+oi
+UO
+hi
+nX
+Rb
+Dd
+wt
+IU
+rB
+nX
+nX
+bs
+Mw
+UO
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Wk
+jH
+jH
+jH
+jH
+jH
+Ab
+qQ
+HD
+aM
+nw
+fk
+fk
+fk
+rp
+uJ
+Hk
+rp
+fk
+fk
+fk
+fk
+fk
+fk
+mS
+nH
+Cz
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(13,1,1) = {"
+oi
+ER
+ER
+tx
+Dd
+do
+wt
+IU
+IU
+wt
+tx
+tx
+ER
+ER
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Wk
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Ab
+qQ
+HD
+aM
+nw
+fk
+fk
+fk
+OE
+uJ
+Hk
+OE
+po
+po
+po
+fk
+fk
+fk
+mS
+nH
+Cz
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(14,1,1) = {"
+oi
+ER
+wt
+wt
+Vw
+Dd
+wt
+IU
+IU
+wt
+tx
+tx
+tx
+ER
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Ab
+qQ
+HD
+aM
+dI
+Pe
+Pe
+zD
+nH
+cr
+cr
+Ek
+nH
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+xi
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(15,1,1) = {"
+oi
+ER
+ER
+wt
+do
+do
+Pd
+IU
+IU
+wt
+tx
+tx
+ER
+ER
+Hj
+Dt
+jH
+jH
+Wk
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Dt
+jH
+Hj
+Hj
+Hj
+GT
+cr
+cr
+NP
+jj
+jj
+NP
+cr
+cr
+cr
+Ek
+Ek
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+xi
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(16,1,1) = {"
+oi
+ER
+ER
+wt
+do
+do
+wt
+gM
+gM
+wt
+vh
+tx
+tx
+ER
+Hj
+vg
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Dt
+Vd
+tp
+tp
+ke
+Vd
+tp
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+ti
+ti
+sR
+li
+rR
+Vp
+ti
+ti
+cr
+cr
+Ek
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+xi
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(17,1,1) = {"
+oi
+ER
+ER
+wt
+do
+Nn
+wt
+gM
+gM
+wt
+tx
+ER
+ER
+ER
+Hj
+Dt
+jH
+jH
+jH
+jH
+Hj
+Dt
+Vd
+Qd
+tp
+tp
+jH
+Hs
+Vd
+Hj
+Hj
+Yg
+ti
+ti
+ti
+ti
+ti
+ti
+ti
+ti
+ti
+ti
+ti
+Bt
+cE
+VE
+kA
+kA
+gG
+Ru
+gX
+Av
+cr
+gz
+nH
+nH
+nw
+MW
+fk
+mS
+nH
+xi
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(18,1,1) = {"
+oi
+UO
+EL
+Vx
+sT
+do
+wt
+gM
+bx
+Vx
+Xy
+it
+UO
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+Vd
+Qd
+tp
+jH
+jH
+Vd
+tp
+Hj
+Yg
+Yg
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gp
+gZ
+ch
+Px
+VE
+kA
+kA
+YD
+VL
+gX
+Av
+cr
+gz
+nH
+nH
+Oz
+Wy
+Wy
+hY
+nH
+gz
+nH
+cr
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(19,1,1) = {"
+oi
+UO
+EL
+ps
+Vx
+sT
+wt
+bx
+ps
+Vx
+Xy
+it
+UO
+Hj
+Hj
+vg
+jH
+jH
+jH
+jH
+Hj
+Dt
+Vd
+tp
+tp
+jH
+Vd
+tp
+Hj
+Hj
+Yg
+ep
+gZ
+Pq
+Su
+Su
+Su
+Su
+Su
+Su
+gL
+gp
+gZ
+ti
+Cn
+Ph
+zX
+zX
+ht
+Fg
+ti
+Av
+cr
+gz
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+gz
+nH
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+xa
+xa
+xa
+xa
+OK
+oi
+"}
+(20,1,1) = {"
+oi
+ER
+ER
+iG
+iG
+wt
+wt
+iG
+wt
+wt
+ER
+ER
+ER
+Hj
+Hj
+vg
+jH
+jH
+jH
+jH
+jH
+jH
+Vd
+tp
+jH
+jH
+Vd
+Qd
+Hj
+Yg
+Yg
+gZ
+Pq
+Fi
+Sv
+Sv
+ys
+Sv
+Sv
+Sv
+KL
+Hx
+yb
+ti
+hD
+dT
+NE
+NE
+PF
+gE
+gX
+Av
+cr
+gz
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+gz
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+cr
+kR
+HS
+HS
+aF
+OK
+oi
+"}
+(21,1,1) = {"
+oi
+ER
+ER
+iG
+iG
+iG
+iG
+iG
+iG
+ER
+ER
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Vd
+tp
+Hj
+Hj
+Yg
+ep
+gZ
+tS
+Sv
+Sv
+Sv
+ys
+Sv
+Sv
+Sv
+Gg
+gL
+gZ
+ti
+qR
+HY
+HY
+HY
+HY
+qR
+ti
+Av
+cr
+xi
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+gz
+Ek
+Ek
+Ek
+Ek
+Cz
+Cz
+Cz
+Cz
+xi
+xi
+xi
+xi
+nH
+cr
+rF
+JD
+JD
+ky
+OK
+oi
+"}
+(22,1,1) = {"
+oi
+ER
+ER
+bk
+bk
+bk
+bk
+bk
+bk
+ER
+ER
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+Vd
+tp
+tp
+tp
+tp
+Hj
+Hj
+Yg
+Yg
+gZ
+gZ
+tS
+Sv
+Sv
+Sv
+ys
+Sv
+Sv
+Sv
+Sv
+KL
+gZ
+tS
+Sv
+xx
+if
+xx
+xx
+Yg
+Yg
+Av
+cr
+xi
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+gz
+nH
+CZ
+rF
+JD
+JD
+ky
+OK
+oi
+"}
+(23,1,1) = {"
+oi
+Ky
+Ky
+yN
+iw
+iw
+iw
+iw
+iw
+GT
+GT
+Hj
+Hj
+Dt
+aj
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Yg
+Yg
+ep
+gZ
+gZ
+tS
+Sv
+Sv
+Sv
+kI
+lo
+Sv
+Sv
+Sv
+KL
+gZ
+tS
+Sv
+xx
+xx
+xx
+xx
+Yg
+Yg
+Av
+cr
+xi
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+gz
+nH
+BE
+Wl
+JD
+OB
+HE
+OK
+oi
+"}
+(24,1,1) = {"
+oi
+Hj
+Dt
+vW
+vW
+yh
+vW
+vW
+vW
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+ep
+gZ
+gZ
+gZ
+tS
+Sv
+Sv
+Sv
+KL
+tS
+Sv
+Sv
+Sv
+KL
+gZ
+tS
+Sv
+Sv
+xx
+xx
+xx
+Yg
+Yg
+Av
+cr
+xi
+nH
+nH
+nw
+fk
+fk
+fk
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+gx
+nH
+nH
+gz
+nH
+jD
+cQ
+OB
+JD
+sh
+OK
+oi
+"}
+(25,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+Jm
+jH
+jH
+jH
+jH
+Sk
+Hj
+Yg
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+Pq
+Fi
+lK
+Sv
+Sv
+KL
+tS
+Sv
+Sv
+lK
+Gg
+Su
+FW
+ys
+Sv
+Sv
+Sv
+Sv
+Yg
+Yg
+Av
+cr
+Cz
+nH
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+Vh
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+mS
+nH
+nH
+gz
+nH
+gi
+Wl
+JD
+OB
+Il
+OK
+oi
+"}
+(26,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+Hj
+Hj
+Yg
+gZ
+gZ
+Pq
+Su
+Su
+Su
+Su
+Su
+Fi
+Sv
+Sv
+Sv
+Sv
+KL
+tS
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+ys
+Sv
+Sv
+Sv
+Yg
+Yg
+Av
+cr
+Cz
+nH
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+MW
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+mS
+nH
+nH
+Ek
+nH
+Br
+Wl
+JD
+OB
+HE
+OK
+oi
+"}
+(27,1,1) = {"
+oi
+Hj
+vg
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+Hj
+Hj
+Yg
+gZ
+Pq
+FW
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+KL
+tS
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+ys
+Sv
+Sv
+Yg
+Yg
+Av
+cr
+Cz
+nH
+nH
+bc
+po
+po
+po
+po
+po
+po
+po
+po
+po
+po
+fk
+fk
+fk
+mS
+nH
+nH
+Ek
+nH
+dW
+Wl
+JD
+JD
+sh
+OK
+oi
+"}
+(28,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+MX
+Sv
+KL
+tS
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+FU
+nR
+Yg
+Yg
+Av
+cr
+Cz
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nw
+MW
+fk
+mS
+nH
+nH
+Ek
+nH
+Te
+Rv
+OB
+JD
+sh
+OK
+oi
+"}
+(29,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+kI
+lP
+jn
+lo
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+FU
+lP
+YR
+Yg
+Yg
+Av
+cr
+Ek
+Ek
+Ek
+Ek
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+IP
+Ek
+nH
+cr
+Wl
+JD
+OB
+Il
+OK
+oi
+"}
+(30,1,1) = {"
+oi
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+qw
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+Sv
+FU
+cx
+cx
+cx
+cx
+cx
+lP
+gZ
+gZ
+jn
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+lP
+gZ
+YR
+Yg
+Yg
+Av
+cr
+nH
+nH
+nH
+gz
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nw
+fk
+fk
+mS
+nH
+lH
+nH
+nH
+cr
+Rv
+OB
+JD
+sh
+OK
+oi
+"}
+(31,1,1) = {"
+oi
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+se
+Hj
+Hj
+Hj
+Hj
+vg
+jH
+jH
+jH
+Wk
+jH
+jH
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+kI
+lP
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+YR
+Yg
+Yg
+Av
+cr
+nH
+nH
+nH
+gz
+gz
+gz
+xi
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nw
+fk
+fk
+zQ
+NT
+nH
+nH
+nH
+cr
+YC
+JD
+OB
+QU
+OK
+oi
+"}
+(32,1,1) = {"
+oi
+Hj
+Hj
+Dt
+jH
+Wk
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+vg
+jH
+jH
+Hs
+Hs
+jH
+Hj
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+qV
+oR
+oR
+oR
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+YR
+Yg
+Yg
+Av
+cr
+nH
+nH
+nH
+nH
+nH
+nH
+xi
+xi
+xi
+Cz
+nH
+nH
+nH
+nH
+nw
+Nb
+fk
+Ia
+nH
+nH
+nH
+nH
+cr
+gS
+OB
+JD
+oP
+OK
+oi
+"}
+(33,1,1) = {"
+oi
+Hj
+Hj
+Dt
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+eh
+Ww
+Ww
+Ww
+oR
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+tG
+Yg
+Yg
+Av
+cr
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+Cz
+Cz
+Cz
+nH
+nH
+nw
+fk
+fk
+Ia
+cr
+cr
+cr
+cr
+cr
+DC
+qG
+qG
+gv
+OK
+oi
+"}
+(34,1,1) = {"
+oi
+Hj
+vg
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+eh
+Ww
+Ww
+Ww
+Ww
+oR
+oR
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+lx
+Yg
+Yg
+Yg
+Av
+cr
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+Ek
+nH
+nH
+nw
+fk
+fk
+cF
+Bf
+qq
+qq
+qq
+qq
+qq
+qq
+qq
+qq
+OK
+oi
+"}
+(35,1,1) = {"
+oi
+Hj
+vg
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+vg
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+JF
+oR
+oR
+Ww
+Ww
+Ww
+Ww
+oR
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+Yg
+Yg
+Yg
+Yg
+Av
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+nH
+Ek
+nH
+nH
+nw
+fk
+fk
+mS
+Ny
+qq
+qq
+qq
+qq
+qq
+qq
+qq
+qq
+OK
+oi
+"}
+(36,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+KL
+gZ
+oR
+oR
+Ww
+Ww
+Ww
+Ww
+oR
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+VW
+Yg
+Yg
+Yg
+Av
+OK
+oY
+eQ
+OK
+Ic
+pC
+pC
+GG
+bj
+im
+OK
+nH
+Ek
+nH
+nH
+nw
+fk
+fk
+mS
+Ny
+qq
+qq
+qq
+qq
+Xf
+rK
+rK
+Do
+OK
+oi
+"}
+(37,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Dt
+FK
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+KL
+gZ
+gZ
+oR
+oR
+oR
+Ww
+Pt
+Ww
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+Yg
+Yg
+Yg
+Av
+OK
+oY
+eQ
+OK
+pC
+pC
+pC
+OK
+ue
+OK
+OK
+nH
+Ek
+gz
+gz
+nw
+fk
+fk
+mS
+OK
+OK
+OK
+OK
+OK
+pC
+pC
+pC
+pC
+OK
+oi
+"}
+(38,1,1) = {"
+oi
+Hj
+Dt
+AR
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+qw
+jH
+Hj
+Yg
+gZ
+tS
+Sv
+lK
+Sv
+KL
+gZ
+gZ
+gZ
+gZ
+oR
+oR
+Xo
+Xo
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gD
+Yg
+Yg
+Av
+OK
+oY
+eQ
+OK
+pC
+pC
+OK
+OK
+OK
+OK
+nH
+nH
+nH
+nH
+gz
+nw
+fk
+fk
+mS
+OL
+Tm
+pC
+pC
+OK
+OK
+DL
+DL
+OK
+OK
+oi
+"}
+(39,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+KL
+gZ
+Pq
+ui
+ui
+gL
+oR
+Ww
+Ww
+oR
+oR
+gZ
+gZ
+gZ
+gZ
+Pq
+ui
+ui
+gL
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+eQ
+OK
+pC
+pC
+OK
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+gz
+th
+tk
+tk
+lM
+OL
+iS
+pC
+pC
+OK
+Ic
+pC
+pC
+Ic
+OK
+oi
+"}
+(40,1,1) = {"
+oi
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+Hj
+Yg
+gZ
+tS
+IX
+Sv
+Sv
+KL
+gZ
+YR
+pE
+lK
+TH
+oR
+Ww
+Ww
+Ww
+oR
+gZ
+gZ
+gZ
+gZ
+YR
+Sq
+Sv
+TH
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+eQ
+tO
+pC
+pC
+OK
+nH
+nH
+nH
+nH
+qW
+MM
+MM
+MM
+VH
+rl
+rl
+pk
+OL
+iS
+pC
+pC
+OL
+pC
+pC
+pC
+pC
+OK
+oi
+"}
+(41,1,1) = {"
+oi
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+ys
+ys
+KL
+gZ
+YR
+Sv
+Sv
+TH
+oR
+Ww
+Ww
+Ww
+oR
+gZ
+gZ
+gZ
+gZ
+YR
+Sv
+Sv
+TH
+gZ
+YR
+Yg
+Yg
+Av
+tF
+oY
+eQ
+xg
+pC
+pC
+OK
+nH
+nH
+nH
+qW
+fk
+fk
+fk
+fk
+sr
+fk
+fk
+kE
+OL
+AX
+pC
+pC
+OL
+pC
+pC
+pC
+pC
+OK
+oi
+"}
+(42,1,1) = {"
+oi
+Hj
+Hj
+vg
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Dt
+Jm
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+KL
+gZ
+YR
+Sq
+Sv
+TH
+oR
+oR
+ah
+ah
+oR
+gZ
+gZ
+gZ
+gZ
+jn
+pl
+pl
+lP
+gZ
+YR
+Yg
+Yg
+Av
+tF
+oY
+eQ
+xg
+pC
+pC
+OK
+nH
+nH
+qW
+fk
+fk
+fk
+fk
+fk
+nw
+Xk
+Xk
+mS
+OL
+Fd
+pC
+pC
+OL
+pC
+pC
+pC
+pC
+OK
+oi
+"}
+(43,1,1) = {"
+oi
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+KL
+gZ
+YR
+Sv
+Sv
+TH
+gZ
+oR
+Ww
+Ww
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+eQ
+Jw
+pC
+pC
+OK
+nH
+qW
+fk
+fk
+fk
+fk
+fk
+fk
+nw
+MW
+fk
+mS
+Li
+pC
+pC
+hp
+OK
+pC
+pC
+pC
+pC
+OK
+oi
+"}
+(44,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+KL
+gZ
+jn
+pl
+pl
+lP
+gZ
+oR
+Ww
+Ww
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+eQ
+OK
+pC
+pC
+Xg
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+fk
+KN
+fk
+fk
+mk
+OL
+BQ
+pC
+Qp
+OK
+zP
+PL
+Oe
+pC
+OK
+oi
+"}
+(45,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+Wk
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Wk
+jH
+jH
+jH
+Fp
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+Gg
+gL
+gZ
+gZ
+gZ
+gZ
+gZ
+oR
+Ww
+Ww
+oR
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+eQ
+OK
+pC
+pC
+Xg
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+fk
+nw
+Xk
+Xk
+mS
+OL
+iS
+pC
+eK
+OK
+pC
+PI
+PL
+pC
+gF
+oi
+"}
+(46,1,1) = {"
+oi
+Hj
+Dt
+se
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+Sv
+ud
+Su
+Su
+Su
+Su
+Su
+KM
+ah
+ah
+KM
+Su
+Su
+Su
+gL
+gZ
+gZ
+gZ
+gZ
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+eQ
+OK
+pC
+pC
+OK
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+fk
+nw
+fk
+fk
+mS
+OL
+AX
+pC
+IE
+OK
+pC
+PL
+PL
+pC
+OK
+oi
+"}
+(47,1,1) = {"
+oi
+Hj
+Dt
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+Hj
+Hj
+Yg
+gZ
+tS
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Gg
+Su
+gL
+gZ
+gZ
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+OK
+OK
+pC
+pC
+OK
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+fk
+sr
+fk
+fk
+bf
+OL
+iS
+pC
+pC
+SJ
+pC
+pC
+pC
+pC
+OK
+oi
+"}
+(48,1,1) = {"
+oi
+Hj
+Hj
+Hj
+Dt
+aj
+jH
+jH
+jH
+jH
+jH
+DE
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+aI
+Hj
+Hj
+Yg
+gZ
+jn
+lo
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+lK
+ud
+gL
+gZ
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+OK
+Ic
+pC
+pC
+OK
+nH
+nw
+fr
+fk
+Vi
+fk
+fk
+fk
+nw
+fk
+fk
+mS
+OL
+iS
+pC
+pC
+SJ
+pC
+pC
+pC
+Ic
+OK
+oi
+"}
+(49,1,1) = {"
+oi
+Hj
+Hj
+Hj
+Hj
+Hj
+Dt
+jH
+jH
+jH
+Hj
+Hj
+Dt
+jH
+Hj
+Hj
+Hj
+Dt
+jH
+Hj
+Hj
+Hj
+Yg
+kM
+gZ
+jn
+lo
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+ud
+gL
+gZ
+YR
+Yg
+Yg
+Av
+OK
+oY
+OK
+pC
+pC
+pC
+OK
+nH
+KN
+fk
+fr
+fk
+cr
+cr
+cr
+th
+tk
+tk
+lM
+OL
+OL
+OL
+OL
+OK
+OL
+OL
+OL
+OL
+OK
+oi
+"}
+(50,1,1) = {"
+oi
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Hj
+Yg
+Yg
+kM
+gZ
+jn
+cx
+Bv
+Bv
+Bv
+Bv
+Bv
+Bv
+Bv
+Bv
+Bv
+Bv
+sO
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+ud
+gL
+YR
+Yg
+Yg
+Av
+OK
+OK
+OK
+pC
+pC
+pC
+OK
+nH
+nw
+Vi
+fk
+fr
+cr
+nH
+nH
+Hu
+hW
+hW
+dP
+FB
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+cr
+oi
+"}
+(51,1,1) = {"
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+Yg
+Yg
+Yg
+kM
+gZ
+gZ
+lx
+Yg
+Yg
+kM
+gZ
+gZ
+gZ
+gZ
+gZ
+jn
+cx
+lo
+Sv
+Sv
+Sv
+Sv
+Sv
+Sv
+VM
+YR
+Yg
+Yg
+Av
+OK
+pC
+pC
+pC
+pC
+pC
+OK
+nH
+sr
+fk
+Vi
+fk
+cr
+nH
+nH
+nw
+fk
+fk
+fk
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+gx
+nH
+cr
+oi
+"}
+(52,1,1) = {"
+oi
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+oi
+oi
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+OC
+EY
+Yg
+Yg
+Yg
+kM
+jn
+lo
+Sv
+Sv
+Sv
+Sv
+Sv
+VM
+YR
+Yg
+Yg
+Av
+OK
+pC
+pC
+pC
+pC
+pC
+OK
+nH
+bc
+bN
+po
+TD
+cr
+nH
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+mS
+nH
+cr
+oi
+"}
+(53,1,1) = {"
+oi
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+pg
+Sv
+Sv
+Sv
+VM
+YR
+Yg
+Yg
+Av
+OK
+pC
+pC
+pC
+OK
+OL
+OK
+cr
+pX
+pX
+pX
+pX
+cr
+nH
+nH
+bc
+po
+po
+po
+po
+po
+po
+po
+po
+fk
+fk
+mS
+nH
+cr
+oi
+"}
+(54,1,1) = {"
+oi
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+oi
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+Yg
+pg
+Sv
+xx
+Gg
+mq
+Yg
+Yg
+Av
+OK
+pC
+pC
+pC
+OL
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+Vo
+Vo
+Vo
+Vo
+Vo
+Vo
+Vo
+Vo
+Vo
+Vo
+Vo
+nw
+fk
+mS
+nH
+cr
+oi
+"}
+(55,1,1) = {"
+oi
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+TP
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+Yg
+Yg
+Sv
+Sv
+Sv
+ti
+ti
+Av
+Av
+OK
+pC
+pC
+pC
+OL
+nH
+qW
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+MM
+fk
+fk
+mS
+nH
+cr
+oi
+"}
+(56,1,1) = {"
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+Yg
+Sv
+Sv
+xx
+ti
+ti
+Av
+Av
+OK
+pC
+pC
+pC
+OL
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+mS
+nH
+cr
+oi
+"}
+(57,1,1) = {"
+oi
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+jh
+We
+We
+We
+We
+We
+We
+We
+We
+We
+oi
+Yg
+bg
+bg
+bg
+ti
+ti
+Av
+OK
+OK
+sF
+sF
+sF
+OK
+nH
+nw
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+fk
+mS
+nH
+cr
+oi
+"}
+(58,1,1) = {"
+oi
+We
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+We
+oi
+Yg
+xx
+xx
+if
+ti
+pt
+Av
+OK
+qq
+qq
+qq
+qq
+OL
+FB
+nw
+fk
+fk
+fk
+po
+po
+po
+po
+po
+po
+po
+po
+po
+po
+po
+po
+po
+po
+po
+po
+Gw
+nH
+cr
+oi
+"}
+(59,1,1) = {"
+oi
+We
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+uZ
+uZ
+kh
+uZ
+nY
+nY
+nY
+nY
+nY
+nY
+nY
+nY
+KU
+qR
+XV
+XV
+qR
+pt
+Av
+OK
+qq
+qK
+qq
+qK
+OL
+nH
+nw
+fk
+fk
+mS
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+cr
+oi
+"}
+(60,1,1) = {"
+oi
+We
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+nj
+nu
+nY
+Zn
+nj
+zl
+nY
+nY
+TC
+Qg
+ff
+ff
+Rl
+pt
+Av
+OK
+qq
+qq
+qK
+qq
+OL
+nH
+nw
+fk
+fJ
+mS
+nH
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+cr
+oi
+"}
+(61,1,1) = {"
+oi
+We
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+kh
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+Uy
+xp
+xp
+xp
+xp
+xp
+xp
+UY
+mx
+mB
+ck
+ck
+BR
+pt
+Av
+OK
+qK
+qq
+GH
+qq
+OL
+nH
+nw
+fk
+fk
+mS
+nH
+cr
+Tz
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(62,1,1) = {"
+oi
+We
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+kh
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+qI
+Gx
+Gx
+Gx
+Gx
+aU
+xp
+xp
+Bh
+xp
+xp
+xp
+jp
+mx
+mB
+ck
+RC
+AB
+kT
+Av
+OK
+qq
+qK
+qq
+qK
+OL
+nH
+nw
+fk
+fk
+mS
+nH
+cr
+Tz
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(63,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+qI
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+HQ
+xp
+xp
+xp
+xp
+xp
+xp
+di
+mx
+mB
+ck
+Yq
+Pm
+pt
+Av
+OK
+qq
+qq
+qq
+qq
+OL
+nH
+Oz
+Wy
+Wy
+hY
+nH
+cr
+Tz
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(64,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+qI
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+nj
+zl
+nY
+Zn
+nj
+ou
+nY
+nY
+TC
+rQ
+JP
+wW
+Kt
+CI
+Av
+OK
+OK
+OK
+OK
+OK
+OK
+nH
+nw
+fk
+fk
+mS
+nH
+cr
+Tz
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(65,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+uZ
+kh
+uZ
+uZ
+uZ
+uZ
+nY
+nY
+nY
+nY
+nY
+nY
+nY
+nY
+KU
+PX
+PX
+PX
+PX
+KU
+Av
+Av
+Av
+Av
+Av
+Av
+cr
+nH
+nw
+fk
+fk
+mS
+nH
+cr
+Tz
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(66,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+kh
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+wx
+Gs
+Gs
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+We
+KU
+gZ
+fY
+no
+no
+KU
+Qz
+Qz
+Qz
+Qz
+Qz
+Qz
+vZ
+vZ
+iq
+eF
+eF
+JV
+vZ
+vZ
+Tz
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(67,1,1) = {"
+oi
+We
+nr
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+wx
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Qa
+nr
+Gs
+Gs
+Gs
+Gs
+We
+KU
+ui
+rI
+gZ
+gZ
+KU
+Qz
+Mx
+UC
+Mx
+UC
+UC
+Mx
+UC
+Ym
+Kx
+Ym
+Ym
+UC
+Mx
+Mx
+UC
+Mx
+Mx
+Mx
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(68,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+wx
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+cN
+Gs
+Qa
+Gs
+Gs
+Gs
+We
+KU
+HA
+zW
+gZ
+gZ
+KU
+Qz
+ir
+jN
+jN
+jN
+jN
+jN
+ef
+XD
+XD
+OV
+XD
+ef
+jN
+jN
+jN
+jN
+jN
+ir
+oi
+oi
+sQ
+sQ
+sQ
+sQ
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(69,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+wx
+Qa
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Zh
+wx
+nr
+Qa
+Gs
+Gs
+We
+KU
+jq
+Aw
+fc
+fc
+KU
+Qz
+Pa
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+TX
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+oi
+sQ
+oi
+sQ
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(70,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+Gx
+qI
+Gx
+wx
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+We
+KU
+qm
+KU
+KU
+KU
+KU
+Qz
+Pa
+PR
+PR
+PR
+PR
+PR
+AS
+TX
+ql
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+oi
+sQ
+oi
+sQ
+sQ
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(71,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+wx
+Gs
+Gs
+Gs
+nr
+TU
+ad
+ad
+ad
+ad
+ad
+uR
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+hJ
+wx
+Gs
+Gs
+Gs
+Qa
+nr
+nr
+Gs
+Gs
+uZ
+wx
+We
+We
+We
+We
+We
+We
+Qz
+Qz
+Pa
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+TX
+AS
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(72,1,1) = {"
+oi
+We
+Gs
+Gs
+xy
+uZ
+Gx
+Gx
+Gx
+wx
+Gs
+Gs
+TU
+ad
+uR
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+By
+ad
+YV
+wx
+Gs
+Gs
+Gs
+Gs
+Gs
+uZ
+uZ
+wx
+Gs
+Gs
+Gs
+Gs
+Gs
+We
+Pa
+Pa
+Pa
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+TX
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(73,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+ad
+ad
+ad
+Yt
+pc
+Fn
+Fn
+Fn
+Fn
+Fn
+Fn
+Fn
+Fn
+Fn
+BL
+Fn
+Fn
+Fn
+Fn
+Fn
+Fn
+BL
+Yt
+Yt
+ad
+ad
+ad
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+uZ
+uZ
+wx
+Gs
+Gs
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+TX
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(74,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Yt
+Yt
+Yt
+Yt
+DP
+wx
+nr
+Gs
+zq
+Gs
+nr
+Gs
+Gs
+Gs
+Gs
+Qa
+zq
+Gs
+Gs
+Gs
+Gs
+aB
+Yt
+Yt
+Yt
+Yt
+Yt
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+Gs
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+TX
+ql
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
+(75,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Yt
+Yt
+Yt
+Yt
+TA
+wx
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+JJ
+Yt
+iY
+Yt
+Yt
+Yt
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+wx
+Gs
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+TX
+AS
+PR
+PR
+PR
+PR
+PR
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+oi
+"}
+(76,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+uZ
+uZ
+Gx
+Gx
+Fn
+Fn
+Fn
+Yt
+By
+ad
+ad
+ad
+ad
+uR
+ad
+ad
+jV
+ad
+vL
+ad
+uR
+ad
+ad
+vL
+ad
+uR
+Yt
+eN
+Fn
+Fn
+Fn
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+TX
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+"}
+(77,1,1) = {"
+oi
+We
+Gs
+Gs
+uZ
+uZ
+kh
+uZ
+uZ
+wx
+Gs
+Gs
+JJ
+Fn
+BL
+Yt
+Yt
+ZE
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+Yt
+pc
+Fn
+IL
+wx
+Gs
+Gs
+Gs
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+tw
+TX
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+"}
+(78,1,1) = {"
+oi
+We
+Qa
+Gs
+uZ
+uZ
+uZ
+uZ
+uZ
+wx
+nr
+Gs
+Gs
+Gs
+JJ
+Fn
+Fn
+Fn
+Fn
+rL
+Fn
+Fn
+RE
+Fn
+Fn
+Fn
+rL
+Fn
+Xs
+Fn
+Fn
+QS
+wx
+Gs
+Gs
+nr
+Gs
+Gs
+uZ
+uZ
+qI
+Gx
+Gx
+Gx
+wy
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+TX
+ql
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+"}
+(79,1,1) = {"
+oi
+We
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+wx
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+TX
+AS
+PR
+PR
+PR
+PR
+PR
+Ge
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+"}
+(80,1,1) = {"
+oi
+We
+Gs
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+Gs
+Gs
+Qa
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+xy
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+TX
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+"}
+(81,1,1) = {"
+oi
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+Gs
+Gs
+Gs
+We
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+uZ
+uZ
+xy
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+TX
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+"}
+(82,1,1) = {"
+oi
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+We
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+nr
+Gs
+Gs
+uZ
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+TX
+ql
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Ge
+Pa
+oi
+"}
+(83,1,1) = {"
+oi
+sj
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+Ex
+sj
+We
+We
+We
+We
+We
+We
+We
+We
+We
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+"}
+(84,1,1) = {"
+oi
+sj
+Ex
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+uM
+uM
+uM
+uM
+uM
+uM
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+We
+Gs
+Gs
+Gs
+aJ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+ql
+AS
+AS
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Pa
+oi
+"}
+(85,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+sj
+We
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+Ge
+PR
+PR
+AS
+ql
+ql
+ql
+WX
+WX
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+PR
+PR
+PR
+Pa
+oi
+"}
+(86,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+bR
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+uM
+uM
+uM
+uM
+ii
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+HN
+sj
+We
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+kh
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+WX
+WX
+WX
+WX
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+WX
+AS
+AS
+PR
+PR
+Pa
+oi
+"}
+(87,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+bR
+oM
+oM
+Qx
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+Qx
+oM
+oM
+uM
+HN
+sj
+We
+Gs
+Gs
+Gs
+uZ
+xy
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+WX
+WX
+WX
+WX
+Td
+Td
+Td
+Td
+ik
+Td
+Td
+Td
+Td
+Td
+Td
+WX
+WX
+WX
+AS
+PR
+PR
+Pa
+oi
+"}
+(88,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+bR
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+sj
+We
+Qa
+Gs
+Gs
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+WX
+WX
+WX
+WX
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+WX
+WX
+WX
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(89,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+bR
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+sj
+We
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+AS
+WX
+WX
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+Td
+WX
+WX
+WX
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(90,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+uM
+uM
+uM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+sj
+We
+Gs
+Gs
+Gs
+uZ
+Hm
+uZ
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+Ge
+PR
+PR
+PR
+PR
+PR
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+WX
+WX
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(91,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+cU
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+uM
+uM
+uM
+oM
+oM
+oM
+oM
+uM
+HN
+sj
+We
+Gs
+Gs
+Gs
+uZ
+uZ
+uZ
+qI
+Gx
+Gx
+Gx
+uZ
+xy
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(92,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+uM
+HN
+MQ
+oM
+oM
+oM
+oM
+uM
+uM
+uM
+oM
+cU
+oM
+oM
+uM
+HN
+mD
+oM
+oM
+oM
+oM
+uM
+HN
+sj
+We
+Gs
+Gs
+uZ
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(93,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+cU
+oM
+oM
+uM
+HN
+sj
+We
+We
+Gs
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+PR
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+PR
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(94,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+uM
+dp
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+uM
+uM
+sj
+sj
+Mx
+uZ
+uZ
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+PR
+AS
+AS
+Wf
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+AS
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(95,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+QC
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+hg
+xv
+Jf
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+PR
+AS
+AS
+Wf
+Wf
+Wf
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(96,1,1) = {"
+oi
+sj
+Ex
+HN
+GJ
+Fv
+cU
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+hg
+xv
+Jf
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+uZ
+wx
+We
+Pa
+PR
+PR
+AS
+AS
+Wf
+Wf
+Wf
+Wf
+Wf
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(97,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oX
+Fv
+oM
+oM
+uM
+HN
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+hg
+xv
+Jf
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+Hm
+uZ
+wx
+Gs
+We
+Pa
+PR
+PR
+AS
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+ql
+ql
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+AS
+TX
+ql
+ql
+ZI
+AS
+PR
+PR
+Pa
+oi
+"}
+(98,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oX
+Fv
+oM
+uM
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+hg
+xv
+Jf
+Gx
+Gx
+Gx
+Gx
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+wx
+Gs
+We
+Pa
+PR
+PR
+AS
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+AS
+AS
+ql
+ql
+ql
+AS
+PR
+PR
+AS
+ql
+ql
+ql
+AS
+AS
+ql
+tw
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(99,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oX
+Fv
+uM
+HN
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+iN
+HN
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+Yu
+sj
+Mx
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+uZ
+wx
+Gs
+Gs
+Gs
+We
+Pa
+PR
+PR
+AS
+Wf
+Wf
+Wf
+Wf
+Wf
+AS
+AS
+AS
+ql
+ql
+ql
+AS
+PR
+PR
+AS
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(100,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oX
+bJ
+HN
+uM
+MQ
+uM
+uM
+uM
+uM
+TB
+uM
+uM
+uM
+uM
+uM
+uM
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+sj
+We
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+Gs
+We
+Pa
+PR
+AS
+AS
+Wf
+va
+Wf
+Wf
+AS
+AS
+PR
+AS
+ql
+ql
+ql
+AS
+PR
+PR
+AS
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(101,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+Kp
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+uM
+uM
+uM
+uM
+kV
+uM
+uM
+uM
+sj
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+We
+Pa
+AS
+AS
+Wf
+Wf
+Wf
+Wf
+Wf
+AS
+PR
+PR
+AS
+ZI
+ZI
+ZI
+AS
+PR
+PR
+AS
+dC
+ZI
+dC
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(102,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+HN
+uM
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+JT
+cW
+AS
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+AS
+PR
+PR
+AS
+ql
+ql
+ql
+AS
+ZF
+PR
+AS
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(103,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+HN
+uM
+sj
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+Dm
+Dm
+qZ
+mi
+wp
+Hv
+Dm
+Dm
+Dm
+ZZ
+Dm
+Dm
+qh
+GC
+qQ
+Uo
+Td
+Td
+Wf
+Wf
+Wf
+Wf
+Wf
+AS
+PR
+PR
+AS
+ql
+ql
+ql
+AS
+PR
+PR
+AS
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(104,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+sj
+sj
+sj
+kt
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+rH
+mi
+Pf
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+gV
+qQ
+Uo
+Td
+Td
+Td
+Wf
+Wf
+Wf
+AS
+AS
+PR
+PR
+AS
+ql
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(105,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+cU
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+uM
+sj
+xc
+kt
+kt
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Hv
+mi
+aO
+NN
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+QG
+qQ
+Uo
+Td
+Td
+Td
+Td
+Wf
+AS
+AS
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(106,1,1) = {"
+oi
+sj
+Ex
+HN
+HF
+oM
+oM
+oM
+oM
+oM
+oM
+bW
+oM
+oM
+oM
+oM
+oM
+oM
+oM
+cU
+oM
+oM
+uM
+sj
+JT
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Hv
+Hv
+Dm
+Dm
+Dm
+Dm
+Hv
+Hv
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+pK
+Dm
+QG
+qQ
+Uo
+Td
+Td
+Td
+Td
+AS
+AS
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(107,1,1) = {"
+oi
+sj
+Ex
+HN
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+hg
+qQ
+pw
+Dm
+Dm
+Dm
+Dm
+Dm
+wp
+Ma
+aO
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+JT
+AS
+AS
+AS
+AS
+AS
+AS
+PR
+PR
+PR
+PR
+PR
+AS
+AS
+ql
+ql
+ql
+ql
+ql
+ql
+ql
+AS
+AS
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(108,1,1) = {"
+oi
+sj
+Ex
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+hg
+yr
+pw
+Dm
+Dm
+Dm
+Dm
+pK
+YX
+rH
+ms
+Hv
+Hv
+Dm
+Dm
+Dm
+Dm
+Hv
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+JT
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+AS
+AS
+ql
+ql
+ql
+ql
+AS
+AS
+PR
+PR
+AS
+Wf
+ql
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(109,1,1) = {"
+oi
+sj
+Ex
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+hg
+qQ
+pw
+Dm
+Dm
+Dm
+Dm
+Dm
+Ra
+aO
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Hv
+Lc
+qH
+Dm
+Dm
+Dm
+Dm
+Dm
+Hv
+xc
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+Ge
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+ql
+WX
+AS
+AS
+AS
+AS
+Wf
+Wf
+Wf
+ql
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(110,1,1) = {"
+oi
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+uU
+sj
+uM
+uM
+uM
+uM
+uM
+HN
+uM
+oM
+oM
+oM
+oM
+oM
+oM
+hg
+qQ
+pw
+Dm
+Hv
+Dm
+Dm
+Dm
+Dm
+Hv
+Dm
+Dm
+Dm
+Dm
+qh
+Dm
+Dm
+Hv
+Hv
+Dm
+Dm
+Dm
+Dm
+Dm
+Hv
+xc
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+ql
+WX
+WX
+WX
+KW
+KW
+Wf
+Wf
+Wf
+Wf
+Wf
+ql
+AS
+PR
+PR
+Pa
+oi
+"}
+(111,1,1) = {"
+oi
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+sj
+uM
+MQ
+uM
+uM
+uM
+HN
+uM
+uM
+uM
+uM
+uM
+uM
+uM
+sj
+An
+Dm
+Hv
+Lc
+Dm
+Dm
+Dm
+Dm
+Hv
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+kt
+xc
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+ql
+WX
+WX
+WX
+WX
+KW
+KW
+KW
+Wf
+Wf
+Wf
+Wf
+Wf
+AS
+PR
+PR
+Pa
+oi
+"}
+(112,1,1) = {"
+oi
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+sj
+Ex
+Ex
+Ex
+Ex
+Ex
+GV
+HN
+HN
+HN
+HN
+HN
+HN
+HN
+sj
+xc
+Hv
+Dm
+Hv
+Dm
+Dm
+Dm
+Dm
+Hv
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+kt
+xc
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+WX
+WX
+WX
+WX
+KW
+KW
+ut
+KW
+KW
+Wf
+Wf
+Wf
+Wf
+AS
+PR
+PR
+Pa
+oi
+"}
+(113,1,1) = {"
+oi
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+sj
+xc
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+kt
+xc
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+AS
+WX
+WX
+KW
+KW
+KW
+KW
+KW
+KW
+KW
+Wf
+Wf
+AS
+AS
+PR
+PR
+Pa
+oi
+"}
+(114,1,1) = {"
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+kt
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+Dm
+kt
+oi
+Pa
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+PR
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+AS
+PR
+PR
+PR
+Pa
+oi
+"}
+(115,1,1) = {"
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+oi
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+Pa
+oi
+"}
+(116,1,1) = {"
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+"}
