@@ -16,6 +16,44 @@
 	force_fullbright = 1
 	requires_power = 0
 
+/area/sim/void
+	sound_environment = 21
+	sound_group = "void"
+	ambient_light = rgb(6.9, 4.20, 6.9)
+	area_parallax_render_source_group = /datum/parallax_render_source_group/area/void
+
+/area/sim/dojo
+	name = "dojo"
+	icon_state = "blue"
+	sound_environment = 21
+	sound_loop = 'sound/ambience/dojo/dojoambi.ogg'
+	sound_loop_vol = 50
+
+/area/sim/dojo/sakura
+	sound_environment = 15
+	New()
+		..()
+		overlays += image(icon = 'icons/obj/dojo.dmi', icon_state = "sakura_overlay", layer = EFFECTS_LAYER_BASE)
+
+/area/sim/abzu
+	area_parallax_render_source_group = /datum/parallax_render_source_group/area/abzu
+
+/area/sim/mars
+	area_parallax_render_source_group = /datum/parallax_render_source_group/area/mars
+
+/area/sim/iomoon
+	area_parallax_render_source_group = /datum/parallax_render_source_group/area/io_moon
+
+/area/sim/space
+	area_parallax_render_source_group = /datum/parallax_render_source_group/area/pirate //yarrrrrrr
+
+/area/sim/graveyard
+	force_fullbright = 0
+	New()
+		..()
+		overlays += image(icon = 'icons/turf/areas.dmi', icon_state = "rain_overlay", layer = EFFECTS_LAYER_BASE)
+
+
 /obj/racing_boosterstrip
 	name = "Booster"
 	icon = 'icons/misc/racing.dmi'
@@ -616,3 +654,28 @@ ABSTRACT_TYPE(/datum/targetable/kart_powerup)
 /obj/racing_clowncar/kart/red
 	icon_state = "kart_red_u"
 	cover_state = "kart_red"
+
+/obj/switches_the_conveyors
+	name = "switches the mars conveyor"
+	desc = "If you see this and you're not an admin then that's sorta bad. so STOP LOOKIN AT ME!!!!"
+	density = FALSE
+	anchored = ANCHORED
+	opacity = 0
+	invisibility = INVIS_ALWAYS_ISH
+	icon = 'icons/effects/ULIcons.dmi'
+	icon_state = "7-3-0"
+	var/list/conveyors
+	var/id = "vrmars"
+	New()
+		src.conveyors = list()
+		SPAWN(1 SECOND)
+			for (var/obj/machinery/conveyor/C as anything in machine_registry[MACHINES_CONVEYORS])
+				if (C.id == src.id)
+					conveyors += C
+		..()
+	Crossed(atom/movable/AM)
+		..()
+		if(!istype(AM, /obj/racing_clowncar/kart)) return
+		for (var/obj/machinery/conveyor/C as anything in conveyors)
+			C.operating = (C.operating == CONVEYOR_FORWARD) ? CONVEYOR_REVERSE : CONVEYOR_FORWARD
+			C.setdir()
