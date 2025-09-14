@@ -21,8 +21,8 @@ ABSTRACT_TYPE(/datum/mapPrefab/mining)
 		return locate(adjustX, adjustY, target.z)
 
 	verify_position(turf/target)
-		for(var/x=0, x<prefabSizeX; x++)
-			for(var/y=0, y<prefabSizeY; y++)
+		for(var/x=0; x < prefabSizeX; x++)
+			for(var/y=0; y<prefabSizeY; y++)
 				var/turf/L = locate(target.x+x, target.y+y, target.z)
 				if(L?.loc && ((L.loc.type != /area/space) && !istype(L.loc , /area/allowGenerate)))
 					return FALSE
@@ -42,6 +42,13 @@ ABSTRACT_TYPE(/datum/mapPrefab/mining/space)
 		prefabPath = "assets/maps/prefabs/space/prefab_clown.dmm"
 		prefabSizeX = 5
 		prefabSizeY = 5
+
+	radshuttle //An ill-fated and ill-equipped "transport"
+		maxNum = 1
+		probability = 25
+		prefabPath = "assets/maps/prefabs/space/prefab_Radshuttle.dmm"
+		prefabSizeX = 9
+		prefabSizeY = 14
 
 	shuttle
 		maxNum = 1

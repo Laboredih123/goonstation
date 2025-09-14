@@ -15,43 +15,6 @@
 	var/east_entr_placed = FALSE
 	var/west_entr_placed = FALSE
 
-	afterattack(atom/target, mob/user, reach)
-		..()
-		if (!src.artifact.activated)
-			return
-		if (!reach)
-			return
-		if (!iswall(target))
-			return
-		if (BOUNDS_DIST(user, target) > 0 || isrestrictedz(get_z(target)))
-			boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand. [src] probably doesn't work here"))
-			return
-
-		if (user.dir == NORTH)
-			if (!src.south_entr_placed)
-				src.create_entrance(SOUTH_ENTRANCE, target, user)
-				src.south_entr_placed = TRUE
-			else
-				boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand."))
-		else if (user.dir == SOUTH)
-			if (!src.north_entr_placed)
-				src.create_entrance(NORTH_ENTRANCE, target, user)
-				src.north_entr_placed = TRUE
-			else
-				boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand."))
-		else if (user.dir == EAST)
-			if (!src.west_entr_placed)
-				src.create_entrance(WEST_ENTRANCE, target, user)
-				src.west_entr_placed = TRUE
-			else
-				boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand."))
-		else if (user.dir == WEST)
-			if (!src.east_entr_placed)
-				src.create_entrance(EAST_ENTRANCE, target, user)
-				src.east_entr_placed = TRUE
-			else
-				boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand."))
-
 	proc/create_entrance(entrance_dir, turf/entrance, mob/user)
 		var/obj/art_fissure_objs/door/inner_door
 		var/turf/fissure_entr
@@ -112,7 +75,7 @@
 
 /datum/artifact/dimensional_key
 	associated_object = /obj/item/artifact/dimensional_key
-	type_name = "Dimensional key"
+	type_name = "Dimensional Key"
 	type_size = ARTIFACT_SIZE_TINY
 	rarity_weight = 200
 	validtypes = list("eldritch", "precursor")
@@ -129,6 +92,42 @@
 		var/turf/T = artkey.fissure_region.get_center()
 		var/area/artifact_fissure/fissure_area = get_area(T)
 		fissure_area.fissure_region = artkey.fissure_region
+
+	effect_attack_atom(obj/art, mob/living/user, atom/A)
+		if (..())
+			return
+		if (!iswall(A))
+			return
+		if (isrestrictedz(get_z(A)))
+			boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand. [art] probably doesn't work here."))
+			return
+
+		var/obj/item/artifact/dimensional_key/dim_key = art
+
+		if (user.dir == NORTH)
+			if (!dim_key.south_entr_placed)
+				dim_key.create_entrance(SOUTH_ENTRANCE, A, user)
+				dim_key.south_entr_placed = TRUE
+			else
+				boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand."))
+		else if (user.dir == SOUTH)
+			if (!dim_key.north_entr_placed)
+				dim_key.create_entrance(NORTH_ENTRANCE, A, user)
+				dim_key.north_entr_placed = TRUE
+			else
+				boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand."))
+		else if (user.dir == EAST)
+			if (!dim_key.west_entr_placed)
+				dim_key.create_entrance(WEST_ENTRANCE, A, user)
+				dim_key.west_entr_placed = TRUE
+			else
+				boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand."))
+		else if (user.dir == WEST)
+			if (!dim_key.east_entr_placed)
+				dim_key.create_entrance(EAST_ENTRANCE, A, user)
+				dim_key.east_entr_placed = TRUE
+			else
+				boutput(user, SPAN_ALERT("Nothing happens, except for a light stinging sensation in your hand."))
 
 /****** Supporting items/atoms/etc. *******/
 
@@ -167,7 +166,10 @@ ABSTRACT_TYPE(/obj/art_fissure_objs/cross_dummy)
 			AM.set_loc(get_step(src.exit_turf, turn(AM.dir, 180)))
 			SPAWN(0.001) // just a really low value
 				AM.set_loc(src.exit_turf)
-
+				if (istype(AM, /obj/stool)) // i dont like this but buckled is weird as shit
+					var/obj/stool/stool = AM
+					if (stool.buckled_guy)
+						stool.buckled_guy.set_loc(src.exit_turf)
 		else
 			return ..()
 
@@ -274,7 +276,7 @@ ABSTRACT_TYPE(/obj/art_fissure_objs/cross_dummy)
 	proc/open(recursion_check = TRUE)
 		src.icon_state = "door0"
 		playsound(src, 'sound/machines/door_open.ogg', 50, TRUE)
-		flick("doorc0", src)
+		FLICK("doorc0", src)
 		src.set_opacity(FALSE)
 		src.density = FALSE
 		src.open = TRUE
@@ -284,7 +286,7 @@ ABSTRACT_TYPE(/obj/art_fissure_objs/cross_dummy)
 	proc/close(recursion_check = TRUE)
 		src.icon_state = "door1"
 		playsound(src, 'sound/machines/door_close.ogg', 50, TRUE)
-		flick("doorc1", src)
+		FLICK("doorc1", src)
 		src.set_opacity(TRUE)
 		src.density = TRUE
 		src.open = FALSE
@@ -292,7 +294,7 @@ ABSTRACT_TYPE(/obj/art_fissure_objs/cross_dummy)
 			src.linked_door.close(FALSE)
 
 	proc/deny_open()
-		flick("door_deny", src)
+		FLICK("door_deny", src)
 		if (ON_COOLDOWN(src, "deny_sound", 1 SECOND))
 			return
 		playsound(src, 'sound/machines/door_locked.ogg', 40, FALSE)

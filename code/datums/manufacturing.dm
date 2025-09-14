@@ -288,6 +288,17 @@
 	time = 5 SECONDS
 	category = "Tool"
 
+
+/datum/manufacture/lantern
+	name = "Lantern"
+	item_requirements = list("metal" = 1,
+							 "conductive" = 1,
+							 "crystal" = 1)
+	item_outputs = list(/obj/item/device/light/lantern)
+	create = 1
+	time = 5 SECONDS
+	category = "Tool"
+
 /datum/manufacture/vuvuzela
 	name = "Vuvuzela"
 	item_requirements = list("any" = 1)
@@ -868,7 +879,7 @@
 
 /datum/manufacture/condenser
 	name = "Chemical Condenser"
-	item_requirements = list("molitz" = 5)
+	item_requirements = list("crystal" = 5)
 	item_outputs = list(/obj/item/reagent_containers/glass/plumbing/condenser)
 	create = 1
 	time = 5 SECONDS
@@ -1063,7 +1074,7 @@
 	item_requirements = list("dense_super" = 10,
 							 "insulated" = 20,
 							 "rubber" = 5)
-	item_outputs = list(/obj/item/tank/emergency_oxygen/extended/empty)
+	item_outputs = list(/obj/item/tank/pocket/extended/empty)
 	create = 1
 	time = 5 SECONDS
 	category = "Tool"
@@ -1144,6 +1155,15 @@
 	create = 1
 	time = 20 SECONDS
 	category = "Clothing"
+
+/datum/manufacture/wheelchair
+	name = "Wheelchair Parts"
+	item_requirements = list("metal" = 8,
+							 "fabric" = 3)
+	item_outputs = list(/obj/item/furniture_parts/wheelchair)
+	create = 1
+	time = 30 SECONDS
+	category = "Resource"
 
 /datum/manufacture/hypospray
 	name = "Hypospray"
@@ -1684,6 +1704,13 @@
 	time = 50 SECONDS
 	category = "Component"
 
+/datum/manufacture/clone_rack
+	name = "Clone Rack"
+	item_outputs = list(/obj/machinery/disk_rack/clone)
+	item_requirements = list("metal" = 30, "conductive" = 10)
+	create = 1
+	time = 40 SECONDS
+
 /datum/manufacture/shell_frame
 	name = "AI Shell Frame"
 	item_requirements = list("metal_dense" = 12)
@@ -1817,16 +1844,6 @@ ABSTRACT_TYPE(/datum/manufacture/aiModule)
 	create = 1
 	time = 3 SECONDS
 	category = "Tool"
-
-/datum/manufacture/secbot
-	name = "Security Drone"
-	item_requirements = list("metal_dense" = 30,
-							 "conductive_high" = 20,
-							 "energy" = 20)
-	item_outputs = list(/obj/machinery/bot/secbot)
-	create = 1
-	time = 120 SECONDS
-	category = "Machinery"
 
 /datum/manufacture/floorbot
 	name = "Construction Drone"
@@ -1973,7 +1990,7 @@ ABSTRACT_TYPE(/datum/manufacture/aiModule)
 	name = "Teleport Upgrade"
 	item_requirements = list("conductive" = 10,
 							 "dense" = 1,
-							 "energy_high" = 10)//Okayenoughroundstartteleportborgs.Fuck.
+							 "telecrystal" = 10)//Okayenoughroundstartteleportborgs.Fuck.
 	item_outputs = list(/obj/item/roboupgrade/teleport)
 	create = 1
 	time = 120 SECONDS
@@ -2355,7 +2372,7 @@ ABSTRACT_TYPE(/datum/manufacture/aiModule)
 /datum/manufacture/miniplasmatank
 	name = "Mini plasma tank"
 	item_requirements = list("metal_dense" = 1)
-	item_outputs = list(/obj/item/tank/mini_plasma/empty)
+	item_outputs = list(/obj/item/tank/mini/plasma/empty)
 	create = 1
 	time = 5 SECONDS
 	category = "Resource"
@@ -2363,7 +2380,7 @@ ABSTRACT_TYPE(/datum/manufacture/aiModule)
 /datum/manufacture/minioxygentank
 	name = "Mini oxygen tank"
 	item_requirements = list("metal_dense" = 1)
-	item_outputs = list(/obj/item/tank/mini_oxygen/empty)
+	item_outputs = list(/obj/item/tank/mini/oxygen/empty)
 	create = 1
 	time = 5 SECONDS
 	category = "Resource"
@@ -2377,7 +2394,7 @@ ABSTRACT_TYPE(/datum/manufacture/aiModule)
 	category = "Resource"
 
 /datum/manufacture/mender
-	name = "Auto Mender"
+	name = "Auto Mender (x2)"
 	item_requirements = list("metal_dense" = 5,
 							 "crystal" = 4,
 							 "gold" = 5)
@@ -3296,6 +3313,15 @@ ABSTRACT_TYPE(/datum/manufacture/pod/weapon)
 	time = 17 SECONDS
 	category = "Tool"
 
+/datum/manufacture/pod/gunner_support
+	name = "Gunner Module"
+	item_requirements = list("metal_dense" = 10,
+							 "conductive" = 30)
+	item_outputs = list(/obj/item/shipcomponent/secondary_system/gunner_support)
+	create = 1
+	time = 17 SECONDS
+	category = "Tool"
+
 /datum/manufacture/pod/sps
 	name = "Syndicate Purge System"
 	item_requirements = list("metal" = 8,
@@ -3831,5 +3857,21 @@ ABSTRACT_TYPE(/datum/manufacture/pod/weapon)
 	create = 1
 	item_outputs = list(/obj/item/clothing/suit/hazard/fire/heavy)
 	category = "Clothing"
+
+/datum/manufacture/turbine_shaft
+	name = "Turbine Shaft"
+	item_requirements = list("metal_dense" = 20)
+	create = 1
+	item_outputs = list(/obj/turbine_shaft)
+	time = 30 SECONDS
+	category = "Machinery"
+
+/datum/manufacture/current_turbine
+	name = "Current Turbine"
+	item_requirements = list("metal_dense" = 50, "conductive" = 20)
+	create = 1
+	item_outputs = list(/obj/turbine_shaft/turbine)
+	time = 50 SECONDS
+	category = "Machinery"
 
 #undef JUMPSUIT_COST

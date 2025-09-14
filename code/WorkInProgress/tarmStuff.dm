@@ -381,10 +381,6 @@
 		ammo.amount_left = 30
 		AddComponent(/datum/component/holdertargeting/smartgun/nukeop, 3)
 
-
-/datum/component/holdertargeting/smartgun/nukeop/is_valid_target(mob/user, mob/M)
-	return ..() && !istype(M.get_id(), /obj/item/card/id/syndicate)
-
 //smart extinguisher
 /obj/item/gun/flamethrower/extinguisher
 	name = "smart fire extinguisher"
@@ -619,7 +615,7 @@
 		src.rarity = max(src.rarity, round((currentench+incr+1)/2) + 2)
 	else
 		src.rarity = initial(src.rarity)
-	src.tooltip_rebuild = 1
+	src.tooltip_rebuild = TRUE
 	src.UpdateName()
 	return currentench + incr
 
@@ -752,11 +748,11 @@ TYPEINFO(/obj/item/device/geiger)
 	proc/change_icon_state(source, stage)
 		switch(stage)
 			if(1 to 2)
-				flick("geiger-1", src)
+				FLICK("geiger-1", src)
 			if(3 to 4)
-				flick("geiger-2", src)
+				FLICK("geiger-2", src)
 			if(5)
-				flick("geiger-3", src)
+				FLICK("geiger-3", src)
 
 
 /obj/decal/fireplace  //for Jan's chrismas event

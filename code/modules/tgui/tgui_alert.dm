@@ -113,7 +113,7 @@
  * the window was closed by the user.
  */
 /datum/tgui_modal/proc/wait()
-	UNTIL(choice || closed || QDELETED(src))
+	UNTIL(choice || closed || QDELETED(src), 0)
 
 /datum/tgui_modal/ui_interact(mob/user, datum/tgui/ui)
 	ui = tgui_process.try_update_ui(user, src, ui)
@@ -132,10 +132,6 @@
 	. = list()
 	if (timeout)
 		.["timeout"] = clamp(((timeout - (TIME - start_time) - 1 SECONDS) / (timeout - 1 SECONDS)), 0, 1)
-	// |GOONSTATION-ADD|
-	if (cant_interact)
-		.["cant_interact"] = clamp(((cant_interact - (TIME - start_time)) / cant_interact), 0, 1)
-		.["cant_interact_value"] = cant_interact
 
 /datum/tgui_modal/ui_static_data(mob/user)
 	. = list(
@@ -147,6 +143,7 @@
 		"content_window" = content_window,
 		"theme" = theme,
 		"cdn" = cdn,
+		"cant_interact" = cant_interact
 	)
 
 /datum/tgui_modal/ui_act(action, list/params)

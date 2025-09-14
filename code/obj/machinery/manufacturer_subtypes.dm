@@ -14,6 +14,7 @@
 		/datum/manufacture/extinguisher,
 		/datum/manufacture/welder,
 		/datum/manufacture/flashlight,
+		/datum/manufacture/lantern,
 		/datum/manufacture/weldingmask,
 		/datum/manufacture/metal,
 		/datum/manufacture/metal/bulk,
@@ -89,6 +90,7 @@
 	free_resources = list()
 	malfunction = TRUE
 	wires = 15 & ~(1 << 3) // This cuts the malfunction wire, so the fab malfunctions immediately
+	mechanics_type_override = /obj/machinery/manufacturer/general
 
 /obj/machinery/manufacturer/robotics
 	name = "robotics fabricator"
@@ -143,7 +145,6 @@
 		/datum/manufacture/stapler,
 		/datum/manufacture/surgical_spoon,
 		/datum/manufacture/implanter,
-		/datum/manufacture/secbot,
 		/datum/manufacture/medbot,
 		/datum/manufacture/firebot,
 		/datum/manufacture/floorbot,
@@ -216,6 +217,7 @@
 		/datum/manufacture/glasses,
 		/datum/manufacture/visor,
 		/datum/manufacture/deafhs,
+		/datum/manufacture/wheelchair,
 		/datum/manufacture/hypospray,
 		/datum/manufacture/patch,
 		/datum/manufacture/mender,
@@ -264,6 +266,7 @@
 		/obj/item/material_piece/cobryl = 2)
 	available = list(
 		/datum/manufacture/flashlight,
+		/datum/manufacture/lantern,
 		/datum/manufacture/gps,
 		/datum/manufacture/crowbar,
 		/datum/manufacture/extinguisher,
@@ -348,6 +351,7 @@
 		/datum/manufacture/geigercounter,
 		/datum/manufacture/eyes_meson,
 		/datum/manufacture/flashlight,
+		/datum/manufacture/lantern,
 		/datum/manufacture/ore_accumulator,
 		/datum/manufacture/rods2,
 		/datum/manufacture/metal,
@@ -397,6 +401,7 @@
 		/datum/manufacture/pod/heavy_shielding,
 		/datum/manufacture/pod/auto_repair_kit,
 		/datum/manufacture/pod/weapons_loader,
+		/datum/manufacture/pod/gunner_support,
 		/datum/manufacture/beaconkit,
 		/datum/manufacture/podgps
 	)
@@ -600,6 +605,7 @@
 		/datum/manufacture/suture,
 		/datum/manufacture/scalpel,
 		/datum/manufacture/flashlight,
+		/datum/manufacture/lantern,
 		/datum/manufacture/armor_vest,
 		/datum/manufacture/bullet_22,
 		/datum/manufacture/harmonica,
@@ -667,6 +673,8 @@
 #ifdef UNDERWATER_MAP
 		/datum/manufacture/engdivesuit,
 		/datum/manufacture/flippers,
+		/datum/manufacture/turbine_shaft,
+		/datum/manufacture/current_turbine,
 #endif
 #ifdef MAP_OVERRIDE_OSHAN
 		/datum/manufacture/cable/reinforced,

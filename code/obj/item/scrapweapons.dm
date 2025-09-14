@@ -165,7 +165,7 @@ ABSTRACT_TYPE(/obj/item/scrapweapons/weapons)
 					src.icon_state = "spear-wire"
 					src.item_state = "spear-wire"
 			else
-				boutput(user, "<span class='alert>You need to attach some wires before you stick anything on the spear!</span>")
+				boutput(user, "<span class='alert'>You need to attach some wires before you stick anything on the spear!</span>")
 				. = ..()
 		else if (istype(W, /obj/item/raw_material/scrap_metal))
 			W.change_stack_amount(-1)
@@ -267,7 +267,7 @@ ABSTRACT_TYPE(/obj/item/scrapweapons/weapons)
 /obj/item/scrapweapons/weapons/club
 	name = "scrap club"
 	desc = "A metal shaft attached to a handle. You might be able to improve it a bit."
-	HELP_MESSAGE_OVERRIDE("To improve the club you should first attach some <b>wires</b> to the spear, then attach a piece of <b>scrap metal, glass, or plasmaglass</b> as the tip.")
+	HELP_MESSAGE_OVERRIDE("To improve the club you should first attach some <b>wires</b> to the club, then attach a piece of <b>scrap metal, glass, or plasmaglass</b> as the studs.")
 	icon_state = "club"
 	item_state = "club"
 	w_class = W_CLASS_NORMAL
