@@ -54,13 +54,13 @@
 	plane = PLANE_LIGHTING
 	anchored = ANCHORED_ALWAYS
 
-	New(var/loc, var/duration=null, var/radius=7.5, var/max_alpha=255)
+	New(var/loc, var/duration=null, var/radius=7.5, var/max_alpha=255, var/timetochange = 20)
 		..()
 		var/matrix/tr = matrix()
 		tr.Scale(radius / 7)
 		src.transform = tr
 		src.alpha = 0
-		animate(src, time = 2 SECONDS, alpha = max_alpha, easing = LINEAR_EASING)
+		animate(src, time = timetochange, alpha = max_alpha, easing = LINEAR_EASING)
 		if(!isnull(duration))
 			SPAWN(duration)
 				src.deactivate()

@@ -346,6 +346,50 @@
 	friction = generator("num", 0.5, 0.3, UNIFORM_RAND)
 	drift = generator("vector", list(4,4,0), list(-4,-4,0), UNIFORM_RAND)
 
+/particles/darkworld
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = list("circle")
+	width = 500
+	height = 1100
+	count = 8000
+	spawning = 2500
+	lifespan = 4.1
+	velocity = generator("box", vector(-128,64,0), vector(128,64,0))
+	scale = list(0.01, 0.01)
+	position = list(0, -16, 0)
+	gravity = vector(0, 1024)
+	grow = list(1, 1)
+
+/particles/darkworldunderparticles
+	icon = 'icons/effects/1x1.dmi'
+	icon_state = list("pixel")
+	width = 300
+	height = 300
+	count = 100
+	spawning = 4
+	velocity = vector(0, -16, 0)
+	position = list(0, -16, 0)
+	gravity = vector(0, 4.5)
+	scale = list(4, 8)
+	grow = list(64, 0)
+	fade = 12
+	lifespan = 4.1
+
+/particles/darkworldblack
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = list("circle")
+	width = 500
+	height = 1100
+	count = 1000
+	spawning = 11
+	lifespan = 100
+	velocity = generator("box", vector(-4,1,0), vector(4,8,0), NORMAL_RAND)
+	color = "#000000"
+	scale = list(0.1, 0.1)
+	position = list(0, -16, 0)
+	gravity = vector(0, 0.4)
+	grow = list(0.01, 0.01)
+
 /particles/impact_bubble
 	icon = 'icons/effects/particles.dmi'
 	icon_state = list("bubble")
@@ -468,3 +512,16 @@
 /obj/effects/impact_energy/projectile_sparks
 	base_amt = 3
 	particles = new/particles/impact_energy
+
+/obj/effects/darkworld
+	plane = PLANE_ABOVE_BLACKNESS
+	particles = new/particles/darkworld
+
+	New()
+		..()
+		src.add_filter("outline", 1, outline_filter(size=2, color="#FFFFFF", flags = 0))
+		src.add_filter("color", 0, color_matrix_filter(normalize_color_to_matrix("#ffffff")))
+
+/obj/effects/darkworldunderparticles
+	plane = PLANE_ABOVE_BLACKNESS
+	particles = new/particles/darkworldunderparticles

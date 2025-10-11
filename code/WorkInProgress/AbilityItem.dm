@@ -147,6 +147,84 @@
 			W.on_toggle_hood()
 		..()
 
+/obj/ability_button/dark_world_creation
+	name = "Stab into the floor"
+	icon_state = "inferno"
+	var/jump_height = 1.5
+	cooldown = 10 SECONDS
+
+	execute_ability()
+		if (!the_mob.equipped())
+			boutput(the_mob, SPAN_ALERT("You're not holding anything!"))
+			return
+		if (!HAS_ANY_FLAGS(the_mob.equipped():hit_type, DAMAGE_CUT | DAMAGE_STAB))
+			boutput(the_mob, SPAN_ALERT("[the_mob.equipped()] can't cut or stab!"))
+			return
+		if (istype(get_area(the_mob), /area/space))
+			boutput(the_mob, SPAN_ALERT("You're not sure why, but you don't think that would work here!"))
+			return
+		if (!issimulatedturf(get_turf(the_mob)))
+			boutput(the_mob, SPAN_ALERT("This floor doesn't seem able to be stabbed!"))
+			return
+		APPLY_ATOM_PROPERTY(the_mob, PROP_MOB_CANTMOVE, src.type)
+		the_mob.set_dir(SOUTH)
+		APPLY_ATOM_PROPERTY(the_mob, PROP_MOB_CANTTURN, src.type)
+		animate(the_mob,
+			pixel_y = jump_height * 32,
+			time = 0.46 SECONDS,
+			easing = EASE_OUT | QUAD_EASING,
+			flags = ANIMATION_RELATIVE | ANIMATION_PARALLEL)
+		animate(transform = the_mob.transform,
+			time = 0.76 SECONDS,
+			flags = ANIMATION_RELATIVE)
+		animate(pixel_y = -jump_height * 32,
+			time = 0.1 SECONDS,
+			easing = EASE_IN | QUAD_EASING,
+			flags = ANIMATION_RELATIVE)
+		sleep(1.28 SECONDS)
+		the_mob.visible_message(SPAN_ALERT("[the_mob] stabs into the floor!"), SPAN_ALERT("You stab into the floor!"))
+		the_mob.anchored = ANCHORED_ALWAYS
+		the_mob.color = list(1,1,1,0,1,1,1,0, 1,1,1,0, 0,0,0,1,0,0,0,0)
+		the_mob.plane = PLANE_ABOVE_BLACKNESS
+		var/obj/effects/darkworld/darkness = new(get_turf(the_mob))
+		var/obj/effects/darkworldunderparticles/darkness2 = new(get_turf(the_mob))
+		for (var/obj/machinery/light/L in range(7, the_mob))
+			if (L.status == 2 || L.status == 1)
+				continue
+			L.broken(TRUE)
+		var/datum/light/point/light = new
+		light.set_brightness(7)
+		light.attach(the_mob)
+		light.enable()
+		sleep(2.85 SECONDS)
+		darkness.transition_filter("color", 2 SECOND, list(color = "#000000"))
+		animate(
+			the_mob,
+			time = 2 SECOND,
+			color = list(0.1,0.1,0.1,0,0.1,0.1,0.1,0,0.1,0.1,0.1,0,0,0,0,1,0,0,0,0))
+		sleep(3 SECONDS)
+		animate(
+			the_mob,
+			time = 0.1 SECONDS,
+			color = "#FFFFFF")
+		var/matrix/M = matrix()
+		M.Scale(0,1)
+		animate(
+			darkness,
+			time = 0.1 SECONDS,
+			transform = M)
+		light.set_brightness(3.5)
+		sleep(0.1 SECONDS)
+		qdel(light)
+		darkness2.particles.spawning = 0
+		QDEL_NULL(darkness)
+		QDEL_NULL(darkness2)
+		new /obj/effects/darkworldblack(get_turf(the_mob))
+		REMOVE_ATOM_PROPERTY(the_mob, PROP_MOB_CANTMOVE, src.type)
+		REMOVE_ATOM_PROPERTY(the_mob, PROP_MOB_CANTTURN, src.type)
+		the_mob.anchored = UNANCHORED
+		the_mob.plane = initial(the_mob.plane)
+
 /obj/ability_button/magboot_toggle
 	name = "(De)Activate Magboots"
 	icon_state = "magbootson"

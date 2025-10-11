@@ -1855,6 +1855,7 @@ obj/item/whetstone
 	pickup_sfx = 'sound/weapons/hadar_pickup.ogg'
 	hitsound = 'sound/weapons/hadar_impact.ogg'
 	two_handed = 1
+	abilities = list(/obj/ability_button/dark_world_creation)
 
 	var/stage = STAGE_ONE
 	var/mode = SWIPE_MODE
