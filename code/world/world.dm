@@ -25,6 +25,7 @@
 	hub_password = "kMZy3U5jJHSiBQjr"
 	name = "Goonstation 13"
 	map_format = ISOMETRIC_MAP
+	icon_size = 64
 
 
 /world/proc/update_status()
