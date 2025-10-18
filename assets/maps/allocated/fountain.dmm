@@ -1,0 +1,136 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/unsimulated/wall/solidcolor/black,
+/area/darkworld/fountain)
+"q" = (
+/turf/unsimulated/floor/solidcolor/fullbright{
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "darks";
+	color = "#25161d"
+	},
+/area/darkworld/fountain)
+"r" = (
+/turf/unsimulated/floor/solidcolor/black/fullbright{
+	density = 1
+	},
+/area/darkworld/fountain)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+r
+r
+r
+r
+r
+r
+r
+r
+r
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+r
+r
+r
+r
+r
+r
+r
+r
+r
+q
+q
+q
+q
+a
+"}
+(4,1,1) = {"
+a
+r
+r
+r
+r
+r
+r
+r
+r
+r
+q
+q
+q
+q
+a
+"}
+(5,1,1) = {"
+a
+r
+r
+r
+r
+r
+r
+r
+r
+r
+q
+q
+q
+q
+a
+"}
+(6,1,1) = {"
+a
+r
+r
+r
+r
+r
+r
+r
+r
+r
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

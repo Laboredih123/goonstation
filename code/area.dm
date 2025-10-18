@@ -4291,6 +4291,36 @@ ABSTRACT_TYPE(/area/mining)
 	icon_state = "green"
 	ambient_light = "#FFFFE6"
 
+
+//its time for darkness
+/area/darkworld
+	sound_environment = 2
+
+/area/darkworld/fountain
+	Entered(mob/M)
+		. = ..()
+		if(istype(M))
+			M.add_filter("fountaindarkness", 0, color_matrix_filter(normalize_color_to_matrix("#000000")))
+			M.add_filter("fountainglow", 1, drop_shadow_filter(0, 2, 0, 0, "#ffcc66"))
+			var/image/shadow = mutable_appearance()
+			shadow.layer = M.layer - 0.001
+			shadow.render_source = M.render_target
+			shadow.appearance_flags = KEEP_APART
+			shadow.color = "#000000"
+			shadow.transform = matrix().Scale(1, -2)
+			shadow.pixel_y = -32
+			M.AddOverlays(shadow, "fountainshadow")
+			M.client.edge_limit = "[src.x],[src.y+1] to [src.x+6],[src.y+7]"
+
+
+	Exited(mob/M)
+		. = ..()
+		if (istype(M))
+			M.remove_filter("fountaindarkness")
+			M.remove_filter("fountainglow")
+			M.ClearSpecificOverlays("fountainshadow")
+			M.client.edge_limit = null
+
 /* ================================================== */
 
 

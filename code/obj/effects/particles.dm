@@ -354,10 +354,12 @@
 	count = 8000
 	spawning = 2500
 	lifespan = 4.1
+	#ifndef IN_MAP_EDITOR
 	velocity = generator("box", vector(-128,64,0), vector(128,64,0))
 	scale = list(0.01, 0.01)
 	position = list(0, -16, 0)
 	gravity = vector(0, 1024)
+	#endif
 	grow = list(1, 1)
 
 /particles/darkworldunderparticles
@@ -367,9 +369,11 @@
 	height = 300
 	count = 100
 	spawning = 4
+	#ifndef IN_MAP_EDITOR
 	velocity = vector(0, -16, 0)
 	position = list(0, -16, 0)
 	gravity = vector(0, 4.5)
+	#endif
 	scale = list(4, 8)
 	grow = list(64, 0)
 	fade = 12
@@ -383,11 +387,13 @@
 	count = 1000
 	spawning = 11
 	lifespan = 100
+	#ifndef IN_MAP_EDITOR
 	velocity = generator("box", vector(-4,1,0), vector(4,8,0), NORMAL_RAND)
 	color = "#000000"
 	scale = list(0.1, 0.1)
 	position = list(0, -16, 0)
 	gravity = vector(0, 0.4)
+	#endif
 	grow = list(0.01, 0.01)
 
 /particles/impact_bubble
