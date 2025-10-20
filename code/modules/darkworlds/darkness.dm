@@ -29,6 +29,7 @@
 	plane = PLANE_ABOVE_BLACKNESS
 	layer = ABOVE_OBJ_LAYER
 	particles = new/particles/darkworldblack
+	var/instant = FALSE
 	var/datum/darkfountain/parent
 
 	New()
@@ -37,12 +38,22 @@
 		var/area = get_area(src)
 		src.add_filter("outline", 0, outline_filter(size=2, color="#FFFFFF", flags = 0))
 		var/list/L = list()
-		for (var/turf/T in range(7, src))
-			if (T.loc != area || !IN_EUCLIDEAN_RANGE(T, src, 7.4)) continue
-			L += new /obj/overlay/darkness_field{layer = HUD_LAYER}(T, null, radius = 1.5, max_alpha = 255, timetochange = GET_EUCLIDEAN_DIST(src, T) SECONDS + 2 SECONDS)
-			L += new /obj/overlay/darkness_field{layer = HUD_LAYER; plane = PLANE_SELFILLUM}(T, null, radius = 1.5, max_alpha = 255, timetochange = GET_EUCLIDEAN_DIST(src, T) SECONDS + 2 SECONDS)
-			L += new /obj/pure_darkness(T, GET_EUCLIDEAN_DIST(src, T) SECONDS + 2 SECONDS, src.parent, IN_RANGE(src, T, 2))
+		if (instant)
+			src.particles.spawning = 0
+			for (var/turf/T in range(7, src))
+				if (T.loc != area || !IN_EUCLIDEAN_RANGE(T, src, 7.4)) continue
+				L += new /obj/overlay/darkness_field{layer = HUD_LAYER}(T, null, radius = 1.5, max_alpha = 255, timetochange = 0)
+				L += new /obj/overlay/darkness_field{layer = HUD_LAYER; plane = PLANE_SELFILLUM}(T, null, radius = 1.5, max_alpha = 255, timetochange = 0)
+				L += new /obj/pure_darkness(T, 0, src.parent, FALSE)
+		else
+			for (var/turf/T in range(7, src))
+				if (T.loc != area || !IN_EUCLIDEAN_RANGE(T, src, 7.4)) continue
+				L += new /obj/overlay/darkness_field{layer = HUD_LAYER}(T, null, radius = 1.5, max_alpha = 255, timetochange = GET_EUCLIDEAN_DIST(src, T) SECONDS + 2 SECONDS)
+				L += new /obj/overlay/darkness_field{layer = HUD_LAYER; plane = PLANE_SELFILLUM}(T, null, radius = 1.5, max_alpha = 255, timetochange = GET_EUCLIDEAN_DIST(src, T) SECONDS + 2 SECONDS)
+				L += new /obj/pure_darkness(T, GET_EUCLIDEAN_DIST(src, T) SECONDS + 2 SECONDS, src.parent, IN_RANGE(src, T, 2))
 		src.parent.darknessfields = L
+		SPAWN(10 SECONDS)
+			src.particles.spawning = 0
 
 
 /obj/effects/fountainindarkworld
@@ -82,6 +93,7 @@
 		SPAWN(timetokickin + 1 SECOND)
 			src.active = TRUE
 			for (var/atom/movable/AM as anything in src.loc)
+				if (istype(AM, /obj/landmark)) continue
 				src.fountain.send(AM, startfountain)
 
 	Crossed(atom/movable/AM)
