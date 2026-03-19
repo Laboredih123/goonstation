@@ -282,7 +282,7 @@ datum
 		medical/salicylic_acid
 			name = "salicylic acid"
 			id = "salicylic_acid"
-			description = "This is a is a standard salicylate pain reliever and fever reducer."
+			description = "This is a is a standard salicylate pain reliever and fever reducer. A precursor of acetylsalicylic acid."
 			reagent_state = LIQUID
 			fluid_r = 181
 			fluid_g = 72
@@ -322,7 +322,7 @@ datum
 		medical/acetylsalicylic_acid
 			name = "acetylsalicylic acid"
 			id = "acetylsalicylic_acid"
-			description = "Anticoagulant, pain relief, and fever reducer medication. Causes mild stomach pain when ingested."
+			description = "The titular anticoagulating, pain relieving, and fever reducing medication. Can cause mild stomach pain when ingested."
 			reagent_state = SOLID
 			fluid_r = 220
 			fluid_g = 200
