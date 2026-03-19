@@ -358,8 +358,11 @@ datum
 				if(method == INGEST && volume_passed >= 5)
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
-						if (H.organHolder && prob(volume_passed*4))
-							H.organHolder.damage_organ(0, (volume_passed/5), 0, "stomach")
+						if (H.organHolder?.stomach && prob(volume_passed*4))
+							var/damage = volume_passed/5
+							damage += H.reagents.get_reagent_amount("ethanol")/4 //dont eat aspirin and drink! woe upon they with 100u ethanol
+							damage *= (H.organHolder.stomach.capacity - H.organHolder.stomach.food_amount + 1) / (H.organHolder.stomach.capacity + 1) // no full nullification of damage
+							H.organHolder.damage_organ(0, damage, 0, "stomach")
 				..()
 
 			do_overdose(severity, mob/M, var/mult = 1)
