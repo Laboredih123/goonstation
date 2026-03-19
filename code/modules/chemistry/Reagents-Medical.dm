@@ -319,6 +319,71 @@ datum
 				..()
 				return
 
+		medical/acetylsalicylic_acid
+			name = "acetylsalicylic acid"
+			id = "acetylsalicylic_acid"
+			description = "Anticoagulant, pain relief, and fever reducer medication. Causes mild stomach pain when ingested."
+			reagent_state = SOLID
+			fluid_r = 220
+			fluid_g = 200
+			fluid_b = 200
+			transparency = 180
+			overdose = 20
+			depletion_rate = 0.1
+			value = 15 // 5c + 4c + 3c + 1c + 1c + 1c
+			threshold = THRESHOLD_INIT
+
+			cross_threshold_over()
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/acetylsalicylic_acid, src.type)
+				..()
+
+			cross_threshold_under()
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/acetylsalicylic_acid, src.type)
+				..()
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if(!M) M = holder.my_atom
+				if(M.hasStatus("recent_trauma"))
+					M.changeStatus("recent_trauma", -5 SECONDS * mult)
+				M.HealDamage("All", 2 * mult)
+				M.changeBodyTemp(-20 KELVIN * mult, min_temp = M.base_body_temp)
+				M.changeBodyTemp(20 KELVIN * mult, max_temp = M.base_body_temp)
+				..()
+
+			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed)
+				if(method == INGEST && volume_passed >= 5)
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						if (H.organHolder && prob(volume_passed*4))
+							H.organHolder.damage_organ(0, (volume_passed/5), 0, "stomach")
+				..()
+
+			do_overdose(severity, mob/M, var/mult = 1)
+				if(probmult(25 * severity))
+					M.nauseate(2)
+				if (probmult(45 * severity))
+					M.change_misstep_chance(5 * mult)
+					M.make_dizzy(10 * mult)
+				M.changeBodyTemp(15 KELVIN * severity * mult) //aspirin can heat you if you take too much
+
+				if (severity == 1)
+					if (probmult(20))
+						M.emote(pick("twitch","quiver"))
+					if (probmult(25))
+						M.take_toxin_damage(1 * mult)
+
+				else if (severity == 2)
+					if (probmult(10) && M.client)
+						M.playsound_local(M.loc, 'sound/machines/phones/ring_incoming.ogg', 15, 1)
+					if (probmult(20))
+						M.emote(pick("twitch","twitch_v","quiver"))
+					if (probmult(67))
+						M.take_toxin_damage(1 * mult)
+
 		medical/menthol
 			name = "menthol"
 			id = "menthol"
