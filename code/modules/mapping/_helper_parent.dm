@@ -12,10 +12,11 @@ ABSTRACT_TYPE(/obj/mapping_helper)
 	anchored = ANCHORED_ALWAYS
 	invisibility = INVIS_ALWAYS
 	layer = OBJ_LAYER + 1 // yeah let's consistently be above doors
+	needs_roundstart_initialisation = TRUE
 
 	New()
 		..()
-		if (global.current_state >= GAME_STATE_WORLD_INIT)
+		if (global.current_state >= GAME_STATE_PREGAME)
 			src.initialize()
 
 	initialize()

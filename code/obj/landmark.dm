@@ -454,12 +454,13 @@ var/global/list/job_start_locations = list()
 	name = "spawner"
 	add_to_landmarks = FALSE
 	deleted_on_start = FALSE
+	needs_roundstart_initialisation = TRUE
 	/// Type this landmark should spawn. Do not edit this on a map instance. Create a subtype.
 	var/type_to_spawn = null
 	var/spawnchance = 100
 
 	New()
-		if(current_state >= GAME_STATE_WORLD_INIT && prob(spawnchance) && !src.disposed)
+		if(current_state >= GAME_STATE_PREGAME && prob(spawnchance) && !src.disposed)
 			SPAWN(6 SECONDS) // bluh, replace with some `initialize` variant later when someone makes it (needs to work with dmm loader)
 				if(!src.disposed)
 					initialize()

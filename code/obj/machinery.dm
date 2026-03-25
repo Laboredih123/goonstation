@@ -14,6 +14,7 @@
 	flags = FLUID_SUBMERGE | TGUI_INTERACTIVE
 	object_flags = NO_GHOSTCRITTER
 	pass_unstable = FALSE // Machines hopefully are stable.
+	needs_roundstart_initialisation = TRUE
 	var/status = 0
 	var/power_usage = 0
 	var/power_channel = EQUIP

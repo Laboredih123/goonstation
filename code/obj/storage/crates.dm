@@ -677,6 +677,7 @@ TYPEINFO(/obj/storage/crate/chest)
 	icon_state = "rustedcrate"
 	icon_opened = "rustedcrate_open"
 	icon_closed = "rustedcrate"
+	needs_roundstart_initialisation = TRUE
 
 	var/datum/light/point/light = 0
 	var/init = 0

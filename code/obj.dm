@@ -23,9 +23,12 @@
 
 	/// if gun/bullet related, forensic profile of it
 	var/forensic_ID = null
+	var/needs_roundstart_initialisation = FALSE
 
 	New()
 		. = ..()
+		if (src.needs_roundstart_initialisation && global.current_state <= GAME_STATE_WORLD_NEW)
+			START_TRACKING_CAT(TR_CAT_ROUNDSTART_INIT)
 		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))
 			var/turf/T = get_turf(src)
 			T?.UpdateDirBlocks()
@@ -116,6 +119,7 @@
 				set_opacity(1)
 
 	disposing()
+		STOP_TRACKING_CAT(TR_CAT_ROUNDSTART_INIT)
 		for(var/mob/M in src.contents)
 			M.set_loc(src.loc)
 		tag = null

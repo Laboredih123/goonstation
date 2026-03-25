@@ -38,6 +38,7 @@ ADMIN_INTERACT_PROCS(/obj/window, proc/smash)
 	gas_impermeable = TRUE
 	anchored = ANCHORED
 	material_amt = 0.1
+	needs_roundstart_initialisation = TRUE
 	HELP_MESSAGE_OVERRIDE(null)
 
 	the_tuff_stuff
@@ -60,7 +61,7 @@ ADMIN_INTERACT_PROCS(/obj/window, proc/smash)
 			src.health = src.health_max
 			//DEBUG ("[src.name] [log_loc(src)] has [health] health / [health_max] max health ([health_multiplier] multiplier).")
 
-		if(current_state >= GAME_STATE_WORLD_INIT)
+		if(current_state >= GAME_STATE_PREGAME)
 			SPAWN(0)
 				initialize()
 

@@ -211,6 +211,7 @@ var/list/list/by_cat = list()
 #define TR_CAT_TIMING_TIMERS "timing_timers" //item timers that are actively timing right now
 #define TR_CAT_GRAVITY_TETHERS "gravity_tethers" //! Station, single-area, and multi-area gravity tethers
 #define TR_CAT_SHUTTLE_COMPUTERS "shuttle_computer" //! Shuttle computers
+#define TR_CAT_ROUNDSTART_INIT "roundstart_init" // for initing objects at roundstart
 
 // powernets? processing_items?
 // mobs? ai-mobs?

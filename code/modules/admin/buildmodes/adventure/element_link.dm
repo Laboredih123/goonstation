@@ -1,4 +1,5 @@
 /obj/adventurepuzzle/element_link
+	needs_roundstart_initialisation = TRUE
 
 	var/triggerer_id = null
 	var/triggerable_id = null

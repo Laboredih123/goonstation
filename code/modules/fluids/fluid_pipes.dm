@@ -13,6 +13,7 @@ ABSTRACT_TYPE(/obj/fluid_pipe)
 	density = FALSE
 	level = UNDERFLOOR
 	pass_unstable = FALSE
+	needs_roundstart_initialisation = TRUE
 	var/capacity = DEFAULT_FLUID_CAPACITY
 	/// What directions are valid for connections.
 	var/initialize_directions

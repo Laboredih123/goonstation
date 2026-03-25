@@ -1,5 +1,6 @@
 
 /obj/adventurepuzzle/multi_element_link
+	needs_roundstart_initialisation = TRUE
 
 	// Look, please don't break this. okay? Please please please don't break this. This is very breakable. You promise? Good.
 

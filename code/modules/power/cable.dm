@@ -443,6 +443,7 @@
 	var/cable_type = /obj/cable
 	/// cable_surr uses the unique ordinal dirs to save directions as it needs to store up to 8 at once
 	var/cable_surr = 0
+	needs_roundstart_initialisation = TRUE
 
 /obj/cable/auto/node
 	name = "node cable spawner"
@@ -463,7 +464,7 @@
 
 /obj/cable/auto/New()
 	..()
-	if(current_state >= GAME_STATE_WORLD_INIT && !src.disposed)
+	if(current_state >= GAME_STATE_PREGAME && !src.disposed)
 		SPAWN(1 SECONDS)
 			if(!src.disposed)
 				initialize()

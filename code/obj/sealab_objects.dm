@@ -130,6 +130,7 @@
 	database_id = "sea_plant_lit_anemone"
 	var/datum/light/point/light = 0
 	var/init = 0
+	needs_roundstart_initialisation = TRUE
 
 	disposing()
 		light = 0

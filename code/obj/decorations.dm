@@ -657,6 +657,7 @@ TYPEINFO(/obj/shrub/syndicateplant)
 	opacity = 0
 	layer = EFFECTS_LAYER_UNDER_3 // below lights, above windoors
 	default_material = "plastic"
+	needs_roundstart_initialisation = TRUE
 	var/base_state = "blindsH"
 	var/open = 1
 	var/id = null
@@ -795,6 +796,7 @@ TYPEINFO(/obj/shrub/syndicateplant)
 	icon_state = "blind1"
 	anchored = ANCHORED
 	density = 0
+	needs_roundstart_initialisation = TRUE
 	var/working = TRUE
 	var/on = 0
 	var/id = null
@@ -928,6 +930,7 @@ TYPEINFO(/obj/shrub/syndicateplant)
 	icon_state = "light0"
 	anchored = ANCHORED
 	density = 0
+	needs_roundstart_initialisation = TRUE
 	var/on = FALSE
 	var/id = null
 

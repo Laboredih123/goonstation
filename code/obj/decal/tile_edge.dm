@@ -8,6 +8,7 @@
 	icon_state = "tile_edge"
 	layer = TURF_LAYER + 0.1 // it should basically be part of a turf
 	plane = PLANE_FLOOR // hence, they should be on the same plane!
+	needs_roundstart_initialisation = TRUE
 	var/merge_with_turf = 1
 
 	initialize()

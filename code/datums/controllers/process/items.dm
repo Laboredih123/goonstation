@@ -13,23 +13,23 @@
 		// plus i like watching number go up
 		var/itemcount = 0
 		var/lasttime = 0
-
-		// Zamu here -- I checked and this doesn't even register as 1 on a timeofday check
-		var/totalcount = 0
-		for(var/obj/object in world)
-			totalcount++
+		rustg_time_reset("items")
+		var/totalcount = length(by_cat[TR_CAT_ROUNDSTART_INIT])
 
 		logTheThing(LOG_DEBUG, src, "Starting main /obj initialize loop")
 
-		for(var/obj/object in world)
+		for(var/obj/object as anything in by_cat[TR_CAT_ROUNDSTART_INIT])
 			object.initialize(FALSE)
 			itemcount++
 			if (game_start_countdown)
-				if (lasttime != world.timeofday)
-					lasttime = world.timeofday
-					game_start_countdown.update_status("Initializing items\n([itemcount], [round(itemcount / totalcount * 100)]%)")
+				if (lasttime != world.time)
+					lasttime = world.time
+					game_start_countdown.update_status("Initializing items\n([itemcount] out of [totalcount], [round(itemcount / totalcount * 100)]%)")
 
 			LAGCHECK_IF_LIVE(LAG_INIT)
+
+		by_cat[TR_CAT_ROUNDSTART_INIT]?.len = 0
+		boutput(world, SPAN_ALERT("Initialised [totalcount] objects in [rustg_time_microseconds("items")/1000000] seconds!"))
 
 		logTheThing(LOG_DEBUG, src, "Main /obj initialize loop completed")
 

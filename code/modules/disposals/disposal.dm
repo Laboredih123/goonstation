@@ -633,6 +633,7 @@
 	isauto = TRUE
 	name = "disposal pipe spawner"
 	icon_state = "pipe-spawner"
+	needs_roundstart_initialisation = TRUE
 	var/trunk_type = /obj/disposalpipe/trunk/regular
 	dpdir = 0
 	regular
@@ -837,6 +838,7 @@
 /obj/disposalpipe/junction/auto
 	isauto = TRUE
 	dir = SOUTH
+	needs_roundstart_initialisation = TRUE
 	icon_state = "pipe-j-spawner"
 	dpdir = 0
 

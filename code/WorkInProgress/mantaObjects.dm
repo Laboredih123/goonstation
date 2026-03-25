@@ -890,6 +890,7 @@ var/obj/manta_speed_lever/mantaLever = null
 	name = "glowing sea anemone"
 	icon_state = "anemone_lit"
 	database_id = "sea_plant_lit_anemone"
+	needs_roundstart_initialisation = TRUE
 	var/datum/light/point/light = 0
 	var/init = 0
 

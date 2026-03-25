@@ -19,6 +19,7 @@
 	stamina_damage = 10
 	stamina_cost = 10
 	stamina_crit_chance = 5
+	needs_roundstart_initialisation = TRUE
 	var/note_time = 10 SECONDS
 	var/randomized_pitch = 1
 	var/pitch_set = 1

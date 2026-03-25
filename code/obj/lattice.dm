@@ -266,6 +266,7 @@
 /// lattice spawners, for mapping large quantities of lattice at once.
 /// They auto connect in four directions depending on the lattices around them, plus you can set them to connect to certain turfs.
 /obj/lattice/auto
+	needs_roundstart_initialisation = TRUE
 	dirmask = NORTH | SOUTH | EAST | WEST // so others will connect to us during init
 	/// makes the lattices connect to walls too
 	var/attach_to_wall = FALSE
@@ -282,7 +283,7 @@
 	attach_to_all_turfs = TRUE
 
 /obj/lattice/auto/New()
-	if(current_state >= GAME_STATE_WORLD_INIT && !src.disposed)
+	if(current_state >= GAME_STATE_PREGAME && !src.disposed)
 		// this delay in theory lets regular lattices get placed in world first.
 		SPAWN(0.1 SECONDS)
 			if(!src.disposed)
