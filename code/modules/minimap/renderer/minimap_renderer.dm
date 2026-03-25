@@ -37,7 +37,6 @@ var/list/minimap_z_levels = list(Z_LEVEL_STATION, Z_LEVEL_DEBRIS, Z_LEVEL_MINING
 	sortList(src.minimap_modifiers, GLOBAL_PROC_REF(cmp_minimap_modifiers))
 
 	src.render_minimaps()
-	src.render_radar_minimap()
 
 /// Set up all `/obj/minimap`, `/obj/minimap_controller`, and `/datum/minimap_marker/render` types.
 /datum/minimap_renderer/proc/initialise_minimaps()
@@ -130,6 +129,7 @@ var/list/minimap_z_levels = list(Z_LEVEL_STATION, Z_LEVEL_DEBRIS, Z_LEVEL_MINING
 		// Iterates through all turfs on the map, creating a list for each minimap type required, this minimap type list itself containing lists of turfs to be drawn to an icon.
 		for (var/turf/T as anything in block(locate(1, 1, z_level), locate(world.maxx, world.maxy, z_level)))
 			src.update_radar_map(T, FALSE)
+			LAGCHECK(LAG_LOW)
 
 		src.radar_minimap_objects_by_z_level["[z_level]"].icon = icon(src.radar_minimaps_by_z_level["[z_level]"])
 
@@ -176,9 +176,6 @@ var/list/minimap_z_levels = list(Z_LEVEL_STATION, Z_LEVEL_DEBRIS, Z_LEVEL_MINING
 
 /// Determine the colour of a turf on the minimap.
 /datum/minimap_renderer/proc/turf_color(turf/T)
-	if (!T.loc)
-		return
-
 	// Not a modifier to cut down on proccalls
 	if (istype(T, /turf/space))
 		return src.render_space_color || "#000000"

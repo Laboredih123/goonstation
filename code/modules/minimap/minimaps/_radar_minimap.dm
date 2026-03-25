@@ -1,4 +1,11 @@
 /datum/minimap/radar_map
+	var/static/rendered = FALSE
+
+/datum/minimap/radar_map/New()
+	if (!src.rendered)
+		global.minimap_renderer.render_radar_minimap()
+		src.rendered = TRUE
+	..()
 
 /datum/minimap/radar_map/initialise_minimap_render()
 	src.map = new()

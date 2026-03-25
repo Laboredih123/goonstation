@@ -1,6 +1,8 @@
 /datum/minimap/area_map
 	/// A bitflag that determines which areas and minimap markers are to be rendered on the minimap. For available flags, see `_std/defines/minimap.dm`.
 	var/minimap_type
+	/// Cache of focal points.
+	var/static/list/minimap_cache
 
 	/// A list of minimap render icons, indexed by z-level.
 	var/list/icon/map_icons_by_z_level
@@ -26,6 +28,8 @@
 
 	for (var/atom/marker_target as anything in global.minimap_marker_targets)
 		SEND_SIGNAL(marker_target, COMSIG_NEW_MINIMAP_MARKER, src)
+
+	LAZYLISTINIT(src.minimap_cache)
 
 	src.find_focal_point()
 
@@ -63,41 +67,36 @@
 		var/datum/minimap_marker/minimap/minimap_marker = src.minimap_markers[target]
 		src.set_marker_position(minimap_marker, minimap_marker.target.x, minimap_marker.target.y, minimap_marker.target.z)
 
-/// Checks whether a turf is rendered on this minimap type.
-/datum/minimap/area_map/proc/valid_turf(turf/T)
-	if (!T.loc)
-		return FALSE
-
-	var/area/A = T.loc
-	if (!(src.minimap_type & A.minimaps_to_render_on))
-		return FALSE
-
-	return TRUE
-
 /// Locate the focal point of the map by using the furthest valid turf in each direction.
 /datum/minimap/area_map/proc/find_focal_point()
 	if (!src.x_max || !src.x_min || !src.y_max || !src.y_min || !src.z_level)
 		return
 
-	if (!src.centre_focus_x || !src.centre_focus_y || !src.centre_scale)
+	var/list/cache = src.minimap_cache[jointext(list(src.x_min,src.y_min,src.x_max,src.y_max,src.z_level,src.minimap_type), ",")]
+	if (cache)
+		src.centre_focus_x = cache[1]
+		src.centre_focus_y = cache[2]
+		src.centre_scale = cache[3]
+	else
 		var/max_x = src.x_min
 		var/min_x = src.x_max
 		var/max_y = src.y_min
 		var/min_y = src.y_max
 
-		for (var/turf/T as anything in block(locate(src.x_min, src.y_min, src.z_level), locate(src.x_max, src.y_max, src.z_level)))
-			if (!src.valid_turf(T))
+		for (var/area/A in world)
+			if (!(A.z == src.z_level && src.minimap_type & A.minimaps_to_render_on))
 				continue
 
-			max_x = max(max_x, T.x)
-			min_x = min(min_x, T.x)
-			max_y = max(max_y, T.y)
-			min_y = min(min_y, T.y)
+			max_x = max(max_x, A.contents[length(A.contents)].x)
+			min_x = min(min_x, A.x)
+			max_y = max(max_y, A.contents[length(A.contents)].y)
+			min_y = min(min_y, A.y)
 
 		src.centre_focus_x = ((max_x + min_x) - 1) / 2
 		src.centre_focus_y = ((max_y + min_y) - 1) / 2
 
 		src.centre_scale = min(world.maxx / ((max_x - min_x) + src.border_width), world.maxy / ((max_y - min_y) + src.border_width))
+		src.minimap_cache[jointext(list(src.x_min,src.y_min,src.x_max,src.y_max,src.z_level,src.minimap_type), ",")] = list(src.centre_focus_x, src.centre_focus_y, src.centre_scale)
 
 	src.centre_on_point(src.centre_scale, src.centre_focus_x, src.centre_focus_y)
 
