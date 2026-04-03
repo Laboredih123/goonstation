@@ -335,7 +335,8 @@ proc/chem_helmet_check(mob/living/carbon/human/H, var/what_liquid="hot")
 			if (total <= CHEM_EPSILON)
 				target_reagents.color_update_queued = TRUE
 			else
-				old_ratios = alist()
+				if (!target_reagents.color_update_queued)
+					old_ratios = alist()
 
 			for(var/reagent_id in reagent_list)
 				if (reagent_id == exception)
