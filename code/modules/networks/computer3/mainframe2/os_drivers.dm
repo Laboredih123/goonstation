@@ -54,7 +54,7 @@
 	var/tmp/list/to_remove = list()
 	var/tmp/list/to_add = list()
 	var/tmp/list/mountpoints = list()
-	var/default_permission = DWAINE::PERM::DEFAULT::ALLACCESS & ~(DWAINE::PERM::BIT::OTHER_EXECUTE| DWAINE::PERM::BIT::GROUP_EXECUTE)
+	var/default_permission = DWAINE::PERM::DEFAULT::ALLACCESS & ~(DWAINE::PERM::BIT::OTHER_EXECUTE | DWAINE::PERM::BIT::GROUP_EXECUTE)
 
 	/* new disposing() pattern should handle this. -singh
 	disposing()

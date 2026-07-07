@@ -286,7 +286,7 @@
 		new_home = new /datum/computer/folder()
 		new_home.name = "usr[user_record.fields["name"]]"
 		new_home.metadata["owner"] = user_record.fields["name"]
-		new_home.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ | DWAINE::PERM::BIT::OWNER_WRITE | DWAINE::PERM::BIT::OWNER_EXECUTE
+		new_home.metadata["permission"] = DWAINE::PERM::DEFAULT::ONLY_OWNER_ACCESS
 
 		user_record.metadata["owner"] = user_record.fields["name"]
 		user_record.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ | DWAINE::PERM::BIT::OWNER_WRITE
@@ -340,7 +340,7 @@
 	user_name = global.format_username(user_name)
 
 	user_folder.metadata["permission"] = DWAINE::PERM::DEFAULT::NONE
-	home_folder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ | DWAINE::PERM::BIT::GROUP_READ | DWAINE::PERM::BIT::OTHER_READ
+	home_folder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 
 	var/name_attempt = 0
 	var/attemptedname = null
@@ -396,7 +396,7 @@
 	new_home = new /datum/computer/folder()
 	new_home.name = attemptedname
 	new_home.metadata["owner"] = user_record.fields["name"]
-	new_home.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ | DWAINE::PERM::BIT::OWNER_WRITE | DWAINE::PERM::BIT::OWNER_EXECUTE
+	new_home.metadata["permission"] = DWAINE::PERM::DEFAULT::ONLY_OWNER_ACCESS
 	if (!home_folder.add_file(new_home))
 		new_home.dispose()
 		return TRUE

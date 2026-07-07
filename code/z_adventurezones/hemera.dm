@@ -89,7 +89,7 @@ Obsidian Crown
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "bin" //Applications available to all users.
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/cd(src) )
 		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/ls(src) )
@@ -108,12 +108,12 @@ Obsidian Crown
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "mnt"
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "conf"
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 
 		var/datum/computer/file/record/testR = new
@@ -126,7 +126,7 @@ Obsidian Crown
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "etc"
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 
 		newfolder.add_file( new /datum/computer/file/guardbot_task/bodyguard(src) )

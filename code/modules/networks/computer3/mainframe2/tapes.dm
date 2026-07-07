@@ -51,7 +51,7 @@
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "bin" //Applications available to all users.
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/cd(src) )
 		newfolder.add_file( new /datum/computer/file/mainframe_program/utility/ls(src) )
@@ -74,22 +74,22 @@
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "var"
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "tmp"
-		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALLACCESS &~(DWAINE::PERM::BIT::OTHER_EXECUTE| DWAINE::PERM::BIT::GROUP_EXECUTE)
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALLACCESS &~(DWAINE::PERM::BIT::OTHER_EXECUTE | DWAINE::PERM::BIT::GROUP_EXECUTE)
 		src.root.add_file( newfolder )
 /*
 		subfolder = new /datum/computer/folder
 		subfolder.name = "log"
-		subfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ
+		subfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ | DWAINE::PERM::BIT::GROUP_READ
 		newfolder.add_file( subfolder )
 */
 		newfolder = new /datum/computer/folder
 		newfolder.name = "etc"
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 
 		subfolder = new /datum/computer/folder
@@ -118,12 +118,12 @@
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "mnt"
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 
 		newfolder = new /datum/computer/folder
 		newfolder.name = "conf"
-		newfolder.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+		newfolder.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 		src.root.add_file( newfolder )
 
 		var/datum/computer/file/record/testR = new
@@ -161,7 +161,7 @@
 		//src.root.add_file( new /datum/computer/file/mainframe_program/srv/telecontrol(src) )
 
 		for (var/datum/computer/file/F in src.root.contents)
-			F.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+			F.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 
 	readonly
 		desc = "A reel of magnetic data tape.  The casing has been modified so as to prevent write access."
@@ -246,7 +246,7 @@
 		src.root.add_file( new /datum/computer/file/record/bodyguard_script(src))
 		src.root.add_file( new /datum/computer/file/record/bodyguard_conf(src))
 		for (var/datum/computer/file/F in src.root.contents)
-			F.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+			F.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
 
 /obj/item/disk/data/tape/artifact_research
 	name = "ThinkTape-'Artifact Research'"
@@ -266,4 +266,4 @@
 		src.root.add_file( new /datum/computer/file/record/artlab_impactpad(src))
 		//src.root.add_file( new /datum/computer/file/mainframe_program/artifact_research(src) )
 		for (var/datum/computer/file/F in src.root.contents)
-			F.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ| DWAINE::PERM::BIT::GROUP_READ| DWAINE::PERM::BIT::OTHER_READ
+			F.metadata["permission"] = DWAINE::PERM::DEFAULT::ALL_READ_ONLY
