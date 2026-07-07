@@ -4,7 +4,7 @@ CREATE_NAMESPACE(DWAINE, SHELL, SCRIPT)
 /// The shell script encountered a if statement evaluated as TRUE.
 ADD_TO_NAMESPACE(DWAINE, SHELL, SCRIPT)(var/const/IF_TRUE = (1 << 0))
 /// The shell script is currently in a while loop.
-ADD_TO_NAMESPACE(DWAINE, SHELL, CONSTS)(var/const/IN_LOOP = (1 << 1))
+ADD_TO_NAMESPACE(DWAINE, SHELL, SCRIPT)(var/const/IN_LOOP = (1 << 1))
 
 
 CREATE_NAMESPACE(DWAINE, SHELL, CONSTS)

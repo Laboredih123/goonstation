@@ -54,7 +54,7 @@ ADD_TO_NAMESPACE(DWAINE, ERR, SHELL, EXEC)(var/const/FAILURE = 0)
 ADD_TO_NAMESPACE(DWAINE, ERR, SHELL, EXEC)(var/const/SUCCESS = 1)
 /// The script was unable to be executed.
 ADD_TO_NAMESPACE(DWAINE, ERR, SHELL, EXEC)(var/const/SCRIPT_ERROR = 2)
-/// A stack overflow error was encountered. In this case, `MAX_SCRIPT_ITERATIONS` was exceeded.
+/// A stack overflow error was encountered. In this case, `DWAINE::SHELL::CONSTS::MAX_SCRIPT_ITERATIONS` was exceeded.
 ADD_TO_NAMESPACE(DWAINE, ERR, SHELL, EXEC)(var/const/STACK_OVERFLOW = 3)
 
 
@@ -67,4 +67,4 @@ ADD_TO_NAMESPACE(DWAINE, ERR, SHELL, SCRIPT)(var/const/STACK_OVERFLOW = -1)
 /// A stack underflow error was encountered.
 ADD_TO_NAMESPACE(DWAINE, ERR, SHELL, SCRIPT)(var/const/STACK_UNDERFLOW = -2)
 /// An undefined error was encountered.
-ADD_TO_NAMESPACE(DWAINE, ERR, SHELL, SCRIPT)(var/const/_UNDEFINED = -3)
+ADD_TO_NAMESPACE(DWAINE, ERR, SHELL, SCRIPT)(var/const/UNDEFINED = -3)
