@@ -289,7 +289,7 @@
 		new_home.metadata["permission"] = DWAINE::PERM::DEFAULT::ONLY_OWNER_ACCESS
 
 		user_record.metadata["owner"] = user_record.fields["name"]
-		user_record.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ | DWAINE::PERM::BIT::OWNER_WRITE
+		user_record.metadata["permission"] = DWAINE::PERM::DEFAULT::ONLY_OWNER_READ_WRITE
 
 		if (!home_folder.add_file(new_home))
 			new_home.dispose()
@@ -383,7 +383,7 @@
 	user_record.fields["logtime"] = world.realtime
 	user_record.fields["accept_msg"] = "1"
 	user_record.metadata["owner"] = user_record.fields["name"]
-	user_record.metadata["permission"] = DWAINE::PERM::BIT::OWNER_READ | DWAINE::PERM::BIT::OWNER_WRITE
+	user_record.metadata["permission"] = DWAINE::PERM::DEFAULT::ONLY_OWNER_READ_WRITE
 
 	// If not interactive, no need to create a home directory for the user.
 	if (!interactive)
