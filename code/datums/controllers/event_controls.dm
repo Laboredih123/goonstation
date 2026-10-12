@@ -101,7 +101,11 @@ var/datum/event_controller/random_events
 
 		queued_events = list("major"=list(),"minor"=list(),"special_events"=list(),"spawn"=list(),"start_events"=list())
 
+#ifdef RP_MODE
 		src.active_storyteller = new/datum/storyteller/basic()
+#else
+		src.active_storyteller = new/datum/storyteller/player_driven()
+#endif
 		src.active_storyteller.set_active(src)
 
 	proc/process()
